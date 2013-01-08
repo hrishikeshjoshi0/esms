@@ -3,14 +3,19 @@
 import org.junit.*
 import grails.test.mixin.*
 
+/**
+ * ${className}ControllerTests
+ * A unit test class is used to test individual methods or blocks of code without considering the surrounding infrastructure
+ */
 @TestFor(${className}Controller)
 @Mock(${className})
 class ${className}ControllerTests {
 
+
     def populateValidParams(params) {
-        assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+      assert params != null
+      // TODO: Populate valid properties like...
+      //params["name"] = 'someValidName'
     }
 
     void testIndex() {
@@ -27,9 +32,9 @@ class ${className}ControllerTests {
     }
 
     void testCreate() {
-        def model = controller.create()
+       def model = controller.create()
 
-        assert model.${propertyName}Instance != null
+       assert model.${propertyName}Instance != null
     }
 
     void testSave() {
@@ -54,6 +59,7 @@ class ${className}ControllerTests {
         assert flash.message != null
         assert response.redirectedUrl == '/${propertyName}/list'
 
+
         populateValidParams(params)
         def ${propertyName} = new ${className}(params)
 
@@ -71,6 +77,7 @@ class ${className}ControllerTests {
 
         assert flash.message != null
         assert response.redirectedUrl == '/${propertyName}/list'
+
 
         populateValidParams(params)
         def ${propertyName} = new ${className}(params)
@@ -91,6 +98,7 @@ class ${className}ControllerTests {
         assert response.redirectedUrl == '/${propertyName}/list'
 
         response.reset()
+
 
         populateValidParams(params)
         def ${propertyName} = new ${className}(params)

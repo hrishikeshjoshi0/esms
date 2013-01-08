@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	'-//Hibernate/Hibernate Configuration DTD 3.0//EN'
+	'http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd'>
+
+<hibernate-configuration>
+
+	<session-factory>
+	<!--
+		<mapping package='com.books' />
+
+		<mapping class='com.books.Book' />
+
+		<mapping resource='someresource.hbm.xml'/>
+	-->
+		<mapping class='com.esms.model.party.Party' />
+		<mapping class='com.esms.model.party.PartyContactMech' />
+		<mapping class='com.esms.model.party.Person' />
+		<mapping class='com.esms.model.party.PartyGroup' />
+		<mapping class='com.esms.model.party.Address' />
+		
+		<mapping class='com.esms.model.lead.Enquiry' />
+		<mapping class='com.esms.model.lead.ElevatorEnquiry' />		
+		
+		<!-- <mapping class='com.openappengine.model.product.Product' />
+		<mapping class='com.openappengine.model.product.ProdProductPrice'/>
+		
+		<mapping class='com.openappengine.model.fm.tax.FmTaxType'/>
+		<mapping class='com.openappengine.model.fm.tax.FmTaxRate'/>
+		
+		<mapping class='com.openappengine.model.contract.Contract' />
+		<mapping class='com.openappengine.model.contract.ContractLineItem'/>
+		
+		<mapping class='com.openappengine.model.fm.OhOrderHeader' />
+		<mapping class='com.openappengine.model.fm.OiOrderItem'/>
+		<mapping class='com.openappengine.model.fm.FmPayment'/>
+		<mapping class='com.openappengine.model.fm.PartyBillingAccount'/>
+		
+		<mapping class='com.openappengine.model.billing.BillingCycle'/>
+		<mapping class='com.openappengine.model.batch.BulkPaymentUpload'/>
+		<mapping class='com.openappengine.model.batch.BulkPaymentUploadItem'/> -->
+		
+		<!-- <mapping class='com.openappengine.model.ad.AdSequence'/> -->
+		
+	</session-factory>
+
+</hibernate-configuration>
