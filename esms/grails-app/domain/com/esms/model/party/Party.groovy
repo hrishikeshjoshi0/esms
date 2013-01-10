@@ -2,13 +2,14 @@ package com.esms.model.party
 
 class Party {
 	
-	Long partyId
 	String externalId
 	String description
 	String partyType
 	String status
 	String relationshipType
 
+	static hasMany = [addresses : Address,contactMechs:ContactMech]
+	
     static constraints = {
 		description maxSize: 1000
 		partyType inList: ["PERSON", "PARTY_GROUP"]
@@ -17,15 +18,6 @@ class Party {
     }
 	
 	static mapping = {
-		table 'PARTY'
-		externalId column: 'EXTERNAL_ID'
-		description column: 'DESCRIPTION'
-		partyType column: 'PARTY_TYPE'
-		status column: 'STATUS'
-		relationshipType column: 'RELATIONSHIP_TYPE'
-		
-		version false
-		id column: 'PARTY_ID'
 		tablePerHierarchy false
 	}
 }

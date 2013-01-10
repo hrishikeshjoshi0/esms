@@ -13,14 +13,14 @@
 
 		<mapping resource='someresource.hbm.xml'/>
 	-->
-		<mapping class='com.esms.model.party.Party' />
+		<!-- <mapping class='com.esms.model.party.Party' />
 		<mapping class='com.esms.model.party.PartyContactMech' />
 		<mapping class='com.esms.model.party.Person' />
 		<mapping class='com.esms.model.party.PartyGroup' />
 		<mapping class='com.esms.model.party.Address' />
 		
 		<mapping class='com.esms.model.lead.Enquiry' />
-		<mapping class='com.esms.model.lead.ElevatorEnquiry' />		
+		<mapping class='com.esms.model.lead.ElevatorEnquiry' />	 -->	
 		
 		<!-- <mapping class='com.openappengine.model.product.Product' />
 		<mapping class='com.openappengine.model.product.ProdProductPrice'/>

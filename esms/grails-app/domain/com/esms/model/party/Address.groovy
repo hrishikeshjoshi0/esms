@@ -2,41 +2,36 @@ package com.esms.model.party
 
 class Address {
 	
-	private int addressBookId;
+	String toName;
 	
-	private String toName;
+	String attnName;
 	
-	private String attnName;
+	String buildingName;
 	
-	private String buildingName;
+	String address1;
 	
-	private String address1;
+	String address2;
 	
-	private String address2;
+	String directions;
 	
-	private String directions;
+	String city;
 	
-	private String city;
+	String postalCode;
 	
-	private String postalCode;
+	String postalCodeExt;
 	
-	private String postalCodeExt;
+	String country;
 	
-	private String country;
+	String stateProvince;
 	
-	private String stateProvince;
+	String addressType;
 	
-	private String addressType;
+	static belongsTo = [party : Party]
 
     static constraints = {
     }
 	
 	static mapping = {
-		table 'PARTY_ADDRESS'
-
-						
-		version false
-		id column: 'ADDRESS_BOOK_ID'
 		tablePerHierarchy false
 	}
 }

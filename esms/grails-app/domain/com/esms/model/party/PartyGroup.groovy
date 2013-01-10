@@ -6,11 +6,6 @@ class PartyGroup extends Party {
 	String comments
 	
     static mapping = {
-		table 'PARTY_GROUP'
-		groupName column: 'GROUP_NAME'
-		comments column: 'COMMENTS'
-		
-		id column: 'PARTY_ID'
     }
 	
 	static constraints = {
