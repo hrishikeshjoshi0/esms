@@ -1,21 +1,23 @@
-package com.esms.party
+package com.esms.model.party
 
 
 
 import org.junit.*
-
-import com.esms.model.party.PartyGroup;
-
 import grails.test.mixin.*
 
+/**
+ * PartyGroupControllerTests
+ * A unit test class is used to test individual methods or blocks of code without considering the surrounding infrastructure
+ */
 @TestFor(PartyGroupController)
 @Mock(PartyGroup)
 class PartyGroupControllerTests {
 
+
     def populateValidParams(params) {
-        assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+      assert params != null
+      // TODO: Populate valid properties like...
+      //params["name"] = 'someValidName'
     }
 
     void testIndex() {
@@ -32,9 +34,9 @@ class PartyGroupControllerTests {
     }
 
     void testCreate() {
-        def model = controller.create()
+       def model = controller.create()
 
-        assert model.partyGroupInstance != null
+       assert model.partyGroupInstance != null
     }
 
     void testSave() {
@@ -59,6 +61,7 @@ class PartyGroupControllerTests {
         assert flash.message != null
         assert response.redirectedUrl == '/partyGroup/list'
 
+
         populateValidParams(params)
         def partyGroup = new PartyGroup(params)
 
@@ -76,6 +79,7 @@ class PartyGroupControllerTests {
 
         assert flash.message != null
         assert response.redirectedUrl == '/partyGroup/list'
+
 
         populateValidParams(params)
         def partyGroup = new PartyGroup(params)
@@ -96,6 +100,7 @@ class PartyGroupControllerTests {
         assert response.redirectedUrl == '/partyGroup/list'
 
         response.reset()
+
 
         populateValidParams(params)
         def partyGroup = new PartyGroup(params)

@@ -32,7 +32,7 @@
 			<div class="navbar-inner">
 				<div class="container-fluid">
 					
-					<%--<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -48,14 +48,12 @@
 							</g:each>
 						</ul>
 					</div>
-				--%></div>
+				</div>
 			</div>
 		</nav>
-
-		<div class="container-fluid">
-			
-			<g:render template="/layouts/content_fluid">
-			</g:render>
+		
+		<div class="container-fluid" style="margin-top: 20px;">
+			<g:render template="/layouts/content_fluid"></g:render>
 
 			<hr>
 

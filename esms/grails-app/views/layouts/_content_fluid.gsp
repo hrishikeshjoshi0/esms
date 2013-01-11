@@ -12,29 +12,25 @@
 		<div class="span9">
 			<!--Body content-->
 			<!-- Secondary menu in one line (e.g., actions for current controller) -->
-			<div class="row">
-				<div class="span12" style="margin-top: 50px;">
-					<!-- print system messages (infos, warnings, etc) - not validation errors -->
-					<g:if test="${flash.message}">
-						<div class="alert alert-info">
-							${flash.message}
-						</div>
-					</g:if>
-				</div>
-				
-				<div class="span12">
-					<div>
-						<g:render template="/_menu/submenubar" />
-						
-						<div>
-							<g:layoutBody />
-							<g:pageProperty name="page.body" />
-						</div>
-					</div>
-					
+			<div class="page-header">
+				<h1>
+					<g:message code="default.list.label" args="[entityName]" />
+				</h1>
+			</div>
+
+			<g:if test="${flash.message}">
+				<bootstrap:alert class="alert-info">\${flash.message}</bootstrap:alert>
+			</g:if>
+			
+			<div>
+				<g:render template="/_menu/submenubar" />
+
+				<div>
+					<g:layoutBody />
+					<g:pageProperty name="page.body" />
 				</div>
 			</div>
-						
+
 		</div>
 	</div>
 </div>

@@ -1,40 +1,36 @@
 <%=packageName%>
 <!doctype html>
 <html>
+	<head>
+		<meta name="layout" content="bootstrap">
+		<g:set var="entityName" value="\${message(code: '${domainClass.propertyName}.label', default: '${className}')}" />
+		<title><g:message code="default.create.label" args="[entityName]" /></title>
+	</head>
+	<body>
+		<div class="row-fluid">
+				<g:hasErrors bean="\${${propertyName}}">
+				<bootstrap:alert class="alert-error">
+				<ul>
+					<g:eachError bean="\${${propertyName}}" var="error">
+					<li <g:if test="\${error in org.springframework.validation.FieldError}">data-field-id="\${error.field}"</g:if>><g:message error="\${error}"/></li>
+					</g:eachError>
+				</ul>
+				</bootstrap:alert>
+				</g:hasErrors>
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="layout" content="kickstart" />
-	<g:set var="entityName" value="\${message(code: '${domainClass.propertyName}.label', default: '${className}')}" />
-	<title><g:message code="default.create.label" args="[entityName]" /></title>
-</head>
-
-<body>
-
-<section id="create-${domainClass.propertyName}" class="first">
-
-	<g:hasErrors bean="\${${propertyName}}">
-	<div class="alert alert-error">
-		<g:renderErrors bean="\${${propertyName}}" as="list" />
-	</div>
-	</g:hasErrors>
-	
-	<g:form action="save" class="form-horizontal" <%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
-		<div class="form-actions pull-right">
-			<g:submitButton name="create" class="btn btn-primary" value="\${message(code: 'default.button.create.label', default: 'Create')}" />
-            <button class="btn" type="reset">Cancel</button>
+				<fieldset>
+					<g:form class="form-horizontal" action="create" <%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
+						<fieldset>
+							<f:all bean="${propertyName}"/>
+							<div class="form-actions">
+								<button type="submit" class="btn btn-primary">
+									<i class="icon-ok icon-white"></i>
+									<g:message code="default.button.create.label" default="Create" />
+								</button>
+							</div>
+						</fieldset>
+					</g:form>
+				</fieldset>
 		</div>
-		<fieldset class="form">
-			<g:render template="form"/>
-		</fieldset>
-		<div class="form-actions pull-right">
-			<g:submitButton name="create" class="btn btn-primary" value="\${message(code: 'default.button.create.label', default: 'Create')}" />
-            <button class="btn" type="reset">Cancel</button>
-		</div>
-	</g:form>
-	
-</section>
-		
-</body>
-
+	</body>
 </html>

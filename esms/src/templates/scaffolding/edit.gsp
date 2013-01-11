@@ -1,40 +1,47 @@
 <%=packageName%>
 <!doctype html>
 <html>
-
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="layout" content="kickstart" />
-	<g:set var="entityName" value="\${message(code: '${domainClass.propertyName}.label', default: '${className}')}" />
-	<title><g:message code="default.edit.label" args="[entityName]" /></title>
+<meta name="layout" content="bootstrap">
+<g:set var="entityName"
+	value="\${message(code: '${domainClass.propertyName}.label', default: '${className}')}" />
+<title><g:message code="default.edit.label" args="[entityName]" /></title>
 </head>
-
 <body>
+	<div class="row-fluid">
+		<g:hasErrors bean="\${${propertyName}}">
+			<bootstrap:alert class="alert-error">
+				<ul>
+					<g:eachError bean="\${${propertyName}}" var="error">
+						<li
+							<g:if test="\${error in org.springframework.validation.FieldError}">data-field-id="\${error.field}"</g:if>><g:message
+								error="\${error}" /></li>
+					</g:eachError>
+				</ul>
+			</bootstrap:alert>
+		</g:hasErrors>
 
-<section id="edit-${domainClass.propertyName}" class="first">
-
-	<g:hasErrors bean="\${${propertyName}}">
-	<div class="alert alert-error">
-		<g:renderErrors bean="\${${propertyName}}" as="list" />
-	</div>
-	</g:hasErrors>
-
-	<g:form method="post" class="form-horizontal" <%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
-		<g:hiddenField name="id" value="\${${propertyName}?.id}" />
-		<%--<g:hiddenField name="version" value="\${${propertyName}?.version}" />
-		--%>
-		<fieldset class="form">
-			<g:render template="form"/>
+		<fieldset>
+			<g:form class="form-horizontal" action="edit"
+				id="\${${propertyName}?.id}"
+				<%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
+				<g:hiddenField name="version" value="\${${propertyName}?.version}" />
+				<fieldset>
+					<f:all bean="${propertyName}" />
+					<div class="form-actions">
+						<button type="submit" class="btn btn-primary">
+							<i class="icon-ok icon-white"></i>
+							<g:message code="default.button.update.label" default="Update" />
+						</button>
+						<button type="submit" class="btn btn-danger" name="_action_delete"
+							formnovalidate>
+							<i class="icon-trash icon-white"></i>
+							<g:message code="default.button.delete.label" default="Delete" />
+						</button>
+					</div>
+				</fieldset>
+			</g:form>
 		</fieldset>
-		<div class="form-actions">
-			<g:actionSubmit class="btn btn-primary" action="update" value="\${message(code: 'default.button.update.label', default: 'Update')}" />
-			<g:actionSubmit class="btn btn-danger" action="delete" value="\${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('\${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-            <button class="btn" type="reset">Cancel</button>
-		</div>
-	</g:form>
-
-</section>
-			
+	</div>
 </body>
-
 </html>
