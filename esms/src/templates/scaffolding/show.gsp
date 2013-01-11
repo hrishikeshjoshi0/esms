@@ -11,8 +11,15 @@
 </head>
 <body>
 	<div class="row-fluid">
-		<dl>
-			<%  excludedProps = Event.allEvents.toList() << 'id' << 'version'
+		<div class="span12">
+			<div class="page-header">
+				<h1>
+					<g:message code="default.list.label" args="[entityName]" />
+				</h1>
+			</div>
+
+			<dl>
+				<%  excludedProps = Event.allEvents.toList() << 'id' << 'version'
 					allowedNames = domainClass.persistentProperties*.name << 'dateCreated' << 'lastUpdated'
 					props = domainClass.properties.findAll { allowedNames.contains(it.name) && !excludedProps.contains(it.name) }
 					Collections.sort(props, comparator.constructors[0].newInstance([domainClass] as Object[]))
@@ -36,21 +43,22 @@
 						<%  } %>
 					</g:if>
 				<%  } %>
-		</dl>
+			</dl>
 
-		<g:form>
-			<g:hiddenField name="id" value="\${${propertyName}?.id}" />
-			<div class="form-actions">
-				<g:link class="btn" action="edit" id="\${${propertyName}?.id}">
-					<i class="icon-pencil"></i>
-					<g:message code="default.button.edit.label" default="Edit" />
-				</g:link>
-				<button class="btn btn-danger" type="submit" name="_action_delete">
-					<i class="icon-trash icon-white"></i>
-					<g:message code="default.button.delete.label" default="Delete" />
-				</button>
-			</div>
-		</g:form>
+			<g:form>
+				<g:hiddenField name="id" value="\${${propertyName}?.id}" />
+				<div class="form-actions">
+					<g:link class="btn" action="edit" id="\${${propertyName}?.id}">
+						<i class="icon-pencil"></i>
+						<g:message code="default.button.edit.label" default="Edit" />
+					</g:link>
+					<button class="btn btn-danger" type="submit" name="_action_delete">
+						<i class="icon-trash icon-white"></i>
+						<g:message code="default.button.delete.label" default="Delete" />
+					</button>
+				</div>
+			</g:form>
+		</div>
 	</div>
 </body>
 </html>

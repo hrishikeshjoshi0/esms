@@ -11,8 +11,15 @@
 </head>
 <body>
 	<div class="row-fluid">
-		<dl>
-			
+		<div class="span12">
+			<div class="page-header">
+				<h1>
+					<g:message code="default.list.label" args="[entityName]" />
+				</h1>
+			</div>
+
+			<dl>
+				
 					<g:if test="${partyGroupInstance?.description}">
 						<dt><g:message code="partyGroup.description.label" default="Description" /></dt>
 						
@@ -80,21 +87,22 @@
 						
 					</g:if>
 				
-		</dl>
+			</dl>
 
-		<g:form>
-			<g:hiddenField name="id" value="${partyGroupInstance?.id}" />
-			<div class="form-actions">
-				<g:link class="btn" action="edit" id="${partyGroupInstance?.id}">
-					<i class="icon-pencil"></i>
-					<g:message code="default.button.edit.label" default="Edit" />
-				</g:link>
-				<button class="btn btn-danger" type="submit" name="_action_delete">
-					<i class="icon-trash icon-white"></i>
-					<g:message code="default.button.delete.label" default="Delete" />
-				</button>
-			</div>
-		</g:form>
+			<g:form>
+				<g:hiddenField name="id" value="${partyGroupInstance?.id}" />
+				<div class="form-actions">
+					<g:link class="btn" action="edit" id="${partyGroupInstance?.id}">
+						<i class="icon-pencil"></i>
+						<g:message code="default.button.edit.label" default="Edit" />
+					</g:link>
+					<button class="btn btn-danger" type="submit" name="_action_delete">
+						<i class="icon-trash icon-white"></i>
+						<g:message code="default.button.delete.label" default="Delete" />
+					</button>
+				</div>
+			</g:form>
+		</div>
 	</div>
 </body>
 </html>

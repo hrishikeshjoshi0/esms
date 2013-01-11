@@ -21,23 +21,45 @@
 
 <br/><br/><br/>
 <div class="${menuposition}">
+	<%--
 	<ul class="${menutype} nav nav-pills nav-stacked" data-role="listview" data-split-icon="gear" data-filter="true">
 	
-		<%--<g:each status="i" var="c" in="${grailsApplication.controllerClasses.sort { it.logicalPropertyName } }">
+		<g:each status="i" var="c" in="${grailsApplication.controllerClasses.sort { it.logicalPropertyName } }">
 			<li class="controller${params.controller == c.logicalPropertyName ? " active" : ""}">
 				<g:link controller="${c.logicalPropertyName}" action="index">
 					<g:message code="${c.logicalPropertyName}.label" default="${c.logicalPropertyName.capitalize()}"/>
 				</g:link>
 			</li>
 		</g:each>
-		--%>
-		
-		<li class="controller${params.controller == 'party_Customer' ? " active" : ""}">
-			<g:link controller="party_Customer" action="index">
-				<g:message code="party_Customer.label" default="Customer"/>
-			</g:link>
-		</li>
-		
-		
 	</ul>
+	--%>
+	
+	<g:if test="${	params.controller != null
+			&&	params.controller != ''
+			&&	params.controller != 'home'
+	}">
+		<ul id="Menu" class="${menutype} nav nav-pills nav-stacked" data-role="listview" data-split-icon="gear" data-filter="true">
+	
+			<g:set var="entityName" value="${message(code: params.controller+'.label', default: params.controller.substring(0,1).toUpperCase() + params.controller.substring(1).toLowerCase())}" />
+			
+			<li class="${ params.action == "list" ? 'active' : '' }">
+				<g:link action="list"><i class="icon-th-list"></i> <g:message code="default.list.label" args="[entityName]"/></g:link>
+			</li>
+			<li class="${ params.action == "create" ? 'active' : '' }">
+				<g:link action="create"><i class="icon-plus"></i> <g:message code="default.new.label"  args="[entityName]"/></g:link>
+			</li>
+			
+			<g:if test="${ params.action == 'show' || params.action == 'edit' }">
+				<!-- the item is an object (not a list) -->
+				<li class="${ params.action == "edit" ? 'active' : '' }">
+					<g:link action="edit" id="${params.id}"><i class="icon-pencil"></i> <g:message code="default.edit.label"  args="[entityName]"/></g:link>
+				</li>
+				<li class="">
+					<g:render template="/_common/modals/deleteTextLink"/>
+				</li>
+			</g:if>
+			
+		</ul>
+	</g:if>
+	
 </div>

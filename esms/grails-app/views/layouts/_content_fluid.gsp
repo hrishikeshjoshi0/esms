@@ -8,24 +8,22 @@
 				<g:render template="/_menu/menubar" />
 			</div>
 		</div>
-
-		<div class="span9">
+		
+		<div class="span9" style="margin-top: 20px;">
 			<!--Body content-->
 			<!-- Secondary menu in one line (e.g., actions for current controller) -->
-			<div class="page-header">
-				<h1>
-					<g:message code="default.list.label" args="[entityName]" />
-				</h1>
-			</div>
-
 			<g:if test="${flash.message}">
-				<bootstrap:alert class="alert-info">\${flash.message}</bootstrap:alert>
+				<bootstrap:alert class="alert-info">${flash.message}</bootstrap:alert>
 			</g:if>
-			
+			<br/>
 			<div>
-				<g:render template="/_menu/submenubar" />
+				<%--<div class="row-fluid">
+					<div class="span12">
+						<g:render template="/_menu/submenubar" />
+					</div>
+				</div>
 
-				<div>
+				--%><div>
 					<g:layoutBody />
 					<g:pageProperty name="page.body" />
 				</div>

@@ -10,6 +10,12 @@
 	<body>
 		<div class="row-fluid">
 			<div class="span12">
+				<div class="page-header">
+					<h1>
+						<g:message code="default.list.label" args="[entityName]" />
+					</h1>
+				</div>
+				
 				<table class="table table-striped">
 					<thead>
 						<tr>
