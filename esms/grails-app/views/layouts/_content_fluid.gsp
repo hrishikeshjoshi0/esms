@@ -2,20 +2,21 @@
 
 	<!-- Main menu in one line (e.g., controller entry points -->
 	<div class="row-fluid">
-		<div class="span3">
-			<div class="well">
+		<div class="span12" style="margin-top: 30px;">
+			<div class="">
 				<!--Sidebar content-->
 				<g:render template="/_menu/menubar" />
 			</div>
-		</div>
-		
-		<div class="span9" style="margin-top: 20px;">
+			
+			<hr/>
+			
 			<!--Body content-->
 			<!-- Secondary menu in one line (e.g., actions for current controller) -->
 			<g:if test="${flash.message}">
-				<bootstrap:alert class="alert-info">${flash.message}</bootstrap:alert>
+				<div style="margin: 10px;">
+					<bootstrap:alert class="alert-info">${flash.message}</bootstrap:alert>
+				</div>
 			</g:if>
-			<br/>
 			<div>
 				<%--<div class="row-fluid">
 					<div class="span12">
@@ -23,12 +24,10 @@
 					</div>
 				</div>
 
-				--%><div>
+				--%>
 					<g:layoutBody />
 					<g:pageProperty name="page.body" />
-				</div>
 			</div>
-
 		</div>
 	</div>
 </div>

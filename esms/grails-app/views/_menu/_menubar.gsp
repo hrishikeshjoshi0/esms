@@ -1,9 +1,9 @@
 <g:if test="${session.layout == null || session.layout == 'grid'}">
-	<g:set var="menutype" value="nav nav-tabs" />
+	<g:set var="menutype" value="nav nav-pills" />
 </g:if>
-<g:elseif test="${session.layout == 'fluid'}">
+<g:else>
 	<g:set var="menutype" value="nav nav-tabs" />
-</g:elseif>
+</g:else>
 
 <!-- position of menu: LTR (left-to-right, European) or RTL (right-to-left, Oriental) -->
 <g:if test="${session.menuposition == 'right' && session.layout == 'grid'}">
@@ -16,10 +16,9 @@
 	<g:set var="menuposition" value="tabbable tabs-left" /> <!-- pull-left -->
 </g:elseif>
 <g:else>
-	<g:set var="menuposition" value="" />
+	<g:set var="menuposition" value="fluid" />
 </g:else>
 
-<br/><br/><br/>
 <div class="${menuposition}">
 	<%--
 	<ul class="${menutype} nav nav-pills nav-stacked" data-role="listview" data-split-icon="gear" data-filter="true">
@@ -38,7 +37,7 @@
 			&&	params.controller != ''
 			&&	params.controller != 'home'
 	}">
-		<ul id="Menu" class="${menutype} nav nav-pills nav-stacked" data-role="listview" data-split-icon="gear" data-filter="true">
+		<ul id="" class="${menutype}" data-role="listview" data-split-icon="gear" data-filter="true">
 	
 			<g:set var="entityName" value="${message(code: params.controller+'.label', default: params.controller.substring(0,1).toUpperCase() + params.controller.substring(1).toLowerCase())}" />
 			

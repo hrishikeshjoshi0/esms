@@ -14,11 +14,11 @@
 		<div class="span12">
 			<div class="page-header">
 				<h1>
-					<g:message code="default.list.label" args="[entityName]" />
+					<g:message code="default.show.label" args="[entityName]" />
 				</h1>
 			</div>
 
-			<dl>
+			<dl class="dl-horizontal">
 				<%  excludedProps = Event.allEvents.toList() << 'id' << 'version'
 					allowedNames = domainClass.persistentProperties*.name << 'dateCreated' << 'lastUpdated'
 					props = domainClass.properties.findAll { allowedNames.contains(it.name) && !excludedProps.contains(it.name) }

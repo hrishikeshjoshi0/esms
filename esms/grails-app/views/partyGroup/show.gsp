@@ -18,7 +18,7 @@
 				</h1>
 			</div>
 
-			<dl>
+			<dl class="dl-horizontal">
 				
 					<g:if test="${partyGroupInstance?.description}">
 						<dt><g:message code="partyGroup.description.label" default="Description" /></dt>
@@ -45,13 +45,6 @@
 						<dt><g:message code="partyGroup.relationshipType.label" default="Relationship Type" /></dt>
 						
 							<dd><g:fieldValue bean="${partyGroupInstance}" field="relationshipType"/></dd>
-						
-					</g:if>
-				
-					<g:if test="${partyGroupInstance?.comments}">
-						<dt><g:message code="partyGroup.comments.label" default="Comments" /></dt>
-						
-							<dd><g:fieldValue bean="${partyGroupInstance}" field="comments"/></dd>
 						
 					</g:if>
 				

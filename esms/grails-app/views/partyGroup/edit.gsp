@@ -24,7 +24,7 @@
 
 			<div class="page-header">
 				<h1>
-					<g:message code="default.list.label" args="[entityName]" />
+					<g:message code="default.edit.label" args="[entityName]" />
 				</h1>
 			</div>
 
@@ -34,7 +34,7 @@
 					>
 					<g:hiddenField name="version" value="${partyGroupInstance?.version}" />
 					<fieldset>
-						<f:all bean="partyGroupInstance" />
+						<g:render template="form"></g:render>
 						<div class="form-actions">
 							<button type="submit" class="btn btn-primary">
 								<i class="icon-ok icon-white"></i>

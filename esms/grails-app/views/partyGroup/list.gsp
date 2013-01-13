@@ -16,7 +16,7 @@
 					</h1>
 				</div>
 				
-				<table class="table table-striped">
+				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
 						
@@ -28,9 +28,9 @@
 						
 							<g:sortableColumn property="relationshipType" title="${message(code: 'partyGroup.relationshipType.label', default: 'Relationship Type')}" />
 						
-							<g:sortableColumn property="comments" title="${message(code: 'partyGroup.comments.label', default: 'Comments')}" />
-						
 							<g:sortableColumn property="groupName" title="${message(code: 'partyGroup.groupName.label', default: 'Group Name')}" />
+						
+							<g:sortableColumn property="externalId" title="${message(code: 'partyGroup.externalId.label', default: 'External Id')}" />
 						
 							<th></th>
 						</tr>
@@ -47,9 +47,9 @@
 						
 							<td>${fieldValue(bean: partyGroupInstance, field: "relationshipType")}</td>
 						
-							<td>${fieldValue(bean: partyGroupInstance, field: "comments")}</td>
-						
 							<td>${fieldValue(bean: partyGroupInstance, field: "groupName")}</td>
+						
+							<td>${fieldValue(bean: partyGroupInstance, field: "externalId")}</td>
 						
 							<td class="link">
 								<g:link action="show" id="${partyGroupInstance.id}" class="btn btn-small">Show &raquo;</g:link>

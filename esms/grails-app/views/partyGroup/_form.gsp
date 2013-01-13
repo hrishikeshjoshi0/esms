@@ -34,14 +34,6 @@
 				</div>
 			</div>
 
-			<div class="control-group fieldcontain ${hasErrors(bean: partyGroupInstance, field: 'comments', 'error')} ">
-				<label for="comments" class="control-label"><g:message code="partyGroup.comments.label" default="Comments" /></label>
-				<div class="controls">
-					<g:textArea name="comments" cols="40" rows="5" maxlength="1000" value="${partyGroupInstance?.comments}"/>
-					<span class="help-inline">${hasErrors(bean: partyGroupInstance, field: 'comments', 'error')}</span>
-				</div>
-			</div>
-
 			<div class="control-group fieldcontain ${hasErrors(bean: partyGroupInstance, field: 'groupName', 'error')} required">
 				<label for="groupName" class="control-label"><g:message code="partyGroup.groupName.label" default="Group Name" /><span class="required-indicator">*</span></label>
 				<div class="controls">

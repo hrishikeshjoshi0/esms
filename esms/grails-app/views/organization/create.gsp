@@ -1,20 +1,20 @@
-<%@ page import="com.esms.model.party.PartyGroup" %>
+<%@ page import="com.esms.model.party.Organization" %>
 <!doctype html>
 <html>
 <head>
 <meta name="layout" content="bootstrap">
 <g:set var="entityName"
-	value="${message(code: 'partyGroup.label', default: 'PartyGroup')}" />
+	value="${message(code: 'organization.label', default: 'Organization')}" />
 <title><g:message code="default.create.label"
 		args="[entityName]" /></title>
 </head>
 <body>
 	<div class="row-fluid">
 		<div class="span12">
-			<g:hasErrors bean="${partyGroupInstance}">
+			<g:hasErrors bean="${organizationInstance}">
 				<bootstrap:alert class="alert-error">
 					<ul>
-						<g:eachError bean="${partyGroupInstance}" var="error">
+						<g:eachError bean="${organizationInstance}" var="error">
 							<li
 								<g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
 									error="${error}" /></li>

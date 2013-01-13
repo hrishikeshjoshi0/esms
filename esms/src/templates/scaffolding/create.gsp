@@ -25,7 +25,7 @@
 
 			<div class="page-header">
 				<h1>
-					<g:message code="default.list.label" args="[entityName]" />
+					<g:message code="default.create.label" args="[entityName]" />
 				</h1>
 			</div>
 
@@ -33,7 +33,7 @@
 				<g:form class="form-horizontal" action="create"
 					<%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
 					<fieldset>
-						<f:all bean="${propertyName}" />
+						<g:render template="form"></g:render>
 						<div class="form-actions">
 							<button type="submit" class="btn btn-primary">
 								<i class="icon-ok icon-white"></i>

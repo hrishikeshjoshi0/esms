@@ -625,39 +625,39 @@ h3 {
   line-height: 42px;
 }
 h1 {
-  font-size: 24px;
+  font-size: 18px;
 }
 h2 {
-  font-size: 33.75px;
+  font-size: 16px;
 }
 h3 {
-  font-size: 26.25px;
+  font-size: 16px;
 }
 h4 {
-  font-size: 18.75px;
+  font-size: 14px;
 }
 h5 {
-  font-size: 15px;
+  font-size: 14px;
 }
 h6 {
   font-size: 12.75px;
 }
 h1 small {
-  font-size: 26.25px;
+  font-size: 17px;
 }
 h2 small {
-  font-size: 18.75px;
+  font-size: 15px;
 }
 h3 small {
   font-size: 15px;
 }
 h4 small {
-  font-size: 15px;
+  font-size: 13px;
 }
 .page-header {
-  padding-bottom: 9.5px;
-  margin: 21px 0 31.5px;
   border-bottom: 1px solid #eeeeee;
+  margin: 0;
+  padding-bottom: 0.5px;
 }
 ul,
 ol {

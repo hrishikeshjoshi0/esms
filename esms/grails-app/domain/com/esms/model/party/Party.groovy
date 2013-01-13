@@ -6,15 +6,14 @@ class Party {
 	String description
 	String partyType
 	String status
-	String relationshipType
 
-	static hasMany = [addresses : Address,contactMechs:ContactMech]
+	static hasMany = [addresses:Address,phoneBooks:PhoneBook]
 	
     static constraints = {
 		description maxSize: 1000
-		partyType inList: ["PERSON", "PARTY_GROUP"]
-		status inList: ["PARTY_ENABLED", "PARTY_DISABLED"]
-		relationshipType inList: ["LEAD_REL", "CUSTOMER_REL", "EMPLOYEE", "CONTACT_REL"]
+		partyType inList: ["CONTACT","ORGANIZATION"]
+		status inList: ["ACTIVE","INACTIVE"]
+		externalId blank:false
     }
 	
 	static mapping = {
