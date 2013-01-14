@@ -10,10 +10,10 @@ class Party {
 	static hasMany = [addresses:Address,phoneBooks:PhoneBook]
 	
     static constraints = {
-		description maxSize: 1000
-		partyType inList: ["CONTACT","ORGANIZATION"]
-		status inList: ["ACTIVE","INACTIVE"]
 		externalId blank:false
+		status inList: ["ACTIVE","INACTIVE"]
+		description maxSize: 1000,blank : true
+		partyType inList: ["CONTACT","ORGANIZATION"]
     }
 	
 	static mapping = {

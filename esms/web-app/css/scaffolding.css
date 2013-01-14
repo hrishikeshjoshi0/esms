@@ -625,13 +625,13 @@ h3 {
   line-height: 42px;
 }
 h1 {
-  font-size: 18px;
+  font-size: 16px;
 }
 h2 {
   font-size: 16px;
 }
 h3 {
-  font-size: 16px;
+  font-size: 14px;
 }
 h4 {
   font-size: 14px;
@@ -643,16 +643,16 @@ h6 {
   font-size: 12.75px;
 }
 h1 small {
-  font-size: 17px;
+  font-size: 14px;
 }
 h2 small {
-  font-size: 15px;
+  font-size: 13px;
 }
 h3 small {
-  font-size: 15px;
+  font-size: 12px;
 }
 h4 small {
-  font-size: 13px;
+  font-size: 11px;
 }
 .page-header {
   border-bottom: 1px solid #eeeeee;
@@ -4344,7 +4344,7 @@ input[type="submit"].btn.btn-mini {
   top: -25%;
 }
 .modal.fade.in {
-  top: 10%;
+  top: 30%;
 }
 .modal-header {
   padding: 9px 15px;
@@ -4359,8 +4359,8 @@ input[type="submit"].btn.btn-mini {
 }
 .modal-body {
   position: relative;
-  overflow-y: auto;
-  max-height: 400px;
+  /* overflow-y: auto; */
+  max-height: 600px;
   padding: 15px;
 }
 .modal-form {
@@ -4962,6 +4962,12 @@ a.badge:hover {
 }
 .accordion-heading {
   border-bottom: 0;
+  background-color: #666;
+  color:#EEE;
+}
+
+.accordion-heading a {
+  color:#EEE;	
 }
 .accordion-heading .accordion-toggle {
   display: block;

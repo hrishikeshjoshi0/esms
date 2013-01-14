@@ -6,13 +6,14 @@ class Contact extends Party {
 	String firstName;
 	String middleName;
 	String lastName;
-	String gender;
-	Date birthDate;
 
 	static belongsTo = [organization : Party]
 
     static constraints = {
+		salutation salutation:true
 		firstName blank:false
+		lastName blank:true
+		middleName blank:true
     }
 	
 }
