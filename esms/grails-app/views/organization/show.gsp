@@ -35,6 +35,15 @@
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
+					<a data-toggle="modal" href="#" data-target="#contactModal" role="button" class="btn"> 
+						<i class="icon-plus"></i> New Contact
+					</a>
+					<a data-toggle="modal" href="#" data-target="#addressModal" role="button" class="btn"> 
+						<i class="icon-plus"></i> New Address
+					</a>
+					<a data-toggle="modal" href="#" data-target="#phoneBookModal"
+						role="button" class="btn"> <i class="icon-plus"></i> New Phone Book
+					</a>
 				</div>
 			</g:form>
 
