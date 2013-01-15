@@ -30,36 +30,6 @@
 							<dd><g:fieldValue bean="${productInstance}" field="comments"/></dd>
 						
 				
-							<dt><g:message code="product.brandName.label" default="Brand Name" /></dt>
-						
-							<dd><g:fieldValue bean="${productInstance}" field="brandName"/></dd>
-						
-				
-							<dt><g:message code="product.chargeShipping.label" default="Charge Shipping" /></dt>
-						
-							<dd><g:formatBoolean boolean="${productInstance?.chargeShipping}" /></dd>
-						
-				
-							<dt><g:message code="product.depth.label" default="Depth" /></dt>
-						
-							<dd><g:fieldValue bean="${productInstance}" field="depth"/></dd>
-						
-				
-							<dt><g:message code="product.fixedAmount.label" default="Fixed Amount" /></dt>
-						
-							<dd><g:fieldValue bean="${productInstance}" field="fixedAmount"/></dd>
-						
-				
-							<dt><g:message code="product.height.label" default="Height" /></dt>
-						
-							<dd><g:fieldValue bean="${productInstance}" field="height"/></dd>
-						
-				
-							<dt><g:message code="product.internalName.label" default="Internal Name" /></dt>
-						
-							<dd><g:fieldValue bean="${productInstance}" field="internalName"/></dd>
-						
-				
 							<dt><g:message code="product.introductionDate.label" default="Introduction Date" /></dt>
 						
 							<dd><g:formatDate date="${productInstance?.introductionDate}" /></dd>
@@ -75,24 +45,9 @@
 							<dd><g:fieldValue bean="${productInstance}" field="manufacturer"/></dd>
 						
 				
-							<dt><g:message code="product.piecesIncluded.label" default="Pieces Included" /></dt>
-						
-							<dd><g:fieldValue bean="${productInstance}" field="piecesIncluded"/></dd>
-						
-				
 							<dt><g:message code="product.productType.label" default="Product Type" /></dt>
 						
 							<dd><g:fieldValue bean="${productInstance}" field="productType"/></dd>
-						
-				
-							<dt><g:message code="product.quantityIncluded.label" default="Quantity Included" /></dt>
-						
-							<dd><g:fieldValue bean="${productInstance}" field="quantityIncluded"/></dd>
-						
-				
-							<dt><g:message code="product.requireAmount.label" default="Require Amount" /></dt>
-						
-							<dd><g:formatBoolean boolean="${productInstance?.requireAmount}" /></dd>
 						
 				
 							<dt><g:message code="product.requiresInventory.label" default="Requires Inventory" /></dt>
@@ -113,16 +68,6 @@
 							<dt><g:message code="product.taxable.label" default="Taxable" /></dt>
 						
 							<dd><g:formatBoolean boolean="${productInstance?.taxable}" /></dd>
-						
-				
-							<dt><g:message code="product.weight.label" default="Weight" /></dt>
-						
-							<dd><g:fieldValue bean="${productInstance}" field="weight"/></dd>
-						
-				
-							<dt><g:message code="product.width.label" default="Width" /></dt>
-						
-							<dd><g:fieldValue bean="${productInstance}" field="width"/></dd>
 						
 				
 			</dl>

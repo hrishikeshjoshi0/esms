@@ -24,13 +24,13 @@
 						
 							<g:sortableColumn property="comments" title="${message(code: 'product.comments.label', default: 'Comments')}" />
 						
-							<g:sortableColumn property="brandName" title="${message(code: 'product.brandName.label', default: 'Brand Name')}" />
+							<g:sortableColumn property="introductionDate" title="${message(code: 'product.introductionDate.label', default: 'Introduction Date')}" />
 						
-							<g:sortableColumn property="chargeShipping" title="${message(code: 'product.chargeShipping.label', default: 'Charge Shipping')}" />
+							<g:sortableColumn property="isVirtual" title="${message(code: 'product.isVirtual.label', default: 'Is Virtual')}" />
 						
-							<g:sortableColumn property="depth" title="${message(code: 'product.depth.label', default: 'Depth')}" />
+							<g:sortableColumn property="manufacturer" title="${message(code: 'product.manufacturer.label', default: 'Manufacturer')}" />
 						
-							<g:sortableColumn property="fixedAmount" title="${message(code: 'product.fixedAmount.label', default: 'Fixed Amount')}" />
+							<g:sortableColumn property="productType" title="${message(code: 'product.productType.label', default: 'Product Type')}" />
 						
 							<th></th>
 						</tr>
@@ -43,13 +43,13 @@
 						
 							<td>${fieldValue(bean: productInstance, field: "comments")}</td>
 						
-							<td>${fieldValue(bean: productInstance, field: "brandName")}</td>
+							<td><g:formatDate date="${productInstance.introductionDate}" /></td>
 						
-							<td><g:formatBoolean boolean="${productInstance.chargeShipping}" /></td>
+							<td><g:formatBoolean boolean="${productInstance.isVirtual}" /></td>
 						
-							<td>${fieldValue(bean: productInstance, field: "depth")}</td>
+							<td>${fieldValue(bean: productInstance, field: "manufacturer")}</td>
 						
-							<td>${fieldValue(bean: productInstance, field: "fixedAmount")}</td>
+							<td>${fieldValue(bean: productInstance, field: "productType")}</td>
 						
 							<td class="link">
 								<g:link action="show" id="${productInstance.id}" class="btn btn-small">Show &raquo;</g:link>

@@ -119,7 +119,8 @@ class OrganizationController {
 			contactInstance.status = "ACTIVE"
 			
 			if (!contactInstance.save(flush: true)) {
-				render view: 'create', model: [contactInstance: contactInstance]
+				flash.message = message(code: 'default.created.message', args: [message(code: 'contact.label', default: 'Contact'), contactInstance.id])
+				render controller : 'organization',action: 'list', model: [contactInstance: contactInstance]
 				return
 			}
 
@@ -140,7 +141,7 @@ class OrganizationController {
 	            return
 	        }
 
-			flash.message = message(code: 'default.created.message', args: [message(code: 'contact.label', default: 'Contact'), contactInstance.id])
+			flash.message = message(code: 'default.created.message', args: [message(code: 'contact.label', default: 'Contact'), addressInstance.id])
 			redirect controller: 'organization', action: 'show', id: addressInstance?.party?.id
 		}
 	}

@@ -50,7 +50,7 @@
 			aria-hidden="true">×</button>
 		<h3 id="myModalLabel">New Contact</h3>
 	</div>
-	<g:form controller="organization" action="createAddress" method="POST">
+	<g:form controller="organization" action="createContact" method="POST">
 		<g:hiddenField name="organization.id" value="${organizationInstance?.id}" />
 		<g:hiddenField name="createdFromOrganizationDetailView" value="true" />
 		<div class="modal-body">
