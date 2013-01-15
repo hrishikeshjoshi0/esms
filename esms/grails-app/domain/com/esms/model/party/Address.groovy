@@ -12,15 +12,17 @@ class Address {
 	
 	String postalCode;
 	
-	String country;
+	String country = "India";
 	
-	String state;
+	String state = "Maharashtra";
 	
 	String addressType;
 	
 	static belongsTo = [party : Party]
 
     static constraints = {
+		address1 blank:false
+		addressType inList:['SHIPPING','BILLING']
     }
 	
 	static mapping = {

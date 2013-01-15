@@ -107,4 +107,59 @@ class OrganizationController {
             redirect action: 'show', id: params.id
         }
     }
+	
+	def createContact() {
+		switch (request.method) {
+		case 'GET':
+			[contactInstance: new Contact(params)]
+			break
+		case 'POST':
+			def contactInstance = new Contact(params)
+			contactInstance.partyType = "CONTACT"
+			contactInstance.status = "ACTIVE"
+			
+			if (!contactInstance.save(flush: true)) {
+				render view: 'create', model: [contactInstance: contactInstance]
+				return
+			}
+
+			flash.message = message(code: 'default.created.message', args: [message(code: 'contact.label', default: 'Contact'), contactInstance.id])
+			redirect controller: 'organization', action: 'show', id: contactInstance?.organization?.id
+		}
+	}
+	
+	def createAddress() {
+		switch (request.method) {
+		case 'GET':
+			[addressInstance: new Address(params)]
+			break
+		case 'POST':
+			def addressInstance = new Address(params)
+	        if (!addressInstance.save(flush: true)) {
+	            render view: 'create', model: [addressInstance: addressInstance]
+	            return
+	        }
+
+			flash.message = message(code: 'default.created.message', args: [message(code: 'contact.label', default: 'Contact'), contactInstance.id])
+			redirect controller: 'organization', action: 'show', id: addressInstance?.party?.id
+		}
+	}
+	
+	def createPhoneBook() {
+		switch (request.method) {
+		case 'GET':
+			[phoneBookInstance: new PhoneBook(params)]
+			break
+		case 'POST':
+			def phoneBookInstance = new PhoneBook(params)
+			if (!phoneBookInstance.save(flush: true)) {
+				render view: 'create', model: [phoneBookInstance: phoneBookInstance]
+				return
+			}
+
+			flash.message = message(code: 'default.created.message', args: [message(code: 'phoneBook.label', default: 'PhoneBook'), phoneBookInstance.id])
+			redirect controller: 'organization', action: 'show', id: phoneBookInstance?.party?.id
+			break
+		}
+	}
 }

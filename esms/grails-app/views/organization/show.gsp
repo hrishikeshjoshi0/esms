@@ -1,6 +1,6 @@
 
 
-<%@ page import="com.esms.model.party.Organization" %>
+<%@ page import="com.esms.model.party.Organization"%>
 <!doctype html>
 <html>
 <head>
@@ -10,94 +10,8 @@
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
+	<div class="row-fluid" style="margin-top: -35px;margin-bottom: -35px;padding: 0px;">
 		<div class="span12">
-			<div class="page-header">
-				<h1>
-					<g:message code="default.show.label" args="[entityName]" />
-				</h1>
-			</div>
-
-			<dl class="dl-horizontal">
-				
-					<g:if test="${organizationInstance?.description}">
-						<dt><g:message code="organization.description.label" default="Description" /></dt>
-						
-							<dd><g:fieldValue bean="${organizationInstance}" field="description"/></dd>
-						
-					</g:if>
-				
-					<g:if test="${organizationInstance?.partyType}">
-						<dt><g:message code="organization.partyType.label" default="Party Type" /></dt>
-						
-							<dd><g:fieldValue bean="${organizationInstance}" field="partyType"/></dd>
-						
-					</g:if>
-				
-					<g:if test="${organizationInstance?.status}">
-						<dt><g:message code="organization.status.label" default="Status" /></dt>
-						
-							<dd><g:fieldValue bean="${organizationInstance}" field="status"/></dd>
-						
-					</g:if>
-				
-					<g:if test="${organizationInstance?.externalId}">
-						<dt><g:message code="organization.externalId.label" default="External Id" /></dt>
-						
-							<dd><g:fieldValue bean="${organizationInstance}" field="externalId"/></dd>
-						
-					</g:if>
-				
-					<g:if test="${organizationInstance?.name}">
-						<dt><g:message code="organization.name.label" default="Name" /></dt>
-						
-							<dd><g:fieldValue bean="${organizationInstance}" field="name"/></dd>
-						
-					</g:if>
-				
-					<g:if test="${organizationInstance?.salesStatus}">
-						<dt><g:message code="organization.salesStatus.label" default="Sales Status" /></dt>
-						
-							<dd><g:fieldValue bean="${organizationInstance}" field="salesStatus"/></dd>
-						
-					</g:if>
-				
-					<g:if test="${organizationInstance?.addresses}">
-						<dt><g:message code="organization.addresses.label" default="Addresses" /></dt>
-						
-							<g:each in="${organizationInstance.addresses}" var="a">
-							<dd><g:link controller="address" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></dd>
-							</g:each>
-						
-					</g:if>
-				
-					<g:if test="${organizationInstance?.assignedTo}">
-						<dt><g:message code="organization.assignedTo.label" default="Assigned To" /></dt>
-						
-							<dd><g:fieldValue bean="${organizationInstance}" field="assignedTo"/></dd>
-						
-					</g:if>
-				
-					<g:if test="${organizationInstance?.contacts}">
-						<dt><g:message code="organization.contacts.label" default="Contacts" /></dt>
-						
-							<g:each in="${organizationInstance.contacts}" var="c">
-							<dd><g:link controller="contact" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></dd>
-							</g:each>
-						
-					</g:if>
-				
-					<g:if test="${organizationInstance?.phoneBooks}">
-						<dt><g:message code="organization.phoneBooks.label" default="Phone Books" /></dt>
-						
-							<g:each in="${organizationInstance.phoneBooks}" var="p">
-							<dd><g:link controller="phoneBook" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></dd>
-							</g:each>
-						
-					</g:if>
-				
-			</dl>
-
 			<g:form>
 				<g:hiddenField name="id" value="${organizationInstance?.id}" />
 				<div class="form-actions">
@@ -111,6 +25,128 @@
 					</button>
 				</div>
 			</g:form>
+		</div>
+	</div>
+	
+	<div class="row-fluid" style="margin-top: -45px;">
+		<div class="span12">
+			<div class="page-header">
+				<h1>
+					Organization : ${organizationInstance?.externalId} 
+				</h1>
+				<h3>
+					<small>${organizationInstance?.name}</small>
+				</h3>
+			</div>
+			
+			<dl class="dl-horizontal">
+				<dt>
+					<g:message code="organization.name.label" default="Name" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${organizationInstance}" field="name" />
+				</dd>
+
+				<dt>
+					<g:message code="organization.externalId.label"
+						default="External Id" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${organizationInstance}" field="externalId" />
+				</dd>
+
+
+				<dt>
+					<g:message code="organization.description.label"
+						default="Description" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${organizationInstance}" field="description" />
+				</dd>
+
+
+				<dt>
+					<g:message code="organization.assignedTo.label"
+						default="Assigned To" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${organizationInstance}" field="assignedTo" />
+				</dd>
+
+			</dl>
+		</div>
+
+		<div class="span12">
+			<div class="accordion" id="detailViewAccordion">
+				<!-- Contacts -->
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse"
+							 href="#collapseContact">
+								<span class="left">
+									<i class="icon-user"></i>
+									Contacts
+									<div class="pull-right">
+										<i class="icon-plus"></i>
+									</div>
+								</span>
+						</a>
+					</div>
+					<div id="collapseContact" class="accordion-body collapse in">
+						<div class="accordion-inner">
+							<g:render template="contactList"/>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Addresses -->
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse"
+							 href="#collapseAddress"> 
+							<span class="left">
+									<i class="icon-book"></i>
+									Addresses
+									<div class="pull-right">
+										<i class="icon-plus"></i>
+									</div>
+							</span>
+						</a>
+					</div>
+					<div id="collapseAddress" class="accordion-body collapse">
+						<div class="accordion-inner">
+							<g:render template="addressList"/>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Phones -->
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse"
+							 href="#collapsePhoneBook"> 
+							<span class="left">
+									<i class="icon-book"></i>
+									Phones
+									<div class="pull-right">
+										<i class="icon-plus"></i>
+									</div>
+							</span>
+						</a>
+					</div>
+					<div id="collapsePhoneBook" class="accordion-body collapse">
+						<div class="accordion-inner">
+							<g:render template="phoneBookList"/>
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
 		</div>
 	</div>
 </body>

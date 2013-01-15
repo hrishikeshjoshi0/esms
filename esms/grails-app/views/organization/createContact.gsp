@@ -1,0 +1,1 @@
+<g:render template="/contact/form"></g:render>
