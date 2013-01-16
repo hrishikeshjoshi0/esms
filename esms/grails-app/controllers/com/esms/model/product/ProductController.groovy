@@ -106,4 +106,37 @@ class ProductController {
             redirect action: 'show', id: params.id
         }
     }
+	
+	def createPrice() {
+		switch (request.method) {
+		case 'GET':
+			[productPriceInstance: new ProductPrice(params)]
+			break
+		case 'POST':
+			def productPriceInstance = new ProductPrice(params)
+			def c = ProductPrice.createCriteria()
+			def results = c.list {
+				eq("product", productPriceInstance.product)
+				and {
+					ge("fromDate",productPriceInstance.fromDate)
+					le("toDate",productPriceInstance.toDate)
+				}
+			}
+			
+			if(results) {
+				flash.message = message(code: 'productPrice.overlap.message', 
+						args: [message(code: 'productPrice.label', default: 'Price'), productPriceInstance.id])
+				redirect controller: "product", action: 'show', id: productPriceInstance.id
+			}
+			
+			if (!productPriceInstance.save(flush: true)) {
+				render view: 'create', model: [productPriceInstance: productPriceInstance]
+				return
+			}
+
+			flash.message = message(code: 'default.created.message', args: [message(code: 'productPrice.label', default: 'ProductPrice'), productPriceInstance.id])
+			redirect controller: "product", action: 'show', id: productPriceInstance.id
+			break
+		}
+	}
 }

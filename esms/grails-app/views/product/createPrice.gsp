@@ -1,0 +1,1 @@
+<g:render template="/productPrice/form"></g:render>

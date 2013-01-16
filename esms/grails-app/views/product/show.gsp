@@ -1,6 +1,6 @@
 
 
-<%@ page import="com.esms.model.product.Product" %>
+<%@ page import="com.esms.model.product.Product"%>
 <!doctype html>
 <html>
 <head>
@@ -18,60 +18,6 @@
 				</h1>
 			</div>
 
-			<dl class="dl-horizontal">
-				
-							<dt><g:message code="product.productName.label" default="Product Name" /></dt>
-						
-							<dd><g:fieldValue bean="${productInstance}" field="productName"/></dd>
-						
-				
-							<dt><g:message code="product.comments.label" default="Comments" /></dt>
-						
-							<dd><g:fieldValue bean="${productInstance}" field="comments"/></dd>
-						
-				
-							<dt><g:message code="product.introductionDate.label" default="Introduction Date" /></dt>
-						
-							<dd><g:formatDate date="${productInstance?.introductionDate}" /></dd>
-						
-				
-							<dt><g:message code="product.isVirtual.label" default="Is Virtual" /></dt>
-						
-							<dd><g:formatBoolean boolean="${productInstance?.isVirtual}" /></dd>
-						
-				
-							<dt><g:message code="product.manufacturer.label" default="Manufacturer" /></dt>
-						
-							<dd><g:fieldValue bean="${productInstance}" field="manufacturer"/></dd>
-						
-				
-							<dt><g:message code="product.productType.label" default="Product Type" /></dt>
-						
-							<dd><g:fieldValue bean="${productInstance}" field="productType"/></dd>
-						
-				
-							<dt><g:message code="product.requiresInventory.label" default="Requires Inventory" /></dt>
-						
-							<dd><g:formatBoolean boolean="${productInstance?.requiresInventory}" /></dd>
-						
-				
-							<dt><g:message code="product.salesDiscontinuationDate.label" default="Sales Discontinuation Date" /></dt>
-						
-							<dd><g:formatDate date="${productInstance?.salesDiscontinuationDate}" /></dd>
-						
-				
-							<dt><g:message code="product.supportDiscontinuationDate.label" default="Support Discontinuation Date" /></dt>
-						
-							<dd><g:formatDate date="${productInstance?.supportDiscontinuationDate}" /></dd>
-						
-				
-							<dt><g:message code="product.taxable.label" default="Taxable" /></dt>
-						
-							<dd><g:formatBoolean boolean="${productInstance?.taxable}" /></dd>
-						
-				
-			</dl>
-
 			<g:form>
 				<g:hiddenField name="id" value="${productInstance?.id}" />
 				<div class="form-actions">
@@ -85,6 +31,130 @@
 					</button>
 				</div>
 			</g:form>
+
+			<dl class="dl-horizontal">
+
+				<dt>
+					<g:message code="product.productName.label" default="Product Name" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${productInstance}" field="productName" />
+				</dd>
+
+
+				<dt>
+					<g:message code="product.comments.label" default="Comments" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${productInstance}" field="comments" />
+				</dd>
+
+
+				<dt>
+					<g:message code="product.productType.label" default="Product Type" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${productInstance}" field="productType" />
+				</dd>
+
+
+				<dt>
+					<g:message code="product.manufacturer.label" default="Manufacturer" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${productInstance}" field="manufacturer" />
+				</dd>
+
+
+				<dt>
+					<g:message code="product.introductionDate.label"
+						default="Introduction Date" />
+				</dt>
+
+				<dd>
+					<g:formatDate date="${productInstance?.introductionDate}" />
+				</dd>
+
+
+				<dt>
+					<g:message code="product.supportDiscontinuationDate.label"
+						default="Support Discontinuation Date" />
+				</dt>
+
+				<dd>
+					<g:formatDate date="${productInstance?.supportDiscontinuationDate}" />
+				</dd>
+
+
+				<dt>
+					<g:message code="product.salesDiscontinuationDate.label"
+						default="Sales Discontinuation Date" />
+				</dt>
+
+				<dd>
+					<g:formatDate date="${productInstance?.salesDiscontinuationDate}" />
+				</dd>
+
+
+				<dt>
+					<g:message code="product.requiresInventory.label"
+						default="Requires Inventory" />
+				</dt>
+
+				<dd>
+					<g:formatBoolean boolean="${productInstance?.requiresInventory}" />
+				</dd>
+
+
+				<dt>
+					<g:message code="product.taxable.label" default="Taxable" />
+				</dt>
+
+				<dd>
+					<g:formatBoolean boolean="${productInstance?.taxable}" />
+				</dd>
+
+
+				<dt>
+					<g:message code="product.isVirtual.label" default="Is Virtual" />
+				</dt>
+
+				<dd>
+					<g:formatBoolean boolean="${productInstance?.isVirtual}" />
+				</dd>
+
+
+				<dt>
+					<g:message code="product.prices.label" default="Prices" />
+				</dt>
+			</dl>
+		</div>
+
+		<div class="span12">
+			<div class="accordion" id="detailViewAccordion">
+				<!-- Contacts -->
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse"
+							href="#collapseContact"> <span class="left"> <i
+								class="icon-user"></i> Prices
+								<div class="pull-right">
+									<i class="icon-plus"></i>
+								</div>
+						</span>
+						</a>
+					</div>
+					<div id="collapseContact" class="accordion-body collapse in">
+						<div class="accordion-inner">
+							<g:render template="priceList" />
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
