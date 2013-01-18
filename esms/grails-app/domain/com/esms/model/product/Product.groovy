@@ -8,6 +8,7 @@ class Product {
 	Date supportDiscontinuationDate
 	Date salesDiscontinuationDate
 	String productName
+	String productNumber
 	Boolean requiresInventory
 	Boolean taxable
 	Boolean isVirtual
@@ -17,6 +18,7 @@ class Product {
 
     static constraints = {
 		productName blank:false
+		productNumber blank:false
 		comments maxSize: 1000,blank : true
 		productType nullable:true,blank : true
 		manufacturer nullable:true,blank : true

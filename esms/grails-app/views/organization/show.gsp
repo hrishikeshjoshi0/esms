@@ -146,6 +146,25 @@
 						</div>
 					</div>
 				</div>
+				
+				<!-- Quote -->
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse"
+							href="#collapseQuote"> <span class="left"> <i
+								class="icon-envelope"></i> Quotes
+								<div class="pull-right">
+									<i class="icon-plus"></i>
+								</div>
+						</span>
+						</a>
+					</div>
+					<div id="collapseQuote" class="accordion-body collapse">
+						<div class="accordion-inner">
+							<g:render template="quoteList" />
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

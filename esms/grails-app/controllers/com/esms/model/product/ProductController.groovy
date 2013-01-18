@@ -1,6 +1,11 @@
 package com.esms.model.product
 
+import java.util.Iterator;
+
 import org.springframework.dao.DataIntegrityViolationException
+
+import com.esms.model.tax.TaxRate
+import com.esms.model.tax.TaxType;
 
 class ProductController {
 

@@ -2,6 +2,8 @@ package com.esms.model.party
 
 import org.springframework.dao.DataIntegrityViolationException
 
+import com.esms.model.quote.Quote
+
 class OrganizationController {
 
     static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
@@ -160,6 +162,24 @@ class OrganizationController {
 
 			flash.message = message(code: 'default.created.message', args: [message(code: 'phoneBook.label', default: 'PhoneBook'), phoneBookInstance.id])
 			redirect controller: 'organization', action: 'show', id: phoneBookInstance?.party?.id
+			break
+		}
+	}
+	
+	def createQuote() {
+		switch (request.method) {
+		case 'GET':
+        	[quoteInstance: new Quote(params)]
+			break
+		case 'POST':
+	        def quoteInstance = new Quote(params)
+	        if (!quoteInstance.save(flush: true)) {
+	            render view: 'create', model: [quoteInstance: quoteInstance]
+	            return
+	        }
+
+			flash.message = message(code: 'default.created.message', args: [message(code: 'quote.label', default: 'Quote'), quoteInstance.id])
+	        redirect controller: 'organization', action: 'show', id: quoteInstance?.organization?.id
 			break
 		}
 	}
