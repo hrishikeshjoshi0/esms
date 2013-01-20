@@ -1,11 +1,5 @@
 package com.esms.model.product
-
-import java.util.Iterator;
-
 import org.springframework.dao.DataIntegrityViolationException
-
-import com.esms.model.tax.TaxRate
-import com.esms.model.tax.TaxType;
 
 class ProductController {
 
@@ -23,6 +17,10 @@ class ProductController {
     def create() {
 		switch (request.method) {
 		case 'GET':
+			def list = Product.list();
+			int no = (list?list.size():0) + 1;
+			String productNumber = "PROD" + String.format("%05d", no)
+			params.productNumber = productNumber
         	[productInstance: new Product(params)]
 			break
 		case 'POST':
@@ -142,6 +140,45 @@ class ProductController {
 			flash.message = message(code: 'default.created.message', args: [message(code: 'productPrice.label', default: 'ProductPrice'), productPriceInstance.id])
 			redirect controller: "product", action: 'show', id: productPriceInstance.id
 			break
+		}
+	}
+	
+	def searchAJAX = {
+		def products = Product.findAllByProductNameLike("%${params.query}%")
+
+		//Create XML response
+		render(contentType: "text/xml") {
+		results() {
+				products.each { product ->
+				result(){
+					name(product.productName)
+					//Optional id which will be available in onItemSelect
+					id(product.id)
+					unitPrice(100.0)
+					}
+				}
+			}
+		}
+	}
+	
+	def getPrice = {
+		def product = Product.get(params.id.toInteger())
+		def c = ProductPrice.createCriteria()
+		def results = c.list {
+			eq("product",product)
+		}
+
+		def price = results?.get(0)
+		
+		if(price) {
+			//Create XML response
+			render(contentType: "text/xml") {
+				result(){
+					unitPrice(price.price)
+					//Optional id which will be available in onItemSelect
+					id(product.id)
+				}
+			}
 		}
 	}
 }

@@ -1,45 +1,65 @@
 <%@ page import="com.esms.model.quote.QuoteItem"%>
 
+<script type="text/javascript">
+	$('document').ready(function(){
+		$('.calc').change(function(){
+			calculateLineTotalAmount();
+		});
+	});
+
+    function calculateLineTotalAmount() {
+    	var lineTotal = (parseFloat($("#unitPrice").val()) * parseFloat($("#quantity").val()) + parseFloat($("#tax").val()) - parseFloat($("#discount").val());
+		$("#lineTotalAmount").val(lineTotal);
+    }
+    
+	function fetchUnitPriceForProduct(id) {
+		var url = "${createLink(controller:'product', action:'getPrice')}" + "/" + id;
+		$.ajax({
+		    url:url,
+		    dataType: 'xml',	
+		    success: function(data) {
+		    	$(data).find("unitPrice").each(function() {  
+		    		//find each instance of loc in xml file and wrap it in a link  
+		    		$("#unitPrice").val($(this).text());
+
+		    		calculateLineTotalAmount();
+		    	});  
+		    },
+		    error: function(request, status, error) {
+		      alert(error)
+		    },
+		    complete: function() {
+		    }
+		});
+	}
+</script>
+
 <div
 	class="control-group fieldcontain ${hasErrors(bean: quoteItemInstance, field: 'lineNumber', 'error')} required">
 	<label for="lineNumber" class="control-label"><g:message
 			code="quoteItem.lineNumber.label" default="Line Number" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:field type="number" name="lineNumber" required=""
+		<g:field type="number" name="lineNumber" required="" readonly="readonly"
 			value="${quoteItemInstance.lineNumber}" />
 		<span class="help-inline">
 			${hasErrors(bean: quoteItemInstance, field: 'lineNumber', 'error')}
 		</span>
 	</div>
 </div>
-
 <div
 	class="control-group fieldcontain ${hasErrors(bean: quoteItemInstance, field: 'productNumber', 'error')} ">
-	<label for="productNumber" class="control-label"><g:message
-			code="quoteItem.productNumber.label" default="Product Number" /></label>
-	<div class="controls">
-		<g:textField name="productNumber"
-			value="${quoteItemInstance?.productNumber}" />
+		<label for="productNumber" class="control-label"><g:message
+			code="quoteItem.productNumber.label" default="Product Number" /><span
+		class="required-indicator">*</span></label>
+		<richui:autoComplete name="productNumber" onItemSelect="fetchUnitPriceForProduct(id);"
+			action="${createLinkTo('dir': 'product/searchAJAX')}"
+			forceSelection="true" typeAhead="true" shadow="true" minQueryLength ="2"/>
 		<span class="help-inline">
-			${hasErrors(bean: quoteItemInstance, field: 'productNumber', 'error')}
+			${hasErrors(bean: quoteInstance, field: 'productNumber', 'error')}
 		</span>
-	</div>
 </div>
 
-
-<div
-	class="control-group fieldcontain ${hasErrors(bean: quoteItemInstance, field: 'productNumber', 'error')} ">
-	<label for="productNumber" class="control-label"><g:message
-			code="quoteItem.productNumber.label" default="Product Number" /></label>
-	<div class="controls">
-		<g:textField name="productNumber"
-			value="${quoteItemInstance?.productNumber}" />
-		<span class="help-inline">
-			${hasErrors(bean: quoteItemInstance, field: 'productNumber', 'error')}
-		</span>
-	</div>
-</div>
 
 <div
 	class="control-group fieldcontain ${hasErrors(bean: quoteItemInstance, field: 'quantity', 'error')} required">
@@ -47,7 +67,7 @@
 			code="quoteItem.quantity.label" default="Quantity" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:field type="number" name="quantity" step="any" required=""
+		<g:field type="number" name="quantity" step="any" required="" class="calc"
 			value="${quoteItemInstance.quantity}" />
 		<span class="help-inline">
 			${hasErrors(bean: quoteItemInstance, field: 'quantity', 'error')}
@@ -61,7 +81,7 @@
 			code="quoteItem.unitPrice.label" default="Unit Price" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:field type="number" name="unitPrice" step="any" required=""
+		<g:field type="number" name="unitPrice" step="any" required="" class="calc"
 			value="${quoteItemInstance.unitPrice}" />
 		<span class="help-inline">
 			${hasErrors(bean: quoteItemInstance, field: 'unitPrice', 'error')}
@@ -75,7 +95,7 @@
 			code="quoteItem.tax.label" default="Tax" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:field type="number" name="tax" step="any" required=""
+		<g:field type="number" name="tax" step="any" required="" class="calc"
 			value="${quoteItemInstance.tax}" />
 		<span class="help-inline">
 			${hasErrors(bean: quoteItemInstance, field: 'tax', 'error')}
@@ -89,7 +109,7 @@
 			code="quoteItem.discount.label" default="Discount" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:field type="number" name="discount" step="any" required=""
+		<g:field type="number" name="discount" step="any" required="" class="calc"
 			value="${quoteItemInstance.discount}" />
 		<span class="help-inline">
 			${hasErrors(bean: quoteItemInstance, field: 'discount', 'error')}
@@ -103,7 +123,7 @@
 			code="quoteItem.lineTotalAmount.label" default="Line Total Amount" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:field type="number" name="lineTotalAmount" step="any" required=""
+		<g:field type="number" name="lineTotalAmount" step="any" required="" readOnly="readOnly"
 			value="${quoteItemInstance.lineTotalAmount}" />
 		<span class="help-inline">
 			${hasErrors(bean: quoteItemInstance, field: 'lineTotalAmount', 'error')}

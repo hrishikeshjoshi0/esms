@@ -47,7 +47,7 @@
 				</div>
 			</g:form>
 
-			<dl class="dl-horizontal">
+			<dl class="dl-horizontal" style="margin-left: -30px;">
 				<dt>
 					<g:message code="organization.name.label" default="Name" />
 				</dt>
@@ -89,7 +89,7 @@
 		</div>
 
 		<div class="span12">
-			<div class="accordion" id="detailViewAccordion">
+			<div class="accordion" id="detailViewAccordion" style="margin-left: -30px;">
 				<!-- Contacts -->
 				<div class="accordion-group">
 					<div class="accordion-heading">

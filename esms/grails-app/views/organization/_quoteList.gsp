@@ -1,5 +1,5 @@
 <div class="pull-right">
-	<a data-toggle="modal" href="#" data-target="#quoteModal"
+	<a href="<g:createLink controller="quote" action="create"/>" 
 		role="button" class="btn"> <i class="icon-plus"></i> New Quote
 	</a>
 </div>

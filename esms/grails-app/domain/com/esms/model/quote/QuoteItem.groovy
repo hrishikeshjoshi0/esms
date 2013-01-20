@@ -3,11 +3,11 @@ package com.esms.model.quote
 class QuoteItem {
 	
 	int lineNumber
-	BigDecimal quantity
+	BigDecimal quantity = 1.0
 	BigDecimal unitPrice
-	BigDecimal tax
-	BigDecimal lineTotalAmount
-	BigDecimal discount
+	BigDecimal tax = 0.0
+	BigDecimal lineTotalAmount = 0.0
+	BigDecimal discount = 0.0
 	String productNumber
 	
 	static belongsTo = [quote:Quote]
@@ -21,4 +21,8 @@ class QuoteItem {
 		discount nullable:false
 		productNumber nullable:false
     }
+	
+	static mapping = {
+		sort "lineNumber"
+	}
 }

@@ -2,13 +2,12 @@
 
 	<!-- Main menu in one line (e.g., controller entry points -->
 	<div class="row-fluid">
-		<div class="span12" style="margin-top: 30px;">
+		<div class="span12"
+			style="margin-top: 25px;">
 			<div class="">
 				<!--Sidebar content-->
 				<g:render template="/_menu/menubar" />
 			</div>
-			
-			<hr/>
 			
 			<!--Body content-->
 			<!-- Secondary menu in one line (e.g., actions for current controller) -->
@@ -17,7 +16,7 @@
 					<bootstrap:alert class="alert-info">${flash.message}</bootstrap:alert>
 				</div>
 			</g:if>
-			<div>
+			<div style="margin-top: -10px;">
 				<%--<div class="row-fluid">
 					<div class="span12">
 						<g:render template="/_menu/submenubar" />

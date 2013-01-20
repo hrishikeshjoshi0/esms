@@ -38,4 +38,8 @@ class Quote {
 		grandTotal nullable:false
     }
 	
+	static mapping = {
+		quoteItems sort:'lineNumber'
+	}
+	
 }

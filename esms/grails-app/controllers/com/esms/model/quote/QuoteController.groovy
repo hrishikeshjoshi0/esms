@@ -1,8 +1,7 @@
 package com.esms.model.quote
 
-import java.math.BigDecimal;
-
 import org.springframework.dao.DataIntegrityViolationException
+import com.esms.model.party.Organization
 
 class QuoteController {
 
@@ -24,6 +23,8 @@ class QuoteController {
 			break
 		case 'POST':
 	        def quoteInstance = new Quote(params)
+			
+			quoteInstance.status = 'PENDING'
 	        if (!quoteInstance.save(flush: true)) {
 	            render view: 'create', model: [quoteInstance: quoteInstance]
 	            return
@@ -100,6 +101,8 @@ class QuoteController {
 
         try {
             quoteInstance.delete(flush: true)
+			
+			
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'quote.label', default: 'Quote'), params.id])
             redirect action: 'list'
         }
@@ -112,6 +115,16 @@ class QuoteController {
 	def createQuoteItem() {
 		switch (request.method) {
 		case 'GET':
+		    def quote = Quote.get(params.quoteId)
+			
+			def c = QuoteItem.createCriteria()
+			def maxLineNumber = c.get {
+		    	eq("quote", quote)
+				projections {
+					max ("lineNumber")
+				}
+			}
+			params.lineNumber = maxLineNumber + 1
 			[quoteItemInstance: new QuoteItem(params)]
 			break
 		case 'POST':

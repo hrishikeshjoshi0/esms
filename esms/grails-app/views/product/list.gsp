@@ -21,36 +21,21 @@
 						<tr>
 						
 							<g:sortableColumn property="productName" title="${message(code: 'product.productName.label', default: 'Product Name')}" />
-						
-							<g:sortableColumn property="comments" title="${message(code: 'product.comments.label', default: 'Comments')}" />
-						
 							<g:sortableColumn property="productType" title="${message(code: 'product.productType.label', default: 'Product Type')}" />
-						
-							<g:sortableColumn property="manufacturer" title="${message(code: 'product.manufacturer.label', default: 'Manufacturer')}" />
-						
 							<g:sortableColumn property="introductionDate" title="${message(code: 'product.introductionDate.label', default: 'Introduction Date')}" />
-						
 							<g:sortableColumn property="supportDiscontinuationDate" title="${message(code: 'product.supportDiscontinuationDate.label', default: 'Support Discontinuation Date')}" />
-						
+							<g:sortableColumn property="manufacturer" title="${message(code: 'product.manufacturer.label', default: 'Manufacturer')}" />
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 					<g:each in="${productInstanceList}" var="productInstance">
 						<tr>
-						
 							<td>${fieldValue(bean: productInstance, field: "productName")}</td>
-						
-							<td>${fieldValue(bean: productInstance, field: "comments")}</td>
-						
 							<td>${fieldValue(bean: productInstance, field: "productType")}</td>
-						
-							<td>${fieldValue(bean: productInstance, field: "manufacturer")}</td>
-						
 							<td><g:formatDate date="${productInstance.introductionDate}" /></td>
-						
 							<td><g:formatDate date="${productInstance.supportDiscontinuationDate}" /></td>
-						
+							<td>${fieldValue(bean: productInstance, field: "manufacturer")}</td>
 							<td class="link">
 								<g:link action="show" id="${productInstance.id}" class="btn btn-small">Show &raquo;</g:link>
 							</td>

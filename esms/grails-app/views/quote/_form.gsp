@@ -1,6 +1,20 @@
 <%@ page import="com.esms.model.quote.Quote"%>
 
-
+<div
+	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'organization', 'error')} required">
+	<label for="organization" class="control-label"><g:message
+			code="quote.organization.label" default="Organization" /><span
+		class="required-indicator">*</span></label>
+	<div class="controls">
+		<g:hiddenField name="organization.id" value="${quoteInstance?.organization?.id}"/>
+		<richui:autoComplete name="organizationId" onItemSelect="document.getElementById('organization.id').value=id;"
+			action="${createLinkTo('dir': 'organization/searchAJAX')}"
+			forceSelection="true" typeAhead="true" shadow="true" minQueryLength ="2"/>
+		<span class="help-inline">
+			${hasErrors(bean: quoteInstance, field: 'organization', 'error')}
+		</span>
+	</div>
+</div>
 
 <div
 	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'quoteName', 'error')} required">
@@ -109,7 +123,7 @@
 	</div>
 </div>
 
-<div
+<%--<div
 	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'totalAmount', 'error')} required">
 	<label for="totalAmount" class="control-label"><g:message
 			code="quote.totalAmount.label" default="Total Amount" /><span
@@ -165,7 +179,7 @@
 	</div>
 </div>
 
-<div
+--%><%--<div
 	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'organization', 'error')} required">
 	<label for="organization" class="control-label"><g:message
 			code="quote.organization.label" default="Organization" /><span
@@ -181,7 +195,7 @@
 	</div>
 </div>
 
-<div
+--%><%--<div
 	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'quoteItems', 'error')} ">
 	<label for="quoteItems" class="control-label"><g:message
 			code="quote.quoteItems.label" default="Quote Items" /></label>
@@ -205,3 +219,4 @@
 	</div>
 </div>
 
+--%>

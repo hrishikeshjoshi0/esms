@@ -14,6 +14,7 @@
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 
+		<resource:autoComplete skin="default" />
 		<r:require modules="scaffolding,jquery-ui"/>
 
 		<!-- Le fav and touch icons -->
@@ -41,10 +42,45 @@
 					<div class="nav-collapse">
 						<ul class="nav">							
 							<li<%= request.forwardURI == "${createLink(uri: '/')}" ? ' class="active"' : '' %>><a href="${createLink(uri: '/')}">Home</a></li>
-							<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-								<li<%= c.logicalPropertyName == controllerName ? ' class="active"' : '' %>><g:link controller="${c.logicalPropertyName}">${c.naturalName}</g:link></li>
+							<li
+									<%= 'organization' == controllerName ? ' class="active"' : '' %>>
+									<g:link
+										controller="organization">
+										Organization
+									</g:link>
+							</li>
+							<%--<li
+									<%= 'contact' == controllerName ? ' class="active"' : '' %>>
+									<g:link
+										controller="contact">
+										Contact
+									</g:link>
+							</li>
+							--%>
+							<li
+									<%= 'product' == controllerName ? ' class="active"' : '' %>>
+									<g:link
+										controller="product">
+										Product
+									</g:link>
+							</li>
+							<li
+									<%= 'quote' == controllerName ? ' class="active"' : '' %>>
+									<g:link
+										controller="quote">
+										Quote
+									</g:link>
+							</li>
+							<%--<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
+								<li
+									<%= c.logicalPropertyName == controllerName ? ' class="active"' : '' %>>
+									<g:link
+										controller="${c.logicalPropertyName}">
+										${c.naturalName}
+									</g:link>
+								</li>
 							</g:each>
-						</ul>
+						--%></ul>
 					</div>
 				</div>
 			</div>
@@ -53,7 +89,7 @@
 		<div class="container-fluid" style="margin-top: 20px;">
 			<g:render template="/layouts/content_fluid"></g:render>
 
-			<hr>
+			<hr style="margin: 0px;padding: 0px;">
 
 			<footer>
 				<p>&copy; Company 2011</p>

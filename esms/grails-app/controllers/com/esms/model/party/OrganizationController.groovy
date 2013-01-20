@@ -1,8 +1,7 @@
 package com.esms.model.party
 
-import org.springframework.dao.DataIntegrityViolationException
-
 import com.esms.model.quote.Quote
+import org.springframework.dao.DataIntegrityViolationException
 
 class OrganizationController {
 
@@ -181,6 +180,23 @@ class OrganizationController {
 			flash.message = message(code: 'default.created.message', args: [message(code: 'quote.label', default: 'Quote'), quoteInstance.id])
 	        redirect controller: 'organization', action: 'show', id: quoteInstance?.organization?.id
 			break
+		}
+	}
+	
+	def searchAJAX = {
+		def organizations = Organization.findAllByNameLike("%${params.query}%")
+
+		//Create XML response
+		render(contentType: "text/xml") {
+		results() {
+				organizations.each { organization ->
+				result(){
+					name(organization.name)
+					//Optional id which will be available in onItemSelect
+					id(organization.id)
+					}
+				}
+			}
 		}
 	}
 }

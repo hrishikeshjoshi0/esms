@@ -58,8 +58,8 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://moryasolutions.com:3306/hrishi23_openappengine?useUnicode=yes&characterEncoding=UTF-8"
-			username = "hrishi23_webstor"
+            url = "jdbc:mysql://moryasolutions.com:3306/hrishi23_esms?useUnicode=yes&characterEncoding=UTF-8"
+			username = "hrishi23_esms"
 			password = "Eclipse@123"
 			pooled = true
 			properties {

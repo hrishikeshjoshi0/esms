@@ -65,7 +65,7 @@
 					${fieldValue(bean: quoteItemInstance, field: "lineTotalAmount")}
 				</td>
 
-				<td class="link"><g:link action="show"
+				<td class="link"><g:link action="show" controller="quoteItem"
 						id="${quoteItemInstance.id}" class="btn btn-small">Show &raquo;</g:link>
 				</td>
 			</tr>
@@ -78,7 +78,7 @@
 
 <!-- Modal -->
 <div id="quoteItemModal" class="modal hide fade" tabindex="-1" role="dialog"
-	data-remote="<g:createLink controller="quote" action="createQuoteItem"/>"
+	data-remote="<g:createLink controller="quote" action="createQuoteItem" params="[quoteId:quoteInstance?.id]"/>"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"

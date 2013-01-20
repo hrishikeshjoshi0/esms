@@ -1,5 +1,11 @@
 <%@ page import="com.esms.model.product.Product" %>
-
+			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'productNumber', 'error')} required">
+				<label for="productNumber" class="control-label"><g:message code="product.productNumber.label" default="Product Number" /><span class="required-indicator">*</span></label>
+				<div class="controls">
+					<g:textField name="productNumber" required="" value="${productInstance?.productNumber}" readOnly="readOnly"/>
+					<span class="help-inline">${hasErrors(bean: productInstance, field: 'productNumber', 'error')}</span>
+				</div>
+			</div>
 
 
 			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'productName', 'error')} required">
@@ -10,14 +16,6 @@
 				</div>
 			</div>
 
-			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'comments', 'error')} ">
-				<label for="comments" class="control-label"><g:message code="product.comments.label" default="Comments" /></label>
-				<div class="controls">
-					<g:textArea name="comments" cols="40" rows="5" maxlength="1000" value="${productInstance?.comments}"/>
-					<span class="help-inline">${hasErrors(bean: productInstance, field: 'comments', 'error')}</span>
-				</div>
-			</div>
-
 			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'productType', 'error')} ">
 				<label for="productType" class="control-label"><g:message code="product.productType.label" default="Product Type" /></label>
 				<div class="controls">
@@ -25,15 +23,7 @@
 					<span class="help-inline">${hasErrors(bean: productInstance, field: 'productType', 'error')}</span>
 				</div>
 			</div>
-
-			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'manufacturer', 'error')} ">
-				<label for="manufacturer" class="control-label"><g:message code="product.manufacturer.label" default="Manufacturer" /></label>
-				<div class="controls">
-					<g:textField name="manufacturer" value="${productInstance?.manufacturer}"/>
-					<span class="help-inline">${hasErrors(bean: productInstance, field: 'manufacturer', 'error')}</span>
-				</div>
-			</div>
-
+			
 			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'introductionDate', 'error')} ">
 				<label for="introductionDate" class="control-label"><g:message code="product.introductionDate.label" default="Introduction Date" /></label>
 				<div class="controls">
@@ -55,6 +45,14 @@
 				<div class="controls">
 					<bootstrap:jqDatePicker name="salesDiscontinuationDate"  value="${productInstance?.salesDiscontinuationDate}"/>
 					<span class="help-inline">${hasErrors(bean: productInstance, field: 'salesDiscontinuationDate', 'error')}</span>
+				</div>
+			</div>
+			
+			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'manufacturer', 'error')} ">
+				<label for="manufacturer" class="control-label"><g:message code="product.manufacturer.label" default="Manufacturer" /></label>
+				<div class="controls">
+					<g:textField name="manufacturer" value="${productInstance?.manufacturer}"/>
+					<span class="help-inline">${hasErrors(bean: productInstance, field: 'manufacturer', 'error')}</span>
 				</div>
 			</div>
 
@@ -81,21 +79,11 @@
 					<span class="help-inline">${hasErrors(bean: productInstance, field: 'isVirtual', 'error')}</span>
 				</div>
 			</div>
-
-			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'prices', 'error')} ">
-				<label for="prices" class="control-label"><g:message code="product.prices.label" default="Prices" /></label>
+			
+			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'comments', 'error')} ">
+				<label for="comments" class="control-label"><g:message code="product.comments.label" default="Comments" /></label>
 				<div class="controls">
-					
-<ul class="one-to-many">
-<g:each in="${productInstance?.prices?}" var="p">
-    <li><g:link controller="productPrice" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="productPrice" action="create" params="['product.id': productInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'productPrice.label', default: 'ProductPrice')])}</g:link>
-</li>
-</ul>
-
-					<span class="help-inline">${hasErrors(bean: productInstance, field: 'prices', 'error')}</span>
+					<g:textArea name="comments" cols="40" rows="5" maxlength="1000" value="${productInstance?.comments}"/>
+					<span class="help-inline">${hasErrors(bean: productInstance, field: 'comments', 'error')}</span>
 				</div>
 			</div>
-
