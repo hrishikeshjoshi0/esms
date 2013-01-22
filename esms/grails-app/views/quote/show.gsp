@@ -14,7 +14,8 @@
 		<div class="span12">
 			<div class="page-header">
 				<h1>
-					<g:message code="default.show.label" args="[entityName]" />
+					Quote :
+					${quoteInstance?.quoteName}
 				</h1>
 			</div>
 
@@ -29,6 +30,32 @@
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
+					<g:if test="${quoteInstance?.status == 'PENDING'}">
+						<g:link class="btn" action="markAsSent" id="${quoteInstance?.id}">
+							<i class="icon-envelope"></i>
+							Mark as Sent
+						</g:link>
+					</g:if>
+					<g:elseif test="${quoteInstance?.status == 'SENT'}">
+						<g:link class="btn" action="markAsAccepted" id="${quoteInstance?.id}">
+							<i class="icon-envelope"></i>
+							Mark as Accepted
+						</g:link>
+						<g:link class="btn" action="markAsRevised" id="${quoteInstance?.id}">
+							<i class="icon-pencil"></i>
+							Revise
+						</g:link>
+						<g:link class="btn" action="markAsDeclined" id="${quoteInstance?.id}">
+							<i class="icon-trash"></i>
+							Mark as Declined
+						</g:link>
+					</g:elseif>
+					<g:elseif test="${quoteInstance?.status == 'ACCEPT'}">
+						<g:link class="btn" action="convertToSalesOrder" id="${quoteInstance?.id}">
+							<i class="icon-share-alt"></i>
+							Convert to Sales Order
+						</g:link>
+					</g:elseif>
 				</div>
 			</g:form>
 

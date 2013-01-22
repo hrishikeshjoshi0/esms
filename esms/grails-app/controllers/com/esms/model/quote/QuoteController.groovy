@@ -19,12 +19,12 @@ class QuoteController {
     def create() {
 		switch (request.method) {
 		case 'GET':
+			params.status = 'PENDING'
         	[quoteInstance: new Quote(params)]
 			break
 		case 'POST':
 	        def quoteInstance = new Quote(params)
 			
-			quoteInstance.status = 'PENDING'
 	        if (!quoteInstance.save(flush: true)) {
 	            render view: 'create', model: [quoteInstance: quoteInstance]
 	            return
@@ -35,6 +35,49 @@ class QuoteController {
 			break
 		}
     }
+	
+	def markAsSent = {
+		def quoteInstance = Quote.get(params.id)
+		quoteInstance.status = 'SENT'
+		quoteInstance.save(flush:true)
+		
+		flash.message = 'Marked as Sent'
+		redirect action: 'show', id: quoteInstance.id
+	}
+	
+	def markAsAccepted = {
+		def quoteInstance = Quote.get(params.id)
+		quoteInstance.status = 'ACCEPT'
+		quoteInstance.save(flush:true)
+		
+		flash.message = 'Marked as Accepted'
+		redirect action: 'show', id: quoteInstance.id
+	}
+	
+	def markAsRevised = {
+		def quoteInstance = Quote.get(params.id)
+		quoteInstance.status = 'REVISE'
+		quoteInstance.save(flush:true)
+		
+		flash.message = 'Marked as Revised'
+		redirect action: 'show', id: quoteInstance.id
+	}
+	
+	def markAsDeclined = {
+		def quoteInstance = Quote.get(params.id)
+		quoteInstance.status = 'DECLINE'
+		quoteInstance.save(flush:true)
+		
+		flash.message = 'Marked as Declined'
+		redirect action: 'show', id: quoteInstance.id
+	}
+	
+	def convertToSalesOrder = {
+		def quoteInstance = Quote.get(params.id)
+		
+		flash.message = 'Sales Order created.'
+		redirect action: 'show', id: quoteInstance.id
+	}
 
     def show() {
         def quoteInstance = Quote.get(params.id)

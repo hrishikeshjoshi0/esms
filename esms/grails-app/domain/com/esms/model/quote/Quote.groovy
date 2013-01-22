@@ -25,8 +25,8 @@ class Quote {
 
     static constraints = {
 		quoteName nullable:false,blank:false
-		status InList:['DRAFT','SENT','REVISE','ACCEPT','DECLINE']
-		type blank:false
+		status InList:['DRAFT','PENDING','SENT','REVISE','ACCEPT','DECLINE']
+		type InList:['CONTRACT','REPAIR']
 		salesChannel blank:false
 		description nullable:true,blank:true
 		issueDate nullable:false

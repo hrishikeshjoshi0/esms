@@ -35,7 +35,7 @@
 	<label for="status" class="control-label"><g:message
 			code="quote.status.label" default="Status" /></label>
 	<div class="controls">
-		<g:select name="status"
+		<g:select name="status" readOnly="readOnly"
 			from="${quoteInstance.constraints.status.inList}"
 			value="${quoteInstance?.status}" valueMessagePrefix="quote.status"
 			noSelection="['': '']" />
@@ -51,7 +51,10 @@
 			code="quote.type.label" default="Type" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:textField name="type" required="" value="${quoteInstance?.type}" />
+		<g:select name="type"
+			from="${quoteInstance.constraints.type.inList}"
+			value="${quoteInstance?.type}" valueMessagePrefix="quote.type"
+			noSelection="['': '']" />
 		<span class="help-inline">
 			${hasErrors(bean: quoteInstance, field: 'type', 'error')}
 		</span>
