@@ -71,6 +71,13 @@
 										Quote
 									</g:link>
 							</li>
+							<li
+									<%= 'order' == controllerName ? ' class="active"' : '' %>>
+									<g:link
+										controller="order">
+										Order
+									</g:link>
+							</li>
 							<%--<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
 								<li
 									<%= c.logicalPropertyName == controllerName ? ' class="active"' : '' %>>

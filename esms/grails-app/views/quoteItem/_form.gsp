@@ -8,7 +8,7 @@
 	});
 
     function calculateLineTotalAmount() {
-    	var lineTotal = (parseFloat($("#unitPrice").val()) * parseFloat($("#quantity").val()) + parseFloat($("#tax").val()) - parseFloat($("#discount").val());
+    	var lineTotal = (parseFloat($("#unitPrice").val()) * parseFloat($("#quantity").val())) + parseFloat($("#tax").val()) - parseFloat($("#discount").val());
 		$("#lineTotalAmount").val(lineTotal);
     }
     

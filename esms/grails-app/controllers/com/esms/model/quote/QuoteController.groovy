@@ -76,7 +76,7 @@ class QuoteController {
 		def quoteInstance = Quote.get(params.id)
 		
 		flash.message = 'Sales Order created.'
-		redirect action: 'show', id: quoteInstance.id
+		redirect controller:'order', action: 'create'
 	}
 
     def show() {

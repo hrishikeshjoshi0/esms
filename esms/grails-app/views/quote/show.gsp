@@ -53,7 +53,7 @@
 					<g:elseif test="${quoteInstance?.status == 'ACCEPT'}">
 						<g:link class="btn" action="convertToSalesOrder" id="${quoteInstance?.id}">
 							<i class="icon-share-alt"></i>
-							Convert to Sales Order
+							Create Order from Quote
 						</g:link>
 					</g:elseif>
 				</div>
