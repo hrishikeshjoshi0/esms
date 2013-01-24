@@ -123,7 +123,7 @@
 			code="orderItem.lineTotalAmount.label" default="Line Total Amount" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:field type="number" name="lineTotalAmount" step="any" required="" readOnly="readOnly"
+		<g:field type="number" name="lineTotalAmount" step="any" required="" readOnly="readOnly" 
 			value="${orderItemInstance.lineTotalAmount}" />
 		<span class="help-inline">
 			${hasErrors(bean: orderItemInstance, field: 'lineTotalAmount', 'error')}

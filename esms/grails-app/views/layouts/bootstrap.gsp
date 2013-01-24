@@ -78,6 +78,13 @@
 										Order
 									</g:link>
 							</li>
+							<li
+									<%= 'inventoryItem' == controllerName ? ' class="active"' : '' %>>
+									<g:link
+										controller="inventoryItem">
+										Inventory
+									</g:link>
+							</li>
 							<%--<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
 								<li
 									<%= c.logicalPropertyName == controllerName ? ' class="active"' : '' %>>
