@@ -14,6 +14,20 @@
 </div>
 
 <div
+		class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'referenceQuoteNumber', 'error')} required">
+		<label for="orderNumber" class="control-label"><g:message
+				code="order.referenceQuoteNumber.label" default="Reference Quote Number" /><span
+			class="required-indicator">*</span></label>
+		<div class="controls">
+			<g:textField name="referenceQuoteNumber" required="" readOnly="readOnly"
+				value="${orderInstance?.referenceQuoteNumber}" />
+			<span class="help-inline">
+				${hasErrors(bean: orderInstance, field: 'referenceQuoteNumber', 'error')}
+			</span>
+		</div>
+</div>
+
+<div
 	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'organization', 'error')} required">
 	<label for="organization" class="control-label"><g:message
 			code="order.organization.label" default="Organization" /><span
@@ -50,8 +64,8 @@
 			code="order.type.label" default="Type" /></label>
 	<div class="controls">
 		<g:select name="type" from="${orderInstance.constraints.type.inList}"
-			value="${orderInstance?.type}" valueMessagePrefix="order.type"
-			noSelection="['': '']" />
+				value="${orderInstance?.type}" valueMessagePrefix="order.type"
+				noSelection="['': '']" />
 		<span class="help-inline">
 			${hasErrors(bean: orderInstance, field: 'type', 'error')}
 		</span>
@@ -97,7 +111,7 @@
 	</div>
 </div>
 
-<div
+<%--<div
 	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'totalAmount', 'error')} required">
 	<label for="totalAmount" class="control-label"><g:message
 			code="order.totalAmount.label" default="Total Amount" /><span
@@ -153,7 +167,7 @@
 	</div>
 </div>
 
-<div
+--%><div
 	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'description', 'error')} ">
 	<label for="description" class="control-label"><g:message
 			code="order.description.label" default="Description" /></label>

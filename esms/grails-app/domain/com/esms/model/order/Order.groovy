@@ -15,6 +15,7 @@ class Order {
 	BigDecimal totalTax = new BigDecimal("0.0")
 	BigDecimal totalDiscount = new BigDecimal("0.0")
 	BigDecimal grandTotal = new BigDecimal("0.0")
+	String referenceQuoteNumber
 	
 	static hasMany = [orderItems : OrderItem]
 	
@@ -32,6 +33,7 @@ class Order {
 		totalTax nullable:false
 		totalDiscount nullable:false
 		grandTotal nullable:false
+		referenceQuoteNumber nullable:true,blank:true
     }
 	
 	static mapping = {

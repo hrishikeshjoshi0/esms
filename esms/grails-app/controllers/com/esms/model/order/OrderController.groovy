@@ -22,6 +22,11 @@ class OrderController {
 			int no = (list?list.size():0) + 1;
 			String orderNumber = "ORD" + String.format("%05d", no)
 			params.orderNumber = orderNumber
+			
+			if(params.referenceQuoteNumber) {
+				params.referenceQuoteNumber = params.referenceQuoteNumber
+			}
+			
         	[orderInstance: new Order(params)]
 			break
 		case 'POST':

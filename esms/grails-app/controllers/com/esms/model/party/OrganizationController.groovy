@@ -199,4 +199,13 @@ class OrganizationController {
 			}
 		}
 	}
+	
+	def convertLeadToCustomer = {
+		def organization = Organization.get(params.id)
+		organization.salesStatus = 'CUSTOMER'
+		organization.save(flush:true)
+		
+		flash.message = 'Converted to Customer.'
+		redirect controller: 'organization', action: 'show', id: organization?.id
+	}
 }

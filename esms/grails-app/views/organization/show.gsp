@@ -44,6 +44,11 @@
 					<a data-toggle="modal" href="#" data-target="#phoneBookModal"
 						role="button" class="btn"> <i class="icon-plus"></i> New Phone Book
 					</a>
+					<g:if test="${organizationInstance.salesStatus == 'LEAD'}">
+						<g:link controller="organization" action="convertLeadToCustomer"  id="${organizationInstance?.id}" role="button" class="btn">
+						 	<i class="icon-share-alt"></i> Convert Lead
+						</g:link>
+					</g:if>
 				</div>
 			</g:form>
 
@@ -83,6 +88,15 @@
 
 				<dd>
 					<g:fieldValue bean="${organizationInstance}" field="assignedTo" />
+				</dd>
+				
+				<dt>
+					<g:message code="organization.salesStatus.label"
+						default="Sales Status" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${organizationInstance}" field="salesStatus" />
 				</dd>
 
 			</dl>
@@ -162,6 +176,44 @@
 					<div id="collapseQuote" class="accordion-body collapse">
 						<div class="accordion-inner">
 							<g:render template="quoteList" />
+						</div>
+					</div>
+				</div>
+				
+				<!-- Service Order -->
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse"
+							href="#collapseServiceOrder"> <span class="left"> <i
+								class="icon-envelope"></i> Service Orders
+								<div class="pull-right">
+									<i class="icon-plus"></i>
+								</div>
+						</span>
+						</a>
+					</div>
+					<div id="collapseServiceOrder" class="accordion-body collapse">
+						<div class="accordion-inner">
+							<g:render template="serviceorderList" />
+						</div>
+					</div>
+				</div>
+				
+				<!-- Repair Order -->
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse"
+							href="#collapseRepairOrder"> <span class="left"> <i
+								class="icon-envelope"></i> Repair Orders
+								<div class="pull-right">
+									<i class="icon-plus"></i>
+								</div>
+						</span>
+						</a>
+					</div>
+					<div id="collapseRepairOrder" class="accordion-body collapse">
+						<div class="accordion-inner">
+							<g:render template="repairorderList" />
 						</div>
 					</div>
 				</div>

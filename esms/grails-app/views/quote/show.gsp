@@ -51,7 +51,7 @@
 						</g:link>
 					</g:elseif>
 					<g:elseif test="${quoteInstance?.status == 'ACCEPT'}">
-						<g:link class="btn" action="convertToSalesOrder" id="${quoteInstance?.id}">
+						<g:link class="btn" controller="order" action="create" params="[referenceQuoteNumber:quoteInstance.quoteName]">
 							<i class="icon-share-alt"></i>
 							Create Order from Quote
 						</g:link>
