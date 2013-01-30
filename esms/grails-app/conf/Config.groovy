@@ -95,6 +95,7 @@ grails.resources.modules = {
 		resource url:'/js/jquery-1.7.1.min.js', disposition: 'head'
 		resource url: '/js/jquery-ui-1.8.18.custom.min.js'
 		resource url: '/js/jquery-ui-timepicker-addon.js'
+		resource url: '/js/jquery.qtip.min.js'
 	}
  
 	fullCalendar {
