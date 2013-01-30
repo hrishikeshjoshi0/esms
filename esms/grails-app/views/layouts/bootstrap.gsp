@@ -111,6 +111,5 @@
 		</div>
 
 		<r:layoutResources/>
-
 	</body>
 </html>
