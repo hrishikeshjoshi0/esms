@@ -1,5 +1,9 @@
 package com.esms.model.order
 
+import java.math.BigDecimal;
+import java.util.Date;
+
+import com.esms.model.quote.Quote
 import org.springframework.dao.DataIntegrityViolationException
 
 class OrderController {
@@ -14,6 +18,53 @@ class OrderController {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [orderInstanceList: Order.list(params), orderInstanceTotal: Order.count()]
     }
+	
+	def convertQuoteToOrder() {
+			def list = Order.list();
+			int no = (list?list.size():0) + 1;
+			String orderNumber = "ORD" + String.format("%05d", no)
+			
+			def quote = Quote.get(params.orderId)
+			
+			def order = new Order()
+			order.orderNumber = orderNumber
+			order.contactName = quote.contactName
+			order.status = "DRAFT"
+			if(quote.type == 'CONTRACT') {
+				order.type = "SERVICE"
+			} else {
+				order.type = "REPAIR"
+			}
+			order.issueDate = quote.issueDate
+			order.expiryDate = quote.expiryDate
+			order.totalAmount = quote.totalAmount
+			order.totalTax = quote.totalTax
+			order.totalDiscount = quote.totalDiscount
+			order.grandTotal = quote.grandTotal
+			order.referenceQuoteNumber = quote.quoteNumber
+			
+			order.organization = quote.organization
+			order.save(flush:true)
+			
+			order.orderItems = new HashSet<OrderItem>()
+			
+			int lineNo = 1
+			quote.quoteItems.each { it ->  
+				def orderItem = new OrderItem()
+				orderItem.lineNumber = lineNo
+				orderItem.quantity = it.quantity
+				orderItem.unitPrice = it.unitPrice
+				orderItem.tax = it.tax
+				orderItem.lineTotalAmount = it.lineTotalAmount
+				orderItem.discount = it.discount 
+				orderItem.productNumber= it.productNumber
+				orderItem.order = order
+				orderItem.save(flush:true)
+			}
+			
+			flash.message = 'Order Created from Quote: ' + quote.quoteNumber
+			redirect action: 'show', id: order.id
+	}
 
     def create() {
 		switch (request.method) {
@@ -22,12 +73,8 @@ class OrderController {
 			int no = (list?list.size():0) + 1;
 			String orderNumber = "ORD" + String.format("%05d", no)
 			params.orderNumber = orderNumber
-			
-			if(params.referenceQuoteNumber) {
-				params.referenceQuoteNumber = params.referenceQuoteNumber
-			}
-			
-        	[orderInstance: new Order(params)]
+			def order = new Order(params)
+        	[orderInstance: order]
 			break
 		case 'POST':
 	        def orderInstance = new Order(params)

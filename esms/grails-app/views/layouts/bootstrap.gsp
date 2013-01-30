@@ -36,7 +36,7 @@
 					</a>
 					
 					<a class="brand" href="${createLink(uri: '/')}">
-						ESMS
+						<img alt="Venus CRM" src="${resource(dir: 'images', file: 'venus_crm_logo.png')}" style="height:35px;">
 					</a>
 
 					<div class="nav-collapse">
@@ -85,6 +85,13 @@
 										Inventory
 									</g:link>
 							</li>
+							<li
+									<%= 'activity' == controllerName ? ' class="active"' : '' %>>
+									<g:link
+										controller="activity">
+										Calendar
+									</g:link>
+							</li>
 							<%--<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
 								<li
 									<%= c.logicalPropertyName == controllerName ? ' class="active"' : '' %>>
@@ -100,7 +107,7 @@
 			</div>
 		</nav>
 		
-		<div class="container-fluid" style="margin-top: 20px;">
+		<div class="container-fluid" style="margin-top: 65px;">
 			<g:render template="/layouts/content_fluid"></g:render>
 
 			<hr style="margin: 0px;padding: 0px;">
@@ -110,6 +117,8 @@
 			</footer>
 		</div>
 
+		<g:javascript library="application"/>
 		<r:layoutResources/>
+
 	</body>
 </html>
