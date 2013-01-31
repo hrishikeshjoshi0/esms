@@ -106,11 +106,9 @@ grails.resources.modules = {
 	
 	calendar {
 		dependsOn 'fullCalendar'
- 
 		resource url: '/js/calendar.js'
-		
+		resource url: '/js/bootstrapx-clickover.js'
 		resource url: '/css/calendar.css'
- 
 	}
   
 }

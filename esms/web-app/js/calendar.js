@@ -16,17 +16,17 @@ function renderCalendar() {
         eventRender: function(event, element) {
             $(element).addClass(event.cssClass);
 
-            var occurrenceStart = event.occurrenceStart;
+            /*var occurrenceStart = event.occurrenceStart;
             var occurrenceEnd = event.occurrenceEnd;
 
             var data = {id: event.id, occurrenceStart: occurrenceStart, occurrenceEnd: occurrenceEnd};
 
             $(element).qtip({
                 content: {
-                    text: ' ',
+                    text: 'Event:' + event.title,
                     ajax: {
                         url: "show",
-                        type: "GET",
+                        method: 'GET',
                         data: data
                     }
                 },
@@ -45,8 +45,35 @@ function renderCalendar() {
                     my: 'bottom middle',
                     at: 'top middle',
                     viewport: true
-                }
-            });
+                },
+                tip : true
+            });*/
+        },
+        eventClick: function(event, jsEvent, view) {
+            //$this = $(this);
+           /* $this.popover({
+            	offset: 10,
+            	html:true,
+            	title:event.title,
+            	trigger:'manual',
+            	placement:'top',
+            	content : showEventPopover(event),
+            	template: '<div class="popover" onmouseover="clearTimeout(timeoutObj);$(this).mouseleave(function() {$(this).hide();});"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
+            }).mouseenter(function(e) {
+                $(this).popover('show');
+            }).mouseleave(function(e) {
+                var ref = $(this);
+                timeoutObj = setTimeout(function(){
+                    ref.popover('hide');
+                }, 50);
+            });*/
+            
+            $(this).clickover({
+              placement:'top',
+              html : true,
+              content : showEventPopover(event)
+            }); 
+            //return false;            
         },
         eventMouseover: function(event, jsEvent, view) {
             $(this).addClass("active");
@@ -55,6 +82,30 @@ function renderCalendar() {
            $(this).removeClass("active");
         }
     });
+}
+
+function showEventPopover(event) {
+	var occurrenceStart = event.occurrenceStart;
+    var occurrenceEnd = event.occurrenceEnd;
+    var data = {id: event.id, occurrenceStart: occurrenceStart, occurrenceEnd: occurrenceEnd};
+    
+    //$('#popoverDiv').html('');
+	$.ajax({
+		 url: "show",
+		 method: 'GET',
+		 data: data,
+		 success: function(d) {
+			$('#popoverDiv').html(d);
+	    }  
+	});
+    
+    /*var html = "<div class='eventPopup'><h2>" + event.title + "</h2><p class='date'>" + event.start + "-" + event.end + "</p><p>" +
+    "<a href='/event/show?id=" + event.id + "&occurrenceStart=" + event.occurrenceStart + 
+	"&occurrenceEnd=" +  event.occurrenceEnd + "'>More details</a></p></div>"*/
+	
+	//return $('#popoverDiv').html();
+	//alert($('#popoverDiv').html());
+	return $('#popoverDiv').html();
 }
 
 function setupDatePickers() {

@@ -4,11 +4,11 @@
   <meta name="layout" content="bootstrap">
 
   <title>Calendar</title>
-  <r:require module="calendar" />
 </head>
 <body>
 
   <div id="calendar"></div>
-
+  <r:require module="calendar" />
+  <div id="popoverDiv" style="display: none;"></div>
 </body>
 </html>
