@@ -12,8 +12,25 @@ class OrganizationController {
     }
 
     def list() {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [organizationInstanceList: Organization.list(params), organizationInstanceTotal: Organization.count()]
+		params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		def organizations
+		def a = params
+		if(params.search) {
+			organizations = Organization.withCriteria {
+				if(params.name) {
+					like('name', "%" + params.name + "%")
+				}
+				if(params.salesStatus) {
+					like('salesStatus', "%" + params.salesStatus + "%")
+				}
+			}
+			params.search = true
+		} else {
+			organizations = Organization.list(params)
+			params.search = false
+		}
+		
+		[organizationInstanceList: organizations, organizationInstanceTotal: organizations?organizations.size():0]
     }
 
     def create() {

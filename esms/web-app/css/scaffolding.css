@@ -5433,3 +5433,7 @@ div.subnav .nav > li.dropdown.open > .dropdown-toggle:hover {
 .affix {
   position: fixed;
 }
+
+#ui_tpicker_hour_startTime {
+	width:120px;
+}

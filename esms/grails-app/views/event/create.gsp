@@ -1,52 +1,50 @@
 <%@ page import="com.esms.model.calendar.Event" %>
+<!doctype html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="layout" content="bootstrap" />
-    <g:set var="entityName" value="${message(code: 'event.label', default: 'Event')}" />
-    <title><g:message code="default.create.label" args="[entityName]" /></title>
-
-    <r:require module="calendar" />
+<meta name="layout" content="bootstrap">
+<g:set var="entityName"
+	value="${message(code: 'event.label', default: 'Event')}" />
+<title><g:message code="default.create.label"
+		args="[entityName]" /></title>
+ <r:require module="calendar" />		
 </head>
 <body>
+	<div class="row-fluid">
+		<div class="span12">
+			<g:hasErrors bean="${eventInstance}">
+				<bootstrap:alert class="alert-error">
+					<ul>
+						<g:eachError bean="${eventInstance}" var="error">
+							<li
+								<g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
+									error="${error}" /></li>
+						</g:eachError>
+					</ul>
+				</bootstrap:alert>
+			</g:hasErrors>
 
-<div class="nav" role="navigation">
-    <ul>
-        <li><a href="${createLink(uri: '/')}" class="home">Home</a></li>
-        <li><g:link action="index" class="calendar">Calendar</g:link></li>
-        <li><g:link action="create" class="create">New Event</g:link></li>
-    </ul>
-</div>
+			<div class="page-header">
+				<h1>
+					<g:message code="default.create.label" args="[entityName]" />
+				</h1>
+			</div>
 
-<div id="create-event" class="content scaffold-create" role="main">
-
-<h1><g:message code="default.create.label" args="[entityName]" /></h1>
-
-<g:if test="${flash.message}">
-    <div class="alert-message block-message info">${flash.message}</div>
-</g:if>
-
-<g:hasErrors bean="${eventInstance}">
-    <ul class="errors" role="alert">
-        <g:eachError bean="${eventInstance}" var="error">
-            <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
-                    error="${error}"/></li>
-        </g:eachError>
-    </ul>
-</g:hasErrors>
-
-<g:form action="save" class="main" method="post" >
-
-    <fieldset class="form">
-        <g:render template="form" model="model" />
-    </fieldset>
-
-    <fieldset class="buttons">
-        <g:submitButton name="create" class="save">Save</g:submitButton>
-    </fieldset>
-
-</g:form>
-
-</div>
+			<fieldset>
+				<g:form class="form-horizontal" action="create"
+					>
+					<fieldset>
+						<g:render template="form"></g:render>
+						<div class="form-actions">
+							<button type="submit" class="btn btn-primary">
+								<i class="icon-ok icon-white"></i>
+								<g:message code="default.button.create.label" default="Create" />
+							</button>
+						</div>
+					</fieldset>
+				</g:form>
+			</fieldset>
+		</div>
+	</div>
 </body>
 </html>

@@ -16,6 +16,10 @@
 					</h1>
 				</div>
 				
+				<div class="span12">
+					<g:render template="listFilter"></g:render>
+				</div>
+				
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>

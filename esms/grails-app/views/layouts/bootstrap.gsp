@@ -88,7 +88,7 @@
 							<li
 									<%= 'activity' == controllerName ? ' class="active"' : '' %>>
 									<g:link
-										controller="activity">
+										controller="event">
 										Calendar
 									</g:link>
 							</li>

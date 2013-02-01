@@ -67,12 +67,29 @@ function renderCalendar() {
                     ref.popover('hide');
                 }, 50);
             });*/
+        	
+        	var occurrenceStart = event.occurrenceStart;
+            var occurrenceEnd = event.occurrenceEnd;
+            var data = {id: event.id, occurrenceStart: occurrenceStart, occurrenceEnd: occurrenceEnd};
+            
+            var res;
+            
+        	$.ajax({
+        		 url: "show",
+        		 method: 'GET',
+        		 data: data,
+        		 async:false,
+        		 success: function(d) {
+        			res = d;
+        	    }  
+        	});
             
             $(this).clickover({
               placement:'top',
               html : true,
-              content : showEventPopover(event)
-            }); 
+              content : res//showEventPopover(event)
+            });
+            
             //return false;            
         },
         eventMouseover: function(event, jsEvent, view) {
@@ -89,13 +106,15 @@ function showEventPopover(event) {
     var occurrenceEnd = event.occurrenceEnd;
     var data = {id: event.id, occurrenceStart: occurrenceStart, occurrenceEnd: occurrenceEnd};
     
-    //$('#popoverDiv').html('');
+    var res;
+    
 	$.ajax({
 		 url: "show",
 		 method: 'GET',
 		 data: data,
+		 async:false,
 		 success: function(d) {
-			$('#popoverDiv').html(d);
+			res = d;
 	    }  
 	});
     
@@ -103,9 +122,8 @@ function showEventPopover(event) {
     "<a href='/event/show?id=" + event.id + "&occurrenceStart=" + event.occurrenceStart + 
 	"&occurrenceEnd=" +  event.occurrenceEnd + "'>More details</a></p></div>"*/
 	
+	return res;
 	//return $('#popoverDiv').html();
-	//alert($('#popoverDiv').html());
-	return $('#popoverDiv').html();
 }
 
 function setupDatePickers() {

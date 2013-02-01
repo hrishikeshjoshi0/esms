@@ -41,9 +41,12 @@
 	
 			<g:set var="entityName" value="${message(code: params.controller+'.label', default: params.controller.substring(0,1).toUpperCase() + params.controller.substring(1).toLowerCase())}" />
 			
+			<g:if test="${params.controller != 'event'}">
 			<li class="${ params.action == "list" ? 'active' : '' }">
 				<g:link action="list"><i class="icon-th-list"></i> <g:message code="default.list.label" args="[entityName]"/></g:link>
 			</li>
+			</g:if>
+			
 			<li class="${ params.action == "create" ? 'active' : '' }">
 				<g:link action="create"><i class="icon-plus"></i> <g:message code="default.new.label"  args="[entityName]"/></g:link>
 			</li>
