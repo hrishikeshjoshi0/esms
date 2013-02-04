@@ -46,17 +46,16 @@
 									<%= 'organization' == controllerName ? ' class="active"' : '' %>>
 									<g:link
 										controller="organization">
-										Organization
+										Organizations
 									</g:link>
 							</li>
-							<%--<li
+							<li
 									<%= 'contact' == controllerName ? ' class="active"' : '' %>>
 									<g:link
 										controller="contact">
-										Contact
+										Contacts
 									</g:link>
 							</li>
-							--%>
 							<li
 									<%= 'product' == controllerName ? ' class="active"' : '' %>>
 									<g:link

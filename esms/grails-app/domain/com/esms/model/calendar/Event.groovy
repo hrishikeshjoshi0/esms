@@ -3,6 +3,8 @@ package com.esms.model.calendar
 import org.joda.time.DateTime
 import org.joda.time.Minutes
 
+import com.esms.model.party.Party;
+
 class Event {
     
     String title
@@ -23,6 +25,16 @@ class Event {
 
     static hasMany = [recurDaysOfWeek: Integer, excludeDays: Date]
     static transients = ['durationMinutes']
+	
+	static belongsTo = [party : Party]
+	
+	String eventType
+	String status
+	String priority = 'MEDIUM'
+	String relatedTo = 'ORGANIZATION'
+	String relatedToValue
+	String activityLog
+	
 
     def eventService
 
@@ -37,11 +49,17 @@ class Event {
         startTime(nullable: false)
         excludeDays(nullable: true)
         sourceEvent(nullable: true)
+		relatedToValue(nullable: true)
         startTime(required: true, nullable: false)
         endTime(required: true, nullable: false, validator: {val, obj -> val > obj.startTime} )
         recurDaysOfWeek(validator: {val, obj -> 
             if (obj.recurType == EventRecurType.WEEKLY && !val) {return 'null'}
         })
+		eventType InList : ['CALL','MEETING','MAINTENANCE VISIT','REPAIR VISIT']
+		status InList : ['HELD','PLANNED','NOT HELD'] 
+		priority InList : ['LOW','MEDIUM','HIGH']
+		relatedTo InLIst : ['ORGANIZATION','INCIDENT']
+		activityLog type:'text'
     }
 
     public int getDurationMinutes() {

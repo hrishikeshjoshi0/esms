@@ -3820,7 +3820,9 @@ input[type="submit"].btn.btn-mini {
   padding: 9.5px 15px 9.5px;
   color: #fff;
   text-decoration: none;
+  text-transform: capitalize;
   text-shadow: 0 1px 0 #eeeeee;
+  font-size: 12px;
 }
 .navbar .nav .dropdown-toggle .caret {
   margin-top: 8px;
@@ -4972,12 +4974,15 @@ a.badge:hover {
 }
 .accordion-heading {
   border-bottom: 0;
-  background-color: #0088CC;
-  color:#EEE;
+  /* background-color: #0088CC;
+  color:#EEE; */
+  background-color: #CCC;
+  color:#222; 
 }
 
 .accordion-heading a {
-  color:#EEE;	
+  /* color:#EEE; */	
+  color:#222;
 }
 .accordion-heading .accordion-toggle {
   display: block;

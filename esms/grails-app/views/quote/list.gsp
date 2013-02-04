@@ -21,6 +21,8 @@
 						<tr>
 						
 							<g:sortableColumn property="quoteName" title="${message(code: 'quote.quoteName.label', default: 'Quote Name')}" />
+							
+							<g:sortableColumn property="organization.name" title="${message(code: 'quote.organization.name.label', default: 'Organization')}" />
 						
 							<g:sortableColumn property="status" title="${message(code: 'quote.status.label', default: 'Status')}" />
 						
@@ -38,8 +40,13 @@
 					<tbody>
 					<g:each in="${quoteInstanceList}" var="quoteInstance">
 						<tr>
-						
 							<td>${fieldValue(bean: quoteInstance, field: "quoteName")}</td>
+							
+							<td>
+								<g:link controller="organization" action="show" id="${quoteInstance?.organization?.id}">
+									${fieldValue(bean: quoteInstance, field: "organization.name")}
+								</g:link>
+							</td>
 						
 							<td>${fieldValue(bean: quoteInstance, field: "status")}</td>
 						

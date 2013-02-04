@@ -80,8 +80,7 @@ class EventController {
 
         [eventInstance: eventInstance]
     }
-
-
+	
     def show = {
         def (occurrenceStart, occurrenceEnd) = [params.long('occurrenceStart'), params.long('occurrenceEnd')]
         def eventInstance = Event.get(params.id)
@@ -105,7 +104,8 @@ class EventController {
 
     def save = {
         def eventInstance = new Event(params)
-
+		
+		eventInstance.activityLog = 'Init'
         if (eventInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'event.label', default: 'Event'), eventInstance.id])}"
             redirect(action: "show", id: eventInstance.id)
@@ -169,6 +169,31 @@ class EventController {
             redirect(action: "index")
         }
     }
+	
+	def addActivityLog = {
+		switch (request.method) {
+		case 'GET':
+        	def eventInstance = Event.get(params.id)
+			[eventInstance:eventInstance]
+			break
+		case 'POST':
+			def ids = params.eventId
+			ids?.each { 
+				def eventInstance = Event.get(it)
+				eventInstance.activityLog = params.activityLog
+				
+				if (!eventInstance.save(flush: true)) {
+					render view: 'create', model: [eventInstance: eventInstance]
+					return
+				}
+	
+				flash.message = "Activity Log Saved."
+				redirect action: 'show', id: eventInstance.id
+			} 
+			break
+		}
+		
+	}
 
     
 }

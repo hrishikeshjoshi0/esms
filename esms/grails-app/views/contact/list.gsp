@@ -26,6 +26,11 @@
 							title="${message(code: 'contact.firstName.label', default: 'First Name')}" />
 						<g:sortableColumn property="lastName"
 							title="${message(code: 'contact.lastName.label', default: 'Last Name')}" />
+						<g:sortableColumn property="organization.name"
+							title="${message(code: 'contact.organization.name.label', default: 'Organization Name')}" />
+						<th>
+							Email
+						</th>		
 						<th></th>
 					</tr>
 				</thead>
@@ -40,6 +45,16 @@
 							</td>
 							<td>
 								${fieldValue(bean: contactInstance, field: "lastName")}
+							</td>
+							<td>
+								<g:link controller="organization" action="show" id="${contactInstance?.organization?.id}">
+									${fieldValue(bean: contactInstance, field: "organization.name")}
+								</g:link>
+							</td>
+							<td>
+								<g:if test="${contactInstance.phoneBooks?.size() != 0}">
+									${contactInstance.phoneBooks(0)?.email}
+								</g:if>
 							</td>
 							<td class="link"><g:link action="show"
 									id="${contactInstance.id}" class="btn btn-small">Show &raquo;</g:link>

@@ -1,5 +1,7 @@
 package com.esms.model.party
 
+import com.esms.model.calendar.Event;
+
 class Party {
 	
 	String externalId
@@ -7,7 +9,7 @@ class Party {
 	String partyType
 	String status
 
-	static hasMany = [addresses:Address,phoneBooks:PhoneBook]
+	static hasMany = [addresses:Address,phoneBooks:PhoneBook,events:Event]
 	
     static constraints = {
 		externalId blank:false

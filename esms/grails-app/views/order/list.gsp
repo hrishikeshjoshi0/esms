@@ -19,14 +19,13 @@
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-						
 							<g:sortableColumn property="orderNumber" title="${message(code: 'order.orderNumber.label', default: 'Order Number')}" />
+							
+							<g:sortableColumn property="organization.name" title="${message(code: 'quote.organization.name.label', default: 'Organization')}" />
 						
 							<g:sortableColumn property="status" title="${message(code: 'order.status.label', default: 'Status')}" />
 						
 							<g:sortableColumn property="type" title="${message(code: 'order.type.label', default: 'Type')}" />
-						
-							<g:sortableColumn property="description" title="${message(code: 'order.description.label', default: 'Description')}" />
 						
 							<g:sortableColumn property="issueDate" title="${message(code: 'order.issueDate.label', default: 'Issue Date')}" />
 						
@@ -38,14 +37,17 @@
 					<tbody>
 					<g:each in="${orderInstanceList}" var="orderInstance">
 						<tr>
-						
 							<td>${fieldValue(bean: orderInstance, field: "orderNumber")}</td>
+							
+							<td>
+								<g:link controller="organization" action="show" id="${orderInstance?.organization?.id}">
+									${fieldValue(bean: orderInstance, field: "organization.name")}
+								</g:link>
+							</td>
 						
 							<td>${fieldValue(bean: orderInstance, field: "status")}</td>
 						
 							<td>${fieldValue(bean: orderInstance, field: "type")}</td>
-						
-							<td>${fieldValue(bean: orderInstance, field: "description")}</td>
 						
 							<td><g:formatDate date="${orderInstance.issueDate}" /></td>
 						

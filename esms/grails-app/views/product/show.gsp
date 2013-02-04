@@ -141,7 +141,7 @@
 					<div class="accordion-heading">
 						<a class="accordion-toggle" data-toggle="collapse"
 							href="#collapseContact"> <span class="left"> <i
-								class="icon-user"></i> Prices
+								class="icon-tag"></i> Prices
 								<div class="pull-right">
 									<i class="icon-plus"></i>
 								</div>

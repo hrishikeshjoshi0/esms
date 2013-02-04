@@ -1,5 +1,3 @@
-
-
 <%@ page import="com.esms.model.calendar.Event"%>
 <!doctype html>
 <html>
@@ -29,6 +27,9 @@
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
+					<a href="#" data-toggle="modal"
+						data-target="#activityModal" role="button" class="btn btn-success"> <i class="icon-plus"></i> Add Activity
+					</a>
 				</div>
 			</g:form>
 
@@ -154,9 +155,41 @@
 				<dd>
 					<g:formatBoolean boolean="${eventInstance?.isRecurring}" />
 				</dd>
+				
+				<dt>
+					<g:message code="event.activityLog.label" default="Activity Log" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${eventInstance}" field="activityLog" />
+				</dd>
 			</dl>
 
 		</div>
+	</div>
+	
+	<div id="activityModal" class="modal hide fade" tabindex="-1" role="dialog" 
+		data-remote="<g:createLink controller="event" action="addActivityLog" id="${eventInstance?.id}" />"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="myModalLabel">New Activity</h3>
+		</div>
+		<g:form controller="event" action="addActivityLog" method="POST">
+			<g:hiddenField name="eventId" value="${eventInstance?.id}" />
+			<div class="modal-body">
+				
+			</div>
+			<div class="modal-footer">
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary">
+						<i class="icon-ok icon-white"></i>
+						<g:message code="default.button.create.label" default="Save" />
+					</button>
+				</div>
+			</div>
+		</g:form>
 	</div>
 </body>
 </html>

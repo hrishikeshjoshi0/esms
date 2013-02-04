@@ -1,18 +1,25 @@
-<g:form action="list" class="form-inline">
-	<g:hiddenField name="search" value="${params.search}"/>
-	<div style="width:150px;">
-	<richui:autoComplete name="name" value="${params.name}" class="input-medium"  
-			action="${createLinkTo('dir': 'organization/searchAJAX')}"
-			forceSelection="false" typeAhead="true" shadow="true" minQueryLength ="2"/>
-	</div>
-	
-	<g:select name="salesStatus" class="input-medium"
-			from="${['LEAD','CUSTOMER']}"
-			value="${params.salesStatus}"
-			valueMessagePrefix="organization.salesStatus" noSelection="['': '']" />
-
-    <button type="submit" class="btn">
-    	<i class="icon-search"></i>
-    	Search
-    </button>
-</g:form>
+<div class="searchDiv" style="padding:10px;width:100%;height:50px;">
+	<g:form action="list" class="form-inline" method="GET">
+		<g:hiddenField name="search" value="${params.search}" />
+		<table style="background-color: #EEE; width: 60%;">
+			<tr>
+				<td>Name :</td>
+				<td><richui:autoComplete name="name" value="${params.name}"
+						class="input-medium"
+						action="${createLinkTo('dir': 'organization/searchAJAX')}"
+						forceSelection="false" typeAhead="true" shadow="true"
+						minQueryLength="2" /></td>
+				<td>Sales Stage :</td>
+				<td><g:select name="salesStatus" class="input-medium"
+						from="${['LEAD','CUSTOMER']}" value="${params.salesStatus}"
+						valueMessagePrefix="organization.salesStatus"
+						noSelection="['': '']" /></td>
+				<td>
+					<button type="submit" class="btn">
+						<i class="icon-search"></i> Search
+					</button>
+				</td>
+			</tr>
+		</table>
+	</g:form>
+</div>

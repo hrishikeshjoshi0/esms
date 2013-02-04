@@ -147,7 +147,7 @@
 					<div class="accordion-heading">
 						<a class="accordion-toggle" data-toggle="collapse"
 							href="#collapsePhoneBook"> <span class="left"> <i
-								class="icon-book"></i> Phones
+								class="icon-headphones"></i> Phones
 								<div class="pull-right">
 									<i class="icon-plus"></i>
 								</div>
@@ -185,7 +185,7 @@
 					<div class="accordion-heading">
 						<a class="accordion-toggle" data-toggle="collapse"
 							href="#collapseServiceOrder"> <span class="left"> <i
-								class="icon-envelope"></i> Service Orders
+								class="icon-briefcase"></i> Service Orders
 								<div class="pull-right">
 									<i class="icon-plus"></i>
 								</div>
@@ -204,7 +204,7 @@
 					<div class="accordion-heading">
 						<a class="accordion-toggle" data-toggle="collapse"
 							href="#collapseRepairOrder"> <span class="left"> <i
-								class="icon-envelope"></i> Repair Orders
+								class="icon-wrench"></i> Repair Orders
 								<div class="pull-right">
 									<i class="icon-plus"></i>
 								</div>
@@ -217,6 +217,27 @@
 						</div>
 					</div>
 				</div>
+				
+				
+				<!-- Events -->
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse"
+							href="#collapseEvents"> <span class="left"> <i
+								class="icon-time"></i> Events
+								<div class="pull-right">
+									<i class="icon-plus"></i>
+								</div>
+						</span>
+						</a>
+					</div>
+					<div id="collapseEvents" class="accordion-body collapse">
+						<div class="accordion-inner">
+							<g:render template="eventList" />
+						</div>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 	</div>

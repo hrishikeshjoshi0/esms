@@ -31,7 +31,7 @@
 			</div>
 
 			<fieldset>
-				<g:form class="form-horizontal" action="create"
+				<g:form class="form-horizontal" action="save"
 					>
 					<fieldset>
 						<g:render template="form"></g:render>

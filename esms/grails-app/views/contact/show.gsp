@@ -23,6 +23,20 @@
 					</small>
 				</h3>
 			</div>
+			
+			<g:form>
+				<g:hiddenField name="id" value="${contactInstance?.id}" />
+				<div class="form-actions">
+					<g:link class="btn" action="edit" id="${contactInstance?.id}">
+						<i class="icon-pencil"></i>
+						<g:message code="default.button.edit.label" default="Edit" />
+					</g:link>
+					<button class="btn btn-danger" type="submit" name="_action_delete">
+						<i class="icon-trash icon-white"></i>
+						<g:message code="default.button.delete.label" default="Delete" />
+					</button>
+				</div>
+			</g:form>
 
 			<dl class="dl-horizontal">
 				<dt>
@@ -97,20 +111,6 @@
 				</dd>
 
 			</dl>
-
-			<g:form>
-				<g:hiddenField name="id" value="${contactInstance?.id}" />
-				<div class="form-actions">
-					<g:link class="btn" action="edit" id="${contactInstance?.id}">
-						<i class="icon-pencil"></i>
-						<g:message code="default.button.edit.label" default="Edit" />
-					</g:link>
-					<button class="btn btn-danger" type="submit" name="_action_delete">
-						<i class="icon-trash icon-white"></i>
-						<g:message code="default.button.delete.label" default="Delete" />
-					</button>
-				</div>
-			</g:form>
 		</div>
 	</div>
 </body>
