@@ -19,6 +19,9 @@ class Quote {
 	BigDecimal totalDiscount = new BigDecimal("0.0")
 	BigDecimal grandTotal = new BigDecimal("0.0")
 	
+	String relatedTo
+	String relatedToValue
+	
 	static hasMany = [quoteItems : QuoteItem]
 	
 	static belongsTo = [organization : Organization]
@@ -36,6 +39,8 @@ class Quote {
 		totalTax nullable:false
 		totalDiscount nullable:false
 		grandTotal nullable:false
+		relatedTo InList:['CONTRACT','ORGANIZATION']
+		relatedToValue blank:true
     }
 	
 	static mapping = {

@@ -17,7 +17,7 @@ class Order {
 	BigDecimal grandTotal = new BigDecimal("0.0")
 	String referenceQuoteNumber
 	
-	static hasMany = [orderItems : OrderItem]
+	static hasMany = [orderItems : OrderItem, orderPartyAssignments : WorkOrderPartyAssignment, orderInventoryAssignments : WorkOrderInventoryAssignment]
 	
 	static belongsTo = [organization : Organization]
 

@@ -43,6 +43,13 @@
 						<ul class="nav">							
 							<li<%= request.forwardURI == "${createLink(uri: '/')}" ? ' class="active"' : '' %>><a href="${createLink(uri: '/')}">Home</a></li>
 							<li
+									<%= 'contact' == controllerName ? ' class="active"' : '' %>>
+									<g:link
+										controller="contract">
+										Contracts
+									</g:link>
+							</li>
+							<li
 									<%= 'organization' == controllerName ? ' class="active"' : '' %>>
 									<g:link
 										controller="organization">

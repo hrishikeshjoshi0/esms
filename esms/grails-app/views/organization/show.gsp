@@ -103,7 +103,40 @@
 		</div>
 
 		<div class="span12">
-			<div class="accordion" id="detailViewAccordion" style="margin-left: -30px;">
+			
+			<!--  -->
+			<ul class="nav nav-tabs" id="organization_show_tab">
+			  <li class="active"><a href="#contactsTabPane">Contact</a></li>
+			  <li><a href="#addressesTabsPane" data-toggle="tab">Addresses</a></li>
+			  <li><a href="#phonesTabsPane" data-toggle="tab">Phones</a></li>
+			  <li><a href="#quotesTabsPane" data-toggle="tab">Quotes</a></li>
+			  <li><a href="#salesOrdersTabsPane" data-toggle="tab">Sales Orders</a></li>
+			  <li><a href="#workOrdersTabsPane" data-toggle="tab">Work Orders</a></li>
+			</ul>
+			 
+			<div class="tab-content">
+			  <div class="tab-pane active" id="contactsTabPane">
+			  	<g:render template="contactList" />
+			  </div>
+			  <div class="tab-pane" id="addressesTabsPane">
+			  	<g:render template="addressList" />
+			  </div>
+			  <div class="tab-pane" id="phonesTabsPane">
+			  	<g:render template="phoneBookList" />
+			  </div>
+			  <div class="tab-pane" id="quotesTabsPane">
+			  	<g:render template="quoteList" />
+			  </div>
+			  <div class="tab-pane" id="salesOrdersTabsPane">
+			  	<g:render template="serviceorderList" />
+			  </div>
+			  <div class="tab-pane" id="workOrdersTabsPane">
+			  	<g:render template="repairorderList" />
+			  </div>
+			</div>
+			<!--  -->
+			
+			<%--<div class="accordion" id="detailViewAccordion" style="margin-left: -30px;">
 				<!-- Contacts -->
 				<div class="accordion-group">
 					<div class="accordion-heading">
@@ -239,7 +272,7 @@
 				</div>
 				
 			</div>
-		</div>
+		--%></div>
 	</div>
 </body>
 </html>
