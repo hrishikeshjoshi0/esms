@@ -1,10 +1,9 @@
 package com.esms.model.order
 
-import java.math.BigDecimal;
-import java.util.Date;
-
-import com.esms.model.quote.Quote
 import org.springframework.dao.DataIntegrityViolationException
+
+import com.esms.model.party.Organization
+import com.esms.model.quote.Quote
 
 class OrderController {
 
@@ -18,6 +17,16 @@ class OrderController {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [orderInstanceList: Order.list(params), orderInstanceTotal: Order.count()]
     }
+	
+	def confirmSale() {
+		def orderInstance = Order.get(params.id)
+		if(orderInstance) {
+			orderInstance.status = "SALE TO INVOICE"
+		}
+		
+		flash.message = 'Marked as Sales Complete: ' + orderInstance.orderNumber
+		redirect action: 'show', id: orderInstance.id
+	}
 	
 	def convertQuoteToOrder() {
 			def list = Order.list();
@@ -73,7 +82,15 @@ class OrderController {
 			int no = (list?list.size():0) + 1;
 			String orderNumber = "ORD" + String.format("%05d", no)
 			params.orderNumber = orderNumber
+			
 			def order = new Order(params)
+			
+			if(params.relatedTo == 'CONTRACT' && params.customerNumber) {
+				String customerNumber = params.customerNumber
+				def organization = Organization.findByExternalId(customerNumber)
+				order.organization = organization
+			}
+			
         	[orderInstance: order]
 			break
 		case 'POST':

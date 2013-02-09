@@ -16,6 +16,7 @@
 
 		<resource:autoComplete skin="default" />
 		<r:require modules="scaffolding,jquery-ui"/>
+		<r:require module="calendar" />
 
 		<!-- Le fav and touch icons -->
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
@@ -71,11 +72,29 @@
 									</g:link>
 							</li>
 							<li
-									<%= 'quote' == controllerName ? ' class="active"' : '' %>>
-									<g:link
-										controller="quote">
-										Quote
-									</g:link>
+									<%= 'quote' == controllerName ? ' class="active " ' : ' ' %>>
+									<ul class="nav">  
+									  <li class="dropdown">
+									  	<g:link controller="quote" action="list"
+									          class="dropdown-toggle"  
+									          data-toggle="dropdown">  
+									          Quote  
+									          <b class="caret"></b>  
+									    </g:link>  
+									    <ul class="dropdown-menu">  
+									     	<li>
+									     		<g:link controller="quote" action="create" params="[contractQuote:true]">
+									     			Contract Quote
+									     		</g:link>
+											</li>
+											<li>
+									     		<g:link controller="quote" action="create">
+									     			Repair Quote
+									     		</g:link>
+											</li>
+									    </ul>  
+									  </li>  
+									</ul>
 							</li>
 							<li
 									<%= 'order' == controllerName ? ' class="active"' : '' %>>

@@ -1,0 +1,49 @@
+<%@page import="com.esms.model.order.Order"%>
+<div class="pull-right">
+	<a href="<g:createLink controller="order" action="create" params="[type:'REPAIR']"/>"
+		role="button" class="btn"> <i class="icon-plus"></i> New Order
+	</a>
+</div>
+
+<g:set var="repairOrders" value="${Order.findAllWhere(relatedTo:'CONTRACT',relatedToValue:contractInstance?.contractNumber,organization:contractInstance?.organization,type:'REPAIR') }"/>
+
+<!-- Orders -->
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<g:sortableColumn property="orderNumber"
+				title="${message(code: 'order.orderNumber.label', default: 'Order Number')}" />
+			<g:sortableColumn property="status"
+				title="${message(code: 'order.status.label', default: 'Status')}" />
+			<g:sortableColumn property="issueDate"
+				title="${message(code: 'order.issueDate.label', default: 'Issue Date')}" />
+			<g:sortableColumn property="expiryDate"
+				title="${message(code: 'order.expiryDate.label', default: 'Expiry Date')}" />
+			<g:sortableColumn property="description"
+				title="${message(code: 'order.description.label', default: 'Description')}" />
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<g:each in="${repairOrders?.orders}" var="orderInstance">
+			<tr>
+				<td>
+					${fieldValue(bean: orderInstance, field: "orderNumber")}
+				</td>
+				<td>
+					${fieldValue(bean: orderInstance, field: "status")}
+				</td>
+				<td><g:formatDate date="${orderInstance.issueDate}" /></td>
+				<td><g:formatDate date="${orderInstance.expiryDate}" /></td>
+				<td>
+					${fieldValue(bean: orderInstance, field: "description")}
+				</td>
+				<td class="link"><g:link controller="order" action="show" id="${orderInstance.id}"
+						class="btn btn-small">Show &raquo;</g:link></td>
+			</tr>
+		</g:each>
+	</tbody>
+</table>
+<div class="pagination">
+	<bootstrap:paginate total="${repairOrders?serviceOrders.size():0}" />
+</div>

@@ -2,6 +2,7 @@ package com.esms.model.party
 
 import com.esms.model.order.Order
 import com.esms.model.quote.Quote
+import com.esms.model.sales.Contract
 
 class Organization extends Party {
 
@@ -9,7 +10,7 @@ class Organization extends Party {
 	String salesStatus
 	String assignedTo
 	
-	static hasMany = [contacts : Contact,quotes : Quote,orders : Order]
+	static hasMany = [contacts : Contact,quotes : Quote,orders : Order,contracts : Contract]
 	
     static constraints = {
 		name blank:true

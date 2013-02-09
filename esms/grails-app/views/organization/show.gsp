@@ -109,6 +109,7 @@
 			  <li class="active"><a href="#contactsTabPane">Contact</a></li>
 			  <li><a href="#addressesTabsPane" data-toggle="tab">Addresses</a></li>
 			  <li><a href="#phonesTabsPane" data-toggle="tab">Phones</a></li>
+			  <li><a href="#contractsTabsPane" data-toggle="tab">Contracts</a></li>
 			  <li><a href="#quotesTabsPane" data-toggle="tab">Quotes</a></li>
 			  <li><a href="#salesOrdersTabsPane" data-toggle="tab">Sales Orders</a></li>
 			  <li><a href="#workOrdersTabsPane" data-toggle="tab">Work Orders</a></li>
@@ -120,6 +121,9 @@
 			  </div>
 			  <div class="tab-pane" id="addressesTabsPane">
 			  	<g:render template="addressList" />
+			  </div>
+			  <div class="tab-pane" id="contractsTabsPane">
+			  	<g:render template="contractList" />
 			  </div>
 			  <div class="tab-pane" id="phonesTabsPane">
 			  	<g:render template="phoneBookList" />

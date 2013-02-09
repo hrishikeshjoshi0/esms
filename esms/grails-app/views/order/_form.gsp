@@ -7,25 +7,25 @@
 	<div class="controls">
 		<g:textField name="orderNumber" required="" readOnly="readOnly"
 			value="${orderInstance?.orderNumber}" />
-		<span class="help-inline">
-			${hasErrors(bean: orderInstance, field: 'orderNumber', 'error')}
+		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'orderNumber', 'error')}
 		</span>
 	</div>
 </div>
 
+<g:if test="${orderInstance?.referenceQuoteNumber}">
 <div
-		class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'referenceQuoteNumber', 'error')} required">
-		<label for="orderNumber" class="control-label"><g:message
-				code="order.referenceQuoteNumber.label" default="Reference Quote Number" /><span
-			class="required-indicator">*</span></label>
-		<div class="controls">
-			<g:textField name="referenceQuoteNumber" required="" readOnly="readOnly"
-				value="${orderInstance?.referenceQuoteNumber}" />
-			<span class="help-inline">
-				${hasErrors(bean: orderInstance, field: 'referenceQuoteNumber', 'error')}
-			</span>
-		</div>
+	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'referenceQuoteNumber', 'error')} required">
+	<label for="orderNumber" class="control-label"><g:message
+			code="order.referenceQuoteNumber.label"
+			default="Reference Quote Number" /><span class="required-indicator"> </span></label>
+	<div class="controls">
+		<g:textField name="referenceQuoteNumber" required=""
+			readOnly="readOnly" value="${orderInstance?.referenceQuoteNumber}" />
+		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'referenceQuoteNumber', 'error')}
+		</span>
+	</div>
 </div>
+</g:if>
 
 <div
 	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'organization', 'error')} required">
@@ -33,12 +33,15 @@
 			code="order.organization.label" default="Organization" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:hiddenField name="organization.id" value="${orderInstance?.organization?.id}"/>
-		<richui:autoComplete name="organizationId" onItemSelect="document.getElementById('organization.id').value=id;"
+		<g:hiddenField name="organization.id"
+			value="${orderInstance?.organization?.id}" />
+		<richui:autoComplete name="organizationId"
+			onItemSelect="document.getElementById('organization.id').value=id;"
 			action="${createLinkTo('dir': 'organization/searchAJAX')}"
-			forceSelection="true" typeAhead="true" shadow="true" minQueryLength ="2"/>
-		<span class="help-inline">
-			${hasErrors(bean: orderInstance, field: 'organization', 'error')}
+			forceSelection="true" typeAhead="true" shadow="true"
+			minQueryLength="2" 
+			value="${orderInstance.organization?.name}" />
+		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'organization', 'error')}
 		</span>
 	</div>
 </div>
@@ -52,8 +55,7 @@
 			from="${orderInstance.constraints.status.inList}"
 			value="${orderInstance?.status}" valueMessagePrefix="order.status"
 			noSelection="['': '']" />
-		<span class="help-inline">
-			${hasErrors(bean: orderInstance, field: 'status', 'error')}
+		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'status', 'error')}
 		</span>
 	</div>
 </div>
@@ -64,10 +66,9 @@
 			code="order.type.label" default="Type" /></label>
 	<div class="controls">
 		<g:select name="type" from="${orderInstance.constraints.type.inList}"
-				value="${orderInstance?.type}" valueMessagePrefix="order.type"
-				noSelection="['': '']" />
-		<span class="help-inline">
-			${hasErrors(bean: orderInstance, field: 'type', 'error')}
+			value="${orderInstance?.type}" valueMessagePrefix="order.type"
+			noSelection="['': '']" />
+		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'type', 'error')}
 		</span>
 	</div>
 </div>
@@ -80,8 +81,7 @@
 	<div class="controls">
 		<bootstrap:jqDatePicker name="issueDate"
 			value="${orderInstance?.issueDate}" />
-		<span class="help-inline">
-			${hasErrors(bean: orderInstance, field: 'issueDate', 'error')}
+		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'issueDate', 'error')}
 		</span>
 	</div>
 </div>
@@ -93,8 +93,7 @@
 	<div class="controls">
 		<bootstrap:jqDatePicker name="expiryDate"
 			value="${orderInstance?.expiryDate}" />
-		<span class="help-inline">
-			${hasErrors(bean: orderInstance, field: 'expiryDate', 'error')}
+		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'expiryDate', 'error')}
 		</span>
 	</div>
 </div>
@@ -105,8 +104,44 @@
 			code="order.contactName.label" default="Contact Name" /></label>
 	<div class="controls">
 		<g:textField name="contactName" value="${orderInstance?.contactName}" />
-		<span class="help-inline">
-			${hasErrors(bean: orderInstance, field: 'contactName', 'error')}
+		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'contactName', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'relatedTo', 'error')} ">
+	<label for="type" class="control-label"><g:message
+			code="order.relatedTo.label" default="Related To" /></label>
+	<div class="controls">
+		<g:select name="relatedTo"
+			from="${orderInstance.constraints.relatedTo.inList}"
+			value="${orderInstance?.relatedTo}"
+			valueMessagePrefix="order.relatedTo" noSelection="['': '']" />
+		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'relatedTo', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'relatedToValue', 'error')} ">
+	<label for="relatedToValue" class="control-label"><g:message
+			code="order.relatedToValue.label" default="Value" /></label>
+	<div class="controls">
+		<g:textField name="relatedToValue"
+			value="${orderInstance?.relatedToValue}" />
+		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'relatedToValue', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'contactName', 'error')} ">
+	<label for="contactName" class="control-label"><g:message
+			code="order.contactName.label" default="Contact Name" /></label>
+	<div class="controls">
+		<g:textField name="contactName" value="${orderInstance?.contactName}" />
+		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'contactName', 'error')}
 		</span>
 	</div>
 </div>
@@ -167,14 +202,14 @@
 	</div>
 </div>
 
---%><div
+--%>
+<div
 	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'description', 'error')} ">
 	<label for="description" class="control-label"><g:message
 			code="order.description.label" default="Description" /></label>
 	<div class="controls">
 		<g:textField name="description" value="${orderInstance?.description}" />
-		<span class="help-inline">
-			${hasErrors(bean: orderInstance, field: 'description', 'error')}
+		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'description', 'error')}
 		</span>
 	</div>
 </div>

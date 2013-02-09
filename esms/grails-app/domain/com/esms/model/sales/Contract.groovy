@@ -1,9 +1,12 @@
 package com.esms.model.sales
 
-class Contract {
+import com.esms.model.order.Order
+import com.esms.model.party.Organization
+import com.esms.model.quote.Quote
 
+class Contract {
+	
 	String contractNumber
-	String customerNumber
 	String status
 	Date fromDate
 	Date toDate
@@ -13,10 +16,12 @@ class Contract {
 	String assignedTo = 'SYSTEM'
 	String description
 	String termsAndConditions
+	
+	Quote quote
+	Order order
 		
     static constraints = {
 		contractNumber nullable:false,blank:false
-		customerNumber nullable:false,blank:false
 		status InList:['NEW','PENDING','FINISHED','CANCEL']
 		fromDate nullable:false
 		toDate nullable:true
@@ -27,6 +32,8 @@ class Contract {
 		description nullable:true,blank:true
 		termsAndConditions nullable:true,blank:true
     }
+	
+	static belongsTo = [organization : Organization]
 	
 	static mapping = {
 		description type:'text'

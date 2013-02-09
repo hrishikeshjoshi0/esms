@@ -20,6 +20,9 @@ class QuoteController {
 		switch (request.method) {
 		case 'GET':
 			params.status = 'PENDING'
+			if(params.contractQuote) {
+				params.relatedTo = 'CONTRACT'
+			}
         	[quoteInstance: new Quote(params)]
 			break
 		case 'POST':

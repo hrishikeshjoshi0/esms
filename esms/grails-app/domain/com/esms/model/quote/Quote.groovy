@@ -1,8 +1,11 @@
 package com.esms.model.quote
 
+import java.util.Date;
+
 import org.grails.datastore.gorm.finders.MethodExpression.InList;
 
 import com.esms.model.party.Organization;
+import com.esms.model.sales.Contract;
 
 class Quote {
 	
@@ -22,6 +25,14 @@ class Quote {
 	String relatedTo
 	String relatedToValue
 	
+	Date contractFromDate
+	Date contractToDate
+	Boolean invoicingIsFixedPrice
+	Boolean invoicingIsTimesheets
+	Boolean invoicingIsExpenses
+	String assignedTo = 'SYSTEM'
+	String termsAndConditions
+	
 	static hasMany = [quoteItems : QuoteItem]
 	
 	static belongsTo = [organization : Organization]
@@ -39,8 +50,16 @@ class Quote {
 		totalTax nullable:false
 		totalDiscount nullable:false
 		grandTotal nullable:false
-		relatedTo InList:['CONTRACT','ORGANIZATION']
-		relatedToValue blank:true
+		relatedTo nullable:true,InList:['CONTRACT','ORGANIZATION']
+		relatedToValue nullable:true,blank:true
+		
+		contractFromDate nullable:true,blank:true
+		contractToDate nullable:true,blank:true
+		invoicingIsFixedPrice nullable:true,blank:true 
+		invoicingIsTimesheets nullable:true,blank:true
+		invoicingIsExpenses nullable:true,blank:true
+		assignedTo nullable:true,blank:true
+		termsAndConditions nullable:true,blank:true,length:255
     }
 	
 	static mapping = {

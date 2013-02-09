@@ -36,6 +36,10 @@ class OrganizationController {
     def create() {
 		switch (request.method) {
 		case 'GET':
+			def list = Organization.list();
+			int no = (list?list.size():0) + 1;
+			String externalId = "ORG" + String.format("%05d", no)
+			params.externalId = externalId
         	[organizationInstance: new Organization(params)]
 			break
 		case 'POST':

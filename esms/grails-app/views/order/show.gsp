@@ -38,6 +38,10 @@
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
+					<g:link class="btn" action="completeSale" id="${orderInstance?.id}">
+						<i class="icon-pencil"></i>
+						<g:message code="default.button.edit.label" default="Edit" />
+					</g:link>
 				</div>
 			</g:form>
 

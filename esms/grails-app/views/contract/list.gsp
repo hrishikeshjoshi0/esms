@@ -22,7 +22,7 @@
 						
 							<g:sortableColumn property="contractNumber" title="${message(code: 'contract.contractNumber.label', default: 'Contract Number')}" />
 						
-							<g:sortableColumn property="customerNumber" title="${message(code: 'contract.customerNumber.label', default: 'Customer Number')}" />
+							<g:sortableColumn property="organization.id" title="${message(code: 'contract.organization.id.label', default: 'Organization')}" />
 						
 							<g:sortableColumn property="status" title="${message(code: 'contract.status.label', default: 'Status')}" />
 						
@@ -41,7 +41,7 @@
 						
 							<td>${fieldValue(bean: contractInstance, field: "contractNumber")}</td>
 						
-							<td>${fieldValue(bean: contractInstance, field: "customerNumber")}</td>
+							<td>${fieldValue(bean: contractInstance, field: "organization.id")}</td>
 						
 							<td>${fieldValue(bean: contractInstance, field: "status")}</td>
 						
