@@ -8,7 +8,7 @@ import com.esms.model.sales.Contract
 class Order {
 
     String orderNumber
-	String status = "DRAFT"
+	String status = "PENDING_INVOICE"
 	String type
 	String description
 	Date issueDate = new Date()
@@ -31,13 +31,17 @@ class Order {
 	String assignedTo = 'SYSTEM'
 	String termsAndConditions
 	
+	BigDecimal openGrandTotal = new BigDecimal("0.0")
+	BigDecimal receviedGrandTotal = new BigDecimal("0.0")
+	 
+	
 	static hasMany = [orderItems : OrderItem, orderPartyAssignments : WorkOrderPartyAssignment, orderInventoryAssignments : WorkOrderInventoryAssignment]
 	
 	static belongsTo = [organization : Organization]
 	
     static constraints = {
 		orderNumber nullable:false,blank:false
-		status InList:['DRAFT','PENDING','SALE TO INVOICE','INVOICED']
+		status InList:['PENDING_INVOICE','INVOICED']
 		type InList:['SALES','SERVICE','REPAIR']
 		description nullable:true,blank:true
 		issueDate nullable:false
@@ -51,8 +55,8 @@ class Order {
 		relatedTo InList:['CONTRACT','ORGANIZATION']
 		relatedToValue nullable:true,blank:true
 		
-		contractFromDate nullable:false
-		contractToDate nullable:true
+		contractFromDate nullable:true,blank:true
+		contractToDate nullable:true,blank:true
 		invoicingIsFixedPrice nullable:true,blank:true
 		invoicingIsTimesheets nullable:true,blank:true
 		invoicingIsExpenses nullable:true,blank:true

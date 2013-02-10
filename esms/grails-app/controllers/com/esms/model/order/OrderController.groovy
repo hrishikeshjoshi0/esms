@@ -1,5 +1,7 @@
 package com.esms.model.order
 
+import java.util.Date;
+
 import org.springframework.dao.DataIntegrityViolationException
 
 import com.esms.model.party.Organization
@@ -21,7 +23,7 @@ class OrderController {
 	def confirmSale() {
 		def orderInstance = Order.get(params.id)
 		if(orderInstance) {
-			orderInstance.status = "SALE TO INVOICE"
+			orderInstance.status = "PENDING_INVOICE"
 		}
 		
 		flash.message = 'Marked as Sales Complete: ' + orderInstance.orderNumber
@@ -34,16 +36,28 @@ class OrderController {
 			String orderNumber = "ORD" + String.format("%05d", no)
 			
 			def quote = Quote.get(params.orderId)
+			quote.status = "CONVERTED_TO_SALES_ORDER"
 			
 			def order = new Order()
 			order.orderNumber = orderNumber
 			order.contactName = quote.contactName
-			order.status = "DRAFT"
+			order.status = "PENDING_INVOICE"
 			if(quote.type == 'CONTRACT') {
 				order.type = "SERVICE"
+				order.relatedTo = "CONTRACT"
+				
+				order.contractFromDate = quote.contractFromDate
+				order.contractToDate = quote.contractToDate
+				order.invoicingIsFixedPrice = quote.invoicingIsFixedPrice
+				order.invoicingIsTimesheets = quote.invoicingIsTimesheets
+				order.invoicingIsExpenses = quote.invoicingIsExpenses
+				order.assignedTo = quote.assignedTo
+				order.termsAndConditions = quote.termsAndConditions
+				
 			} else {
 				order.type = "REPAIR"
 			}
+			
 			order.issueDate = quote.issueDate
 			order.expiryDate = quote.expiryDate
 			order.totalAmount = quote.totalAmount
@@ -53,7 +67,9 @@ class OrderController {
 			order.referenceQuoteNumber = quote.quoteNumber
 			
 			order.organization = quote.organization
-			order.save(flush:true)
+			if(!order.save(flush:true)) {
+				redirect controller: 'quote',action: 'show', id: quote.id
+			}
 			
 			order.orderItems = new HashSet<OrderItem>()
 			
@@ -71,7 +87,7 @@ class OrderController {
 				orderItem.save(flush:true)
 			}
 			
-			flash.message = 'Order Created from Quote: ' + quote.quoteNumber
+			flash.message = 'Order Created from Quote: ' + quote.quoteName
 			redirect action: 'show', id: order.id
 	}
 
@@ -232,4 +248,16 @@ class OrderController {
 			break
 		}
 	}
+	
+	def createInvoice = {
+		def order = Order.get(params.id)
+		order.status = "INVOICED"
+		order.openGrandTotal = order.grandTotal
+		order.receviedGrandTotal = new BigDecimal("0.0")
+		order.save(flush:true)
+		
+		flash.message = "Converted to Invoice."
+		redirect action: 'show', id: order.id
+	}
 }
+

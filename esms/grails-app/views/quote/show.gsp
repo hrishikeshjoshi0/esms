@@ -50,10 +50,10 @@
 							Mark as Declined
 						</g:link>
 					</g:elseif>
-					<g:elseif test="${quoteInstance?.status == 'ACCEPT'}">
+					<g:elseif test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'CONTRACT'}">
 						<g:link class="btn" controller="order" action="convertQuoteToOrder" params="[orderId:quoteInstance.id]">
 							<i class="icon-share-alt"></i>
-							Create Order from Quote
+							Create Service Contract
 						</g:link>
 					</g:elseif>
 				</div>

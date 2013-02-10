@@ -19,6 +19,19 @@
 </div>
 
 <div
+	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'quoteNumber', 'error')} required">
+	<label for="quoteNumber" class="control-label"><g:message
+			code="quote.quoteNumber.label" default="Quote Number" /><span
+		class="required-indicator">*</span></label>
+	<div class="controls">
+		<g:textField name="quoteNumber" required="" readonly="readonly"
+			value="${quoteInstance?.quoteNumber}" />
+		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'quoteNumber', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
 	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'quoteName', 'error')} required">
 	<label for="quoteName" class="control-label"><g:message
 			code="quote.quoteName.label" default="Quote Name" /><span
@@ -193,6 +206,31 @@
 	<div class="controls">
 		<g:textField name="assignedTo" value="${quoteInstance?.assignedTo}" />
 		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'assignedTo', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'relatedTo', 'error')} ">
+	<label for="relatedTo" class="control-label"><g:message
+			code="contract.relatedTo.label" default="Related To" /></label>
+	<div class="controls">
+		<g:select name="relatedTo"
+			from="${quoteInstance.constraints.relatedTo.inList}"
+			value="${quoteInstance?.relatedTo}"
+			valueMessagePrefix="contract.relatedTo" noSelection="['': '']" />
+		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'relatedTo', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'relatedToValue', 'error')} ">
+	<label for="relatedToValue" class="control-label"><g:message
+			code="contract.relatedToValue.label" default="Related To Value" /></label>
+	<div class="controls">
+		<g:textField name="relatedToValue" value="${quoteInstance?.relatedToValue}" />
+		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'relatedToValue', 'error')}
 		</span>
 	</div>
 </div>

@@ -9,6 +9,7 @@ import com.esms.model.sales.Contract;
 
 class Quote {
 	
+	String quoteNumber
 	String quoteName
 	String status = "DRAFT"
 	String type
@@ -38,8 +39,9 @@ class Quote {
 	static belongsTo = [organization : Organization]
 
     static constraints = {
+		quoteNumber nullable:false,blank:false
 		quoteName nullable:false,blank:false
-		status InList:['DRAFT','PENDING','SENT','REVISE','ACCEPT','DECLINE']
+		status InList:['DRAFT','PENDING','SENT','REVISE','ACCEPT','DECLINE','CONVERTED_TO_SALES_ORDER']
 		type InList:['CONTRACT','REPAIR']
 		salesChannel blank:false
 		description nullable:true,blank:true

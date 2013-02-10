@@ -26,7 +26,7 @@
 
 	<body>
 
-		<nav class="navbar navbar-fixed-top">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container-fluid">
 					
@@ -37,7 +37,9 @@
 					</a>
 					
 					<a class="brand" href="${createLink(uri: '/')}">
-						<img alt="Venus CRM" src="${resource(dir: 'images', file: 'venus_crm_logo.png')}" style="height:35px;">
+						<%--<img alt="Venus CRM" src="${resource(dir: 'images', file: 'venus_crm_logo.png')}" style="height:35px;">
+						--%>
+						VENUS
 					</a>
 
 					<div class="nav-collapse">
@@ -82,6 +84,11 @@
 									          <b class="caret"></b>  
 									    </g:link>  
 									    <ul class="dropdown-menu">  
+									     	<li>
+									     		<g:link controller="quote" action="list">
+									     			Quotes
+									     		</g:link>
+											</li>
 									     	<li>
 									     		<g:link controller="quote" action="create" params="[contractQuote:true]">
 									     			Contract Quote

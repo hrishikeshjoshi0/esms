@@ -19,8 +19,15 @@ class QuoteController {
     def create() {
 		switch (request.method) {
 		case 'GET':
+		
+			def list = Quote.list();
+			int no = (list?list.size():0) + 1;
+			String quoteNumber = "QUO" + String.format("%05d", no)
+		
+			params.quoteNumber = quoteNumber
 			params.status = 'PENDING'
 			if(params.contractQuote) {
+				params.type = "CONTRACT"
 				params.relatedTo = 'CONTRACT'
 			}
         	[quoteInstance: new Quote(params)]
@@ -170,7 +177,7 @@ class QuoteController {
 					max ("lineNumber")
 				}
 			}
-			params.lineNumber = maxLineNumber + 1
+			params.lineNumber = (maxLineNumber?maxLineNumber:0) + 1
 			[quoteItemInstance: new QuoteItem(params)]
 			break
 		case 'POST':

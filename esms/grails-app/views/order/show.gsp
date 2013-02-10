@@ -14,7 +14,13 @@
 		<div class="span12">
 			<div class="page-header">
 				<h1>
-					Order : ${orderInstance?.orderNumber}
+					<g:if test="${orderInstance.status == 'PENDING_INVOICE' }">
+						ORDER
+					</g:if>
+					<g:elseif test="${orderInstance.status == 'INVOICED' }">
+						INVOICE
+					</g:elseif>
+					${orderInstance?.orderNumber}
 				</h1>
 				<h3 style="margin-left: 20px;">
 					<small>
@@ -42,6 +48,12 @@
 						<i class="icon-pencil"></i>
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
+					<g:if test="${orderInstance?.status == 'PENDING_INVOICE'}">
+						<g:link class="btn" action="createInvoice" id="${orderInstance?.id}">
+							<i class="icon-briefcase"></i>
+							<g:message code="default.button.createInvoice.label" default="Create Invoice" />
+						</g:link>	
+					</g:if>
 				</div>
 			</g:form>
 
@@ -146,10 +158,6 @@
 					<g:fieldValue bean="${orderInstance}" field="grandTotal" />
 				</dd>
 
-
-				<dt>
-					<g:message code="order.orderItems.label" default="Order Items" />
-				</dt>
 
 				<dt>
 					<g:message code="order.organization.label" default="Organization" />
