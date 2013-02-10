@@ -6,7 +6,7 @@
 <g:set var="entityName"
 	value="${message(code: 'event.label', default: 'Event')}" />
 
-<g:hiddenField name="party.id" value="${eventInstance.party.id}"/>
+<g:hiddenField name="party.id" value="${eventInstance?.party.id}"/>
 <div
 	class="fieldcontain ${hasErrors(bean: eventInstance, field: 'eventType', 'error')}">
 	<label for="eventType"><g:message code="event.eventType.label"

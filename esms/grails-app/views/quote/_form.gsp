@@ -37,7 +37,7 @@
 			code="quote.quoteName.label" default="Quote Name" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:textField name="quoteName" required=""
+		<g:textField name="quoteName" required="" class="input-xxlarge"
 			value="${quoteInstance?.quoteName}" />
 		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'quoteName', 'error')}
 		</span>

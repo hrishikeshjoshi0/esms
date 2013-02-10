@@ -17,9 +17,6 @@
 					Quote :
 					${quoteInstance?.quoteName}
 				</h1>
-				<g:jasperReport jasper="ContractQuotePrint" format="PDF" name="Contract Quote Print">
-						<input type="hidden" name="quote" value="${quoteInstance.id}" />
-				</g:jasperReport>
 			</div>
 
 			<g:form>
@@ -59,7 +56,17 @@
 							Create Service Contract
 						</g:link>
 					</g:elseif>
-					
+					<g:elseif test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'REPAIR'}">
+						<g:link class="btn" controller="order" action="convertQuoteToOrder" params="[orderId:quoteInstance.id]">
+							<i class="icon-wrench"></i>
+							Create Repair Sales Order
+						</g:link>
+					</g:elseif>
+					<g:if test="${quoteInstance.type == 'CONTRACT'}">
+						<g:jasperReport jasper="ContractQuotePrint" format="PDF" name="Contract Quote Print">
+							<input type="hidden" name="quote" value="${quoteInstance.id}" />
+						</g:jasperReport>
+					</g:if>
 				</div>
 			</g:form>
 

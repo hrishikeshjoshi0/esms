@@ -29,7 +29,11 @@
 						
 							<g:sortableColumn property="issueDate" title="${message(code: 'order.issueDate.label', default: 'Issue Date')}" />
 						
-							<g:sortableColumn property="expiryDate" title="${message(code: 'order.expiryDate.label', default: 'Expiry Date')}" />
+							<g:sortableColumn property="grandTotal" title="${message(code: 'order.grandTotal.label', default: 'Grand Total')}" />
+						
+							<g:sortableColumn property="openGrandTotal" title="${message(code: 'order.openGrandTotal.label', default: 'Open Amount')}" />
+							
+							<g:sortableColumn property="receivedGrandTotal" title="${message(code: 'order.receivedgrandTotal.label', default: 'Received Amount')}" />
 						
 							<th></th>
 						</tr>
@@ -51,7 +55,17 @@
 						
 							<td><g:formatDate date="${orderInstance.issueDate}" /></td>
 						
-							<td><g:formatDate date="${orderInstance.expiryDate}" /></td>
+							<td>
+								${fieldValue(bean : orderInstance, field : "grandTotal") }
+							</td>
+							
+							<td>
+								${fieldValue(bean : orderInstance, field : "openGrandTotal") }
+							</td>
+							
+							<td>
+								${fieldValue(bean : orderInstance, field : "receivedGrandTotal") }
+							</td>
 						
 							<td class="link">
 								<g:link action="show" id="${orderInstance.id}" class="btn btn-small">Show &raquo;</g:link>

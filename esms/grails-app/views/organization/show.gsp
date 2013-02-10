@@ -111,7 +111,8 @@
 			  <li><a href="#phonesTabsPane" data-toggle="tab">Phones</a></li>
 			  <li><a href="#quotesTabsPane" data-toggle="tab">Quotes</a></li>
 			  <li><a href="#salesOrdersTabsPane" data-toggle="tab">Sales Contract</a></li>
-			  <li><a href="#workOrdersTabsPane" data-toggle="tab">Work Orders</a></li>
+			  <li><a href="#workOrdersTabsPane" data-toggle="tab">Repair Sales Orders</a></li>
+			  <li><a href="#eventsTabsPane" data-toggle="tab">Events</a></li>
 			</ul>
 			 
 			<div class="tab-content">
@@ -135,6 +136,9 @@
 			  </div>
 			  <div class="tab-pane" id="workOrdersTabsPane">
 			  	<g:render template="repairorderList" />
+			  </div>
+			  <div class="tab-pane" id="eventsTabsPane">
+			  	<g:render template="eventList" />
 			  </div>
 			</div>
 			<!--  -->

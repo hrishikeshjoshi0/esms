@@ -25,7 +25,9 @@
 	</head>
 
 	<body>
-
+	
+		<g:render template="/_menu/navbar"></g:render>
+		<%--
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container-fluid">
@@ -37,8 +39,8 @@
 					</a>
 					
 					<a class="brand" href="${createLink(uri: '/')}">
-						<%--<img alt="Venus CRM" src="${resource(dir: 'images', file: 'venus_crm_logo.png')}" style="height:35px;">
-						--%>
+						<img alt="Venus CRM" src="${resource(dir: 'images', file: 'venus_crm_logo.png')}" style="height:35px;">
+						
 						VENUS
 					</a>
 
@@ -124,7 +126,7 @@
 										Calendar
 									</g:link>
 							</li>
-							<%--<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
+							<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
 								<li
 									<%= c.logicalPropertyName == controllerName ? ' class="active"' : '' %>>
 									<g:link
@@ -133,13 +135,13 @@
 									</g:link>
 								</li>
 							</g:each>
-						--%></ul>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</nav>
 		
-		<div class="container-fluid" style="margin-top: 65px;">
+		--%><div class="container-fluid" style="margin-top: 65px;">
 			<g:render template="/layouts/content_fluid"></g:render>
 
 			<hr style="margin: 0px;padding: 0px;">

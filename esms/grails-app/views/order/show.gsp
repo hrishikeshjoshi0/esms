@@ -1,5 +1,3 @@
-
-
 <%@ page import="com.esms.model.order.Order"%>
 <!doctype html>
 <html>
@@ -23,16 +21,15 @@
 					${orderInstance?.orderNumber}
 				</h1>
 				<h3 style="margin-left: 20px;">
-					<small>
-						<g:message code="quote.organization.label" default="Organization" /> :
-						<g:link controller="organization" action="show"
-								id="${orderInstance?.organization?.id}">
-								${orderInstance?.organization?.name}
+					<small> <g:message code="quote.organization.label"
+							default="Organization" /> : <g:link controller="organization"
+							action="show" id="${orderInstance?.organization?.id}">
+							${orderInstance?.organization?.name}
 						</g:link>
 					</small>
 				</h3>
 			</div>
-			
+
 			<g:form>
 				<g:hiddenField name="id" value="${orderInstance?.id}" />
 				<div class="form-actions">
@@ -49,79 +46,100 @@
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
 					<g:if test="${orderInstance?.status == 'PENDING_INVOICE'}">
-						<g:link class="btn" action="createInvoice" id="${orderInstance?.id}">
+						<g:link class="btn" action="createInvoice"
+							id="${orderInstance?.id}">
 							<i class="icon-briefcase"></i>
-							<g:message code="default.button.createInvoice.label" default="Create Invoice" />
-						</g:link>	
+							<g:message code="default.button.createInvoice.label"
+								default="Create Invoice" />
+						</g:link>
 					</g:if>
+					<g:link class="btn" action="create" controller="event" params="['party.id':orderInstance?.organization.id]">
+						<i class="icon-calendar"></i>
+						<g:message code="default.button.createEvent.label" default="Create Event" />
+					</g:link>
 				</div>
 			</g:form>
 
-			<dl class="dl-horizontal">
-
-				<dt>
-					<g:message code="order.orderNumber.label" default="Order Number" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${orderInstance}" field="orderNumber" />
-				</dd>
-
-
-				<dt>
-					<g:message code="order.status.label" default="Status" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${orderInstance}" field="status" />
-				</dd>
-
-
-				<dt>
-					<g:message code="order.type.label" default="Type" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${orderInstance}" field="type" />
-				</dd>
-
-
-				<dt>
-					<g:message code="order.description.label" default="Description" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${orderInstance}" field="description" />
-				</dd>
-
-
-				<dt>
-					<g:message code="order.issueDate.label" default="Issue Date" />
-				</dt>
-
-				<dd>
-					<g:formatDate date="${orderInstance?.issueDate}" />
-				</dd>
-
-
-				<dt>
-					<g:message code="order.expiryDate.label" default="Expiry Date" />
-				</dt>
-
-				<dd>
-					<g:formatDate date="${orderInstance?.expiryDate}" />
-				</dd>
-
-
-				<dt>
-					<g:message code="order.contactName.label" default="Contact Name" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${orderInstance}" field="contactName" />
-				</dd>
-
-
+			<div class="row-fluid">
+			<div class="span4">
+				<dl class="dl-horizontal">
+	
+					<dt>
+						<g:message code="order.orderNumber.label" default="Order Number" />
+					</dt>
+	
+					<dd>
+						<g:fieldValue bean="${orderInstance}" field="orderNumber" />
+					</dd>
+	
+	
+					<dt>
+						<g:message code="order.status.label" default="Status" />
+					</dt>
+	
+					<dd>
+						<g:fieldValue bean="${orderInstance}" field="status" />
+					</dd>
+	
+	
+					<dt>
+						<g:message code="order.type.label" default="Type" />
+					</dt>
+	
+					<dd>
+						<g:fieldValue bean="${orderInstance}" field="type" />
+					</dd>
+	
+	
+					<dt>
+						<g:message code="order.description.label" default="Description" />
+					</dt>
+	
+					<dd>
+						<g:fieldValue bean="${orderInstance}" field="description" />
+					</dd>
+	
+	
+					<dt>
+						<g:message code="order.issueDate.label" default="Issue Date" />
+					</dt>
+	
+					<dd>
+						<g:formatDate date="${orderInstance?.issueDate}" />
+					</dd>
+	
+	
+					<dt>
+						<g:message code="order.expiryDate.label" default="Expiry Date" />
+					</dt>
+	
+					<dd>
+						<g:formatDate date="${orderInstance?.expiryDate}" />
+					</dd>
+	
+	
+					<dt>
+						<g:message code="order.contactName.label" default="Contact Name" />
+					</dt>
+	
+					<dd>
+						<g:fieldValue bean="${orderInstance}" field="contactName" />
+					</dd>
+					
+					<dt>
+						<g:message code="order.organization.label" default="Organization" />
+					</dt>
+				
+					<dd>
+						<g:link controller="organization" action="show"
+							id="${orderInstance?.organization?.id}">
+							${orderInstance?.organization?.name}
+						</g:link>
+					</dd>
+				</dl>
+			</div>
+			<div class="span4">
+				<dl class="dl-horizontal">
 				<dt>
 					<g:message code="order.totalAmount.label" default="Total Amount" />
 				</dt>
@@ -158,21 +176,29 @@
 					<g:fieldValue bean="${orderInstance}" field="grandTotal" />
 				</dd>
 
-
 				<dt>
-					<g:message code="order.organization.label" default="Organization" />
+					<g:message code="order.openGrandTotal.label" default="Open Amount" />
 				</dt>
 
 				<dd>
-					<g:link controller="organization" action="show"
-						id="${orderInstance?.organization?.id}">
-						${orderInstance?.organization?.name}
-					</g:link>
+					<g:fieldValue bean="${orderInstance}" field="openGrandTotal" />
 				</dd>
-			</dl>
+
+				<dt>
+					<g:message code="order.receviedGrandTotal.label"
+						default="Received Amount" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${orderInstance}" field="receviedGrandTotal" />
+				</dd>
+
+				</dl>
+			</div>
+			</div>
 		</div>
 	</div>
-	
+
 	<div class="row-fluid">
 		<div class="span12">
 			<div class="accordion" id="detailViewAccordion">

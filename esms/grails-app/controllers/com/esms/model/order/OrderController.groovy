@@ -36,13 +36,13 @@ class OrderController {
 			String orderNumber = "ORD" + String.format("%05d", no)
 			
 			def quote = Quote.get(params.orderId)
-			quote.status = "CONVERTED_TO_SALES_ORDER"
 			
 			def order = new Order()
 			order.orderNumber = orderNumber
 			order.contactName = quote.contactName
 			order.status = "PENDING_INVOICE"
 			if(quote.type == 'CONTRACT') {
+				quote.status = "CONVERTED_TO_SERVICE_CONTRACT	"
 				order.type = "SERVICE"
 				order.relatedTo = "CONTRACT"
 				
@@ -56,6 +56,8 @@ class OrderController {
 				
 			} else {
 				order.type = "REPAIR"
+				order.relatedTo = "CONTRACT"
+				quote.status = "CONVERTED_TO_REPAIR_SALES_ORDER"
 			}
 			
 			order.issueDate = quote.issueDate
@@ -69,6 +71,7 @@ class OrderController {
 			order.organization = quote.organization
 			if(!order.save(flush:true)) {
 				redirect controller: 'quote',action: 'show', id: quote.id
+				return
 			}
 			
 			order.orderItems = new HashSet<OrderItem>()
