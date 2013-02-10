@@ -17,6 +17,9 @@
 					Quote :
 					${quoteInstance?.quoteName}
 				</h1>
+				<g:jasperReport jasper="ContractQuotePrint" format="PDF" name="Contract Quote Print">
+						<input type="hidden" name="quote" value="${quoteInstance.id}" />
+				</g:jasperReport>
 			</div>
 
 			<g:form>
@@ -56,6 +59,7 @@
 							Create Service Contract
 						</g:link>
 					</g:elseif>
+					
 				</div>
 			</g:form>
 

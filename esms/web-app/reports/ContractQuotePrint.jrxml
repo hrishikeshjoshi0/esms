@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ContractQuotePrint" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="72ebd6f4-a415-437f-a040-8ffef5db2c81">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="quote" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     quote.`id` AS quote_id,
+     quote.`version` AS quote_version,
+     quote.`assigned_to` AS quote_assigned_to,
+     quote.`contact_name` AS quote_contact_name,
+     quote.`contract_from_date` AS quote_contract_from_date,
+     quote.`contract_to_date` AS quote_contract_to_date,
+     quote.`description` AS quote_description,
+     quote.`expiry_date` AS quote_expiry_date,
+     quote.`grand_total` AS quote_grand_total,
+     quote.`invoicing_is_expenses` AS quote_invoicing_is_expenses,
+     quote.`invoicing_is_fixed_price` AS quote_invoicing_is_fixed_price,
+     quote.`invoicing_is_timesheets` AS quote_invoicing_is_timesheets,
+     quote.`issue_date` AS quote_issue_date,
+     quote.`organization_id` AS quote_organization_id,
+     quote.`quote_name` AS quote_quote_name,
+     quote.`related_to` AS quote_related_to,
+     quote.`related_to_value` AS quote_related_to_value,
+     quote.`sales_channel` AS quote_sales_channel,
+     quote.`status` AS quote_status,
+     quote.`terms_and_conditions` AS quote_terms_and_conditions,
+     quote.`total_amount` AS quote_total_amount,
+     quote.`total_discount` AS quote_total_discount,
+     quote.`total_tax` AS quote_total_tax,
+     quote.`type` AS quote_type,
+     quote.`quote_number` AS quote_quote_number,
+     quote_item.`id` AS quote_item_id,
+     quote_item.`version` AS quote_item_version,
+     quote_item.`discount` AS quote_item_discount,
+     quote_item.`line_number` AS quote_item_line_number,
+     quote_item.`line_total_amount` AS quote_item_line_total_amount,
+     quote_item.`product_number` AS quote_item_product_number,
+     quote_item.`quantity` AS quote_item_quantity,
+     quote_item.`quote_id` AS quote_item_quote_id,
+     quote_item.`tax` AS quote_item_tax,
+     quote_item.`unit_price` AS quote_item_unit_price
+FROM
+     `quote` quote INNER JOIN `quote_item` quote_item ON quote.`id` = quote_item.`quote_id`
+Where
+quote_item.`quote_id` = $P{quote}]]>
+	</queryString>
+	<field name="quote_id" class="java.lang.Long"/>
+	<field name="quote_version" class="java.lang.Long"/>
+	<field name="quote_assigned_to" class="java.lang.String"/>
+	<field name="quote_contact_name" class="java.lang.String"/>
+	<field name="quote_contract_from_date" class="java.sql.Timestamp"/>
+	<field name="quote_contract_to_date" class="java.sql.Timestamp"/>
+	<field name="quote_description" class="java.lang.String"/>
+	<field name="quote_expiry_date" class="java.sql.Timestamp"/>
+	<field name="quote_grand_total" class="java.math.BigDecimal"/>
+	<field name="quote_invoicing_is_expenses" class="java.lang.Boolean"/>
+	<field name="quote_invoicing_is_fixed_price" class="java.lang.Boolean"/>
+	<field name="quote_invoicing_is_timesheets" class="java.lang.Boolean"/>
+	<field name="quote_issue_date" class="java.sql.Timestamp"/>
+	<field name="quote_organization_id" class="java.lang.Long"/>
+	<field name="quote_quote_name" class="java.lang.String"/>
+	<field name="quote_related_to" class="java.lang.String"/>
+	<field name="quote_related_to_value" class="java.lang.String"/>
+	<field name="quote_sales_channel" class="java.lang.String"/>
+	<field name="quote_status" class="java.lang.String"/>
+	<field name="quote_terms_and_conditions" class="java.lang.String"/>
+	<field name="quote_total_amount" class="java.math.BigDecimal"/>
+	<field name="quote_total_discount" class="java.math.BigDecimal"/>
+	<field name="quote_total_tax" class="java.math.BigDecimal"/>
+	<field name="quote_type" class="java.lang.String"/>
+	<field name="quote_quote_number" class="java.lang.String"/>
+	<field name="quote_item_id" class="java.lang.Long"/>
+	<field name="quote_item_version" class="java.lang.Long"/>
+	<field name="quote_item_discount" class="java.math.BigDecimal"/>
+	<field name="quote_item_line_number" class="java.lang.Integer"/>
+	<field name="quote_item_line_total_amount" class="java.math.BigDecimal"/>
+	<field name="quote_item_product_number" class="java.lang.String"/>
+	<field name="quote_item_quantity" class="java.math.BigDecimal"/>
+	<field name="quote_item_quote_id" class="java.lang.Long"/>
+	<field name="quote_item_tax" class="java.math.BigDecimal"/>
+	<field name="quote_item_unit_price" class="java.math.BigDecimal"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement uuid="225a3fd9-4564-45df-8e5c-8868105aff54" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="8f627cce-2ebe-4836-9028-33467f9a3408" x="20" y="20" width="315" height="43" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Contract Quotation]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="7cb1ade8-677b-4a32-81dd-bf4010694bba" x="395" y="43" width="180" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Sliver Line Elevators]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="115">
+			<textField>
+				<reportElement uuid="edacb76f-ddb7-4989-a3ec-d2f7aa57b5ad" x="134" y="14" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quote_contact_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b8bd7596-37f8-40d4-842d-99ce5a8259be" x="17" y="14" width="117" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0fc0ff1e-e2b0-4842-b165-654ef4b3da26" x="435" y="54" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quote_contract_from_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2f4e73ab-f059-451f-8c85-ad962b8b72db" x="435" y="74" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quote_contract_to_date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3115b262-4556-466f-843d-2418bf75c036" x="295" y="54" width="140" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contract Start Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3115b262-4556-466f-843d-2418bf75c036" x="295" y="74" width="142" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contract End Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="e2f5e3a7-34b1-450d-a82a-4857994d2a88" x="435" y="34" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quote_description}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="95cc747d-8d27-4d19-a2c7-e7bd55a03563" x="295" y="34" width="142" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contract Desc:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="cd55ec91-c12e-4980-b497-77ce760760a3" x="435" y="14" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quote_quote_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="9e60cb5e-440e-422f-9b08-bc01140a29cd" x="295" y="14" width="121" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contract Name]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="38">
+			<staticText>
+				<reportElement uuid="5076c7aa-1c7d-42cf-9739-292709f3e455" x="0" y="2" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Line Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5f88ca61-6af5-43d7-9c93-433ff39d18ee" x="117" y="1" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product / Services]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f2c46bf6-016f-40fd-a028-eae4c8a5739d" x="234" y="2" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="130563e4-2934-4b33-a79d-9559ee0b4383" x="435" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unit Price]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="ed2419e9-6d02-4df4-83d1-5342fd555249" x="0" y="29" width="550" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26">
+			<textField>
+				<reportElement uuid="de626820-d631-47b5-a518-bb757cf686d4" x="0" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{quote_item_line_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f9bc9bb3-7a2a-460b-8fe8-72967ffeac52" x="117" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{quote_item_product_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1fa5593a-67af-406a-a258-d552530f2e62" x="234" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{quote_item_quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bb97caad-cf71-4e40-a7fb-cffb502beb82" x="435" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{quote_item_unit_price}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="110">
+			<textField>
+				<reportElement uuid="703200a3-06e0-4f41-ad40-0bdef4f09ba1" mode="Opaque" x="0" y="97" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="f850d67e-56a4-4c13-a8eb-5969faea37a1" mode="Opaque" x="515" y="97" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="41a965bb-a022-4095-a90e-c212296d8931" x="0" y="97" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="560804da-5d04-4fa4-af05-1ece35fc4a01" x="435" y="35" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{quote_total_amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a496d3ad-ab9f-4811-882b-90ff30c2775e" x="435" y="15" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{quote_total_tax}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d6839afa-8ea1-443d-83f9-3471cac396ec" x="333" y="35" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Order Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="781d13b9-3221-4323-be52-3a7dd1f49a04" x="333" y="14" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tax]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
