@@ -82,12 +82,6 @@
 									</g:link>
 									</li>
 									<li
-										<%= 'inventoryItem' == controllerName ? ' class="active"' : '' %>>
-										<g:link controller="inventoryItem">
-										Inventory
-									</g:link>
-									</li>
-									<li
 										<%= 'activity' == controllerName ? ' class="active"' : '' %>>
 										<g:link controller="event">
 										Calendar
