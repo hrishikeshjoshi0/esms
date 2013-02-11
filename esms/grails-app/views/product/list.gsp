@@ -19,12 +19,12 @@
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-						
 							<g:sortableColumn property="productName" title="${message(code: 'product.productName.label', default: 'Product Name')}" />
 							<g:sortableColumn property="productType" title="${message(code: 'product.productType.label', default: 'Product Type')}" />
 							<g:sortableColumn property="introductionDate" title="${message(code: 'product.introductionDate.label', default: 'Introduction Date')}" />
-							<g:sortableColumn property="supportDiscontinuationDate" title="${message(code: 'product.supportDiscontinuationDate.label', default: 'Support Discontinuation Date')}" />
-							<g:sortableColumn property="manufacturer" title="${message(code: 'product.manufacturer.label', default: 'Manufacturer')}" />
+							<g:sortableColumn property="inventory.quantityOnHand" title="${message(code: 'product.inventory.quantityOnHand.label', default: 'Quantity On Hand')}" />
+							<g:sortableColumn property="inventory.incoming" title="${message(code: 'product.inventory.incoming.label', default: 'Incoming')}" />
+							<g:sortableColumn property="inventory.outgoing" title="${message(code: 'product.inventory.outgoing.label', default: 'Outgoing')}" />
 							<th></th>
 						</tr>
 					</thead>
@@ -34,8 +34,9 @@
 							<td>${fieldValue(bean: productInstance, field: "productName")}</td>
 							<td>${fieldValue(bean: productInstance, field: "productType")}</td>
 							<td><g:formatDate date="${productInstance.introductionDate}" /></td>
-							<td><g:formatDate date="${productInstance.supportDiscontinuationDate}" /></td>
-							<td>${fieldValue(bean: productInstance, field: "manufacturer")}</td>
+							<td>${fieldValue(bean: productInstance, field: "inventory.quantityOnHand")}</td>
+							<td>${fieldValue(bean: productInstance, field: "inventory.incoming")}</td>
+							<td>${fieldValue(bean: productInstance, field: "inventory.outgoing")}</td>
 							<td class="link">
 								<g:link action="show" id="${productInstance.id}" class="btn btn-small">Show &raquo;</g:link>
 							</td>

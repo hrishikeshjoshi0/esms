@@ -33,6 +33,7 @@ class Product {
 		taxable nullable:true,blank:true
 		isVirtual nullable:true,blank:true
 		comments nullable:true,blank:true
+		inventory unique: true, nullable:true
     }
 	
 	static mapping = {
