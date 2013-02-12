@@ -1,5 +1,6 @@
 package com.esms.model.inventory
 
+import com.esms.model.order.OrderInventoryAssignment;
 import com.esms.model.product.Product
 
 class ProductInventory {
@@ -10,6 +11,8 @@ class ProductInventory {
 	BigDecimal unitCost = new BigDecimal("0.0")
 	
 	Product product
+	
+	static hasMany = [orderInventoryAssignments : OrderInventoryAssignment]
 
     static constraints = {
 		quantityOnHand nullable:true,blank:true

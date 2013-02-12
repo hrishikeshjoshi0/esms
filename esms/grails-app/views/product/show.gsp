@@ -44,15 +44,6 @@
 
 
 				<dt>
-					<g:message code="product.comments.label" default="Comments" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${productInstance}" field="comments" />
-				</dd>
-
-
-				<dt>
 					<g:message code="product.productType.label" default="Product Type" />
 				</dt>
 
@@ -133,8 +124,29 @@
 				</dt>
 			</dl>
 		</div>
-
+		
 		<div class="span12">
+			<!--  -->
+			<ul class="nav nav-tabs" id="product_show_tab">
+			  <li class="active"><a href="#priceListTabsPane" data-toggle="tab">Price List</a></li>
+			  <li><a href="#inventoryTabsPane" data-toggle="tab">Inventory</a></li>
+			  <li><a href="#commentsTabsPane" data-toggle="tab">Comments</a></li>
+			</ul>
+			 
+			<div class="tab-content">
+			  <div class="tab-pane active" id="priceListTabsPane">
+			  	<g:render template="priceList" />
+			  </div>
+			  <div class="tab-pane" id="inventoryTabsPane">
+			  	<g:render template="inventory" />
+			  </div>
+			  <div class="tab-pane" id="commentsTabsPane">
+				<g:fieldValue bean="${productInstance}" field="comments" />
+			  </div>
+			</div> 
+		</div>
+
+		<%--<div class="span12">
 			<div class="accordion" id="detailViewAccordion">
 				<!-- Contacts -->
 				<div class="accordion-group">
@@ -156,6 +168,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	--%></div>
 </body>
 </html>

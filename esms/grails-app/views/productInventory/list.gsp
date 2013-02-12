@@ -45,7 +45,7 @@
 						
 							<td>${fieldValue(bean: productInventoryInstance, field: "outgoing")}</td>
 						
-							<td>${fieldValue(bean: productInventoryInstance, field: "product")}</td>
+							<td>${fieldValue(bean: productInventoryInstance, field: "product.productName")}</td>
 						
 							<td class="link">
 								<g:link action="show" id="${productInventoryInstance.id}" class="btn btn-small">Show &raquo;</g:link>

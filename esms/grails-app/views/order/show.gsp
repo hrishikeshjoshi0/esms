@@ -201,7 +201,23 @@
 
 	<div class="row-fluid">
 		<div class="span12">
-			<div class="accordion" id="detailViewAccordion">
+			
+			<!--  -->
+			<ul class="nav nav-tabs" id="order_show_tab">
+			  <li class="active"><a href="#orderItemsTabsPane" data-toggle="tab">Lines</a></li>
+			  <li><a href="#inventoryTabsPane" data-toggle="tab">Inventory</a></li>
+			</ul>
+			 
+			<div class="tab-content">
+			  <div class="tab-pane active" id="orderItemsTabsPane">
+			  	<g:render template="orderItemList" />
+			  </div>
+			  <div class="tab-pane" id="inventoryTabsPane">
+			  	<g:render template="inventoryAssignmentsList" />
+			  </div>
+			</div> 
+			
+			<%--<div class="accordion" id="detailViewAccordion">
 				<!-- Contacts -->
 				<div class="accordion-group">
 					<div class="accordion-heading">
@@ -221,7 +237,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		--%></div>
 	</div>
 </body>
 </html>

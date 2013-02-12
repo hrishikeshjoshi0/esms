@@ -35,7 +35,7 @@ class Order {
 	BigDecimal receviedGrandTotal = new BigDecimal("0.0")
 	 
 	
-	static hasMany = [orderItems : OrderItem, orderPartyAssignments : WorkOrderPartyAssignment, orderInventoryAssignments : WorkOrderInventoryAssignment]
+	static hasMany = [orderItems : OrderItem, orderPartyAssignments : WorkOrderPartyAssignment, orderInventoryAssignments : OrderInventoryAssignment]
 	
 	static belongsTo = [organization : Organization]
 	
