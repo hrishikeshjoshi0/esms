@@ -1,10 +1,9 @@
 package com.esms.model.order
 
-import java.util.Date;
-
 import org.springframework.dao.DataIntegrityViolationException
 
 import com.esms.model.party.Organization
+import com.esms.model.product.Product
 import com.esms.model.quote.Quote
 
 class OrderController {
@@ -23,7 +22,24 @@ class OrderController {
 	def confirmSale() {
 		def orderInstance = Order.get(params.id)
 		if(orderInstance) {
-			orderInstance.status = "PENDING_INVOICE"
+			orderInstance.status = "CONFIRM_SALE"
+			
+			//TODO : Create OrderInventoryAssignments for this Sales Order
+			orderInstance.orderItems?.each{
+				def productNumber = it.productNumber
+				def product = Product.findByProductNumber(productNumber)
+				if(product.requiresInventory && product.inventory) {
+					def orderInventory = new OrderInventoryAssignment()
+					orderInventory.order = orderInstance
+					orderInventory.productInventory = product.inventory
+					orderInventory.quantity = it.quantity
+					orderInventory.isPosted = false
+					orderInventory.status = 'PENDING_DELIVERY' //TODO
+					orderInventory.save(flush:true)
+				} else {
+					//
+				}
+			}
 		}
 		
 		flash.message = 'Marked as Sales Complete: ' + orderInstance.orderNumber

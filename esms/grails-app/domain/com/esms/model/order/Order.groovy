@@ -41,7 +41,7 @@ class Order {
 	
     static constraints = {
 		orderNumber nullable:false,blank:false
-		status InList:['PENDING_INVOICE','INVOICED']
+		status InList:['PENDING_INVOICE','CONFIRM_SALE','DELIVERY_PENDING','DELIVERED','INVOICED']
 		type InList:['SALES','SERVICE','REPAIR']
 		description nullable:true,blank:true
 		issueDate nullable:false
