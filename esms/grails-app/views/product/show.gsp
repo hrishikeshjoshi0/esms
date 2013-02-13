@@ -25,6 +25,10 @@
 						<i class="icon-pencil"></i>
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
+					<g:link class="btn" action="create" controller="productInventory" param="['product.id':productInstance?.id]">
+						<i class="icon-pencil"></i>
+						Add Inventory
+					</g:link>
 					<button class="btn btn-danger" type="submit" name="_action_delete">
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
@@ -117,11 +121,6 @@
 				<dd>
 					<g:formatBoolean boolean="${productInstance?.isVirtual}" />
 				</dd>
-
-
-				<dt>
-					<g:message code="product.prices.label" default="Prices" />
-				</dt>
 			</dl>
 		</div>
 		

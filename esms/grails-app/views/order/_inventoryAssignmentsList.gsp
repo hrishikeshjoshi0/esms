@@ -4,7 +4,7 @@
 	</g:link>
 </div>
 
-<<g:set var="orderInventoryAssignmentInstanceList" value="${orderInstance.orderInventoryAssignments}"/>
+<g:set var="orderInventoryAssignmentInstanceList" value="${orderInstance.orderInventoryAssignments}"/>
 
 <table class="table table-striped table-hover">
 	<thead>

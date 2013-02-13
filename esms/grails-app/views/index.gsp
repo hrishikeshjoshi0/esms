@@ -2,14 +2,16 @@
 <html>
 <head>
 <meta name="layout" content="bootstrap" />
-<title>EMS | Home</title>
+<title>
+	Venus
+</title>
 </head>
 
 <body>
-	<div class="row-fluid">
+	<%--<div class="row-fluid">
 		<aside id="application-status" class="span3">
 			<div class="well sidebar-nav">
-				<%--<h5>Application Status</h5>
+				<h5>Application Status</h5>
 					<ul>
 						<li>App version: <g:meta name="app.version"/></li>
 						<li>Grails version: <g:meta name="app.grails.version"/></li>
@@ -26,7 +28,7 @@
 							<li>${plugin.name} - ${plugin.version}</li>
 						</g:each>
 					</ul>
-				--%>
+				
 			</div>
 		</aside>
 
@@ -41,5 +43,5 @@
 
 		</section>
 	</div>
-</body>
+--%></body>
 </html>

@@ -40,7 +40,7 @@
 				<dd>
 					<g:link controller="product" action="show"
 						id="${productInventoryInstance?.product?.id}">
-						${productInventoryInstance?.product?.encodeAsHTML()}
+						${productInventoryInstance?.product?.productName}
 					</g:link>
 				</dd>
 				

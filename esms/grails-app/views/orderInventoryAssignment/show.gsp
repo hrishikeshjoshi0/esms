@@ -51,12 +51,20 @@
 				
 							<dt><g:message code="orderInventoryAssignment.order.label" default="Order" /></dt>
 						
-							<dd><g:link controller="order" action="show" id="${orderInventoryAssignmentInstance?.order?.id}">${orderInventoryAssignmentInstance?.order?.encodeAsHTML()}</g:link></dd>
+							<dd>
+								<g:link controller="order" action="show" id="${orderInventoryAssignmentInstance?.order?.id}">
+									${orderInventoryAssignmentInstance?.order?.orderNumber}
+								</g:link>
+							</dd>
 						
 				
 							<dt><g:message code="orderInventoryAssignment.productInventory.label" default="Product Inventory" /></dt>
 						
-							<dd><g:link controller="productInventory" action="show" id="${orderInventoryAssignmentInstance?.productInventory?.id}">${orderInventoryAssignmentInstance?.productInventory?.encodeAsHTML()}</g:link></dd>
+							<dd>
+								<g:link controller="productInventory" action="show" id="${orderInventoryAssignmentInstance?.productInventory?.id}">
+									${orderInventoryAssignmentInstance?.productInventory?.product.productName}
+								</g:link>
+							</dd>
 						
 				
 			</dl>

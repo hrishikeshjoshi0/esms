@@ -41,16 +41,25 @@
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
-					<g:link class="btn" action="completeSale" id="${orderInstance?.id}">
-						<i class="icon-pencil"></i>
-						<g:message code="default.button.edit.label" default="Edit" />
-					</g:link>
+					
 					<g:if test="${orderInstance?.status == 'PENDING_INVOICE'}">
+					<g:link class="btn"action="confirmSale" id="${orderInstance?.id}">
+						<i class="icon-pencil"></i>
+						Confirm Sale
+					</g:link>
+					</g:if>
+					
+					<g:if test="${orderInstance?.status == 'CONFIRM_SALE'}">
 						<g:link class="btn" action="createInvoice"
 							id="${orderInstance?.id}">
 							<i class="icon-briefcase"></i>
 							<g:message code="default.button.createInvoice.label"
 								default="Create Invoice" />
+						</g:link>
+					</g:if>
+					<g:if test="${orderInstance.status == 'PENDING_INVOICE' }">
+						<g:link role="button" class="btn" controller="orderInventoryAssignment" action="create" params="['order.id':orderInstance.id]">
+							<i class="icon-plus"></i> Attach Inventory
 						</g:link>
 					</g:if>
 					<g:link class="btn" action="create" controller="event" params="['party.id':orderInstance?.organization.id]">
@@ -205,7 +214,7 @@
 			<!--  -->
 			<ul class="nav nav-tabs" id="order_show_tab">
 			  <li class="active"><a href="#orderItemsTabsPane" data-toggle="tab">Lines</a></li>
-			  <li><a href="#inventoryTabsPane" data-toggle="tab">Inventory</a></li>
+			  <li><a href="#inventoryTabsPane" data-toggle="tab">Delivery Order</a></li>
 			</ul>
 			 
 			<div class="tab-content">

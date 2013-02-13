@@ -10,6 +10,8 @@
 		<tr>
 			<g:sortableColumn property="lineNumber"
 				title="${message(code: 'orderItem.lineNumber.label', default: 'Line Number')}" />
+			<g:sortableColumn property="productNumber"
+				title="${message(code: 'orderItem.productNumber.label', default: 'Product Number')}" />	
 			<g:sortableColumn property="quantity"
 				title="${message(code: 'orderItem.quantity.label', default: 'Quantity')}" />
 			<g:sortableColumn property="unitPrice"
@@ -28,6 +30,9 @@
 			<tr>
 				<td>
 					${fieldValue(bean: orderItemInstance, field: "lineNumber")}
+				</td>
+				<td>
+					${fieldValue(bean: orderItemInstance, field: "productNumber")}
 				</td>
 				<td>
 					${fieldValue(bean: orderItemInstance, field: "quantity")}

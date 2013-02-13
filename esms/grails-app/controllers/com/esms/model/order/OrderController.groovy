@@ -27,7 +27,7 @@ class OrderController {
 			//TODO : Create OrderInventoryAssignments for this Sales Order
 			orderInstance.orderItems?.each{
 				def productNumber = it.productNumber
-				def product = Product.findByProductNumber(productNumber)
+				def product = Product.findByProductName(productNumber)
 				if(product.requiresInventory && product.inventory) {
 					def orderInventory = new OrderInventoryAssignment()
 					orderInventory.order = orderInstance
@@ -270,13 +270,27 @@ class OrderController {
 	
 	def createInvoice = {
 		def order = Order.get(params.id)
-		order.status = "INVOICED"
-		order.openGrandTotal = order.grandTotal
-		order.receviedGrandTotal = new BigDecimal("0.0")
-		order.save(flush:true)
 		
-		flash.message = "Converted to Invoice."
-		redirect action: 'show', id: order.id
+		boolean delivered = true
+		order.orderInventoryAssignments?.each {  
+			if(it.status == 'DELIVERY_PENDING') {
+				delivered = false
+				return
+			} 
+		}
+		
+		if(delivered) {
+			order.status = "INVOICED"
+			order.openGrandTotal = order.grandTotal
+			order.receviedGrandTotal = new BigDecimal("0.0")
+			order.save(flush:true)
+			
+			flash.message = "Converted to Invoice."
+			redirect action: 'show', id: order.id
+		} else {
+			flash.message = "Atleast one items attached with the inventory is not delivered. Invoice can be created on delivery."
+			redirect action: 'show', id: order.id
+		}
 	}
 }
 
