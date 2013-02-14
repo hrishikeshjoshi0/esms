@@ -30,13 +30,13 @@
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
+					
+					<g:link class="btn" action="markAsSent" id="${quoteInstance?.id}">
+						<i class="icon-envelope"></i>
+						Mark as Sent
+					</g:link>
+					
 					<g:if test="${quoteInstance?.status == 'PENDING'}">
-						<g:link class="btn" action="markAsSent" id="${quoteInstance?.id}">
-							<i class="icon-envelope"></i>
-							Mark as Sent
-						</g:link>
-					</g:if>
-					<g:elseif test="${quoteInstance?.status == 'SENT'}">
 						<g:link class="btn" action="markAsAccepted" id="${quoteInstance?.id}">
 							<i class="icon-envelope"></i>
 							Mark as Accepted
@@ -49,7 +49,7 @@
 							<i class="icon-trash"></i>
 							Mark as Declined
 						</g:link>
-					</g:elseif>
+					</g:if>
 					<g:elseif test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'CONTRACT'}">
 						<g:link class="btn" controller="order" action="convertQuoteToOrder" params="[orderId:quoteInstance.id]">
 							<i class="icon-share-alt"></i>

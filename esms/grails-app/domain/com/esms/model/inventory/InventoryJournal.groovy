@@ -1,8 +1,8 @@
-package com.esms.model.order
+package com.esms.model.inventory
 
-import com.esms.model.inventory.ProductInventory;
+import com.esms.model.order.Order
 
-class OrderInventoryAssignment {
+class InventoryJournal {
 	
 	String status
 	BigDecimal quantity

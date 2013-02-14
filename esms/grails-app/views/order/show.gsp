@@ -214,15 +214,11 @@
 			<!--  -->
 			<ul class="nav nav-tabs" id="order_show_tab">
 			  <li class="active"><a href="#orderItemsTabsPane" data-toggle="tab">Lines</a></li>
-			  <li><a href="#inventoryTabsPane" data-toggle="tab">Delivery Order</a></li>
 			</ul>
 			 
 			<div class="tab-content">
 			  <div class="tab-pane active" id="orderItemsTabsPane">
 			  	<g:render template="orderItemList" />
-			  </div>
-			  <div class="tab-pane" id="inventoryTabsPane">
-			  	<g:render template="inventoryAssignmentsList" />
 			  </div>
 			</div> 
 			

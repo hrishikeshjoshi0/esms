@@ -48,7 +48,7 @@ class QuoteController {
 	
 	def markAsSent = {
 		def quoteInstance = Quote.get(params.id)
-		quoteInstance.status = 'SENT'
+		quoteInstance.sent = true
 		quoteInstance.save(flush:true)
 		
 		flash.message = 'Marked as Sent'

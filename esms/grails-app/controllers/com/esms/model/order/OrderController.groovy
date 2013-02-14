@@ -2,6 +2,7 @@ package com.esms.model.order
 
 import org.springframework.dao.DataIntegrityViolationException
 
+import com.esms.model.inventory.InventoryJournal
 import com.esms.model.party.Organization
 import com.esms.model.product.Product
 import com.esms.model.quote.Quote
@@ -29,7 +30,7 @@ class OrderController {
 				def productNumber = it.productNumber
 				def product = Product.findByProductName(productNumber)
 				if(product.requiresInventory && product.inventory) {
-					def orderInventory = new OrderInventoryAssignment()
+					def orderInventory = new InventoryJournal()
 					orderInventory.order = orderInstance
 					orderInventory.productInventory = product.inventory
 					orderInventory.quantity = it.quantity
@@ -270,27 +271,23 @@ class OrderController {
 	
 	def createInvoice = {
 		def order = Order.get(params.id)
+		order.status = "INVOICED"
+		order.openGrandTotal = order.grandTotal
+		order.receviedGrandTotal = new BigDecimal("0.0")
+		order.save(flush:true)
 		
-		boolean delivered = true
-		order.orderInventoryAssignments?.each {  
-			if(it.status == 'DELIVERY_PENDING') {
-				delivered = false
-				return
-			} 
-		}
-		
-		if(delivered) {
-			order.status = "INVOICED"
-			order.openGrandTotal = order.grandTotal
-			order.receviedGrandTotal = new BigDecimal("0.0")
-			order.save(flush:true)
+		order.orderItems?.each {  
+			def entry = new InventoryJournal()
+			entry.order = order
 			
-			flash.message = "Converted to Invoice."
-			redirect action: 'show', id: order.id
-		} else {
-			flash.message = "Atleast one items attached with the inventory is not delivered. Invoice can be created on delivery."
-			redirect action: 'show', id: order.id
+			def product = Product.findByProductName(it.productNumber)
+			entry.productInventory = product.inventory
+			
+			entry.quantity = it.quantity
+			entry.save(flush:true)
 		}
+		
+		redirect action: 'show', id: order.id
 	}
 }
 

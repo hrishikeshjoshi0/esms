@@ -10,7 +10,7 @@ import grails.test.mixin.*
  * A unit test class is used to test individual methods or blocks of code without considering the surrounding infrastructure
  */
 @TestFor(OrderInventoryAssignmentController)
-@Mock(OrderInventoryAssignment)
+@Mock(InventoryJournal)
 class OrderInventoryAssignmentControllerTests {
 
 
@@ -52,7 +52,7 @@ class OrderInventoryAssignmentControllerTests {
 
         assert response.redirectedUrl == '/orderInventoryAssignment/show/1'
         assert controller.flash.message != null
-        assert OrderInventoryAssignment.count() == 1
+        assert InventoryJournal.count() == 1
     }
 
     void testShow() {
@@ -63,7 +63,7 @@ class OrderInventoryAssignmentControllerTests {
 
 
         populateValidParams(params)
-        def orderInventoryAssignment = new OrderInventoryAssignment(params)
+        def orderInventoryAssignment = new InventoryJournal(params)
 
         assert orderInventoryAssignment.save() != null
 
@@ -82,7 +82,7 @@ class OrderInventoryAssignmentControllerTests {
 
 
         populateValidParams(params)
-        def orderInventoryAssignment = new OrderInventoryAssignment(params)
+        def orderInventoryAssignment = new InventoryJournal(params)
 
         assert orderInventoryAssignment.save() != null
 
@@ -103,7 +103,7 @@ class OrderInventoryAssignmentControllerTests {
 
 
         populateValidParams(params)
-        def orderInventoryAssignment = new OrderInventoryAssignment(params)
+        def orderInventoryAssignment = new InventoryJournal(params)
 
         assert orderInventoryAssignment.save() != null
 
@@ -147,17 +147,17 @@ class OrderInventoryAssignmentControllerTests {
         response.reset()
 
         populateValidParams(params)
-        def orderInventoryAssignment = new OrderInventoryAssignment(params)
+        def orderInventoryAssignment = new InventoryJournal(params)
 
         assert orderInventoryAssignment.save() != null
-        assert OrderInventoryAssignment.count() == 1
+        assert InventoryJournal.count() == 1
 
         params.id = orderInventoryAssignment.id
 
         controller.delete()
 
-        assert OrderInventoryAssignment.count() == 0
-        assert OrderInventoryAssignment.get(orderInventoryAssignment.id) == null
+        assert InventoryJournal.count() == 0
+        assert InventoryJournal.get(orderInventoryAssignment.id) == null
         assert response.redirectedUrl == '/orderInventoryAssignment/list'
     }
 }

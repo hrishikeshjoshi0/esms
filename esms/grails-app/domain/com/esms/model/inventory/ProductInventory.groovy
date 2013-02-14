@@ -1,6 +1,5 @@
 package com.esms.model.inventory
 
-import com.esms.model.order.OrderInventoryAssignment;
 import com.esms.model.product.Product
 
 class ProductInventory {
@@ -12,7 +11,7 @@ class ProductInventory {
 	
 	Product product
 	
-	static hasMany = [orderInventoryAssignments : OrderInventoryAssignment]
+	static hasMany = [inventoryJournalEntries : InventoryJournal]
 
     static constraints = {
 		quantityOnHand nullable:true,blank:true

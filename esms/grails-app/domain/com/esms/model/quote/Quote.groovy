@@ -34,6 +34,8 @@ class Quote {
 	String assignedTo = 'SYSTEM'
 	String termsAndConditions
 	
+	boolean sent = false
+	
 	static hasMany = [quoteItems : QuoteItem]
 	
 	static belongsTo = [organization : Organization]
@@ -41,7 +43,7 @@ class Quote {
     static constraints = {
 		quoteNumber nullable:false,blank:false
 		quoteName nullable:false,blank:false
-		status InList:['DRAFT','PENDING','SENT','REVISE','ACCEPT','DECLINE','CONVERTED_TO_SERVICE_CONTRACT','CONVERTED_TO_REPAIR_SALES_ORDER']
+		status InList:['DRAFT','PENDING','REVISE','ACCEPT','DECLINE','CONVERTED_TO_SERVICE_CONTRACT','CONVERTED_TO_REPAIR_SALES_ORDER']
 		type InList:['CONTRACT','REPAIR']
 		salesChannel blank:false
 		description nullable:true,blank:true
@@ -62,6 +64,7 @@ class Quote {
 		invoicingIsExpenses nullable:true,blank:true
 		assignedTo nullable:true,blank:true
 		termsAndConditions nullable:true,blank:true,length:255
+		
     }
 	
 	static mapping = {

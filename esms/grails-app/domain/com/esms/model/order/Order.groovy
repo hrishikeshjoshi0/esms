@@ -1,9 +1,7 @@
 package com.esms.model.order
 
-import java.util.Date;
-
+import com.esms.model.inventory.InventoryJournal
 import com.esms.model.party.Organization
-import com.esms.model.sales.Contract
 
 class Order {
 
@@ -35,7 +33,7 @@ class Order {
 	BigDecimal receviedGrandTotal = new BigDecimal("0.0")
 	 
 	
-	static hasMany = [orderItems : OrderItem, orderPartyAssignments : WorkOrderPartyAssignment, orderInventoryAssignments : OrderInventoryAssignment]
+	static hasMany = [orderItems : OrderItem, orderPartyAssignments : WorkOrderPartyAssignment, inventoryJournalEntries : InventoryJournal]
 	
 	static belongsTo = [organization : Organization]
 	
