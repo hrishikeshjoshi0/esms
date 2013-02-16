@@ -6,8 +6,10 @@
 			code="productPrice.fromDate.label" default="From Date" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<bootstrap:jqDatePicker name="fromDate"
+		<g:datePicker name="fromDate" value="${productPriceInstance?.fromDate}" precision="day"/>
+		<%--<bootstrap:jqDatePicker name="fromDate"
 			value="${productPriceInstance?.fromDate}" />
+		--%>
 		<span class="help-inline"> ${hasErrors(bean: productPriceInstance, field: 'fromDate', 'error')}
 		</span>
 	</div>
@@ -19,8 +21,10 @@
 			code="productPrice.toDate.label" default="To Date" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<bootstrap:jqDatePicker name="toDate"
+		<%--<bootstrap:jqDatePicker name="toDate"
 			value="${productPriceInstance?.toDate}" />
+		--%>
+		<g:datePicker name="toDate" value="${productPriceInstance?.toDate}" precision="day"/>	
 		<span class="help-inline"> ${hasErrors(bean: productPriceInstance, field: 'toDate', 'error')}
 		</span>
 	</div>

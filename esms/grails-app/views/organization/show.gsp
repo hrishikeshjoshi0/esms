@@ -6,7 +6,7 @@
 <head>
 <meta name="layout" content="bootstrap">
 <g:set var="entityName"
-	value="${message(code: 'organization.label', default: 'Organization')}" />
+	value="${message(code: 'organization.label', default: 'Customer')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
@@ -15,7 +15,6 @@
 		<div class="span12">
 			<div class="page-header">
 				<h1>
-					Organization :
 					${organizationInstance?.externalId}
 				</h1>
 				<h3>

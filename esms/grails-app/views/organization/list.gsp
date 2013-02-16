@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta name="layout" content="bootstrap">
-		<g:set var="entityName" value="${message(code: 'organization.label', default: 'Organization')}" />
+		<g:set var="entityName" value="${message(code: 'organization.label', default: 'Customers')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -26,9 +26,7 @@
 							<g:sortableColumn property="externalId" title="${message(code: 'organization.externalId.label', default: 'External Id')}" />
 							<g:sortableColumn property="name" title="${message(code: 'organization.name.label', default: 'Name')}" />
 							<g:sortableColumn property="partyType" title="${message(code: 'organization.partyType.label', default: 'Party Type')}" />
-							<g:sortableColumn property="salesStatus" title="${message(code: 'organization.salesStatus.label', default: 'Sales Status')}" />
-							<g:sortableColumn property="description" title="${message(code: 'organization.description.label', default: 'Description')}" />
-							<g:sortableColumn property="status" title="${message(code: 'organization.status.label', default: 'Status')}" />
+							<g:sortableColumn property="assignedTo" title="${message(code: 'organization.assignedTo.label', default: 'Assigned To')}" />
 							<th></th>
 						</tr>
 					</thead>
@@ -38,9 +36,7 @@
 							<td>${fieldValue(bean: organizationInstance, field: "externalId")}</td>
 							<td>${fieldValue(bean: organizationInstance, field: "name")}</td>
 							<td>${fieldValue(bean: organizationInstance, field: "partyType")}</td>
-							<td>${fieldValue(bean: organizationInstance, field: "salesStatus")}</td>
-							<td>${fieldValue(bean: organizationInstance, field: "description")}</td>
-							<td>${fieldValue(bean: organizationInstance, field: "status")}</td>
+							<td>${fieldValue(bean: organizationInstance, field: "assignedTo")}</td>
 							<td class="link">
 								<g:link action="show" id="${organizationInstance.id}" class="btn btn-small">Show &raquo;</g:link>
 							</td>

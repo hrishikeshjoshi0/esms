@@ -8,8 +8,9 @@
 	<div class="controls">
 		<g:hiddenField name="organization.id"
 			value="${quoteInstance?.organization?.id}" />
-		<richui:autoComplete name="organizationId"
-			onItemSelect="document.getElementById('organization.id').value=id;"
+		<richui:autoComplete name="organizationId" id="organizationId"
+			onItemSelect="document.getElementById('organization.id').value=id;
+				document.getElementById('relatedToValue').value=document.getElementById('organizationId').value;" 
 			action="${createLinkTo('dir': 'organization/searchAJAX')}"
 			forceSelection="true" typeAhead="true" shadow="true"
 			minQueryLength="2" />
@@ -49,10 +50,13 @@
 	<label for="status" class="control-label"><g:message
 			code="quote.status.label" default="Status" /></label>
 	<div class="controls">
-		<g:select name="status" readOnly="readOnly"
+		<%--<g:select name="status" readOnly="readOnly"
 			from="${quoteInstance.constraints.status.inList}"
 			value="${quoteInstance?.status}" valueMessagePrefix="quote.status"
 			noSelection="['': '']" />
+		--%>
+		<g:hiddenField name="status" value="${quoteInstance?.status}"/>
+		${quoteInstance?.status}"
 		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'status', 'error')}
 		</span>
 	</div>
@@ -86,24 +90,15 @@
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'description', 'error')} ">
-	<label for="description" class="control-label"><g:message
-			code="quote.description.label" default="Description" /></label>
-	<div class="controls">
-		<g:textField name="description" value="${quoteInstance?.description}" />
-		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'description', 'error')}
-		</span>
-	</div>
-</div>
-
-<div
 	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'issueDate', 'error')} required">
 	<label for="issueDate" class="control-label"><g:message
 			code="quote.issueDate.label" default="Issue Date" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<bootstrap:jqDatePicker name="issueDate"
+		<g:datePicker name="issueDate" value="${quoteInstance?.issueDate}" precision="day"/>
+		<%--<bootstrap:jqDatePicker name="issueDate"
 			value="${quoteInstance?.issueDate}" />
+		--%>
 		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'issueDate', 'error')}
 		</span>
 	</div>
@@ -114,9 +109,10 @@
 	<label for="expiryDate" class="control-label"><g:message
 			code="quote.expiryDate.label" default="Expiry Date" /></label>
 	<div class="controls">
-		<bootstrap:jqDatePicker name="expiryDate"
+		<g:datePicker name="expiryDate" value="${quoteInstance?.expiryDate}" precision="day"/>
+		<%--<bootstrap:jqDatePicker name="expiryDate"
 			value="${quoteInstance?.expiryDate}" />
-		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'expiryDate', 'error')}
+		--%><span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'expiryDate', 'error')}
 		</span>
 	</div>
 </div>
@@ -131,73 +127,6 @@
 		</span>
 	</div>
 </div>
-
-<g:if test="${params.contractQuote}">
-	<div
-		class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'contractFromDate', 'error')} required">
-		<label for="contractFromDate" class="control-label"><g:message
-				code="contract.contractFromDate.label" default="Contract From Date" /><span
-			class="required-indicator">*</span></label>
-		<div class="controls">
-			<bootstrap:jqDatePicker name="contractFromDate"
-				value="${quoteInstance?.contractFromDate}" />
-			<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'contractFromDate', 'error')}
-			</span>
-		</div>
-	</div>
-
-	<div
-		class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'contractToDate', 'error')} required">
-		<label for="contractToDate" class="control-label"><g:message
-				code="contract.contractToDate.label" default="Contract To Date" /><span
-			class="required-indicator">*</span></label>
-		<div class="controls">
-			<bootstrap:jqDatePicker name="contractToDate"
-				value="${quoteInstance?.contractToDate}" />
-			<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'contractToDate', 'error')}
-			</span>
-		</div>
-	</div>
-
-	<div
-		class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'invoicingIsFixedPrice', 'error')} ">
-		<label for="invoicingIsFixedPrice" class="control-label"><g:message
-				code="contract.invoicingIsFixedPrice.label"
-				default="Invoicing Is Fixed Price" /></label>
-		<div class="controls">
-			<g:checkBox name="invoicingIsFixedPrice"
-				value="${quoteInstance?.invoicingIsFixedPrice}" />
-			<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'invoicingIsFixedPrice', 'error')}
-			</span>
-		</div>
-	</div>
-
-	<div
-		class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'invoicingIsTimesheets', 'error')} ">
-		<label for="invoicingIsTimesheets" class="control-label"><g:message
-				code="contract.invoicingIsTimesheets.label"
-				default="Invoicing Is Timesheets" /></label>
-		<div class="controls">
-			<g:checkBox name="invoicingIsTimesheets"
-				value="${quoteInstance?.invoicingIsTimesheets}" />
-			<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'invoicingIsTimesheets', 'error')}
-			</span>
-		</div>
-	</div>
-
-	<div
-		class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'invoicingIsExpenses', 'error')} ">
-		<label for="invoicingIsExpenses" class="control-label"><g:message
-				code="contract.invoicingIsExpenses.label"
-				default="Invoicing Is Expenses" /></label>
-		<div class="controls">
-			<g:checkBox name="invoicingIsExpenses"
-				value="${quoteInstance?.invoicingIsExpenses}" />
-			<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'invoicingIsExpenses', 'error')}
-			</span>
-		</div>
-	</div>
-</g:if>
 
 <div
 	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'assignedTo', 'error')} ">
@@ -231,6 +160,68 @@
 	<div class="controls">
 		<g:textField name="relatedToValue" value="${quoteInstance?.relatedToValue}" />
 		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'relatedToValue', 'error')}
+		</span>
+	</div>
+</div>
+
+<g:if test="${params.contractQuote}">
+	<div class="page-header">
+		<h1>
+			Invoicing
+		</h1>
+	</div>
+	<div
+		class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'invoicingIsFixedPrice', 'error')} ">
+		<label for="invoicingIsFixedPrice" class="control-label"><g:message
+				code="contract.invoicingIsFixedPrice.label"
+				default="Is Fixed Price" /></label>
+		<div class="controls">
+			<g:checkBox name="invoicingIsFixedPrice"
+				value="${quoteInstance?.invoicingIsFixedPrice}" />
+			<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'invoicingIsFixedPrice', 'error')}
+			</span>
+		</div>
+	</div>
+
+	<div
+		class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'invoicingIsTimesheets', 'error')} ">
+		<label for="invoicingIsTimesheets" class="control-label"><g:message
+				code="contract.invoicingIsTimesheets.label"
+				default="Is Timesheets" /></label>
+		<div class="controls">
+			<g:checkBox name="invoicingIsTimesheets"
+				value="${quoteInstance?.invoicingIsTimesheets}" />
+			<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'invoicingIsTimesheets', 'error')}
+			</span>
+		</div>
+	</div>
+
+	<div
+		class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'invoicingIsExpenses', 'error')} ">
+		<label for="invoicingIsExpenses" class="control-label"><g:message
+				code="contract.invoicingIsExpenses.label"
+				default="Is Expenses" /></label>
+		<div class="controls">
+			<g:checkBox name="invoicingIsExpenses"
+				value="${quoteInstance?.invoicingIsExpenses}" />
+			<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'invoicingIsExpenses', 'error')}
+			</span>
+		</div>
+	</div>
+</g:if>
+
+<div class="page-header">
+	<h1>
+		Description
+	</h1>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'description', 'error')} ">
+	<div class="controls">
+		<g:textArea name="description" value="${quoteInstance?.description}"
+			cols="40" rows="5" maxlength="1000" style="width:80%;" />
+		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'description', 'error')}
 		</span>
 	</div>
 </div>

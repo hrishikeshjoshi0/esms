@@ -3,7 +3,7 @@ package com.esms.model.product
 class ProductPrice {
 	
 	Date fromDate = new Date()
-	Date toDate
+	Date toDate 
 	BigDecimal price
 	
 	static belongsTo = [product : Product]

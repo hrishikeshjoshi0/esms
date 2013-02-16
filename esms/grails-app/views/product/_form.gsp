@@ -19,7 +19,10 @@
 			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'productType', 'error')} ">
 				<label for="productType" class="control-label"><g:message code="product.productType.label" default="Product Type" /></label>
 				<div class="controls">
-					<g:textField name="productType" value="${productInstance?.productType}"/>
+					<g:select name="productType"
+						from="${productInstance.constraints.productType.inList}"
+						value="${productInstance?.productType}"
+						valueMessagePrefix="product.productType" noSelection="['': '']" />
 					<span class="help-inline">${hasErrors(bean: productInstance, field: 'productType', 'error')}</span>
 				</div>
 			</div>
@@ -27,27 +30,12 @@
 			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'introductionDate', 'error')} ">
 				<label for="introductionDate" class="control-label"><g:message code="product.introductionDate.label" default="Introduction Date" /></label>
 				<div class="controls">
-					<bootstrap:jqDatePicker name="introductionDate"  value="${productInstance?.introductionDate}"/>
+					<g:datePicker name="introductionDate"  value="${productInstance?.introductionDate}" precision="day"/>
+					<%--<bootstrap:jqDatePicker name="introductionDate"  value="${productInstance?.introductionDate}"/>--%>
 					<span class="help-inline">${hasErrors(bean: productInstance, field: 'introductionDate', 'error')}</span>
 				</div>
 			</div>
 
-			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'supportDiscontinuationDate', 'error')} ">
-				<label for="supportDiscontinuationDate" class="control-label"><g:message code="product.supportDiscontinuationDate.label" default="Support Discontinuation Date" /></label>
-				<div class="controls">
-					<bootstrap:jqDatePicker name="supportDiscontinuationDate"  value="${productInstance?.supportDiscontinuationDate}"/>
-					<span class="help-inline">${hasErrors(bean: productInstance, field: 'supportDiscontinuationDate', 'error')}</span>
-				</div>
-			</div>
-
-			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'salesDiscontinuationDate', 'error')} ">
-				<label for="salesDiscontinuationDate" class="control-label"><g:message code="product.salesDiscontinuationDate.label" default="Sales Discontinuation Date" /></label>
-				<div class="controls">
-					<bootstrap:jqDatePicker name="salesDiscontinuationDate"  value="${productInstance?.salesDiscontinuationDate}"/>
-					<span class="help-inline">${hasErrors(bean: productInstance, field: 'salesDiscontinuationDate', 'error')}</span>
-				</div>
-			</div>
-			
 			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'manufacturer', 'error')} ">
 				<label for="manufacturer" class="control-label"><g:message code="product.manufacturer.label" default="Manufacturer" /></label>
 				<div class="controls">
@@ -80,10 +68,15 @@
 				</div>
 			</div>
 			
+			<div class="page-header">
+				<h1>
+					<label for="comments" class="control-label"><g:message code="product.comments.label" default="Comments" /></label>
+				</h1>
+			</div>
+			
 			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'comments', 'error')} ">
-				<label for="comments" class="control-label"><g:message code="product.comments.label" default="Comments" /></label>
 				<div class="controls">
-					<g:textArea name="comments" cols="40" rows="5" maxlength="1000" value="${productInstance?.comments}"/>
+					<g:textArea name="comments" cols="40" rows="5" maxlength="1000" value="${productInstance?.comments}" style="width:80%;"/>
 					<span class="help-inline">${hasErrors(bean: productInstance, field: 'comments', 'error')}</span>
 				</div>
 			</div>

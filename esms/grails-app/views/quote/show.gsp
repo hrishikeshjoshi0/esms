@@ -1,5 +1,3 @@
-
-
 <%@ page import="com.esms.model.quote.Quote"%>
 <!doctype html>
 <html>
@@ -31,35 +29,46 @@
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
 					
-					<g:link class="btn" action="markAsSent" id="${quoteInstance?.id}">
-						<i class="icon-envelope"></i>
-						Mark as Sent
-					</g:link>
+					<g:if test="${quoteInstance?.sent == false}">
+						<a data-toggle="modal" href="#" data-target="#markAsSent" role="button"
+							class="btn"> 
+							<i class="icon-envelope"></i>
+							Mark as Sent
+						</a>	
+					</g:if>
 					
 					<g:if test="${quoteInstance?.status == 'PENDING'}">
 						<g:link class="btn" action="markAsAccepted" id="${quoteInstance?.id}">
 							<i class="icon-envelope"></i>
 							Mark as Accepted
 						</g:link>
+						<%--
 						<g:link class="btn" action="markAsRevised" id="${quoteInstance?.id}">
 							<i class="icon-pencil"></i>
 							Revise
 						</g:link>
-						<g:link class="btn" action="markAsDeclined" id="${quoteInstance?.id}">
+						--%>
+						<a data-toggle="modal" href="#" data-target="#markAsRevised" role="button"
+							class="btn"> 
+							<i class="icon-pencil"></i>
+							Mark as Revised
+						</a>
+						<a data-toggle="modal" href="#" data-target="#markAsDeclinedModal" role="button"
+							class="btn"> 
 							<i class="icon-trash"></i>
 							Mark as Declined
-						</g:link>
+						</a>
 					</g:if>
 					<g:elseif test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'CONTRACT'}">
 						<g:link class="btn" controller="order" action="convertQuoteToOrder" params="[orderId:quoteInstance.id]">
 							<i class="icon-share-alt"></i>
-							Create Service Contract
+							Confirm Sale
 						</g:link>
 					</g:elseif>
 					<g:elseif test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'REPAIR'}">
 						<g:link class="btn" controller="order" action="convertQuoteToOrder" params="[orderId:quoteInstance.id]">
 							<i class="icon-wrench"></i>
-							Create Repair Sales Order
+							Confirm Sale
 						</g:link>
 					</g:elseif>
 					<g:if test="${quoteInstance.type == 'CONTRACT'}">
@@ -187,5 +196,8 @@
 			</div>
 		</div>
 	</div>
+	<g:render template="declinedReason"></g:render>
+	<g:render template="revisedReason"></g:render>
+	<g:render template="saveRecepient"></g:render>
 </body>
 </html>

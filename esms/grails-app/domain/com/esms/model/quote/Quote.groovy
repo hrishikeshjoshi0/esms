@@ -34,6 +34,10 @@ class Quote {
 	String assignedTo = 'SYSTEM'
 	String termsAndConditions
 	
+	String recepientContactName
+	String declinedReason
+	String revisedReason
+	
 	boolean sent = false
 	
 	static hasMany = [quoteItems : QuoteItem]
@@ -64,7 +68,8 @@ class Quote {
 		invoicingIsExpenses nullable:true,blank:true
 		assignedTo nullable:true,blank:true
 		termsAndConditions nullable:true,blank:true,length:255
-		
+		declinedReason nullable:true,blank:true,length:1000
+		revisedReason nullable:true,blank:true,length:1000
     }
 	
 	static mapping = {

@@ -53,8 +53,10 @@
 			code="contract.fromDate.label" default="From Date" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<bootstrap:jqDatePicker name="fromDate"
+		<g:datePicker name="fromDate" value="${contractInstance?.fromDate}" precision="day"/>
+		<%--<bootstrap:jqDatePicker name="fromDate"
 			value="${contractInstance?.fromDate}" />
+		--%>
 		<span class="help-inline"> ${hasErrors(bean: contractInstance, field: 'fromDate', 'error')}
 		</span>
 	</div>
@@ -66,8 +68,10 @@
 			code="contract.toDate.label" default="To Date" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<bootstrap:jqDatePicker name="toDate"
+		<g:datePicker name="toDate" value="${contractInstance?.toDate}" precision="day"/>
+		<%--<bootstrap:jqDatePicker name="toDate"
 			value="${contractInstance?.toDate}" />
+		--%>
 		<span class="help-inline"> ${hasErrors(bean: contractInstance, field: 'toDate', 'error')}
 		</span>
 	</div>

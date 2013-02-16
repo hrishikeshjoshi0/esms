@@ -9,11 +9,6 @@
 						action="${createLinkTo('dir': 'organization/searchAJAX')}"
 						forceSelection="false" typeAhead="true" shadow="true"
 						minQueryLength="2" /></td>
-				<td>Sales Stage :</td>
-				<td><g:select name="salesStatus" class="input-medium"
-						from="${['LEAD','CUSTOMER']}" value="${params.salesStatus}"
-						valueMessagePrefix="organization.salesStatus"
-						noSelection="['': '']" /></td>
 				<td>
 					<button type="submit" class="btn">
 						<i class="icon-search"></i> Search

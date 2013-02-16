@@ -30,7 +30,7 @@ class ProductController {
 	            return
 	        }
 
-			flash.message = message(code: 'default.created.message', args: [message(code: 'product.label', default: 'Product'), productInstance.id])
+			flash.message = "Product :" + productInstance.productName + " created."
 	        redirect action: 'show', id: productInstance.id
 			break
 		}
@@ -113,7 +113,9 @@ class ProductController {
 	def createPrice() {
 		switch (request.method) {
 		case 'GET':
-			[productPriceInstance: new ProductPrice(params)]
+			params.fromDate = new Date()
+			params.toDate = new Date() + 365
+		    [productPriceInstance: new ProductPrice(params)]
 			break
 		case 'POST':
 			def productPriceInstance = new ProductPrice(params)

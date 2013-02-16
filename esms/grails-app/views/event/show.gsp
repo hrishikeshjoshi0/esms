@@ -28,7 +28,7 @@
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
 					<a href="#" data-toggle="modal"
-						data-target="#activityModal" role="button" class="btn btn-success"> <i class="icon-plus"></i> Add Activity
+						data-target="#activityModal" role="button" class="btn"> <i class="icon-plus"></i> Add Event Log
 					</a>
 				</div>
 			</g:form>
@@ -155,29 +155,72 @@
 				<dd>
 					<g:formatBoolean boolean="${eventInstance?.isRecurring}" />
 				</dd>
-				
-				<dt>
-					<g:message code="event.activityLog.label" default="Activity Log" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${eventInstance}" field="activityLog" />
-				</dd>
 			</dl>
 
 		</div>
 	</div>
 	
+	<div class="span12">
+			
+			<!--  -->
+			<ul class="nav nav-tabs" id="organization_show_tab">
+			  <li class="active"><a href="#contactsTabPane">Activity Log</a></li>
+			</ul>
+			 
+			<div class="tab-content">
+			  <div class="tab-pane active" id="contactsTabPane">
+			  	 <g:each in="${eventInstance.eventLogs}" var="log">
+			  	 	<dl>
+				  	 	<dt>
+							Logged Date
+						</dt>
+						<dd>
+							<g:formatDate date="${log?.loggedDate}" />
+						</dd>
+						
+						<dt>
+							Work Done By
+						</dt>
+						<dd>
+							${log?.workDoneBy}
+						</dd>
+						
+						<dt>
+							Reviewed By
+						</dt>
+						<dd>
+							${log?.reviewedBy}
+						</dd>
+						
+						<dt>
+							Was Problem Reported ?
+						</dt>
+						<dd>
+							<g:formatBoolean boolean="${log?.isProblemReported}" true="Yes" false="No"/>
+						</dd>
+						
+						<dt>
+							Urgency
+						</dt>
+						<dd>
+							${log?.urgency}
+						</dd>
+					</dl>
+			  	 </g:each>
+			  </div>
+			</div>
+		</div>
+	
 	<div id="activityModal" class="modal hide fade" tabindex="-1" role="dialog" 
-		data-remote="<g:createLink controller="event" action="addActivityLog" id="${eventInstance?.id}" />"
+		data-remote="<g:createLink controller="event" action="createEventLog" id="${eventInstance?.id}" />"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"
 				aria-hidden="true">×</button>
-			<h3 id="myModalLabel">New Activity</h3>
+			<h3 id="myModalLabel">New Event Log</h3>
 		</div>
-		<g:form controller="event" action="addActivityLog" method="POST">
-			<g:hiddenField name="eventId" value="${eventInstance?.id}" />
+		<g:form controller="event" action="createEventLog" method="POST">
+			<g:hiddenField name="event.id" value="${eventInstance?.id}" />
 			<div class="modal-body">
 				
 			</div>

@@ -1,15 +1,26 @@
 <%@ page import="com.esms.model.party.PhoneBook"%>
 
-
-
 <div
 	class="control-group fieldcontain ${hasErrors(bean: phoneBookInstance, field: 'email', 'error')} ">
 	<label for="email" class="control-label"><g:message
-			code="phoneBook.email.label" default="Email" /></label>
+			code="phoneBook.email.label" default="Primary Email" /></label>
 	<div class="controls">
 		<g:textField name="email" value="${phoneBookInstance?.email}" />
 		<span class="help-inline">
 			${hasErrors(bean: phoneBookInstance, field: 'email', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: phoneBookInstance, field: 'secondaryEmail', 'error')} ">
+	<label for="secondaryEmail" class="control-label"><g:message
+			code="phoneBook.secondaryEmail.label" default="Secondary Email" /></label>
+	<div class="controls">
+		<g:textField name="secondaryEmail"
+			value="${phoneBookInstance?.secondaryEmail}" />
+		<span class="help-inline">
+			${hasErrors(bean: phoneBookInstance, field: 'secondaryEmail', 'error')}
 		</span>
 	</div>
 </div>
@@ -61,19 +72,6 @@
 			value="${phoneBookInstance?.otherPhone}" />
 		<span class="help-inline">
 			${hasErrors(bean: phoneBookInstance, field: 'otherPhone', 'error')}
-		</span>
-	</div>
-</div>
-
-<div
-	class="control-group fieldcontain ${hasErrors(bean: phoneBookInstance, field: 'secondaryEmail', 'error')} ">
-	<label for="secondaryEmail" class="control-label"><g:message
-			code="phoneBook.secondaryEmail.label" default="Secondary Email" /></label>
-	<div class="controls">
-		<g:textField name="secondaryEmail"
-			value="${phoneBookInstance?.secondaryEmail}" />
-		<span class="help-inline">
-			${hasErrors(bean: phoneBookInstance, field: 'secondaryEmail', 'error')}
 		</span>
 	</div>
 </div>

@@ -1,4 +1,4 @@
-package com.esms.model.order
+package com.esms.model.calendar
 
 
 
@@ -8,8 +8,8 @@ import org.junit.*
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(InventoryJournal)
-class WorkOrderInventoryAssignmentTests {
+@TestFor(EventLog)
+class EventLogTests {
 
     void testSomething() {
        fail "Implement me"

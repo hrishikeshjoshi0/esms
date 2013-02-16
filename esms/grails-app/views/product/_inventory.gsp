@@ -47,9 +47,4 @@
 	<dd>
 		<g:fieldValue bean="${productInventoryInstance}" field="outgoing" />
 	</dd>
-
-
-	<dt>
-		<g:message code="productInventory.product.label" default="Product" />
-	</dt>
 </dl>

@@ -29,7 +29,7 @@ class QuoteItemController {
 	            return
 	        }
 
-			flash.message = message(code: 'default.created.message', args: [message(code: 'quoteItem.label', default: 'QuoteItem'), quoteItemInstance.id])
+			flash.message = "New Line Added."
 	        redirect action: 'show', id: quoteItemInstance.id
 			break
 		}

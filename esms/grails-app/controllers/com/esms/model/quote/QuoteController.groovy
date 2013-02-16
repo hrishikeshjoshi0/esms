@@ -47,12 +47,21 @@ class QuoteController {
     }
 	
 	def markAsSent = {
-		def quoteInstance = Quote.get(params.id)
-		quoteInstance.sent = true
-		quoteInstance.save(flush:true)
-		
-		flash.message = 'Marked as Sent'
-		redirect action: 'show', id: quoteInstance.id
+		switch (request.method) {
+			case 'GET':
+				def quoteInstance = Quote.get(params.id)
+				[quoteInstance : quoteInstance]
+				break
+			case 'POST' :
+				def quoteInstance = Quote.get(params.id)
+				quoteInstance.recepientContactName = params.recepientContactName
+				quoteInstance.sent = true
+				quoteInstance.save(flush:true)
+				
+				flash.message = 'Marked as Sent'
+				redirect action: 'show', id: quoteInstance.id
+				break
+		}
 	}
 	
 	def markAsAccepted = {
@@ -65,21 +74,39 @@ class QuoteController {
 	}
 	
 	def markAsRevised = {
-		def quoteInstance = Quote.get(params.id)
-		quoteInstance.status = 'REVISE'
-		quoteInstance.save(flush:true)
-		
-		flash.message = 'Marked as Revised'
-		redirect action: 'show', id: quoteInstance.id
+		switch (request.method) {
+			case 'GET':
+				def quoteInstance = Quote.get(params.id)
+				[quoteInstance : quoteInstance]
+				break
+			case 'POST' :
+				def quoteInstance = Quote.get(params.id)
+				quoteInstance.status = 'REVISE'
+				quoteInstance.revisedReason = params.revisedReason
+				quoteInstance.save(flush:true)
+				
+				flash.message = 'Marked as Revised'
+				redirect action: 'show', id: quoteInstance.id
+				break
+		}
 	}
 	
 	def markAsDeclined = {
-		def quoteInstance = Quote.get(params.id)
-		quoteInstance.status = 'DECLINE'
-		quoteInstance.save(flush:true)
-		
-		flash.message = 'Marked as Declined'
-		redirect action: 'show', id: quoteInstance.id
+		switch (request.method) {
+			case 'GET':
+				def quoteInstance = Quote.get(params.id)
+				[quoteInstance : quoteInstance]
+				break
+			case 'POST' :
+				def quoteInstance = Quote.get(params.id)
+				quoteInstance.status = 'DECLINE'
+				quoteInstance.declinedReason = params.declinedReason
+				quoteInstance.save(flush:true)
+				
+				flash.message = 'Marked as Declined'
+				redirect action: 'show', id: quoteInstance.id
+				break
+		}
 	}
 	
 	def convertToSalesOrder = {

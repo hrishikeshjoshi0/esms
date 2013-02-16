@@ -1,10 +1,11 @@
 package com.esms.model.calendar
 
+import grails.converters.JSON
+
+import java.text.SimpleDateFormat
+
 import org.joda.time.DateTime
 import org.joda.time.Instant
-
-import grails.converters.JSON
-import java.text.SimpleDateFormat
 
 class EventController {
     def eventService
@@ -170,26 +171,17 @@ class EventController {
         }
     }
 	
-	def addActivityLog = {
+	def createEventLog = {
 		switch (request.method) {
 		case 'GET':
         	def eventInstance = Event.get(params.id)
-			[eventInstance:eventInstance]
+			[eventInstance:eventInstance,eventLogInstance:new EventLog()]
 			break
 		case 'POST':
-			def ids = params.eventId
-			ids?.each { 
-				def eventInstance = Event.get(it)
-				eventInstance.activityLog = params.activityLog
-				
-				if (!eventInstance.save(flush: true)) {
-					render view: 'create', model: [eventInstance: eventInstance]
-					return
-				}
-	
-				flash.message = "Activity Log Saved."
-				redirect action: 'show', id: eventInstance.id
-			} 
+			def eventLogInstance = new EventLog(params)
+			eventLogInstance.save(flush:true)
+			flash.message = "Event Log Added"
+			redirect(action: "show", id: eventLogInstance.event.id)
 			break
 		}
 		

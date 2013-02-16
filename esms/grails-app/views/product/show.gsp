@@ -14,7 +14,8 @@
 		<div class="span12">
 			<div class="page-header">
 				<h1>
-					<g:message code="default.show.label" args="[entityName]" />
+					<%--<g:message code="default.show.label" args="[entityName]" />--%>
+					<g:fieldValue bean="${productInstance}" field="productName" />
 				</h1>
 			</div>
 

@@ -23,7 +23,7 @@ class Event {
 
     Event sourceEvent
 
-    static hasMany = [recurDaysOfWeek: Integer, excludeDays: Date]
+    static hasMany = [recurDaysOfWeek: Integer, excludeDays: Date,eventLogs : EventLog]
     static transients = ['durationMinutes']
 	
 	static belongsTo = [party : Party]
@@ -34,7 +34,6 @@ class Event {
 	String relatedTo = 'ORGANIZATION'
 	String relatedToValue
 	String activityLog
-	
 
     def eventService
 

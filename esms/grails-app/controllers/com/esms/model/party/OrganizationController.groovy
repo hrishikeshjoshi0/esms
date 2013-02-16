@@ -20,13 +20,13 @@ class OrganizationController {
 				if(params.name) {
 					like('name', "%" + params.name + "%")
 				}
-				if(params.salesStatus) {
-					like('salesStatus', "%" + params.salesStatus + "%")
-				}
+				like('salesStatus', "CUSTOMER")
 			}
 			params.search = true
 		} else {
-			organizations = Organization.list(params)
+			organizations = Organization.withCriteria {
+				like('salesStatus', "CUSTOMER")
+			}
 			params.search = false
 		}
 		

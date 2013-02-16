@@ -1,0 +1,1 @@
+<g:render template="/address/form"></g:render>

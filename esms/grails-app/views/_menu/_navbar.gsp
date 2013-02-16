@@ -14,38 +14,32 @@
 				<nav class="navbar navbar-inverse navbar-fixed-top">
 					<div class="navbar-inner">
 						<div class="container-fluid">
-
 							<a class="btn btn-navbar" data-toggle="collapse"
 								data-target=".nav-collapse"> <span class="icon-bar"></span>
 								<span class="icon-bar"></span> <span class="icon-bar"></span>
 							</a> 
-							<a class="brand" href="${createLink(uri: '/')}"> 
+							<%--<a class="brand" href="${createLink(uri: '/')}"> 
 								 VENUS
 							</a>
-
+							--%>
 							<div class="nav-collapse">
 								<ul class="nav">
 									<li
 										<%= request.forwardURI == "${createLink(uri: '/')}" ? ' class="active"' : '' %>>
 										<a href="${createLink(uri: '/')}">
-											<i class="icon-home icon-white"></i>
 											Home
 										</a>
 									</li>
-									<li <%= 'contact' == controllerName ? ' class="active"' : '' %>>
-										<g:link controller="contract">
-										Contracts
+									<li
+										<%= 'lead' == controllerName ? ' class="active"' : '' %>>
+										<g:link controller="lead">
+										Leads
 									</g:link>
 									</li>
 									<li
 										<%= 'organization' == controllerName ? ' class="active"' : '' %>>
 										<g:link controller="organization">
-										Organizations
-									</g:link>
-									</li>
-									<li <%= 'contact' == controllerName ? ' class="active"' : '' %>>
-										<g:link controller="contact">
-										Contacts
+										Customers
 									</g:link>
 									</li>
 									<li <%= 'product' == controllerName ? ' class="active"' : '' %>>
@@ -53,28 +47,10 @@
 										Product
 									</g:link>
 									</li>
-									<li
-										<%= 'quote' == controllerName ? ' class="active " ' : ' ' %>>
-										<ul class="nav">
-											<li class="dropdown"><g:link controller="quote"
-													action="list" class="dropdown-toggle"
-													data-toggle="dropdown">  
-									          Quote  
-									          <b class="caret"></b>
-												</g:link>
-												<ul class="dropdown-menu">
-													<li><g:link controller="quote" action="list">
-									     			Quotes
-									     		</g:link></li>
-													<li><g:link controller="quote" action="create"
-															params="[contractQuote:true]">
-									     			Contract Quote
-									     		</g:link></li>
-													<li><g:link controller="quote" action="create">
-									     			Repair Quote
-									     		</g:link></li>
-												</ul></li>
-										</ul>
+									<li <%= 'quote' == controllerName ? ' class="active"' : '' %>>
+										<g:link controller="quote">
+											Quote
+										</g:link>
 									</li>
 									<li <%= 'order' == controllerName ? ' class="active"' : '' %>>
 										<g:link controller="order">
@@ -84,19 +60,9 @@
 									<li
 										<%= 'activity' == controllerName ? ' class="active"' : '' %>>
 										<g:link controller="event">
-										Calendar
-									</g:link>
+											Calendar
+										</g:link>
 									</li>
-									<%--<g:each var="c"
-										in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-										<li
-											<%= c.logicalPropertyName == controllerName ? ' class="active"' : '' %>>
-											<g:link controller="${c.logicalPropertyName}">
-												${c.naturalName}
-											</g:link>
-										</li>
-									</g:each>
-								--%>
 								</ul>
 							</div>
 						</div>

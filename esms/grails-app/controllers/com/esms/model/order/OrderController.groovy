@@ -279,11 +279,21 @@ class OrderController {
 		order.orderItems?.each {  
 			def entry = new InventoryJournal()
 			entry.order = order
+			entry.quantity = it.quantity
 			
 			def product = Product.findByProductName(it.productNumber)
-			entry.productInventory = product.inventory
+			if(product) {
+				def productInventory = product.inventory
+				
+				if(productInventory) {
+					entry.productInventory = productInventory
+					if(productInventory.quantityOnHand) {
+						productInventory.quantityOnHand = productInventory.quantityOnHand -  entry.quantity
+					}
+					productInventory.save(flush:true)
+				}
+			}
 			
-			entry.quantity = it.quantity
 			entry.save(flush:true)
 		}
 		

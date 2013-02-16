@@ -27,7 +27,7 @@ class ProductPriceController {
 	            return
 	        }
 
-			flash.message = message(code: 'default.created.message', args: [message(code: 'productPrice.label', default: 'ProductPrice'), productPriceInstance.id])
+			flash.message = "Price added for Product " + productPriceInstance.product.productName
 	        redirect action: 'show', id: productPriceInstance.id
 			break
 		}
