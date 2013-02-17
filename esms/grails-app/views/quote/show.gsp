@@ -71,13 +71,14 @@
 							Confirm Sale
 						</g:link>
 					</g:elseif>
-					<g:if test="${quoteInstance.type == 'CONTRACT'}">
+					
+				</div>
+			</g:form>
+			<g:if test="${quoteInstance.type == 'CONTRACT'}">
 						<g:jasperReport jasper="ContractQuotePrint" format="PDF" name="Contract Quote Print">
 							<input type="hidden" name="quote" value="${quoteInstance.id}" />
 						</g:jasperReport>
-					</g:if>
-				</div>
-			</g:form>
+			</g:if>
 
 			<div class="row">
 				<div class="span12">
