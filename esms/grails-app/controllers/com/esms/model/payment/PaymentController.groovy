@@ -41,7 +41,7 @@ class PaymentController {
             return
         }
 
-        [paymentInstance: paymentInstance,paymentItemInstanceList: PaymentItem.list()]
+        [paymentInstance: paymentInstance]
     }
 
     def edit() {

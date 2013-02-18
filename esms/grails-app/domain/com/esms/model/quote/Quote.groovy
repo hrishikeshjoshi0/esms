@@ -68,10 +68,9 @@ class Quote {
 		invoicingIsExpenses nullable:true,blank:true
 		assignedTo nullable:true,blank:true
 		termsAndConditions nullable:true,blank:true,length:255
+		recepientContactName nullable:true,blank:true
 		declinedReason nullable:true,blank:true,length:1000
 		revisedReason nullable:true,blank:true,length:1000
-		recepientContactName nullable:true,blank:true
-		
     }
 	
 	static mapping = {

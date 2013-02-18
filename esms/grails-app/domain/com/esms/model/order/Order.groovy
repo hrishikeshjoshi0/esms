@@ -2,6 +2,7 @@ package com.esms.model.order
 
 import com.esms.model.inventory.InventoryJournal
 import com.esms.model.party.Organization
+import com.esms.model.payment.PaymentItem
 
 class Order {
 
@@ -33,7 +34,7 @@ class Order {
 	BigDecimal receviedGrandTotal = new BigDecimal("0.0")
 	 
 	
-	static hasMany = [orderItems : OrderItem, orderPartyAssignments : WorkOrderPartyAssignment, inventoryJournalEntries : InventoryJournal]
+	static hasMany = [orderItems : OrderItem,inventoryJournalEntries : InventoryJournal,paymentItems : PaymentItem]
 	
 	static belongsTo = [organization : Organization]
 	

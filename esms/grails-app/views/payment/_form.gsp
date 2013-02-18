@@ -18,11 +18,27 @@
 				</div>
 			</div>
 
-			<div class="control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'checkNumber', 'error')} required">
-				<label for="checkNumber" class="control-label"><g:message code="payment.checkNumber.label" default="Check Number" /><span class="required-indicator">*</span></label>
+			<div class="control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'chequeNumber', 'error')} required">
+				<label for="chequeNumber" class="control-label"><g:message code="payment.chequeNumber.label" default="Cheque Number" /><span class="required-indicator">*</span></label>
 				<div class="controls">
-					<g:textField name="checkNumber" required="" value="${paymentInstance?.checkNumber}"/>
-					<span class="help-inline">${hasErrors(bean: paymentInstance, field: 'checkNumber', 'error')}</span>
+					<g:textField name="chequeNumber" required="" value="${paymentInstance?.chequeNumber}"/>
+					<span class="help-inline">${hasErrors(bean: paymentInstance, field: 'chequeNumber', 'error')}</span>
+				</div>
+			</div>
+
+			<div class="control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'bank', 'error')} required">
+				<label for="bank" class="control-label"><g:message code="payment.bank.label" default="Bank" /><span class="required-indicator">*</span></label>
+				<div class="controls">
+					<g:textField name="bank" required="" value="${paymentInstance?.bank}"/>
+					<span class="help-inline">${hasErrors(bean: paymentInstance, field: 'bank', 'error')}</span>
+				</div>
+			</div>
+
+			<div class="control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'branch', 'error')} required">
+				<label for="branch" class="control-label"><g:message code="payment.branch.label" default="Branch" /><span class="required-indicator">*</span></label>
+				<div class="controls">
+					<g:textField name="branch" required="" value="${paymentInstance?.branch}"/>
+					<span class="help-inline">${hasErrors(bean: paymentInstance, field: 'branch', 'error')}</span>
 				</div>
 			</div>
 

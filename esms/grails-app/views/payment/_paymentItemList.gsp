@@ -24,7 +24,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${paymentItemInstanceList}" var="paymentItemInstance">
+		<g:each in="${paymentInstance.paymentItems}" var="paymentItemInstance">
 			<tr>
 
 				<td>

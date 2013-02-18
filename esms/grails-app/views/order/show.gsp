@@ -67,6 +67,15 @@
 						<i class="icon-calendar"></i>
 						<g:message code="default.button.createEvent.label" default="Create Event" />
 					</g:link>
+					
+					<g:if test="${orderInstance?.status == 'INVOICED'}">
+						<g:link class="btn" action="registerPayment"
+							params="['order.id':{orderInstance?.id]">
+							<i class="icon-briefcase"></i>
+							<g:message code="default.button.createInvoice.label"
+								default="Create Invoice" />
+						</g:link>
+					</g:if>
 				</div>
 			</g:form>
 

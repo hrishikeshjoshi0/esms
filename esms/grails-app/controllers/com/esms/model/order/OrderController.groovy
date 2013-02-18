@@ -299,5 +299,9 @@ class OrderController {
 		
 		redirect action: 'show', id: order.id
 	}
+	
+	def registerPayment() {
+		
+	}
 }
 

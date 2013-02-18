@@ -76,6 +76,6 @@ environments {
 		
 		grails.paypal.server = "https://www.paypal.com/cgi-bin/webscr"
 		grails.paypal.email = "example@business.com"
-		grails.serverURL = "http://www.grails.org"
+		grails.serverURL = "http://www.moryasolutions.com/esms"
     }
 }

@@ -91,6 +91,15 @@
 					</g:link>
 				</li>	
 			</g:if>
+			
+			<g:if test="${params.controller == 'order' && orderInstance?.status == 'INVOICED'}">
+			   <li>
+					<g:link controller="payment" action="create" params="['order.id':orderInstance?.id]">
+						<i class="icon-plus"></i> 
+						Register Payment
+					</g:link>
+				</li>	
+			</g:if>
 		</ul>
 		
 		<%--<ul id="" class="${menutype}" data-role="listview" data-split-icon="gear" data-filter="true">

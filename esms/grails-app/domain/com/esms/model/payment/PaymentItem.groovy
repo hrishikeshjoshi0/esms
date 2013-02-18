@@ -1,5 +1,7 @@
 package com.esms.model.payment
 
+import com.esms.model.order.Order
+
 class PaymentItem {
 	
 	int lineNumber
@@ -7,10 +9,9 @@ class PaymentItem {
 	BigDecimal amount
 	String description
 		
-	static belongsTo = [payment : Payment]
-
+	static belongsTo = [payment : Payment,order: Order]
+	
     static constraints = {
-		
 		lineNumber nullable:false,blank:false
 		orderNumber nullable:false,blank:false
 		amount nullable:false,blank:false
