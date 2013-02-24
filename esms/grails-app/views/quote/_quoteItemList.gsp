@@ -1,8 +1,10 @@
+<g:if test="${quoteInstance?.status != 'CONVERTED_TO_SERVICE_CONTRACT' && quoteInstance?.status != 'CONVERTED_TO_REPAIR_SALES_ORDER' }">
 <div class="pull-right">
 	<a data-toggle="modal" href="#" data-target="#quoteItemModal" role="button"
 		class="btn"> <i class="icon-plus"></i> New Item
 	</a>
 </div>
+</g:if>
 
 <!-- Quotes -->
 <table class="table table-striped table-hover">

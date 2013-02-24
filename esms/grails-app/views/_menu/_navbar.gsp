@@ -63,6 +63,12 @@
 											Calendar
 										</g:link>
 									</li>
+									<li
+										<%= 'payment' == controllerName ? ' class="active"' : '' %>>
+										<g:link controller="payment">
+											Payment
+										</g:link>
+									</li>
 								</ul>
 							</div>
 						</div>

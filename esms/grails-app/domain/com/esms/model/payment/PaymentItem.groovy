@@ -5,7 +5,6 @@ import com.esms.model.order.Order
 class PaymentItem {
 	
 	int lineNumber
-	String orderNumber
 	BigDecimal amount
 	String description
 		
@@ -13,8 +12,7 @@ class PaymentItem {
 	
     static constraints = {
 		lineNumber nullable:false,blank:false
-		orderNumber nullable:false,blank:false
 		amount nullable:false,blank:false
-		description nullable:false,blank:false
+		description nullable:true,blank:true
     }
 }

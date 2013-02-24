@@ -1,3 +1,5 @@
+
+
 <%@ page import="com.esms.model.payment.Payment"%>
 <!doctype html>
 <html>
@@ -12,8 +14,7 @@
 		<div class="span12">
 			<div class="page-header">
 				<h1>
-					Payment :
-					${paymentInstance?.paymentNumber}
+					<g:message code="default.show.label" args="[entityName]" />
 				</h1>
 			</div>
 
@@ -30,89 +31,107 @@
 					</button>
 				</div>
 			</g:form>
-			
-			<div class="row">
-				<div class="span12">
-					<h3 style="margin-left: 20px;">
-						<g:message code="payment.paymentName.label" default="Payment Number" /> : 
-						<g:fieldValue bean="${paymentInstance}" field="paymentNumber" />
-					</h3>
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="span4">
-					<dl class="dl-horizontal" style="margin-left: -30px;">
-						<dt>
-							<g:message code="payment.status.label" default="Status" />
-						</dt>
-						<dd>
-							<g:fieldValue bean="${paymentInstance}" field="status" />
-						</dd>
-						<dt>
-							<g:message code="payment.type.label" default="Payment Type" />
-						</dt>
-						<dd>
-							<g:fieldValue bean="${paymentInstance}" field="paymentType" />
-						</dd>
-						<dt>
-							<g:message code="payment.salesChannel.label"
-								default="Check Number" />
-						</dt>
-						<dd>
-							<g:fieldValue bean="${paymentInstance}" field="checkNumber" />
-						</dd>
-						
-					</dl>
-				</div>
-				<div class="span4">
-					<dl class="dl-horizontal" style="margin-left: -30px;">
-						<dt>
-							<g:message code="payment.totalAmount.label" default="Total Amount" />
-						</dt>
-						<dd>
-							<g:fieldValue bean="${paymentInstance}" field="totalAmount" />
-						</dd>
-						<dt>
-							<g:message code="payment.totalTax.label" default="Paid Amount" />
-						</dt>
-						<dd>
-							<g:fieldValue bean="${paymentInstance}" field="paidAmount" />
-						</dd>
-						<dt>
-							<g:message code="payment.totalDiscount.label"
-								default="Balance Amount" />
-						</dt>
-						<dd>
-							<g:fieldValue bean="${paymentInstance}" field="balanceAmount" />
-						</dd>
-						
-					</dl>
-				</div>
-			</div>
-		</div>
-	</div>
 
-	<div class="row-fluid">
+			<dl class="dl-horizontal">
+
+				<dt>
+					<g:message code="payment.paymentNumber.label"
+						default="Payment Number" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${paymentInstance}" field="paymentNumber" />
+				</dd>
+
+
+				<dt>
+					<g:message code="payment.paymentMethod.label"
+						default="Payment Type" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${paymentInstance}" field="paymentMethod" />
+				</dd>
+
+
+				<dt>
+					<g:message code="payment.chequeNumber.label"
+						default="Cheque Number" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${paymentInstance}" field="chequeNumber" />
+				</dd>
+
+
+				<dt>
+					<g:message code="payment.bank.label" default="Bank" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${paymentInstance}" field="bank" />
+				</dd>
+
+
+				<dt>
+					<g:message code="payment.branch.label" default="Branch" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${paymentInstance}" field="branch" />
+				</dd>
+
+
+				<dt>
+					<g:message code="payment.description.label" default="Description" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${paymentInstance}" field="description" />
+				</dd>
+
+
+				<dt>
+					<g:message code="payment.totalAmount.label" default="Total Amount" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${paymentInstance}" field="totalAmount" />
+				</dd>
+
+
+				<dt>
+					<g:message code="payment.balanceAmount.label"
+						default="Balance Amount" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${paymentInstance}" field="balanceAmount" />
+				</dd>
+
+
+				<dt>
+					<g:message code="payment.matchedAmount.label"
+						default="Matched Amount" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${paymentInstance}" field="matchedAmount" />
+				</dd>
+			</dl>
+		</div>
+
 		<div class="span12">
-			<div class="accordion" id="detailViewAccordion">
-				<!-- Contacts -->
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse"
-							href="#collapseContact"> <span class="left"> <i
-								class="icon-user"></i> Line Items
-								<div class="pull-right">
-									<i class="icon-plus"></i>
-								</div>
-						</span>
-						</a>
-					</div>
-					<div id="collapseContact" class="accordion-body collapse in">
-						<div class="accordion-inner">
-							<g:render template="paymentItemList" />
-						</div>
-					</div>
+
+			<!--  -->
+			<ul class="nav nav-tabs" id="organization_show_tab">
+				<li class="active"><a href="#paymentItemsTabPane"
+					data-toggle="tab">Lines</a></li>
+			</ul>
+
+			<div class="tab-content">
+				<div class="tab-pane active" id="paymentItemsTabPane">
+					<g:render template="paymentItemList" />
 				</div>
 			</div>
 		</div>

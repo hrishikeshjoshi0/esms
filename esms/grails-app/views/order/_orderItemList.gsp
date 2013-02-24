@@ -1,8 +1,10 @@
+<g:if test="${orderInstance?.status != 'INVOICED' && orderInstance?.status != 'PAID'}">
 <div class="pull-right">
 	<a data-toggle="modal" href="#" data-target="#orderItemModal"
 		role="button" class="btn"> <i class="icon-plus"></i> New Item
 	</a>
 </div>
+</g:if>
 
 <!-- Quotes -->
 <table class="table table-striped table-hover">

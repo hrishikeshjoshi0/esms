@@ -1,4 +1,3 @@
-
 <%@ page import="com.esms.model.payment.Payment" %>
 <!doctype html>
 <html>
@@ -22,15 +21,13 @@
 						
 							<g:sortableColumn property="paymentNumber" title="${message(code: 'payment.paymentNumber.label', default: 'Payment Number')}" />
 						
-							<g:sortableColumn property="paymentType" title="${message(code: 'payment.paymentType.label', default: 'Payment Type')}" />
+							<g:sortableColumn property="paymentMethod" title="${message(code: 'payment.paymentMethod.label', default: 'Payment Type')}" />
 						
 							<g:sortableColumn property="chequeNumber" title="${message(code: 'payment.chequeNumber.label', default: 'Cheque Number')}" />
 						
 							<g:sortableColumn property="bank" title="${message(code: 'payment.bank.label', default: 'Bank')}" />
 						
 							<g:sortableColumn property="branch" title="${message(code: 'payment.branch.label', default: 'Branch')}" />
-						
-							<g:sortableColumn property="status" title="${message(code: 'payment.status.label', default: 'Status')}" />
 						
 							<th></th>
 						</tr>
@@ -41,15 +38,13 @@
 						
 							<td>${fieldValue(bean: paymentInstance, field: "paymentNumber")}</td>
 						
-							<td>${fieldValue(bean: paymentInstance, field: "paymentType")}</td>
+							<td>${fieldValue(bean: paymentInstance, field: "paymentMethod")}</td>
 						
 							<td>${fieldValue(bean: paymentInstance, field: "chequeNumber")}</td>
 						
 							<td>${fieldValue(bean: paymentInstance, field: "bank")}</td>
 						
 							<td>${fieldValue(bean: paymentInstance, field: "branch")}</td>
-						
-							<td>${fieldValue(bean: paymentInstance, field: "status")}</td>
 						
 							<td class="link">
 								<g:link action="show" id="${paymentInstance.id}" class="btn btn-small">Show &raquo;</g:link>

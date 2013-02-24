@@ -59,6 +59,12 @@
 						Create Repair Quote
 					</g:link>
 				</li>
+				
+				<g:if test="${quoteInstance?.type == 'CONTRACT'}">
+					<g:jasperReport jasper="ContractQuotePrint" format="PDF" name="Print Quotation" delimiterAfter=" " delimiterBefore=" " heightAttr="15px">
+						<input type="hidden" name="quote" value="${quoteInstance.id}" />
+					</g:jasperReport>
+				</g:if>
 	  	   </g:elseif>
 	  	   
 	  	   <g:if test="${params.controller != 'event'}">
@@ -94,10 +100,14 @@
 			
 			<g:if test="${params.controller == 'order' && orderInstance?.status == 'INVOICED'}">
 			   <li>
-					<g:link controller="payment" action="create" params="['order.id':orderInstance?.id]">
-						<i class="icon-plus"></i> 
-						Register Payment
-					</g:link>
+					<g:if test="${orderInstance?.status == 'INVOICED'}">
+						<g:link action="create" controller="payment"
+							params="[orderId :orderInstance.id]">
+							<i class="icon-briefcase"></i>
+							<g:message code="default.button.registerPayment.label"
+								default="Register Payment" />
+						</g:link>
+					</g:if>
 				</li>	
 			</g:if>
 		</ul>

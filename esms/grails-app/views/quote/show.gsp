@@ -20,10 +20,12 @@
 			<g:form>
 				<g:hiddenField name="id" value="${quoteInstance?.id}" />
 				<div class="form-actions">
-					<g:link class="btn" action="edit" id="${quoteInstance?.id}">
-						<i class="icon-pencil"></i>
-						<g:message code="default.button.edit.label" default="Edit" />
-					</g:link>
+					<g:if test="${quoteInstance?.status != 'CONVERTED_TO_SERVICE_CONTRACT' && quoteInstance?.status != 'CONVERTED_TO_REPAIR_SALES_ORDER' }">
+						<g:link class="btn" action="edit" id="${quoteInstance?.id}">
+							<i class="icon-pencil"></i>
+							<g:message code="default.button.edit.label" default="Edit" />
+						</g:link>
+					</g:if>
 					<button class="btn btn-danger" type="submit" name="_action_delete">
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
@@ -74,11 +76,6 @@
 					
 				</div>
 			</g:form>
-			<g:if test="${quoteInstance.type == 'CONTRACT'}">
-						<g:jasperReport jasper="ContractQuotePrint" format="PDF" name="Contract Quote Print">
-							<input type="hidden" name="quote" value="${quoteInstance.id}" />
-						</g:jasperReport>
-			</g:if>
 
 			<div class="row">
 				<div class="span12">

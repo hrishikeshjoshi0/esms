@@ -105,7 +105,7 @@
 			
 			<!--  -->
 			<ul class="nav nav-tabs" id="organization_show_tab">
-			  <li class="active"><a href="#contactsTabPane">Contact</a></li>
+			  <li class="active"><a href="#contactsTabPane" data-toggle="tab">Contact</a></li>
 			  <li><a href="#addressesTabsPane" data-toggle="tab">Addresses</a></li>
 			  <li><a href="#phonesTabsPane" data-toggle="tab">Phones</a></li>
 			  <li><a href="#quotesTabsPane" data-toggle="tab">Quotes</a></li>
@@ -120,9 +120,6 @@
 			  </div>
 			  <div class="tab-pane" id="addressesTabsPane">
 			  	<g:render template="addressList" />
-			  </div>
-			  <div class="tab-pane" id="contractsTabsPane">
-			  	<g:render template="contractList" />
 			  </div>
 			  <div class="tab-pane" id="phonesTabsPane">
 			  	<g:render template="phoneBookList" />

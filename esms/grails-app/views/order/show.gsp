@@ -69,11 +69,11 @@
 					</g:link>
 					
 					<g:if test="${orderInstance?.status == 'INVOICED'}">
-						<g:link class="btn" action="registerPayment"
-							params="['order.id':{orderInstance?.id]">
+						<g:link class="btn" action="create" controller="payment"
+							params="[orderId :orderInstance.id]">
 							<i class="icon-briefcase"></i>
-							<g:message code="default.button.createInvoice.label"
-								default="Create Invoice" />
+							<g:message code="default.button.registerPayment.label"
+								default="Register Payment" />
 						</g:link>
 					</g:if>
 				</div>
@@ -224,11 +224,15 @@
 			<!--  -->
 			<ul class="nav nav-tabs" id="order_show_tab">
 			  <li class="active"><a href="#orderItemsTabsPane" data-toggle="tab">Order Lines</a></li>
+			  <li><a href="#paymentsTabsPane" data-toggle="tab">Payments</a></li>
 			</ul>
 			 
 			<div class="tab-content">
 			  <div class="tab-pane active" id="orderItemsTabsPane">
 			  	<g:render template="orderItemList" />
+			  </div>
+			  <div class="tab-pane" id="paymentsTabsPane">
+			  	<g:render template="paymentList" />
 			  </div>
 			</div> 
 			
