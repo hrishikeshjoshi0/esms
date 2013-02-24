@@ -2,14 +2,15 @@
 	<div class="navbar-inner">
 		<div class="container">
 			<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-			<a class="btn btn-navbar" data-toggle="collapse"
+			<%--<a class="btn btn-navbar" data-toggle="collapse"
 				data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 				class="icon-bar"></span> <span class="icon-bar"></span>
-			</a> <a class="brand" href="${createLink(uri: '/')}"> <%--<img class="logo" src="${resource(dir:'kickstart/img',file:'grails.png')}" alt="${meta(name:'app.name')}" />
-				--%> <%--${meta(name:'app.name')}
-				--%> Venus
+			</a> 
+			<a class="brand" href="${createLink(uri: '/')}"> 
+				<img class="logo" src="${resource(dir:'images',file:'venus.png')}" alt="${meta(name:'app.name')}" style="width: 100px;height: "/>
+				${meta(name:'app.name')} 
 			</a>
-
+			--%>
 			<div class="nav-collapse">
 				<nav class="navbar navbar-inverse navbar-fixed-top">
 					<div class="navbar-inner">

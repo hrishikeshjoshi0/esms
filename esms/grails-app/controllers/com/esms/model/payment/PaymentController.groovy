@@ -42,12 +42,11 @@ class PaymentController {
 				def paymentItems = payment.paymentItems
 				
 				def matchedAmount = new BigDecimal("0.0")
+				matchedAmount += paymentItemInstance.amount
 				
 				def order = paymentItemInstance.order
 				order.receviedGrandTotal += paymentItemInstance.amount
 				order.openGrandTotal -= paymentItemInstance.amount
-				
-				matchedAmount += paymentItemInstance.amount
 				
 				if(order.openGrandTotal == 0) {
 					order.status = 'PAID'
