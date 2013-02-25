@@ -112,6 +112,7 @@ class QuoteController {
 	def convertToSalesOrder = {
 		def quoteInstance = Quote.get(params.id)
 		
+		
 		flash.message = 'Sales Order created.'
 		redirect controller:'order', action: 'create'
 	}

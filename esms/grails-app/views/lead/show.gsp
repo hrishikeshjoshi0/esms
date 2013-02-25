@@ -99,6 +99,7 @@
 			<!--  -->
 			<ul class="nav nav-tabs" id="organization_show_tab">
 			  <li class="active"><a href="#contactsTabPane">Contact</a></li>
+			  <li><a href="#liftInfoTabPane" data-toggle="tab">About the Lift</a></li>
 			  <li><a href="#addressesTabsPane" data-toggle="tab">Addresses</a></li>
 			  <li><a href="#phonesTabsPane" data-toggle="tab">Phones</a></li>
 			  <li><a href="#quotesTabsPane" data-toggle="tab">Quotes</a></li>
@@ -108,6 +109,9 @@
 			<div class="tab-content">
 			  <div class="tab-pane active" id="contactsTabPane">
 			  	<g:render template="contactList" />
+			  </div>
+			  <div class="tab-pane active" id="liftInfoTabPane">
+			  	<g:render template="liftInfo" />
 			  </div>
 			  <div class="tab-pane" id="addressesTabsPane">
 			  	<g:render template="addressList" />

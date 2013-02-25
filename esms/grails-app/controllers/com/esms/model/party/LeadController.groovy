@@ -2,7 +2,7 @@ package com.esms.model.party
 
 import org.springframework.dao.DataIntegrityViolationException
 
-import com.esms.model.party.Organization
+import com.esms.model.maintenance.LiftInfo
 
 class LeadController {
 
@@ -29,7 +29,7 @@ class LeadController {
 			int no = (list?list.size():0) + 1;
 			String externalId = "ORG" + String.format("%05d", no)
 			params.externalId = externalId
-			[organizationInstance: new Organization(params),contactInstance : new Contact(),addressInstance:new Address(),phoneBookInstance:new PhoneBook()]
+			[organizationInstance: new Organization(params),contactInstance : new Contact(),addressInstance:new Address(),phoneBookInstance:new PhoneBook(),liftInfoInstance: new LiftInfo()]
 			break
 		case 'POST':
 			def organizationInstance = new Organization(params)
@@ -52,6 +52,10 @@ class LeadController {
 			phoneBookInstance.party = organizationInstance
 			phoneBookInstance.save(flush:true)
 
+			def liftInfo = new LiftInfo(params)
+			liftInfo.organization = organizationInstance
+			liftInfo.save(flush:true)
+			
 			flash.message = "New Lead Added." 
 			redirect action: 'show', id: organizationInstance.id
 			break

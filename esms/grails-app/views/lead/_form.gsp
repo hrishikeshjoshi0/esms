@@ -109,6 +109,13 @@
 
 <div class="page-header">
 	<h3>
+		About the Lift
+	</h3>
+</div>
+<g:render template="/liftInfo/form"></g:render>
+
+<div class="page-header">
+	<h3>
 		Reason for Change
 	</h3>
 </div>

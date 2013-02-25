@@ -54,6 +54,10 @@ class OrderController {
 			
 			def quote = Quote.get(params.orderId)
 			
+			//Convert Lead, (if applicable)
+			quote.organization?.convertLead()
+			quote.organization?.save(flush:true)
+			
 			def order = new Order()
 			order.orderNumber = orderNumber
 			order.contactName = quote.contactName
