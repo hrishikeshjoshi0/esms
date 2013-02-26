@@ -18,6 +18,7 @@ class Organization extends Party {
     static constraints = {
 		name blank:true
 		salesStatus inList: ["LEAD", "CUSTOMER"]
+		liftInfo nullable:true
     }
 	
 	def convertLead() {

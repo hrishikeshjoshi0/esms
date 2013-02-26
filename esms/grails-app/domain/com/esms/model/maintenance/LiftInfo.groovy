@@ -12,7 +12,7 @@ class LiftInfo {
 	Date lastContractEndDate
 	String typeOfEnquiry
 
-	static belongsTo = [organization : Organization]
+	Organization organization 
     
 	static constraints = {
 		liftMake nullable:true,blank:true
