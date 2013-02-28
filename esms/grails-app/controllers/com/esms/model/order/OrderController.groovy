@@ -281,24 +281,24 @@ class OrderController {
 		order.save(flush:true)
 		
 		order.orderItems?.each {  
-			def entry = new InventoryJournal()
-			entry.order = order
-			entry.quantity = it.quantity
-			
 			def product = Product.findByProductName(it.productNumber)
 			if(product) {
 				def productInventory = product.inventory
 				
 				if(productInventory) {
+					def entry = new InventoryJournal()
+					entry.order = order
+					entry.quantity = it.quantity
 					entry.productInventory = productInventory
+					entry.status = 'INVOICED'
+					entry.save(flush:true)
+					
 					if(productInventory.quantityOnHand) {
 						productInventory.quantityOnHand = productInventory.quantityOnHand -  entry.quantity
 					}
 					productInventory.save(flush:true)
 				}
 			}
-			
-			entry.save(flush:true)
 		}
 		
 		redirect action: 'show', id: order.id

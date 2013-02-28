@@ -129,7 +129,10 @@
 			<!--  -->
 			<ul class="nav nav-tabs" id="product_show_tab">
 			  <li class="active"><a href="#priceListTabsPane" data-toggle="tab">Price List</a></li>
-			  <li><a href="#inventoryTabsPane" data-toggle="tab">Inventory</a></li>
+			  <g:if test="${productInstance?.isVirtual == false || productInstance?.isVirtual == null}">
+			  	<li><a href="#inventoryTabsPane" data-toggle="tab">Inventory</a></li>
+				<li><a href="#inventoryJournalTabsPane" data-toggle="tab">Inventory Journal</a></li>
+			  </g:if>
 			  <li><a href="#commentsTabsPane" data-toggle="tab">Comments</a></li>
 			</ul>
 			 
@@ -137,9 +140,14 @@
 			  <div class="tab-pane active" id="priceListTabsPane">
 			  	<g:render template="priceList" />
 			  </div>
-			  <div class="tab-pane" id="inventoryTabsPane">
-			  	<g:render template="inventory" />
-			  </div>
+			  <g:if test="${productInstance?.isVirtual == false || productInstance?.isVirtual == null}">
+				  <div class="tab-pane" id="inventoryTabsPane">
+				  	<g:render template="inventory" />
+				  </div>
+				  <div class="tab-pane" id="inventoryJournalTabsPane">
+					<g:render template="inventoryJournal" />
+				  </div>
+			  </g:if>
 			  <div class="tab-pane" id="commentsTabsPane">
 				<g:fieldValue bean="${productInstance}" field="comments" />
 			  </div>
