@@ -32,7 +32,6 @@
 		</g:each>
 	</ul>
 	--%>
-	
 	<g:if test="${	params.controller != null
 			&&	params.controller != ''
 			&&	params.controller != 'home'

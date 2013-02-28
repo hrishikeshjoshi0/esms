@@ -79,7 +79,7 @@
 			code="order.issueDate.label" default="Issue Date" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<bootstrap:jqDatePicker name="issueDate"
+		<g:datePicker name="issueDate" precision="day"
 			value="${orderInstance?.issueDate}" />
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'issueDate', 'error')}
 		</span>
@@ -91,7 +91,7 @@
 	<label for="expiryDate" class="control-label"><g:message
 			code="order.expiryDate.label" default="Expiry Date" /></label>
 	<div class="controls">
-		<bootstrap:jqDatePicker name="expiryDate"
+		<g:datePicker name="expiryDate" precision="day"
 			value="${orderInstance?.expiryDate}" />
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'expiryDate', 'error')}
 		</span>

@@ -1,7 +1,9 @@
 package com.esms.model.party
 
-import com.esms.model.quote.Quote
 import org.springframework.dao.DataIntegrityViolationException
+
+import com.esms.model.maintenance.LiftInfo
+import com.esms.model.quote.Quote
 
 class OrganizationController {
 
@@ -40,21 +42,39 @@ class OrganizationController {
 			int no = (list?list.size():0) + 1;
 			String externalId = "ORG" + String.format("%05d", no)
 			params.externalId = externalId
-        	[organizationInstance: new Organization(params)]
+			[organizationInstance: new Organization(params),contactInstance : new Contact(),addressInstance:new Address(),phoneBookInstance:new PhoneBook(),liftInfoInstance: new LiftInfo()]
 			break
 		case 'POST':
-	        def organizationInstance = new Organization(params)
+			def organizationInstance = new Organization(params)
 			organizationInstance.partyType = "ORGANIZATION"
-	        if (!organizationInstance.save(flush: true)) {
-	            render view: 'create', model: [organizationInstance: organizationInstance]
-	            return
-	        }
+			organizationInstance.salesStatus = 'CUSTOMER'
+			
+			if (!organizationInstance.save(flush: true)) {
+				render view: 'create', model: [organizationInstance: organizationInstance]
+				return
+			}
+			
+			def contactInstance = new Contact(params)
+			contactInstance.organization = organizationInstance
+			contactInstance.save(flush:true)
+			
+			def addressInstance = new Address(params)
+			addressInstance.party = organizationInstance
+			addressInstance.save(flush:true)
+			
+			def phoneBookInstance = new PhoneBook(params)
+			phoneBookInstance.party = organizationInstance
+			phoneBookInstance.save(flush:true)
 
-			flash.message = message(code: 'default.created.message', args: [message(code: 'organization.label', default: 'Organization'), organizationInstance.id])
-	        redirect action: 'show', id: organizationInstance.id
+			def liftInfo = new LiftInfo(params)
+			liftInfo.organization = organizationInstance
+			liftInfo.save(flush:true)
+			
+			flash.message = "New Organization Added." 
+			redirect action: 'show', id: organizationInstance.id
 			break
 		}
-    }
+	}
 
     def show() {
         def organizationInstance = Organization.get(params.id)
