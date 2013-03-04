@@ -20,6 +20,34 @@
                 removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"
  								/>
 				
+				<div class="accordion" id="accordion2">
+				  <div class="accordion-group">
+				    <div class="accordion-heading">
+				      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+				        <div class="pull-left">
+							<i class="icon-filter"></i>
+						</div>
+						Filter
+						<div class="pull-right">
+							<i class="icon-plus"></i>
+						</div>
+				      </a>
+				    </div>
+				    <div id="collapseOne" class="accordion-body collapse in">
+				      <div class="accordion-inner">
+				        <filterpane:filterPane domain="com.esms.model.quote.Quote"
+                                   filterProperties="${['quoteNumber', 'quoteName','status','organization.name']}"
+                                   titleKey="default.filterPane.header"
+                                   dialog="false"
+                                   visible="y"
+                                   showSortPanel="n"
+                                   showTitle="n"
+                                   fullAssociationPathFieldNames="false"/>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+                                   
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -75,14 +103,6 @@
 	                <filterpane:isNotFiltered>Pure and Unfiltered!</filterpane:isNotFiltered>
 	                <filterpane:isFiltered>Filter Applied!</filterpane:isFiltered>
 				</div>
-				<filterpane:filterPane domain="com.esms.model.quote.Quote"
-                                   filterProperties="${['quoteNumber', 'quoteName','status','organization.name']}"
-                                   titleKey="fp.tag.filterPane.titleText"
-                                   dialog="true"
-                                   visible="n"
-                                   showSortPanel="n"
-                                   showTitle="n"
-                                   fullAssociationPathFieldNames="false"/>
 			</div>
 		</div>
 	</body>
