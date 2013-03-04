@@ -1,4 +1,3 @@
-
 <%@ page import="com.esms.model.quote.Quote" %>
 <!doctype html>
 <html>
@@ -6,6 +5,7 @@
 		<meta name="layout" content="bootstrap">
 		<g:set var="entityName" value="${message(code: 'quote.label', default: 'Quote')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
+		<filterpane:includes />
 	</head>
 	<body>
 		<div class="row-fluid">
@@ -15,6 +15,10 @@
 						<g:message code="default.list.label" args="[entityName]" />
 					</h1>
 				</div>
+				
+				<filterpane:currentCriteria domainBean="com.esms.model.quote.Quote" 
+                removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"
+ 								/>
 				
 				<table class="table table-striped table-hover">
 					<thead>
@@ -66,8 +70,19 @@
 					</tbody>
 				</table>
 				<div class="pagination">
-					<bootstrap:paginate total="${quoteInstanceTotal}" />
+					<bootstrap:paginate total="${quoteInstanceTotal?quoteInstanceTotal:quoteInstanceList.size()}" />
+					<filterpane:filterButton text="Filter Me" appliedText="Change Filter" />
+	                <filterpane:isNotFiltered>Pure and Unfiltered!</filterpane:isNotFiltered>
+	                <filterpane:isFiltered>Filter Applied!</filterpane:isFiltered>
 				</div>
+				<filterpane:filterPane domain="com.esms.model.quote.Quote"
+                                   filterProperties="${['quoteNumber', 'quoteName','status','organization.name']}"
+                                   titleKey="fp.tag.filterPane.titleText"
+                                   dialog="true"
+                                   visible="n"
+                                   showSortPanel="n"
+                                   showTitle="n"
+                                   fullAssociationPathFieldNames="false"/>
 			</div>
 		</div>
 	</body>

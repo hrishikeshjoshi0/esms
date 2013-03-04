@@ -61,5 +61,7 @@ grails.project.dependency.resolution = {
 		runtime ":cache-headers:1.1.5"
 		
 		compile ":jquery-ui:1.8.24"
+		
+		compile ":filterpane:2.0.1.1"
     }
 }

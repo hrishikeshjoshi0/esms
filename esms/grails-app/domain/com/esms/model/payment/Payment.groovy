@@ -4,7 +4,7 @@ package com.esms.model.payment
 class Payment {
 
 	String paymentNumber
-	String paymentMethod
+	String paymentMethod='CHEQUE'
 	String chequeNumber
 	String bank
 	String branch
