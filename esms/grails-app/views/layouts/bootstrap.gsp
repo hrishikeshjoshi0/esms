@@ -23,19 +23,26 @@
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
 		<g:layoutHead/>
 		<r:layoutResources/>
+		<style>
+			#wrapper {width: 95%; margin: 0 auto; text-align: left;background-color: #fff;min-height: 800px;}
+			#outer-wrapper {width: 100%;background-color: #ddd;}
+		</style>
 	</head>
 
 	<body>
-	
+		<div id="outer-wrapper">
 		<g:render template="/_menu/navbar"></g:render>
+		<div id="wrapper">
 		<div class="container-fluid" style="margin-top: 35px;">
 			<g:render template="/layouts/content_fluid"></g:render>
 
 			<hr style="margin: 0px;padding: 0px;">
 
 			<footer>
-				<p>&copy; Company 2011</p>
+				<p>&copy; VENUS CRM</p>
 			</footer>
+		</div>
+		</div>
 		</div>
 
 		<g:javascript library="application"/>
