@@ -99,9 +99,10 @@
 				</table>
 				<div class="pagination">
 					<bootstrap:paginate total="${quoteInstanceTotal?quoteInstanceTotal:quoteInstanceList.size()}" />
-					<filterpane:filterButton text="Filter Me" appliedText="Change Filter" />
+					<%--<filterpane:filterButton text="Filter Me" appliedText="Change Filter" />
 	                <filterpane:isNotFiltered>Pure and Unfiltered!</filterpane:isNotFiltered>
 	                <filterpane:isFiltered>Filter Applied!</filterpane:isFiltered>
+					--%>
 				</div>
 			</div>
 		</div>

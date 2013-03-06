@@ -8,7 +8,7 @@
 				&&	params.controller != 'home'}">
 			<aside id="application-status" class="span3">
 				<div class="well sidebar-nav"
-					style="min-height: 480px; max-height: 100%; margin-top: 25px;">
+					style="min-height: 480px; max-height: 100%; margin-top: 10px;">
 					<div class="">
 						<!--Sidebar content-->
 						<g:render template="/_menu/menubar" />
@@ -16,7 +16,6 @@
 				</div>
 			</aside>
 
-			<br />
 			<section id="main" class="span9">
 				<div class="row-fluid">
 					<div class="span12">

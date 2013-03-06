@@ -24,16 +24,29 @@
 		<g:layoutHead/>
 		<r:layoutResources/>
 		<style>
-			#wrapper {width: 95%; margin: 0 auto; text-align: left;background-color: #fff;min-height: 800px;}
-			#outer-wrapper {width: 100%;background-color: #ddd;}
+			#wrapper {
+				width: 95%;
+				margin: 0 auto;
+				text-align: left;
+				background-color: #fff;
+				min-height: 800px;
+				-moz-box-shadow: 3px 3px 5px 6px #222;
+				-webkit-box-shadow: 3px 3px 5px 6px #222;
+				box-shadow: 3px 3px 5px 6px #222;
+			}
+			
+			#outer-wrapper {
+				width: 100%;
+				background-color: #485C5A;
+			}
 		</style>
-	</head>
+</head>
 
 	<body>
 		<div id="outer-wrapper">
-		<g:render template="/_menu/navbar"></g:render>
 		<div id="wrapper">
-		<div class="container-fluid" style="margin-top: 35px;">
+		<g:render template="/_menu/navbar"></g:render>
+		<div class="container-fluid" style="margin-top: -20px;z-index: -999;">
 			<g:render template="/layouts/content_fluid"></g:render>
 
 			<hr style="margin: 0px;padding: 0px;">
