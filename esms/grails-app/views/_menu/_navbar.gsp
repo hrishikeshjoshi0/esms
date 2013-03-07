@@ -5,8 +5,8 @@
 		</div>
 	</div>
 </div>
-
---%><div class="nav-collapse">
+--%>
+<div class="nav-collapse">
 				<nav class="navbar navbar-inverse">
 					<div class="navbar-inner">
 						<div class="container-fluid">

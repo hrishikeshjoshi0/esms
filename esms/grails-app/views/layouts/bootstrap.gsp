@@ -26,18 +26,19 @@
 		<style>
 			#wrapper {
 				width: 95%;
+				height: 100%;
 				margin: 0 auto;
 				text-align: left;
 				background-color: #fff;
-				min-height: 800px;
-				-moz-box-shadow: 3px 3px 5px 6px #222;
-				-webkit-box-shadow: 3px 3px 5px 6px #222;
-				box-shadow: 3px 3px 5px 6px #222;
+				-moz-box-shadow: 3px 3px 3px 3px #222;
+				-webkit-box-shadow: 3px 3px 3px 3px #222;
+				box-shadow: 3px 3px 3px 3px #222;
 			}
 			
 			#outer-wrapper {
 				width: 100%;
-				background-color: #485C5A;
+				height: 100%;
+				background-color: #666;
 			}
 		</style>
 </head>
@@ -46,7 +47,7 @@
 		<div id="outer-wrapper">
 		<div id="wrapper">
 		<g:render template="/_menu/navbar"></g:render>
-		<div class="container-fluid" style="margin-top: -20px;z-index: -999;">
+		<div class="container-fluid" style="margin-top:15px;z-index: -999;min-height: 900px;">
 			<g:render template="/layouts/content_fluid"></g:render>
 
 			<hr style="margin: 0px;padding: 0px;">
