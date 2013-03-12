@@ -1,3 +1,4 @@
+<%@page import="com.esms.model.party.Organization"%>
 <%@ page import="com.esms.model.quote.Quote"%>
 
 <div
@@ -6,14 +7,7 @@
 			code="quote.organization.label" default="Organization" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:hiddenField name="organization.id"
-			value="${quoteInstance?.organization?.id}" />
-		<richui:autoComplete name="organizationId" id="organizationId"
-			onItemSelect="document.getElementById('organization.id').value=id;
-				document.getElementById('relatedToValue').value=document.getElementById('organizationId').value;" 
-			action="${createLinkTo('dir': 'organization/searchAJAX')}"
-			forceSelection="true" typeAhead="true" shadow="true"
-			minQueryLength="2" />
+		<g:select name="organization.id" from="${Organization.list()}" optionKey="id" optionValue="name" class="input-xxlarge" value="${quoteInstance?.organization?.id}" />	
 		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'organization', 'error')}
 		</span>
 	</div>

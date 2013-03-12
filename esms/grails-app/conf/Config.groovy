@@ -110,5 +110,8 @@ grails.resources.modules = {
 		resource url: '/js/bootstrapx-clickover.js'
 		resource url: '/css/calendar.css'
 	}
-  
+  	chosen {
+		resource url: '/js/chosen.jquery.min.js'
+		resource url: '/css/chosen.css'
+	}
 }

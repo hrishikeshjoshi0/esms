@@ -1,4 +1,5 @@
 <%@ page import="com.esms.model.order.Order"%>
+<%@ page import="com.esms.model.party.Organization"%>
 <div
 	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'orderNumber', 'error')} required">
 	<label for="orderNumber" class="control-label"><g:message
@@ -33,14 +34,7 @@
 			code="order.organization.label" default="Organization" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:hiddenField name="organization.id"
-			value="${orderInstance?.organization?.id}" />
-		<richui:autoComplete name="organizationId"
-			onItemSelect="document.getElementById('organization.id').value=id;"
-			action="${createLinkTo('dir': 'organization/searchAJAX')}"
-			forceSelection="true" typeAhead="true" shadow="true"
-			minQueryLength="2" 
-			value="${orderInstance.organization?.name}" />
+		<g:select name="organization.id" from="${Organization.list()}" optionKey="id" optionValue="name" class="input-xxlarge" value="${quoteInstance?.organization?.id}" />
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'organization', 'error')}
 		</span>
 	</div>

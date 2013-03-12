@@ -2,6 +2,7 @@
 	<li class="dropdown">
 		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 			<i class="icon-cog icon-large icon-white"></i>
+			Settings
 		</a>
 		<ul class="dropdown-menu">
 			<li class="controller">

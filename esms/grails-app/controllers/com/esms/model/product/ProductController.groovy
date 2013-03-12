@@ -1,18 +1,27 @@
 package com.esms.model.product
+import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
 class ProductController {
 
     static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
+	
+	def filterPaneService
 
     def index() {
         redirect action: 'list', params: params
     }
+	
+	def list() {
+		params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		[productInstanceList: Product.list(params), productInstanceTotal: Product.count()]
+	}
 
-    def list() {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [productInstanceList: Product.list(params), productInstanceTotal: Product.count()]
-    }
+	def filter = {
+		if(!params.max) params.max = 10
+		render( view:'list', model:[ productInstanceList: filterPaneService.filter( params, Product),
+			productInstanceCount: filterPaneService.count( params, Product), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
+	}
 
     def create() {
 		switch (request.method) {
@@ -164,7 +173,8 @@ class ProductController {
 	}
 	
 	def getPrice = {
-		def product = Product.get(params.id.toInteger())
+		def p = params
+		def product = Product.findByProductNumber(params.id)
 		def c = ProductPrice.createCriteria()
 		def results = c.list {
 			eq("product",product)

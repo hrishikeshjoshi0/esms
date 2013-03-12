@@ -10,6 +10,28 @@
 	<body>
 		<div class="row-fluid">
 			<div class="span12">
+				
+				<filterpane:currentCriteria domainBean="com.esms.model.order.Order" 
+                removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"/>
+                
+				<div class="slidingDiv">
+					<div class="page-header">
+						<h1>
+							Search
+						</h1>
+					</div>
+					<fieldset>
+						<filterpane:filterPane domain="com.esms.model.order.Order"
+		                                   filterProperties="${['orderNumber', 'status','type','contactName']}"
+		                                   titleKey="default.filterPane.header"
+		                                   dialog="false"
+		                                   visible="y"
+		                                   showSortPanel="n"
+		                                   showTitle="n"
+		                                   fullAssociationPathFieldNames="false"/>
+	                 </fieldset>       
+				</div>
+				
 				<div class="page-header">
 					<h1>
 						<g:message code="default.list.label" args="[entityName]" />
@@ -75,7 +97,7 @@
 					</tbody>
 				</table>
 				<div class="pagination">
-					<bootstrap:paginate total="${orderInstanceTotal}" />
+					<filterpane:paginate total="${orderInstanceTotal?orderInstanceTotal:orderInstanceList.size()}" domainBean="com.esms.model.party.Organization" />
 				</div>
 			</div>
 		</div>

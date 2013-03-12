@@ -10,32 +10,17 @@
 	<body>
 		<div class="row-fluid">
 			<div class="span12">
-				<div class="page-header">
-					<h1>
-						<g:message code="default.list.label" args="[entityName]" />
-					</h1>
-				</div>
-				
 				<filterpane:currentCriteria domainBean="com.esms.model.quote.Quote" 
-                removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"
- 								/>
-				
-				<div class="accordion" id="accordion2">
-				  <div class="accordion-group">
-				    <div class="accordion-heading">
-				      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-				        <div class="pull-left">
-							<i class="icon-filter"></i>
-						</div>
-						Filter
-						<div class="pull-right">
-							<i class="icon-plus"></i>
-						</div>
-				      </a>
-				    </div>
-				    <div id="collapseOne" class="accordion-body collapse in">
-				      <div class="accordion-inner">
-				        <filterpane:filterPane domain="com.esms.model.quote.Quote"
+                removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"/>
+                
+				<div class="slidingDiv">
+					<div class="page-header">
+						<h1>
+							Search
+						</h1>
+					</div>
+					<fieldset>
+						<filterpane:filterPane domain="com.esms.model.quote.Quote"
                                    filterProperties="${['quoteNumber', 'quoteName','status','organization.name']}"
                                    titleKey="default.filterPane.header"
                                    dialog="false"
@@ -43,9 +28,13 @@
                                    showSortPanel="n"
                                    showTitle="n"
                                    fullAssociationPathFieldNames="false"/>
-				      </div>
-				    </div>
-				  </div>
+	                 </fieldset>       
+				</div>
+				
+				<div class="page-header">
+					<h1>
+						<g:message code="default.list.label" args="[entityName]" />
+					</h1>
 				</div>
                                    
 				<table class="table table-striped table-hover">
@@ -98,7 +87,7 @@
 					</tbody>
 				</table>
 				<div class="pagination">
-					<bootstrap:paginate total="${quoteInstanceTotal?quoteInstanceTotal:quoteInstanceList.size()}" />
+					<filterpane:paginate total="${quoteInstanceTotal?quoteInstanceTotal:quoteInstanceList.size()}" domainBean="com.esms.model.party.Organization" />
 					<%--<filterpane:filterButton text="Filter Me" appliedText="Change Filter" />
 	                <filterpane:isNotFiltered>Pure and Unfiltered!</filterpane:isNotFiltered>
 	                <filterpane:isFiltered>Filter Applied!</filterpane:isFiltered>

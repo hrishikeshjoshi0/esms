@@ -5,5 +5,15 @@ if (typeof jQuery !== 'undefined') {
 		}).ajaxStop(function() {
 			$(this).fadeOut();
 		});
+		
+		$("select").chosen();
+		
+	   $(".slidingDiv").hide();
+       $(".show_hide").show();
+ 
+       $('.show_hide').click(function(){
+    	   $(".slidingDiv").slideToggle();
+	   });
+
 	})(jQuery);
 }

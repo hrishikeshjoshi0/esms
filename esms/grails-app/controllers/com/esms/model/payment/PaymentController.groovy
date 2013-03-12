@@ -1,19 +1,30 @@
 package com.esms.model.payment
 
+import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
+
+import com.esms.model.quote.Quote
 
 class PaymentController {
 
     static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
+	
+	def filterPaneService
 
     def index() {
         redirect action: 'list', params: params
     }
 
     def list() {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [paymentInstanceList: Payment.list(params), paymentInstanceTotal: Payment.count()]
-    }
+		params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		[paymentInstanceList: Payment.list(params), quoteInstanceTotal: Payment.count()]
+	}
+
+	def filter = {
+		if(!params.max) params.max = 10
+		render( view:'list', model:[ paymentInstanceList: filterPaneService.filter( params, Payment), 
+			paymentInstanceCount: filterPaneService.count( params, Payment), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
+	}
 	
 	def createPaymentItem() {
 		switch (request.method) {

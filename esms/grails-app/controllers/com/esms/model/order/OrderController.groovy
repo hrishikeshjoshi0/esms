@@ -1,5 +1,6 @@
 package com.esms.model.order
 
+import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
 import com.esms.model.inventory.InventoryJournal
@@ -10,15 +11,23 @@ import com.esms.model.quote.Quote
 class OrderController {
 
     static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
+	
+	def filterPaneService
 
     def index() {
         redirect action: 'list', params: params
     }
+	
+	def list() {
+		params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		[orderInstanceList: Order.list(params), quoteInstanceTotal: Order.count()]
+	}
 
-    def list() {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [orderInstanceList: Order.list(params), orderInstanceTotal: Order.count()]
-    }
+	def filter = {
+		if(!params.max) params.max = 10
+		render( view:'list', model:[ orderInstanceList: filterPaneService.filter( params, Order), 
+			orderInstanceCount: filterPaneService.count( params, Order), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
+	}
 	
 	def confirmSale() {
 		def orderInstance = Order.get(params.id)

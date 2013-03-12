@@ -1,26 +1,28 @@
 package com.esms.model.party
 
+import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
 import com.esms.model.maintenance.LiftInfo
 
 class LeadController {
+	
+	def filterPaneService
 
     def index() {
         redirect action: 'list', params: params
     }
-
-    def list() {
+	
+	def list() {
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
-		def organizations
-		def a = params
-		
-		organizations = Organization.withCriteria {
-			like('salesStatus', "LEAD")
-		}
-		
-		[organizationInstanceList: organizations, organizationInstanceTotal: organizations?organizations.size():0]
-    }
+		[organizationInstanceList: Organization.list(params), organizationInstanceTotal: Organization.count()]
+	}
+
+	def filter = {
+		if(!params.max) params.max = 10
+		render( view:'list', model:[ organizationInstanceList: filterPaneService.filter( params, Organization), 
+			organizationInstanceCount: filterPaneService.count( params, Organization), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
+	}
 	
 	def create() {
 		switch (request.method) {

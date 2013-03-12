@@ -15,9 +15,9 @@
 		<![endif]-->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
-		<resource:autoComplete skin="default" />
 		<r:require modules="scaffolding,jquery-ui"/>
 		<r:require module="calendar" />
+		<r:require module="chosen" />
 
 		<!-- Le fav and touch icons -->
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
@@ -25,7 +25,7 @@
 		<r:layoutResources/>
 		<style>
 			#wrapper {
-				width: 95%;
+				width: 90%;
 				height: 100%;
 				margin: 0 auto;
 				text-align: left;
@@ -47,7 +47,8 @@
 		<div id="outer-wrapper">
 		<div id="wrapper">
 		<g:render template="/_menu/navbar"></g:render>
-		<div class="container-fluid" style="margin-top:15px;z-index: -999;min-height: 900px;">
+		<div class="container-fluid" style="margin-top:0px;z-index: -999;">
+			
 			<g:render template="/layouts/content_fluid"></g:render>
 
 			<hr style="margin: 0px;padding: 0px;">
@@ -59,7 +60,9 @@
 		</div>
 		</div>
 
+		
 		<g:javascript library="application"/>
+		<script src="chosen/chosen.jquery.js" type="text/javascript"></script>
 		<r:layoutResources/>
 
 	</body>

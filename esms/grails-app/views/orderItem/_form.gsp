@@ -1,4 +1,5 @@
-<%@ page import="com.esms.model.order.OrderItem"%>
+<%@ page import="com.esms.model.order.Order"%>
+<%@ page import="com.esms.model.product.Product"%>
 
 <script type="text/javascript">
 	$('document').ready(function(){
@@ -52,12 +53,12 @@
 		<label for="productNumber" class="control-label"><g:message
 			code="orderItem.productNumber.label" default="Product Number" /><span
 		class="required-indicator">*</span></label>
-		<richui:autoComplete name="productNumber" onItemSelect="fetchUnitPriceForProduct(id);"
-			action="${createLinkTo('dir': 'product/searchAJAX')}"
-			forceSelection="true" typeAhead="true" shadow="true" minQueryLength ="2"/>
-		<span class="help-inline">
-			${hasErrors(bean: quoteInstance, field: 'productNumber', 'error')}
-		</span>
+	<g:select name="productNumber" from="${Product.list()}"
+		optionKey="productNumber" optionValue="productName" class="input-xxlarge"
+		value="${quoteInstance?.organization?.id}" onChange="fetchUnitPriceForProduct(this.value);"/>
+	<span class="help-inline">
+		${hasErrors(bean: quoteInstance, field: 'productNumber', 'error')}
+	</span>
 </div>
 
 

@@ -21,13 +21,8 @@
 			code="quote.organization.id.label" default="Organization" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<input type="hidden" id="organizationId" name="organization.id"
-			value="${contractInstance?.organization?.id}" />
-		<richui:autoComplete name="organization.externalId"
-			onItemSelect="document.getElementById('organizationId').value=id;"
-			action="${createLinkTo('dir': 'organization/searchAJAX')}"
-			value="${contractInstance?.organization?.name}" forceSelection="true"
-			typeAhead="true" shadow="true" minQueryLength="2" />
+		<g:select name="organization.id" value="${contractInstance?.organization?.id}" from="${Organization.list()}"
+			optionKey="id" optionValue="name"/>
 		<span class="help-inline"> ${hasErrors(bean: contractInstance, field: 'organization', 'error')}
 		</span>
 	</div>
