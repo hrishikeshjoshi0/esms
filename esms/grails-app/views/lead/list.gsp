@@ -37,6 +37,10 @@
 					</h1>
 				</div>
 				
+				<div class="pagination">
+					<bootstrap:paginate params="${filterParams}" total="${organizationInstanceTotal}" />
+				</div>
+				<br/>
 				<table class="table table-striped table-hover ">
 					<thead>
 						<tr>
@@ -60,8 +64,9 @@
 					</tbody>
 				</table>
 				<div class="pagination">
-					<filterpane:paginate total="${organizationInstanceTotal}" domainBean="com.esms.model.party.Organization" />
+					<bootstrap:paginate params="${filterParams}" total="${organizationInstanceTotal}" />
 				</div>
+				<br/>
 			</div>
 		</div>
 	</body>

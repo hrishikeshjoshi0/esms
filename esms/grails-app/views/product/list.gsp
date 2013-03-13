@@ -37,6 +37,10 @@
 					</h1>
 				</div>
 				
+				<div class="pagination">
+					<bootstrap:paginate params="${filterParams}" total="${productInstanceTotal?productInstanceTotal:productInstanceList.size()}" />
+				</div>
+				<br/>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -64,10 +68,11 @@
 						</tr>
 					</g:each>
 					</tbody>
-				</table>
+				</table>'
 				<div class="pagination">
-					<filterpane:paginate total="${productInstanceTotal?productInstanceTotal:productInstanceList.size()}" domainBean="com.esms.model.product.Product" />
+					<bootstrap:paginate params="${filterParams}" total="${productInstanceTotal?productInstanceTotal:productInstanceList.size()}" />
 				</div>
+				<br/>
 			</div>
 		</div>
 	</body>

@@ -79,7 +79,7 @@
 </div>
 
 <!-- Modal -->
-<div id="quoteItemModal" class="modal hide fade" tabindex="-1" role="dialog"
+<div id="quoteItemModal" class="modal hide fade" tabindex="-1" role="dialog" style="width:70%;top:50%;left:40%;"
 	data-remote="<g:createLink controller="quote" action="createQuoteItem" params="[quoteId:quoteInstance?.id]"/>"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">

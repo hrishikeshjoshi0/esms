@@ -14,7 +14,7 @@ class ProductController {
 	
 	def list() {
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
-		[productInstanceList: Product.list(params), productInstanceTotal: Product.count()]
+		[productInstanceList: Product.list(), productInstanceTotal: Product.count()]
 	}
 
 	def filter = {

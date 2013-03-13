@@ -15,7 +15,7 @@ class QuoteController {
 
 	def list() {
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
-		[quoteInstanceList: Quote.list(params), quoteInstanceTotal: Quote.count()]
+		[quoteInstanceList: Quote.list(), quoteInstanceTotal: Quote.count()]
 	}
 
 	def filter = {

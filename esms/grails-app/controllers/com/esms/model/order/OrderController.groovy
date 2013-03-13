@@ -19,8 +19,8 @@ class OrderController {
     }
 	
 	def list() {
-		params.max = Math.min(params.max ? params.int('max') : 10, 100)
-		[orderInstanceList: Order.list(params), quoteInstanceTotal: Order.count()]
+		params.max = 5
+		[orderInstanceList: Order.list(), quoteInstanceTotal: Order.count()]
 	}
 
 	def filter = {

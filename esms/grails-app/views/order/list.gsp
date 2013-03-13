@@ -38,6 +38,10 @@
 					</h1>
 				</div>
 				
+				<div class="pagination">
+					<bootstrap:paginate params="${filterParams}" total="${orderInstanceTotal?orderInstanceTotal:orderInstanceList.size()}" />
+				</div>
+				<br/>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -97,8 +101,9 @@
 					</tbody>
 				</table>
 				<div class="pagination">
-					<filterpane:paginate total="${orderInstanceTotal?orderInstanceTotal:orderInstanceList.size()}" domainBean="com.esms.model.party.Organization" />
+					<bootstrap:paginate params="${filterParams}" total="${orderInstanceTotal?orderInstanceTotal:orderInstanceList.size()}" />
 				</div>
+				<br/>
 			</div>
 		</div>
 	</body>

@@ -19,7 +19,7 @@ This menu is used to show function that can be triggered on the content (an obje
 				<g:message code="default.list.label" args="[entityName]" />
 			</g:link></li>
 		--%>
-		<g:if test="${params.action == 'list'}">
+		<g:if test="${params.action == 'list' || params.action == 'filter'}">
 			<li><a href="#" class="show_hide"><i class="icon-filter"></i>Filter</a></li>
 		</g:if>
 

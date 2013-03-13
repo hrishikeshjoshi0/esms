@@ -25,7 +25,7 @@
 		<r:layoutResources/>
 		<style>
 			#wrapper {
-				width: 90%;
+				width: 96%;
 				height: 100%;
 				margin: 0 auto;
 				text-align: left;

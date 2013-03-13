@@ -16,6 +16,10 @@
 					</h1>
 				</div>
 				
+				<div class="pagination">
+					<bootstrap:paginate params="${filterParams}" total="${eventInstanceTotal}" />
+				</div>
+				<br/>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -59,8 +63,9 @@
 					</tbody>
 				</table>
 				<div class="pagination">
-					<bootstrap:paginate total="${eventInstanceTotal}" />
+					<bootstrap:paginate params="${filterParams}" total="${eventInstanceTotal}" />
 				</div>
+				<br/>
 			</div>
 		</div>
 	</body>

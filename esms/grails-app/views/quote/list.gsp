@@ -36,7 +36,11 @@
 						<g:message code="default.list.label" args="[entityName]" />
 					</h1>
 				</div>
-                                   
+				
+               <div class="pagination">
+					<bootstrap:paginate params="${filterParams}" total="${quoteInstanceTotal?quoteInstanceTotal:quoteInstanceList.size()}" />
+				</div>
+				<br/>                 
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -86,13 +90,18 @@
 					</g:each>
 					</tbody>
 				</table>
+				<%--
 				<div class="pagination">
 					<filterpane:paginate total="${quoteInstanceTotal?quoteInstanceTotal:quoteInstanceList.size()}" domainBean="com.esms.model.party.Organization" />
-					<%--<filterpane:filterButton text="Filter Me" appliedText="Change Filter" />
+					<filterpane:filterButton text="Filter Me" appliedText="Change Filter" />
 	                <filterpane:isNotFiltered>Pure and Unfiltered!</filterpane:isNotFiltered>
 	                <filterpane:isFiltered>Filter Applied!</filterpane:isFiltered>
-					--%>
 				</div>
+					--%>
+				<div class="pagination">
+					<bootstrap:paginate params="${filterParams}" total="${quoteInstanceTotal?quoteInstanceTotal:quoteInstanceList.size()}" />
+				</div>
+				<br/>
 			</div>
 		</div>
 	</body>
