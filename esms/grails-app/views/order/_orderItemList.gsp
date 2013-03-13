@@ -63,7 +63,7 @@
 </div>
 
 <!-- Modal -->
-<div id="orderItemModal" class="modal hide fade" tabindex="-1"
+<div id="orderItemModal" class="modal hide fade" tabindex="-1" style="width:70%;top:50%;left:40%;"
 	role="dialog"
 	data-remote="<g:createLink controller="order" action="createOrderItem" params="[orderId:orderInstance?.id]"/>"
 	aria-labelledby="myModalLabel" aria-hidden="true">
