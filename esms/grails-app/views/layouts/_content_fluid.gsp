@@ -2,6 +2,7 @@
 
 	<!-- Main menu in one line (e.g., controller entry points -->
 	<div class="row-fluid">
+			<g:if test="${params.view =="dashboard"?'active':''}">
 			<aside id="application-status" class="span3">
 				<div class="sidebar-nav"
 					style="min-height: 480px; max-height: 100%; margin-top: 10px;border-right:1px solid #e3e3e3; ">
@@ -11,8 +12,14 @@
 					</div>
 				</div>
 			</aside>
+			</g:if>
 			
-			<section id="main" class="span9">
+			<g:if test="${params.view =="dashboard"?'active':''}">
+				<section id="main" class="span12">
+			</g:if>
+			<g:else>
+				<section id="main" class="span9">
+			</g:else>
 				
 				<div class="row-fluid">
 					<div class="span12">
