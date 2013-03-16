@@ -1,4 +1,4 @@
-<g:set var="liftInfoInstance" value="${organizationInstance?.liftInfo}"/>
+<g:set var="liftInfoInstance" value="${organizationInstance?.liftInfo}" />
 <dl class="dl-horizontal">
 
 	<dt>
@@ -51,6 +51,71 @@
 
 
 	<dt>
+		<g:message code="liftInfo.buildingType.label" default="Building Type" />
+	</dt>
+
+	<dd>
+		<g:fieldValue bean="${liftInfoInstance}" field="buildingType" />
+	</dd>
+
+
+	<dt>
+		<g:message code="liftInfo.gateType.label" default="Gate Type" />
+	</dt>
+
+	<dd>
+		<g:fieldValue bean="${liftInfoInstance}" field="gateType" />
+	</dd>
+
+
+	<dt>
+		<g:message code="liftInfo.retiringCamType.label"
+			default="Retiring Cam Type" />
+	</dt>
+
+	<dd>
+		<g:fieldValue bean="${liftInfoInstance}" field="retiringCamType" />
+	</dd>
+
+
+	<dt>
+		<g:message code="liftInfo.lockType.label" default="Lock Type" />
+	</dt>
+
+	<dd>
+		<g:fieldValue bean="${liftInfoInstance}" field="lockType" />
+	</dd>
+
+
+	<dt>
+		<g:message code="liftInfo.drive.label" default="Drive" />
+	</dt>
+
+	<dd>
+		<g:fieldValue bean="${liftInfoInstance}" field="drive" />
+	</dd>
+
+
+	<dt>
+		<g:message code="liftInfo.driveCapacity.label"
+			default="Drive Capacity" />
+	</dt>
+
+	<dd>
+		<g:fieldValue bean="${liftInfoInstance}" field="driveCapacity" />
+	</dd>
+
+
+	<dt>
+		<g:message code="liftInfo.driveMake.label" default="Drive Make" />
+	</dt>
+
+	<dd>
+		<g:fieldValue bean="${liftInfoInstance}" field="driveMake" />
+	</dd>
+
+
+	<dt>
 		<g:message code="liftInfo.noOfFloors.label" default="No Of Floors" />
 	</dt>
 
@@ -70,14 +135,12 @@
 
 
 	<dt>
-		<g:message code="liftInfo.organization.label" default="Organization" />
+		<g:message code="liftInfo.servicePeriod.label"
+			default="Service Period" />
 	</dt>
 
 	<dd>
-		<g:link controller="organization" action="show"
-			id="${liftInfoInstance?.organization?.id}">
-			${liftInfoInstance?.organization?.encodeAsHTML()}
-		</g:link>
+		<g:fieldValue bean="${liftInfoInstance}" field="servicePeriod" />
 	</dd>
 
 

@@ -62,6 +62,11 @@
 											Payment
 										</g:link>
 						</li>
+						<li <%= 'dashboard' == controllerName ? ' class="active"' : '' %>>
+							<g:link controller="dashboard">
+										Dashboard
+							</g:link>
+						</li>
 					</ul>
 				</div>
 			</div>

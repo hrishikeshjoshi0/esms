@@ -11,6 +11,14 @@ class LiftInfo {
 	String lastServiceProvider
 	Date lastContractEndDate
 	String typeOfEnquiry
+	String buildingType
+	String drive
+	String driveMake
+	String driveCapacity
+	String gateType
+	String retiringCamType
+	String lockType
+	String servicePeriod
 
 	Organization organization 
     
@@ -19,6 +27,10 @@ class LiftInfo {
 		liftControlSystem(blank:true,nullable:true)
 		lastServiceProvider(blank:true,nullable:true)
 		lastContractEndDate (blank:true,nullable:true)
-		typeOfEnquiry(InList:['AMC','REPAIR','BOTH'])
+		typeOfEnquiry(InList:['INSTALLATION','MAINTENANCE','MODERNISATION','REPAIR'])
+		buildingType(InList:['RESIDENTIAL','INDUSTRIAL','COMMERCIAL','OTHER'])
+		gateType(InList:['COLLAPSIBLE','AUTO DOOR','SWING DOOR RIGHT CLOSING','SWING DOOR LEFT CLOSING','ACCORDION DOOR','OTHER'])
+		retiringCamType(InList:['OTIS','BHARAT BIJLEE'])
+		lockType(InList:['OTIS','BHARAT BIJLEE','EROS EXCEL'])
     }
 }

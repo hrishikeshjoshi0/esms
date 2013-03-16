@@ -30,7 +30,7 @@
 						
 							<g:sortableColumn property="typeOfEnquiry" title="${message(code: 'liftInfo.typeOfEnquiry.label', default: 'Type Of Enquiry')}" />
 						
-							<g:sortableColumn property="noOfFloors" title="${message(code: 'liftInfo.noOfFloors.label', default: 'No Of Floors')}" />
+							<g:sortableColumn property="buildingType" title="${message(code: 'liftInfo.buildingType.label', default: 'Building Type')}" />
 						
 							<th></th>
 						</tr>
@@ -49,7 +49,7 @@
 						
 							<td>${fieldValue(bean: liftInfoInstance, field: "typeOfEnquiry")}</td>
 						
-							<td>${fieldValue(bean: liftInfoInstance, field: "noOfFloors")}</td>
+							<td>${fieldValue(bean: liftInfoInstance, field: "buildingType")}</td>
 						
 							<td class="link">
 								<g:link action="show" id="${liftInfoInstance.id}" class="btn btn-small">Show &raquo;</g:link>

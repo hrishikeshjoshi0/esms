@@ -64,16 +64,6 @@
 
 
 				<dt>
-					<g:message code="organization.description.label"
-						default="Description" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${organizationInstance}" field="description" />
-				</dd>
-
-
-				<dt>
 					<g:message code="organization.assignedTo.label"
 						default="Assigned To" />
 				</dt>
@@ -90,6 +80,15 @@
 				<dd>
 					<g:fieldValue bean="${organizationInstance}" field="salesStatus" />
 				</dd>
+				
+				<dt>
+					<g:message code="organization.reasonForChange.label"
+						default="Reason for Change" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${organizationInstance}" field="description" />
+				</dd>
 
 			</dl>
 		</div>
@@ -98,7 +97,7 @@
 			
 			<!--  -->
 			<ul class="nav nav-tabs" id="organization_show_tab">
-			  <li class="active" data-toggle="tab"><a href="#contactsTabPane">Contact</a></li>
+			  <li class="active" data-toggle="tab"><a href="#contactsTabPane" data-toggle="tab">Contact</a></li>
 			  <li><a href="#liftInfoTabPane" data-toggle="tab">About the Lift</a></li>
 			  <li><a href="#addressesTabsPane" data-toggle="tab">Addresses</a></li>
 			  <li><a href="#phonesTabsPane" data-toggle="tab">Phones</a></li>

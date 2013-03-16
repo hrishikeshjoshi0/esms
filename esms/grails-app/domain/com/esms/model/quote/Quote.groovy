@@ -15,8 +15,6 @@ class Quote {
 	String type
 	String description
 	String salesChannel
-	Date issueDate = new Date()
-	Date expiryDate
 	String contactName
 	BigDecimal totalAmount = new BigDecimal("0.0")
 	BigDecimal totalTax = new BigDecimal("0.0")
@@ -51,14 +49,12 @@ class Quote {
 		type InList:['CONTRACT','REPAIR']
 		salesChannel blank:false
 		description nullable:true,blank:true
-		issueDate nullable:false
-		expiryDate nullable:true
 		contactName nullable:true,blank:true
 		totalAmount nullable:false
 		totalTax nullable:false
 		totalDiscount nullable:false
 		grandTotal nullable:false
-		relatedTo nullable:true,InList:['CONTRACT','ORGANIZATION']
+		relatedTo nullable:true,InList:['CONTRACT CUSTOMER','NON CONTRACT CUSTOMER']
 		relatedToValue nullable:true,blank:true
 		
 		contractFromDate nullable:true,blank:true

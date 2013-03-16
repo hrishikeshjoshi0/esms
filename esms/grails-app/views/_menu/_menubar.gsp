@@ -35,6 +35,7 @@
 	<g:if test="${	params.controller != null
 			&&	params.controller != ''
 			&&	params.controller != 'home'
+			&&	params.controller != 'dashboard'
 	}">
 		<ul class="nav nav-list bs-docs-sidenav">
 		  <g:set var="entityName" value="${message(code: params.controller+'.label', default: params.controller.substring(0,1).toUpperCase() + params.controller.substring(1).toLowerCase())}" />	
@@ -150,7 +151,35 @@
 			
 		</ul>
 	--%></g:if>
-	<g:else>
-		
-	</g:else>
+		<g:elseif test="${params.controller != null &&	params.controller == 'dashboard'}">
+			<ul class="nav nav-list bs-docs-sidenav">
+			  <g:set var="entityName" value="Reports" />	
+			   <li class="nav-header">${entityName}</li>
+		  	   <li class="divider"></li>
+		  	   
+			   <li class="${ params.action == "quotesByStatus" ? 'active' : '' }">
+					<g:link action="quotesByStatus">
+						<i class="icon-chevron-right"></i>
+						Quotes By Status Report
+					</g:link>
+			   </li>
+			   
+			   <li class="${params.action == "ordersByStatus" ? 'active' : '' }">
+					<g:link action="ordersByStatus">
+						<i class="icon-chevron-right"></i>
+						Orders By Status Report
+					</g:link>
+			   </li>
+			   
+			   <li class="${params.action == "invoicesByStatus" ? 'active' : '' }">
+					<g:link action="invoicesByStatus">
+						<i class="icon-chevron-right"></i>
+						Invoices By Status Report
+					</g:link>
+			   </li>	  	   		
+	  	   </ul>
+		</g:elseif>
+		<g:else>
+			
+		</g:else>
 </div>

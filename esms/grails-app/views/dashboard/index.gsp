@@ -58,7 +58,7 @@
           }
        </script>
        <gvisualization:pieCoreChart elementId="piechart"
-			title="My Daily Activities" width="${450}" height="${300}"
+			title="My Daily Activities" width="${900}" height="${900}"
 			columns="${myDailyActivitiesColumns}" data="${myDailyActivitiesData}" />
 	   
 	   <h2>Google Visualization API Examples</h2>
