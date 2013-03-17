@@ -99,7 +99,8 @@
 			  <li class="active"><a href="#contactsTabPane" data-toggle="tab">Contact</a></li>
 			  <li><a href="#liftInfoTabPane" data-toggle="tab">About the Lift</a></li>
 			  <li><a href="#addressesTabsPane" data-toggle="tab">Addresses</a></li>
-			  <li><a href="#phonesTabsPane" data-toggle="tab">Phones</a></li>
+			  <%--<li><a href="#phonesTabsPane" data-toggle="tab">Phones</a></li>
+			  --%>
 			  <li><a href="#quotesTabsPane" data-toggle="tab">Quotes</a></li>
 			  <li><a href="#eventsTabsPane" data-toggle="tab">Events</a></li>
 			</ul>
@@ -108,15 +109,16 @@
 			  <div class="tab-pane active" id="contactsTabPane">
 			  	<g:render template="contactList" />
 			  </div>
-			  <div class="tab-pane active" id="liftInfoTabPane">
+			  <div class="tab-pane" id="liftInfoTabPane">
 			  	<g:render template="liftInfo" />
 			  </div>
 			  <div class="tab-pane" id="addressesTabsPane">
 			  	<g:render template="addressList" />
 			  </div>
-			  <div class="tab-pane" id="phonesTabsPane">
+			  <%--<div class="tab-pane" id="phonesTabsPane">
 			  	<g:render template="phoneBookList" />
 			  </div>
+			  --%>
 			  <div class="tab-pane" id="quotesTabsPane">
 			  	<g:render template="quoteList" />
 			  </div>

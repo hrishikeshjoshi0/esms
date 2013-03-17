@@ -98,6 +98,43 @@
 				<div class="span4">
 					<dl class="dl-horizontal" style="margin-left: -30px;">
 						<dt>
+							<g:message code="quote.sent.label" default="Sent" />
+						</dt>
+						<dd>
+							<g:formatBoolean boolean="${quoteInstance?.sent}" true="Yes" false="No"/>
+						</dd>
+						
+						<g:if test="${quoteInstance?.sent}">
+							<dt>
+								<g:message code="quote.recepientContactName.label" default="Recepient Name" />
+							</dt>
+							<dd>
+								${quoteInstance?.recepientContactName}"
+							</dd>
+							
+							<dt>
+								<g:message code="quote.recepientContactNumber.label" default="Recepient Number" />
+							</dt>
+							<dd>
+								${quoteInstance?.recepientContactNumber}"
+							</dd>
+							
+							<dt>
+								<g:message code="quote.receivedDateTime.label" default="Received Date" />
+							</dt>
+							<dd>
+								${quoteInstance?.receivedDateTime}"
+							</dd>
+							
+							<dt>
+								<g:message code="quote.handedOveryBy.label" default="Handed Over By" />
+							</dt>
+							<dd>
+								${quoteInstance?.handedOveryBy}"
+							</dd>
+						</g:if>
+						
+						<dt>
 							<g:message code="quote.status.label" default="Status" />
 						</dt>
 						<dd>
@@ -115,18 +152,6 @@
 						</dt>
 						<dd>
 							<g:fieldValue bean="${quoteInstance}" field="salesChannel" />
-						</dd>
-						<dt>
-							<g:message code="quote.issueDate.label" default="Issue Date" />
-						</dt>
-						<dd>
-							<g:formatDate date="${quoteInstance?.issueDate}" />
-						</dd>
-						<dt>
-							<g:message code="quote.expiryDate.label" default="Expiry Date" />
-						</dt>
-						<dd>
-							<g:formatDate date="${quoteInstance?.expiryDate}" />
 						</dd>
 						<dt>
 							<g:message code="quote.contactName.label" default="Contact Name" />

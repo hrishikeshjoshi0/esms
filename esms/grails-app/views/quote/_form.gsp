@@ -1,13 +1,47 @@
 <%@page import="com.esms.model.party.Organization"%>
 <%@ page import="com.esms.model.quote.Quote"%>
 
+<script>
+function fetchInfo(id) {
+	var url = "${createLink(controller:'organization', action:'fetchInfo')}" + "/" + id;
+	$.ajax({
+	    url:url,
+	    dataType: 'xml',	
+	    success: function(data) {
+		    alert(data);
+	    	$(data).find("contactName").each(function() {  
+	    		//find each instance of loc in xml file and wrap it in a link  
+	    		$("#contactName").val($(this).text());
+	    	});
+
+	    	$(data).find("assignedTo").each(function() {  
+	    		//find each instance of loc in xml file and wrap it in a link  
+	    		$("#assignedTo").val($(this).text());
+	    	});  
+
+	    	$(data).find("liftInfo.typeOfEnquiry").each(function() {  
+	    		//find each instance of loc in xml file and wrap it in a link  
+	    		$("#type").val($(this).text());
+	    	});  
+	    },
+	    error: function(request, status, error) {
+	      alert(error);
+	    },
+	    complete: function() {
+	    }
+	});
+}
+</script>
+
 <div
 	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'organization', 'error')} required">
 	<label for="organization" class="control-label"><g:message
 			code="quote.organization.label" default="Organization" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:select name="organization.id" from="${Organization.list()}" optionKey="id" optionValue="name" class="input-xxlarge" value="${quoteInstance?.organization?.id}" />	
+		<g:select name="organization.id" from="${Organization.list()}"
+			optionKey="id" optionValue="name" class="input-xxlarge" onchange="fetchInfo(this.value);"
+			value="${quoteInstance?.organization?.id}" />
 		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'organization', 'error')}
 		</span>
 	</div>
@@ -79,34 +113,6 @@
 		<g:textField name="salesChannel" required=""
 			value="${quoteInstance?.salesChannel}" />
 		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'salesChannel', 'error')}
-		</span>
-	</div>
-</div>
-
-<div
-	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'issueDate', 'error')} required">
-	<label for="issueDate" class="control-label"><g:message
-			code="quote.issueDate.label" default="Issue Date" /><span
-		class="required-indicator">*</span></label>
-	<div class="controls">
-		<g:datePicker name="issueDate" value="${quoteInstance?.issueDate}" precision="day"/>
-		<%--<bootstrap:jqDatePicker name="issueDate"
-			value="${quoteInstance?.issueDate}" />
-		--%>
-		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'issueDate', 'error')}
-		</span>
-	</div>
-</div>
-
-<div
-	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'expiryDate', 'error')} ">
-	<label for="expiryDate" class="control-label"><g:message
-			code="quote.expiryDate.label" default="Expiry Date" /></label>
-	<div class="controls">
-		<g:datePicker name="expiryDate" value="${quoteInstance?.expiryDate}" precision="day"/>
-		<%--<bootstrap:jqDatePicker name="expiryDate"
-			value="${quoteInstance?.expiryDate}" />
-		--%><span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'expiryDate', 'error')}
 		</span>
 	</div>
 </div>

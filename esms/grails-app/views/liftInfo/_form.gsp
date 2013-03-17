@@ -114,7 +114,7 @@
 				</div>
 			</div>
 
-			<div class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'organization', 'error')} required">
+			<%--<div class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'organization', 'error')} required">
 				<label for="organization" class="control-label"><g:message code="liftInfo.organization.label" default="Organization" /><span class="required-indicator">*</span></label>
 				<div class="controls">
 					<g:select id="organization" name="organization.id" from="${com.esms.model.party.Organization.list()}" optionKey="id" required="" value="${liftInfoInstance?.organization?.id}" class="many-to-one"/>
@@ -122,7 +122,7 @@
 				</div>
 			</div>
 
-			<div class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'servicePeriod', 'error')} ">
+			--%><div class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'servicePeriod', 'error')} ">
 				<label for="servicePeriod" class="control-label"><g:message code="liftInfo.servicePeriod.label" default="Service Period" /></label>
 				<div class="controls">
 					<g:textField name="servicePeriod" value="${liftInfoInstance?.servicePeriod}"/>

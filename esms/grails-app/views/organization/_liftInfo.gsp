@@ -135,18 +135,6 @@
 
 
 	<dt>
-		<g:message code="liftInfo.organization.label" default="Organization" />
-	</dt>
-
-	<dd>
-		<g:link controller="organization" action="show"
-			id="${liftInfoInstance?.organization?.id}">
-			${liftInfoInstance?.organization?.encodeAsHTML()}
-		</g:link>
-	</dd>
-
-
-	<dt>
 		<g:message code="liftInfo.servicePeriod.label"
 			default="Service Period" />
 	</dt>
@@ -154,6 +142,5 @@
 	<dd>
 		<g:fieldValue bean="${liftInfoInstance}" field="servicePeriod" />
 	</dd>
-
 
 </dl>
