@@ -37,9 +37,13 @@ environments {
 		}
     }
     test {
-        dataSource {
-            dbCreate = "update"
-            url = "jdbc:mysql://moryasolutions.com:3306/hrishi23_openappengine?useUnicode=yes&characterEncoding=UTF-8"
+		grails.paypal.server = "https://www.sandbox.paypal.com/cgi-bin/webscr"
+		grails.paypal.email = "testpp_1211202427_biz@g2one.com"
+		grails.serverURL = "http://localhost:9090/esms"
+		
+		dataSource {
+			dbCreate = "update" // one of 'create', 'create-drop','update'
+			url = "jdbc:mysql://localhost:3306/esms?useUnicode=yes&characterEncoding=UTF-8"
 			username = "root"
 			password = "admin"
 			pooled = true
@@ -53,7 +57,10 @@ environments {
 			   testOnReturn=true
 			   validationQuery="SELECT 1"
 			}
-        }
+		}
+		hibernate {
+			show_sql = true
+		}
     }
     production {
         dataSource {

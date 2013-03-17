@@ -76,6 +76,25 @@
 								</tr>
 							</g:each>
 						</g:each>
+						<g:each in="${organizationInstanceList}" var="organization">
+							<g:each in="${organization?.addresses}" var="addressInstance">
+								<tr>
+									<td>${fieldValue(bean: organization, field: "externalId")}</td>
+									<td>${fieldValue(bean: organization, field: "name")}</td>
+									<td>${fieldValue(bean: organization, field: "partyType")}</td>
+									<td>${fieldValue(bean: organization, field: "assignedTo")}</td>
+									<td>${fieldValue(bean: addressInstance, field: "addressType")}</td>
+									<td>${fieldValue(bean: addressInstance, field: "buildingName")}</td>
+									<td>${fieldValue(bean: addressInstance, field: "address1")}</td>
+									<td>${fieldValue(bean: addressInstance, field: "address2")}</td>
+									<td>${fieldValue(bean: addressInstance, field: "city")}</td>
+									<td>${fieldValue(bean: organization, field: "liftInfo.numberOfLifts")}</td>
+									<td class="link">
+										<g:link action="show" id="${organization?.id}" class="btn btn-small">Show &raquo;</g:link>
+									</td>
+								</tr>
+							</g:each>
+						</g:each>
 					</tbody>
 				</table>
 				<div class="pagination">
