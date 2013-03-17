@@ -52,14 +52,14 @@
 	  	   </g:if>
 	  	   <g:elseif test="${params.controller == 'quote'}">
 	  	   		<li>
-	  	   			<g:link action="create" params="[contractQuote:true,type:'CONTRACT']">
+	  	   			<g:link action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]">
 	  	   				<i class="icon-chevron-right"></i> 
 						Create Contract Quote
 					</g:link>
 				</li>	
 				
 				<li>
-					<g:link action="create" params="[type:'REPAIR']">
+					<g:link action="create" params="[type:'REPAIR',organizationId:organizationInstance?.id]">
 						<i class="icon-chevron-right"></i> 
 						Create Repair Quote
 					</g:link>
@@ -104,7 +104,7 @@
 			
 			<g:if test="${params.controller == 'lead'}">
 			   <li>
-					<g:link controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT']"> 
+					<g:link controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]"> 
 						<i class="icon-chevron-right"></i>
 						Create Contract Quote
 					</g:link>

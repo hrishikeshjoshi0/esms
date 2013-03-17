@@ -90,8 +90,6 @@ class OrderController {
 				quote.status = "CONVERTED_TO_REPAIR_SALES_ORDER"
 			}
 			
-			order.issueDate = quote.issueDate
-			order.expiryDate = quote.expiryDate
 			order.totalAmount = quote.totalAmount
 			order.totalTax = quote.totalTax
 			order.totalDiscount = quote.totalDiscount

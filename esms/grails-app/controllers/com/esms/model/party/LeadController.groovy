@@ -42,18 +42,44 @@ class LeadController {
 				return
 			}
 			
-			def contactInstance = new Contact(params)
+			def contactInstance = new Contact()
+			contactInstance = bindData(contactInstance, params, "primary") 
+			
+			def list = Party.list();
+			int no = (list?list.size():0) + 1;
+			contactInstance.externalId = "CONT" + String.format("%05d", no)
+			contactInstance.partyType = 'CONTACT'
+			
 			contactInstance.organization = organizationInstance
+			contactInstance.description = ''
 			contactInstance.save(flush:true)
+			
+			def phoneBookInstance = new PhoneBook()
+			phoneBookInstance = bindData(phoneBookInstance,params,'primary')
+			phoneBookInstance.party = contactInstance
+			phoneBookInstance.save(flush:true)
+			
+			def secondaryContactInstance = new Contact()
+			secondaryContactInstance = bindData(secondaryContactInstance, params, "secondary")
+			
+			list = Party.list();
+			no = (list?list.size():0) + 1;
+			secondaryContactInstance.externalId = "CONT" + String.format("%05d", no)
+			secondaryContactInstance.partyType = 'CONTACT'
+			
+			secondaryContactInstance.organization = organizationInstance
+			secondaryContactInstance.description = ''
+			secondaryContactInstance.save(flush:true)
+			
+			def secondaryPhoneBookInstance = new PhoneBook()
+			phoneBookInstance = bindData(secondaryPhoneBookInstance,params,'secondary')
+			secondaryPhoneBookInstance.party = secondaryContactInstance
+			secondaryPhoneBookInstance.save(flush:true)
 			
 			def addressInstance = new Address(params)
 			addressInstance.party = organizationInstance
 			addressInstance.save(flush:true)
 			
-			def phoneBookInstance = new PhoneBook(params)
-			phoneBookInstance.party = organizationInstance
-			phoneBookInstance.save(flush:true)
-
 			def liftInfo = new LiftInfo(params)
 			liftInfo.organization = organizationInstance
 			liftInfo.save(flush:true)

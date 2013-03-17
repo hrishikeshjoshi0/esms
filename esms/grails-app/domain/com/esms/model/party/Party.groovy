@@ -12,8 +12,8 @@ class Party {
 	
     static constraints = {
 		externalId blank:false
-		description maxSize: 1000,blank : true
-		partyType inList: ["CONTACT","ORGANIZATION"]
+		description maxSize: 1000,blank : true,null:true
+		partyType inList: ["CONTACT","ORGANIZATION","EMPLOYEE"]
     }
 	
 	static mapping = {

@@ -3,6 +3,8 @@ package com.esms.model.quote
 import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
+import com.esms.model.party.Organization
+
 class QuoteController {
 
 	static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
@@ -27,18 +29,36 @@ class QuoteController {
 	def create() {
 		switch (request.method) {
 			case 'GET':
-
 				def list = Quote.list();
 				int no = (list?list.size():0) + 1;
 				String quoteNumber = "QUO" + String.format("%05d", no)
 
 				params.quoteNumber = quoteNumber
 				params.status = 'PENDING'
-				if(params.contractQuote) {
-					params.type = "CONTRACT"
-					params.relatedTo = 'CONTRACT'
+				
+				if(params.organizationId) {
+					def organization = Organization.get(params.organizationId?.toInteger())
+					params.assignedTo = organization?.assignedTo
+					
+					if(organization) {
+						if(organization?.liftInfo?.typeOfEnquiry == 'REPAIR') {
+							params.type = "REPAIR"
+						}
+						
+						if(!organization?.contacts?.isEmpty()) {
+							def contact = organization?.contacts.first()
+							params.contactName = contact?.firstName
+						}
+					}
 				}
-				[quoteInstance: new Quote(params)]
+				
+				if(params.contractQuote) {
+					//params.type = "CONTRACT"
+					//params.relatedTo = 'CONTRACT'
+				}
+				
+				def quote = new Quote(params)
+				[quoteInstance: quote]
 				break
 			case 'POST':
 				def quoteInstance = new Quote(params)
@@ -66,6 +86,9 @@ class QuoteController {
 			case 'POST' :
 				def quoteInstance = Quote.get(params.id)
 				quoteInstance.recepientContactName = params.recepientContactName
+				quoteInstance.recepientContactNumber = params.recepientContactNumber
+				quoteInstance.receivedDateTime = params.receivedDateTime
+				quoteInstance.handedOveryBy = params.handedOveryBy
 				quoteInstance.sent = true
 				quoteInstance.save(flush:true)
 

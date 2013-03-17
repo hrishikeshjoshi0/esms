@@ -57,8 +57,6 @@
 						
 							<g:sortableColumn property="description" title="${message(code: 'quote.description.label', default: 'Description')}" />
 						
-							<g:sortableColumn property="issueDate" title="${message(code: 'quote.issueDate.label', default: 'Issue Date')}" />
-						
 							<th></th>
 						</tr>
 					</thead>
@@ -80,8 +78,6 @@
 							<td>${fieldValue(bean: quoteInstance, field: "salesChannel")}</td>
 						
 							<td>${fieldValue(bean: quoteInstance, field: "description")}</td>
-						
-							<td><g:formatDate date="${quoteInstance.issueDate}" /></td>
 						
 							<td class="link">
 								<g:link action="show" id="${quoteInstance.id}" class="btn btn-small">Show &raquo;</g:link>

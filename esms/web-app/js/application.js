@@ -14,6 +14,10 @@ if (typeof jQuery !== 'undefined') {
        $('.show_hide').click(function(){
     	   $(".slidingDiv").slideToggle();
 	   });
+       
+       /*$('.modal').live('hidden', function(e) {
+    	    location.reload();
+    	});*/
 
 	})(jQuery);
 }

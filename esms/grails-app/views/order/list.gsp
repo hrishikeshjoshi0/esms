@@ -57,9 +57,9 @@
 						
 							<g:sortableColumn property="grandTotal" title="${message(code: 'order.grandTotal.label', default: 'Grand Total')}" />
 						
-							<g:sortableColumn property="openGrandTotal" title="${message(code: 'order.openGrandTotal.label', default: 'Open Amount')}" />
-							
 							<g:sortableColumn property="receviedGrandTotal" title="${message(code: 'order.receviedGrandTotal.label', default: 'Received Amount')}" />
+							
+							<g:sortableColumn property="openGrandTotal" title="${message(code: 'order.openGrandTotal.label', default: 'Open Amount')}" />
 						
 							<th></th>
 						</tr>
@@ -86,11 +86,11 @@
 							</td>
 							
 							<td>
-								${fieldValue(bean : orderInstance, field : "openGrandTotal") }
+								${fieldValue(bean : orderInstance, field : "receviedGrandTotal") }
 							</td>
 							
 							<td>
-								${fieldValue(bean : orderInstance, field : "receviedGrandTotal") }
+								${fieldValue(bean : orderInstance, field : "openGrandTotal") }
 							</td>
 						
 							<td class="link">

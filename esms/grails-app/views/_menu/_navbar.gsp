@@ -62,11 +62,18 @@
 											Payment
 										</g:link>
 						</li>
+						<li <%= 'employee' == controllerName ? ' class="active"' : '' %>>
+							<g:link controller="employee">
+										HR
+							</g:link>
+						</li>
+						<!-- 
 						<li <%= 'dashboard' == controllerName ? ' class="active"' : '' %>>
 							<g:link controller="dashboard">
 										Dashboard
 							</g:link>
 						</li>
+						 -->
 					</ul>
 				</div>
 			</div>

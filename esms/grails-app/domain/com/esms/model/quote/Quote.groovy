@@ -29,10 +29,14 @@ class Quote {
 	Boolean invoicingIsFixedPrice
 	Boolean invoicingIsTimesheets
 	Boolean invoicingIsExpenses
-	String assignedTo = 'SYSTEM'
+	String assignedTo
 	String termsAndConditions
 	
 	String recepientContactName
+	String recepientContactNumber
+	Date receivedDateTime
+	String handedOveryBy
+	
 	String declinedReason
 	String revisedReason
 	
@@ -64,9 +68,13 @@ class Quote {
 		invoicingIsExpenses nullable:true,blank:true
 		assignedTo nullable:true,blank:true
 		termsAndConditions nullable:true,blank:true,length:255
-		recepientContactName nullable:true,blank:true
 		declinedReason nullable:true,blank:true,length:1000
 		revisedReason nullable:true,blank:true,length:1000
+		
+		recepientContactName nullable:true,blank:true
+		recepientContactNumber nullable:true,blank:true
+		receivedDateTime nullable:true,blank:true
+		handedOveryBy nullable:true,blank:true
     }
 	
 	static mapping = {
