@@ -36,6 +36,10 @@
 					</h1>
 				</div>
 				
+				<div class="pagination">
+					<filterpane:paginate total="${paymentInstanceTotal?paymentInstanceTotal:paymentInstanceList.size()}" domainBean="com.esms.model.payment.Payment" />
+				</div>
+				<br/>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>

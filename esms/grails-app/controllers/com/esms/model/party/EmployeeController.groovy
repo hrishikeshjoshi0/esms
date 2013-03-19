@@ -1,11 +1,14 @@
 package com.esms.model.party
 
+import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
 class EmployeeController {
 
     static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
 
+	def filterPaneService
+	
     def index() {
         redirect action: 'list', params: params
     }
@@ -14,6 +17,12 @@ class EmployeeController {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [employeeInstanceList: Employee.list(params), employeeInstanceTotal: Employee.count()]
     }
+	
+	def filter = {
+		if(!params.max) params.max = 10
+		render( view:'list', model:[ employeeInstanceTotal: filterPaneService.filter( params, Employee),
+			employeeInstanceTotal: filterPaneService.count( params, Employee), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
+	}
 
     def create() {
 		switch (request.method) {

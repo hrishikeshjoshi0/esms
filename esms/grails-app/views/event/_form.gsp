@@ -1,12 +1,22 @@
 <%@ page import="com.esms.model.calendar.Event"%>
 <%@ page import="com.esms.model.calendar.EventRecurType"%>
 <%@ page import="org.joda.time.Instant"%>
-
+<%@page import="com.esms.model.party.Organization"%>
 
 <g:set var="entityName"
 	value="${message(code: 'event.label', default: 'Event')}" />
 
-<g:hiddenField name="party.id" value="${eventInstance?.party?.id}"/>
+<div
+	class=" ${hasErrors(bean: eventInstance, field: 'party', 'error')}">
+	
+	<label for="organization" class="control-label"><g:message
+			code="quote.organization.label" default="Organization" /></label>
+	<br/>		
+	<g:select name="party.id" from="${Organization.list()}"
+			optionKey="id" optionValue="name" class="input-xxlarge"
+			value="${eventInstance?.party?.id}" />
+</div>
+
 <div
 	class="fieldcontain ${hasErrors(bean: eventInstance, field: 'eventType', 'error')}">
 	<label for="eventType"><g:message code="event.eventType.label"

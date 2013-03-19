@@ -8,7 +8,7 @@ function fetchInfo(id) {
 	    url:url,
 	    dataType: 'xml',	
 	    success: function(data) {
-		    alert(data);
+		    //alert(data);
 	    	$(data).find("contactName").each(function() {  
 	    		//find each instance of loc in xml file and wrap it in a link  
 	    		$("#contactName").val($(this).text());

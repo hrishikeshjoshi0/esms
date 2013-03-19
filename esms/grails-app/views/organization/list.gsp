@@ -38,7 +38,7 @@
 				</div>
 				
 				<div class="pagination">
-					<bootstrap:paginate params="${filterParams}" total="${organizationInstanceTotal}" />
+					<bootstrap:paginate params="${filterParams}" total="${organizationInstanceList.size()}" />
 				</div>
 				<br/>
 				<table class="table table-striped table-hover">
@@ -98,7 +98,7 @@
 					</tbody>
 				</table>
 				<div class="pagination">
-					<bootstrap:paginate params="${filterParams}" total="${organizationInstanceTotal}" />
+					<bootstrap:paginate params="${filterParams}" total="${organizationInstanceList.size()}" />
 				</div>
 				<br/>
 			</div>
