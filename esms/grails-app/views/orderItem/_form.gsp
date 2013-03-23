@@ -6,6 +6,8 @@
 		$('.calc').change(function(){
 			calculateLineTotalAmount();
 		});
+
+		$(".create").attr("disabled", "disabled");
 	});
 
     function calculateLineTotalAmount() {
@@ -14,24 +16,30 @@
     }
     
 	function fetchUnitPriceForProduct(id) {
-		var url = "${createLink(controller:'product', action:'getPrice')}" + "/" + id;
-		$.ajax({
-		    url:url,
-		    dataType: 'xml',	
-		    success: function(data) {
-		    	$(data).find("unitPrice").each(function() {  
-		    		//find each instance of loc in xml file and wrap it in a link  
-		    		$("#unitPrice").val($(this).text());
+		if(id == 'null') {
+			$(".create").attr("disabled", "disabled");
+		} else {
+			var url = "${createLink(controller:'product', action:'getPrice')}" + "/" + id;
+			$.ajax({
+			    url:url,
+			    dataType: 'xml',	
+			    success: function(data) {
+			    	$(data).find("unitPrice").each(function() {  
+			    		//find each instance of loc in xml file and wrap it in a link  
+			    		$("#unitPrice").val($(this).text());
+	
+			    		calculateLineTotalAmount();
+			    	});  
+			    },
+			    error: function(request, status, error) {
+			      alert(error)
+			    },
+			    complete: function() {
+			    }
+			});
 
-		    		calculateLineTotalAmount();
-		    	});  
-		    },
-		    error: function(request, status, error) {
-		      alert(error)
-		    },
-		    complete: function() {
-		    }
-		});
+			$(".create").removeAttr("disabled");
+		}
 	}
 </script>
 
@@ -62,6 +70,7 @@
 					class="required-indicator">*</span></label>
 				<g:select name="productNumber" from="${Product.list()}"
 					optionKey="productNumber" optionValue="productName" class="input-large"
+					noSelection="${['null':'Select Product..']}"
 					value="${quoteInstance?.organization?.id}" onChange="fetchUnitPriceForProduct(this.value);"/>
 				<span class="help-inline">
 					${hasErrors(bean: quoteInstance, field: 'productNumber', 'error')}

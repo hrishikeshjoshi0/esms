@@ -77,7 +77,7 @@
 		<div class="modal-body"></div>
 		<div class="modal-footer">
 			<div class="form-actions">
-				<button type="submit" class="btn btn-primary">
+				<button type="submit" class="btn btn-primary create">
 					<i class="icon-ok icon-white"></i>
 					<g:message code="default.button.create.label" default="Create" />
 				</button>

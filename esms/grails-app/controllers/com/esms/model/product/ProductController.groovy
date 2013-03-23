@@ -179,16 +179,25 @@ class ProductController {
 		def results = c.list {
 			eq("product",product)
 		}
-
-		def price = results?.get(0)
 		
-		if(price) {
+		if(results && results.size() != 0) {
+			def price = results?.get(0)
+					
+			if(price) {
+				//Create XML response
+				render(contentType: "text/xml") {
+					result(){
+						unitPrice(price.price)
+						//Optional id which will be available in onItemSelect
+						id(product.id)
+					}
+				}
+			}
+		} else {
 			//Create XML response
 			render(contentType: "text/xml") {
 				result(){
-					unitPrice(price.price)
-					//Optional id which will be available in onItemSelect
-					id(product.id)
+					unitPrice(0.0)
 				}
 			}
 		}

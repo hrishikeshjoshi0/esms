@@ -54,68 +54,84 @@
 
 
 				<dt>
-					<g:message code="event.description.label" default="Description" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${eventInstance}" field="description" />
-				</dd>
-
-
-				<dt>
-					<g:message code="event.recurType.label" default="Recur Type" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${eventInstance}" field="recurType" />
-				</dd>
-
-
-				<dt>
-					<g:message code="event.recurInterval.label"
-						default="Recur Interval" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${eventInstance}" field="recurInterval" />
-				</dd>
-
-
-				<dt>
-					<g:message code="event.recurUntil.label" default="Recur Until" />
-				</dt>
-
-				<dd>
-					<g:formatDate date="${eventInstance?.recurUntil}" />
-				</dd>
-
-
-				<dt>
-					<g:message code="event.recurCount.label" default="Recur Count" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${eventInstance}" field="recurCount" />
-				</dd>
-
-
-				<dt>
 					<g:message code="event.startTime.label" default="Start Time" />
 				</dt>
 
 				<dd>
-					<g:formatDate date="${eventInstance?.startTime}" />
+					<g:formatDate date="${eventInstance?.startTime}" type="datetime"/>
 				</dd>
-
-
+				
 				<dt>
-					<g:message code="event.excludeDays.label" default="Exclude Days" />
+					<g:message code="event.endTime.label" default="End Time" />
 				</dt>
 
 				<dd>
-					<g:fieldValue bean="${eventInstance}" field="excludeDays" />
+					<g:formatDate date="${eventInstance?.endTime}" type="datetime" />
 				</dd>
 
+				<g:if test="${eventInstance?.isRecurring}">
+					<dt>
+						<g:message code="event.isRecurring.label" default="Is Recurring" />
+					</dt>
+
+					<dd>
+						<g:formatBoolean boolean="${eventInstance?.isRecurring}" />
+					</dd>
+
+					<dt>
+						<g:message code="event.recurType.label" default="Recur Type" />
+					</dt>
+
+					<dd>
+						<g:fieldValue bean="${eventInstance}" field="recurType" />
+					</dd>
+
+
+					<dt>
+						<g:message code="event.recurInterval.label"
+							default="Recur Interval" />
+					</dt>
+
+					<dd>
+						<g:fieldValue bean="${eventInstance}" field="recurInterval" />
+					</dd>
+
+
+					<dt>
+						<g:message code="event.recurUntil.label" default="Recur Until" />
+					</dt>
+
+					<dd>
+						<g:formatDate date="${eventInstance?.recurUntil}" />
+					</dd>
+
+
+					<dt>
+						<g:message code="event.recurCount.label" default="Recur Count" />
+					</dt>
+
+					<dd>
+						<g:fieldValue bean="${eventInstance}" field="recurCount" />
+					</dd>
+
+
+					<dt>
+						<g:message code="event.excludeDays.label" default="Exclude Days" />
+					</dt>
+
+					<dd>
+						<g:fieldValue bean="${eventInstance}" field="excludeDays" />
+					</dd>
+
+					<dt>
+						<g:message code="event.recurDaysOfWeek.label"
+							default="Recur Days Of Week" />
+					</dt>
+
+					<dd>
+						<g:fieldValue bean="${eventInstance}" field="recurDaysOfWeek" />
+					</dd>
+				</g:if>
 
 				<dt>
 					<g:message code="event.sourceEvent.label" default="Source Event" />
@@ -124,36 +140,16 @@
 				<dd>
 					<g:link controller="event" action="show"
 						id="${eventInstance?.sourceEvent?.id}">
-						${eventInstance?.sourceEvent?.encodeAsHTML()}
+						${eventInstance?.sourceEvent?.title}
 					</g:link>
 				</dd>
 
-
 				<dt>
-					<g:message code="event.endTime.label" default="End Time" />
+					<g:message code="event.description.label" default="Description" />
 				</dt>
 
 				<dd>
-					<g:formatDate date="${eventInstance?.endTime}" />
-				</dd>
-
-
-				<dt>
-					<g:message code="event.recurDaysOfWeek.label"
-						default="Recur Days Of Week" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${eventInstance}" field="recurDaysOfWeek" />
-				</dd>
-
-
-				<dt>
-					<g:message code="event.isRecurring.label" default="Is Recurring" />
-				</dt>
-
-				<dd>
-					<g:formatBoolean boolean="${eventInstance?.isRecurring}" />
+					<g:fieldValue bean="${eventInstance}" field="description" />
 				</dd>
 			</dl>
 

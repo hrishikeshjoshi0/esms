@@ -31,7 +31,7 @@
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
 					
-					<g:if test="${quoteInstance?.sent == false}">
+					<g:if test="${quoteInstance?.sent == false && quoteInstance?.quoteItems?.size() != 0}">
 						<a data-toggle="modal" href="#" data-target="#markAsSent" role="button"
 							class="btn"> 
 							<i class="icon-envelope"></i>
@@ -39,7 +39,7 @@
 						</a>	
 					</g:if>
 					
-					<g:if test="${quoteInstance?.status == 'PENDING'}">
+					<g:if test="${quoteInstance?.status == 'PENDING' && quoteInstance?.quoteItems?.size() != 0}">
 						<g:link class="btn" action="markAsAccepted" id="${quoteInstance?.id}">
 							<i class="icon-envelope"></i>
 							Mark as Accepted
@@ -61,13 +61,13 @@
 							Mark as Declined
 						</a>
 					</g:if>
-					<g:elseif test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'CONTRACT'}">
+					<g:elseif test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'CONTRACT' && quoteInstance?.quoteItems?.size() != 0}">
 						<g:link class="btn" controller="order" action="convertQuoteToOrder" params="[orderId:quoteInstance.id]">
 							<i class="icon-share-alt"></i>
 							Confirm Sale
 						</g:link>
 					</g:elseif>
-					<g:elseif test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'REPAIR'}">
+					<g:elseif test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'REPAIR' && quoteInstance?.quoteItems?.size() != 0}">
 						<g:link class="btn" controller="order" action="convertQuoteToOrder" params="[orderId:quoteInstance.id]">
 							<i class="icon-wrench"></i>
 							Confirm Sale
@@ -160,6 +160,16 @@
 						<dd>
 							<g:fieldValue bean="${quoteInstance}" field="contactName" />
 						</dd>
+						
+						<g:if test="${quoteInstance.status == 'DECLINED'}">
+							<dt>
+								<g:message code="quote.declinedReason.label" default="Reason For Decline" />
+							</dt>
+	
+							<dd>
+								<g:fieldValue bean="${quoteInstance}" field="declinedReason" />
+							</dd>
+						</g:if>
 					</dl>
 				</div>
 				<div class="span4">

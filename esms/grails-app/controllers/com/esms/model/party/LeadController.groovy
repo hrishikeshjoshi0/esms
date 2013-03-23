@@ -54,11 +54,6 @@ class LeadController {
 			contactInstance.description = ''
 			contactInstance.save(flush:true)
 			
-			def phoneBookInstance = new PhoneBook()
-			phoneBookInstance = bindData(phoneBookInstance,params,'primary')
-			phoneBookInstance.party = contactInstance
-			phoneBookInstance.save(flush:true)
-			
 			def secondaryContactInstance = new Contact()
 			secondaryContactInstance = bindData(secondaryContactInstance, params, "secondary")
 			
@@ -70,6 +65,11 @@ class LeadController {
 			secondaryContactInstance.organization = organizationInstance
 			secondaryContactInstance.description = ''
 			secondaryContactInstance.save(flush:true)
+			
+			def phoneBookInstance = new PhoneBook()
+			phoneBookInstance = bindData(phoneBookInstance,params,'primary')
+			phoneBookInstance.party = contactInstance
+			phoneBookInstance.save(flush:true)
 			
 			def secondaryPhoneBookInstance = new PhoneBook()
 			phoneBookInstance = bindData(secondaryPhoneBookInstance,params,'secondary')
@@ -110,8 +110,8 @@ class LeadController {
 				redirect action: 'list'
 				return
 			}
-
-			[organizationInstance: organizationInstance]
+			
+			[organizationInstance: organizationInstance,contactInstance : new Contact(),addressInstance:new Address(),phoneBookInstance:new PhoneBook(),liftInfoInstance: new LiftInfo()]
 			break
 		case 'POST':
 			def organizationInstance = Organization.get(params.id)

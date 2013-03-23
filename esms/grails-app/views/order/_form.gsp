@@ -1,5 +1,39 @@
 <%@ page import="com.esms.model.order.Order"%>
 <%@ page import="com.esms.model.party.Organization"%>
+
+<script>
+function fetchInfo(id) {
+	var url = "${createLink(controller:'organization', action:'fetchInfo')}" + "/" + id;
+	$.ajax({
+	    url:url,
+	    dataType: 'xml',	
+	    success: function(data) {
+		    //alert(data);
+	    	$(data).find("contactName").each(function() {  
+	    		//find each instance of loc in xml file and wrap it in a link  
+	    		//$("#contactName").val($(this).text());
+	    		alert($(this).text());
+	    	});
+
+	    	$(data).find("assignedTo").each(function() {  
+	    		//find each instance of loc in xml file and wrap it in a link  
+	    		$("#assignedTo").val($(this).text());
+	    	});  
+
+	    	$(data).find("liftInfo.typeOfEnquiry").each(function() {  
+	    		//find each instance of loc in xml file and wrap it in a link  
+	    		$("#type").val($(this).text());
+	    	});  
+	    },
+	    error: function(request, status, error) {
+	      alert(error);
+	    },
+	    complete: function() {
+	    }
+	});
+}
+</script>
+
 <div
 	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'orderNumber', 'error')} required">
 	<label for="orderNumber" class="control-label"><g:message
@@ -34,7 +68,10 @@
 			code="order.organization.label" default="Organization" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:select name="organization.id" from="${Organization.list()}" optionKey="id" optionValue="name" class="input-xxlarge" value="${quoteInstance?.organization?.id}" />
+		<g:select name="organization.id" from="${Organization.list()}"
+			optionKey="id" optionValue="name" class="input-xxlarge"
+			onchange="fetchInfo(this.value);"
+			value="${quoteInstance?.organization?.id}" />
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'organization', 'error')}
 		</span>
 	</div>
@@ -67,7 +104,7 @@
 	</div>
 </div>
 
-<div
+<%--<div
 	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'issueDate', 'error')} required">
 	<label for="issueDate" class="control-label"><g:message
 			code="order.issueDate.label" default="Issue Date" /><span
@@ -91,6 +128,7 @@
 		</span>
 	</div>
 </div>
+--%>
 
 <div
 	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'contactName', 'error')} ">
@@ -125,17 +163,6 @@
 		<g:textField name="relatedToValue"
 			value="${orderInstance?.relatedToValue}" />
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'relatedToValue', 'error')}
-		</span>
-	</div>
-</div>
-
-<div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'contactName', 'error')} ">
-	<label for="contactName" class="control-label"><g:message
-			code="order.contactName.label" default="Contact Name" /></label>
-	<div class="controls">
-		<g:textField name="contactName" value="${orderInstance?.contactName}" />
-		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'contactName', 'error')}
 		</span>
 	</div>
 </div>

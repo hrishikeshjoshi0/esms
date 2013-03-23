@@ -29,7 +29,7 @@
 			<div class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'lastContractEndDate', 'error')} ">
 				<label for="lastContractEndDate" class="control-label"><g:message code="liftInfo.lastContractEndDate.label" default="Last Contract End Date" /></label>
 				<div class="controls">
-					<bootstrap:jqDatePicker name="lastContractEndDate"  value="${liftInfoInstance?.lastContractEndDate}"/>
+					<g:datePicker name="lastContractEndDate"  value="${liftInfoInstance?.lastContractEndDate}" precision="day"/>
 					<span class="help-inline">${hasErrors(bean: liftInfoInstance, field: 'lastContractEndDate', 'error')}</span>
 				</div>
 			</div>

@@ -9,8 +9,9 @@
 				</div>
 				
 				<div class="pull-right">
-					<g:render template="/_menu/config"></g:render>
-					<g:render template="/_menu/admin"></g:render>
+					<%--<g:render template="/_menu/config"></g:render>
+					--%>
+					<g:render template="/_menu/user"></g:render>
 				</div>
 			</div>
 			

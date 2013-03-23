@@ -1,3 +1,5 @@
+import grails.plugins.springsecurity.SecurityConfigType
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -115,3 +117,14 @@ grails.resources.modules = {
 		resource url: '/css/chosen.css'
 	}
 }
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.esms.model.security.SecUser'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.esms.model.security.SecUserSecRole'
+grails.plugins.springsecurity.authority.className = 'com.esms.model.security.SecRole'
+
+grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
+grails.plugins.springsecurity.interceptUrlMap = [
+	'/login/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/**': ['ROLE_USER','ROLE_ADMIN']
+]
+

@@ -49,7 +49,7 @@
 						</g:link>
 					</g:if>
 					--%>
-					<g:if test="${orderInstance?.status == 'PENDING_INVOICE'}">
+					<g:if test="${orderInstance?.status == 'PENDING_INVOICE' && orderInstance?.orderItems?.size() != 0}">
 						<g:link class="btn" action="createInvoice"
 							id="${orderInstance?.id}">
 							<i class="icon-briefcase"></i>
