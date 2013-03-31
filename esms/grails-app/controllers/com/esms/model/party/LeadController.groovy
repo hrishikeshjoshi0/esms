@@ -15,7 +15,8 @@ class LeadController {
 	
 	def list() {
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
-		[organizationInstanceList: Organization.list(), organizationInstanceTotal: Organization.count()]
+		def organizations = Organization.findAllBySalesStatusAndIsOneTimeCustomer('LEAD',false,params)
+		[organizationInstanceList: organizations, organizationInstanceTotal: Organization.count()]
 	}
 
 	def filter = {

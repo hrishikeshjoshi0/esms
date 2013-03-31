@@ -6,13 +6,13 @@
 --%>
 <ul class="nav pull-right">
 	<li class="dropdown">
-		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		<a class="user-link dropdown-toggle" data-toggle="dropdown" href="#">
 			<i class="icon-user icon-white"></i>
 			<sec:username />
 		</a>
 		<ul class="dropdown-menu">
 			<li>
-				<g:link class="dropdown-toggle" controller="logout">sign out</g:link>
+				<g:link class="user-link dropdown-toggle" controller="logout">sign out</g:link>
 			</li>
 		</ul>
 	</li>

@@ -65,7 +65,7 @@
 					</g:link>
 				</li>
 				
-				<g:if test="${quoteInstance?.type == 'CONTRACT'}">
+				<g:if test="${quoteInstance?.type == 'CONTRACT' && quoteInstance.id}">
 					<i class="icon-chevron-right"></i>
 					<g:jasperReport jasper="ContractQuotePrint" format="PDF" name="Print Quotation" delimiterAfter=" " delimiterBefore=" " heightAttr="15px">
 						<input type="hidden" name="quote" value="${quoteInstance.id}" />
@@ -102,7 +102,7 @@
 				</g:link>
 			</g:if>
 			
-			<g:if test="${params.controller == 'lead'}">
+			<g:if test="${params.controller == 'lead' || params.controller == 'organization'}">
 			   <li>
 					<g:link controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]"> 
 						<i class="icon-chevron-right"></i>

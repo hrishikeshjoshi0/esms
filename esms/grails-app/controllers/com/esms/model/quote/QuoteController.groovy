@@ -4,6 +4,7 @@ import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
 import com.esms.model.party.Organization
+import com.esms.model.product.Product;
 
 class QuoteController {
 
@@ -38,12 +39,18 @@ class QuoteController {
 				
 				if(params.organizationId) {
 					def organization = Organization.get(params.organizationId?.toInteger())
-					params.assignedTo = organization?.assignedTo
 					
 					if(organization) {
+						params.assignedTo = organization?.assignedTo
+						params.'organization.id' = organization?.id
+						
 						if(organization?.liftInfo?.typeOfEnquiry == 'REPAIR') {
 							params.type = "REPAIR"
 						}
+						
+						//
+						params.relatedTo = 'CONTRACT CUSTOMER'
+						params.relatedToValue = organization?.externalId
 						
 						if(!organization?.contacts?.isEmpty()) {
 							def contact = organization?.contacts.first()
@@ -294,10 +301,7 @@ class QuoteController {
 				quote.grandTotal = lineTotalAmount
 				quote.save(flush:true)
 
-				flash.message = message(code: 'default.created.message', args: [
-					message(code: 'quoteItem.label', default: 'QuoteItem'),
-					quoteItemInstance.id
-				])
+				flash.message = "Added New Line Item : " + Product.findByProductNumber(quoteItemInstance.productNumber);
 				redirect action: 'show', id: quoteItemInstance.quote.id
 				break
 		}

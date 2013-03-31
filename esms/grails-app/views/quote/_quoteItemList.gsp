@@ -1,3 +1,4 @@
+<%@ page import="com.esms.model.product.Product" %>
 <g:if test="${quoteInstance?.status != 'CONVERTED_TO_SERVICE_CONTRACT' && quoteInstance?.status != 'CONVERTED_TO_REPAIR_SALES_ORDER' }">
 <div class="pull-right">
 	<a data-toggle="modal" href="#" data-target="#quoteItemModal" role="button"
@@ -15,7 +16,7 @@
 				title="${message(code: 'quoteItem.lineNumber.label', default: 'Line Number')}" />
 
 			<g:sortableColumn property="productNumber"
-				title="${message(code: 'quoteItem.productNumber.label', default: 'Product Number')}" />
+				title="${message(code: 'quoteItem.productNumber.label', default: 'Product')}" />
 				
 			<g:sortableColumn property="quantity"
 				title="${message(code: 'quoteItem.quantity.label', default: 'Quantity')}" />
@@ -44,7 +45,7 @@
 				</td>
 				
 				<td>
-					${fieldValue(bean: quoteItemInstance, field: "productNumber")}
+					${Product.findByProductNumber(quoteItemInstance.productNumber)?.productName}
 				</td>
 
 				<td>

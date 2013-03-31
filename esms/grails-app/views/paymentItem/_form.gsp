@@ -20,8 +20,9 @@
 			code="paymentItem.order.label" default="Order" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:select name="order.id" from="${Order.list()}" optionKey="id" optionValue="orderNumber" />
-		<span class="help-inline"> ${hasErrors(bean: paymentItemInstance, field: 'lineNumber', 'error')}
+		<g:select name="order.id" from="${Order.findAllStatusNotEqual('PAID')}" optionKey="id" class="large"
+			optionValue="${{it.orderNumber + ' - ' + it.organization?.externalId + ' : ' + it.organization?.name}}" />
+		<span class="help-inline"> ${hasErrors(bean: paymentItemInstance, field: 'order', 'error')}
 		</span>
 	</div>
 </div>

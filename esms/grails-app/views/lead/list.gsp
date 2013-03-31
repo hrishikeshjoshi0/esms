@@ -1,10 +1,11 @@
 
 <%@ page import="com.esms.model.party.Organization" %>
+<%@ page import="com.esms.model.party.Address" %>
 <!doctype html>
 <html>
 	<head>
 		<meta name="layout" content="bootstrap">
-		<g:set var="entityName" value="${message(code: 'organization.label', default: 'Customers')}" />
+		<g:set var="entityName" value="${message(code: 'organization.label', default: 'Leads')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -37,10 +38,6 @@
 					</h1>
 				</div>
 				
-				<div class="pagination">
-					<bootstrap:paginate params="${filterParams}" total="${organizationInstanceList.size()}" />
-				</div>
-				<br/>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -58,22 +55,21 @@
 					</thead>
 					<tbody>
 						<g:each in="${organizationInstanceList}" var="organization">
-							<g:each in="${organization?.addresses}" var="addressInstance">
+								<g:set var="addressInstance" value="${Address.findByAddressTypeAndParty('BILLING',organization) }"/>
 								<tr>
 									<td>${fieldValue(bean: organization, field: "externalId")}</td>
 									<td>${fieldValue(bean: organization, field: "name")}</td>
 									<td>${fieldValue(bean: organization, field: "assignedTo")}</td>
-									<td>${fieldValue(bean: addressInstance, field: "addressType")}</td>
-									<td>${fieldValue(bean: addressInstance, field: "buildingName")}</td>
-									<td>${fieldValue(bean: addressInstance, field: "address1")}</td>
-									<td>${fieldValue(bean: addressInstance, field: "address2")}</td>
-									<td>${fieldValue(bean: addressInstance, field: "city")}</td>
+									<td>${addressInstance?.addressType}</td>
+									<td>${addressInstance?.buildingName}</td>
+									<td>${addressInstance?.address1}</td>
+									<td>${addressInstance?.address2}</td>
+									<td>${addressInstance?.city}</td>
 									<td>${fieldValue(bean: organization, field: "liftInfo.numberOfLifts")}</td>
 									<td class="link">
 										<g:link action="show" id="${organization?.id}" class="btn btn-small">Show &raquo;</g:link>
 									</td>
 								</tr>
-							</g:each>
 						</g:each>
 					</tbody>
 				</table>

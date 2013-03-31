@@ -10,6 +10,7 @@ class Organization extends Party {
 	String name
 	String salesStatus
 	String assignedTo = 'SYSTEM'
+	boolean isOneTimeCustomer = false
 	
 	static hasMany = [contacts : Contact,quotes : Quote,orders : Order,contracts : Contract]
 	

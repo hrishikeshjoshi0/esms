@@ -33,22 +33,16 @@
 			<g:form>
 				<g:hiddenField name="id" value="${orderInstance?.id}" />
 				<div class="form-actions">
-					<g:link class="btn" action="edit" id="${orderInstance?.id}">
+					<%--<g:link class="btn" action="edit" id="${orderInstance?.id}">
 						<i class="icon-pencil"></i>
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
+					--%>
 					<button class="btn btn-danger" type="submit" name="_action_delete">
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
 					
-					<%--<g:if test="${orderInstance?.status == 'PENDING_INVOICE'}">
-						<g:link class="btn"action="confirmSale" id="${orderInstance?.id}">
-							<i class="icon-pencil"></i>
-							Confirm Sale
-						</g:link>
-					</g:if>
-					--%>
 					<g:if test="${orderInstance?.status == 'PENDING_INVOICE' && orderInstance?.orderItems?.size() != 0}">
 						<g:link class="btn" action="createInvoice"
 							id="${orderInstance?.id}">
@@ -57,12 +51,6 @@
 								default="Create Invoice" />
 						</g:link>
 					</g:if>
-					<%--<g:if test="${orderInstance.status == 'PENDING_INVOICE' }">
-						<g:link role="button" class="btn" controller="orderInventoryAssignment" action="create" params="['order.id':orderInstance.id]">
-							<i class="icon-plus"></i> Attach Inventory
-						</g:link>
-					</g:if>
-					--%>
 					<g:link class="btn" action="create" controller="event" params="['party.id':orderInstance?.organization.id]">
 						<i class="icon-calendar"></i>
 						<g:message code="default.button.createEvent.label" default="Create Event" />

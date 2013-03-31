@@ -3983,13 +3983,13 @@ input[type="submit"].btn.btn-mini {
 .navbar-inverse .brand,
 .navbar-inverse .nav > li > a {
   color: #eeeeee;
-  text-transform: uppercase;
+  text-transform: none;
   padding: 5px;
 }
 .navbar-inverse .brand:hover,
 .navbar-inverse .nav > li > a:hover {
   color: #ffffff;
-  text-transform: uppercase;
+  text-transform: none;
 }
 .navbar-inverse .brand {
   color: #eeeeee;
@@ -5447,4 +5447,8 @@ body {
 
 .sidebar-nav {
 	margin:5px;	
+}
+
+.user-link {
+	text-transform: lowercase;
 }

@@ -21,11 +21,11 @@
 			<g:form>
 				<g:hiddenField name="id" value="${paymentInstance?.id}" />
 				<div class="form-actions">
-					<g:link class="btn" action="edit" id="${paymentInstance?.id}">
+					<%--<g:link class="btn" action="edit" id="${paymentInstance?.id}">
 						<i class="icon-pencil"></i>
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					<button class="btn btn-danger" type="submit" name="_action_delete">
+					--%><button class="btn btn-danger" type="submit" name="_action_delete">
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>

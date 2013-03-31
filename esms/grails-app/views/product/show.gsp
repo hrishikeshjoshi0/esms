@@ -22,11 +22,11 @@
 			<g:form>
 				<g:hiddenField name="id" value="${productInstance?.id}" />
 				<div class="form-actions">
-					<g:link class="btn" action="edit" id="${productInstance?.id}">
+					<%--<g:link class="btn" action="edit" id="${productInstance?.id}">
 						<i class="icon-pencil"></i>
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					<g:link class="btn" action="create" controller="productInventory" param="['product.id':productInstance?.id]">
+					--%><g:link class="btn" action="create" controller="productInventory" param="['product.id':productInstance?.id]">
 						<i class="icon-pencil"></i>
 						Add Inventory
 					</g:link>

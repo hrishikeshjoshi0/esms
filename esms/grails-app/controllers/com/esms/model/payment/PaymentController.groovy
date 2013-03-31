@@ -69,7 +69,7 @@ class PaymentController {
 				payment.matchedAmount += matchedAmount
 				payment.save(flush:true)
 				
-				flash.message = message(code: 'default.created.message', args: [message(code: 'quoteItem.label', default: 'QuoteItem'), paymentItemInstance.id])
+				flash.message = "Added New Line."
 				redirect action: 'show', id: payment.id
 				break
 			}

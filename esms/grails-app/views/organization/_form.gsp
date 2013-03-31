@@ -39,6 +39,24 @@
 
 <div class="page-header">
 	<h3>
+		Is One Time
+	</h3>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: organizationInstance, field: 'isOneTimeCustomer', 'error')} ">
+	<label for="isOneTimeCustomer" class="control-label"><g:message
+			code="organization.isOneTimeCustomer.label" default="Is One Time ?" /></label>
+	<div class="controls">
+		<g:checkBox name="isOneTimeCustomer"
+			value="${organizationInstance?.isOneTimeCustomer}" />
+		<span class="help-inline"> ${hasErrors(bean: organizationInstance, field: 'isOneTimeCustomer', 'error')}
+		</span>
+	</div>
+</div>
+
+<div class="page-header">
+	<h3>
 		Primary Contact
 	</h3>
 </div>
