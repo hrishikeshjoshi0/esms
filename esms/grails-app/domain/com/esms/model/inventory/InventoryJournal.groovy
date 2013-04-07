@@ -1,6 +1,7 @@
 package com.esms.model.inventory
 
 import com.esms.model.order.Order
+import com.esms.model.order.PurchaseOrder
 
 class InventoryJournal {
 	
@@ -13,6 +14,6 @@ class InventoryJournal {
 		quantity nullable:false,blank:false
     }
 	
-	static belongsTo = [order : Order, productInventory : ProductInventory]
+	static belongsTo = [order : Order,purchaseOrder : PurchaseOrder, productInventory : ProductInventory]
 	
 }

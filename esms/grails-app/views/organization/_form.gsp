@@ -336,7 +336,16 @@
 		Address
 	</h3>
 </div>
-<g:render template="/address/form"></g:render>
+<div class="row-fluid">
+	<div class="span6">
+		<h3>Site Address</h3>
+		<g:render template="/address/shippingAddressForm"></g:render>
+	</div>
+	<div class="span6">
+		<h3>Billing Address</h3>
+		<g:render template="/address/billingAddressForm"></g:render>
+	</div>
+</div>
 
 <div class="page-header">
 	<h3>

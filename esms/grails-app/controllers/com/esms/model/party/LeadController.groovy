@@ -77,9 +77,15 @@ class LeadController {
 			secondaryPhoneBookInstance.party = secondaryContactInstance
 			secondaryPhoneBookInstance.save(flush:true)
 			
-			def addressInstance = new Address(params)
-			addressInstance.party = organizationInstance
-			addressInstance.save(flush:true)
+			def shippingAddressInstance = new Address()
+			shippingAddressInstance = bindData(shippingAddressInstance,params,'shipping')
+			shippingAddressInstance.party = organizationInstance
+			shippingAddressInstance.save(flush:true)
+			
+			def billingAddressInstance = new Address()
+			billingAddressInstance = bindData(billingAddressInstance,params,'billing')
+			billingAddressInstance.party = organizationInstance
+			billingAddressInstance.save(flush:true)
 			
 			def liftInfo = new LiftInfo(params)
 			liftInfo.organization = organizationInstance

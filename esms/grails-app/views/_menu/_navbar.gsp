@@ -50,8 +50,8 @@
 						</li>
 						<li <%= 'order' == controllerName ? ' class="active"' : '' %>>
 							<g:link controller="order">
-										Order
-									</g:link>
+								Order
+							</g:link>
 						</li>
 						<li <%= 'activity' == controllerName ? ' class="active"' : '' %>>
 							<g:link controller="event">

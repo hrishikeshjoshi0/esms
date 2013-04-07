@@ -42,6 +42,9 @@ class Quote {
 	
 	boolean sent = false
 	
+	BigDecimal quotedGrandTotal = new BigDecimal("0.0")
+	BigDecimal negotiatedGrandTotal = new BigDecimal("0.0")
+	
 	static hasMany = [quoteItems : QuoteItem]
 	
 	static belongsTo = [organization : Organization]
@@ -50,7 +53,7 @@ class Quote {
 		quoteNumber nullable:false,blank:false
 		quoteName nullable:false,blank:false
 		status InList:['DRAFT','PENDING','REVISE','ACCEPT','DECLINE','CONVERTED_TO_SERVICE_CONTRACT','CONVERTED_TO_REPAIR_SALES_ORDER']
-		type InList:['CONTRACT','REPAIR']
+		type InList:['CONTRACT','REPAIR','MODERNIZATION','INSTALLATION']
 		salesChannel blank:false
 		description nullable:true,blank:true
 		contactName nullable:true,blank:true
@@ -75,6 +78,9 @@ class Quote {
 		recepientContactNumber nullable:true,blank:true
 		receivedDateTime nullable:true,blank:true
 		handedOveryBy nullable:true,blank:true
+		
+		quotedGrandTotal nullable:false
+		negotiatedGrandTotal nullable:false
     }
 	
 	static mapping = {

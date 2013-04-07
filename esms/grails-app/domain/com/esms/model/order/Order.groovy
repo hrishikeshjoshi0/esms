@@ -33,7 +33,6 @@ class Order {
 	BigDecimal openGrandTotal = new BigDecimal("0.0")
 	BigDecimal receviedGrandTotal = new BigDecimal("0.0")
 	 
-	
 	static hasMany = [orderItems : OrderItem,inventoryJournalEntries : InventoryJournal,paymentItems : PaymentItem]
 	
 	static belongsTo = [organization : Organization]
@@ -41,7 +40,7 @@ class Order {
     static constraints = {
 		orderNumber nullable:false,blank:false
 		status InList:['PENDING_INVOICE','CONFIRM_SALE','DELIVERY_PENDING','DELIVERED','INVOICED','PAID']
-		type InList:['SALES','SERVICE','REPAIR']
+		type InList:['SALES','SERVICE','REPAIR','MODERNIZATION','INSTALLATION']
 		description nullable:true,blank:true
 		issueDate nullable:false
 		expiryDate nullable:true

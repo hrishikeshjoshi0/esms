@@ -1,6 +1,6 @@
 <div class="page-header">
 	<h1>
-		Reason for Decline.
+		Reason for Revision.
 	</h1>
 </div>
 

@@ -1,10 +1,12 @@
-<g:if test="${orderInstance?.status != 'INVOICED' && orderInstance?.status != 'PAID'}">
+<%@ page import="com.esms.model.order.PurchaseOrder"%>
+
 <div class="pull-right">
-	<a data-toggle="modal" href="#" data-target="#orderItemModal"
-		role="button" class="btn"> <i class="icon-plus"></i> New Item
-	</a>
+	<g:if test="${orderInstance?.status != 'INVOICED' && orderInstance?.status != 'PAID'}">
+		<a data-toggle="modal" href="#" data-target="#orderItemModal"
+			role="button" class="btn"> <i class="icon-plus"></i> New Item
+		</a>
+	</g:if>
 </div>
-</g:if>
 
 <!-- Quotes -->
 <table class="table table-striped table-hover">
@@ -13,7 +15,7 @@
 			<g:sortableColumn property="lineNumber"
 				title="${message(code: 'orderItem.lineNumber.label', default: 'Line Number')}" />
 			<g:sortableColumn property="productNumber"
-				title="${message(code: 'orderItem.productNumber.label', default: 'Product Number')}" />	
+				title="${message(code: 'orderItem.productNumber.label', default: 'Product Number')}" />
 			<g:sortableColumn property="quantity"
 				title="${message(code: 'orderItem.quantity.label', default: 'Quantity')}" />
 			<g:sortableColumn property="unitPrice"
@@ -24,6 +26,17 @@
 				title="${message(code: 'orderItem.discount.label', default: 'Discount')}" />
 			<g:sortableColumn property="lineTotalAmount"
 				title="${message(code: 'orderItem.lineTotalAmount.label', default: 'Line Total Amount')}" />
+			<th>
+				<a ref="#">
+					Assigned To (Vendor)
+				</a>
+			</th>
+			<th>
+				<a ref="#">
+					Status
+				</a>
+			</th>		
+			<th></th>
 			<th></th>
 		</tr>
 	</thead>
@@ -50,6 +63,24 @@
 				</td>
 				<td>
 					${fieldValue(bean: orderItemInstance, field: "lineTotalAmount")}
+				</td>
+				<g:if test="${orderItemInstance.relatedOrderNumber}">
+					<g:set var="purchaseOrder" value="${PurchaseOrder.findByPurchaseOrderNumber(orderItemInstance.relatedOrderNumber)}"/>
+					<td>
+						${purchaseOrder?.vendorName}
+					</td>
+					<td>
+						${purchaseOrder?.status}
+					</td>
+				</g:if>
+				<g:else>
+					<td></td>
+					<td></td>
+				</g:else>
+				<td>
+					<a href="#" class="btn open-AssignOrderItem" data-id="${orderItemInstance?.id}"
+						role="button" class="btn">Assign
+					</a>
 				</td>
 				<td class="link"><g:link action="show"
 						id="${orderItemInstance.id}" class="btn btn-small">Show &raquo;</g:link>
@@ -85,3 +116,36 @@
 		</div>
 	</g:form>
 </div>
+
+<div id="purchaseOrderModal" class="modal hide fade" tabindex="-1" style="width:70%;top:50%;left:40%;"
+	role="dialog"
+	data-remote="<g:createLink controller="order" action="assignOrderItem" params="[orderId:orderInstance?.id]"/>"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Assign Order Item</h3>
+	</div>
+	<g:form controller="order" action="assignOrderItem" method="POST">
+		<g:hiddenField name="order.id" value="${orderInstance?.id}" />
+		<g:hiddenField name="orderItemInstanceId" value=""/>
+		<div class="modal-body"></div>
+		<div class="modal-footer">
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary create">
+					<i class="icon-ok icon-white"></i>
+					<g:message code="default.button.create.label" default="Create" />
+				</button>
+			</div>
+		</div>
+	</g:form>
+</div>
+
+<script>
+	$(document).on("click", ".open-AssignOrderItem", function () {
+	    var orderItemId = $(this).data('id');
+	    $("#orderItemInstanceId").attr('value',orderItemId);
+	    //alert($("#orderItemInstanceId").val());	    
+	    $('#purchaseOrderModal').modal('show');
+	});
+</script>

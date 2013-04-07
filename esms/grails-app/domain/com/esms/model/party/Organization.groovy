@@ -1,7 +1,8 @@
 package com.esms.model.party
 
-import com.esms.model.maintenance.LiftInfo;
+import com.esms.model.maintenance.LiftInfo
 import com.esms.model.order.Order
+import com.esms.model.order.PurchaseOrder
 import com.esms.model.quote.Quote
 import com.esms.model.sales.Contract
 
@@ -12,7 +13,7 @@ class Organization extends Party {
 	String assignedTo = 'SYSTEM'
 	boolean isOneTimeCustomer = false
 	
-	static hasMany = [contacts : Contact,quotes : Quote,orders : Order,contracts : Contract]
+	static hasMany = [contacts : Contact,quotes : Quote,orders : Order,contracts : Contract,purchaseOrders : PurchaseOrder]
 	
 	static hasOne = [liftInfo : LiftInfo]
 	
@@ -20,6 +21,7 @@ class Organization extends Party {
 		name blank:true
 		salesStatus inList: ["LEAD", "CUSTOMER"]
 		liftInfo nullable:true
+		purchaseOrders nullable:true 
     }
 	
 	def convertLead() {

@@ -62,18 +62,29 @@
 						</a>
 					</g:if>
 					<g:elseif test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'CONTRACT' && quoteInstance?.quoteItems?.size() != 0}">
-						<g:link class="btn" controller="order" action="convertQuoteToOrder" params="[orderId:quoteInstance.id]">
+						<a data-toggle="modal" href="#" data-target="#confirmSaleModal" role="button"
+							class="btn"> 
+							<i class="icon-wrench"></i>
+							Confirm Sale
+						</a>
+						<%--<g:link class="btn" controller="order" action="convertQuoteToOrder" params="[orderId:quoteInstance.id]">
 							<i class="icon-share-alt"></i>
 							Confirm Sale
 						</g:link>
+						--%>
 					</g:elseif>
 					<g:elseif test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'REPAIR' && quoteInstance?.quoteItems?.size() != 0}">
-						<g:link class="btn" controller="order" action="convertQuoteToOrder" params="[orderId:quoteInstance.id]">
+						<a data-toggle="modal" href="#" data-target="#confirmSaleModal" role="button"
+							class="btn"> 
+							<i class="icon-wrench"></i>
+							Confirm Sale
+						</a>
+						<%--<g:link class="btn" controller="order" action="convertQuoteToOrder" params="[orderId:quoteInstance.id]">
 							<i class="icon-wrench"></i>
 							Confirm Sale
 						</g:link>
+					--%>
 					</g:elseif>
-					
 				</div>
 			</g:form>
 
@@ -109,28 +120,28 @@
 								<g:message code="quote.recepientContactName.label" default="Recepient Name" />
 							</dt>
 							<dd>
-								${quoteInstance?.recepientContactName}"
+								${quoteInstance?.recepientContactName}
 							</dd>
 							
 							<dt>
 								<g:message code="quote.recepientContactNumber.label" default="Recepient Number" />
 							</dt>
 							<dd>
-								${quoteInstance?.recepientContactNumber}"
+								${quoteInstance?.recepientContactNumber}
 							</dd>
 							
 							<dt>
 								<g:message code="quote.receivedDateTime.label" default="Received Date" />
 							</dt>
 							<dd>
-								${quoteInstance?.receivedDateTime}"
+								${quoteInstance?.receivedDateTime}
 							</dd>
 							
 							<dt>
 								<g:message code="quote.handedOveryBy.label" default="Handed Over By" />
 							</dt>
 							<dd>
-								${quoteInstance?.handedOveryBy}"
+								${quoteInstance?.handedOveryBy}
 							</dd>
 						</g:if>
 						
@@ -175,11 +186,27 @@
 				<div class="span4">
 					<dl class="dl-horizontal" style="margin-left: -30px;">
 						<dt>
+							<g:message code="quote.quotedGrandTotal.label" default="Quoted Amount" />
+						</dt>
+						<dd>
+							<g:fieldValue bean="${quoteInstance}" field="quotedGrandTotal" />
+						</dd>
+						
+						<dt>
+							<g:message code="quote.negotiatedGrandTotal.label" default="Negotiated Amount" />
+						</dt>
+						<dd>
+							<g:fieldValue bean="${quoteInstance}" field="negotiatedGrandTotal" />
+						</dd>
+						
+						<%--<dt>
 							<g:message code="quote.totalAmount.label" default="Total Amount" />
 						</dt>
 						<dd>
 							<g:fieldValue bean="${quoteInstance}" field="totalAmount" />
 						</dd>
+						--%>
+						
 						<dt>
 							<g:message code="quote.totalTax.label" default="Total Tax" />
 						</dt>
@@ -232,5 +259,6 @@
 	<g:render template="declinedReason"></g:render>
 	<g:render template="revisedReason"></g:render>
 	<g:render template="saveRecepient"></g:render>
+	<g:render template="confirmSale"></g:render>
 </body>
 </html>

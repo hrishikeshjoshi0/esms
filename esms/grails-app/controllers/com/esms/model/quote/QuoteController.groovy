@@ -83,6 +83,12 @@ class QuoteController {
 				break
 		}
 	}
+	
+	def confirmSale = {
+		def quoteInstance = Quote.get(params.id)
+		quoteInstance.negotiatedGrandTotal = quoteInstance?.quotedGrandTotal
+		[quoteInstance : quoteInstance]
+	}
 
 	def markAsSent = {
 		switch (request.method) {
@@ -153,9 +159,16 @@ class QuoteController {
 	def convertToSalesOrder = {
 		def quoteInstance = Quote.get(params.id)
 
+		quoteInstance.negotiatedGrandTotal = params.negotiatedGrandTotal?.toBigDecimal()
+		
+		def diff = quoteInstance.quotedGrandTotal - quoteInstance.negotiatedGrandTotal
+		quoteInstance.totalDiscount = diff
+		
+		quoteInstance.grandTotal = quoteInstance.negotiatedGrandTotal
+		quoteInstance.save(flush:true)
 
 		flash.message = 'Sales Order created.'
-		redirect controller:'order', action: 'create'
+		redirect controller:'order', action: 'convertQuoteToOrder',params:[id : quoteInstance?.id]
 	}
 
 	def show() {
@@ -298,10 +311,16 @@ class QuoteController {
 				quote.totalAmount = unitPrice
 				quote.totalTax = tax
 				quote.totalDiscount = discount
+				
 				quote.grandTotal = lineTotalAmount
+				
+				//Initialize the Quoted and the Negotiated Total to the Grand Total.
+				quote.quotedGrandTotal = lineTotalAmount
+				quote.negotiatedGrandTotal = 0
+				
 				quote.save(flush:true)
 
-				flash.message = "Added New Line Item : " + Product.findByProductNumber(quoteItemInstance.productNumber);
+				flash.message = "Added New Line Item : " + Product.findByProductNumber(quoteItemInstance.productNumber)?.productName;
 				redirect action: 'show', id: quoteItemInstance.quote.id
 				break
 		}

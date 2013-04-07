@@ -12,7 +12,7 @@ class LiftInfo {
 	Date lastContractEndDate
 	String typeOfEnquiry
 	String buildingType
-	String drive
+	String drive = 'YES'
 	String driveMake
 	String driveCapacity
 	String gateType
@@ -32,5 +32,6 @@ class LiftInfo {
 		gateType(InList:['COLLAPSIBLE','AUTO DOOR','SWING DOOR RIGHT CLOSING','SWING DOOR LEFT CLOSING','ACCORDION DOOR','OTHER'])
 		retiringCamType(InList:['OTIS','BHARAT BIJLEE'])
 		lockType(InList:['OTIS','BHARAT BIJLEE','EROS EXCEL'])
+		drive(InList:['YES','NO'])
     }
 }
