@@ -1,5 +1,3 @@
-
-
 <%@ page import="com.esms.model.party.Organization"%>
 <!doctype html>
 <html>
@@ -11,7 +9,7 @@
 </head>
 <body>
 
-	<div class="row-fluid" style="margin-top: -15px;">
+	<div class="row-fluid">
 		<div class="span12">
 			<div class="page-header">
 				<h1>

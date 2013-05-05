@@ -93,6 +93,43 @@ log4j = {
 }
 
 grails.resources.modules = {
+	gebo {
+		resource url:'/bootstrap/css/bootstrap.min.css'
+		resource url:'/bootstrap/css/bootstrap-responsive.min.css'
+		resource url:'/css/dark.css'
+		resource url: '/lib/jBreadcrumbs/css/BreadCrumb.css'
+		resource url: '/lib/qtip2/jquery.qtip.min.css'
+		resource url: '/lib/colorbox/colorbox.css'
+		resource url: '/lib/google-code-prettify/prettify.css'
+		resource url: '/lib/sticky/sticky.css'
+		resource url: '/img/splashy/splashy.css'
+		resource url: '/img/flags/flags.css'
+		resource url: '/lib/fullcalendar/fullcalendar_gebo.css'
+		resource url: '/css/style.css'
+	}
+	gebo_js {
+		//js
+		resource url: "/lib/qtip2/jquery.qtip.min.js"
+		resource url: "/lib/jBreadcrumbs/js/jquery.jBreadCrumb.1.1.min.js"
+		resource url: "/lib/colorbox/jquery.colorbox.min.js"
+		resource url: "/js/ios-orientationchange-fix.js"
+		resource url: "/lib/antiscroll/antiscroll.js"
+		resource url: "/lib/antiscroll/jquery-mousewheel.js"
+		resource url: "/js/gebo_common.js"
+		resource url: "/lib/jquery-ui/jquery-ui-1.8.20.custom.min.js"
+		resource url: "/js/forms/jquery.ui.touch-punch.min.js"
+		resource url: "/js/jquery.imagesloaded.min.js"
+		resource url: "/js/jquery.wookmark.js"
+		resource url: "/js/jquery.mediaTable.min.js"
+		resource url: "/js/jquery.peity.min.js"
+		resource url: "/lib/flot/jquery.flot.min.js"
+		resource url: "/lib/flot/jquery.flot.resize.min.js"
+		resource url: "/lib/flot/jquery.flot.pie.min.js"
+		resource url: "/lib/fullcalendar/fullcalendar.min.js"
+		resource url: "/lib/list_js/list.min.js"
+		resource url: "/lib/list_js/plugins/paging/list.paging.min.js"
+		resource url: "/js/gebo_dashboard.js"
+	}
 	core {
 		resource url:'/js/jquery-1.7.1.min.js', disposition: 'head'
 		resource url: '/js/jquery-ui-1.8.18.custom.min.js'
@@ -128,3 +165,10 @@ grails.plugins.springsecurity.interceptUrlMap = [
 	'/**': ['ROLE_USER','ROLE_ADMIN']
 ]
 
+fileuploader {
+	docs {
+		maxSize = 1000 * 1024 * 4 //4 mbytes
+		allowedExtensions = ["doc", "docx", "pdf", "rtf"]
+		path = "/tmp/docs/"
+	}
+}

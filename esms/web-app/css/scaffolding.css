@@ -656,7 +656,7 @@ h4 small {
 .page-header {
   border-bottom: 1px solid #eeeeee;
   margin: 0;
-  padding-bottom: 0.5px;
+  padding-bottom: 10px;
 }
 ul,
 ol {
@@ -1677,7 +1677,7 @@ table {
   width: 100%;
   margin-bottom: 21px;
 }
-.table th,
+/* .table th,
 .table td {
   padding: 8px;
   line-height: 21px;
@@ -1697,7 +1697,7 @@ table {
 .table thead th  a{
   color: #FFF;
   float: center;
-}
+} */
 
 .table caption + thead tr:first-child th,
 .table caption + thead tr:first-child td,

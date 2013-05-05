@@ -5,7 +5,7 @@
 <title>Venus CRM</title>
 </head>
 <body>
-	<div class="container" style="margin: 20px;">
+	<div class="container">
 		<div class="row">
 			<div class="span2 home-icon">
 				<div class="thumb-pad">

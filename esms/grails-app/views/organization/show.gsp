@@ -108,6 +108,7 @@
 			  --%>
 			  <li><a href="#quotesTabsPane" data-toggle="tab">Quotes</a></li>
 			  <li><a href="#eventsTabsPane" data-toggle="tab">Events</a></li>
+			  <li><a href="#docsTabsPane" data-toggle="tab">Documents</a></li>
 			</ul>
 			 
 			<div class="tab-content">
@@ -129,6 +130,9 @@
 			  </div>
 			  <div class="tab-pane" id="eventsTabsPane">
 			  	<g:render template="eventList" />
+			  </div>
+			  <div class="tab-pane" id="docsTabsPane">
+			  	<g:render template="docsList" />
 			  </div>
 			</div>
 			<!--  -->

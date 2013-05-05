@@ -65,5 +65,7 @@ grails.project.dependency.resolution = {
 		compile ":filterpane:2.0.1.1"
 		
 		compile ":spring-security-core:1.2.7.3"
+		
+		compile ":file-uploader:1.2.1"
     }
 }
