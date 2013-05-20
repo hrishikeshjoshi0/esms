@@ -20,4 +20,6 @@ class Party {
 	static mapping = {
 		tablePerHierarchy false
 	}
+	
+	static auditable = true
 }

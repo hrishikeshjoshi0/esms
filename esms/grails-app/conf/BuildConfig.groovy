@@ -67,5 +67,7 @@ grails.project.dependency.resolution = {
 		compile ":spring-security-core:1.2.7.3"
 		
 		compile ":file-uploader:1.2.1"
+		
+		compile ":audit-logging:0.5.4"
     }
 }

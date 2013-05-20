@@ -128,32 +128,45 @@
 					<g:elseif
 						test="${params.controller != null &&	params.controller == 'dashboard'}">
 						<ul class="nav nav-list bs-docs-sidenav">
-							<g:set var="entityName" value="Reports" />
+							<g:set var="entityName" value="Modules" />
 							<li class="nav-header">
 								${entityName}
 							</li>
 							<li class="divider"></li>
 
-							<li
-								class="${ params.action == "quotesByStatus" ? 'active' : '' }">
-								<g:link action="quotesByStatus">
-									<i class="icon-chevron-right"></i>
-										Quotes By Status Report
+							<li>
+								<g:link controller="lead" action="index">
+										Leads
 									</g:link>
 							</li>
 
-							<li class="${params.action == "ordersByStatus" ? 'active' : '' }">
-								<g:link action="ordersByStatus">
-									<i class="icon-chevron-right"></i>
-										Orders By Status Report
+							<li>
+								<g:link controller="organization" action="index">
+										Customers
 									</g:link>
 							</li>
-
-							<li
-								class="${params.action == "invoicesByStatus" ? 'active' : '' }">
-								<g:link action="invoicesByStatus">
-									<i class="icon-chevron-right"></i>
-										Invoices By Status Report
+							
+							<li>
+								<g:link controller="quote" action="index">
+										Quotes
+									</g:link>
+							</li>
+							
+							<li>
+								<g:link controller="order" action="index">
+										Orders
+									</g:link>
+							</li>
+							
+							<li>
+								<g:link controller="payment" action="index">
+										Payments
+									</g:link>
+							</li>
+							
+							<li>
+								<g:link controller="product" action="index">
+										Products
 									</g:link>
 							</li>
 						</ul>

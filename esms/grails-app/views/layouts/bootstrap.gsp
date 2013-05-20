@@ -41,11 +41,19 @@
 				<div id="container">
 					<div class="row-fluid">
 						<div class="span12">
-							<div class="row-fluid">
-								<div class="span12">
-									<g:render template="/_menu/submenubar" />
+							
+							<g:if
+								test="${	params.view != null
+										&&	params.view != ''
+										&&	params.view != 'index'
+							}">
+								<div class="row-fluid">
+									<div class="span12">
+										<g:render template="/_menu/submenubar" />
+									</div>
 								</div>
-							</div>
+							</g:if>
+							
 							<!--Body content-->
 							<!-- Secondary menu in one line (e.g., actions for current controller) -->
 							<g:if test="${flash.message}">
