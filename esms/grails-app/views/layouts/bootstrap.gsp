@@ -64,6 +64,7 @@
 								</div>
 							</g:if>
 							<div id="body_content">
+								<br/>
 								<g:layoutBody />
 								<g:pageProperty name="page.body" />
 							</div>

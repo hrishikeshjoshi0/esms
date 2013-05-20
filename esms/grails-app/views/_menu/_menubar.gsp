@@ -123,6 +123,10 @@
 										</g:link>
 									</g:if></li>
 							</g:if>
+							<li class="divider"></li>
+							<li>
+								Venus CRM - <g:meta name="app.version"/>
+							</li>
 						</ul>
 					</g:if>
 					<g:elseif
@@ -168,6 +172,11 @@
 								<g:link controller="product" action="index">
 										Products
 									</g:link>
+							</li>
+							
+							<li class="divider"></li>
+							<li class="nav-header">
+								Venus CRM - <g:meta name="app.version"/>								
 							</li>
 						</ul>
 					</g:elseif>
