@@ -60,7 +60,7 @@
 					${fieldValue(bean: quoteInstance, field: "description")}
 				</td>
 
-				<td class="link"><g:link action="show" id="${quoteInstance.id}">Show &raquo;</g:link></td>
+				<td class="link"><g:link controller="quote" action="show" id="${quoteInstance.id}">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>

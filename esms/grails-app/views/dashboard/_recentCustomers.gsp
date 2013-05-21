@@ -38,7 +38,7 @@
 				<td>
 					${addressInstance?.buildingName}
 				</td>
-				<td class="link"><g:link action="show" id="${organization?.id}">Show &raquo;</g:link></td>
+				<td class="link"><g:link controller="organization" action="show" id="${organization?.id}">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
