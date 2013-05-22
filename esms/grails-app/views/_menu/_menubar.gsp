@@ -76,11 +76,13 @@
 							</g:elseif>
 
 							<g:if test="${params.controller != 'event'}">
-								<li class="${ params.action == "list" ? 'active' : '' }"><g:link
-										action="list">
+								<li class="${ params.action == "listView" ? 'active' : '' }">
+									<g:link
+										action="listView">
 										<i class="icon-chevron-right"></i>
 										<g:message code="default.list.label" args="[entityName]" />
-									</g:link></li>
+									</g:link>
+								</li>
 							</g:if>
 
 							<g:if

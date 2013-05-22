@@ -27,7 +27,7 @@ class EventControllerTests {
 
     void testList() {
 
-        def model = controller.list()
+        def model = controller.listView()
 
         assert model.eventInstanceList.size() == 0
         assert model.eventInstanceTotal == 0

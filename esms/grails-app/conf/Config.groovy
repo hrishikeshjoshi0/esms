@@ -1,5 +1,7 @@
 import grails.plugins.springsecurity.SecurityConfigType
 
+import org.springframework.security.core.userdetails.User
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -164,6 +166,25 @@ grails.plugins.springsecurity.interceptUrlMap = [
 	'/login/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/**': ['ROLE_USER','ROLE_ADMIN']
 ]
+
+/**
+ *  Updated the last login date.
+ */
+
+/*
+grails.plugins.springsecurity.useSecurityEventListener = true
+
+grails.plugins.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, appCtx ->
+	User.withTransaction {
+		def user = User.findById(appCtx.springSecurityService.principal.id)
+		if(!user.isAttached()) {
+			user.attach()
+		}
+		user.lastLoginDate = new Date()
+		user.save(flush: true, failOnError: true)
+	}
+}	
+*/
 
 fileuploader {
 	docs {

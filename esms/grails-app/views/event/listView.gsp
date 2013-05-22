@@ -28,14 +28,6 @@
 						
 							<g:sortableColumn property="location" title="${message(code: 'event.location.label', default: 'Location')}" />
 						
-							<g:sortableColumn property="description" title="${message(code: 'event.description.label', default: 'Description')}" />
-						
-							<g:sortableColumn property="recurType" title="${message(code: 'event.recurType.label', default: 'Recur Type')}" />
-						
-							<g:sortableColumn property="recurInterval" title="${message(code: 'event.recurInterval.label', default: 'Recur Interval')}" />
-						
-							<g:sortableColumn property="recurUntil" title="${message(code: 'event.recurUntil.label', default: 'Recur Until')}" />
-						
 							<th></th>
 						</tr>
 					</thead>
@@ -47,14 +39,6 @@
 						
 							<td>${fieldValue(bean: eventInstance, field: "location")}</td>
 						
-							<td>${fieldValue(bean: eventInstance, field: "description")}</td>
-						
-							<td>${fieldValue(bean: eventInstance, field: "recurType")}</td>
-						
-							<td>${fieldValue(bean: eventInstance, field: "recurInterval")}</td>
-						
-							<td><g:formatDate date="${eventInstance.recurUntil}" /></td>
-						
 							<td class="link">
 								<g:link action="show" id="${eventInstance.id}" class="btn btn-small">Show &raquo;</g:link>
 							</td>
@@ -63,7 +47,7 @@
 					</tbody>
 				</table>
 				<div class="pagination">
-					<bootstrap:paginate params="${filterParams}" total="${eventInstanceTotal}" />
+					<bootstrap:paginate params="${filterParams}" total="${eventInstanceList.size()}" />
 				</div>
 				<br/>
 			</div>

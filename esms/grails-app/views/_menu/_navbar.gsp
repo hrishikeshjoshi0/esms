@@ -5,33 +5,52 @@
 				<a class="brand" href="${createLink(uri: '/')}">
 					<img src="${resource(dir: 'images', file: 'venus_crm_logo.png')}" alt="${meta(name:'app.name')}" style="width:180px;"/> <br/>
 				</a>
+				
+				<!-- Nav Right -->
 				<ul class="nav user_menu pull-right">
+					
 					<li class="hidden-phone hidden-tablet">
 						<div class="nb_boxes clearfix">
-							<a data-toggle="modal" data-backdrop="static" href="#myMail"
-								class="label ttip_b" title="New messages">25 <i
-								class="splashy-mail_light"></i></a> <a data-toggle="modal"
-								data-backdrop="static" href="#myTasks" class="label ttip_b"
-								title="New tasks">10 <i class="splashy-calendar_week"></i></a>
+							<%--<a data-toggle="modal" data-backdrop="static" href="#myMail" class="label ttip_b" title="New messages">
+								25 <i class="splashy-mail_light"></i>
+							</a> 
+							--%>
+							<g:link controller="event" action="listView" class="label ttip_b" title="New tasks">
+								<span id="new_tasks" data-url="${createLink(controller : 'event',action: 'getLatestTaskCount')}">
+								</span> 
+								<i class="splashy-calendar_week"></i>
+							</g:link>
 						</div>
 					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					
+					<li>
+						<a> | </a>
+					</li>
+					
+					<!-- User -->
+					<li>
+						<a href="#">
 							<i class="icon-user icon-white"></i>
+							Welcome,
 							<sec:username />
-							<b class="caret"></b>
 						</a>
-						<ul class="dropdown-menu">
-							<li><a href="user_profile.html">My Profile</a></li>
-							<li class="divider"></li>
-							<li>
-								<g:link class="dropdown-toggle" controller="logout">Log Out</g:link>
-							</li>
-						</ul></li>
+					</li>
+					
+					<li>
+						<a> | </a>
+					</li>
+					
+					<li>
+						<g:link class="dropdown-toggle" controller="logout">Log Out</g:link>
+					</li>
+					
 				</ul>
+				
 				<a data-target=".nav-collapse" data-toggle="collapse"
 					class="btn_menu"> <span class="icon-align-justify icon-white"></span>
 				</a>
+				
+				<!-- Navbar -->
 				<nav>
 					<div class="nav-collapse">
 						<ul class="nav">

@@ -13,6 +13,11 @@ class EventController {
     def index = {
 
     }
+	
+	def listView = {
+		def listView = Event.list(params)
+		[eventInstanceList : listView,eventInstanceTotal:listView.size()]
+	}
 
     def list = {
         def (startRange, endRange) = [params.long('start'), params.long('end')].collect { new Instant(it  * 1000L).toDate() }
@@ -186,6 +191,21 @@ class EventController {
 		}
 		
 	}
-
-    
+	
+	def recentEvents = {
+		params.max = Math.min(params.max ? params.int('max') : 5, 10)
+		params.sort = "id"
+		params.'order' = "desc"
+		
+		def recentEvents = Event.list(params)
+		def model = [recentEvents : recentEvents]
+		render(model:model,view:'/_menu/recentEvents')
+	}
+	
+	def getLatestTaskCount = {
+		def events = Event.withCriteria {
+			'in' ('status',['PLANNED','NOT HELD']) 
+		}
+		render events?events.size():0
+	}
 }

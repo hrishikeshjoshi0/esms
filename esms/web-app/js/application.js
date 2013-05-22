@@ -15,6 +15,14 @@ if (typeof jQuery !== 'undefined') {
     	   $(".slidingDiv").slideToggle();
 	   });
        
+       
+       var loadUrl = $('#new_tasks').attr('data-url');
+       $.ajaxSetup ({  
+           cache: false  
+       });  
+       var ajax_load = "Loading";  
+       $("#new_tasks").html(ajax_load).load(loadUrl);  
+       
        /*$('.modal').live('hidden', function(e) {
     	    location.reload();
     	});*/
