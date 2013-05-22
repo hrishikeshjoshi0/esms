@@ -174,6 +174,18 @@
 									</g:link>
 							</li>
 							
+							<li>
+								<g:link controller="event" action="index">
+										Calendar
+									</g:link>
+							</li>
+							
+							<li>
+								<g:link controller="employee" action="index">
+										HR
+									</g:link>
+							</li>
+							
 							<li class="divider"></li>
 							<li class="nav-header">
 								Venus CRM - <g:meta name="app.version"/>								

@@ -3,9 +3,11 @@
 	$(document).ready(function() {
 		//* small charts
 		gebo_peity.init();
+		
 		//* charts
-		gebo_charts.fl_1();
-		gebo_charts.fl_2();
+		//gebo_charts.fl_1();
+		//gebo_charts.fl_2();
+		
 		//* sortable/searchable list
 		gebo_flist.init();
 		//* calendar
@@ -15,14 +17,14 @@
 		//* resize elements on window resize
 		var lastWindowHeight = $(window).height();
 		var lastWindowWidth = $(window).width();
-		$(window).on("debouncedresize",function() {
+		/*$(window).on("debouncedresize",function() {
 			if($(window).height()!=lastWindowHeight || $(window).width()!=lastWindowWidth){
 				lastWindowHeight = $(window).height();
 				lastWindowWidth = $(window).width();
 				//* rebuild calendar
 				$('#calendar').fullCalendar('render');
 			}
-		});
+		});*/
 		//* small gallery grid
         gebo_gal_grid.small();
 	});

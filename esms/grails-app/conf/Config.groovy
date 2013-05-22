@@ -122,13 +122,13 @@ grails.resources.modules = {
 		resource url: "/js/jquery.wookmark.js"
 		resource url: "/js/jquery.mediaTable.min.js"
 		resource url: "/js/jquery.peity.min.js"
-		resource url: "/lib/flot/jquery.flot.min.js"
-		resource url: "/lib/flot/jquery.flot.resize.min.js"
-		resource url: "/lib/flot/jquery.flot.pie.min.js"
 		resource url: "/lib/fullcalendar/fullcalendar.min.js"
+		//resource url: "/lib/flot/jquery.flot.min.js"
+		//resource url: "/lib/flot/jquery.flot.resize.min.js"
+		//resource url: "/lib/flot/jquery.flot.pie.min.js"
 		resource url: "/lib/list_js/list.min.js"
 		resource url: "/lib/list_js/plugins/paging/list.paging.min.js"
-		resource url: "/js/gebo_dashboard.js"
+		//resource url: "/js/gebo_dashboard.js"
 	}
 	core {
 		resource url:'/js/jquery-1.7.1.min.js', disposition: 'head'

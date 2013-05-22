@@ -26,9 +26,6 @@
 			<g:sortableColumn property="salesChannel"
 				title="${message(code: 'quote.salesChannel.label', default: 'Sales Channel')}" />
 
-			<g:sortableColumn property="description"
-				title="${message(code: 'quote.description.label', default: 'Description')}" />
-
 			<th></th>
 		</tr>
 	</thead>
@@ -54,10 +51,6 @@
 
 				<td>
 					${fieldValue(bean: quoteInstance, field: "salesChannel")}
-				</td>
-
-				<td>
-					${fieldValue(bean: quoteInstance, field: "description")}
 				</td>
 
 				<td class="link"><g:link controller="quote" action="show" id="${quoteInstance.id}">Show &raquo;</g:link></td>

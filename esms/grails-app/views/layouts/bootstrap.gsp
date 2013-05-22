@@ -109,6 +109,7 @@
 	<script src="${resource(dir: 'bootstrap/js', file: 'bootstrap.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'jquery.mediaTable.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'chosen.jquery.min.js')}" type="text/javascript"></script>
+	<r:require module="calendar" />
 	<g:javascript library="application" />
 	<r:layoutResources />
 

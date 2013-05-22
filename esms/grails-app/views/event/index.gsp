@@ -2,11 +2,16 @@
 <html>
 <head>
   <meta name="layout" content="bootstrap">
-  <r:require module="calendar" />
   <title>Calendar</title>
 </head>
 <body>
-
-  <div id="calendar"></div>
+	
+  <div id="calendar" style="margin:10px;"></div>
+  
+  <script>
+  	$(document).ready(function() {
+  		$('#calendar').fullCalendar('render');
+  	});
+  </script>
 </body>
 </html>
