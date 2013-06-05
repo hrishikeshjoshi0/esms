@@ -85,7 +85,7 @@
 				</ul>
 			</div>
 		</div>
-
+	
 	<div id="maincontainer" class="clearfix">
 		
 		<!-- header start-->
@@ -163,7 +163,6 @@
 	<script src="${resource(dir: 'js', file: 'jquery.debouncedresize.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'jquery.actual.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'jquery.cookie.min.js')}"></script>
-	<script src="${resource(dir: 'bootstrap/js', file: 'bootstrap.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'jquery.mediaTable.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'chosen.jquery.min.js')}" type="text/javascript"></script>
 	<r:require module="calendar" />
