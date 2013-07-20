@@ -15,12 +15,10 @@
 		<div class="span12">
 			<div class="page-header">
 				<h1>
-					LEAD :
+					CUSTOMER # 
 					${organizationInstance?.externalId}
-					
-					<h3>
-					<small> ${organizationInstance?.name} </small>
-					</h3>					
+					|
+					${organizationInstance?.name}
 				</h1>
 			</div>
 			
@@ -106,7 +104,10 @@
 			  <li><a href="#addressesTabsPane" data-toggle="tab">Addresses</a></li>
 			  <%--<li><a href="#phonesTabsPane" data-toggle="tab">Phones</a></li>
 			  --%>
-			  <li><a href="#quotesTabsPane" data-toggle="tab">Quotes</a></li>
+			  <li><a href="#repairQuotesTabsPane" data-toggle="tab">Repair Quotes</a></li>
+			  <li><a href="#contractQuotesTabsPane" data-toggle="tab">Contract Quotes</a></li>
+			  <li><a href="#modernizationQuotesTabsPane" data-toggle="tab">Modernization Quotes</a></li>
+			  <li><a href="#installationQuotesTabsPane" data-toggle="tab">Installation Quotes</a></li>
 			  <li><a href="#eventsTabsPane" data-toggle="tab">Events</a></li>
 			  <li><a href="#docsTabsPane" data-toggle="tab">Documents</a></li>
 			</ul>
@@ -125,8 +126,17 @@
 			  	<g:render template="phoneBookList" />
 			  </div>
 			  --%>
-			  <div class="tab-pane" id="quotesTabsPane">
-			  	<g:render template="quoteList" />
+			  <div class="tab-pane" id="repairQuotesTabsPane">
+			  	<g:render template="repairQuoteList" />
+			  </div>
+			  <div class="tab-pane" id="contractQuotesTabsPane">
+			  	<g:render template="contractQuoteList" />
+			  </div>
+			  <div class="tab-pane" id="modernizationQuotesTabsPane">
+			  	<g:render template="modernizationQuoteList" />
+			  </div>
+			  <div class="tab-pane" id="installationQuotesTabsPane">
+			  	<g:render template="installationQuoteList" />
 			  </div>
 			  <div class="tab-pane" id="eventsTabsPane">
 			  	<g:render template="eventList" />

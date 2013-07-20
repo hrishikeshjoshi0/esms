@@ -1,3 +1,4 @@
+<%@ page import="com.esms.model.quote.Quote"%>
 <div class="pull-right">
 	<a href="<g:createLink controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]"/>" 
 		role="button" class="btn"> <i class="icon-plus"></i> New Contract Quote
@@ -33,7 +34,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${organizationInstance.quotes}" var="quoteInstance">
+		<g:each in="${Quote.findAllWhere(organization:organizationInstance,type:'REPAIR')}" var="quoteInstance">
 			<tr>
 
 				<td>

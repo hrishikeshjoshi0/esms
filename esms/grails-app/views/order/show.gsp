@@ -13,21 +13,14 @@
 			<div class="page-header">
 				<h1>
 					<g:if test="${orderInstance.status == 'PENDING_INVOICE' }">
-						ORDER
+						ORDER #
 					</g:if>
 					<g:elseif test="${orderInstance.status == 'INVOICED' }">
-						INVOICE
-					</g:elseif>
+						INVOICE #
+					</g:elseif> 
+					|
 					${orderInstance?.orderNumber}
 				</h1>
-				<h3 style="margin-left: 20px;">
-					<small> <g:message code="quote.organization.label"
-							default="Organization" /> : <g:link controller="organization"
-							action="show" id="${orderInstance?.organization?.id}">
-							${orderInstance?.organization?.name}
-						</g:link>
-					</small>
-				</h3>
 			</div>
 
 			<g:form>

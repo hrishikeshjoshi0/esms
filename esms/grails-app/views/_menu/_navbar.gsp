@@ -8,6 +8,33 @@
 				
 				<!-- Nav Right -->
 				<ul class="nav user_menu pull-right">
+					<li>
+						<ul class="nav">
+							<li class="dropdown">
+								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+									<i class="icon-list-alt icon-white"></i> Quick Create <b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<g:link controller="lead" action="create">Create New Lead</g:link>
+									</li>
+									<li>
+										<g:link controller="quote" action="create">Create New Quote</g:link>
+									</li>
+									<li>
+										<g:link controller="order" action="create">Create New Order</g:link>
+									</li>
+									<li>
+										<g:link controller="product" action="create">Create New Product</g:link>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					
+					<li>
+						<a> | </a>
+					</li>
 					
 					<li class="hidden-phone hidden-tablet">
 						<div class="nb_boxes clearfix">
@@ -107,6 +134,7 @@
 							</li>
 							 -->
 						</ul>
+						
 						<%--<ul class="nav">
 							<li class="dropdown"><a data-toggle="dropdown"
 								class="dropdown-toggle" href="#"><i

@@ -113,7 +113,7 @@ class EventController {
 		
 		eventInstance.activityLog = 'Init'
         if (eventInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'event.label', default: 'Event'), eventInstance.id])}"
+            flash.message = "Event Created."
             redirect(action: "show", id: eventInstance.id)
         }
         else {
@@ -127,7 +127,7 @@ class EventController {
         def (occurrenceStart, occurrenceEnd) = [params.long('occurrenceStart'), params.long('occurrenceEnd')]
 
         if (!eventInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'event.label', default: 'Event'), params.id])}"
+            flash.message = "Event Updated."
             redirect(action: "index")
         }
         else {

@@ -81,6 +81,31 @@ class OrderItemController {
 	            render view: 'edit', model: [orderItemInstance: orderItemInstance]
 	            return
 	        }
+			
+			//Update Order
+			def order = orderItemInstance.order
+			def orderItems = order.orderItems
+
+			def unitPrice = new BigDecimal("0.0")
+			def tax = new BigDecimal("0.0")
+			def discount = new BigDecimal("0.0")
+			def lineTotalAmount = new BigDecimal("0.0")
+
+			orderItems?.each { it ->
+				unitPrice += it.unitPrice
+				tax +=  it.tax
+				discount +=  it.discount
+				lineTotalAmount +=  it.lineTotalAmount
+			}
+
+			BigDecimal totalDiscount = new BigDecimal("0.0")
+			BigDecimal grandTotal = new BigDecimal("0.0")
+
+			order.totalAmount = unitPrice
+			order.totalTax = tax
+			order.totalDiscount = discount
+			order.grandTotal = lineTotalAmount
+			order.save(flush:true)
 
 			flash.message = message(code: 'default.updated.message', args: [message(code: 'orderItem.label', default: 'OrderItem'), orderItemInstance.id])
 	        redirect action: 'show', id: orderItemInstance.id

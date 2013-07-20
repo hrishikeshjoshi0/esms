@@ -13,12 +13,10 @@
 		<div class="span12">
 			<div class="page-header">
 				<h1>
-					LEAD :
+					LEAD #
 					${organizationInstance?.externalId}
-					
-					<h3>
-					<small> ${organizationInstance?.name} </small>
-					</h3>					
+					|
+					${organizationInstance?.name} 
 				</h1>
 			</div>
 			

@@ -1,5 +1,7 @@
 package com.esms.model.calendar
 
+import java.util.Date;
+
 import org.joda.time.DateTime
 import org.joda.time.Minutes
 
@@ -34,6 +36,20 @@ class Event {
 	String relatedTo = 'ORGANIZATION'
 	String relatedToValue
 	String activityLog
+	
+	//Maintenance Visit Fields.
+	String maintenanceVisitTechnician
+	String maintenanceVisitTechnicianNotes
+	String maintenanceVisitSignedOffBy
+	boolean maintenanceVisitIsRequiresRepair
+	
+	//Meeting Fields.
+	String meetingNotes
+	
+	//Repair visit fields
+	String breakdownVisitTechnician
+	String breakdownVisitTechnicianNotes
+	String breakdownVisitSignedOffBy
 
     def eventService
 
@@ -54,11 +70,24 @@ class Event {
         recurDaysOfWeek(validator: {val, obj -> 
             if (obj.recurType == EventRecurType.WEEKLY && !val) {return 'null'}
         })
-		eventType InList : ['CALL','MEETING','MAINTENANCE VISIT','REPAIR VISIT']
+		eventType InList : ['CALL','MEETING','MAINTENANCE VISIT','BREAKDOWN CALL']
 		status InList : ['HELD','PLANNED','NOT HELD'] 
 		priority InList : ['LOW','MEDIUM','HIGH']
 		relatedTo InLIst : ['ORGANIZATION','INCIDENT']
 		activityLog type:'text'
+		
+		maintenanceVisitTechnician(nullable: true,blank:true)
+		maintenanceVisitTechnicianNotes(nullable: true,blank:true,type:'text')
+		maintenanceVisitSignedOffBy(nullable: true,blank:true)
+		maintenanceVisitIsRequiresRepair(nullable: true)
+		
+		//Meeting Fields.
+		meetingNotes(nullable: true,blank:true,type:'text')
+		
+		//Repair visit fields
+		breakdownVisitTechnician(nullable: true,blank:true)
+		breakdownVisitTechnicianNotes(nullable: true,blank:true,type:'text')
+		breakdownVisitSignedOffBy(nullable: true,blank:true)
     }
 
     public int getDurationMinutes() {

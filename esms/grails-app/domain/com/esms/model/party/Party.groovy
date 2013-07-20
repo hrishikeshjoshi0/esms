@@ -1,7 +1,7 @@
 package com.esms.model.party
 
-import com.esms.model.calendar.Event;
-import com.lucastex.grails.fileuploader.UFile;
+import com.esms.model.calendar.Event
+import com.lucastex.grails.fileuploader.UFile
 
 class Party {
 	

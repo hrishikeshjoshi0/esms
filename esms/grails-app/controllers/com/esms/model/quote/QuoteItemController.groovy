@@ -83,6 +83,37 @@ class QuoteItemController {
 	            render view: 'edit', model: [quoteItemInstance: quoteItemInstance]
 	            return
 	        }
+			
+			//Update Quote.
+			def quote = quoteItemInstance.quote
+			def quoteItems = quote.quoteItems
+
+			def unitPrice = new BigDecimal("0.0")
+			def tax = new BigDecimal("0.0")
+			def discount = new BigDecimal("0.0")
+			def lineTotalAmount = new BigDecimal("0.0")
+
+			quoteItems?.each { it ->
+				unitPrice += it.unitPrice
+				tax +=  it.tax
+				discount +=  it.discount
+				lineTotalAmount +=  it.lineTotalAmount
+			}
+
+			BigDecimal totalDiscount = new BigDecimal("0.0")
+			BigDecimal grandTotal = new BigDecimal("0.0")
+
+			quote.totalAmount = unitPrice
+			quote.totalTax = tax
+			quote.totalDiscount = discount
+			
+			quote.grandTotal = lineTotalAmount
+			
+			//Initialize the Quoted and the Negotiated Total to the Grand Total.
+			quote.quotedGrandTotal = lineTotalAmount
+			quote.negotiatedGrandTotal = 0
+			
+			quote.save(flush:true)
 
 			flash.message = message(code: 'default.updated.message', args: [message(code: 'quoteItem.label', default: 'QuoteItem'), quoteItemInstance.id])
 	        redirect action: 'show', id: quoteItemInstance.id

@@ -71,9 +71,9 @@
 				<g:select name="productNumber" from="${Product.list()}"
 					optionKey="productNumber" optionValue="productName" class="input-large"
 					noSelection="${['null':'Select Product..']}"
-					value="${quoteInstance?.organization?.id}" onChange="fetchUnitPriceForProduct(this.value);"/>
+					value="${orderItemInstance?.productNumber}" onChange="fetchUnitPriceForProduct(this.value);"/>
 				<span class="help-inline">
-					${hasErrors(bean: quoteInstance, field: 'productNumber', 'error')}
+					${hasErrors(bean: orderItemInstance, field: 'productNumber', 'error')}
 				</span>
 			</div>
 		</td>

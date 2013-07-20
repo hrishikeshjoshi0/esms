@@ -6,7 +6,7 @@ if (typeof jQuery !== 'undefined') {
 			$(this).fadeOut();
 		});
 		
-		$("select").chosen();
+	   $("select").chosen();
 		
 	   $(".slidingDiv").hide();
        $(".show_hide").show();

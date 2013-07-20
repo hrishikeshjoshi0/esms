@@ -122,6 +122,8 @@ class OrderController {
 			orderItem.productNumber= it.productNumber
 			orderItem.order = order
 			orderItem.save(flush:true)
+			
+			lineNo++
 		}
 
 		flash.message = 'Order Created from Quote: ' + quote.quoteName

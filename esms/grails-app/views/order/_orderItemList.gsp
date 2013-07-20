@@ -82,7 +82,7 @@
 						role="button" class="btn">Assign
 					</a>
 				</td>
-				<td class="link"><g:link action="show"
+				<td class="link"><g:link action="show" controller="orderItem"
 						id="${orderItemInstance.id}" class="btn btn-small">Show &raquo;</g:link>
 				</td>
 			</tr>

@@ -1,5 +1,7 @@
 package com.esms
 
+import org.codehaus.groovy.grails.plugins.orm.auditable.AuditLogEvent;
+
 import com.esms.model.order.Order;
 import com.esms.model.party.Organization
 import com.esms.model.payment.Payment;
@@ -13,6 +15,7 @@ class DashboardController {
 		params.sort = "id"
 		params.'order' = "desc"
 		
+		//def recentLeads = AuditLogEvent.findAllByClassNameAndEventName('com.esms.model.party.Organization','INSERT',[sort:"dateCreated",order:"desc"])
 		def recentLeads = Organization.findAllBySalesStatus('LEAD',false,params)
 		def recentCustomers = Organization.findAllBySalesStatus('CUSTOMER',params)
 		def recentQuotes = Quote.list(params)

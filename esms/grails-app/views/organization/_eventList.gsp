@@ -10,17 +10,11 @@
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
-			<g:sortableColumn property="title"
-				title="${message(code: 'event.title.label', default: 'Title')}" />
-
-			<g:sortableColumn property="location"
-				title="${message(code: 'event.location.label', default: 'Location')}" />
-
-			<g:sortableColumn property="description"
-				title="${message(code: 'event.description.label', default: 'Description')}" />
-				
 			<g:sortableColumn property="status"
 				title="${message(code: 'event.status.label', default: 'Status')}" />
+				
+			<g:sortableColumn property="title"
+				title="${message(code: 'event.title.label', default: 'Title')}" />
 
 			<th></th>
 		</tr>
@@ -28,21 +22,25 @@
 	<tbody>
 		<g:each in="${organizationInstance?.events}" var="eventInstance">
 			<tr>
+				<td>
+					${fieldValue(bean: eventInstance, field: "status")}
+				</td>
 
 				<td>
 					${fieldValue(bean: eventInstance, field: "title")}
-				</td>
-
-				<td>
-					${fieldValue(bean: eventInstance, field: "location")}
-				</td>
-
-				<td>
-					${fieldValue(bean: eventInstance, field: "description")}
-				</td>
-
-				<td>
-					${fieldValue(bean: eventInstance, field: "status")}
+					<br/>
+					<g:if test="${eventInstance.eventType == 'CALL' }">
+						${eventInstance.description}
+					</g:if>
+					<g:elseif test="${eventInstance.eventType == 'MEETING' }">
+						${eventInstance.meetingNotes}
+					</g:elseif>
+					<g:elseif test="${eventInstance.eventType == 'MAINTENANCE VISIT' }">
+						${eventInstance.maintenanceVisitTechnicianNotes}
+					</g:elseif>
+					<g:elseif test="${eventInstance.eventType == 'BREAKDOWN CALL' }">
+						${eventInstance.breakdownVisitTechnicianNotes}
+					</g:elseif>
 				</td>
 
 				<td class="link"><g:link controller="event" action="show"

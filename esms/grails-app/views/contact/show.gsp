@@ -16,12 +16,9 @@
 				<h1>
 					Contact :
 					${contactInstance?.externalId}
+					|
+					${contactInstance?.firstName} ${contactInstance?.lastName}
 				</h1>
-				<h3>
-					<small>
-						${contactInstance?.firstName} ${contactInstance?.lastName}
-					</small>
-				</h3>
 			</div>
 			
 			<g:form>
@@ -46,16 +43,6 @@
 				<dd>
 					<g:fieldValue bean="${contactInstance}" field="salutation" />
 				</dd>
-
-
-				<dt>
-					<g:message code="contact.status.label" default="Status" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${contactInstance}" field="status" />
-				</dd>
-
 
 				<dt>
 					<g:message code="contact.externalId.label" default="External Id" />
@@ -95,7 +82,7 @@
 				</dt>
 
 				<dd>
-					<g:link controller="party" action="show"
+					<g:link controller="${contactInstance?.organization?.partyType?.toLowerCase()}" action="show"
 						id="${contactInstance?.organization?.id}">
 						${contactInstance?.organization?.name}
 					</g:link>

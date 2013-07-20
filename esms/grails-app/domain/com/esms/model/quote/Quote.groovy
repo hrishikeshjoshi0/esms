@@ -44,6 +44,7 @@ class Quote {
 	
 	BigDecimal quotedGrandTotal = new BigDecimal("0.0")
 	BigDecimal negotiatedGrandTotal = new BigDecimal("0.0")
+	String notes
 	
 	static hasMany = [quoteItems : QuoteItem]
 	
@@ -81,6 +82,7 @@ class Quote {
 		
 		quotedGrandTotal nullable:false
 		negotiatedGrandTotal nullable:false
+		notes nullable:true,blank:true,length:1000
     }
 	
 	static mapping = {

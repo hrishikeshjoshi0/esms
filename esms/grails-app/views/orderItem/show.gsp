@@ -1,6 +1,6 @@
 
 
-<%@ page import="com.esms.model.order.OrderItem" %>
+<%@ page import="com.esms.model.order.OrderItem"%>
 <!doctype html>
 <html>
 <head>
@@ -14,54 +14,12 @@
 		<div class="span12">
 			<div class="page-header">
 				<h1>
-					<g:message code="default.show.label" args="[entityName]" />
+					Order Line # ${orderItemInstance?.lineNumber}
+					|
+					${orderItemInstance?.order?.orderNumber}
 				</h1>
 			</div>
-
-			<dl class="dl-horizontal">
-				
-							<dt><g:message code="orderItem.lineNumber.label" default="Line Number" /></dt>
-						
-							<dd><g:fieldValue bean="${orderItemInstance}" field="lineNumber"/></dd>
-						
-				
-							<dt><g:message code="orderItem.quantity.label" default="Quantity" /></dt>
-						
-							<dd><g:fieldValue bean="${orderItemInstance}" field="quantity"/></dd>
-						
-				
-							<dt><g:message code="orderItem.unitPrice.label" default="Unit Price" /></dt>
-						
-							<dd><g:fieldValue bean="${orderItemInstance}" field="unitPrice"/></dd>
-						
-				
-							<dt><g:message code="orderItem.tax.label" default="Tax" /></dt>
-						
-							<dd><g:fieldValue bean="${orderItemInstance}" field="tax"/></dd>
-						
-				
-							<dt><g:message code="orderItem.lineTotalAmount.label" default="Line Total Amount" /></dt>
-						
-							<dd><g:fieldValue bean="${orderItemInstance}" field="lineTotalAmount"/></dd>
-						
-				
-							<dt><g:message code="orderItem.discount.label" default="Discount" /></dt>
-						
-							<dd><g:fieldValue bean="${orderItemInstance}" field="discount"/></dd>
-						
-				
-							<dt><g:message code="orderItem.productNumber.label" default="Product Number" /></dt>
-						
-							<dd><g:fieldValue bean="${orderItemInstance}" field="productNumber"/></dd>
-						
-				
-							<dt><g:message code="orderItem.order.label" default="Order" /></dt>
-						
-							<dd><g:link controller="order" action="show" id="${orderItemInstance?.order?.id}">${orderItemInstance?.order?.encodeAsHTML()}</g:link></dd>
-						
-				
-			</dl>
-
+			
 			<g:form>
 				<g:hiddenField name="id" value="${orderItemInstance?.id}" />
 				<div class="form-actions">
@@ -75,6 +33,85 @@
 					</button>
 				</div>
 			</g:form>
+
+			<dl class="dl-horizontal">
+
+				<dt>
+					<g:message code="orderItem.lineNumber.label" default="Line Number" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${orderItemInstance}" field="lineNumber" />
+				</dd>
+
+
+				<dt>
+					<g:message code="orderItem.quantity.label" default="Quantity" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${orderItemInstance}" field="quantity" />
+				</dd>
+
+
+				<dt>
+					<g:message code="orderItem.unitPrice.label" default="Unit Price" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${orderItemInstance}" field="unitPrice" />
+				</dd>
+
+
+				<dt>
+					<g:message code="orderItem.tax.label" default="Tax" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${orderItemInstance}" field="tax" />
+				</dd>
+
+
+				<dt>
+					<g:message code="orderItem.lineTotalAmount.label"
+						default="Line Total Amount" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${orderItemInstance}" field="lineTotalAmount" />
+				</dd>
+
+
+				<dt>
+					<g:message code="orderItem.discount.label" default="Discount" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${orderItemInstance}" field="discount" />
+				</dd>
+
+
+				<dt>
+					<g:message code="orderItem.productNumber.label"
+						default="Product Number" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${orderItemInstance}" field="productNumber" />
+				</dd>
+
+
+				<dt>
+					<g:message code="orderItem.order.label" default="Order" />
+				</dt>
+
+				<dd>
+					<g:link controller="order" action="show"
+						id="${orderItemInstance?.order?.id}">
+						${orderItemInstance?.order?.orderNumber}
+					</g:link>
+				</dd>
+			</dl>
 		</div>
 	</div>
 </body>

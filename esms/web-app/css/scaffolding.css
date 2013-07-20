@@ -655,7 +655,7 @@ h4 small {
 }
 .page-header {
   border-bottom: 1px solid #eeeeee;
-  margin: 0;
+  margin: 5px;
   padding-bottom: 10px;
 }
 ul,
