@@ -67,6 +67,19 @@
 						<a> | </a>
 					</li>
 					
+					<!-- User -->
+					<li>
+						<a href="#">
+							<i class="icon-user icon-white"></i>
+							Logged In Since :
+							${session["lastLoginDate"]}
+						</a>
+					</li>
+					
+					<li>
+						<a> | </a>
+					</li>
+					
 					<li>
 						<g:link class="dropdown-toggle" controller="logout">Log Out</g:link>
 					</li>

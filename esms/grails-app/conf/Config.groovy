@@ -171,10 +171,15 @@ grails.plugins.springsecurity.interceptUrlMap = [
  *  Updated the last login date.
  */
 
-/*
 grails.plugins.springsecurity.useSecurityEventListener = true
 
 grails.plugins.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, appCtx ->
+	System.out.print("Hi");
+	def currentRequest = RequestContextHolder.requestAttributes
+	if(currentRequest) { // we have been called from a web request processing thread
+	  currentRequest.session["lastLoginDate"] = new Date()
+	}
+	/*
 	User.withTransaction {
 		def user = User.findById(appCtx.springSecurityService.principal.id)
 		if(!user.isAttached()) {
@@ -183,8 +188,9 @@ grails.plugins.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, app
 		user.lastLoginDate = new Date()
 		user.save(flush: true, failOnError: true)
 	}
+	 */
 }	
-*/
+
 
 fileuploader {
 	docs {

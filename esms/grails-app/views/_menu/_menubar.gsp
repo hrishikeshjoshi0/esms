@@ -25,8 +25,8 @@
 
 <div class="sidebar">
 	<br /> <br />
-	<div class="antiScroll">
-		<div class="antiscroll-inner">
+	<div class="antiScroll" style="overflow: hidden;">
+		<div class="antiscroll-inner" style="overflow: auto;">
 			<div class="antiscroll-content">
 				<div class="sidebar_inner">
 					<g:if
