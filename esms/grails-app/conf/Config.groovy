@@ -1,6 +1,9 @@
 import grails.plugins.springsecurity.SecurityConfigType
 
 import org.springframework.security.core.userdetails.User
+import org.springframework.web.context.request.RequestContextHolder
+
+import com.esms.model.security.SecUser
 
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
@@ -179,16 +182,16 @@ grails.plugins.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, app
 	if(currentRequest) { // we have been called from a web request processing thread
 	  currentRequest.session["lastLoginDate"] = new Date()
 	}
-	/*
-	User.withTransaction {
-		def user = User.findById(appCtx.springSecurityService.principal.id)
+	
+	/*SecUser.withTransaction {
+		def user = SecUser.findById(appCtx.springSecurityService.principal.id)
 		if(!user.isAttached()) {
 			user.attach()
 		}
 		user.lastLoginDate = new Date()
 		user.save(flush: true, failOnError: true)
-	}
-	 */
+	}*/
+	 
 }	
 
 

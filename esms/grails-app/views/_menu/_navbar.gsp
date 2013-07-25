@@ -7,12 +7,12 @@
 				</a>
 				
 				<!-- Nav Right -->
-				<ul class="nav user_menu pull-right">
+				<ul class="nav user_menu pull-right" style="margin-left:2px;">
 					<li>
 						<ul class="nav">
 							<li class="dropdown">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-									<i class="icon-list-alt icon-white"></i> Quick Create <b class="caret"></b>
+									<i class="icon-star icon-white"></i> <b class="caret"></b>
 								</a>
 								<ul class="dropdown-menu">
 									<li>
@@ -30,10 +30,6 @@
 								</ul>
 							</li>
 						</ul>
-					</li>
-					
-					<li>
-						<a> | </a>
 					</li>
 					
 					<li class="hidden-phone hidden-tablet">
@@ -70,9 +66,8 @@
 					<!-- User -->
 					<li>
 						<a href="#">
-							<i class="icon-user icon-white"></i>
 							Logged In Since :
-							${session["lastLoginDate"]}
+							<g:formatDate date="${session.lastLoginDate}" format="yyyy-MM-dd" type="datetime" style="SHORT"/>
 						</a>
 					</li>
 					

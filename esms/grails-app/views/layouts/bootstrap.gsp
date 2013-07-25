@@ -53,16 +53,15 @@
 				<p>Expiring Contracts:</p>
 				<div class="clearfix">
 					<ul>
-						<li>
-							<a href="#">
-								Contract #1
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								Contract #2
-							</a>
-						</li>
+						<g:if test="${session['expiringContracts']}">
+							<g:each in="${session['expiringContracts']}" var="contract">
+								<li>
+									<g:link controller="order" action="show" id="${contract.id}">
+										${contract.orderNumber} - ${contract.contractToDate}
+									</g:link>
+								</li>
+							</g:each>
+						</g:if>
 					</ul>
 				</div>
 			</div>
