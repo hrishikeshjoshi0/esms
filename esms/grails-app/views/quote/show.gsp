@@ -40,10 +40,18 @@
 					</g:if>
 					
 					<g:if test="${quoteInstance?.status == 'PENDING' && quoteInstance?.quoteItems?.size() != 0}">
-						<g:link class="btn" action="markAsAccepted" id="${quoteInstance?.id}">
-							<i class="icon-envelope"></i>
-							Mark as Accepted
-						</g:link>
+						<g:if test="${quoteInstance.type == 'CONTRACT'}">
+							<a data-toggle="modal" href="#" data-target="#markAsAccepted" role="button"
+								class="btn">
+								Mark as Accepted
+							</a>
+						</g:if>
+						<g:else>
+							<g:link class="btn" action="markAsAccepted" id="${quoteInstance?.id}">
+								<i class="icon-envelope"></i>
+								Mark as Accepted
+							</g:link>
+						</g:else>
 						<%--
 						<g:link class="btn" action="markAsRevised" id="${quoteInstance?.id}">
 							<i class="icon-pencil"></i>
@@ -172,7 +180,7 @@
 							<g:fieldValue bean="${quoteInstance}" field="contactName" />
 						</dd>
 						
-						<g:if test="${quoteInstance.status == 'DECLINED'}">
+						<g:if test="${quoteInstance?.status == 'DECLINED'}">
 							<dt>
 								<g:message code="quote.declinedReason.label" default="Reason For Decline" />
 							</dt>
@@ -260,5 +268,6 @@
 	<g:render template="revisedReason"></g:render>
 	<g:render template="saveRecepient"></g:render>
 	<g:render template="confirmSale"></g:render>
+	<g:render template="acceptQuote"></g:render>
 </body>
 </html>

@@ -112,12 +112,24 @@ class QuoteController {
 	}
 
 	def markAsAccepted = {
-		def quoteInstance = Quote.get(params.id)
-		quoteInstance.status = 'ACCEPT'
-		quoteInstance.save(flush:true)
+		switch (request.method) {
+			case 'GET':
+ 				def quoteInstance = Quote.get(params.'quote.id')
+				[quoteInstance : quoteInstance]
+				break
+			case 'POST' :
+				def quoteInstance = Quote.get(params.id)
+				if(quoteInstance.type == 'CONTRACT') {
+					quoteInstance.contractFromDate = params.contractFromDate
+					quoteInstance.contractToDate = params.contractToDate
+ 				}
 
-		flash.message = 'Marked as Accepted'
-		redirect action: 'show', id: quoteInstance.id
+				quoteInstance.status = 'ACCEPT'
+				quoteInstance.save(flush:true)
+				flash.message = 'Marked as Accepted'
+				redirect action: 'show', id: quoteInstance.id
+				break
+		}
 	}
 
 	def markAsRevised = {
