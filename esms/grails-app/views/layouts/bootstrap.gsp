@@ -31,40 +31,13 @@
 	</div>
 	
 	<div class="style_switcher">
-			<div class="sepH_c">
-				<p>Upcoming Events:</p>
-				<div class="clearfix">
-					<ul>
-						<li>
-							<a href="#">
-								Do something
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								Do something more..
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+			<h2 class='style_switcher_header'>
+				Notifications
+			</h2>
+			<hr/>
+			<!-- Style Switcher Content -->
+			<g:render template="/layouts/notification" />		
 			
-			<div class="sepH_c">
-				<p>Expiring Contracts:</p>
-				<div class="clearfix">
-					<ul>
-						<g:if test="${session['expiringContracts']}">
-							<g:each in="${session['expiringContracts']}" var="contract">
-								<li>
-									<g:link controller="order" action="show" id="${contract.id}">
-										${contract.orderNumber} - ${contract.contractToDate}
-									</g:link>
-								</li>
-							</g:each>
-						</g:if>
-					</ul>
-				</div>
-			</div>
 			<div class="hide">
 				<ul id="ssw_styles">
 					<li class="small ssw_mbColor sepH_a" style="display:none">body {<span class="ssw_mColor sepH_a" style="display:none"> color: #<span></span>;</span> <span class="ssw_bColor" style="display:none">background-color: #<span></span> </span>}</li>

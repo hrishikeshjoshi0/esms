@@ -6,9 +6,9 @@
 			aria-hidden="true">×</button>
 		<h3 id="myModalLabel">Save Recepient Name</h3>
 	</div>
-	<g:form controller="quote" action="markAsSent" method="POST">
+	<g:form controller="quote" action="markAsSent" method="POST" style="width:400px;">
 		<g:hiddenField name="id" value="${quoteInstance?.id}" />
-		<div class="modal-body"></div>
+		<div class="modal-body" style="width:500px;"></div>
 		<div class="modal-footer">
 			<div class="form-actions">
 				<button type="submit" class="btn btn-primary">

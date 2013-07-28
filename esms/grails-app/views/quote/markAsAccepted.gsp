@@ -8,7 +8,7 @@
 	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'contractFromDate', 'error')} ">
 	<label for="contractFromDate" class="control-label"><g:message
 			code="quote.contractFromDate.label" default="Contract Starts" />
-	<div class="controls">
+	<div class="controls" style="width:100%;">
 		<g:datePicker name="contractFromDate" value="${quoteInstance?.contractFromDate}" precision="day"/>
 		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'contractFromDate', 'error')}
 		</span>
@@ -16,10 +16,10 @@
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'contractToDate', 'error')} ">
-	<label for="contractToDate" class="control-label"><g:message
+	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'contractToDate', 'error')} " style="width:500px;">
+	<label for="contractToDate" class="control-label"><g:message 
 			code="quote.contractToDate.label" default="Contract Ends" />
-	<div class="controls">
+	<div class="controls" style="width:100%;">
 		<g:datePicker name="contractToDate" value="${quoteInstance?.contractToDate}" precision="day"/>
 		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'contractToDate', 'error')}
 		</span>

@@ -14,6 +14,11 @@
 				<h1>
 					Quote :
 					${quoteInstance?.quoteName}
+					|
+					<g:link controller="organization" action="show"
+									id="${quoteInstance?.organization?.id}">
+							${quoteInstance?.organization?.name}
+					</g:link>
 				</h1>
 			</div>
 
@@ -52,12 +57,6 @@
 								Mark as Accepted
 							</g:link>
 						</g:else>
-						<%--
-						<g:link class="btn" action="markAsRevised" id="${quoteInstance?.id}">
-							<i class="icon-pencil"></i>
-							Revise
-						</g:link>
-						--%>
 						<a data-toggle="modal" href="#" data-target="#markAsRevised" role="button"
 							class="btn"> 
 							<i class="icon-pencil"></i>
@@ -95,24 +94,7 @@
 					</g:elseif>
 				</div>
 			</g:form>
-
-			<div class="row">
-				<div class="span12">
-					<h3 style="margin-left: 20px;">
-						<g:message code="quote.quoteName.label" default="Quote Name" /> : 
-						<g:fieldValue bean="${quoteInstance}" field="quoteName" />
-					</h3>
-					<h3 style="margin-left: 20px;">
-						<small>
-							<g:message code="quote.organization.label" default="Organization" /> :
-							<g:link controller="organization" action="show"
-									id="${quoteInstance?.organization?.id}">
-									${quoteInstance?.organization?.name}
-							</g:link>
-						</small>
-					</h3>
-				</div>
-			</div>
+			
 			<div class="row">
 				<div class="span4">
 					<dl class="dl-horizontal" style="margin-left: -30px;">

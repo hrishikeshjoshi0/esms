@@ -115,7 +115,11 @@ class QuoteController {
 		switch (request.method) {
 			case 'GET':
  				def quoteInstance = Quote.get(params.'quote.id')
-				[quoteInstance : quoteInstance]
+				if(!quoteInstance.type == 'CONTRACT') {
+					quoteInstance.status = 'ACCEPT'
+					quoteInstance.save(flush:true)
+					redirect action: 'show', id: quoteInstance.id
+				}
 				break
 			case 'POST' :
 				def quoteInstance = Quote.get(params.id)

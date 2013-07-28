@@ -20,6 +20,11 @@
 					</g:elseif> 
 					|
 					${orderInstance?.orderNumber}
+					|
+					<g:link controller="organization" action="show"
+							id="${orderInstance?.organization?.id}">
+							${orderInstance?.organization?.name}
+					</g:link>
 				</h1>
 			</div>
 
@@ -126,16 +131,23 @@
 						<g:fieldValue bean="${orderInstance}" field="contactName" />
 					</dd>
 					
-					<dt>
-						<g:message code="order.organization.label" default="Organization" />
-					</dt>
-				
-					<dd>
-						<g:link controller="organization" action="show"
-							id="${orderInstance?.organization?.id}">
-							${orderInstance?.organization?.name}
-						</g:link>
-					</dd>
+					<g:if test="${orderInstance.type == 'SERVICE' }">
+						<dt>
+							<g:message code="order.contractFromDate.label" default="Contract Starts" />
+						</dt>
+		
+						<dd>
+							<g:formatDate date="${orderInstance.contractFromDate}" format="dd-MM-yyyy"/>
+						</dd>
+						
+						<dt>
+							<g:message code="order.contractToDate.label" default="Contract Ends" />
+						</dt>
+			
+						<dd>
+							<g:formatDate date="${orderInstance.contractToDate}" format="dd-MM-yyyy"/>
+						</dd>
+					</g:if>
 				</dl>
 			</div>
 			<div class="span4">
@@ -192,7 +204,6 @@
 				<dd>
 					<g:fieldValue bean="${orderInstance}" field="receviedGrandTotal" />
 				</dd>
-
 				</dl>
 			</div>
 			</div>
