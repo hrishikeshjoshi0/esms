@@ -6,31 +6,65 @@
 					<img src="${resource(dir: 'images', file: 'venus_crm_logo.png')}" alt="${meta(name:'app.name')}" style="width:180px;"/> <br/>
 				</a>
 				
-				<!-- Nav Right -->
-				<ul class="nav user_menu pull-right" style="margin-left:2px;">
-					<li>
 						<ul class="nav">
 							<li class="dropdown">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 									<i class="icon-star icon-white"></i> <b class="caret"></b>
 								</a>
 								<ul class="dropdown-menu">
-									<li>
-										<g:link controller="lead" action="create">Create New Lead</g:link>
+									<li
+										<%= request.forwardURI == "${createLink(uri: '/')}" ? ' class="active"' : '' %>>
+										<a href="${createLink(uri: '/')}"> Home </a>
 									</li>
-									<li>
-										<g:link controller="quote" action="create">Create New Quote</g:link>
+									<li <%= 'lead' == controllerName ? ' class="active"' : '' %>>
+										<g:link controller="lead">
+													Leads
+												</g:link>
 									</li>
-									<li>
-										<g:link controller="order" action="create">Create New Order</g:link>
+									<li
+										<%= 'organization' == controllerName ? ' class="active"' : '' %>>
+										<g:link controller="organization">
+													Customers
+												</g:link>
 									</li>
-									<li>
-										<g:link controller="product" action="create">Create New Product</g:link>
+									<li <%= 'product' == controllerName ? ' class="active"' : '' %>>
+										<g:link controller="product">
+													Product
+												</g:link>
 									</li>
+									<li <%= 'quote' == controllerName ? ' class="active"' : '' %>>
+										<g:link controller="quote">
+														Quote
+													</g:link>
+									</li>
+									<li <%= 'order' == controllerName ? ' class="active"' : '' %>>
+										<g:link controller="order">
+											Order
+										</g:link>
+									</li>
+									<li <%= 'activity' == controllerName ? ' class="active"' : '' %>>
+										<g:link controller="event">
+														Calendar
+													</g:link>
+									</li>
+									<li <%= 'payment' == controllerName ? ' class="active"' : '' %>>
+										<g:link controller="payment">
+														Payment
+													</g:link>
+									</li>
+									<li <%= 'employee' == controllerName ? ' class="active"' : '' %>>
+										<g:link controller="employee">
+													HR
+										</g:link>
+									</li>
+									
 								</ul>
 							</li>
 						</ul>
-					</li>
+				
+				<!-- Nav Right -->
+				<ul class="nav user_menu pull-right" style="margin-left:2px;">
+					
 					
 					<li class="hidden-phone hidden-tablet">
 						<div class="nb_boxes clearfix">
@@ -84,133 +118,6 @@
 				<a data-target=".nav-collapse" data-toggle="collapse"
 					class="btn_menu"> <span class="icon-align-justify icon-white"></span>
 				</a>
-				
-				<!-- Navbar -->
-				<nav>
-					<div class="nav-collapse">
-						<ul class="nav">
-							<li
-								<%= request.forwardURI == "${createLink(uri: '/')}" ? ' class="active"' : '' %>>
-								<a href="${createLink(uri: '/')}"> Home </a>
-							</li>
-							<li <%= 'lead' == controllerName ? ' class="active"' : '' %>>
-								<g:link controller="lead">
-											Leads
-										</g:link>
-							</li>
-							<li
-								<%= 'organization' == controllerName ? ' class="active"' : '' %>>
-								<g:link controller="organization">
-											Customers
-										</g:link>
-							</li>
-							<li <%= 'product' == controllerName ? ' class="active"' : '' %>>
-								<g:link controller="product">
-											Product
-										</g:link>
-							</li>
-							<li <%= 'quote' == controllerName ? ' class="active"' : '' %>>
-								<g:link controller="quote">
-												Quote
-											</g:link>
-							</li>
-							<li <%= 'order' == controllerName ? ' class="active"' : '' %>>
-								<g:link controller="order">
-									Order
-								</g:link>
-							</li>
-							<li <%= 'activity' == controllerName ? ' class="active"' : '' %>>
-								<g:link controller="event">
-												Calendar
-											</g:link>
-							</li>
-							<li <%= 'payment' == controllerName ? ' class="active"' : '' %>>
-								<g:link controller="payment">
-												Payment
-											</g:link>
-							</li>
-							<li <%= 'employee' == controllerName ? ' class="active"' : '' %>>
-								<g:link controller="employee">
-											HR
-								</g:link>
-							</li>
-							<!-- 
-							<li <%= 'dashboard' == controllerName ? ' class="active"' : '' %>>
-								<g:link controller="dashboard">
-											Dashboard
-								</g:link>
-							</li>
-							 -->
-						</ul>
-						
-						<%--<ul class="nav">
-							<li class="dropdown"><a data-toggle="dropdown"
-								class="dropdown-toggle" href="#"><i
-									class="icon-list-alt icon-white"></i> Forms <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li><a href="form_elements.html">Form elements</a></li>
-									<li><a href="form_extended.html">Extended form
-											elements</a></li>
-									<li><a href="form_validation.html">Form Validation</a></li>
-								</ul></li>
-							<li class="dropdown"><a data-toggle="dropdown"
-								class="dropdown-toggle" href="#"><i
-									class="icon-th icon-white"></i> Components <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li><a href="alerts_btns.html">Alerts & Buttons</a></li>
-									<li><a href="icons.html">Icons</a></li>
-									<li><a href="notifications.html">Notifications</a></li>
-									<li><a href="tables.html">Tables</a></li>
-									<li><a href="tables_more.html">Tables (more examples)</a></li>
-									<li><a href="tabs_accordion.html">Tabs & Accordion</a></li>
-									<li><a href="tooltips.html">Tooltips, Popovers</a></li>
-									<li><a href="typography.html">Typography</a></li>
-									<li><a href="widgets.html">Widget boxes</a></li>
-									<li class="dropdown"><a href="#">Sub menu <b
-											class="caret-right"></b></a>
-										<ul class="dropdown-menu">
-											<li><a href="#">Sub menu 1.1</a></li>
-											<li><a href="#">Sub menu 1.2</a></li>
-											<li><a href="#">Sub menu 1.3</a></li>
-											<li><a href="#">Sub menu 1.4 <b class="caret-right"></b></a>
-												<ul class="dropdown-menu">
-													<li><a href="#">Sub menu 1.4.1</a></li>
-													<li><a href="#">Sub menu 1.4.2</a></li>
-													<li><a href="#">Sub menu 1.4.3</a></li>
-												</ul></li>
-										</ul></li>
-								</ul></li>
-							<li class="dropdown"><a data-toggle="dropdown"
-								class="dropdown-toggle" href="#"><i
-									class="icon-wrench icon-white"></i> Plugins <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li><a href="charts.html">Charts</a></li>
-									<li><a href="calendar.html">Calendar</a></li>
-									<li><a href="datatable.html">Datatable</a></li>
-									<li><a href="file_manager.html">File Manager</a></li>
-									<li><a href="floating_header.html">Floating List
-											Header</a></li>
-									<li><a href="google_maps.html">Google Maps</a></li>
-									<li><a href="gallery.html">Gallery Grid</a></li>
-									<li><a href="wizard.html">Wizard</a></li>
-								</ul></li>
-							<li class="dropdown"><a data-toggle="dropdown"
-								class="dropdown-toggle" href="#"><i
-									class="icon-file icon-white"></i> Pages <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li><a href="chat.html">Chat</a></li>
-									<li><a href="error_404.html">Error 404</a></li>
-									<li><a href="mailbox.html">Mailbox</a></li>
-									<li><a href="search_page.html">Search page</a></li>
-									<li><a href="user_profile.html">User profile</a></li>
-									<li><a href="user_static.html">User profile (static)</a></li>
-								</ul></li>
-							<li></li>
-							<li><a href="documentation.html"><i
-									class="icon-book icon-white"></i> Help</a></li>
-						</ul>
-					--%></div>
-				</nav>
 			</div>
 		</div>
 	</div>
