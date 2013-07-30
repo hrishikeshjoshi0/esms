@@ -1,8 +1,8 @@
 <div id="contentwrapper" class="">
 	<!-- Row 1 -->
-	<div class="row-fluid">
 		<!-- 1/2 row width -->
 		<g:if test="${session['expiringContracts']}">
+		<div class="row-fluid">
 			<div class="span12">
 				<h3 class='style_switcher_header'>
 					Expiring Contracts
@@ -51,15 +51,17 @@
 						</table>
 				</div>
 			</div>
+			</div>
 		</g:if>
 
 		<g:if test="${session['upcomingEvents']}">
+			<div class="row-fluid">
 			<div class="span12">
 				<h3 class='style_switcher_header'>
 					Upcoming Events
 				</h3>
 				
-				<div class="dashboard-widget">
+				<div class="dashboard-widget notification">
 					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
@@ -103,6 +105,6 @@
 					</table>
 				</div>
 			</div>
+			</div>
 		</g:if>
 	</div>
-</div>
