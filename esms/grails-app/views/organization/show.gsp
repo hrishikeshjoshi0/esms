@@ -104,6 +104,7 @@
 			  <li><a href="#addressesTabsPane" data-toggle="tab">Addresses</a></li>
 			  <%--<li><a href="#phonesTabsPane" data-toggle="tab">Phones</a></li>
 			  --%>
+			  <li><a href="#orderTabsPane" data-toggle="tab">Orders</a></li>
 			  <li><a href="#repairQuotesTabsPane" data-toggle="tab">Repair Quotes</a></li>
 			  <li><a href="#contractQuotesTabsPane" data-toggle="tab">Contract Quotes</a></li>
 			  <li><a href="#modernizationQuotesTabsPane" data-toggle="tab">Modernization Quotes</a></li>
@@ -122,10 +123,9 @@
 			  <div class="tab-pane" id="addressesTabsPane">
 			  	<g:render template="addressList" />
 			  </div>
-			  <%--<div class="tab-pane" id="phonesTabsPane">
-			  	<g:render template="phoneBookList" />
+			  <div class="tab-pane" id="orderTabsPane">
+			  	<g:render template="orderList" />
 			  </div>
-			  --%>
 			  <div class="tab-pane" id="repairQuotesTabsPane">
 			  	<g:render template="repairQuoteList" />
 			  </div>

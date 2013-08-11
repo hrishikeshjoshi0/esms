@@ -9,6 +9,9 @@
 		$('.meetingFields').hide();
 		$('.maintenanceVisitFields').hide();
 		$('.breakdownVisitFields').hide();
+
+		var val = $('#eventType').val();
+		onEventTypeChange(val);		
 	});
 	function onEventTypeChange(val) {
 		//['CALL','MEETING','MAINTENANCE VISIT','BREAKDOWN CALL']

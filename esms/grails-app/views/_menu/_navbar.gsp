@@ -57,7 +57,11 @@
 													HR
 										</g:link>
 									</li>
-									
+									<li <%= 'report' == controllerName ? ' class="active"' : '' %>>
+										<g:link controller="report">
+													Report
+										</g:link>
+									</li>
 								</ul>
 							</li>
 						</ul>

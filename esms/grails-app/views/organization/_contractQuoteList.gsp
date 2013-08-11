@@ -3,10 +3,6 @@
 	<a href="<g:createLink controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]"/>" 
 		role="button" class="btn"> <i class="icon-plus"></i> New Contract Quote
 	</a>
-	
-	<a href="<g:createLink controller="quote" action="create" params="[type:'REPAIR',organizationId:organizationInstance?.id]" />" 
-		role="button" class="btn"> <i class="icon-plus"></i> New Repair Quote
-	</a>
 </div>
 
 

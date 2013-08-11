@@ -43,7 +43,7 @@
 							</li>
 							<li class="divider"></li>
 
-							<g:if test="${params.controller != 'quote'}">
+							<g:if test="${params.controller != 'quote' && params.controller != 'report'}">
 								<li class="${ params.action == "create" ? 'active' : '' }">
 									<g:link action="create">
 										<i class="icon-chevron-right"></i>
@@ -75,7 +75,7 @@
 								</g:if>
 							</g:elseif>
 
-							<g:if test="${params.controller != 'event'}">
+							<g:if test="${params.controller != 'event' && params.controller != 'report'}">
 								<li class="${ params.action == "listView" ? 'active' : '' }">
 									<g:link
 										action="listView">
@@ -124,6 +124,33 @@
 												default="Register Payment" />
 										</g:link>
 									</g:if></li>
+							</g:if>
+							
+							<g:if
+								test="${params.controller == 'report'}">
+								<li>
+									<g:link controller="report" action="upcomingRepairs">
+										<i class="icon-chevron-right"></i>
+										<g:message code="default.button.upcomingRepairs.label"
+											default="Upcoming Repairs" />
+									</g:link>
+								</li>
+								
+								<li>
+									<g:link controller="report" action="upcomingRenewals">
+										<i class="icon-chevron-right"></i>
+										<g:message code="default.button.upcomingRenewals.label"
+											default="Upcoming Renewals" />
+									</g:link>
+								</li>
+								
+								<li>
+									<g:link controller="report" action="amountReceivables">
+										<i class="icon-chevron-right"></i>
+										<g:message code="default.button.amountReceivables.label"
+											default="Amount Receivables" />
+									</g:link>
+								</li>
 							</g:if>
 							<li class="divider"></li>
 							<li>
