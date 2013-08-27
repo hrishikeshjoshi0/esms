@@ -7,6 +7,9 @@ import java.text.SimpleDateFormat
 import org.joda.time.DateTime
 import org.joda.time.Instant
 
+import com.esms.model.maintenance.WorkDoneCertificate
+import com.esms.model.party.Organization;
+
 class EventController {
     def eventService
 
@@ -189,7 +192,79 @@ class EventController {
 			redirect(action: "show", id: eventLogInstance.event.id)
 			break
 		}
-		
+	}
+	
+	def editWorkDoneCertificate = {
+		switch (request.method) {
+			case 'GET':
+				def workDoneCertificateInstance = WorkDoneCertificate.get(params.id)
+				def party = workDoneCertificateInstance?.event?.party
+				params.customerName = party?.name
+				[workDoneCertificateInstance: workDoneCertificateInstance]
+				break
+			case 'POST':
+				def workDoneCertificateInstance = WorkDoneCertificate.get(params.id)
+		        if (!workDoneCertificateInstance) {
+		            flash.message = message(code: 'default.not.found.message', args: [message(code: 'workDoneCertificate.label', default: 'WorkDoneCertificate'), params.id])
+		            redirect action: 'list'
+		            return
+		        }
+	
+		        if (params.version) {
+		            def version = params.version.toLong()
+		            if (workDoneCertificateInstance.version > version) {
+		                workDoneCertificateInstance.errors.rejectValue('version', 'default.optimistic.locking.failure',
+		                          [message(code: 'workDoneCertificate.label', default: 'WorkDoneCertificate')] as Object[],
+		                          "Another user has updated this WorkDoneCertificate while you were editing")
+		                render view: 'edit', model: [workDoneCertificateInstance: workDoneCertificateInstance]
+		                return
+		            }
+		        }
+	
+		        workDoneCertificateInstance.properties = params
+	
+		        if (!workDoneCertificateInstance.save(flush: true)) {
+		            render view: 'edit', model: [workDoneCertificateInstance: workDoneCertificateInstance]
+		            return
+		        }
+	
+				flash.message = message(code: 'default.updated.message', args: [message(code: 'workDoneCertificate.label', default: 'WorkDoneCertificate'), workDoneCertificateInstance.id])
+		        redirect action: 'show', id: workDoneCertificateInstance.id
+				break
+			}
+	}
+	
+	def attachWorkDoneCertificate = {
+		switch (request.method) {
+			case 'GET':
+				def party = Event.get(params.id)?.party
+				if(party?.partyType == "ORGANIZATION") {
+					params.customerName = party?.name
+					
+					if(party?.addresses) {
+						params.location = it?.buildingName
+					}
+				} else if(party?.partyType == "CONTACT") {
+					params.customerName = party?.firstName + " " + party?.lastName
+					
+					party?.addresses?.each {
+						params.location = it?.buildingName
+					}
+				}
+				[workDoneCertificateInstance: new WorkDoneCertificate(params)]
+				break
+			case 'POST':
+				def workDoneCertificateInstance = new WorkDoneCertificate(params)
+				if (!workDoneCertificateInstance.save(flush: true)) {
+					render view: 'create', model: [workDoneCertificateInstance: workDoneCertificateInstance]
+					return
+				}
+	
+				workDoneCertificateInstance.save(flush:true)
+				flash.message = "Work Done Certificate Attached."
+				redirect(action: "show", id: workDoneCertificateInstance.event.id)
+				break
+			}
 	}
 	
 	def recentEvents = {

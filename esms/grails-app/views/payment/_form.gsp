@@ -81,6 +81,18 @@
 	</div>
 </div>
 
+<div
+	class="control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'clearanceDate', 'error')} ">
+	<label for="branch" class="control-label"><g:message
+			code="payment.clearanceDate.label" default="Clearance Date" /></label>
+	<div class="controls">
+		<g:datePicker precision="day" name="clearanceDate" value="${paymentInstance?.clearanceDate}" />
+		<span class="help-inline">
+			${hasErrors(bean: paymentInstance, field: 'clearanceDate', 'error')}
+		</span>
+	</div>
+</div>
+
 
 <%--<div
 	class="control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'balanceAmount', 'error')} required">

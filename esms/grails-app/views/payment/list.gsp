@@ -49,15 +49,16 @@
 						
 							<g:sortableColumn property="orderNumber" title="${message(code: 'paymentItem.orderNumber.label', default: 'Order Number')}" />
 							
-							<g:sortableColumn property="organization.name" title="Customer" />
+							<g:sortableColumn property="organization.name" title="Customer/Building Name" />
 						
+							<g:sortableColumn property="bank" title="${message(code: 'payment.bank.label', default: 'Bank')}" />
+							
+							<g:sortableColumn property="chequeNumber" title="${message(code: 'payment.chequeNumber.label', default: 'Cheque Number')}" />
+							
 							<g:sortableColumn property="amount" title="${message(code: 'paymentItem.amount.label', default: 'Amount')}" />
 						
 							<g:sortableColumn property="paymentMethod" title="${message(code: 'payment.paymentMethod.label', default: 'Payment Type')}" />
 						
-							<g:sortableColumn property="chequeNumber" title="${message(code: 'payment.chequeNumber.label', default: 'Cheque Number')}" />
-						
-							<g:sortableColumn property="bank" title="${message(code: 'payment.bank.label', default: 'Bank')}" />
 						
 							<g:sortableColumn property="branch" title="${message(code: 'payment.branch.label', default: 'Branch')}" />
 							
@@ -80,13 +81,13 @@
 										${paymentItemInstance?.order?.organization?.name}
 									</td>	
 								
+									<td>${fieldValue(bean: paymentInstance, field: "bank")}</td>
+									
+									<td>${fieldValue(bean: paymentInstance, field: "chequeNumber")}</td>
+									
 									<td>${fieldValue(bean: paymentItemInstance, field: "amount")}</td>
 								
 									<td>${fieldValue(bean: paymentInstance, field: "paymentMethod")}</td>
-								
-									<td>${fieldValue(bean: paymentInstance, field: "chequeNumber")}</td>
-								
-									<td>${fieldValue(bean: paymentInstance, field: "bank")}</td>
 								
 									<td>${fieldValue(bean: paymentInstance, field: "branch")}</td>
 								

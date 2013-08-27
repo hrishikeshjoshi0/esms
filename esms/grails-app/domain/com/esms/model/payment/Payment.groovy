@@ -12,6 +12,7 @@ class Payment {
 	BigDecimal totalAmount = 0
 	BigDecimal matchedAmount = 0
 	BigDecimal balanceAmount = 0
+	Date clearanceDate
 	
 	static hasMany = [paymentItems : PaymentItem]
 	
@@ -26,5 +27,6 @@ class Payment {
 		balanceAmount nullable:false,blank:false
 		matchedAmount nullable:false,blank:false
 		description nullable:true,blank:true,length:1000
+		clearanceDate nullable:true,blank:true
     }
 }

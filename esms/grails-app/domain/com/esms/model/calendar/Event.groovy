@@ -5,6 +5,7 @@ import java.util.Date;
 import org.joda.time.DateTime
 import org.joda.time.Minutes
 
+import com.esms.model.maintenance.WorkDoneCertificate;
 import com.esms.model.party.Party;
 
 class Event {
@@ -31,7 +32,7 @@ class Event {
 	static belongsTo = [party : Party]
 	
 	String eventType
-	String status
+	String status = 'PLANNED'
 	String priority = 'MEDIUM'
 	String relatedTo = 'ORGANIZATION'
 	String relatedToValue
@@ -50,6 +51,8 @@ class Event {
 	String breakdownVisitTechnician
 	String breakdownVisitTechnicianNotes
 	String breakdownVisitSignedOffBy
+	
+	static hasOne = [workDoneCertificate : WorkDoneCertificate]
 
     def eventService
 
@@ -88,6 +91,8 @@ class Event {
 		breakdownVisitTechnician(nullable: true,blank:true)
 		breakdownVisitTechnicianNotes(nullable: true,blank:true,type:'text')
 		breakdownVisitSignedOffBy(nullable: true,blank:true)
+		
+		workDoneCertificate nullable:true
     }
 
     public int getDurationMinutes() {

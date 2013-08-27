@@ -1,21 +1,20 @@
-<%@ page import="com.esms.model.calendar.Event" %>
+<%@ page import="com.esms.model.maintenance.WorkDoneCertificate" %>
 <!doctype html>
 <html>
 <head>
 <meta name="layout" content="bootstrap">
 <g:set var="entityName"
-	value="${message(code: 'event.label', default: 'Event')}" />
+	value="${message(code: 'workDoneCertificate.label', default: 'Work Done Certificate')}" />
 <title><g:message code="default.create.label"
 		args="[entityName]" /></title>
- <r:require module="calendar" />		
 </head>
 <body>
 	<div class="row-fluid">
 		<div class="span12">
-			<g:hasErrors bean="${eventInstance}">
+			<g:hasErrors bean="${workDoneCertificateInstance}">
 				<bootstrap:alert class="alert-error">
 					<ul>
-						<g:eachError bean="${eventInstance}" var="error">
+						<g:eachError bean="${workDoneCertificateInstance}" var="error">
 							<li
 								<g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
 									error="${error}" /></li>
@@ -31,7 +30,8 @@
 			</div>
 
 			<fieldset>
-				<g:form class="form-horizontal" action="save">
+				<g:form class="form-horizontal" action="create"
+					>
 					<fieldset>
 						<g:render template="form"></g:render>
 						<div class="form-actions">

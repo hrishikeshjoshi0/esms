@@ -63,7 +63,7 @@ environments {
 		}
     }
     production {
-        dataSource {
+        /*dataSource {
             dbCreate = "update"
             url = "jdbc:mysql://moryasolutions.com:3306/hrishi23_esms?useUnicode=yes&characterEncoding=UTF-8"
 			username = "hrishi23_esms"
@@ -79,10 +79,32 @@ environments {
 			   testOnReturn=true
 			   validationQuery="SELECT 1"
 			}
-        }
+			
+			grails.paypal.server = "https://www.paypal.com/cgi-bin/webscr"
+			grails.paypal.email = "example@business.com"
+			grails.serverURL = "http://www.moryasolutions.com/esms"
+        }*/
+		
+		dataSource {
+			dbCreate = "update"
+			url = "jdbc:mysql://localhost:3306/esms?useUnicode=yes&characterEncoding=UTF-8"
+			username = "root"
+			password = "Eclipse@123"
+			pooled = true
+			properties {
+			   maxActive = -1
+			   minEvictableIdleTimeMillis=1800000
+			   timeBetweenEvictionRunsMillis=1800000
+			   numTestsPerEvictionRun=3
+			   testOnBorrow=true
+			   testWhileIdle=true
+			   testOnReturn=true
+			   validationQuery="SELECT 1"
+			}
+		}
 		
 		grails.paypal.server = "https://www.paypal.com/cgi-bin/webscr"
 		grails.paypal.email = "example@business.com"
-		grails.serverURL = "http://www.moryasolutions.com/esms"
+		grails.serverURL = "http://192.241.211.151:8080/esms"
     }
 }

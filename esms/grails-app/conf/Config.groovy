@@ -177,7 +177,6 @@ grails.plugins.springsecurity.interceptUrlMap = [
 grails.plugins.springsecurity.useSecurityEventListener = true
 
 grails.plugins.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, appCtx ->
-	System.out.print("Hi");
 	def currentRequest = RequestContextHolder.requestAttributes
 	if(currentRequest) { // we have been called from a web request processing thread
 	  currentRequest.session["lastLoginDate"] = new Date()
