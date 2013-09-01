@@ -1,5 +1,24 @@
 <%@ page import="com.esms.model.payment.Payment"%>
 
+<script>
+	$(document).ready(function(){
+		$('.chequeFields').hide();
+		var val = $('#paymentMethod').val();
+		onPaymentMethodChange(val);		
+	});
+
+	function onPaymentMethodChange(val) {
+		//['CALL','MEETING','MAINTENANCE VISIT','BREAKDOWN CALL']
+		if(val == 'CASH') {
+			$('.chequeFields').hide();
+		} else if(val == 'CHEQUE') {
+			$('.chequeFields').show();
+		}
+	}
+</script>	
+
+<g:hiddenField name="organization.id" value="${params.'organization.id'}"/>
+<g:hiddenField name="order.id" value="${params.orderId}"/>
 <div
 	class="control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'paymentNumber', 'error')} required">
 	<label for="paymentNumber" class="control-label"><g:message
@@ -20,7 +39,7 @@
 			code="payment.paymentMethod.label" default="Payment Method" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:select name="paymentMethod"
+		<g:select name="paymentMethod" onchange="onPaymentMethodChange(this.value);"
 			from="${paymentInstance.constraints.paymentMethod.inList}"
 			value="${paymentInstance?.paymentMethod}"
 			valueMessagePrefix="payment.paymentMethod" noSelection="['': '']" />
@@ -31,11 +50,11 @@
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'chequeNumber', 'error')} ">
+	class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'chequeNumber', 'error')} ">
 	<label for="chequeNumber" class="control-label"><g:message
 			code="payment.chequeNumber.label" default="Cheque Number" /></label>
 	<div class="controls">
-		<g:textField name="chequeNumber"
+		<g:textField name="chequeNumber" 
 			value="${paymentInstance?.chequeNumber}" />
 		<span class="help-inline">
 			${hasErrors(bean: paymentInstance, field: 'chequeNumber', 'error')}
@@ -44,7 +63,7 @@
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'bank', 'error')} ">
+	class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'bank', 'error')} ">
 	<label for="bank" class="control-label"><g:message
 			code="payment.bank.label" default="Bank" /></label>
 	<div class="controls">
@@ -56,7 +75,7 @@
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'branch', 'error')} ">
+	class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'branch', 'error')} ">
 	<label for="branch" class="control-label"><g:message
 			code="payment.branch.label" default="Branch" /></label>
 	<div class="controls">
@@ -82,7 +101,7 @@
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'clearanceDate', 'error')} ">
+	class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'clearanceDate', 'error')} ">
 	<label for="branch" class="control-label"><g:message
 			code="payment.clearanceDate.label" default="Clearance Date" /></label>
 	<div class="controls">

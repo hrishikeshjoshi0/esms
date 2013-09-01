@@ -110,6 +110,7 @@
 			  <li><a href="#modernizationQuotesTabsPane" data-toggle="tab">Modernization Quotes</a></li>
 			  <li><a href="#installationQuotesTabsPane" data-toggle="tab">Installation Quotes</a></li>
 			  <li><a href="#eventsTabsPane" data-toggle="tab">Events</a></li>
+			  <li><a href="#paymentsTabsPane" data-toggle="tab">Payments</a></li>
 			  <li><a href="#docsTabsPane" data-toggle="tab">Documents</a></li>
 			</ul>
 			 
@@ -140,6 +141,9 @@
 			  </div>
 			  <div class="tab-pane" id="eventsTabsPane">
 			  	<g:render template="eventList" />
+			  </div>
+			  <div class="tab-pane" id="paymentsTabsPane">
+			  	<g:render template="paymentList" />
 			  </div>
 			  <div class="tab-pane" id="docsTabsPane">
 			  	<g:render template="docsList" />

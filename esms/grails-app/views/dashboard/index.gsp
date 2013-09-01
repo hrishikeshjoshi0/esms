@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap" />
-<title>Venus CRM</title>
+	<meta name="layout" content="bootstrap" />
+	<title>Venus CRM</title>
 </head>
 <body>
 	<div id="contentwrapper" class="">
@@ -11,7 +11,7 @@
 			
 			<!-- 1/2 row width -->
 			<div class="span6">
-				<div class="dashboard-widget">
+				<div id="recentLeadsWidget" class="dashboard-widget">
 					<g:render template="/dashboard/recentLeads" />
 				</div>
 			</div>
@@ -25,7 +25,7 @@
 
 		<div class="row-fluid">
 			<div class="span6">
-				<div class="dashboard-widget">
+				<div id="recentQuotesWidget" class="dashboard-widget">
 					<g:render template="/dashboard/recentQuotes" />
 				</div>
 			</div>

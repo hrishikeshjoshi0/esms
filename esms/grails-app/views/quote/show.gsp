@@ -45,18 +45,21 @@
 					</g:if>
 					
 					<g:if test="${quoteInstance?.status == 'PENDING' && quoteInstance?.quoteItems?.size() != 0}">
-						<g:if test="${quoteInstance.type == 'CONTRACT'}">
-							<a data-toggle="modal" href="#" data-target="#markAsAccepted" role="button"
+						<%--
+						<g:if test="${quoteInstance?.type == 'CONTRACT'}">
+						--%><a data-toggle="modal" href="#" data-target="#markAsAccepted" role="button"
 								class="btn">
 								Mark as Accepted
 							</a>
-						</g:if>
-						<g:else>
+						<%--</g:if>
+						--%>
+						<%--<g:else>
 							<g:link class="btn" action="markAsAccepted" id="${quoteInstance?.id}">
 								<i class="icon-envelope"></i>
 								Mark as Accepted
 							</g:link>
 						</g:else>
+						--%>
 						<a data-toggle="modal" href="#" data-target="#markAsRevised" role="button"
 							class="btn"> 
 							<i class="icon-pencil"></i>
@@ -94,6 +97,16 @@
 					</g:elseif>
 				</div>
 			</g:form>
+			
+			<g:if test="${quoteInstance?.id && quoteInstance?.quoteItems?.size() != 0}">
+			<div class="form-actions">
+				<g:jasperReport jasper="ContractQuotePrint" format="PDF"
+							name="Print Quotation" delimiterAfter=" " delimiterBefore=" "
+								heightAttr="15px">
+					<input type="hidden" name="quote" value="${quoteInstance.id}" />
+				</g:jasperReport>
+			</div>
+			</g:if>
 			
 			<div class="row">
 				<div class="span4">

@@ -63,16 +63,6 @@
 										<i class="icon-chevron-right"></i> 
 										Create Repair Quote
 									</g:link></li>
-
-								<g:if
-									test="${quoteInstance?.type == 'CONTRACT' && quoteInstance.id}">
-									<i class="icon-chevron-right"></i>
-									<g:jasperReport jasper="ContractQuotePrint" format="PDF"
-										name="Print Quotation" delimiterAfter=" " delimiterBefore=" "
-										heightAttr="15px">
-										<input type="hidden" name="quote" value="${quoteInstance.id}" />
-									</g:jasperReport>
-								</g:if>
 							</g:elseif>
 
 							<g:if test="${params.controller != 'event' && params.controller != 'report'}">

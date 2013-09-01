@@ -115,11 +115,12 @@ class QuoteController {
 		switch (request.method) {
 			case 'GET':
  				def quoteInstance = Quote.get(params.'quote.id')
-				if(!quoteInstance.type == 'CONTRACT') {
-					quoteInstance.status = 'ACCEPT'
-					quoteInstance.save(flush:true)
-					redirect action: 'show', id: quoteInstance.id
-				}
+//				if(!quoteInstance.type == 'CONTRACT') {
+//					quoteInstance.status = 'ACCEPT'
+//					quoteInstance.save(flush:true)
+//					redirect action: 'show', id: quoteInstance.id
+//				}
+				[quoteInstance : quoteInstance]
 				break
 			case 'POST' :
 				def quoteInstance = Quote.get(params.id)
@@ -181,6 +182,12 @@ class QuoteController {
 		quoteInstance.totalDiscount = diff
 		
 		quoteInstance.grandTotal = quoteInstance.negotiatedGrandTotal
+		//'CONVERTED_TO_SERVICE_CONTRACT','CONVERTED_TO_REPAIR_SALES_ORDER'
+		if(quoteInstance.type == 'CONTRACT') {
+			quoteInstance.status = 'CONVERTED_TO_SERVICE_CONTRACT'
+		} else if(quoteInstance.type == 'REPAIR') {
+			quoteInstance.status = 'CONVERTED_TO_REPAIR_SALES_ORDER'
+		}
 		quoteInstance.save(flush:true)
 
 		flash.message = 'Sales Order created.'

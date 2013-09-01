@@ -1,9 +1,9 @@
-<%@ page import="com.esms.model.party.*" %>
+<%@ page import="com.esms.model.party.*"%>
 
 <div class="heading clearfix">
 	<h3 class="pull-left">Recent Leads</h3>
-	<span class="pull-right label label-important">
-		${recentLeads?.size} Leads
+	<span class="pull-right label label-important"> ${recentLeads?.size}
+		Leads
 	</span>
 </div>
 
@@ -38,9 +38,9 @@
 				<td>
 					${addressInstance?.buildingName}
 				</td>
-				<td class="link"><g:link controller="lead" action="show" id="${organization?.id}"
-						class=" ">Show &raquo;</g:link></td>
+				<td class="link"><g:link controller="lead" action="show"
+						id="${organization?.id}" class=" ">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
-	</table>
+</table>

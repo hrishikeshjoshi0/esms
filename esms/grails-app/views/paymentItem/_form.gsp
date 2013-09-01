@@ -21,7 +21,7 @@
 		class="required-indicator">*</span></label>
 	<div class="controls">
 		<g:select name="order.id" from="${Order.findAllStatusNotEqual('PAID')}" optionKey="id" class="large"
-			optionValue="${{it.orderNumber + ' - ' + it.organization?.externalId + ' : ' + it.organization?.name}}" />
+			optionValue="${{it.orderNumber + ' - ' + ' : ' + it.organization?.name + '(Open Amount :' + it.openGrandTotal + ')' }}" />
 		<span class="help-inline"> ${hasErrors(bean: paymentItemInstance, field: 'order', 'error')}
 		</span>
 	</div>

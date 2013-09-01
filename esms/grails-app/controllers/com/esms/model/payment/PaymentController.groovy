@@ -3,7 +3,7 @@ package com.esms.model.payment
 import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
-import com.esms.model.quote.Quote
+import com.esms.model.order.Order
 
 class PaymentController {
 
@@ -38,7 +38,6 @@ class PaymentController {
 						max ("lineNumber")
 					}
 				}
-				
 				params.lineNumber = (maxLineNumber?maxLineNumber:0) + 1
 				[paymentItemInstance: new PaymentItem(params)]
 				break
@@ -81,6 +80,11 @@ class PaymentController {
 			def list = Payment.list();
 			int no = (list?list.size():0) + 1;
 			params.paymentNumber = "PAY" + String.format("%05d", no)
+			
+			def order = Order.get(params.orderId)
+			params."organization.id" = order?.organization?.id
+			params.orderId = params.orderId
+			
         	[paymentInstance: new Payment(params)]
 			break
 		case 'POST':

@@ -1,5 +1,7 @@
 package com.esms.model.payment
 
+import com.esms.model.party.Organization
+
 
 class Payment {
 
@@ -15,6 +17,8 @@ class Payment {
 	Date clearanceDate
 	
 	static hasMany = [paymentItems : PaymentItem]
+	
+	static belongsTo = [organization : Organization]
 	
     static constraints = {
 		paymentNumber nullable:false,blank:false

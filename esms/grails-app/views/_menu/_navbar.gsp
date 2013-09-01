@@ -9,7 +9,9 @@
 						<ul class="nav">
 							<li class="dropdown">
 								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-									<i class="icon-star icon-white"></i> <b class="caret"></b>
+									<i class="icon-star icon-white"></i>
+									Quick Links 
+									<b class="caret"></b>
 								</a>
 								<ul class="dropdown-menu">
 									<li

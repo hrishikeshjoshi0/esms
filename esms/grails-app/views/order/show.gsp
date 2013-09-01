@@ -15,7 +15,7 @@
 					<g:if test="${orderInstance.status == 'PENDING_INVOICE' }">
 						ORDER #
 					</g:if>
-					<g:elseif test="${orderInstance.status == 'INVOICED' }">
+					<g:elseif test="${orderInstance.status == 'INVOICED' || orderInstance.status == 'PAID' }">
 						INVOICE #
 					</g:elseif> 
 					|

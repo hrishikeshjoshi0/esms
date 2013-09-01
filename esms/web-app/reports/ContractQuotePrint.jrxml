@@ -13,12 +13,10 @@
      quote.`contract_from_date` AS quote_contract_from_date,
      quote.`contract_to_date` AS quote_contract_to_date,
      quote.`description` AS quote_description,
-     quote.`expiry_date` AS quote_expiry_date,
      quote.`grand_total` AS quote_grand_total,
      quote.`invoicing_is_expenses` AS quote_invoicing_is_expenses,
      quote.`invoicing_is_fixed_price` AS quote_invoicing_is_fixed_price,
      quote.`invoicing_is_timesheets` AS quote_invoicing_is_timesheets,
-     quote.`issue_date` AS quote_issue_date,
      quote.`organization_id` AS quote_organization_id,
      quote.`quote_name` AS quote_quote_name,
      quote.`related_to` AS quote_related_to,
@@ -53,12 +51,10 @@ quote_item.`quote_id` = $P{quote}]]>
 	<field name="quote_contract_from_date" class="java.sql.Timestamp"/>
 	<field name="quote_contract_to_date" class="java.sql.Timestamp"/>
 	<field name="quote_description" class="java.lang.String"/>
-	<field name="quote_expiry_date" class="java.sql.Timestamp"/>
 	<field name="quote_grand_total" class="java.math.BigDecimal"/>
 	<field name="quote_invoicing_is_expenses" class="java.lang.Boolean"/>
 	<field name="quote_invoicing_is_fixed_price" class="java.lang.Boolean"/>
 	<field name="quote_invoicing_is_timesheets" class="java.lang.Boolean"/>
-	<field name="quote_issue_date" class="java.sql.Timestamp"/>
 	<field name="quote_organization_id" class="java.lang.Long"/>
 	<field name="quote_quote_name" class="java.lang.String"/>
 	<field name="quote_related_to" class="java.lang.String"/>

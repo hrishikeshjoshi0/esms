@@ -55,7 +55,7 @@
 					${fieldValue(bean : orderInstance, field : "openGrandTotal") }
 				</td>
 
-				<td class="link"><g:link action="show" id="${orderInstance.id}"
+				<td class="link"><g:link controller="order" action="show" id="${orderInstance.id}"
 						class="btn btn-small">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
