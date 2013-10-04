@@ -14,6 +14,21 @@
 </div>
 
 <div
+	class="control-group fieldcontain ${hasErrors(bean: contactInstance, field: 'designation', 'error')} ">
+	<label for="designation" class="control-label"><g:message
+			code="contact.designation.label" default="Designation" /></label>
+	<div class="controls">
+		<g:select name="designation"
+			from="${contactInstance.constraints.designation.inList}"
+			value="${contactInstance?.designation}"
+			noSelection="['': '']" />
+		<span class="help-inline">
+			${hasErrors(bean: contactInstance, field: 'designation', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
 	class="control-group fieldcontain ${hasErrors(bean: contactInstance, field: 'salutation', 'error')} ">
 	<label for="salutation" class="control-label"><g:message
 			code="contact.salutation.label" default="Salutation" /></label>

@@ -71,7 +71,9 @@
 							Mark as Declined
 						</a>
 					</g:if>
-					<g:elseif test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'CONTRACT' && quoteInstance?.quoteItems?.size() != 0}">
+					<g:elseif test="${quoteInstance?.status == 'ACCEPT' 
+						&& (quoteInstance.type == 'CONTRACT' || quoteInstance.type == 'MODERNIZATION' || quoteInstance.type == 'INSTALLATION' quoteInstance.type == 'REPAIR') 
+						&& quoteInstance?.quoteItems?.size() != 0}">
 						<a data-toggle="modal" href="#" data-target="#confirmSaleModal" role="button"
 							class="btn"> 
 							<i class="icon-wrench"></i>

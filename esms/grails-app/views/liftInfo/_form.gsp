@@ -138,6 +138,33 @@
 	</div>
 </div>
 
+<div
+	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'noOfFloors', 'error')} required">
+	<label for="noOfFloors" class="control-label"><g:message
+			code="liftInfo.noOfFloors.label" default="No Of Floors" /><span
+		class="required-indicator">*</span></label>
+	<div class="controls">
+		<g:field type="number" name="noOfFloors" required=""
+			value="${liftInfoInstance.noOfFloors}" />
+		<span class="help-inline">
+			${hasErrors(bean: liftInfoInstance, field: 'noOfFloors', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'numberOfLifts', 'error')} required">
+	<label for="numberOfLifts" class="control-label"><g:message
+			code="liftInfo.numberOfLifts.label" default="Number Of Lifts" /><span
+		class="required-indicator">*</span></label>
+	<div class="controls">
+		<g:field type="number" name="numberOfLifts" required=""
+			value="${liftInfoInstance.numberOfLifts}" />
+		<span class="help-inline">
+			${hasErrors(bean: liftInfoInstance, field: 'numberOfLifts', 'error')}
+		</span>
+	</div>
+</div>
 
 <div
 	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'drive', 'error')} ">
@@ -180,29 +207,181 @@
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'noOfFloors', 'error')} required">
-	<label for="noOfFloors" class="control-label"><g:message
-			code="liftInfo.noOfFloors.label" default="No Of Floors" /><span
-		class="required-indicator">*</span></label>
+	class="control-group fieldcontain drive ${hasErrors(bean: liftInfoInstance, field: 'driveSerialNumber', 'error')} ">
+	<label for="driveSerialNumber" class="control-label"><g:message
+			code="liftInfo.driveSerialNumber.label" default="Drive Serial Number" /></label>
 	<div class="controls">
-		<g:field type="number" name="noOfFloors" required=""
-			value="${liftInfoInstance.noOfFloors}" />
+		<g:textField name="driveSerialNumber"
+			value="${liftInfoInstance?.driveSerialNumber}" />
 		<span class="help-inline">
-			${hasErrors(bean: liftInfoInstance, field: 'noOfFloors', 'error')}
+			${hasErrors(bean: liftInfoInstance, field: 'driveSerialNumber', 'error')}
 		</span>
 	</div>
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'numberOfLifts', 'error')} required">
-	<label for="numberOfLifts" class="control-label"><g:message
-			code="liftInfo.numberOfLifts.label" default="Number Of Lifts" /><span
+	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'buildingOpening', 'error')} ">
+	<label for="buildingOpening" class="control-label"><g:message
+			code="liftInfo.buildingOpening.label" default="Building Opening" /></label>
+	<div class="controls">
+		<g:textField name="buildingOpening"
+			value="${liftInfoInstance?.buildingOpening}" />
+		<span class="help-inline">
+			${hasErrors(bean: liftInfoInstance, field: 'buildingOpening', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'carCapacity', 'error')} required">
+	<label for="carCapacity" class="control-label"><g:message
+			code="liftInfo.carCapacity.label" default="Car Capacity" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:field type="number" name="numberOfLifts" required=""
-			value="${liftInfoInstance.numberOfLifts}" />
+		<g:field type="number" name="carCapacity" required=""
+			value="${liftInfoInstance.carCapacity}" />
 		<span class="help-inline">
-			${hasErrors(bean: liftInfoInstance, field: 'numberOfLifts', 'error')}
+			${hasErrors(bean: liftInfoInstance, field: 'carCapacity', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'typeOfElevator', 'error')} ">
+	<label for="typeOfElevator" class="control-label"><g:message
+			code="liftInfo.typeOfElevator.label" default="Type Of Elevator" /></label>
+	<div class="controls">
+		<g:textField name="typeOfElevator"
+			value="${liftInfoInstance?.typeOfElevator}" />
+		<span class="help-inline">
+			${hasErrors(bean: liftInfoInstance, field: 'typeOfElevator', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'motorHP', 'error')} ">
+	<label for="motorHP" class="control-label"><g:message
+			code="liftInfo.motorHP.label" default="Motor HP" /></label>
+	<div class="controls">
+		<g:textField name="motorHP" value="${liftInfoInstance?.motorHP}" />
+		<span class="help-inline">
+			${hasErrors(bean: liftInfoInstance, field: 'motorHP', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'motorCurrent', 'error')} ">
+	<label for="motorCurrent" class="control-label"><g:message
+			code="liftInfo.motorCurrent.label" default="Motor Current" /></label>
+	<div class="controls">
+		<g:textField name="motorCurrent"
+			value="${liftInfoInstance?.motorCurrent}" />
+		<span class="help-inline">
+			${hasErrors(bean: liftInfoInstance, field: 'motorCurrent', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'motorRpm', 'error')} ">
+	<label for="motorRpm" class="control-label"><g:message
+			code="liftInfo.motorRpm.label" default="Motor Rpm" /></label>
+	<div class="controls">
+		<g:textField name="motorRpm" value="${liftInfoInstance?.motorRpm}" />
+		<span class="help-inline">
+			${hasErrors(bean: liftInfoInstance, field: 'motorRpm', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'governerSpeed', 'error')} ">
+	<label for="governerSpeed" class="control-label"><g:message
+			code="liftInfo.governerSpeed.label" default="Governer Speed" /></label>
+	<div class="controls">
+		<g:textField name="governerSpeed"
+			value="${liftInfoInstance?.governerSpeed}" />
+		<span class="help-inline">
+			${hasErrors(bean: liftInfoInstance, field: 'governerSpeed', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'trippingSpeed', 'error')} ">
+	<label for="trippingSpeed" class="control-label"><g:message
+			code="liftInfo.trippingSpeed.label" default="Tripping Speed" /></label>
+	<div class="controls">
+		<g:textField name="trippingSpeed"
+			value="${liftInfoInstance?.trippingSpeed}" />
+		<span class="help-inline">
+			${hasErrors(bean: liftInfoInstance, field: 'trippingSpeed', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'machineMake', 'error')} ">
+	<label for="machineMake" class="control-label"><g:message
+			code="liftInfo.machineMake.label" default="Machine Make" /></label>
+	<div class="controls">
+		<g:textField name="machineMake"
+			value="${liftInfoInstance?.machineMake}" />
+		<span class="help-inline">
+			${hasErrors(bean: liftInfoInstance, field: 'machineMake', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'pulleyDiameter', 'error')} ">
+	<label for="pulleyDiameter" class="control-label"><g:message
+			code="liftInfo.pulleyDiameter.label" default="Pulley Diameter" /></label>
+	<div class="controls">
+		<g:textField name="pulleyDiameter"
+			value="${liftInfoInstance?.pulleyDiameter}" />
+		<span class="help-inline">
+			${hasErrors(bean: liftInfoInstance, field: 'pulleyDiameter', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'numberOfGrooves', 'error')} ">
+	<label for="numberOfGrooves" class="control-label"><g:message
+			code="liftInfo.numberOfGrooves.label" default="Number Of Grooves" /></label>
+	<div class="controls">
+		<g:textField name="numberOfGrooves"
+			value="${liftInfoInstance?.numberOfGrooves}" />
+		<span class="help-inline">
+			${hasErrors(bean: liftInfoInstance, field: 'numberOfGrooves', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'ropeSize', 'error')} ">
+	<label for="ropeSize" class="control-label"><g:message
+			code="liftInfo.ropeSize.label" default="Rope Size" /></label>
+	<div class="controls">
+		<g:textField name="ropeSize" value="${liftInfoInstance?.ropeSize}" />
+		<span class="help-inline">
+			${hasErrors(bean: liftInfoInstance, field: 'ropeSize', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'numberOfRopes', 'error')} ">
+	<label for="numberOfRopes" class="control-label"><g:message
+			code="liftInfo.numberOfRopes.label" default="Number Of Ropes" /></label>
+	<div class="controls">
+		<g:textField name="numberOfRopes"
+			value="${liftInfoInstance?.numberOfRopes}" />
+		<span class="help-inline">
+			${hasErrors(bean: liftInfoInstance, field: 'numberOfRopes', 'error')}
 		</span>
 	</div>
 </div>

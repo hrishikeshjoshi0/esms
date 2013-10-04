@@ -362,6 +362,7 @@ class OrderController {
 			}
 		}
 
+		flash.message = "Invoiced.."
 		redirect action: 'show', id: order.id
 	}
 

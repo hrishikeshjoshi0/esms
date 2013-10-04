@@ -55,6 +55,12 @@
 
 						<g:sortableColumn property="benefits"
 							title="${message(code: 'employee.benefits.label', default: 'Benefits')}" />
+							
+						<g:sortableColumn property="employmentStartDate"
+							title="${message(code: 'employee.employmentStartDate.label', default: 'Employment Start Date')}" />
+							
+						<g:sortableColumn property="employmentEndDate"
+							title="${message(code: 'employee.employmentEndDate.label', default: 'Employment End Date')}" />		
 
 						<th></th>
 					</tr>
@@ -85,6 +91,14 @@
 
 							<td>
 								${fieldValue(bean: employeeInstance, field: "benefits")}
+							</td>
+
+							<td>
+								${fieldValue(bean: employeeInstance, field: "employmentStartDate")}
+							</td>
+							
+							<td>
+								${fieldValue(bean: employeeInstance, field: "employmentEndDate")}
 							</td>
 
 							<td class="link"><g:link action="show"

@@ -22,7 +22,7 @@ class Address {
 
     static constraints = {
 		address1 blank:false
-		addressType inList:['SHIPPING','BILLING']
+		addressType inList:['SHIPPING','BILLING','RESIDENTIAL','CARE-OFF']
     }
 	
 	static mapping = {

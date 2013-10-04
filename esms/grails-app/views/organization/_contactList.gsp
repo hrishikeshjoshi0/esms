@@ -10,6 +10,8 @@
 		<tr>
 			<g:sortableColumn property="externalId"
 				title="${message(code: 'contact.externalId.label', default: 'External Id')}" />
+			<g:sortableColumn property="designation"
+				title="${message(code: 'contact.designation.label', default: 'Designation')}" />	
 			<g:sortableColumn property="firstName"
 				title="${message(code: 'contact.firstName.label', default: 'First Name')}" />
 			<g:sortableColumn property="lastName"
@@ -28,6 +30,9 @@
 				<tr>
 					<td>
 						${fieldValue(bean: contactInstance, field: "externalId")}
+					</td>
+					<td>
+						${fieldValue(bean: contactInstance, field: "designation")}
 					</td>
 					<td>
 						${fieldValue(bean: contactInstance, field: "firstName")}

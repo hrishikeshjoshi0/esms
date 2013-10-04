@@ -15,11 +15,26 @@ class LiftInfo {
 	String drive = 'YES'
 	String driveMake
 	String driveCapacity
+	String driveSerialNumber
 	String gateType
 	String retiringCamType
 	String lockType
 	String servicePeriod
-
+	
+	String buildingOpening
+	int carCapacity
+	String typeOfElevator
+	String motorHP
+	String motorCurrent
+	String motorRpm
+	String governerSpeed
+	String trippingSpeed
+	String machineMake
+	String pulleyDiameter
+	String numberOfGrooves
+	String ropeSize
+	String numberOfRopes
+	
 	Organization organization 
     
 	static constraints = {
@@ -33,5 +48,20 @@ class LiftInfo {
 		retiringCamType(InList:['OTIS','BHARAT BIJLEE'])
 		lockType(InList:['OTIS','BHARAT BIJLEE','EROS EXCEL'])
 		drive(InList:['YES','NO'])
+		driveCapacity nullable:true,blank:true
+		driveSerialNumber nullable:true,blank:true
+		buildingOpening nullable:true,blank:true
+		carCapacity nullable:true,blank:true
+		typeOfElevator nullable:true,blank:true
+		motorHP nullable:true,blank:true
+		motorCurrent nullable:true,blank:true
+		motorRpm nullable:true,blank:true
+		governerSpeed nullable:true,blank:true
+		trippingSpeed nullable:true,blank:true
+		machineMake nullable:true,blank:true
+		pulleyDiameter nullable:true,blank:true
+		numberOfGrooves nullable:true,blank:true
+		ropeSize nullable:true,blank:true
+		numberOfRopes nullable:true,blank:true
     }
 }

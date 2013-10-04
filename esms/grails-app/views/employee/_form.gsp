@@ -1,7 +1,5 @@
 <%@ page import="com.esms.model.party.Employee"%>
 
-
-
 <div
 	class="control-group fieldcontain ${hasErrors(bean: employeeInstance, field: 'firstName', 'error')} required">
 	<label for="firstName" class="control-label"><g:message
@@ -68,6 +66,46 @@
 	</div>
 </div>
 
+<div
+	class="control-group fieldcontain ${hasErrors(bean: employeeInstance, field: 'employmentStartDate', 'error')} required">
+	<label for="salary" class="control-label"><g:message
+			code="employee.employmentStartDate.label" default="Salary" /><span
+		class="required-indicator">*</span></label>
+	<div class="controls">
+		<g:datePicker name="employmentStartDate" precision="day" value="${employeeInstance.employmentStartDate}"/>
+		<span class="help-inline">
+			${hasErrors(bean: employeeInstance, field: 'employmentStartDate', 'error')}
+		</span>
+	</div>
+</div>
+
+<%--<div
+	class="control-group fieldcontain ${hasErrors(bean: employeeInstance, field: 'employmentStartDate', 'error')} required">
+	<label for="salary" class="control-label"><g:message
+			code="employee.employmentStartDate.label" default="Salary" /><span
+		class="required-indicator">*</span></label>
+	<div class="controls">
+		<g:datePicker name="employmentStartDate" precision="day" value="${employeeInstance.employmentStartDate}"/>
+		<span class="help-inline">
+			${hasErrors(bean: employeeInstance, field: 'employmentStartDate', 'error')}
+		</span>
+	</div>
+</div>
+--%>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: employeeInstance, field: 'salary', 'error')} required">
+	<label for="salary" class="control-label"><g:message
+			code="employee.salary.label" default="Salary" /><span
+		class="required-indicator">*</span></label>
+	<div class="controls">
+		<g:field type="number" name="salary" step="any" required=""
+			value="${employeeInstance.salary}" />
+		<span class="help-inline">
+			${hasErrors(bean: employeeInstance, field: 'salary', 'error')}
+		</span>
+	</div>
+</div>
 <div
 	class="control-group fieldcontain ${hasErrors(bean: employeeInstance, field: 'benefits', 'error')} ">
 	<label for="benefits" class="control-label"><g:message

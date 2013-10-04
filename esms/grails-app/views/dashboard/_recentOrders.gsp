@@ -18,9 +18,12 @@
 
 			<g:sortableColumn property="status"
 				title="${message(code: 'order.status.label', default: 'Status')}" />
+				
+			<g:sortableColumn property="grandTotal"
+				title="${message(code: 'order.grandTotal.label', default: 'Grand Total')}" />	
 
-			<g:sortableColumn property="openGrandTotal"
-				title="${message(code: 'order.openGrandTotal.label', default: 'Open Amount')}" />
+			<g:sortableColumn property="type"
+				title="${message(code: 'order.type.label', default: 'Order Type')}" />
 
 			<th></th>
 		</tr>
@@ -41,6 +44,9 @@
 				</td>
 				<td>
 					${fieldValue(bean : orderInstance, field : "openGrandTotal") }
+				</td>
+				<td>
+					${fieldValue(bean: orderInstance, field: "type")}
 				</td>
 				<td class="link"><g:link controller="order" action="show" id="${orderInstance.id}">Show &raquo;</g:link></td>
 			</tr>

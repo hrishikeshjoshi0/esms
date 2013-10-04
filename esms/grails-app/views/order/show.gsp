@@ -63,6 +63,16 @@
 					</g:if>
 				</div>
 			</g:form>
+			
+			<g:if test="${orderInstance?.status == 'PENDING_INVOICE' && orderInstance?.orderItems?.size() != 0}">
+			<div class="form-actions">
+				<g:jasperReport jasper="GoldContractTemplate" format="PDF"
+							name="Print Agreement" delimiterAfter=" " delimiterBefore=" "
+								heightAttr="15px">
+					<input type="hidden" name="order" value="${orderInstance.id}" />
+				</g:jasperReport>
+			</div>
+			</g:if>
 
 			<div class="row-fluid">
 			<div class="span4">

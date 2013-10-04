@@ -21,11 +21,10 @@
 			<g:form>
 				<g:hiddenField name="id" value="${liftInfoInstance?.id}" />
 				<div class="form-actions">
-					<%--<g:link class="btn" action="edit" id="${liftInfoInstance?.id}">
+					<g:link class="btn" action="edit" id="${liftInfoInstance?.id}">
 						<i class="icon-pencil"></i>
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					--%>
 					<button class="btn btn-danger" type="submit" name="_action_delete">
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
@@ -90,6 +89,76 @@
 							<dd><g:fieldValue bean="${liftInfoInstance}" field="driveCapacity"/></dd>
 						
 				
+							<dt><g:message code="liftInfo.driveSerialNumber.label" default="Drive Serial Number" /></dt>
+						
+							<dd><g:fieldValue bean="${liftInfoInstance}" field="driveSerialNumber"/></dd>
+						
+				
+							<dt><g:message code="liftInfo.buildingOpening.label" default="Building Opening" /></dt>
+						
+							<dd><g:fieldValue bean="${liftInfoInstance}" field="buildingOpening"/></dd>
+						
+				
+							<dt><g:message code="liftInfo.carCapacity.label" default="Car Capacity" /></dt>
+						
+							<dd><g:fieldValue bean="${liftInfoInstance}" field="carCapacity"/></dd>
+						
+				
+							<dt><g:message code="liftInfo.typeOfElevator.label" default="Type Of Elevator" /></dt>
+						
+							<dd><g:fieldValue bean="${liftInfoInstance}" field="typeOfElevator"/></dd>
+						
+				
+							<dt><g:message code="liftInfo.motorHP.label" default="Motor HP" /></dt>
+						
+							<dd><g:fieldValue bean="${liftInfoInstance}" field="motorHP"/></dd>
+						
+				
+							<dt><g:message code="liftInfo.motorCurrent.label" default="Motor Current" /></dt>
+						
+							<dd><g:fieldValue bean="${liftInfoInstance}" field="motorCurrent"/></dd>
+						
+				
+							<dt><g:message code="liftInfo.motorRpm.label" default="Motor Rpm" /></dt>
+						
+							<dd><g:fieldValue bean="${liftInfoInstance}" field="motorRpm"/></dd>
+						
+				
+							<dt><g:message code="liftInfo.governerSpeed.label" default="Governer Speed" /></dt>
+						
+							<dd><g:fieldValue bean="${liftInfoInstance}" field="governerSpeed"/></dd>
+						
+				
+							<dt><g:message code="liftInfo.trippingSpeed.label" default="Tripping Speed" /></dt>
+						
+							<dd><g:fieldValue bean="${liftInfoInstance}" field="trippingSpeed"/></dd>
+						
+				
+							<dt><g:message code="liftInfo.machineMake.label" default="Machine Make" /></dt>
+						
+							<dd><g:fieldValue bean="${liftInfoInstance}" field="machineMake"/></dd>
+						
+				
+							<dt><g:message code="liftInfo.pulleyDiameter.label" default="Pulley Diameter" /></dt>
+						
+							<dd><g:fieldValue bean="${liftInfoInstance}" field="pulleyDiameter"/></dd>
+						
+				
+							<dt><g:message code="liftInfo.numberOfGrooves.label" default="Number Of Grooves" /></dt>
+						
+							<dd><g:fieldValue bean="${liftInfoInstance}" field="numberOfGrooves"/></dd>
+						
+				
+							<dt><g:message code="liftInfo.ropeSize.label" default="Rope Size" /></dt>
+						
+							<dd><g:fieldValue bean="${liftInfoInstance}" field="ropeSize"/></dd>
+						
+				
+							<dt><g:message code="liftInfo.numberOfRopes.label" default="Number Of Ropes" /></dt>
+						
+							<dd><g:fieldValue bean="${liftInfoInstance}" field="numberOfRopes"/></dd>
+						
+				
 							<dt><g:message code="liftInfo.driveMake.label" default="Drive Make" /></dt>
 						
 							<dd><g:fieldValue bean="${liftInfoInstance}" field="driveMake"/></dd>
@@ -107,7 +176,7 @@
 				
 							<dt><g:message code="liftInfo.organization.label" default="Organization" /></dt>
 						
-							<dd><g:link controller="organization" action="show" id="${liftInfoInstance?.organization?.id}">${liftInfoInstance?.organization?.encodeAsHTML()}</g:link></dd>
+							<dd><g:link controller="organization" action="show" id="${liftInfoInstance?.organization?.id}">${liftInfoInstance?.organization?.name}</g:link></dd>
 						
 				
 							<dt><g:message code="liftInfo.servicePeriod.label" default="Service Period" /></dt>

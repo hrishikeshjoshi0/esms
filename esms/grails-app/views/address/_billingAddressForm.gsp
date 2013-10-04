@@ -22,7 +22,7 @@
 			code="address.address1.label" default="Address1" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:textField name="billing.address1" required=""
+		<g:textField id="billingAddress1" name="billing.address1" required=""
 			value="${addressInstance?.address1}" />
 		<span class="help-inline">
 			${hasErrors(bean: addressInstance, field: 'address1', 'error')}
@@ -35,7 +35,7 @@
 	<label for="address2" class="control-label"><g:message
 			code="billing.address2.label" default="Address2" /></label>
 	<div class="controls">
-		<g:textField name="billing.address2" value="${addressInstance?.address2}" />
+		<g:textField id="billingAddress2" name="billing.address2" value="${addressInstance?.address2}" />
 		<span class="help-inline">
 			${hasErrors(bean: addressInstance, field: 'address2', 'error')}
 		</span>
@@ -47,7 +47,7 @@
 	<label for="buildingName" class="control-label"><g:message
 			code="address.buildingName.label" default="Building Name" /></label>
 	<div class="controls">
-		<g:textField name="billing.buildingName"
+		<g:textField id="billingBuildingName" name="billing.buildingName"
 			value="${addressInstance?.buildingName}" />
 		<span class="help-inline">
 			${hasErrors(bean: addressInstance, field: 'buildingName', 'error')}
@@ -60,7 +60,7 @@
 	<label for="city" class="control-label"><g:message
 			code="address.city.label" default="City" /></label>
 	<div class="controls">
-		<g:textField name="billing.city" value="${addressInstance?.city}" />
+		<g:textField id="billingCity" name="billing.city" value="${addressInstance?.city}" />
 		<span class="help-inline">
 			${hasErrors(bean: addressInstance, field: 'city', 'error')}
 		</span>
@@ -72,7 +72,7 @@
 	<label for="state" class="control-label"><g:message
 			code="address.state.label" default="State" /></label>
 	<div class="controls">
-		<g:textField name="billing.state" value="${addressInstance?.state}" />
+		<g:textField id="billingState" name="billing.state" value="${addressInstance?.state}" />
 		<span class="help-inline">
 			${hasErrors(bean: addressInstance, field: 'state', 'error')}
 		</span>
@@ -84,7 +84,7 @@
 	<label for="country" class="control-label"><g:message
 			code="address.country.label" default="Country" /></label>
 	<div class="controls">
-		<g:textField name="billing.country" value="${addressInstance?.country}" />
+		<g:textField id="billingCountry" name="billing.country" value="${addressInstance?.country}" />
 		<span class="help-inline">
 			${hasErrors(bean: addressInstance, field: 'country', 'error')}
 		</span>
@@ -96,7 +96,7 @@
 	<label for="postalCode" class="control-label"><g:message
 			code="address.postalCode.label" default="Postal Code" /></label>
 	<div class="controls">
-		<g:textField name="billing.postalCode" value="${addressInstance?.postalCode}" />
+		<g:textField id="billingPostalCode" name="billing.postalCode" value="${addressInstance?.postalCode}" />
 		<span class="help-inline">
 			${hasErrors(bean: addressInstance, field: 'postalCode', 'error')}
 		</span>

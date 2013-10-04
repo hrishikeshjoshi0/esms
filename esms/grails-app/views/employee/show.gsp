@@ -79,6 +79,22 @@
 				<dd>
 					<g:fieldValue bean="${employeeInstance}" field="salary" />
 				</dd>
+				
+				<dt>
+					<g:message code="employee.employmentStartDate.label" default="Employment Start Date" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${employeeInstance}" field="employmentStartDate" />
+				</dd>
+				
+				<dt>
+					<g:message code="employee.employmentEndDate.label" default="Employment End Date" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${employeeInstance}" field="employmentEndDate" />
+				</dd>
 
 
 				<dt>

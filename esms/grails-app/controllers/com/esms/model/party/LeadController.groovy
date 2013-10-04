@@ -84,6 +84,7 @@ class LeadController {
 			
 			def billingAddressInstance = new Address()
 			billingAddressInstance = bindData(billingAddressInstance,params,'billing')
+			billingAddressInstance.addressType = "BILLING"
 			billingAddressInstance.party = organizationInstance
 			billingAddressInstance.save(flush:true)
 			

@@ -1,6 +1,20 @@
 <%@ page import="com.esms.model.party.Organization"%>
 
-<g:hiddenField name="salesStatus" value="LEAD"/>
+<script>
+	$('document').ready(function() {
+		$("#copyToBillingAddressLink").click(function() {
+			$('#billingAddress1').val($('#shippingAddress1').val());
+			$('#billingAddress2').val($('#shippingAddress2').val());
+			$('#billingBuildingName').val($('#shippingBuildingName').val());
+			$('#billingCity').val($('#shippingCity').val());
+			$('#billingState').val($('#shippingState').val());
+			$('#billingCountry').val($('#shippingCountry').val());
+			$('#billingPostalCode').val($('#shippingPostalCode').val());
+		});
+	});
+</script>
+
+<g:hiddenField name="salesStatus" value="CUSTOMER"/>
 <div
 	class="control-group fieldcontain ${hasErrors(bean: organizationInstance, field: 'externalId', 'error')} required">
 	<label for="externalId" class="control-label"><g:message
@@ -60,8 +74,7 @@
 		Primary Contact
 	</h3>
 </div>
-
-<div
+<%--<div
 	class="control-group fieldcontain ${hasErrors(bean: contactInstance, field: 'salutation', 'error')} ">
 	<label for="salutation" class="control-label"><g:message
 			code="contact.salutation.label" default="Salutation" /></label>
@@ -69,6 +82,22 @@
 		<g:textField name="primary.salutation" value="${contactInstance?.salutation}" />
 		<span class="help-inline">
 			${hasErrors(bean: contactInstance, field: 'salutation', 'error')}
+		</span>
+	</div>
+</div>
+--%>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: contactInstance, field: 'designation', 'error')} ">
+	<label for="primary.designation" class="control-label"><g:message
+			code="contact.designation.label" default="Designation" /></label>
+	<div class="controls">
+		<g:select name="primary.designation"
+			from="${contactInstance.constraints.designation.inList}"
+			value="${contactInstance?.designation}"
+			valueMessagePrefix="primary.designation" noSelection="['': '']" />
+		<span class="help-inline">
+			${hasErrors(bean: contactInstance, field: 'designation', 'error')}
 		</span>
 	</div>
 </div>
@@ -199,7 +228,7 @@
 	</h3>
 </div>
 
-<div
+<%--<div
 	class="control-group fieldcontain ${hasErrors(bean: contactInstance, field: 'salutation', 'error')} ">
 	<label for="salutation" class="control-label"><g:message
 			code="contact.salutation.label" default="Salutation" /></label>
@@ -207,6 +236,22 @@
 		<g:textField name="secondary.salutation" value="${contactInstance?.salutation}" />
 		<span class="help-inline">
 			${hasErrors(bean: contactInstance, field: 'salutation', 'error')}
+		</span>
+	</div>
+</div>
+--%>
+
+<div
+	class="control-group fieldcontain ${hasErrors(bean: contactInstance, field: 'designation', 'error')} ">
+	<label for="secondary.designation" class="control-label"><g:message
+			code="contact.designation.label" default="Designation" /></label>
+	<div class="controls">
+		<g:select name="secondary.designation"
+			from="${contactInstance.constraints.designation.inList}"
+			value="${contactInstance?.designation}"
+			valueMessagePrefix="secondary.designation" noSelection="['': '']" />
+		<span class="help-inline">
+			${hasErrors(bean: contactInstance, field: 'designation', 'error')}
 		</span>
 	</div>
 </div>
@@ -339,14 +384,21 @@
 <div class="row-fluid">
 	<div class="span6">
 		<h3>Site Address</h3>
+		<%--<div>
+			<g:checkBox name="sameAsShippingAddress" checked="true"/> Copy to Billing Address...
+		</div>
+		--%>
 		<g:render template="/address/shippingAddressForm"></g:render>
 	</div>
+	<!-- 
 	<div class="span6">
-		<h3>Billing Address</h3>
-		<g:render template="/address/billingAddressForm"></g:render>
+		<div class="billingAddress">
+			<h3>Billing Address</h3>
+			<g:render template="/address/billingAddressForm"></g:render>
+		</div>	
 	</div>
+	 -->
 </div>
-
 <div class="page-header">
 	<h3>
 		About the Lift
