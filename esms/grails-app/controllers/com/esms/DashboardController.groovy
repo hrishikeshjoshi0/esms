@@ -1,10 +1,11 @@
 package com.esms
 
+import com.esms.model.calendar.Event
 import com.esms.model.order.Order
 import com.esms.model.party.Organization
 import com.esms.model.payment.Payment
 import com.esms.model.quote.Quote
-import com.lucastex.grails.fileuploader.UFile;
+import com.lucastex.grails.fileuploader.UFile
 
 class DashboardController {
 
@@ -14,14 +15,17 @@ class DashboardController {
 		params.'order' = "desc"
 		
 		//def recentLeads = AuditLogEvent.findAllByClassNameAndEventName('com.esms.model.party.Organization','INSERT',[sort:"dateCreated",order:"desc"])
-		def recentLeads = Organization.findAllBySalesStatus('LEAD')
-		def recentCustomers = Organization.findAllBySalesStatus('CUSTOMER',params)
-		def recentQuotes = Quote.findAllByStatusInList(['DRAFT','PENDING','REVISE','ACCEPT'],params)
-		def recentOrders = Order.findAllByTypeInList(['SALES','REPAIR','MODERNIZATION','INSTALLATION'],params)
-		def recentDocuments = UFile.list(params)
-		def recentPayments = Payment.listOrderByPaymentNumber(max: 5, offset: 0, order: "desc")
-		
-		[recentLeads : recentLeads,recentCustomers:recentCustomers,recentQuotes:recentQuotes,recentOrders:recentOrders,recentDocuments:recentDocuments,recentPayments:recentPayments]		
+		//def recentLeads = Organization.findAllBySalesStatus('LEAD')
+		def upcomingEvents = Event.findAllByStartTimeGreaterThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],params)
+		def overdueEvents = Event.findAllByStartTimeLessThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],params)
+		//def recentCustomers = Organization.findAllBySalesStatus('CUSTOMER',params)
+		//def recentQuotes = Quote.findAllByStatusInList(['DRAFT','PENDING','REVISE','ACCEPT'],params)
+		//def recentOrders = Order.findAllByTypeInList(['SALES','REPAIR','MODERNIZATION','INSTALLATION'],params)
+		def ordersPendingPayments = Order.findAllByStatus('INVOICED',params)
+		//def recentDocuments = UFile.list(params)
+		//def recentPayments = Payment.listOrderByPaymentNumber(max: 5, offset: 0, order: "desc")
+		def openPayments = Payment.findAllByPaymentMethodAndClearanceDateIsNull("CHEQUE",params)
+		[/*recentLeads : recentLeads,recentCustomers:recentCustomers,recentQuotes:recentQuotes,recentOrders:recentOrders,recentDocuments:recentDocuments,recentPayments:recentPayments,*/upcomingEvents:upcomingEvents,overdueEvents:overdueEvents,ordersPendingPayments:ordersPendingPayments,openPayments:openPayments]		
 	}
 	
 	def paginateRecentLeads = {

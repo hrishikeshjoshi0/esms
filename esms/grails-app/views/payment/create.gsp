@@ -25,7 +25,12 @@
 
 			<div class="page-header">
 				<h1>
-					<g:message code="default.create.label" args="[entityName]" />
+					Register Payment # ${paymentInstance?.paymentNumber}
+					|
+					<g:link controller="organization" action="show"
+									id="${paymentInstance?.organization?.id}">
+							${paymentInstance?.organization?.name}
+					</g:link>
 				</h1>
 			</div>
 

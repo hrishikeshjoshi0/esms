@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GoldContractTemplate" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9b087836-7f6e-4d3c-8417-0320a14fd6dd">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="default" fontName="Arial"/>
+	<parameter name="order" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM ORDER_HDR WHERE id = $P{order}]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="version" class="java.lang.Long"/>
+	<field name="assigned_to" class="java.lang.String"/>
+	<field name="contact_name" class="java.lang.String"/>
+	<field name="contract_from_date" class="java.sql.Timestamp"/>
+	<field name="contract_to_date" class="java.sql.Timestamp"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="expiry_date" class="java.sql.Timestamp"/>
+	<field name="grand_total" class="java.math.BigDecimal"/>
+	<field name="invoicing_is_expenses" class="java.lang.Boolean"/>
+	<field name="invoicing_is_fixed_price" class="java.lang.Boolean"/>
+	<field name="invoicing_is_timesheets" class="java.lang.Boolean"/>
+	<field name="issue_date" class="java.sql.Timestamp"/>
+	<field name="open_grand_total" class="java.math.BigDecimal"/>
+	<field name="order_number" class="java.lang.String"/>
+	<field name="organization_id" class="java.lang.Long"/>
+	<field name="recevied_grand_total" class="java.math.BigDecimal"/>
+	<field name="reference_quote_number" class="java.lang.String"/>
+	<field name="related_to" class="java.lang.String"/>
+	<field name="related_to_value" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="terms_and_conditions" class="java.lang.String"/>
+	<field name="total_amount" class="java.math.BigDecimal"/>
+	<field name="total_discount" class="java.math.BigDecimal"/>
+	<field name="total_tax" class="java.math.BigDecimal"/>
+	<field name="type" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="25" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="120" splitType="Stretch">
+			<image>
+				<reportElement uuid="1d1509f7-b871-4c70-86d2-a4b4e7c9c40e" x="138" y="0" width="393" height="120"/>
+				<imageExpression><![CDATA["images/agreement_header.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="13" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8fdf86cb-2ec9-4206-8cfd-fb78822f87f1" x="185" y="0" width="88" height="21"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRACT:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8fdf86cb-2ec9-4206-8cfd-fb78822f87f1" x="273" y="0" width="68" height="21"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GOLD]]></text>
+			</staticText>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement uuid="d8eaf82b-2fa8-4b31-b738-15862b5e8e4b" x="45" y="0" width="255" height="20"/>
+				<textElement/>
+				<text><![CDATA[Dated_____________________ Between]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="a069328a-fe01-4437-b67c-cd66dff3e834" x="45" y="0" width="453" height="20"/>
+				<textElement/>
+				<text><![CDATA[Silverline Elevators                                                                 and (THE CUSTOMER)]]></text>
+			</staticText>
+		</band>
+		<band height="80">
+			<rectangle>
+				<reportElement uuid="183b1c9c-98d8-40db-8fde-d55ca546b099" x="27" y="6" width="182" height="63"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="57fb21c1-768d-4b9f-a845-caca5d9ff536" x="278" y="6" width="204" height="63"/>
+			</rectangle>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement uuid="957e4cda-e710-4888-a0e3-14816b45b40c" x="27" y="0" width="455" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TERMS OF AGREEMENT:]]></text>
+			</staticText>
+		</band>
+		<band height="182">
+			<staticText>
+				<reportElement uuid="47c1184c-8672-4d75-b088-008fbd6e265c" x="27" y="0" width="455" height="20"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[This service shall commence from ______________and shall continue thereafter until ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="12a3f931-4140-4bb2-8190-4f0cebee1ae5" x="27" y="20" width="455" height="20"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[terminated. Either party may terminate this agreement  by 90 days’ notice to that effect ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="27" y="38" width="455" height="20"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[given in writing by either of us, by Registered Post.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="185" y="72" width="136" height="20"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SECTION 1 – EQUIPMENT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="27" y="92" width="455" height="20"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.1    EQUIPMENT DETAILS ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="27" y="112" width="455" height="20"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Silverline agrees to furnish Silverline Maintenance on the following described                            ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="27" y="132" width="455" height="20"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[equipment.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="27" y="152" width="455" height="20"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[(THE EQUIPMENT)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="27" y="172" width="455" height="10"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<break>
+				<reportElement uuid="12aafc0a-83e8-433f-b0e8-203d7eab5dd4" x="0" y="58" width="455" height="1"/>
+			</break>
+		</band>
+		<band height="50">
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="27" y="0" width="455" height="20"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.2    LOCATION OF EQUIPMENT:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="27" y="20" width="455" height="20"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="27" y="40" width="455" height="10"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="162" y="0" width="227" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SECTION 2 – SILVERLINE RESPONSIBILITIES]]></text>
+			</staticText>
+		</band>
+		<band height="50">
+			<staticText>
+				<reportElement uuid="6aa27372-f625-4e2d-801e-53f1eba4bc71" x="27" y="0" width="455" height="50"/>
+				<textElement/>
+				<text><![CDATA[2.1 Silverline will use trained and appropriately skilled personnel which it directly     employs and/or supervises. They will be qualified to keep THE EQUIPMENT properly adjusted and they will use all reasonable care to maintain THE EQUIPMENT in efficient, reliable and safe operation condition.]]></text>
+			</staticText>
+		</band>
+		<band height="16">
+			<staticText>
+				<reportElement uuid="99f43765-40fc-4961-8bf1-297717ef26a4" x="27" y="0" width="455" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.2   PLANNED MAINATENANCE:]]></text>
+			</staticText>
+		</band>
+		<band height="50">
+			<staticText>
+				<reportElement uuid="4262488b-713b-42c4-b96d-a97c91a327b9" x="27" y="0" width="455" height="50"/>
+				<textElement/>
+				<text><![CDATA[Silverline will in accordance with their terms hereof, regularly examine, lubricate and adjust THE EQUIPMENT and generally carry out planned maintenance in a systematic and controlled manner. The frequency of examination will depend on the type of equipment and its location.
+]]></text>
+			</staticText>
+		</band>
+		<band height="16">
+			<staticText>
+				<reportElement uuid="c2e6b8e1-c879-4384-82f9-3f85e54cffcd" x="27" y="0" width="455" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.3    REPAIR OR REPLACE PARTS:]]></text>
+			</staticText>
+		</band>
+		<band height="50">
+			<staticText>
+				<reportElement uuid="8cb0dffc-1696-41d4-87a0-af452287b9c7" x="27" y="0" width="455" height="50"/>
+				<textElement/>
+				<text><![CDATA[Silverline will at its option, repair or replace any parts detailed in the following section which, in its opinion are defective. Parts will be furnished by Silverline on an exchange basis under which replaced parts become the property of Silverline.]]></text>
+			</staticText>
+		</band>
+		<band height="51">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="51"/>
+				<textElement/>
+				<text><![CDATA[However Silverline will not make any replacements, renewals, or repairs necessitated by any obsolete or discontinued [art of the Unit(s) of by reason of any cause beyond our control (except ordinary wear and tear) including, but not limited to, fire, explosion, theft, floods, water, weather, earthquake, vandalism, misuse, abuse, mischief, or repairs by others. ]]></text>
+			</staticText>
+		</band>
+		<band height="16">
+			<staticText>
+				<reportElement uuid="c2e6b8e1-c879-4384-82f9-3f85e54cffcd" x="27" y="0" width="455" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.4   EQUIPMENT COVERED :]]></text>
+			</staticText>
+		</band>
+		<band height="51">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="51"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[	(a) Renew all wire ropes and chains (where fitted) as often as required to maintain adequate factor of safety, to equalize the tension on all hoisting ropes, repair or replace conductor cables and hoistway and machine room elevator wiring.]]></text>
+			</staticText>
+		</band>
+		<band height="51">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="51"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[	(b) Systematically examine and adjust the following components:
+Machine, Worm Gear, Thrust Bearing, Motor Windings, Rotating Elements, Commutator, Brushes, Brush Holders, Bearings, Coils, Resistances for operating and Motor Circuits, Magnet Frames and other Mechanical Parts;
+]]></text>
+			</staticText>
+		</band>
+		<band height="102">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="102"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[	Controller, Selector, Leveling Devices, Cams, Relays, Solid State Components e.g. PCB’s, Transducer, Resistors, Condensers, Power Amplifiers, Transformers, Contacts, Leads, Dashpots, Timing Devices, Steel Selector Tapes and Mechanical and Electrical Driving Equipment.;Governor, Governor Sheave, Shaft Assembly, Bearings, Contacts and Governor Jaws;
+
+Car and Hall Mechanical Buttons, Car and Hall Position Indicators, Hall Lanterns, Car Direction Indicators and all other Car and Landing Signal Fixtures, as installed by Silverline
+]]></text>
+			</staticText>
+		</band>
+		<band height="102">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="102"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[	Deflector or Secondary Sheave, Bearings, Car and Counterweight Guide Rails and Buffers, Top and Bottom Limit Switches, Governor Tension Sheave Assembly, Compensating Sheave Assembly, Car, Counterweight and Counterweight Guide Shoes including Rollers or Gibs;
+
+Interlocks on Hoistway Door, Hoistway Door Hangers, Guides, Automatic Power Operated Door Operator, Car Door Hanger, Car Door Contact, Safety Shoe, Load Weighting Equipment, Car Frame, Car Safety Mechanism and Platform;
+]]></text>
+			</staticText>
+		</band>
+		<band height="27">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="27"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[(C)       Our service technician will examine the equipment on …….…………….basis.]]></text>
+			</staticText>
+		</band>
+		<band height="2">
+			<break>
+				<reportElement uuid="1e874305-8ce5-4b2c-ae74-0239eb439b59" x="0" y="1" width="482" height="1"/>
+			</break>
+		</band>
+		<band height="21">
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="145" y="1" width="227" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SECTION 3 – CALL BACK SERVICE]]></text>
+			</staticText>
+		</band>
+		<band height="27">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="27"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Attend Break Down service on regular service time on regular working days.]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="145" y="0" width="227" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SECTION 4 – EXCLUSIONS]]></text>
+			</staticText>
+		</band>
+		<band height="102">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="102"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[4.1	Silverline assumes no responsibility for the following items of elevator equipment,
+not included in this contract:
+	Car Enclosures, Door Panels, Hung Ceilings, Car gates, Light Diffusers, Light   Bulbs, Fluorescent Tubes, Hand Rails, Starters, Chokes, Mirrors, Floor Coverings, Carpets, Other Architectural features, Hoistway Enclosure, Hoistway Gates, Door Frames, Doors, Sills, Batteries, Security Systems, External Wiring to elevator and hoistway / machine room, Imported component like ELD, Plasma Display & EVAIS etc.
+]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="27" y="0" width="227" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[4.2 NEGLIGENCE OR MISUSE OF EQUIPMENT:]]></text>
+			</staticText>
+		</band>
+		<band height="70">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="70"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[	Silverline will not incur expenses and is not required, under the terms of this Agreement, to make renewals or repairs, necessitated by reason of negligence or misuse or any other cause beyond Silverline control except ordinary wear and tear. Cost of such renewals and repairs necessitated by reason of negligence or cause will be charged to THE CUSTOMER.
+]]></text>
+			</staticText>
+		</band>
+		<band height="1">
+			<break>
+				<reportElement uuid="1e874305-8ce5-4b2c-ae74-0239eb439b59" x="0" y="0" width="482" height="1"/>
+			</break>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="143" y="0" width="130" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SECTION 5 – WORN ITEMS]]></text>
+			</staticText>
+		</band>
+		<band height="104">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="104"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[The items listed on the schedule below show considerable wear and will have to be replaced in the near future. To provide the maximum of service from these items, Silverline is accepting them in their present state on the condition that THE CUSTOMER is to pay, in addition to the base amount of this Agreement, an extra charge at the time the items listed below are first replaced. The charges for these replacement will be determine by prorating the total cost of replacing the individual items. THE CUSTOMER is to pay for that portion of the life of the items used prior to the commencement date of this Agreement and Silverline is to pay for that portion used after the commencement date of this Agreement.]]></text>
+			</staticText>
+		</band>
+		<band height="26">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="26"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SCHEDULE OF PATRS TO BE PRORATED:]]></text>
+			</staticText>
+		</band>
+		<band height="26">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="26"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NAME OF THE PARTS :                                             DATE OF INSTALLATION:]]></text>
+			</staticText>
+		</band>
+		<band height="100">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="100"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+		<band height="1">
+			<break>
+				<reportElement uuid="1e874305-8ce5-4b2c-ae74-0239eb439b59" x="0" y="0" width="482" height="1"/>
+			</break>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="143" y="0" width="178" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SECTION 6 – SILVERLINE LIABILITY]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="27" y="0" width="178" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[6.1   NOT AN INSURANCE CONTRACT:]]></text>
+			</staticText>
+		</band>
+		<band height="90">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="90"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Silverline will not be liable for any loss, damage or delay due to any cause beyond its reasonable control including, but not limited to, lack of shipping space, embargoes, acts of Government, strikes, lockouts, fire, explosion, theft, heavy rains, floods, riots, civil commotion, war, malicious mischief or acts of Gods. Should damage occur to Silverline material, tools of work on the premises from any cause beyond its reasonable control, THE CUSTOMER shall compensate Silverline thereof.]]></text>
+			</staticText>
+		</band>
+		<band height="1">
+			<break>
+				<reportElement uuid="1e874305-8ce5-4b2c-ae74-0239eb439b59" x="0" y="0" width="482" height="1"/>
+			</break>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="143" y="0" width="178" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SECTION 7 – TERMINATION]]></text>
+			</staticText>
+		</band>
+		<band height="372">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="372"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[7.1 Silverline shall be entitled to terminate this agreement forthwith in any of the                    following events and Silverline’s liability hereunder shall, therefore, cease:
+a)	Where the legal and beneficial ownership of the building has changed.
+b)	Where, in Silverline’s opinion, THE EQUIPMENT is or has been subjected to unreasonable use.
+c)	Where Silverline is prevented from performing any obligation under this agreement by any cause outside its control.
+d)	Where, in Silverline’s opinion, there is a material change in the original intent of the usage of THE EQUIPMENT or in the function or character of the building.
+e)	Where, without Silverline’ s consent, any work upon THE EQUIPMENT within the scope of this Agreement is undertaken by anyone other than Silverline employees or its authorized representatives.
+f)	Where THE CUSTOMER refuses or fails to carry out work or replacement falling outside the scope or clause 2.4 of this Agreement, within a reasonable period of time, after written notice from Silverline that such work of replacement is necessary.
+g)	Failure by THE CUSTOMER to pay any monies due under this Agreement within thirty (30) days of their becoming due.
+h)	If THE CUSTOMER files, or if there is filed against THE CUSTOMER, a petition in bankruptcy, or being a corporation, enters into liquidation whether compulsory or voluntary (other than for the purpose of amalgamation or reconstruction) or compounds with creditors generally of takes or suffers any similar action in consequence of debt or becomes unable to pay debts as they fall due.
+]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="27" y="0" width="251" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[7.2	CUSTOMER’S RIGHT OF TERMINATION: ]]></text>
+			</staticText>
+		</band>
+		<band height="123">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="123"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[THE CUSTOMER shall be entitled to terminate this Agreement forthwith by giving Silverline Ninety (90) days’ notice in writing in either of the following events and Silverline’s responsibilities and entitlements under this Agreement shall cease forthwith:
+
+a)	Where the building is Vacated
+
+b)	Where THE CUSTOMER furnishes proof that there has been a change in the legal and beneficial ownership of the building.
+]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="27" y="0" width="251" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[7.3   EFFECT OF TERMINATION:]]></text>
+			</staticText>
+		</band>
+		<band height="98">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="455" height="98"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[(a)	Charges for the work done up to the date of termination, will become due for payment immediately. And if such amount is not paid within 15 days from the date of demand, will carry interest @ 15%
+
+(b)	Legal Liability, on maintenance of the equipment, will cease immediately and Silverline will not be responsible from the date of termination for any incident/mishap on the equipment.
+]]></text>
+			</staticText>
+		</band>
+		<band height="1">
+			<break>
+				<reportElement uuid="1e874305-8ce5-4b2c-ae74-0239eb439b59" x="0" y="0" width="482" height="1"/>
+			</break>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="b1b17542-b703-46dc-b0ba-4ea3d7d257b0" x="138" y="0" width="178" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SECTION 8 – THE CONTRACT]]></text>
+			</staticText>
+		</band>
+		<band height="229">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="471" height="228"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[This proposal, when accepted by you and approved by our representative, shall
+
+constitute the contract between us, and all prior representations or agreement not
+
+incorporated herein are superseded.
+
+Machine Numbers
+
+ACCEPTED
+
+IN DUPLICATE ON_____________200
+
+BY ______________________________
+
+TITLE____________________________
+                                                                               ]]></text>
+			</staticText>
+		</band>
+		<band height="17">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="471" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SILVERLINE ELEVATORS]]></text>
+			</staticText>
+		</band>
+		<band height="28">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="471" height="28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+		<band height="17">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="471" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mr. MONISH]]></text>
+			</staticText>
+		</band>
+		<band height="17">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="471" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[(PROPRIETOR) ]]></text>
+			</staticText>
+		</band>
+		<band height="1">
+			<break>
+				<reportElement uuid="1e874305-8ce5-4b2c-ae74-0239eb439b59" x="0" y="0" width="482" height="1"/>
+			</break>
+		</band>
+		<band height="40">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="471" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[GUIDELINES FOR YOUR SAFETY]]></text>
+			</staticText>
+		</band>
+		<band height="200">
+			<staticText>
+				<reportElement uuid="8b1294cd-778f-4e0d-8d53-e184bbec3492" x="27" y="0" width="471" height="200"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[• Do not overload the elevator beyond the maximum number of persons specified on the capacity plate.
+• Do not stand in between the doors / gates.
+• Do not put your hand in between the collapsible gates, you may loose your hand.
+• Do not attempt to stop a running elevator from the lobby by forcibly opening the inside door / gate or outside door / gate.
+• In case of automatic doors, do not step in or out until the elevator has stopped at the landing and the doors have opened fully.
+• The ‘Stop’ button / switch should only be used when it is absolutely necessary to stop the elevator.
+• Do not panic or try to open the car / landing door / gate or jump out of the elevator if it is stalled in between floors. Press the button marked Alarm / bell to seek help
+• The emergency brake release device which is available in the machine-room enables the elevator to be brought to the nearest floor. This must be used only by authorized persons.
+]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="30" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<image>
+				<reportElement uuid="25eec189-b63f-4b6f-a85d-37d3f069f4d9" x="149" y="0" width="333" height="20"/>
+				<imageExpression><![CDATA["images/agreement_footer.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

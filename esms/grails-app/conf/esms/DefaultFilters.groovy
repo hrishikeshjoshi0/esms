@@ -56,7 +56,8 @@ class DefaultFilters {
 		cal.set(Calendar.DATE, cal.get(Calendar.DATE)+10)
 		def currentDatePlusThreshold = cal.getTime()
 
-		def events = Event.findAllByEndTimeLessThanEquals(currentDatePlusThreshold,[sort: "startTime", order: "asc"])
+		def events = Event.findAllByStartTimeGreaterThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],[sort: "startTime", order: "asc"])
+		//def events = Event.findAllByEndTimeLessThanEquals(currentDatePlusThreshold,[sort: "startTime", order: "asc"])
 		session["upcomingEvents"] = events
 	}
 

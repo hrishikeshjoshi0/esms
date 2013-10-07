@@ -4,11 +4,12 @@ import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
 import com.esms.model.party.Organization
-import com.esms.model.product.Product;
+import com.esms.model.product.Product
+import com.esms.model.product.ProductPrice
 
 class QuoteController {
 
-	static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
+	static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: ['GET', 'POST']]
 
 	def filterPaneService
 
@@ -65,6 +66,7 @@ class QuoteController {
 				}
 				
 				def quote = new Quote(params)
+				
 				[quoteInstance: quote]
 				break
 			case 'POST':
@@ -73,6 +75,56 @@ class QuoteController {
 				if (!quoteInstance.save(flush: true)) {
 					render view: 'create', model: [quoteInstance: quoteInstance]
 					return
+				}
+				
+				int lineNo = 0
+				if(quoteInstance.type == "CONTRACT") {
+					def products = Product.findAllByProductType("SERVICE")
+					if(products) {
+							def unitPrice = new BigDecimal("0.0")
+							def tax = new BigDecimal("0.0")
+							def discount = new BigDecimal("0.0")
+							def lineTotalAmount = new BigDecimal("0.0")
+							
+							quoteInstance.quoteItems = new ArrayList<QuoteItem>()
+							products?.each {
+								def quoteItemInstance = new QuoteItem()
+								quoteItemInstance.quantity = 1.0
+								quoteItemInstance.productNumber = it.productNumber
+								quoteItemInstance.lineNumber  = lineNo
+								
+								quoteItemInstance.tax = 0.0
+								quoteItemInstance.discount = 0.0
+								
+								it?.prices?.each { price ->
+									quoteItemInstance.unitPrice = price.price
+								}
+								
+								quoteItemInstance.lineTotalAmount = quoteItemInstance.unitPrice
+								quoteItemInstance.quote = quoteInstance
+								
+								unitPrice += quoteItemInstance.unitPrice
+								tax +=  quoteItemInstance.tax
+								discount +=  quoteItemInstance.discount
+								lineTotalAmount +=  quoteItemInstance.lineTotalAmount
+								
+								quoteItemInstance.save(flush:true)
+								lineNo++;
+							}
+						
+							BigDecimal totalDiscount = new BigDecimal("0.0")
+							BigDecimal grandTotal = new BigDecimal("0.0")
+						
+							quoteInstance.totalAmount = unitPrice
+							quoteInstance.totalTax = tax
+							quoteInstance.totalDiscount = discount
+							quoteInstance.grandTotal = lineTotalAmount
+										
+							//Initialize the Quoted and the Negotiated Total to the Grand Total.
+							quoteInstance.quotedGrandTotal = lineTotalAmount
+							quoteInstance.negotiatedGrandTotal = 0
+							quoteInstance.save(flush:true)
+					}
 				}
 
 				flash.message = message(code: 'default.created.message', args: [
@@ -114,13 +166,11 @@ class QuoteController {
 	def markAsAccepted = {
 		switch (request.method) {
 			case 'GET':
- 				def quoteInstance = Quote.get(params.'quote.id')
-//				if(!quoteInstance.type == 'CONTRACT') {
-//					quoteInstance.status = 'ACCEPT'
-//					quoteInstance.save(flush:true)
-//					redirect action: 'show', id: quoteInstance.id
-//				}
-				[quoteInstance : quoteInstance]
+ 				def quoteInstance = Quote.get(params.id)
+				quoteInstance.status = 'ACCEPT'
+				quoteInstance.save(flush:true)
+				flash.message = 'Marked as Accepted'
+				redirect action: 'show', id: quoteInstance.id
 				break
 			case 'POST' :
 				def quoteInstance = Quote.get(params.id)
@@ -346,6 +396,55 @@ class QuoteController {
 				flash.message = "Added New Line Item : " + Product.findByProductNumber(quoteItemInstance.productNumber)?.productName;
 				redirect action: 'show', id: quoteItemInstance.quote.id
 				break
+		}
+	}
+	
+	def deleteQuoteItem() {
+		def quoteItemInstance = QuoteItem.get(params.id)
+		if (!quoteItemInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'quoteItem.label', default: 'QuoteItem'), params.id])
+			redirect action: 'list'
+			return
+		}
+
+		try {
+			quoteItemInstance.delete(flush: true)
+			
+			def quote = quoteItemInstance.quote
+			def quoteItems = quote.quoteItems
+			
+			def unitPrice = new BigDecimal("0.0")
+			def tax = new BigDecimal("0.0")
+			def discount = new BigDecimal("0.0")
+			def lineTotalAmount = new BigDecimal("0.0")
+			
+			quoteItems?.each { it ->
+				unitPrice += it.unitPrice
+				tax +=  it.tax
+				discount +=  it.discount
+				lineTotalAmount +=  it.lineTotalAmount
+			}
+			
+			BigDecimal totalDiscount = new BigDecimal("0.0")
+			BigDecimal grandTotal = new BigDecimal("0.0")
+			
+			quote.totalAmount = unitPrice
+			quote.totalTax = tax
+			quote.totalDiscount = discount
+			quote.grandTotal = lineTotalAmount
+			
+			if(quote.status == "PENDING" && quote.sent) {
+				quote.quotedGrandTotal = quote.grandTotal 
+			}
+			
+			quote.save(flush:true)
+			
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'quoteItem.label', default: 'QuoteItem'), params.id])
+			redirect controller:'quote' , action: 'show', params:[id:quote.id]
+		}
+		catch (DataIntegrityViolationException e) {
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'quoteItem.label', default: 'QuoteItem'), params.id])
+			redirect controller:'quote' , action: 'show', params:[id:quote.id]
 		}
 	}
 }

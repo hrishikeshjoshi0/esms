@@ -132,4 +132,25 @@ class EmployeeController {
             redirect action: 'show', id: params.id
         }
     }
+	
+	def markAsTerminated() {
+		switch (request.method) {
+		case 'GET':
+	        def employeeInstance = Employee.get(params.id)
+	        [employeeInstance: employeeInstance]
+			break
+		case 'POST':
+	        def employeeInstance = Employee.get(params.id)
+	        employeeInstance.employmentEndDate = params.employmentEndDate
+
+	        if (!employeeInstance.save(flush: true)) {
+	            render view: 'markAsTerminated', model: [employeeInstance: employeeInstance]
+	            return
+	        }
+
+			flash.message = message(code: 'default.updated.message', args: [message(code: 'employee.label', default: 'Employee'), employeeInstance.id])
+	        redirect action: 'show', id: employeeInstance.id
+			break
+		}
+    }
 }

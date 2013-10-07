@@ -31,7 +31,8 @@
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
 					</g:if>
-					--%><button class="btn btn-danger" type="submit" name="_action_delete">
+					--%>
+					<button class="btn btn-danger" type="submit" name="_action_delete">
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
@@ -44,22 +45,18 @@
 						</a>	
 					</g:if>
 					
+					<!-- State:Pending -->
 					<g:if test="${quoteInstance?.status == 'PENDING' && quoteInstance?.quoteItems?.size() != 0}">
-						<%--
-						<g:if test="${quoteInstance?.type == 'CONTRACT'}">
-						--%><a data-toggle="modal" href="#" data-target="#markAsAccepted" role="button"
-								class="btn">
+						<g:if test="${quoteInstance?.type == 'CONTRACT' && quoteInstance?.quoteItems?.size() != 0}">
+							<a data-toggle="modal" href="#" data-target="#markAsAccepted" role="button" class="btn">
 								Mark as Accepted
-							</a>
-						<%--</g:if>
-						--%>
-						<%--<g:else>
-							<g:link class="btn" action="markAsAccepted" id="${quoteInstance?.id}">
-								<i class="icon-envelope"></i>
+							</a>	
+						</g:if>
+						<g:elseif test="${quoteInstance?.quoteItems?.size() != 0}">
+							<g:link action="markAsAccepted" controller="quote" id="${quoteInstance?.id}" class="btn">
 								Mark as Accepted
 							</g:link>
-						</g:else>
-						--%>
+						</g:elseif>
 						<a data-toggle="modal" href="#" data-target="#markAsRevised" role="button"
 							class="btn"> 
 							<i class="icon-pencil"></i>
@@ -72,18 +69,14 @@
 						</a>
 					</g:if>
 					<g:elseif test="${quoteInstance?.status == 'ACCEPT' 
-						&& (quoteInstance.type == 'CONTRACT' || quoteInstance.type == 'MODERNIZATION' || quoteInstance.type == 'INSTALLATION' quoteInstance.type == 'REPAIR') 
+						&& (quoteInstance.type == 'CONTRACT' || quoteInstance.type == 'MODERNIZATION' || quoteInstance.type == 'INSTALLATION' || quoteInstance.type == 'REPAIR') 
 						&& quoteInstance?.quoteItems?.size() != 0}">
+						<!-- State:Accept -->
 						<a data-toggle="modal" href="#" data-target="#confirmSaleModal" role="button"
 							class="btn"> 
 							<i class="icon-wrench"></i>
 							Confirm Sale
 						</a>
-						<%--<g:link class="btn" controller="order" action="convertQuoteToOrder" params="[orderId:quoteInstance.id]">
-							<i class="icon-share-alt"></i>
-							Confirm Sale
-						</g:link>
-						--%>
 					</g:elseif>
 					<g:elseif test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'REPAIR' && quoteInstance?.quoteItems?.size() != 0}">
 						<a data-toggle="modal" href="#" data-target="#confirmSaleModal" role="button"
@@ -91,18 +84,13 @@
 							<i class="icon-wrench"></i>
 							Confirm Sale
 						</a>
-						<%--<g:link class="btn" controller="order" action="convertQuoteToOrder" params="[orderId:quoteInstance.id]">
-							<i class="icon-wrench"></i>
-							Confirm Sale
-						</g:link>
-					--%>
 					</g:elseif>
 				</div>
 			</g:form>
 			
 			<g:if test="${quoteInstance?.id && quoteInstance?.quoteItems?.size() != 0}">
 			<div class="form-actions">
-				<g:jasperReport jasper="ContractQuotePrint" format="PDF"
+				<g:jasperReport jasper="QuotationLetter" format="PDF"
 							name="Print Quotation" delimiterAfter=" " delimiterBefore=" "
 								heightAttr="15px">
 					<input type="hidden" name="quote" value="${quoteInstance.id}" />

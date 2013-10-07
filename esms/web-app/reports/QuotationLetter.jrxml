@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QuotationLetter" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="54c91ff7-60ef-45dc-b968-ea43492b5735">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="791"/>
+	<parameter name="quote" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from quote where id = $P{quote}]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="version" class="java.lang.Long"/>
+	<field name="assigned_to" class="java.lang.String"/>
+	<field name="contact_name" class="java.lang.String"/>
+	<field name="contract_from_date" class="java.sql.Timestamp"/>
+	<field name="contract_to_date" class="java.sql.Timestamp"/>
+	<field name="declined_reason" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="grand_total" class="java.math.BigDecimal"/>
+	<field name="handed_overy_by" class="java.lang.String"/>
+	<field name="invoicing_is_expenses" class="java.lang.Boolean"/>
+	<field name="invoicing_is_fixed_price" class="java.lang.Boolean"/>
+	<field name="invoicing_is_timesheets" class="java.lang.Boolean"/>
+	<field name="negotiated_grand_total" class="java.math.BigDecimal"/>
+	<field name="notes" class="java.lang.String"/>
+	<field name="organization_id" class="java.lang.Long"/>
+	<field name="quote_name" class="java.lang.String"/>
+	<field name="quote_number" class="java.lang.String"/>
+	<field name="quoted_grand_total" class="java.math.BigDecimal"/>
+	<field name="received_date_time" class="java.sql.Timestamp"/>
+	<field name="recepient_contact_name" class="java.lang.String"/>
+	<field name="recepient_contact_number" class="java.lang.String"/>
+	<field name="related_to" class="java.lang.String"/>
+	<field name="related_to_value" class="java.lang.String"/>
+	<field name="revised_reason" class="java.lang.String"/>
+	<field name="sales_channel" class="java.lang.String"/>
+	<field name="sent" class="java.lang.Boolean"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="terms_and_conditions" class="java.lang.String"/>
+	<field name="total_amount" class="java.math.BigDecimal"/>
+	<field name="total_discount" class="java.math.BigDecimal"/>
+	<field name="total_tax" class="java.math.BigDecimal"/>
+	<field name="type" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="15" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="84" splitType="Stretch">
+			<image>
+				<reportElement uuid="e9b75ef7-c668-4d91-815c-e8f4ad7a7392" x="13" y="0" width="518" height="84"/>
+				<imageExpression><![CDATA["quotation_header.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="13" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ebded408-d2a0-4a9a-a38b-b21d3ecf7d17" x="13" y="0" width="90" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quotation No.:- ]]></text>
+			</staticText>
+			<textField pattern="dd.MM.yyyy" isBlankWhenNull="true">
+				<reportElement uuid="a503da83-3dd3-43aa-be61-da42ca91ecd3" x="103" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quote_number}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ff3abf79-ca76-44b4-be7a-017065fa377e" x="341" y="0" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date :-]]></text>
+			</staticText>
+			<textField pattern="dd.MM.yyyy" isBlankWhenNull="true">
+				<reportElement uuid="6bd1dd49-9ee0-44b1-8192-40b75b295821" x="431" y="0" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="e5302f70-5419-4c4b-bead-37fb84102e57" x="13" y="0" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[To,]]></text>
+			</staticText>
+		</band>
+		<band height="60">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="cec37933-6861-4d4e-a4fa-242c56960411" x="13" y="0" width="190" height="60"/>
+				<textElement/>
+			</textField>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement uuid="18f1044b-a885-4204-bb39-a0ce7927527b" x="13" y="0" width="48" height="20"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subject:-]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="b1a0c7bb-9383-48a9-9b5e-91b7fb9d5846" x="61" y="0" width="470" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="90">
+			<staticText>
+				<reportElement uuid="48c54807-d607-4930-97e0-b484d72d22e8" x="13" y="0" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Dear Sir,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="94131a1b-d453-428a-8c04-7c1e50345819" x="13" y="20" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[This is with reference to our discussion and subsequent inspection of the condition of one no. elevator in your]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="77f1ca60-2f78-4637-a953-43bf52bda430" x="13" y="40" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[premises. The equipment scan was conducted and we are pleased to quote the following contracts for Annual ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="744ec461-4c20-4211-9be8-c26a2e8caffc" x="13" y="60" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Maintenance of your elevator.]]></text>
+			</staticText>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement uuid="da14d041-014d-48ae-8d80-8601ad58fcc2" x="13" y="0" width="518" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[GOLD CONTRACT]]></text>
+			</staticText>
+		</band>
+		<band height="120">
+			<staticText>
+				<reportElement uuid="60ee49d8-baa0-4180-b2e2-a8b14b475c9f" x="13" y="0" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Covers complete inspection and adjustments of all major and minor parts viz Ropes, Motor, Locks, Sheave,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="134873a5-9c31-4aec-b270-b64f070aa076" x="13" y="20" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Brake Liners, Condenser, Transformers, Overload Relays, Logic Board, All PCB’s, Drive Encoders, Indicators,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bbc76d36-8626-4373-871b-eebe58c68723" x="13" y="40" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Switches, Tension Pulley, Liners, Door Operators, Door Sensors, Car gate switch, SOS switch, Governor switch,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34b2141f-5f64-43f2-bcd0-da2afde78caa" x="13" y="60" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Reed switch, Hooter, Emergency Light unit, Air chords, Pulleys, Deflectors, Door Shoes, Bumpers, Shaft, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dbbd850d-fbdb-48bf-a978-bf18220bcef1" x="13" y="80" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Traveling cables, Connection Blocks, Inspection Unit, Overload System, Thimble rods, Bearings, Brake stand]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="212b0ec9-960e-4249-bde7-9ba8bd64d51b" x="13" y="100" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Lock Out, Pit switches, Guard for car, Governor, Machine, Retiring Cam.]]></text>
+			</staticText>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement uuid="60cc37b1-c702-4b5a-8004-d29aa5c46227" x="148" y="0" width="283" height="20"/>
+				<textElement/>
+				<text><![CDATA[The Value per annum per elevator, payable in advance Rs. _______________]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="dcbf6486-d544-46c8-bf62-d38d40416d7a" x="431" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement uuid="08f364e5-30f7-484b-9e7a-f88886adc33c" x="13" y="0" width="518" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[CLASSIC CONTRACT]]></text>
+			</staticText>
+		</band>
+		<band height="100">
+			<staticText>
+				<reportElement uuid="38b20b9e-b093-4ebd-8174-3ac63579a952" x="13" y="0" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Covers inspection and adjustments of the complete unit required for smooth and safer operation of Lock, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="79805eb2-19fc-427a-aa5a-dd1305add554" x="13" y="20" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Controller, Machine Ropes, Safety and Brake Mechanism and will cover spare viz, Relay contacts, Brake Liners,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2320531-b044-4d63-9adf-dabe41eb8c5d" x="13" y="40" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Liners, Condensers, Resistors, Indicator Bulbs, Limit Contacts, Bush, Oil Seals, Gaskets, Copper Contacts, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bf78d884-f3eb-437c-89d4-19a40023362c" x="14" y="60" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Copper leads, Relay base, Relay armature, Fork arm for door closures, Limit contacts, SOS contacts, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="73506449-7ddb-430d-91ab-7400e1e5fb7a" x="14" y="80" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[contact base, air cords, Pulley, connecting blocks, Car buttons and Hall buttons contacts, Car and Cwt liners.]]></text>
+			</staticText>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement uuid="a192d38e-113d-4a68-b77f-c9ae26f09f77" x="148" y="0" width="283" height="20"/>
+				<textElement/>
+				<text><![CDATA[The Value per annum per elevator, payable in advance Rs. _______________]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="340c9324-9c3a-41a0-bf85-e11e9a3fcdfb" x="431" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement uuid="97628ef2-fb41-49c9-a63e-54f40eac9fe8" x="14" y="0" width="518" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[NORMAL CONTRACT]]></text>
+			</staticText>
+		</band>
+		<band height="70">
+			<staticText>
+				<reportElement uuid="14bbb0fe-0a70-497c-a9bf-624a78613a35" x="14" y="0" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Our Normal contract includes preventive maintenance service availability to the elevator during the regular ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f4d0a693-3919-44ed-bc2a-2190da3f9a75" x="14" y="20" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[working hours and regular working days and replacement of certain components of the elevator like Push]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b9922ae3-6ab6-40bc-8796-003212c9b265" x="14" y="40" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Buttons, Relays, Carbon contacts, springs etc., whenever needed.  ]]></text>
+			</staticText>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement uuid="e238be97-33c9-4e97-99d8-0577c22d4b11" x="148" y="0" width="283" height="20"/>
+				<textElement/>
+				<text><![CDATA[The Value per annum per elevator, payable in advance Rs. _______________]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="cccdba75-45dc-4926-b788-27f84d9dac29" x="431" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="90">
+			<staticText>
+				<reportElement uuid="2ba38953-f989-4efd-b2e8-f97861754a8a" x="14" y="0" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[The quoted rates are valid till 30 days from receipt of this letter. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5e00b17c-046d-44bf-ab90-972ed93ab8cf" x="13" y="20" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[On confirmation, we will submit our contract documents for approval and payment.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6df8df54-0952-4955-97a9-6255fa958a5d" x="14" y="40" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[We look forward to a long lasting relationship with you in the future.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ecac6183-b6b2-4944-b6f1-d6b848123a97" x="14" y="60" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Thanking you and assuring you of our best services at all times, we remain.]]></text>
+			</staticText>
+		</band>
+		<band height="110">
+			<staticText>
+				<reportElement uuid="082fc2f4-56c3-4749-87df-d697d7efe194" x="14" y="0" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[Your's Truly,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="55486b7e-b909-466c-ae98-dc80e6f2a990" x="14" y="20" width="518" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[For Silverline Elevators Pvt. Ltd.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="32d2029c-50de-42e7-bf47-21944e11aacf" x="13" y="40" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8a7dee11-b830-4ced-b3a6-f8da82397c31" x="13" y="60" width="518" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1e8d0548-94e0-4f74-9b04-f7e576cba43a" x="14" y="80" width="518" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[(Director)]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="60" splitType="Stretch">
+			<image>
+				<reportElement uuid="0602a972-b8c7-4d72-8c76-860579cd6833" x="1" y="33" width="554" height="27"/>
+				<imageExpression><![CDATA["quotation_footer.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="4748cb14-f670-4297-9c0c-62856c713766" x="14" y="0" width="518" height="33" forecolor="#FF3333"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOLL FREE  HELPLINE  NO.:- 1800-3000-7001]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="27" splitType="Stretch"/>
+	</summary>
+</jasperReport>

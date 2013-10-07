@@ -87,8 +87,38 @@
 				<dd>
 					<g:fieldValue bean="${paymentInstance}" field="branch" />
 				</dd>
-
-
+				
+				<!-- Cheque Issue Date -->
+				<g:if test="${paymentInstance.clearanceDate}">
+					<dt>
+						<g:message code="payment.clearanceDate.label"
+							default="Clearance Date" />
+					</dt>
+	
+					<dd>
+						<g:fieldValue bean="${paymentInstance}" field="clearanceDate" />
+					</dd>
+				</g:if>
+				<g:else>
+					<dt>
+						<g:message code="payment.clearanceDate.label"
+							default="Clearance Date" />
+					</dt>
+	
+					<dd>
+						Not Cleared
+					</dd>
+				</g:else>
+				
+				<dt>
+					<g:message code="payment.chequeIssueDate.label"
+						default="Cheque Issue Date" />
+				</dt>
+	
+				<dd>
+					<g:fieldValue bean="${paymentInstance}" field="chequeIssueDate" />
+				</dd>
+					
 				<dt>
 					<g:message code="payment.description.label" default="Description" />
 				</dt>
