@@ -34,6 +34,7 @@
 				title="${message(code: 'quoteItem.lineTotalAmount.label', default: 'Line Total Amount')}" />
 
 			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -68,6 +69,12 @@
 					${fieldValue(bean: quoteItemInstance, field: "lineTotalAmount")}
 				</td>
 
+				<td class="link">
+					<g:link action="deleteQuoteItem" id="${quoteItemInstance?.id}">
+						<i class="icon-trash"></i>
+					</g:link>
+				</td>
+				
 				<td class="link"><g:link action="show" controller="quoteItem"
 						id="${quoteItemInstance.id}" class="btn btn-small">Show &raquo;</g:link>
 				</td>

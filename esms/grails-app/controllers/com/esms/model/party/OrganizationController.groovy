@@ -139,8 +139,20 @@ class OrganizationController {
             redirect action: 'list'
             return
         }
+		
+		def invoicedTotal = 0.0
+		def receviedGrandTotal = 0.0
+		organizationInstance?.orders?.each { it ->
+			if(it.status == 'INVOICED') {
+				invoicedTotal += it.grandTotal
+				receviedGrandTotal += it.receviedGrandTotal
+			}
+		}
+		
+		params.totalInvoicedAmount = invoicedTotal
+		params.totalReceivedAmount = receviedGrandTotal
 
-        [organizationInstance: organizationInstance]
+        [organizationInstance: organizationInstance,params:params]
     }
 
     def edit() {

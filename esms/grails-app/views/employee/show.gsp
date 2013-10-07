@@ -14,22 +14,27 @@
 		<div class="span12">
 			<div class="page-header">
 				<h1>
-					<g:message code="default.show.label" args="[entityName]" />
+					Employee # ${employeeInstance?.externalId} | ${employeeInstance?.lastName}, ${employeeInstance?.firstName} 
 				</h1>
 			</div>
 
 			<g:form>
 				<g:hiddenField name="id" value="${employeeInstance?.id}" />
 				<div class="form-actions">
-					<%--<g:link class="btn" action="edit" id="${employeeInstance?.id}">
+					<g:link class="btn" action="edit" id="${employeeInstance?.id}">
 						<i class="icon-pencil"></i>
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					--%>
+					
 					<button class="btn btn-danger" type="submit" name="_action_delete">
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
+					
+					<g:link class="btn" action="markAsTerminated" id="${employeeInstance?.id}">
+						<i class="icon-pencil"></i>
+						<g:message code="default.button.markAsTerminated.label" default="Mark as Terminated" />
+					</g:link>
 				</div>
 			</g:form>
 

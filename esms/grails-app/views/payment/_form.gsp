@@ -86,7 +86,7 @@
 	</div>
 </div>
 
-<div
+<%--<div
 	class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'clearanceDate', 'error')} ">
 	<label for="branch" class="control-label"><g:message
 			code="payment.clearanceDate.label" default="Clearance Date" /></label>
@@ -97,6 +97,7 @@
 		</span>
 	</div>
 </div>
+--%>
 
 <div
 	class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'chequeIssueDate', 'error')} ">

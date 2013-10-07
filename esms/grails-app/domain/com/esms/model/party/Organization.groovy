@@ -9,6 +9,8 @@ import com.esms.model.sales.Contract
 
 class Organization extends Party {
 
+	static searchable = true
+	
 	String name
 	String salesStatus
 	String assignedTo = 'SYSTEM'

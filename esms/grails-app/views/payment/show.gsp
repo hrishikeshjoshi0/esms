@@ -14,7 +14,7 @@
 		<div class="span12">
 			<div class="page-header">
 				<h1>
-					Quote :
+					Payment# :
 					${paymentInstance?.paymentNumber}
 					|
 					<g:link controller="organization" action="show"
@@ -27,11 +27,14 @@
 			<g:form>
 				<g:hiddenField name="id" value="${paymentInstance?.id}" />
 				<div class="form-actions">
-					<%--<g:link class="btn" action="edit" id="${paymentInstance?.id}">
+					<g:link class="btn" action="edit" id="${paymentInstance?.id}">
 						<i class="icon-pencil"></i>
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					--%>
+					<g:link class="btn" action="updateClearanceDate" id="${paymentInstance?.id}">
+						<i class="icon-pencil"></i>
+						<g:message code="default.button.updateClearanceDate.label" default="Update Clearance Date" />
+					</g:link>
 					<button class="btn btn-danger" type="submit" name="_action_delete">
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
@@ -87,8 +90,38 @@
 				<dd>
 					<g:fieldValue bean="${paymentInstance}" field="branch" />
 				</dd>
-
-
+				
+				<!-- Cheque Issue Date -->
+				<g:if test="${paymentInstance.clearanceDate}">
+					<dt>
+						<g:message code="payment.clearanceDate.label"
+							default="Clearance Date" />
+					</dt>
+	
+					<dd>
+						<g:fieldValue bean="${paymentInstance}" field="clearanceDate" />
+					</dd>
+				</g:if>
+				<g:else>
+					<dt>
+						<g:message code="payment.clearanceDate.label"
+							default="Clearance Date" />
+					</dt>
+	
+					<dd>
+						Not Cleared
+					</dd>
+				</g:else>
+				
+				<dt>
+					<g:message code="payment.chequeIssueDate.label"
+						default="Cheque Issue Date" />
+				</dt>
+	
+				<dd>
+					<g:fieldValue bean="${paymentInstance}" field="chequeIssueDate" />
+				</dd>
+					
 				<dt>
 					<g:message code="payment.description.label" default="Description" />
 				</dt>

@@ -69,5 +69,7 @@ grails.project.dependency.resolution = {
 		compile ":file-uploader:1.2.1"
 		
 		compile ":audit-logging:0.5.4"
+		
+		compile ":searchable:0.6.4"
     }
 }

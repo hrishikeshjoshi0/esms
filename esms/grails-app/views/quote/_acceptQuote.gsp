@@ -1,5 +1,5 @@
 <div id="markAsAccepted" class="modal hide fade" tabindex="-1" role="dialog"
-	data-remote="<g:createLink controller="quote" action="markAsAccepted" params="['quote.id':quoteInstance?.id]"/>"
+	data-remote="<g:createLink controller="quote" action="markAsAccepted" params="[id:quoteInstance?.id]"/>"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"

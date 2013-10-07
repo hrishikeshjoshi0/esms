@@ -369,5 +369,10 @@ class OrderController {
 	def registerPayment() {
 
 	}
+	
+	def ordersPendingPayment() {
+		def openOrders = Order.findAllByStatus('INVOICED',params)
+		[ordersPendingPayments:openOrders]
+	}
 }
 

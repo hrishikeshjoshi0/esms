@@ -13,14 +13,14 @@ class Employee extends Party {
 	Date employmentEndDate
 	
 	static constraints = {
-		firstName blank:false,null:false
-		lastName blank:true,null:true
-		middleName blank:true,null:true
-		previousExperience blank:true,null:true
-		salary blank:true,null:true
-		benefits maxSize: 1000,blank : true,null:true
+		firstName blank:false,nullable:false
+		lastName blank:true,nullable:true
+		middleName blank:true,nullable:true
+		previousExperience blank:true,nullable:true
+		salary blank:true,nullable:true
+		benefits maxSize: 1000,blank : true,nullable:true
 		skillLevel InList: ["EXPERT","SEMI SKILLED","UNSKILLED"]
-		employmentStartDate blank:false,null:false
-		employmentEndDate blank:true,null:true
+		employmentStartDate blank:false,nullable:false
+		employmentEndDate blank:true,nullable:true
     }
 }

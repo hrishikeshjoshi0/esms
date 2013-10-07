@@ -1,34 +1,36 @@
 <%@ page import="com.esms.model.payment.Payment" %>
 
-<div class="heading clearfix">
-	<h3 class="pull-left">Recent Payments</h3>
-	<span class="pull-right label label-important"> ${recentPayments?.size()}
-		Payments
-	</span>
+<div class="page-header">
+	<h1>Recent Payments</h1>
 </div>
 
 <table class="table table-striped table-bordered mediaTable">
 	<thead>
 		<tr>
-			<g:sortableColumn property="paymentNumber"
-				title="${message(code: 'payment.paymentNumber.label', default: 'Payment Number')}" />
+			<th>
+				${message(code: 'payment.paymentNumber.label', default: 'Payment Number')}
+			</th>	
 
-			<g:sortableColumn property="lineNumber"
-				title="${message(code: 'paymentItem.lineNumber.label', default: 'Line Number')}" />
+			<th>
+				${message(code: 'paymentItem.orderNumber.label', default: 'Order Number')}
+			</th>	
 
-			<g:sortableColumn property="orderNumber"
-				title="${message(code: 'paymentItem.orderNumber.label', default: 'Order Number')}" />
+			<th>
+				Customer
+			</th>
 
-			<g:sortableColumn property="organization.name" title="Customer" />
+			<th>
+				${message(code: 'paymentItem.amount.label', default: 'Amount')}" 
+			</th>	
 
-			<g:sortableColumn property="amount"
-				title="${message(code: 'paymentItem.amount.label', default: 'Amount')}" />
+			<th>
+				${message(code: 'payment.paymentMethod.label', default: 'Payment Type')}
+			</th>	
 
-			<g:sortableColumn property="paymentMethod"
-				title="${message(code: 'payment.paymentMethod.label', default: 'Payment Type')}" />
-
-			<g:sortableColumn property="chequeNumber"
-				title="${message(code: 'payment.chequeNumber.label', default: 'Cheque Number')}" />
+			<th>
+				${message(code: 'payment.chequeNumber.label', default: 'Cheque Number')}
+			</th>
+				
 			<th></th>
 		</tr>
 	</thead>
@@ -39,10 +41,6 @@
 				<tr>
 					<td>
 						${fieldValue(bean: paymentInstance, field: "paymentNumber")}
-					</td>
-
-					<td>
-						${fieldValue(bean: paymentItemInstance, field: "lineNumber")}
 					</td>
 
 					<td>
@@ -72,4 +70,11 @@
 			</g:each>
 		</g:each>
 	</tbody>
+	<tfoot>
+		<tr>
+			<th colspan="7" class="link">
+				<g:link controller="payment" action="list">Show All &raquo;</g:link>
+			</th>				
+		</tr>
+	</tfoot>
 </table>

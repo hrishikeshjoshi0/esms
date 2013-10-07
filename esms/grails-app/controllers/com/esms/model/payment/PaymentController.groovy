@@ -175,4 +175,54 @@ class PaymentController {
             redirect action: 'show', id: params.id
         }
     }
+	
+	def openPayments() { 
+		def openPayments = Payment.findAllByPaymentMethodAndClearanceDateIsNull("CHEQUE",params)
+		[openPayments:openPayments]
+	}
+	
+	def updateClearanceDate() {
+		switch (request.method) {
+		case 'GET':
+			def paymentInstance = Payment.get(params.id)
+			if (!paymentInstance) {
+				flash.message = message(code: 'default.not.found.message', args: [message(code: 'payment.label', default: 'Payment'), params.id])
+				redirect action: 'list'
+				return
+			}
+
+			[paymentInstance: paymentInstance]
+			break
+		case 'POST':
+			def paymentInstance = Payment.get(params.id)
+			if (!paymentInstance) {
+				flash.message = message(code: 'default.not.found.message', args: [message(code: 'payment.label', default: 'Payment'), params.id])
+				redirect action: 'list'
+				return
+			}
+
+			if (params.version) {
+				def version = params.version.toLong()
+				if (paymentInstance.version > version) {
+					paymentInstance.errors.rejectValue('version', 'default.optimistic.locking.failure',
+							  [message(code: 'payment.label', default: 'Payment')] as Object[],
+							  "Another user has updated this Payment while you were editing")
+					render view: 'edit', model: [paymentInstance: paymentInstance]
+					return
+				}
+			}
+
+			paymentInstance.properties = params
+
+			if (!paymentInstance.save(flush: true)) {
+				render view: 'edit', model: [paymentInstance: paymentInstance]
+				return
+			}
+
+			flash.message = "Clearance Date Added."
+			redirect action: 'show', id: paymentInstance.id
+			break
+		}
+	}
 }
+

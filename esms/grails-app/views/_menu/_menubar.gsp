@@ -24,9 +24,8 @@
 </g:else>
 
 <div class="sidebar">
-	<br /> <br />
 	<div class="antiScroll" style="overflow: hidden;">
-		<div class="antiscroll-inner" style="overflow: auto;">
+		<div class="antiscroll-inner" style="overflow: hidden;">
 			<div class="antiscroll-content">
 				<div class="sidebar_inner">
 					<g:if
@@ -35,7 +34,7 @@
 							&&	params.controller != 'home'
 							&&	params.controller != 'dashboard'
 					}">
-						<ul class="nav nav-list">
+						<ul class="nav nav-list" style="margin-top: 65px;">
 							<g:set var="entityName"
 								value="${message(code: params.controller+'.label', default: params.controller.substring(0,1).toUpperCase() + params.controller.substring(1).toLowerCase())}" />
 							<li class="nav-header">

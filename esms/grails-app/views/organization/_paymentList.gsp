@@ -16,6 +16,9 @@
 				
 			<g:sortableColumn property="amount"
 				title="${message(code: 'paymentItem.amount.label', default: 'Amount')}" />
+				
+			<th>
+			</th>	
 		</tr>
 	</thead>
 	<tbody>
@@ -53,6 +56,10 @@
 				<td>
 					${fieldValue(bean: paymentInstance, field: "totalAmount")}
 				</td>
+				
+				<td class="link"><g:link controller="payment" action="show" 
+								id="${paymentInstance.id}" class="">Show &raquo;</g:link>
+						</td>
 			</tr>
 		</g:each>
 	</tbody>

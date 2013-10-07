@@ -80,6 +80,7 @@
 									</bootstrap:alert>
 								</div>
 							</g:if>
+							
 							<div id="body_content">
 								<br/>
 								<g:layoutBody />

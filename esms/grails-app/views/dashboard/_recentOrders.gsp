@@ -1,30 +1,31 @@
 <%@ page import="com.esms.model.order.*"%>
 
-<div class="heading clearfix">
-	<h3 class="pull-left">Recent Orders</h3>
-	<span class="pull-right label label-important"> ${recentOrders?.size()}
-		Orders
-	</span>
+<div class="page-header">
+	<h1>Recent Orders</h1>
 </div>
 
 <table class="table table-striped table-bordered mediaTable">
 	<thead>
 		<tr>
-			<g:sortableColumn property="orderNumber"
-				title="${message(code: 'order.orderNumber.label', default: 'Order Number')}" />
+			<th>
+				${message(code: 'order.orderNumber.label', default: 'Order Number')}
+			</th>	
 
-			<g:sortableColumn property="organization.name"
-				title="${message(code: 'quote.organization.name.label', default: 'Organization')}" />
+			<th>
+				${message(code: 'quote.organization.name.label', default: 'Organization')}
+			</th>	
 
-			<g:sortableColumn property="status"
-				title="${message(code: 'order.status.label', default: 'Status')}" />
+			<th>
+				${message(code: 'order.status.label', default: 'Status')}
+			</th>	
 				
-			<g:sortableColumn property="grandTotal"
-				title="${message(code: 'order.grandTotal.label', default: 'Grand Total')}" />	
+			<th>
+				${message(code: 'order.grandTotal.label', default: 'Grand Total')}
+			</th>
 
-			<g:sortableColumn property="type"
-				title="${message(code: 'order.type.label', default: 'Order Type')}" />
-
+			<th>
+				${message(code: 'order.type.label', default: 'Order Type')}
+			</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -52,4 +53,11 @@
 			</tr>
 		</g:each>
 	</tbody>
+	<tfoot>
+		<tr>
+			<th colspan="6" class="link">
+				<g:link controller="order" action="list">Show All &raquo;</g:link>
+			</th>				
+		</tr>
+	</tfoot>
 </table>

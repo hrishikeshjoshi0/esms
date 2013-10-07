@@ -1,23 +1,25 @@
 <%@ page import="com.esms.model.party.*"%>
 
-<div class="heading clearfix">
-	<h3 class="pull-left">Recent Leads</h3>
-	<span class="pull-right label label-important"> ${recentLeads?.size}
-		Leads
-	</span>
+<div class="page-header">
+	<h1>Recent Leads</h1>
 </div>
+
 
 <table class="table table-striped table-bordered mediaTable">
 	<thead>
 		<tr>
-			<g:sortableColumn property="externalId"
-				title="${message(code: 'organization.externalId.label', default: 'External Id')}" />
-			<g:sortableColumn property="name"
-				title="${message(code: 'organization.name.label', default: 'Name')}" />
-			<g:sortableColumn property="assignedTo"
-				title="${message(code: 'organization.assignedTo.label', default: 'Assigned To')}" />
-			<g:sortableColumn property="addresses.buildingName"
-				title="${message(code: 'address.buildingName.label', default: 'Building Name')}" />
+			<th>
+				${message(code: 'organization.externalId.label', default: 'External Id')}
+			</th>	
+			<th>
+				${message(code: 'organization.name.label', default: 'Name')}
+			</th>	
+			<th>
+				${message(code: 'organization.assignedTo.label', default: 'Assigned To')}
+			</th>	
+			<th>
+				${message(code: 'address.buildingName.label', default: 'Building Name')}
+			</th>	
 			<th></th>
 		</tr>
 	</thead>
@@ -43,4 +45,11 @@
 			</tr>
 		</g:each>
 	</tbody>
+	<tfoot>
+		<tr>
+			<th colspan="5" class="link">
+				<g:link controller="lead" action="list">Show All &raquo;</g:link>
+			</th>				
+		</tr>
+	</tfoot>
 </table>

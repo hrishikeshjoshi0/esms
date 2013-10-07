@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap" />
+<meta name="layout" content="dashboardLayout" />
 <title>Venus CRM</title>
 </head>
 <body>

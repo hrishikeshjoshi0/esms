@@ -91,6 +91,28 @@
 				<dd>
 					<g:fieldValue bean="${organizationInstance}" field="description" />
 				</dd>
+				
+				<dt>
+					<g:message code="organization.totalInvoicedAmount.label"
+						default="Total Invoiced Amount" />
+				</dt>
+
+				<dd>
+					<b>
+						${params.totalInvoicedAmount}
+					</b>
+				</dd>
+				
+				<dt>
+					<g:message code="organization.totalReceivedAmount.label"
+						default="Total Received Amount" />
+				</dt>
+
+				<dd>
+					<b>
+						${params.totalReceivedAmount}
+					</b>
+				</dd>
 
 			</dl>
 		</div>

@@ -1,10 +1,7 @@
 <%@ page import="com.esms.model.quote.*"%>
 
-<div class="heading clearfix">
-	<h3 class="pull-left">Recent Quotes</h3>
-	<span class="pull-right label label-important"> ${recentQuotes?.size()}
-		Quotes
-	</span>
+<div class="page-header">
+	<h1>Recent Quotes</h1>
 </div>
 
 <table class="table table-striped table-bordered mediaTable">
@@ -57,4 +54,11 @@
 			</tr>
 		</g:each>
 	</tbody>
+	<tfoot>
+		<tr>
+			<th colspan="6" class="link">
+				<g:link controller="quote" action="list">Show All &raquo;</g:link>
+			</th>				
+		</tr>
+	</tfoot>
 </table>

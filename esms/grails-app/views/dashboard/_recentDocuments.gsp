@@ -1,23 +1,23 @@
 <%@ page import="com.lucastex.grails.fileuploader.UFile"%>
 
-<div class="heading clearfix">
-	<h3 class="pull-left">Recent Uploaded Documents</h3>
-	<span class="pull-right label label-important"> ${recentDocuments?.size()}
-		Documents
-	</span>
+<div class="page-header">
+	<h1>Recent Uploaded Documents</h1>
 </div>
 
 <table class="table table-striped table-bordered mediaTable">
 	<thead>
 		<tr>
-			<g:sortableColumn property="name"
-				title="${message(code: 'ufile.name.label', default: 'Name')}" />
+			<th>
+				${message(code: 'ufile.name.label', default: 'Name')}
+			</th>	
 
-			<g:sortableColumn property="extension"
-				title="${message(code: 'ufile.extension.label', default: 'Extension')}" />
+			<th>
+				${message(code: 'ufile.extension.label', default: 'Extension')}
+			</th>	
 
-			<g:sortableColumn property="dateUploaded"
-				title="${message(code: 'ufile.dateUploaded.label', default: 'Date Uploaded')}" />
+			<th>
+				${message(code: 'ufile.dateUploaded.label', default: 'Date Uploaded')}
+			</th>	
 
 			<th></th>
 		</tr>
