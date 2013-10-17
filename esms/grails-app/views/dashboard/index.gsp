@@ -5,6 +5,22 @@
 		<g:set var="entityName" value="${message(code: 'organization.label', default: 'Leads')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
+	<meta name="layout" content="dashboardLayout" />
+	<title>Venus CRM</title>
+	<style>
+		.row-fluid {
+			margin: 2px;
+			padding: 2px;
+			max-height: 50px; 
+		}
+		
+		.span12 {
+			margin: 2px;
+			padding: 2px;
+			max-height: 50px;
+		}
+	</style>
+</head>
 <body>
 	<div id="contentwrapper" class="">
 		<!-- Row 1 -->
@@ -67,5 +83,4 @@
 		-->
 	</div>
 </body>
-
 </html>
