@@ -24,11 +24,10 @@
 				<g:hiddenField name="id" value="${organizationInstance?.id}" />
 				<div class="form-actions">
 					<!-- TODO : HRISHI disabled temporarily -->
-					<%--<g:link class="btn" action="edit" id="${organizationInstance?.id}">
+					<g:link class="btn" action="edit" id="${organizationInstance?.id}">
 						<i class="icon-pencil"></i>
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					--%>
 					<button class="btn btn-danger" type="submit" name="_action_delete">
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />

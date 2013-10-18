@@ -4,7 +4,6 @@
 		<g:if test="${params.upcomingRenewalDaysParam}">${params.upcomingRenewalDaysParam}</g:if>
 		<g:else>60</g:else>
 		days
-		<g:select name="" from=""/>
 	</h1>
 </div>
 

@@ -53,7 +53,7 @@ class Quote {
     static constraints = {
 		quoteNumber nullable:false,blank:false
 		quoteName nullable:false,blank:false
-		status InList:['DRAFT','PENDING','REVISE','ACCEPT','DECLINE','CONVERTED_TO_SERVICE_CONTRACT','CONVERTED_TO_REPAIR_SALES_ORDER']
+		status InList:['DRAFT','PENDING','REVISE','ACCEPT','DECLINE','CONVERTED_TO_SERVICE_CONTRACT','CONVERTED_TO_REPAIR_SALES_ORDER','LOST']
 		type InList:['CONTRACT','REPAIR','MODERNIZATION','INSTALLATION']
 		salesChannel blank:false
 		description nullable:true,blank:true

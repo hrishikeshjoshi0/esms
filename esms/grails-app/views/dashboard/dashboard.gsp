@@ -22,6 +22,22 @@
 	
 	<div class="row-fluid">
 		<div class="span6">
+			<div id="recentLeadsWidget" class="dashboard-widget">
+				<g:render template="/dashboard/recentLeads" />
+			</div>
+		</div>
+		
+		<div class="span6">
+			<div id="recentCustomers" class="dashboard-widget">
+				<g:render template="/dashboard/recentCustomers" />
+			</div>
+		</div>
+	</div>
+	
+	<hr/>
+	
+	<div class="row-fluid">
+		<div class="span6">
 			<g:render template="/dashboard/upcomingEvents" />
 		</div>
 		
@@ -39,22 +55,6 @@
 
 		<div class="span6">
 			<g:render template="/dashboard/openPayments" />
-		</div>
-	</div>
-	
-	<hr/>
-
-	<div class="row-fluid">
-		<div class="span6">
-			<div id="recentLeadsWidget" class="dashboard-widget">
-				<g:render template="/dashboard/recentLeads" />
-			</div>
-		</div>
-		
-		<div class="span6">
-			<div id="recentCustomers" class="dashboard-widget">
-				<g:render template="/dashboard/recentCustomers" />
-			</div>
 		</div>
 	</div>
 	

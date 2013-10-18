@@ -22,7 +22,7 @@ class Organization extends Party {
 	
     static constraints = {
 		name blank:true
-		salesStatus inList: ["LEAD", "CUSTOMER"]
+		salesStatus inList: ["LEAD", "CUSTOMER","DISQUALIFIED"]
 		liftInfo nullable:true
 		purchaseOrders nullable:true 
 		payments nullable:true

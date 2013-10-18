@@ -15,11 +15,18 @@ class DashboardController {
 		params.'order' = "desc"
 		
 		//def recentLeads = AuditLogEvent.findAllByClassNameAndEventName('com.esms.model.party.Organization','INSERT',[sort:"dateCreated",order:"desc"])
-		def recentLeads = Organization.findAllBySalesStatus('LEAD')
+		def c = Organization.createCriteria()
+		def recentLeads = c.list (max: 10, offset: 10) {
+			like("salesStatus", "LEAD")
+			and {
+				isEmpty("quotes")
+			}
+			order("id", "desc")
+		}
+		def recentQuotes = Quote.findAllByStatusInList(['DRAFT','PENDING','REVISE','ACCEPT'],params)
 		def upcomingEvents = Event.findAllByStartTimeGreaterThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],params)
 		def overdueEvents = Event.findAllByStartTimeLessThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],params)
 		def recentCustomers = Organization.findAllBySalesStatus('CUSTOMER',params)
-		def recentQuotes = Quote.findAllByStatusInList(['DRAFT','PENDING','REVISE','ACCEPT'],params)
 		def recentOrders = Order.findAllByTypeInList(['SALES','REPAIR','MODERNIZATION','INSTALLATION'],params)
 		def ordersPendingPayments = Order.findAllByStatus('INVOICED',params)
 		def recentDocuments = UFile.list(params)
