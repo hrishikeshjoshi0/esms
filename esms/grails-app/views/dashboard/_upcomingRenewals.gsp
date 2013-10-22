@@ -1,17 +1,27 @@
+<script>
+	function updateDiv() {
+		$('#updateDiv').html('');
+		$('#updateDiv').html('Loading...');
+	}
+</script>
 <div class="page-header">
 	<h1>
-		Upcoming Renewals in the next 
-		<g:if test="${params.upcomingRenewalDaysParam}">${params.upcomingRenewalDaysParam}</g:if>
-		<g:else>60</g:else>
-		days
+		Upcoming Renewals for 
+		<g:select name="upcomingRenewalMonthParam" from="${filteredMonthMap}" style="padding:10px;"
+				optionKey="key" optionValue="value"
+				value="${params.upcomingRenewalMonthParam}"
+				onchange="${remoteFunction(action: 'upcomingRenewals',onLoading:'updateDiv();',
+                       update: [success: 'updateDiv'],method:'GET',onFailure:'alert(\'Error\');',
+                       params: '\'upcomingRenewalMonthParam=\' + this.value + \'&upcomingRenewalYearParam=\' + document.getElementById(\'upcomingRenewalYearParam\').value')}"/>
+						
+		<g:select name="upcomingRenewalYearParam" from="${years}" style="padding:10px;"
+				value="${params.upcomingRenewalYearParam}"
+				onchange="${remoteFunction(action: 'upcomingRenewals',onLoading:'updateDiv();',
+                       update: [success: 'updateDiv'],method:'GET',onFailure:'alert(\'Error\');',
+                       params: '\'upcomingRenewalMonthParam=\' + document.getElementById(\'upcomingRenewalMonthParam\').value + \'&upcomingRenewalYearParam=\' + this.value')}"/>                       
 	</h1>
 </div>
 
-<div class="pagination">
-	<bootstrap:paginate params="${filterParams}"
-		total="${orderInstanceTotal?orderInstanceTotal:upcomingRenewals.size()}" />
-</div>
-<br />
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
@@ -24,15 +34,7 @@
 			</th>
 
 			<th>
-				${message(code: 'order.status.label', default: 'Status')}
-			</th>
-
-			<th>
 				${message(code: 'order.type.label', default: 'Type')}
-			</th>
-
-			<th>
-				${message(code: 'order.issueDate.label', default: 'Issue Date')}
 			</th>
 
 			<th>
@@ -56,9 +58,11 @@
 			</th>
 
 			<th></th>
+			
+			<th></th>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody id="updateDiv">
 		<g:each in="${upcomingRenewals}" var="orderInstance">
 			<tr>
 				<td>
@@ -71,14 +75,8 @@
 					</g:link></td>
 
 				<td>
-					${fieldValue(bean: orderInstance, field: "status")}
-				</td>
-
-				<td>
 					${fieldValue(bean: orderInstance, field: "type")}
 				</td>
-
-				<td><g:formatDate date="${orderInstance.issueDate}" /></td>
 
 				<td><g:formatDate date="${orderInstance.contractFromDate}" /></td>
 
@@ -95,6 +93,35 @@
 				<td>
 					${fieldValue(bean : orderInstance, field : "openGrandTotal") }
 				</td>
+				
+				<td>
+					<g:if test="${orderInstance?.taggedForRenewal == true}">
+						<g:if test="${orderInstance?.renewalStage == 'RENEWAL_LETTER_SENT'}">
+							<span class="badge badge-warning">
+								<i class="icon-tag icon-white"></i>
+								Renewal Letter Sent
+							</span>
+						</g:if>
+						<g:elseif test="${orderInstance?.renewalStage == 'RENEWAL_WON'}">
+							<span class="badge badge-success">
+								<i class="icon-tag icon-white"></i>
+								Renewal Won
+							</span>
+						</g:elseif>
+						<g:elseif test="${orderInstance?.renewalStage == 'RENEWAL_LOST'}">
+							<span class="badge badge-warning">
+								<i class="icon-tag icon-white"></i>
+								Renewal Lost
+							</span>
+						</g:elseif>
+						<g:else>
+							<span class="badge badge-info">
+								<i class="icon-tag icon-white"></i>
+								Tagged For Renewal
+							</span>
+						</g:else>				
+					</g:if>
+				</td>
 
 				<td class="link"><g:link action="show" id="${orderInstance.id}" controller="order"
 						class="btn btn-small">Show &raquo;</g:link></td>
@@ -103,7 +130,7 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<th class="link" colspan="5">
+			<th class="link" colspan="10">
 				<g:link controller="report" action="upcomingRenewals">Show All &raquo;</g:link>
 			</th>				
 		</tr>

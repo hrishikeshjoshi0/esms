@@ -4,6 +4,8 @@ import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
 import com.esms.model.inventory.InventoryJournal
+import com.esms.model.invoice.Invoice
+import com.esms.model.invoice.InvoiceLine
 import com.esms.model.party.Organization
 import com.esms.model.product.Product
 import com.esms.model.quote.Quote
@@ -311,7 +313,9 @@ class OrderController {
 				def tax = new BigDecimal("0.0")
 				def discount = new BigDecimal("0.0")
 				def lineTotalAmount = new BigDecimal("0.0")
-
+				def pendingInvoiceGrandTotal = new BigDecimal("0.0")
+				def invoiceGrandTotal = new BigDecimal("0.0")
+				
 				orderItems?.each { it ->
 					unitPrice += it.unitPrice
 					tax +=  it.tax
@@ -326,6 +330,8 @@ class OrderController {
 				order.totalTax = tax
 				order.totalDiscount = discount
 				order.grandTotal = lineTotalAmount
+				order.pendingInvoiceGrandTotal = grandTotal
+
 				order.save(flush:true)
 
 				flash.message = message(code: 'default.created.message', args: [message(code: 'quoteItem.label', default: 'QuoteItem'), orderItemInstance.id])
@@ -340,30 +346,63 @@ class OrderController {
 		order.openGrandTotal = order.grandTotal
 		order.receviedGrandTotal = new BigDecimal("0.0")
 		order.save(flush:true)
+		
+		//Create Invoice -- Start
+		def invoice = new Invoice()
+		def list = Invoice.list();
+		int no = (list?list.size():0) + 1;
+		String invoiceNumber = "INV" + String.format("%05d", no)
 
-		order.orderItems?.each {
-			def product = Product.findByProductName(it.productNumber)
-			if(product) {
-				def productInventory = product.inventory
-
-				if(productInventory) {
-					def entry = new InventoryJournal()
-					entry.order = order
-					entry.quantity = it.quantity
-					entry.productInventory = productInventory
-					entry.status = 'INVOICED'
-					entry.save(flush:true)
-
-					if(productInventory.quantityOnHand) {
-						productInventory.quantityOnHand = productInventory.quantityOnHand -  entry.quantity
-					}
-					productInventory.save(flush:true)
-				}
-			}
+		invoice.invoiceNumber = invoiceNumber
+		invoice.contactName = order.contactName
+		invoice.status = "CREATED"
+		
+		invoice.relatedTo = "ORDER"
+		invoice.relatedToValue = order.orderNumber
+		
+		invoice.assignedTo = order.assignedTo
+		invoice.termsAndConditions = order.termsAndConditions
+		
+		if(order.type == 'CONTRACT') {
+			invoice.type = "SERVICE"
+			invoice.contractFromDate = order.contractFromDate
+			invoice.contractToDate = order.contractToDate
+		} else {
+			invoice.type = order.type
+			invoice.relatedTo = "CONTRACT"
 		}
 
-		flash.message = "Invoiced.."
-		redirect action: 'show', id: order.id
+		invoice.totalAmount = order.totalAmount
+		invoice.totalTax = order.totalTax
+		invoice.totalDiscount = order.totalDiscount
+		invoice.grandTotal = order.grandTotal
+		invoice.referenceOrderNumber = order.orderNumber
+
+		invoice.organization = order.organization
+		int lineNumber = 1;
+
+		def invoiceLines = []
+		
+		order.orderItems?.each {
+			def invoiceLine = new InvoiceLine()			
+			invoiceLine.lineNumber = (lineNumber++)
+			invoiceLine.quantity = it.quantity
+			
+			invoiceLine.unitPrice = it.unitPrice
+			invoiceLine.tax = it.tax
+			invoiceLine.lineTotalAmount = it.lineTotalAmount
+			invoiceLine.discount = it.discount
+			invoiceLine.productNumber = it.productNumber
+			invoiceLine.relatedOrderNumber = it.relatedOrderNumber
+			
+			invoiceLines.add(invoiceLine)
+		}
+		
+		invoice?.invoiceLines = invoiceLines
+		
+		//flash.message = "Invoiced.."
+		//redirect action: 'show', id: order.id
+		chain controller:'invoice',action: 'create', model: [invoiceInstance:invoice]
 	}
 
 	def registerPayment() {
@@ -374,5 +413,134 @@ class OrderController {
 		def openOrders = Order.findAllByStatus('INVOICED',params)
 		[ordersPendingPayments:openOrders]
 	}
+
+	def tagForRenewal() {
+		def orderInstance = Order.get(params.id)
+		orderInstance.taggedForRenewal = true
+		orderInstance.renewalStage = 'TAGGED_FOR_RENEWAL'
+		orderInstance.save(flush:true)
+		redirect action: 'show', id: orderInstance.id
+	}
+	
+	def renewalLetterSent() {
+		switch (request.method) {
+			case 'GET':
+				def orderInstance = Order.get(params.id)
+				[orderInstance : orderInstance]
+				break
+			case 'POST' :
+				def orderInstance = Order.get(params.id)
+				orderInstance.renewalStage = 'RENEWAL_LETTER_SENT'
+				orderInstance.recepientContactName = params.recepientContactName
+				orderInstance.recepientContactNumber = params.recepientContactNumber
+				orderInstance.receivedDateTime = params.receivedDateTime
+				orderInstance.handedOveryBy = params.handedOveryBy
+				
+				orderInstance.save(flush:true)
+				flash.message = 'Renewal Letter Sent.'
+				redirect action: 'show', id: orderInstance.id
+				break
+		}
+	}
+	
+	def renewalWon() {
+		switch (request.method) {
+			case 'GET':
+				def orderInstance = Order.get(params.id)
+				
+				def fromCal = orderInstance?.contractToDate?.plus(1)
+				
+				def endCal = Calendar.instance
+				endCal.setTime(fromCal)
+				int d = endCal.get(Calendar.DATE)
+				int y = endCal.get(Calendar.YEAR)
+				endCal.set Calendar.DATE, d 
+				endCal.set Calendar.YEAR, (y+1)
+				
+				def newEndDate = endCal.getTime().minus(1)
+				
+				params.renewedContractFromDate = fromCal
+				params.renewedContractToDate = newEndDate
+				params.renewedGrandTotal = orderInstance?.grandTotal 
+				[orderInstance : orderInstance]
+				break
+			case 'POST' :
+				def orderInstance = Order.get(params.id)
+				orderInstance.renewalStage = 'RENEWAL_WON'
+				
+				//Copy Order
+				def list = Order.list();
+				int no = (list?list.size():0) + 1;
+				String orderNumber = "ORD" + String.format("%05d", no)
+		
+				def newOrder = new Order()
+				newOrder.orderNumber = orderNumber
+				newOrder.contactName = orderInstance.contactName
+				newOrder.status = "PENDING_INVOICE"
+				newOrder.contractFromDate = params.renewedContractFromDate
+				newOrder.contractToDate = params.renewedContractToDate
+				newOrder.type = "SERVICE"
+				newOrder.relatedTo = "ORDER"
+				newOrder.relatedToValue = orderInstance?.orderNumber
+				
+				newOrder.invoicingIsFixedPrice = orderInstance.invoicingIsFixedPrice
+				newOrder.invoicingIsTimesheets = orderInstance.invoicingIsTimesheets
+				newOrder.invoicingIsExpenses = orderInstance.invoicingIsExpenses
+				newOrder.assignedTo = orderInstance.assignedTo
+				newOrder.termsAndConditions = orderInstance.termsAndConditions
+				
+				newOrder.totalAmount = params.renewedGrandTotal?.toBigDecimal()
+				newOrder.totalTax = orderInstance.totalTax
+				newOrder.totalDiscount = 0.0
+				newOrder.grandTotal = params.renewedGrandTotal?.toBigDecimal()
+				newOrder.referenceQuoteNumber = orderInstance.referenceQuoteNumber
+		
+				newOrder.organization = orderInstance.organization
+				
+				newOrder.save(flush:true)
+		
+				newOrder.orderItems = new HashSet<OrderItem>()
+		
+				int lineNo = 1
+				orderInstance.orderItems.each { it ->
+					def orderItem = new OrderItem()
+					orderItem.lineNumber = lineNo
+					orderItem.quantity = it.quantity
+					orderItem.unitPrice = it.unitPrice
+					orderItem.tax = it.tax
+					orderItem.lineTotalAmount = it.lineTotalAmount
+					orderItem.discount = it.discount
+					orderItem.productNumber= it.productNumber
+					orderItem.order = newOrder
+					orderItem.save(flush:true)
+					
+					lineNo++
+				}
+				newOrder.save(flush:true)
+				
+				flash.message = 'Renewal Won !. Renewal Service Contract Created.'
+				redirect action: 'show', id: orderInstance.id
+				break
+		}
+	}
+	
+	def renewalLost() {
+		switch (request.method) {
+			case 'GET':
+				def orderInstance = Order.get(params.id)
+				[orderInstance : orderInstance]
+				break
+			case 'POST' :
+				def orderInstance = Order.get(params.id)
+				orderInstance.renewalStage = 'RENEWAL_LOST'
+				orderInstance.renewalLostReason = params.renewalLostReason
+				orderInstance.save(flush:true)
+				
+				flash.message = 'Renewal Lost !.'
+				redirect action: 'show', id: orderInstance.id
+				break
+		}
+	}
+	
 }
 

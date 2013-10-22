@@ -3,6 +3,7 @@ package com.esms.model.payment
 import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
+import com.esms.model.invoice.Invoice;
 import com.esms.model.order.Order
 
 class PaymentController {
@@ -54,15 +55,15 @@ class PaymentController {
 				def matchedAmount = new BigDecimal("0.0")
 				matchedAmount += paymentItemInstance.amount
 				
-				def order = paymentItemInstance.order
-				order.receviedGrandTotal += paymentItemInstance.amount
-				order.openGrandTotal -= paymentItemInstance.amount
+				def invoice = paymentItemInstance.invoice
+				invoice.receviedGrandTotal += paymentItemInstance.amount
+				invoice.openGrandTotal -= paymentItemInstance.amount
 				
-				if(order.openGrandTotal == 0) {
-					order.status = 'PAID'
+				if(invoice.openGrandTotal <= 0) {
+					invoice.status = 'CLOSED'
 				}
 				
-				order.save(flush:true)
+				invoice.save(flush:true)
 				
 				payment.balanceAmount = payment.balanceAmount - matchedAmount
 				payment.matchedAmount += matchedAmount
@@ -82,8 +83,10 @@ class PaymentController {
 			params.paymentNumber = "PAY" + String.format("%05d", no)
 			
 			def order = Order.get(params.orderId)
-			params."organization.id" = order?.organization?.id
+			def invoice = Invoice.get(params.invoiceId)
+			params."organization.id" = invoice?.organization?.id
 			params.orderId = params.orderId
+			params.invoiceId = params.invoiceId
 			
         	[paymentInstance: new Payment(params)]
 			break
@@ -96,7 +99,7 @@ class PaymentController {
 	            return
 	        }
 
-			flash.message = message(code: 'default.created.message', args: [message(code: 'payment.label', default: 'Payment'), paymentInstance.id])
+			flash.message = 'Payment Created. Please Match the Lines to the Open Invoices'
 	        redirect action: 'show', id: paymentInstance.id
 			break
 		}

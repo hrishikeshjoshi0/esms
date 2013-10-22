@@ -14,7 +14,11 @@
 		<div class="span12">
 			<div class="page-header">
 				<h1>
-					Employee # ${employeeInstance?.externalId} | ${employeeInstance?.lastName}, ${employeeInstance?.firstName} 
+					Employee #
+					${employeeInstance?.externalId}
+					|
+					${employeeInstance?.lastName},
+					${employeeInstance?.firstName}
 				</h1>
 			</div>
 
@@ -25,15 +29,17 @@
 						<i class="icon-pencil"></i>
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					
+
 					<button class="btn btn-danger" type="submit" name="_action_delete">
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
-					
-					<g:link class="btn" action="markAsTerminated" id="${employeeInstance?.id}">
+
+					<g:link class="btn" action="markAsTerminated"
+						id="${employeeInstance?.id}">
 						<i class="icon-pencil"></i>
-						<g:message code="default.button.markAsTerminated.label" default="Mark as Terminated" />
+						<g:message code="default.button.markAsTerminated.label"
+							default="Mark as Terminated" />
 					</g:link>
 				</div>
 			</g:form>
@@ -84,17 +90,20 @@
 				<dd>
 					<g:fieldValue bean="${employeeInstance}" field="salary" />
 				</dd>
-				
+
 				<dt>
-					<g:message code="employee.employmentStartDate.label" default="Employment Start Date" />
+					<g:message code="employee.employmentStartDate.label"
+						default="Employment Start Date" />
 				</dt>
 
 				<dd>
-					<g:fieldValue bean="${employeeInstance}" field="employmentStartDate" />
+					<g:fieldValue bean="${employeeInstance}"
+						field="employmentStartDate" />
 				</dd>
-				
+
 				<dt>
-					<g:message code="employee.employmentEndDate.label" default="Employment End Date" />
+					<g:message code="employee.employmentEndDate.label"
+						default="Employment End Date" />
 				</dt>
 
 				<dd>
@@ -119,24 +128,27 @@
 					<g:fieldValue bean="${employeeInstance}" field="skillLevel" />
 				</dd>
 			</dl>
-			
+
 			<div class="span12">
-			
-			<!--  -->
-			<ul class="nav nav-tabs" id="organization_show_tab">
-			  <li class="active"><a href="#addressesTabsPane" data-toggle="tab">Addresses</a></li>
-			  <li><a href="#phonesTabsPane" data-toggle="tab">Phones</a></li>
-			</ul>
-			 
-			<div class="tab-content">
-			  <div class="tab-pane active" id="addressesTabsPane">
-			  	<g:render template="addressList" />
-			  </div>
-			  <div class="tab-pane" id="phonesTabsPane">
-			  	<g:render template="phoneBookList" />
-			  </div>
-			</div> 
+
+				<!--  -->
+				<richui:tabView id="tabView">
+					<richui:tabLabels>
+						<richui:tabLabel selected="true" title="Addresses" />
+						<richui:tabLabel title="Phones" />
+					</richui:tabLabels>
+
+					<richui:tabContents>
+						<richui:tabContent>
+							<g:render template="addressList" />
+						</richui:tabContent>
+
+						<richui:tabContent>
+							<g:render template="phoneBookList" />
+						</richui:tabContent>
+					</richui:tabContents>
+				</richui:tabView>
+			</div>
 		</div>
-	</div>
 </body>
 </html>

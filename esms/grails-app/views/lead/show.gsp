@@ -45,6 +45,11 @@
 						<g:link controller="organization" action="convertLeadToCustomer"  id="${organizationInstance?.id}" role="button" class="btn">
 						 	<i class="icon-share-alt"></i> Convert Lead
 						</g:link>
+						
+						<button class="btn btn-danger" type="submit" name="_action_disqualifyLead">
+							<i class="icon-trash icon-white"></i>
+							Disqualify Lead
+						</button>
 					</g:if>
 				</div>
 			</g:form>
@@ -90,178 +95,38 @@
 		</div>
 
 		<div class="span12">
-			
-			<!--  -->
-			<ul class="nav nav-tabs" id="organization_show_tab">
-			  <li class="active"><a href="#contactsTabPane" data-toggle="tab">Contact</a></li>
-			  <li><a href="#liftInfoTabPane" data-toggle="tab">About the Lift</a></li>
-			  <li><a href="#addressesTabsPane" data-toggle="tab">Addresses</a></li>
-			  <%--<li><a href="#phonesTabsPane" data-toggle="tab">Phones</a></li>
-			  --%>
-			  <li><a href="#quotesTabsPane" data-toggle="tab">Quotes</a></li>
-			  <li><a href="#eventsTabsPane" data-toggle="tab">Events</a></li>
-			</ul>
-			 
-			<div class="tab-content">
-			  <div class="tab-pane active" id="contactsTabPane">
-			  	<g:render template="contactList" />
-			  </div>
-			  <div class="tab-pane" id="liftInfoTabPane">
-			  	<g:render template="liftInfo" />
-			  </div>
-			  <div class="tab-pane" id="addressesTabsPane">
-			  	<g:render template="addressList" />
-			  </div>
-			  <%--<div class="tab-pane" id="phonesTabsPane">
-			  	<g:render template="phoneBookList" />
-			  </div>
-			  --%>
-			  <div class="tab-pane" id="quotesTabsPane">
-			  	<g:render template="quoteList" />
-			  </div>
-			  <div class="tab-pane" id="eventsTabsPane">
-			  	<g:render template="eventList" />
-			  </div>
-			</div>
-			<!--  -->
-			
-			<%--<div class="accordion" id="detailViewAccordion" style="margin-left: -30px;">
-				<!-- Contacts -->
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse"
-							href="#collapseContact"> <span class="left"> <i
-								class="icon-user"></i> Contacts
-								<div class="pull-right">
-									<i class="icon-plus"></i>
-								</div>
-						</span>
-						</a>
-					</div>
-					<div id="collapseContact" class="accordion-body collapse in">
-						<div class="accordion-inner">
-							<g:render template="contactList" />
-						</div>
-					</div>
-				</div>
+			<richui:tabView id="tabView">
+				<richui:tabLabels>
+					<richui:tabLabel selected="true" title="Contacts" />
+					<richui:tabLabel title="Lift Information" />
+					<richui:tabLabel title="Addresses" />
+					<richui:tabLabel title="Quotes" />
+					<richui:tabLabel title="Events" />
+				</richui:tabLabels>
 
-				<!-- Addresses -->
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse"
-							href="#collapseAddress"> <span class="left"> <i
-								class="icon-book"></i> Addresses
-								<div class="pull-right">
-									<i class="icon-plus"></i>
-								</div>
-						</span>
-						</a>
-					</div>
-					<div id="collapseAddress" class="accordion-body collapse">
-						<div class="accordion-inner">
-							<g:render template="addressList" />
-						</div>
-					</div>
-				</div>
+				<richui:tabContents>
+					<richui:tabContent>
+						<g:render template="contactList" />
+					</richui:tabContent>
 
-				<!-- Phones -->
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse"
-							href="#collapsePhoneBook"> <span class="left"> <i
-								class="icon-headphones"></i> Phones
-								<div class="pull-right">
-									<i class="icon-plus"></i>
-								</div>
-						</span>
-						</a>
-					</div>
-					<div id="collapsePhoneBook" class="accordion-body collapse">
-						<div class="accordion-inner">
-							<g:render template="phoneBookList" />
-						</div>
-					</div>
-				</div>
-				
-				<!-- Quote -->
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse"
-							href="#collapseQuote"> <span class="left"> <i
-								class="icon-envelope"></i> Quotes
-								<div class="pull-right">
-									<i class="icon-plus"></i>
-								</div>
-						</span>
-						</a>
-					</div>
-					<div id="collapseQuote" class="accordion-body collapse">
-						<div class="accordion-inner">
-							<g:render template="quoteList" />
-						</div>
-					</div>
-				</div>
-				
-				<!-- Service Order -->
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse"
-							href="#collapseServiceOrder"> <span class="left"> <i
-								class="icon-briefcase"></i> Service Orders
-								<div class="pull-right">
-									<i class="icon-plus"></i>
-								</div>
-						</span>
-						</a>
-					</div>
-					<div id="collapseServiceOrder" class="accordion-body collapse">
-						<div class="accordion-inner">
-							<g:render template="serviceorderList" />
-						</div>
-					</div>
-				</div>
-				
-				<!-- Repair Order -->
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse"
-							href="#collapseRepairOrder"> <span class="left"> <i
-								class="icon-wrench"></i> Repair Orders
-								<div class="pull-right">
-									<i class="icon-plus"></i>
-								</div>
-						</span>
-						</a>
-					</div>
-					<div id="collapseRepairOrder" class="accordion-body collapse">
-						<div class="accordion-inner">
-							<g:render template="repairorderList" />
-						</div>
-					</div>
-				</div>
-				
-				
-				<!-- Events -->
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse"
-							href="#collapseEvents"> <span class="left"> <i
-								class="icon-time"></i> Events
-								<div class="pull-right">
-									<i class="icon-plus"></i>
-								</div>
-						</span>
-						</a>
-					</div>
-					<div id="collapseEvents" class="accordion-body collapse">
-						<div class="accordion-inner">
-							<g:render template="eventList" />
-						</div>
-					</div>
-				</div>
-				
-			</div>
-		--%></div>
+					<richui:tabContent>
+						<g:render template="liftInfo" />
+					</richui:tabContent>
+					
+					<richui:tabContent>
+						<g:render template="addressList" />
+					</richui:tabContent>
+					
+					<richui:tabContent>
+						<g:render template="quoteList" />
+					</richui:tabContent>
+					
+					<richui:tabContent>
+						<g:render template="eventList" />
+					</richui:tabContent>
+				</richui:tabContents>
+			</richui:tabView>
+		</div>
 	</div>
 </body>
 </html>

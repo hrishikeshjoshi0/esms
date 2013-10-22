@@ -1,14 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
-  <meta name="layout" content="bootstrap">
-  <title>Calendar</title>
+<meta name="layout" content="bootstrap">
+<title>Calendar</title>
+<resource:calendarMonthView />
 </head>
 <body>
-	
-  <div id="calendar" style="margin:10px;"></div>
-  
-  <script>
+
+	<div id="calendar" style="margin: 10px;"></div>
+
+	<script>
   	$(document).ready(function() {
   		$('#calendar').fullCalendar('render');
   	});

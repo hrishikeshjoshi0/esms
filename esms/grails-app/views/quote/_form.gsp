@@ -2,6 +2,7 @@
 <%@ page import="com.esms.model.quote.Quote"%>
 
 <script>
+
 function fetchInfo(id) {
 	var url = "${createLink(controller:'organization', action:'fetchInfo')}" + "/" + id;
 	$.ajax({

@@ -5,7 +5,6 @@ import org.springframework.dao.DataIntegrityViolationException
 
 import com.esms.model.party.Organization
 import com.esms.model.product.Product
-import com.esms.model.product.ProductPrice
 
 class QuoteController {
 
@@ -77,7 +76,7 @@ class QuoteController {
 					return
 				}
 				
-				int lineNo = 0
+				/*int lineNo = 0
 				if(quoteInstance.type == "CONTRACT") {
 					def products = Product.findAllByProductType("SERVICE")
 					if(products) {
@@ -125,12 +124,9 @@ class QuoteController {
 							quoteInstance.negotiatedGrandTotal = 0
 							quoteInstance.save(flush:true)
 					}
-				}
+				}*/
 
-				flash.message = message(code: 'default.created.message', args: [
-					message(code: 'quote.label', default: 'Quote'),
-					quoteInstance.id
-				])
+				flash.message = "New Quote Created."
 				redirect action: 'show', id: quoteInstance.id
 				break
 		}
@@ -168,8 +164,29 @@ class QuoteController {
 			case 'GET':
 				def quoteInstance = Quote.get(params.id)
 				if(quoteInstance.type == 'CONTRACT') {
-					[quoteInstance:quoteInstance]
-					break
+					def serviceQuoteItems = quoteInstance.fetchServiceQuoteItems()
+					def serviceQuoteListItems = [:]
+					serviceQuoteItems?.each {
+						def pn = it.productNumber
+						def product = Product.findByProductNumber(pn)
+						serviceQuoteListItems.put(product?.productNumber, product?.productName)
+					}
+					
+					def fromCal = Calendar.instance
+					
+					def endCal = Calendar.instance
+					int d = endCal.get(Calendar.DATE)
+					int y = endCal.get(Calendar.YEAR)
+					endCal.set Calendar.DATE, d
+					endCal.set Calendar.YEAR, (y+1)
+					def newEndDate = endCal.getTime().minus(1)
+					
+					quoteInstance.contractFromDate = fromCal.getTime()
+					quoteInstance.contractToDate = newEndDate
+					
+					def model = [quoteInstance:quoteInstance,serviceQuoteListItems:serviceQuoteListItems]
+					render(view:"/quote/markAsAccepted",model:model)
+					return
 				} else {
 					quoteInstance.status = 'ACCEPT'
 					quoteInstance.save(flush:true)
@@ -182,6 +199,37 @@ class QuoteController {
 				if(quoteInstance.type == 'CONTRACT') {
 					quoteInstance.contractFromDate = params.contractFromDate
 					quoteInstance.contractToDate = params.contractToDate
+					
+					def selectedService = params.selectedService
+				
+					def unitPrice = new BigDecimal("0.0")
+					def tax = new BigDecimal("0.0")
+					def discount = new BigDecimal("0.0")
+					def lineTotalAmount = new BigDecimal("0.0")
+					
+					
+					QuoteItem.executeUpdate("Delete QuoteItem b where b.productNumber NOT LIKE ?",
+						[selectedService])
+					quoteInstance = Quote.get(params.id)
+					
+					quoteInstance?.quoteItems?.each {
+						unitPrice += it.unitPrice
+						tax +=  it.tax
+						discount +=  it.discount
+						lineTotalAmount +=  it.lineTotalAmount
+					}
+					
+					BigDecimal totalDiscount = new BigDecimal("0.0")
+					BigDecimal grandTotal = new BigDecimal("0.0")
+					
+					quoteInstance.totalAmount = unitPrice
+					quoteInstance.totalTax = tax
+					quoteInstance.totalDiscount = discount
+					quoteInstance.grandTotal = lineTotalAmount
+					
+					if(quoteInstance.status == "PENDING" && quoteInstance.sent) {
+						quoteInstance.quotedGrandTotal = quoteInstance.grandTotal
+					}
  				}
 
 				quoteInstance.status = 'ACCEPT'

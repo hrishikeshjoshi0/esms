@@ -1,5 +1,7 @@
 package com.esms.model.order
 
+import java.util.Date;
+
 import com.esms.model.inventory.InventoryJournal
 import com.esms.model.party.Organization
 import com.esms.model.payment.PaymentItem
@@ -32,7 +34,19 @@ class Order {
 	
 	BigDecimal openGrandTotal = new BigDecimal("0.0")
 	BigDecimal receviedGrandTotal = new BigDecimal("0.0")
-	 
+	
+	Boolean taggedForRenewal
+	String renewalStage = 'NOT_MARKED_FOR_RENEWAL'
+	String renewalLostReason
+	
+	String recepientContactName
+	String recepientContactNumber
+	Date receivedDateTime
+	String handedOveryBy
+	
+	BigDecimal pendingInvoiceGrandTotal = new BigDecimal("0.0")
+	BigDecimal invoicedGrandTotal = new BigDecimal("0.0")
+	
 	static hasMany = [orderItems : OrderItem,inventoryJournalEntries : InventoryJournal,paymentItems : PaymentItem]
 	
 	static belongsTo = [organization : Organization]
@@ -50,7 +64,7 @@ class Order {
 		totalDiscount nullable:false
 		grandTotal nullable:false
 		referenceQuoteNumber nullable:true,blank:true
-		relatedTo InList:['CONTRACT','ORGANIZATION']
+		relatedTo InList:['CONTRACT','ORGANIZATION','ORDER']
 		relatedToValue nullable:true,blank:true
 		
 		contractFromDate nullable:true,blank:true
@@ -60,6 +74,15 @@ class Order {
 		invoicingIsExpenses nullable:true,blank:true
 		assignedTo nullable:true,blank:true
 		termsAndConditions nullable:true,blank:true,length:255
+		
+		taggedForRenewal nullable:true
+		renewalStage InList:['NOT_MARKED_FOR_RENEWAL','TAGGED_FOR_RENEWAL','RENEWAL_LETTER_SENT','RENEWAL_WON','RENEWAL_LOST','RENEWAL_WON']
+		renewalLostReason nullable:true,blank:true,length:255
+		
+		recepientContactName nullable:true,blank:true
+		recepientContactNumber nullable:true,blank:true
+		receivedDateTime nullable:true,blank:true
+		handedOveryBy nullable:true,blank:true
     }
 	
 	static mapping = {

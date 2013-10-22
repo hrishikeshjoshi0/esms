@@ -104,6 +104,30 @@ function fetchInfo(id) {
 	</div>
 </div>
 
+<g:if test="${orderInstance?.type = 'SERVICE' }">
+	<div
+		class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'contractFromDate', 'error')} ">
+		<label for="contractFromDate" class="control-label"><g:message
+				code="order.contractFromDate.label" default="From Date" /><span
+			class="required-indicator">*</span></label>
+		<div class="controls">
+			<richui:dateChooser name="contractFromDate" value="${orderInstance?.contractFromDate}" />
+			<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'contractFromDate', 'error')}
+			</span>
+		</div>
+	</div>
+
+	<div
+		class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'contractToDate', 'error')} ">
+		<label for="contractToDate" class="control-label"><g:message
+				code="order.expiryDate.label" default="To Date" /></label>
+		<div class="controls">
+			<richui:dateChooser name="contractToDate" value="${orderInstance?.contractToDate}" />
+			<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'contractToDate', 'error')}
+			</span>
+		</div>
+	</div>
+</g:if>
 <%--<div
 	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'issueDate', 'error')} required">
 	<label for="issueDate" class="control-label"><g:message

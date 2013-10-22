@@ -19,6 +19,8 @@
 
 <g:hiddenField name="organization.id" value="${params.'organization.id'}"/>
 <g:hiddenField name="order.id" value="${params.orderId}"/>
+<g:hiddenField name="invoice.id" value="${params.invoiceId}"/>
+
 <div
 	class="control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'paymentNumber', 'error')} required">
 	<label for="paymentNumber" class="control-label"><g:message
@@ -91,8 +93,6 @@
 	<label for="branch" class="control-label"><g:message
 			code="payment.clearanceDate.label" default="Clearance Date" /></label>
 	<div class="controls">
-		<%--<g:datePicker precision="day" name="clearanceDate" value="${paymentInstance?.clearanceDate}" />
-		--%>
 		<bootstrap:jqDatePicker name="clearanceDate" value="${paymentInstance?.clearanceDate}"  />
 		<span class="help-inline">
 			${hasErrors(bean: paymentInstance, field: 'clearanceDate', 'error')}
@@ -106,9 +106,7 @@
 	<label for="branch" class="control-label"><g:message
 			code="payment.chequeIssueDate.label" default="Cheque Issue Date" /></label>
 	<div class="controls">
-		<%--<g:datePicker precision="day" name="chequeIssueDate" value="${paymentInstance?.chequeIssueDate}" />
-		--%>
-		<bootstrap:jqDatePicker name="chequeIssueDate" value="${paymentInstance?.chequeIssueDate}"  />
+		<g:datePicker precision="day" name="chequeIssueDate" value="${paymentInstance?.chequeIssueDate}" />
 		<span class="help-inline">
 			${hasErrors(bean: paymentInstance, field: 'chequeIssueDate', 'error')}
 		</span>

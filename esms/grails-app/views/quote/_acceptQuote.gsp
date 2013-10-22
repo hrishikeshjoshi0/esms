@@ -1,5 +1,5 @@
 <div id="markAsAccepted" class="modal hide fade" tabindex="-1" role="dialog"
-	data-remote="<g:createLink controller="quote" action="markAsAccepted" params="[id:quoteInstance?.id]"/>"
+	data-remote="<g:createLink controller="quote" action="markAsAccepted" id="${quoteInstance?.id}"/>"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"
@@ -8,7 +8,9 @@
 	</div>
 	<g:form controller="quote" action="markAsAccepted" method="POST">
 		<g:hiddenField name="id" value="${quoteInstance?.id}" />
-		<div class="modal-body" style="width:500px;"></div>
+		<div class="modal-body" style="width:500px;">
+			Loading...
+		</div>
 		<div class="modal-footer">
 			<div class="form-actions">
 				<button type="submit" class="btn btn-primary">

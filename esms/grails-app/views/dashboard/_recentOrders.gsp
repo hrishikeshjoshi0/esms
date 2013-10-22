@@ -1,7 +1,7 @@
 <%@ page import="com.esms.model.order.*"%>
 
 <div class="page-header">
-	<h1>Recent Orders</h1>
+	<h1>Recent Repair,Modernization & Installation Orders</h1>
 </div>
 
 <table class="table table-striped table-bordered mediaTable">
@@ -21,6 +21,10 @@
 				
 			<th>
 				${message(code: 'order.grandTotal.label', default: 'Grand Total')}
+			</th>
+			
+			<th>
+				${message(code: 'order.invoicedGrandTotal.label', default: 'Invoiced Grand Total')}
 			</th>
 
 			<th>
@@ -44,7 +48,10 @@
 					${fieldValue(bean: orderInstance, field: "status")}
 				</td>
 				<td>
-					${fieldValue(bean : orderInstance, field : "openGrandTotal") }
+					${fieldValue(bean : orderInstance, field : "grandTotal") }
+				</td>
+				<td>
+					${fieldValue(bean : orderInstance, field : "invoicedGrandTotal") }
 				</td>
 				<td>
 					${fieldValue(bean: orderInstance, field: "type")}
@@ -55,7 +62,7 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<th colspan="6" class="link">
+			<th colspan="7" class="link">
 				<g:link controller="order" action="list">Show All &raquo;</g:link>
 			</th>				
 		</tr>

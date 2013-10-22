@@ -7,46 +7,68 @@
 <meta name="layout" content="dashboardLayout">
 <g:set var="entityName"
 	value="${message(code: 'organization.label', default: 'Leads')}" />
-<title>
-	Venus CRM
-</title>
+<resource:tabView />
+<title>Venus CRM</title>
 </head>
 <body>
 	<div class="row-fluid">
 		<div class="span12">
-			<g:render template="/dashboard/upcomingRenewals" />
+			<div class="page-header">
+				<h1>Upcoming Renewals And Tasks</h1>
+			</div>
+
+			<richui:tabView id="tabView">
+				<richui:tabLabels>
+					<richui:tabLabel selected="true" title="Upcoming Renewals" />
+					<richui:tabLabel title="Upcoming Tasks" />
+				</richui:tabLabels>
+
+				<richui:tabContents>
+					<richui:tabContent>
+						<g:render template="/dashboard/upcomingRenewals" />
+					</richui:tabContent>
+
+					<richui:tabContent>
+				   	 	<g:render template="/dashboard/upcomingTasks" />
+					</richui:tabContent>
+				</richui:tabContents>
+			</richui:tabView>
 		</div>
 	</div>
-	
-	<hr/>
-	
+
+	<hr />
+
 	<div class="row-fluid">
 		<div class="span6">
 			<div id="recentLeadsWidget" class="dashboard-widget">
 				<g:render template="/dashboard/recentLeads" />
 			</div>
 		</div>
-		
+
 		<div class="span6">
 			<div id="recentCustomers" class="dashboard-widget">
 				<g:render template="/dashboard/recentCustomers" />
 			</div>
 		</div>
 	</div>
-	
-	<hr/>
-	
+
+	<hr />
+
 	<div class="row-fluid">
 		<div class="span6">
-			<g:render template="/dashboard/upcomingEvents" />
+			<div id="recentQuotesWidget" class="dashboard-widget">
+				<g:render template="/dashboard/recentQuotes" />
+			</div>
 		</div>
-		
+
 		<div class="span6">
-			<g:render template="/dashboard/overdueEvents" />
+			<div class="dashboard-widget">
+				<g:render template="/dashboard/recentOrders" />
+			</div>
 		</div>
 	</div>
-	
-	<hr/>
+
+	<hr />
 
 	<div class="row-fluid">
 		<div class="span6">
@@ -57,24 +79,20 @@
 			<g:render template="/dashboard/openPayments" />
 		</div>
 	</div>
-	
-	<hr/>
 
+	<hr />
+	
 	<div class="row-fluid">
 		<div class="span6">
-			<div id="recentQuotesWidget" class="dashboard-widget">
-				<g:render template="/dashboard/recentQuotes" />
-			</div>
+			<g:render template="/dashboard/upcomingEvents" />
 		</div>
-		
+
 		<div class="span6">
-			<div class="dashboard-widget">
-				<g:render template="/dashboard/recentOrders" />
-			</div>
+			<g:render template="/dashboard/overdueEvents" />
 		</div>
 	</div>
-	
-	<hr/>
+
+	<hr />
 
 	<div class="row-fluid">
 		<div class="span6">

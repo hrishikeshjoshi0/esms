@@ -64,19 +64,19 @@ class Event {
         recurInterval(nullable: true)
         recurUntil(nullable: true)
         recurCount(nullable: true)
-        startTime(nullable: false)
+        startTime(nullable: true)
         excludeDays(nullable: true)
         sourceEvent(nullable: true)
 		relatedToValue(nullable: true)
         startTime(required: true, nullable: false)
-        endTime(required: true, nullable: false, validator: {val, obj -> val > obj.startTime} )
+//        endTime(required: true, nullable: false, validator: {val, obj -> val > obj.startTime} )
         recurDaysOfWeek(validator: {val, obj -> 
             if (obj.recurType == EventRecurType.WEEKLY && !val) {return 'null'}
         })
 		eventType InList : ['CALL','MEETING','MAINTENANCE VISIT','BREAKDOWN CALL']
 		status InList : ['HELD','PLANNED','NOT HELD'] 
 		priority InList : ['LOW','MEDIUM','HIGH']
-		relatedTo InLIst : ['ORGANIZATION','INCIDENT']
+		relatedTo InLIst : ['ORGANIZATION','INCIDENT','INVOICE','QUOTE','ORDER','CONTACT','PAYMENT','EMPLOYEE']
 		activityLog type:'text'
 		
 		maintenanceVisitTechnician(nullable: true,blank:true)
@@ -94,6 +94,10 @@ class Event {
 		
 		workDoneCertificate nullable:true
     }
+	
+	static mapping = {
+		tablePerHierarchy false
+	}
 
     public int getDurationMinutes() {
         Minutes.minutesBetween(new DateTime(startTime), new DateTime(endTime)).minutes

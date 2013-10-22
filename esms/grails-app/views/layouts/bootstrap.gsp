@@ -18,6 +18,8 @@
 	<r:require module="calendar" />
 	<r:require module="chosen" />
 	<r:require module="gebo" />
+	<resource:dateChooser />
+	<resource:tabView/>
 	
 	<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
 	<link href="${resource(dir: 'lib/antiscroll', file: 'antiscroll.css')}" type="text/css" rel='stylesheet'>

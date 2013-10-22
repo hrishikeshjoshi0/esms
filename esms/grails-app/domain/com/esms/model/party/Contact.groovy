@@ -16,7 +16,7 @@ class Contact extends Party {
 		lastName nullable:true,blank:true
 		middleName nullable:true,blank:true
 		designation nullable:true,blank:true
-		designation inList:['TREASURER','SECRETARY']
+		designation inList:['TREASURER','SECRETARY','MANAGER','CHAIRMAN']
     }
 	
 }

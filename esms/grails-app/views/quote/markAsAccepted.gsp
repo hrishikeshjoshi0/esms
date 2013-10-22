@@ -1,3 +1,4 @@
+<%@ page import="com.esms.model.product.Product" %>
 <div class="page-header">
 	<h1>
 		Mark As Accepted
@@ -22,6 +23,23 @@
 	<div class="controls" style="width:100%;">
 		<g:datePicker name="contractToDate" value="${quoteInstance?.contractToDate}" precision="day"/>
 		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'contractToDate', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
+	class="control-group fieldcontain">
+	<label for="selectService" class="control-label">
+		Select Service
+	</label>
+	<div class="controls">
+		<g:select name="selectedService"
+			from="${serviceQuoteListItems}"
+			optionKey="key"
+			optionValue="value"
+			noSelection="['': '']" />
+		<span class="help-inline">
+			
 		</span>
 	</div>
 </div>

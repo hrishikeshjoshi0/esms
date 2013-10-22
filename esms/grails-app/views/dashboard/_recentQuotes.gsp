@@ -1,7 +1,9 @@
 <%@ page import="com.esms.model.quote.*"%>
 
 <div class="page-header">
-	<h1>Recent Quotes</h1>
+	<h1>
+		Top Active Quotes
+	</h1>
 </div>
 
 <table class="table table-striped table-bordered mediaTable">

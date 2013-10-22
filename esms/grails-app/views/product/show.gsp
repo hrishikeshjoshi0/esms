@@ -26,7 +26,9 @@
 						<i class="icon-pencil"></i>
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					--%><g:link class="btn" action="create" controller="productInventory" param="['product.id':productInstance?.id]">
+					--%>
+					<g:link class="btn" action="create" controller="productInventory"
+						param="['product.id':productInstance?.id]">
 						<i class="icon-pencil"></i>
 						Add Inventory
 					</g:link>
@@ -124,58 +126,41 @@
 				</dd>
 			</dl>
 		</div>
-		
-		<div class="span12">
-			<!--  -->
-			<ul class="nav nav-tabs" id="product_show_tab">
-			  <li class="active"><a href="#priceListTabsPane" data-toggle="tab">Price List</a></li>
-			  <g:if test="${productInstance?.isVirtual == false || productInstance?.isVirtual == null}">
-			  	<li><a href="#inventoryTabsPane" data-toggle="tab">Inventory</a></li>
-				<li><a href="#inventoryJournalTabsPane" data-toggle="tab">Inventory Journal</a></li>
-			  </g:if>
-			  <li><a href="#commentsTabsPane" data-toggle="tab">Comments</a></li>
-			</ul>
-			 
-			<div class="tab-content">
-			  <div class="tab-pane active" id="priceListTabsPane">
-			  	<g:render template="priceList" />
-			  </div>
-			  <g:if test="${productInstance?.isVirtual == false || productInstance?.isVirtual == null}">
-				  <div class="tab-pane" id="inventoryTabsPane">
-				  	<g:render template="inventory" />
-				  </div>
-				  <div class="tab-pane" id="inventoryJournalTabsPane">
-					<g:render template="inventoryJournal" />
-				  </div>
-			  </g:if>
-			  <div class="tab-pane" id="commentsTabsPane">
-				<g:fieldValue bean="${productInstance}" field="comments" />
-			  </div>
-			</div> 
-		</div>
 
-		<%--<div class="span12">
-			<div class="accordion" id="detailViewAccordion">
-				<!-- Contacts -->
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse"
-							href="#collapseContact"> <span class="left"> <i
-								class="icon-tag"></i> Prices
-								<div class="pull-right">
-									<i class="icon-plus"></i>
-								</div>
-						</span>
-						</a>
-					</div>
-					<div id="collapseContact" class="accordion-body collapse in">
-						<div class="accordion-inner">
-							<g:render template="priceList" />
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="span12">
+			<richui:tabView id="tabView">
+				<richui:tabLabels>
+					<richui:tabLabel selected="true" title="Price List" />
+					<g:if
+						test="${productInstance?.isVirtual == false || productInstance?.isVirtual == null}">
+						<richui:tabLabel title="Inventory" />
+						<richui:tabLabel title="Inventory Journal" />
+					</g:if>
+					<richui:tabLabel title="Comments" />
+				</richui:tabLabels>
+
+				<richui:tabContents>
+					<richui:tabContent>
+						<g:render template="priceList" />
+					</richui:tabContent>
+
+					<g:if
+						test="${productInstance?.isVirtual == false || productInstance?.isVirtual == null}">
+						<richui:tabContent>
+							<g:render template="inventory" />
+						</richui:tabContent>
+
+						<richui:tabContent>
+							<g:render template="inventoryJournal" />
+						</richui:tabContent>
+					</g:if>
+
+					<richui:tabContent>
+						<g:fieldValue bean="${productInstance}" field="comments" />
+					</richui:tabContent>
+				</richui:tabContents>
+			</richui:tabView>
 		</div>
-	--%></div>
+	</div>
 </body>
 </html>

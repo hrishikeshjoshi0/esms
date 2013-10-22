@@ -1,11 +1,7 @@
 package com.esms.model.quote
 
-import java.util.Date;
-
-import org.grails.datastore.gorm.finders.MethodExpression.InList;
-
-import com.esms.model.party.Organization;
-import com.esms.model.sales.Contract;
+import com.esms.model.party.Organization
+import com.esms.model.product.Product
 
 class Quote {
 	
@@ -87,6 +83,16 @@ class Quote {
 	
 	static mapping = {
 		quoteItems sort:'lineNumber'
+	}
+	
+	def fetchServiceQuoteItems() {
+		def quoteItems = []
+		this.quoteItems?.each {
+			if(Product.findByProductNumber(it.productNumber)?.productType == 'SERVICE') {
+				quoteItems.add(it)
+			}
+		}
+		quoteItems
 	}
 	
 }

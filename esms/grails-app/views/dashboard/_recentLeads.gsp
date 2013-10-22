@@ -1,7 +1,9 @@
 <%@ page import="com.esms.model.party.*"%>
 
 <div class="page-header">
-	<h1>Recent Leads</h1>
+	<h1>
+		Follow-up these leads
+	</h1>
 </div>
 
 
@@ -19,8 +21,11 @@
 			</th>	
 			<th>
 				${message(code: 'address.buildingName.label', default: 'Building Name')}
-			</th>	
-			<th></th>
+			</th>
+			<th>
+				Disqualify
+			</th>
+			<th></th>	
 		</tr>
 	</thead>
 	<tbody>
@@ -40,14 +45,20 @@
 				<td>
 					${addressInstance?.buildingName}
 				</td>
+				<td class="link"><g:link controller="lead" action="disqualifyLead"
+						id="${organization?.id}" class=" ">
+						<i class="icon-trash"></i>
+						Disqualify
+				</g:link></td>
 				<td class="link"><g:link controller="lead" action="show"
-						id="${organization?.id}" class=" ">Show &raquo;</g:link></td>
+						id="${organization?.id}" class=" ">Show &raquo;</g:link>
+				</td>
 			</tr>
 		</g:each>
 	</tbody>
 	<tfoot>
 		<tr>
-			<th colspan="5" class="link">
+			<th colspan="6" class="link">
 				<g:link controller="lead" action="list">Show All &raquo;</g:link>
 			</th>				
 		</tr>

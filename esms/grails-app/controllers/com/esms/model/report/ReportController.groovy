@@ -32,6 +32,8 @@ class ReportController {
 			and {
 				eq("type", 'SERVICE')
 				le("contractToDate", endDate)
+				ne("renewalStage",'RENEWAL_WON')
+				ne("renewalStage",'RENEWAL_LOST')
 			}
 		}
 		

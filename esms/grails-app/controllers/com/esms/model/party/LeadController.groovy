@@ -170,4 +170,17 @@ class LeadController {
 			redirect action: 'show', id: params.id
 		}
 	}
+	
+	def disqualifyLead() {
+		def organizationInstance = Organization.get(params.id)
+		organizationInstance.salesStatus = 'DISQUALIFIED'
+		if (!organizationInstance.save(flush: true)) {
+			render view: 'edit', model: [organizationInstance: organizationInstance]
+			return
+		}
+
+		flash.message = "Marked As Disqualified"
+		redirect action: 'show', id: organizationInstance.id
+	}
+	
 }

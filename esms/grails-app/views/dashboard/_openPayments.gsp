@@ -2,7 +2,7 @@
 
 <div class="page-header">
 	<h1>
-		Uncleared Payments 
+		Uncleared Cheques 
 	</h1>
 </div>
 
@@ -47,11 +47,11 @@
 						</td>
 	
 						<td>
-							${paymentItemInstance?.order?.orderNumber}
+							${paymentItemInstance?.invoice?.referenceOrderNumber}
 						</td>
 	
 						<td>
-							${paymentItemInstance?.order?.organization?.name}
+							${paymentItemInstance?.invoice?.organization?.name}
 						</td>
 	
 						<td>
@@ -75,7 +75,7 @@
 		</g:if>
 		<g:else>
 			<tr>
-				<th colspan="5">
+				<th colspan="7">
 					<h4 style="color: red;">No Records Found !</h4>
 				</th>
 			</tr>
