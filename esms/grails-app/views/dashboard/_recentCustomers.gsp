@@ -15,10 +15,13 @@
 				${message(code: 'organization.name.label', default: 'Name')}
 			</th>	
 			<th>
-				${message(code: 'organization.assignedTo.label', default: 'Assigned To')}
+				${message(code: 'address.buildingName.label', default: 'Building Name')} 
+			</th>
+			<th>
+				Contact 
 			</th>	
 			<th>
-				${message(code: 'address.buildingName.label', default: 'Building Name')} 
+				${message(code: 'organization.assignedTo.label', default: 'Assigned To')}
 			</th>	
 			<th></th>
 		</tr>
@@ -35,10 +38,18 @@
 					${fieldValue(bean: organization, field: "name")}
 				</td>
 				<td>
-					${fieldValue(bean: organization, field: "assignedTo")}
+					${addressInstance?.buildingName}
 				</td>
 				<td>
-					${addressInstance?.buildingName}
+					<%
+						if(!organization?.contacts?.isEmpty()) {
+							def contact = organization?.contacts.first()
+							println contact?.firstName
+						}
+					 %>
+				</td>
+				<td>
+					${fieldValue(bean: organization, field: "assignedTo")}
 				</td>
 				<td class="link"><g:link controller="organization" action="show" id="${organization?.id}">Show &raquo;</g:link></td>
 			</tr>
@@ -46,7 +57,7 @@
 	</tbody>
 	<tfoot>
 			<tr>
-				<th colspan="5" class="link">
+				<th colspan="6" class="link">
 					<g:link controller="organization" action="list">Show All &raquo;</g:link>
 				</th>				
 			</tr>

@@ -23,9 +23,13 @@ class OrderController {
 	def list() {
 
 		def orders = Order.withCriteria {
-			'in'('type', ['REPAIR','MODERNIZATION','INSTALLATION'])
+			'in'('type', [
+				'REPAIR',
+				'MODERNIZATION',
+				'INSTALLATION'
+			])
 		}
-		
+
 		orders = Order.list()
 
 		[orderInstanceList: orders, orderInstanceTotal: orders?orders.size():0]
@@ -104,7 +108,11 @@ class OrderController {
 		order.grandTotal = quote.grandTotal
 		order.referenceQuoteNumber = quote.quoteNumber
 
+		//Invoiced And Pending Invoiced Grand Total
 		order.organization = quote.organization
+		order.invoicedGrandTotal = 0.0
+		order.pendingInvoiceGrandTotal = order.grandTotal
+		
 		if(!order.save(flush:true)) {
 			redirect controller: 'quote',action: 'show', id: quote.id
 			return
@@ -124,7 +132,7 @@ class OrderController {
 			orderItem.productNumber= it.productNumber
 			orderItem.order = order
 			orderItem.save(flush:true)
-			
+
 			lineNo++
 		}
 
@@ -157,7 +165,10 @@ class OrderController {
 					return
 				}
 
-				flash.message = message(code: 'default.created.message', args: [message(code: 'order.label', default: 'Order'), orderInstance.id])
+				flash.message = message(code: 'default.created.message', args: [
+					message(code: 'order.label', default: 'Order'),
+					orderInstance.id
+				])
 				redirect action: 'show', id: orderInstance.id
 				break
 		}
@@ -166,7 +177,10 @@ class OrderController {
 	def show() {
 		def orderInstance = Order.get(params.id)
 		if (!orderInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'order.label', default: 'Order'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [
+				message(code: 'order.label', default: 'Order'),
+				params.id
+			])
 			redirect action: 'list'
 			return
 		}
@@ -179,7 +193,10 @@ class OrderController {
 			case 'GET':
 				def orderInstance = Order.get(params.id)
 				if (!orderInstance) {
-					flash.message = message(code: 'default.not.found.message', args: [message(code: 'order.label', default: 'Order'), params.id])
+					flash.message = message(code: 'default.not.found.message', args: [
+						message(code: 'order.label', default: 'Order'),
+						params.id
+					])
 					redirect action: 'list'
 					return
 				}
@@ -189,7 +206,10 @@ class OrderController {
 			case 'POST':
 				def orderInstance = Order.get(params.id)
 				if (!orderInstance) {
-					flash.message = message(code: 'default.not.found.message', args: [message(code: 'order.label', default: 'Order'), params.id])
+					flash.message = message(code: 'default.not.found.message', args: [
+						message(code: 'order.label', default: 'Order'),
+						params.id
+					])
 					redirect action: 'list'
 					return
 				}
@@ -198,7 +218,8 @@ class OrderController {
 					def version = params.version.toLong()
 					if (orderInstance.version > version) {
 						orderInstance.errors.rejectValue('version', 'default.optimistic.locking.failure',
-								[message(code: 'order.label', default: 'Order')] as Object[],
+								[
+									message(code: 'order.label', default: 'Order')] as Object[],
 								"Another user has updated this Order while you were editing")
 						render view: 'edit', model: [orderInstance: orderInstance]
 						return
@@ -212,7 +233,10 @@ class OrderController {
 					return
 				}
 
-				flash.message = message(code: 'default.updated.message', args: [message(code: 'order.label', default: 'Order'), orderInstance.id])
+				flash.message = message(code: 'default.updated.message', args: [
+					message(code: 'order.label', default: 'Order'),
+					orderInstance.id
+				])
 				redirect action: 'show', id: orderInstance.id
 				break
 		}
@@ -221,18 +245,27 @@ class OrderController {
 	def delete() {
 		def orderInstance = Order.get(params.id)
 		if (!orderInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'order.label', default: 'Order'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [
+				message(code: 'order.label', default: 'Order'),
+				params.id
+			])
 			redirect action: 'list'
 			return
 		}
 
 		try {
 			orderInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'order.label', default: 'Order'), params.id])
+			flash.message = message(code: 'default.deleted.message', args: [
+				message(code: 'order.label', default: 'Order'),
+				params.id
+			])
 			redirect action: 'list'
 		}
 		catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'order.label', default: 'Order'), params.id])
+			flash.message = message(code: 'default.not.deleted.message', args: [
+				message(code: 'order.label', default: 'Order'),
+				params.id
+			])
 			redirect action: 'show', id: params.id
 		}
 	}
@@ -244,15 +277,13 @@ class OrderController {
 				int no = (list?list.size():0) + 1;
 				String orderNumber = "PO" + String.format("%05d", no)
 				params.purchaseOrderNumber = orderNumber
-			
+
 				def order = PurchaseOrder.get(params.orderId)
 
 				def c = PurchaseOrderItem.createCriteria()
 				def maxLineNumber = c.get {
 					eq("purchaseOrder", order)
-					projections {
-						max ("lineNumber")
-					}
+					projections { max ("lineNumber") }
 				}
 				params.lineNumber = maxLineNumber?maxLineNumber:0 + 1
 				[purchaseOrderInstance: new PurchaseOrder(params)]
@@ -267,7 +298,7 @@ class OrderController {
 
 				def orderItem = OrderItem.get(params.orderItemInstanceId.toInteger())
 				orderItem.relatedOrderNumber = purchaseOrderInstance?.purchaseOrderNumber
-				
+
 				def unitPrice = new BigDecimal("0.0")
 				def tax = new BigDecimal("0.0")
 				def discount = new BigDecimal("0.0")
@@ -278,7 +309,7 @@ class OrderController {
 				purchaseOrderInstance.save(flush:true)
 
 				redirect action: 'show', id: orderItem?.order?.id
-				
+
 				break
 		}
 	}
@@ -291,9 +322,7 @@ class OrderController {
 				def c = OrderItem.createCriteria()
 				def maxLineNumber = c.get {
 					eq("order", order)
-					projections {
-						max ("lineNumber")
-					}
+					projections { max ("lineNumber") }
 				}
 				params.lineNumber = maxLineNumber?maxLineNumber:0 + 1
 				[orderItemInstance: new OrderItem(params)]
@@ -315,7 +344,7 @@ class OrderController {
 				def lineTotalAmount = new BigDecimal("0.0")
 				def pendingInvoiceGrandTotal = new BigDecimal("0.0")
 				def invoiceGrandTotal = new BigDecimal("0.0")
-				
+
 				orderItems?.each { it ->
 					unitPrice += it.unitPrice
 					tax +=  it.tax
@@ -334,7 +363,10 @@ class OrderController {
 
 				order.save(flush:true)
 
-				flash.message = message(code: 'default.created.message', args: [message(code: 'quoteItem.label', default: 'QuoteItem'), orderItemInstance.id])
+				flash.message = message(code: 'default.created.message', args: [
+					message(code: 'quoteItem.label', default: 'QuoteItem'),
+					orderItemInstance.id
+				])
 				redirect action: 'show', id: orderItemInstance.order.id
 				break
 		}
@@ -346,7 +378,7 @@ class OrderController {
 		order.openGrandTotal = order.grandTotal
 		order.receviedGrandTotal = new BigDecimal("0.0")
 		order.save(flush:true)
-		
+
 		//Create Invoice -- Start
 		def invoice = new Invoice()
 		def list = Invoice.list();
@@ -356,13 +388,13 @@ class OrderController {
 		invoice.invoiceNumber = invoiceNumber
 		invoice.contactName = order.contactName
 		invoice.status = "CREATED"
-		
+
 		invoice.relatedTo = "ORDER"
 		invoice.relatedToValue = order.orderNumber
-		
+
 		invoice.assignedTo = order.assignedTo
 		invoice.termsAndConditions = order.termsAndConditions
-		
+
 		if(order.type == 'CONTRACT') {
 			invoice.type = "SERVICE"
 			invoice.contractFromDate = order.contractFromDate
@@ -382,24 +414,24 @@ class OrderController {
 		int lineNumber = 1;
 
 		def invoiceLines = []
-		
+
 		order.orderItems?.each {
-			def invoiceLine = new InvoiceLine()			
+			def invoiceLine = new InvoiceLine()
 			invoiceLine.lineNumber = (lineNumber++)
 			invoiceLine.quantity = it.quantity
-			
+
 			invoiceLine.unitPrice = it.unitPrice
 			invoiceLine.tax = it.tax
 			invoiceLine.lineTotalAmount = it.lineTotalAmount
 			invoiceLine.discount = it.discount
 			invoiceLine.productNumber = it.productNumber
 			invoiceLine.relatedOrderNumber = it.relatedOrderNumber
-			
+
 			invoiceLines.add(invoiceLine)
 		}
-		
+
 		invoice?.invoiceLines = invoiceLines
-		
+
 		//flash.message = "Invoiced.."
 		//redirect action: 'show', id: order.id
 		chain controller:'invoice',action: 'create', model: [invoiceInstance:invoice]
@@ -408,7 +440,7 @@ class OrderController {
 	def registerPayment() {
 
 	}
-	
+
 	def ordersPendingPayment() {
 		def openOrders = Order.findAllByStatus('INVOICED',params)
 		[ordersPendingPayments:openOrders]
@@ -421,7 +453,7 @@ class OrderController {
 		orderInstance.save(flush:true)
 		redirect action: 'show', id: orderInstance.id
 	}
-	
+
 	def renewalLetterSent() {
 		switch (request.method) {
 			case 'GET':
@@ -435,44 +467,44 @@ class OrderController {
 				orderInstance.recepientContactNumber = params.recepientContactNumber
 				orderInstance.receivedDateTime = params.receivedDateTime
 				orderInstance.handedOveryBy = params.handedOveryBy
-				
+
 				orderInstance.save(flush:true)
 				flash.message = 'Renewal Letter Sent.'
 				redirect action: 'show', id: orderInstance.id
 				break
 		}
 	}
-	
+
 	def renewalWon() {
 		switch (request.method) {
 			case 'GET':
 				def orderInstance = Order.get(params.id)
-				
+
 				def fromCal = orderInstance?.contractToDate?.plus(1)
-				
+
 				def endCal = Calendar.instance
 				endCal.setTime(fromCal)
 				int d = endCal.get(Calendar.DATE)
 				int y = endCal.get(Calendar.YEAR)
-				endCal.set Calendar.DATE, d 
+				endCal.set Calendar.DATE, d
 				endCal.set Calendar.YEAR, (y+1)
-				
+
 				def newEndDate = endCal.getTime().minus(1)
-				
+
 				params.renewedContractFromDate = fromCal
 				params.renewedContractToDate = newEndDate
-				params.renewedGrandTotal = orderInstance?.grandTotal 
+				params.renewedGrandTotal = orderInstance?.grandTotal
 				[orderInstance : orderInstance]
 				break
 			case 'POST' :
 				def orderInstance = Order.get(params.id)
 				orderInstance.renewalStage = 'RENEWAL_WON'
-				
-				//Copy Order
+
+			//Copy Order
 				def list = Order.list();
 				int no = (list?list.size():0) + 1;
 				String orderNumber = "ORD" + String.format("%05d", no)
-		
+
 				def newOrder = new Order()
 				newOrder.orderNumber = orderNumber
 				newOrder.contactName = orderInstance.contactName
@@ -482,25 +514,25 @@ class OrderController {
 				newOrder.type = "SERVICE"
 				newOrder.relatedTo = "ORDER"
 				newOrder.relatedToValue = orderInstance?.orderNumber
-				
+
 				newOrder.invoicingIsFixedPrice = orderInstance.invoicingIsFixedPrice
 				newOrder.invoicingIsTimesheets = orderInstance.invoicingIsTimesheets
 				newOrder.invoicingIsExpenses = orderInstance.invoicingIsExpenses
 				newOrder.assignedTo = orderInstance.assignedTo
 				newOrder.termsAndConditions = orderInstance.termsAndConditions
-				
+
 				newOrder.totalAmount = params.renewedGrandTotal?.toBigDecimal()
 				newOrder.totalTax = orderInstance.totalTax
 				newOrder.totalDiscount = 0.0
 				newOrder.grandTotal = params.renewedGrandTotal?.toBigDecimal()
 				newOrder.referenceQuoteNumber = orderInstance.referenceQuoteNumber
-		
+
 				newOrder.organization = orderInstance.organization
-				
+
 				newOrder.save(flush:true)
-		
+
 				newOrder.orderItems = new HashSet<OrderItem>()
-		
+
 				int lineNo = 1
 				orderInstance.orderItems.each { it ->
 					def orderItem = new OrderItem()
@@ -513,17 +545,17 @@ class OrderController {
 					orderItem.productNumber= it.productNumber
 					orderItem.order = newOrder
 					orderItem.save(flush:true)
-					
+
 					lineNo++
 				}
 				newOrder.save(flush:true)
-				
+
 				flash.message = 'Renewal Won !. Renewal Service Contract Created.'
 				redirect action: 'show', id: orderInstance.id
 				break
 		}
 	}
-	
+
 	def renewalLost() {
 		switch (request.method) {
 			case 'GET':
@@ -535,12 +567,12 @@ class OrderController {
 				orderInstance.renewalStage = 'RENEWAL_LOST'
 				orderInstance.renewalLostReason = params.renewalLostReason
 				orderInstance.save(flush:true)
-				
+
 				flash.message = 'Renewal Lost !.'
 				redirect action: 'show', id: orderInstance.id
 				break
 		}
 	}
-	
+
 }
 
