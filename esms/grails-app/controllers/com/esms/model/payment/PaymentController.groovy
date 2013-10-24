@@ -3,7 +3,7 @@ package com.esms.model.payment
 import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
-import com.esms.model.invoice.Invoice;
+import com.esms.model.invoice.Invoice
 import com.esms.model.order.Order
 
 class PaymentController {
@@ -39,11 +39,19 @@ class PaymentController {
 						max ("lineNumber")
 					}
 				}
+				
+				def pendingInvoices = Invoice.withCriteria() {
+					gt("openGrandTotal",0.0)
+				}
+				
 				params.lineNumber = (maxLineNumber?maxLineNumber:0) + 1
-				[paymentItemInstance: new PaymentItem(params)]
+				[paymentItemInstance: new PaymentItem(params),pendingInvoices:pendingInvoices]
 				break
 			case 'POST':
 				def paymentItemInstance = new PaymentItem(params)
+				
+				def matchedAmount = new BigDecimal("0.0")
+				matchedAmount += paymentItemInstance.amount
 				
 				if (!paymentItemInstance.save(flush: true)) {
 					return
@@ -51,9 +59,6 @@ class PaymentController {
 				
 				def payment = paymentItemInstance.payment
 				def paymentItems = payment.paymentItems
-				
-				def matchedAmount = new BigDecimal("0.0")
-				matchedAmount += paymentItemInstance.amount
 				
 				def invoice = paymentItemInstance.invoice
 				invoice.receviedGrandTotal += paymentItemInstance.amount

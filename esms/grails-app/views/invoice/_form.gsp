@@ -1,5 +1,4 @@
 <%@ page import="com.esms.model.invoice.Invoice"%>
-
 <g:hiddenField id="organization" name="organization.id" value="${invoiceInstance?.organization?.id}"/>
 <g:hiddenField id="invoiceLinesTotal" name="invoiceLinesTotal" value="${invoiceInstance?.invoiceLines?invoiceInstance?.invoiceLines.size():0}"/>
 <g:hiddenField id="referenceOrderNumber" name="referenceOrderNumber" value="${invoiceInstance?.referenceOrderNumber}"/>
@@ -40,14 +39,13 @@
 <div class="row-fluid">
 	<div class="span6">
 		<div
-			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'expiryDate', 'error')} ">
-			<label for="expiryDate" class="control-label"><g:message
-					code="invoice.expiryDate.label" default="Expiry Date" /></label>
+			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'contractFromDate', 'error')} ">
+			<label for="contractFromDate" class="control-label"><g:message
+					code="invoice.contractFromDate.label" default="Contract From Date" /></label>
 			<div class="controls">
-				<g:datePicker precision="day" name="expiryDate"
-				value="${invoiceInstance?.expiryDate}" />
-				
-				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'expiryDate', 'error')}
+				<richui:dateChooser name="contractFromDate"
+					value="${invoiceInstance?.contractFromDate}" />
+				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'contractFromDate', 'error')}
 				</span>
 			</div>
 		</div>
@@ -55,21 +53,35 @@
 	
 	<div class="span6">
 		<div
-		class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'issueDate', 'error')} required">
-		<label for="issueDate" class="control-label"><g:message
-				code="invoice.issueDate.label" default="Issue Date" /><span
-			class="required-indicator">*</span></label>
-		<div class="controls">
-			<g:datePicker precision="day" name="issueDate"
-				value="${invoiceInstance?.issueDate}" />
-			<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'issueDate', 'error')}
-			</span>
-		</div>
+			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'contractToDate', 'error')} ">
+			<label for="contractToDate" class="control-label"><g:message
+					code="invoice.contractToDate.label" default="Contract To Date" /></label>
+			<div class="controls">
+				<richui:dateChooser name="contractToDate"
+					value="${invoiceInstance?.contractToDate}" />
+				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'contractToDate', 'error')}
+				</span>
+			</div>
 		</div>
 	</div>
-</div>	
+</div>
 
 <div class="row-fluid">
+	<div class="span6">
+		<div
+			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'issueDate', 'error')} required">
+			<label for="issueDate" class="control-label"><g:message
+					code="invoice.issueDate.label" default="Issue Date" /><span
+				class="required-indicator">*</span></label>
+			<div class="controls">
+				<richui:dateChooser name="issueDate"
+					value="${invoiceInstance?.issueDate}" />
+				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'issueDate', 'error')}
+				</span>
+			</div>
+		</div>
+	</div>
+	
 	<div class="span6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'contactName', 'error')} ">
@@ -83,20 +95,6 @@
 			</div>
 		</div>
 	</div>
-	
-	<div class="span6">
-		<%--<div
-			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'description', 'error')} ">
-			<label for="description" class="control-label"><g:message
-					code="invoice.description.label" default="Description" /></label>
-			<div class="controls">
-				<g:textField name="description"
-					value="${invoiceInstance?.description}" />
-				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'description', 'error')}
-				</span>
-			</div>
-		</div>
-	--%></div>
 </div>	
 
 <div class="row-fluid">
@@ -219,36 +217,6 @@
 			<div class="controls">
 				<g:textField name="assignedTo" value="${invoiceInstance?.assignedTo}" />
 				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'assignedTo', 'error')}
-				</span>
-			</div>
-		</div>
-	</div>
-</div>	
-
-<div class="row-fluid">
-	<div class="span6">
-		<div
-			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'contractFromDate', 'error')} ">
-			<label for="contractFromDate" class="control-label"><g:message
-					code="invoice.contractFromDate.label" default="Contract From Date" /></label>
-			<div class="controls">
-				<g:datePicker precision="day" name="contractFromDate"
-					value="${invoiceInstance?.contractFromDate}" />
-				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'contractFromDate', 'error')}
-				</span>
-			</div>
-		</div>
-	</div>
-	
-	<div class="span6">
-		<div
-			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'contractToDate', 'error')} ">
-			<label for="contractToDate" class="control-label"><g:message
-					code="invoice.contractToDate.label" default="Contract To Date" /></label>
-			<div class="controls">
-				<g:datePicker precision="day" name="contractToDate"
-					value="${invoiceInstance?.contractToDate}" />
-				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'contractToDate', 'error')}
 				</span>
 			</div>
 		</div>

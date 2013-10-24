@@ -39,7 +39,7 @@
 			code="quote.receivedDateTime.label" default="Received DateTime" />
 	</label>		
 	<div class="controls">
-		<g:datePicker name="receivedDateTime" value="${quoteInstance?.receivedDateTime}"/>
+		<richui:dateChooser name="receivedDateTime" value="${quoteInstance?.receivedDateTime}"/>
 		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'receivedDateTime', 'error')}
 		</span>
 	</div>

@@ -10,7 +10,7 @@
 	<label for="contractFromDate" class="control-label"><g:message
 			code="quote.contractFromDate.label" default="Contract Starts" />
 	<div class="controls" style="width:100%;">
-		<g:datePicker name="contractFromDate" value="${quoteInstance?.contractFromDate}" precision="day"/>
+		<richui:dateChooser name="contractFromDate" value="${quoteInstance?.contractFromDate}"/>
 		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'contractFromDate', 'error')}
 		</span>
 	</div>
@@ -21,7 +21,7 @@
 	<label for="contractToDate" class="control-label"><g:message 
 			code="quote.contractToDate.label" default="Contract Ends" />
 	<div class="controls" style="width:100%;">
-		<g:datePicker name="contractToDate" value="${quoteInstance?.contractToDate}" precision="day"/>
+		<richui:dateChooser name="contractToDate" value="${quoteInstance?.contractToDate}"/>
 		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'contractToDate', 'error')}
 		</span>
 	</div>

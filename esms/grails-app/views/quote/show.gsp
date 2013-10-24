@@ -85,6 +85,11 @@
 							Confirm Sale
 						</a>
 					</g:elseif>
+					<g:link action="markAsDisqualified" controller="quote"
+								id="${quoteInstance?.id}" class="btn btn-warning">
+						<i class="icon-trash icon-white"></i>
+						Mark as Disqualified
+					</g:link>
 				</div>
 			</g:form>
 

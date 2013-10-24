@@ -38,6 +38,9 @@ class DashboardController {
 		def recentPayments = Payment.listOrderByPaymentNumber(max: 5, offset: 0, order: "desc")
 		def openPayments = Payment.findAllByPaymentMethodAndClearanceDateIsNull("CHEQUE",params)
 		
+		def recentRepairsModernizationAndInstallationQuotes = Quote.findAllByStatusInListAndTypeInList(
+			['DRAFT','PENDING','REVISE','ACCEPT'],['REPAIR','MODERNIZATION','INSTALLATION'],params)
+		
 		def nowCal = Calendar.instance
 		Date nowDate = nowCal.time
 		
@@ -57,7 +60,7 @@ class DashboardController {
 		}
 		
 		
-		def years = [y,y+1,y+2,y+3,y+4,y+5]
+		def years = [y,y+1,y+2,y+3,y+4,y+5,y+6,y+7,y+8,y+9,y+10]
 		
 		nowCal.set Calendar.DATE, 1
 		nowCal.set Calendar.MONTH, (m+1)
@@ -92,7 +95,7 @@ class DashboardController {
 			}
 		}
 		
-		def model = [recentLeads : recentLeads,recentCustomers:recentCustomers,recentQuotes:recentQuotes,recentOrders:recentOrders,recentDocuments:recentDocuments,recentPayments:recentPayments,upcomingEvents:upcomingEvents,overdueEvents:overdueEvents,ordersPendingPayments:ordersPendingPayments,openPayments:openPayments,upcomingRenewals : upcomingRenewals,openInvoices:openInvoices,filteredMonthMap:monthMap,years:years,upcomingTasks:upcomingTasks]
+		def model = [recentLeads : recentLeads,recentCustomers:recentCustomers,recentQuotes:recentQuotes,recentOrders:recentOrders,recentDocuments:recentDocuments,recentPayments:recentPayments,upcomingEvents:upcomingEvents,overdueEvents:overdueEvents,ordersPendingPayments:ordersPendingPayments,openPayments:openPayments,upcomingRenewals : upcomingRenewals,openInvoices:openInvoices,filteredMonthMap:monthMap,years:years,upcomingTasks:upcomingTasks,recentRepairsModernizationAndInstallationQuotes:recentRepairsModernizationAndInstallationQuotes]
 		render (view:"/dashboard/dashboard",model:model)		
 	}
 	

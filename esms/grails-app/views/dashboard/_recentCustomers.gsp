@@ -15,9 +15,6 @@
 				${message(code: 'organization.name.label', default: 'Name')}
 			</th>	
 			<th>
-				${message(code: 'address.buildingName.label', default: 'Building Name')} 
-			</th>
-			<th>
 				Contact 
 			</th>	
 			<th>
@@ -36,9 +33,6 @@
 				</td>
 				<td>
 					${fieldValue(bean: organization, field: "name")}
-				</td>
-				<td>
-					${addressInstance?.buildingName}
 				</td>
 				<td>
 					<%

@@ -395,15 +395,10 @@ class OrderController {
 		invoice.assignedTo = order.assignedTo
 		invoice.termsAndConditions = order.termsAndConditions
 
-		if(order.type == 'CONTRACT') {
-			invoice.type = "SERVICE"
-			invoice.contractFromDate = order.contractFromDate
-			invoice.contractToDate = order.contractToDate
-		} else {
-			invoice.type = order.type
-			invoice.relatedTo = "CONTRACT"
-		}
-
+		invoice.contractFromDate = order.contractFromDate
+		invoice.contractToDate = order.contractToDate
+		invoice.type = order.type
+		
 		invoice.totalAmount = order.totalAmount
 		invoice.totalTax = order.totalTax
 		invoice.totalDiscount = order.totalDiscount

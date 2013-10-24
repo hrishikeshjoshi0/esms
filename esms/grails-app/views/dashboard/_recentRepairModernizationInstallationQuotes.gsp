@@ -2,7 +2,7 @@
 
 <div class="page-header">
 	<h1>
-		Top Active Quotes
+		Recent Repair,Modernization & Installation Quotes
 	</h1>
 </div>
 
@@ -31,7 +31,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${recentQuotes}" var="quoteInstance">
+		<g:each in="${recentRepairsModernizationAndInstallationQuotes}" var="quoteInstance">
 			<tr>
 				<td>
 					${fieldValue(bean: quoteInstance, field: "quoteName")}
@@ -55,7 +55,8 @@
 				</td>
 				
 				<td class="link"><g:link action="markAsDisqualified" controller="quote"	id="${quoteInstance?.id}" >
-						<i class="icon-trash"></i>Disqualify
+						<i class="icon-trash"></i>
+						Disqualify
 					</g:link>
 				</td>
 

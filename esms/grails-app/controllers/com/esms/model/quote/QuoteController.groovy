@@ -500,4 +500,22 @@ class QuoteController {
 			redirect controller:'quote' , action: 'show', params:[id:quote.id]
 		}
 	}
+	
+	def markAsDisqualified = {
+		switch (request.method) {
+			case 'GET':
+				def quoteInstance = Quote.get(params.id)
+				[quoteInstance : quoteInstance]
+				break
+			case 'POST' :
+				def quoteInstance = Quote.get(params.id)
+				quoteInstance.status = 'DISQUALIFIED'
+				quoteInstance.markAsDisqualified = params.markAsDisqualified
+				quoteInstance.save(flush:true)
+
+				flash.message = 'Marked as Disqualified.'
+				redirect action: 'show', id: quoteInstance.id
+				break
+		}
+	}
 }

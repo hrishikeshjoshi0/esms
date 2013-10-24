@@ -21,8 +21,9 @@
 			code="paymentItem.order.label" default="Order" /><span
 		class="required-indicator">*</span></label>
 	<div class="controls">
-		<g:select name="invoice.id" from="${Invoice.findAllStatusNotEqual('CLOSED')}" optionKey="id" class="large"
-			optionValue="${{it.invoiceNumber + ' - ' + ' : ' + it.organization?.name + '(Open Amount :' + it.openGrandTotal + ')' }}" />
+		<g:select name="invoice.id" from="${pendingInvoices}" optionKey="id" class="large"
+			optionValue="${{it.invoiceNumber + ' - ' + ' : ' + it.organization?.name + '(Open Amount :' + it.openGrandTotal + ')' }}" 
+			/>
 		<span class="help-inline"> ${hasErrors(bean: paymentItemInstance, field: 'order', 'error')}
 		</span>
 	</div>

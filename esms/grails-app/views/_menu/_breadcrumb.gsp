@@ -49,6 +49,15 @@
 			</li>
 			<li>></li>
 		</g:elseif>
+		<g:elseif test="${params.controller == 'invoice' && invoiceInstance}">
+			<li>
+				<i class="icon-user"></i>
+				<g:link controller="organization" action="show"  id="${invoiceInstance?.organization?.id}">
+					${invoiceInstance?.organization?.name?.toUpperCase()}
+				</g:link>
+			</li>
+			<li>></li>
+		</g:elseif>
 		<g:elseif test="${params.controller == 'lead' && organizationInstance}">
 			<li>
 				<i class="icon-user"></i>

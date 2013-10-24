@@ -8,7 +8,7 @@
 	</div>
 	<g:form controller="quote" action="markAsAccepted" method="POST">
 		<g:hiddenField name="id" value="${quoteInstance?.id}" />
-		<div class="modal-body" style="width:500px;">
+		<div class="modal-body" style="width:600px;height:400px;">
 			Loading...
 		</div>
 		<div class="modal-footer">
