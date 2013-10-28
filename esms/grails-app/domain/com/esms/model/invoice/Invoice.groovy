@@ -28,6 +28,8 @@ class Invoice {
 	BigDecimal openGrandTotal = new BigDecimal("0.0")
 	BigDecimal receviedGrandTotal = new BigDecimal("0.0")
 	
+	BigDecimal adjustment = new BigDecimal("0.0")
+	
 	String relatedTo
 	String relatedToValue
 	 
@@ -55,6 +57,8 @@ class Invoice {
 		contractToDate nullable:true,blank:true
 		assignedTo nullable:true,blank:true
 		termsAndConditions nullable:true,blank:true,length:255
+		
+		adjustment nullable:true,blank:true
     }
 	
 	static mapping = {

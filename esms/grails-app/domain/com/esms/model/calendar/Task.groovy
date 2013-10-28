@@ -25,9 +25,8 @@ class Task {
 		relatedToValue(nullable: true)
 		dateTime(required: false, nullable: true)
 		dueDateTime(required: false, nullable: true)
-		relatedTo InList : ['QUOTE','ORDER','INVOICE','PAYMENT','CONTACT','ORGANIZATION','OTHER']
 		status InList : ['NOT_STARTED','IN_PROGRESS','PENDING_INPUT','DEFERRED','PLANNED','COMPLETED']
 		priority InList : ['LOW','MEDIUM','HIGH']
-		relatedTo InLIst : ['ORGANIZATION','INCIDENT','INVOICE','QUOTE','ORDER','CONTACT','PAYMENT','EMPLOYEE']
+		relatedTo InLIst : ['ORGANIZATION','INCIDENT','INVOICE','QUOTE','ORDER','CONTACT','PAYMENT','EMPLOYEE','INVOICE','ORGANIZATION','OTHER']
     }
 }

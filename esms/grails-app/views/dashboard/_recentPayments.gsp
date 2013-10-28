@@ -12,7 +12,7 @@
 			</th>	
 
 			<th>
-				${message(code: 'paymentItem.orderNumber.label', default: 'Order Number')}
+				${message(code: 'paymentItem.invoiceNumber.label', default: 'Invoice Number')}
 			</th>	
 
 			<th>
@@ -44,11 +44,11 @@
 					</td>
 
 					<td>
-						${paymentItemInstance?.order?.orderNumber}
+						${paymentItemInstance?.invoice?.invoiceNumber}
 					</td>
 
 					<td>
-						${paymentItemInstance?.order?.organization?.name}
+						${paymentItemInstance?.invoice?.organization?.name}
 					</td>
 
 					<td>

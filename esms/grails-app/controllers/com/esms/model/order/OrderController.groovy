@@ -105,6 +105,7 @@ class OrderController {
 		order.totalAmount = quote.totalAmount
 		order.totalTax = quote.totalTax
 		order.totalDiscount = quote.totalDiscount
+		order.adjustment = quote.adjustment
 		order.grandTotal = quote.grandTotal
 		order.referenceQuoteNumber = quote.quoteNumber
 
@@ -184,8 +185,17 @@ class OrderController {
 			redirect action: 'list'
 			return
 		}
+		
+		def productName 
+		
+		orderInstance?.orderItems?.each {
+			def p = Product.findByProductNumber(it.productNumber)
+			if(p.productType == 'SERVICE') {
+				productName = p.productName
+			}
+		}
 
-		[orderInstance: orderInstance]
+		[orderInstance: orderInstance,contractName:productName]
 	}
 
 	def edit() {
@@ -399,10 +409,11 @@ class OrderController {
 		invoice.contractToDate = order.contractToDate
 		invoice.type = order.type
 		
-		invoice.totalAmount = order.totalAmount
-		invoice.totalTax = order.totalTax
-		invoice.totalDiscount = order.totalDiscount
-		invoice.grandTotal = order.grandTotal
+		invoice.totalAmount = order.totalAmount + order.totalTax - order.totalDiscount - order.adjustment //Doesnt include negotitation discount,
+		invoice.totalTax = 0.0
+		invoice.totalDiscount = 0.0
+		invoice.adjustment = 0.0
+		invoice.grandTotal = invoice.totalAmount
 		invoice.referenceOrderNumber = order.orderNumber
 
 		invoice.organization = order.organization
@@ -421,7 +432,9 @@ class OrderController {
 			invoiceLine.discount = it.discount
 			invoiceLine.productNumber = it.productNumber
 			invoiceLine.relatedOrderNumber = it.relatedOrderNumber
-
+			invoiceLine.percentageInvoiced = 100.0
+			invoiceLine.amountInvoiced = invoiceLine.lineTotalAmount
+			
 			invoiceLines.add(invoiceLine)
 		}
 
@@ -429,7 +442,7 @@ class OrderController {
 
 		//flash.message = "Invoiced.."
 		//redirect action: 'show', id: order.id
-		chain controller:'invoice',action: 'create', model: [invoiceInstance:invoice]
+		chain controller:'invoice',action: 'create', model: [invoiceInstance:invoice,order:order]
 	}
 
 	def registerPayment() {
@@ -489,13 +502,26 @@ class OrderController {
 				params.renewedContractFromDate = fromCal
 				params.renewedContractToDate = newEndDate
 				params.renewedGrandTotal = orderInstance?.grandTotal
-				[orderInstance : orderInstance]
+				
+				
+				params.tax = 0.0
+				params.discount= 0.0
+				
+				//
+				def serviceListItemsMap = [:]
+				if(orderInstance.type == 'SERVICE') {
+					def serviceItems = Product.findAllByProductType('SERVICE')
+					serviceItems?.each {
+						serviceListItemsMap.put(it.productNumber, it.productName)
+					}
+				}
+				[orderInstance : orderInstance,serviceListItemsMap:serviceListItemsMap]
 				break
 			case 'POST' :
 				def orderInstance = Order.get(params.id)
 				orderInstance.renewalStage = 'RENEWAL_WON'
 
-			//Copy Order
+				//Copy Order
 				def list = Order.list();
 				int no = (list?list.size():0) + 1;
 				String orderNumber = "ORD" + String.format("%05d", no)
@@ -516,9 +542,9 @@ class OrderController {
 				newOrder.assignedTo = orderInstance.assignedTo
 				newOrder.termsAndConditions = orderInstance.termsAndConditions
 
-				newOrder.totalAmount = params.renewedGrandTotal?.toBigDecimal()
-				newOrder.totalTax = orderInstance.totalTax
-				newOrder.totalDiscount = 0.0
+				newOrder.totalAmount = params.unitPrice?.toBigDecimal()
+				newOrder.totalTax = params.tax?.toBigDecimal()
+				newOrder.totalDiscount = params.discount?.toBigDecimal()
 				newOrder.grandTotal = params.renewedGrandTotal?.toBigDecimal()
 				newOrder.referenceQuoteNumber = orderInstance.referenceQuoteNumber
 
@@ -529,20 +555,18 @@ class OrderController {
 				newOrder.orderItems = new HashSet<OrderItem>()
 
 				int lineNo = 1
-				orderInstance.orderItems.each { it ->
-					def orderItem = new OrderItem()
-					orderItem.lineNumber = lineNo
-					orderItem.quantity = it.quantity
-					orderItem.unitPrice = it.unitPrice
-					orderItem.tax = it.tax
-					orderItem.lineTotalAmount = it.lineTotalAmount
-					orderItem.discount = it.discount
-					orderItem.productNumber= it.productNumber
-					orderItem.order = newOrder
-					orderItem.save(flush:true)
-
-					lineNo++
-				}
+				def orderItem = new OrderItem()
+				orderItem.lineNumber = lineNo
+				orderItem.quantity = 1.0
+				orderItem.unitPrice = params.unitPrice?.toBigDecimal()
+				orderItem.tax = params.tax?.toBigDecimal()
+				orderItem.lineTotalAmount = params.renewedGrandTotal?.toBigDecimal()
+				orderItem.discount = params.discount?.toBigDecimal()
+				orderItem.productNumber= params.selectedService
+				orderItem.order = newOrder
+				orderItem.save(flush:true)
+				lineNo++
+				
 				newOrder.save(flush:true)
 
 				flash.message = 'Renewal Won !. Renewal Service Contract Created.'
@@ -562,8 +586,12 @@ class OrderController {
 				orderInstance.renewalStage = 'RENEWAL_LOST'
 				orderInstance.renewalLostReason = params.renewalLostReason
 				orderInstance.save(flush:true)
-
-				flash.message = 'Renewal Lost !.'
+				
+				def organization = orderInstance?.organization
+				organization.salesStatus = "LOST_IN_RENEWAL"
+				organization.save(flush:true)
+				
+				flash.message = 'Renewal Lost !. Organization ' + organization.name + ' marked as lost in renewal.'
 				redirect action: 'show', id: orderInstance.id
 				break
 		}

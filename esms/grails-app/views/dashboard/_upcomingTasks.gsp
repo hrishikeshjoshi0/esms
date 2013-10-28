@@ -1,3 +1,4 @@
+<%@page import="com.esms.model.party.Organization"%>
 <script>
 	function updateTasks() {
 		$('#upcomingTasks').html('');
@@ -37,6 +38,10 @@
 			<th>
 				${message(code: 'task.dueDateTime.label', default: 'Due Date')}
 			</th>
+			
+			<th>
+				${message(code: 'task.relatedToValue.label', default: 'Organization')}
+			</th>
 
 			<th>
 				${message(code: 'task.status.label', default: 'Status')}
@@ -44,10 +49,6 @@
 
 			<th>
 				${message(code: 'task.priority.label', default: 'Priority')}
-			</th>
-
-			<th>
-				${message(code: 'task.assignedTo.label', default: 'Assigned To')}
 			</th>
 
 			<th>
@@ -72,6 +73,16 @@
 				<td>
 					${fieldValue(bean: taskInstance, field: "dueDateTime")}
 				</td>
+				
+				<td>
+					<%
+						def o
+						if(taskInstance.relatedToValue?.startsWith('ORG')) {
+							o = Organization.findByExternalId(taskInstance.relatedToValue)
+							println o?.name
+						}
+					 %>
+				</td>
 
 				<td>
 					${fieldValue(bean: taskInstance, field: "status")}
@@ -79,10 +90,6 @@
 
 				<td>
 					${fieldValue(bean: taskInstance, field: "priority")}
-				</td>
-
-				<td>
-					${fieldValue(bean: taskInstance, field: "assignedTo")}
 				</td>
 
 				<td>

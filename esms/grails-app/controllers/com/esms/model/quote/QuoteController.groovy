@@ -282,9 +282,10 @@ class QuoteController {
 		quoteInstance.negotiatedGrandTotal = params.negotiatedGrandTotal?.toBigDecimal()
 		
 		def diff = quoteInstance.quotedGrandTotal - quoteInstance.negotiatedGrandTotal
-		quoteInstance.totalDiscount = diff
+		quoteInstance.adjustment = diff
 		
 		quoteInstance.grandTotal = quoteInstance.negotiatedGrandTotal
+		
 		//'CONVERTED_TO_SERVICE_CONTRACT','CONVERTED_TO_REPAIR_SALES_ORDER'
 		if(quoteInstance.type == 'CONTRACT') {
 			quoteInstance.status = 'CONVERTED_TO_SERVICE_CONTRACT'

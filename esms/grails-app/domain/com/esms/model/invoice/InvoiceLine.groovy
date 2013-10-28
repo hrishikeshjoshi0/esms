@@ -1,6 +1,5 @@
 package com.esms.model.invoice
 
-
 class InvoiceLine {
 
     int lineNumber
@@ -13,6 +12,9 @@ class InvoiceLine {
 	
 	String relatedOrderNumber
 	
+	BigDecimal percentageInvoiced = 0.0
+	BigDecimal amountInvoiced = 0.0
+	
 	static belongsTo = [invoice:Invoice]
 
     static constraints = {
@@ -24,6 +26,8 @@ class InvoiceLine {
 		discount nullable:false
 		productNumber nullable:false
 		relatedOrderNumber nullable:true
+		percentageInvoiced nullable:true
+		amountInvoiced nullable:true
     }
 	
 	static mapping = {

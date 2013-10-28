@@ -24,6 +24,24 @@
 						id="${orderInstance?.organization?.id}">
 						${orderInstance?.organization?.name}
 					</g:link>
+					<g:if test="${orderInstance?.type == 'SERVICE'}">
+						|
+						CONTRACT PERIOD :
+						<g:formatDate date="${orderInstance?.contractFromDate}" format="dd.MM.yyyy"/>
+						-
+						<g:formatDate date="${orderInstance?.contractToDate}" format="dd.MM.yyyy"/>
+					</g:if>
+					<g:if test="${orderInstance?.type == 'SERVICE'}">
+						|
+						CONTRACT :
+						${contractName}
+					</g:if>
+					<g:elseif test="${orderInstance?.type == 'REPAIR'}">
+						|
+						REPAIR
+					</g:elseif>
+					
+					
 					<g:if test="${orderInstance?.taggedForRenewal == true}">
 						<g:if
 							test="${orderInstance?.renewalStage == 'RENEWAL_LETTER_SENT'}">
@@ -268,6 +286,15 @@
 
 						<dd>
 							<g:fieldValue bean="${orderInstance}" field="totalDiscount" />
+						</dd>
+						
+						<dt>
+							<g:message code="order.adjustment.label"
+								default="Adjustment" />
+						</dt>
+
+						<dd>
+							<g:fieldValue bean="${orderInstance}" field="adjustment" />
 						</dd>
 
 

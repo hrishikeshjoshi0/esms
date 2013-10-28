@@ -8,7 +8,7 @@
 	</div>
 	<g:form controller="order" action="renewalLetterSent" method="POST" style="width:400px;">
 		<g:hiddenField name="id" value="${orderInstance?.id}" />
-		<div class="modal-body" style="width:500px;">
+		<div class="modal-body" style="width:600px;height:500px;">
 			Loading...
 		</div>
 		<div class="modal-footer">

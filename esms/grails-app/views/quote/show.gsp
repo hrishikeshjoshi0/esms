@@ -234,6 +234,15 @@
 						<dd>
 							<g:fieldValue bean="${quoteInstance}" field="grandTotal" />
 						</dd>
+						
+						<dt>
+							<g:message code="quote.adjustment.label"
+								default="Adjustment" />
+						</dt>
+
+						<dd>
+							<g:fieldValue bean="${quoteInstance}" field="adjustment" />
+						</dd>
 					</dl>
 				</div>
 			</div>

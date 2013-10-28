@@ -2,7 +2,8 @@ package com.esms.model.invoice
 
 import org.springframework.dao.DataIntegrityViolationException
 
-import com.esms.model.order.Order;
+import com.esms.model.calendar.Task
+import com.esms.model.order.Order
 
 class InvoiceController {
 
@@ -21,12 +22,14 @@ class InvoiceController {
 		switch (request.method) {
 		case 'GET':
 			def invoiceInstance
+			def order
 			if(!chainModel.invoiceInstance) {
 				invoiceInstance = new Invoice(params)
 			} else {
 				invoiceInstance = chainModel.invoiceInstance
+				order = chainModel.order
 			}
-        	[invoiceInstance: invoiceInstance]
+        	[invoiceInstance: invoiceInstance,order:order]
 			break
 		case 'POST':
 	        def invoiceInstance = new Invoice(params)
@@ -52,21 +55,23 @@ class InvoiceController {
 			def tax = new BigDecimal("0.0")
 			def discount = new BigDecimal("0.0")
 			def lineTotalAmount = new BigDecimal("0.0")
-
+			def amountInvoiced = new BigDecimal("0.0")
+			
 			invoiceInstance?.invoiceLines?.each { it ->
 				unitPrice += it.unitPrice
 				tax +=  it.tax
 				discount +=  it.discount
 				lineTotalAmount +=  it.lineTotalAmount
+				amountInvoiced += it.amountInvoiced
 			}
 
 			BigDecimal totalDiscount = new BigDecimal("0.0")
 			BigDecimal grandTotal = new BigDecimal("0.0")
 
-			invoiceInstance.totalAmount = unitPrice
+			invoiceInstance.totalAmount = amountInvoiced
 			invoiceInstance.totalTax = tax
 			invoiceInstance.totalDiscount = discount
-			invoiceInstance.grandTotal = lineTotalAmount
+			invoiceInstance.grandTotal = amountInvoiced - invoiceInstance.adjustment
 			invoiceInstance.save(flush:true)
 			
 			invoiceInstance.openGrandTotal = invoiceInstance.grandTotal
@@ -78,8 +83,33 @@ class InvoiceController {
 			def order = Order.findByOrderNumber(params.referenceOrderNumber)
 			if(order) {
 				order.invoicedGrandTotal += invoiceInstance.grandTotal
-				order.pendingInvoiceGrandTotal -= invoiceInstance.grandTotal 
+				order.pendingInvoiceGrandTotal -= invoiceInstance.grandTotal
 				order.save(flush:true)
+				
+				//
+				invoiceInstance?.invoiceLines?.each { iit ->
+					order.orderItems?.each { oit ->
+						if(oit.productNumber == iit.productNumber) {
+							oit.percentageInvoiced = iit.percentageInvoiced
+							oit.amountInvoiced = oit.amountInvoiced
+							oit.save(flush:true)
+						}
+					}
+				}
+			}
+			
+			//Raise Task
+			if(invoiceInstance.expiryDate) {
+				def taskInstance = new Task()
+				taskInstance.taskName = 'REMINDER TASK FOR INVOICE: ' + invoiceInstance.invoiceNumber
+				taskInstance.dateTime = invoiceInstance.expiryDate
+				taskInstance.dueDateTime = invoiceInstance.expiryDate
+				taskInstance.relatedTo = 'INVOICE'
+				taskInstance.relatedToValue = invoiceInstance.invoiceNumber
+				taskInstance.status = 'NOT_STARTED'
+				taskInstance.priority = 'MEDIUM'
+				taskInstance.notification = true
+				taskInstance.save(flush:true)
 			}
 
 			flash.message = "New Invoice Created."

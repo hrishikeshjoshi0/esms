@@ -11,16 +11,16 @@
 	<thead>
 		<tr>
 			<th>
-				${message(code: 'organization.externalId.label', default: 'External Id')}
-			</th>	
-			<th>
 				${message(code: 'organization.name.label', default: 'Name')}
 			</th>
 			<th>
-				Contact
-			</th>	
+				Type of Enquiry
+			</th>
 			<th>
-				${message(code: 'organization.assignedTo.label', default: 'Assigned To')}
+				Contact Person
+			</th>
+			<th>
+				Contact Number
 			</th>	
 			<th>
 				Disqualify
@@ -34,10 +34,10 @@
 				value="${Address.findByAddressTypeAndParty('BILLING',organization) }" />
 			<tr>
 				<td>
-					${fieldValue(bean: organization, field: "externalId")}
+					${fieldValue(bean: organization, field: "name")}
 				</td>
 				<td>
-					${fieldValue(bean: organization, field: "name")}
+					${organization?.liftInfo?.typeOfEnquiry}
 				</td>
 				<td>
 					<%
@@ -48,7 +48,12 @@
 					 %>
 				</td>
 				<td>
-					${fieldValue(bean: organization, field: "assignedTo")}
+					<%
+						if(!organization?.contacts?.isEmpty()) {
+							def contact = organization?.contacts.first()
+							println contact?.phoneBooks?.first()?.mobilePhone
+						}
+					 %>
 				</td>
 				<td class="link"><g:link controller="lead" action="disqualifyLead"
 						id="${organization?.id}" class=" ">

@@ -84,6 +84,23 @@
 	
 	<div class="span6">
 		<div
+			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'expiryDate', 'error')} required">
+			<label for="expiryDate" class="control-label"><g:message
+					code="invoice.expiryDate.label" default="Expiry Date" /><span
+				class="required-indicator">*</span></label>
+			<div class="controls">
+				<richui:dateChooser name="expiryDate"
+					value="${invoiceInstance?.expiryDate}" />
+				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'expiryDate', 'error')}
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row-fluid">
+	<div class="span6">
+		<div
 			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'contactName', 'error')} ">
 			<label for="contactName" class="control-label"><g:message
 					code="invoice.contactName.label" default="Contact Name" /></label>
@@ -95,71 +112,10 @@
 			</div>
 		</div>
 	</div>
-</div>	
-
-<div class="row-fluid">
-	<div class="span6">
-		<div
-			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'totalAmount', 'error')} required">
-			<label for="totalAmount" class="control-label"><g:message
-					code="invoice.totalAmount.label" default="Total Amount" /><span
-				class="required-indicator">*</span></label>
-			<div class="controls">
-				<g:field type="number" name="totalAmount" step="any" required=""
-					value="${invoiceInstance.totalAmount}" />
-				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'totalAmount', 'error')}
-				</span>
-			</div>
-		</div>
-	</div>
 	
 	<div class="span6">
-		<div
-			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'totalTax', 'error')} required">
-			<label for="totalTax" class="control-label"><g:message
-					code="invoice.totalTax.label" default="Total Tax" /><span
-				class="required-indicator">*</span></label>
-			<div class="controls">
-				<g:field type="number" name="totalTax" step="any" required=""
-					value="${invoiceInstance.totalTax}" />
-				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'totalTax', 'error')}
-				</span>
-			</div>
-		</div>
 	</div>
-</div>	
-
-<div class="row-fluid">
-	<div class="span6">
-		<div
-			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'totalDiscount', 'error')} required">
-			<label for="totalDiscount" class="control-label"><g:message
-					code="invoice.totalDiscount.label" default="Total Discount" /><span
-				class="required-indicator">*</span></label>
-			<div class="controls">
-				<g:field type="number" name="totalDiscount" step="any" required=""
-					value="${invoiceInstance.totalDiscount}" />
-				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'totalDiscount', 'error')}
-				</span>
-			</div>
-		</div>
-	</div>
-	
-	<div class="span6">
-		<div
-			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'grandTotal', 'error')} required">
-			<label for="grandTotal" class="control-label"><g:message
-					code="invoice.grandTotal.label" default="Grand Total" /><span
-				class="required-indicator">*</span></label>
-			<div class="controls">
-				<g:field type="number" name="grandTotal" step="any" required=""
-					value="${invoiceInstance.grandTotal}" />
-				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'grandTotal', 'error')}
-				</span>
-			</div>
-		</div>
-	</div>
-</div>	
+</div>		
 
 <div class="row-fluid">
 	<div class="span6">
@@ -253,6 +209,141 @@
 				</span>
 			</div>
 		</div>
+	</div>
+</div>
+
+<!-- Totals -->
+<div class="row-fluid">
+	<div class="span12">
+		<div class="page-header">
+			<h1>
+				Invoice Total
+			</h1>
+		</div>
+	</div>
+</div>	
+
+<div class="row-fluid">
+	<div class="span6">
+		<h3>Original Order Details</h3>
+		<div
+			class="control-group fieldcontain ${hasErrors(bean: order, field: 'totalAmount', 'error')} required">
+			<label for="totalAmount" class="control-label"><g:message
+					code="order.totalAmount.label" default="Total Amount" /><span
+				class="required-indicator">*</span></label>
+			<div class="controls">
+				<g:field id="totalAmountOld" readonly="readonly" type="number" name="totalAmount" step="any" required=""
+					class="input-medium"
+					value="${order.totalAmount}" />
+				<span class="help-inline"> ${hasErrors(bean: order, field: 'totalAmount', 'error')}
+				</span>
+			</div>
+		</div>
+		
+		<div
+			class="control-group fieldcontain ${hasErrors(bean: order, field: 'totalTax', 'error')} required">
+			<label for="totalTax" class="control-label"><g:message
+					code="order.totalAmount.label" default="Total Tax" /><span
+				class="required-indicator">*</span></label>
+			<div class="controls">
+				<g:field id="totalTaxOld" readonly="readonly" type="number" name="totalTax" step="any" required=""
+					class="input-medium"
+					value="${order.totalTax}" />
+				<span class="help-inline"> ${hasErrors(bean: order, field: 'totalTax', 'error')}
+				</span>
+			</div>
+		</div>
+		
+		<div
+			class="control-group fieldcontain ${hasErrors(bean: order, field: 'totalDiscount', 'error')} required">
+			<label for="totalTax" class="control-label"><g:message
+					code="order.totalDiscount.label" default="Total Tax" /><span
+				class="required-indicator">*</span></label>
+			<div class="controls">
+				<g:field id="totalDiscountOld" readonly="readonly" type="number" name="totalDiscount" step="any" required=""
+					class="input-medium"
+					value="${order.totalDiscount}" />
+				<span class="help-inline"> ${hasErrors(bean: order, field: 'totalDiscount', 'error')}
+				</span>
+			</div>
+		</div>
+			
+		<div
+			class="control-group fieldcontain">
+			<label for="negotiationDiscount" class="control-label"><g:message
+					code="invoice.totalDiscount.label" default="Deductions in Negotiations" /></label>
+			<div class="controls">
+				<g:field id="adjustmentOld" readonly="readonly" type="number" name="negotiationDiscount" step="any" required=""
+					class="input-medium" value="${order.adjustment}" />
+				</div>
+		</div>
+		
+		<div
+			class="control-group fieldcontain ${hasErrors(bean: order, field: 'grandTotal', 'error')} required">
+			<label for="grandTotal" class="control-label"><g:message
+					code="order.grandTotal.label" default="Grand Total Amount" /><span
+				class="required-indicator">*</span></label>
+			<div class="controls">
+				<g:field id="grandTotalOld" readonly="readonly" type="number" name="grandTotal" step="any" required=""
+					class="input-medium"
+					value="${order.grandTotal}" />
+				<span class="help-inline"> ${hasErrors(bean: order, field: 'grandTotal', 'error')}
+				</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="span6">
+		<h3>Modified Order Details</h3>
+		<div
+			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'totalAmount', 'error')} required">
+			<label for="totalAmount" class="control-label"><g:message
+					code="invoiceInstance.totalAmount.label" default="Total Amount" /><span
+				class="required-indicator">*</span></label>
+			<div class="controls">
+				<g:field readonly="readonly" type="number" name="totalAmount" step="any" required=""
+					class="input-medium"
+					value="${invoiceInstance.totalAmount}" />
+				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'totalAmount', 'error')}
+				</span>
+			</div>
+		</div>
+		
+		<div
+			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'adjustment', 'error')} required">
+			<label for="adjustment" class="control-label"><g:message
+					code="invoice.adjustment.label" default="Adjustment" /><span
+				class="required-indicator">*</span></label>
+			<div class="controls">
+				<g:field id="adjustment" type="number" name="adjustment" step="any" required="" class="calc"
+					class="input-medium" value="${invoiceInstance.adjustment}" />
+				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'adjustment', 'error')}
+				</span>
+			</div>
+		</div>
+		
+		<div
+			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'grandTotal', 'error')} required">
+			<label for="grandTotal" class="control-label"><g:message
+					code="invoice.grandTotal.label" default="Grand Total" /><span
+				class="required-indicator">*</span></label>
+			<div class="controls">
+				<g:field readonly="readonly" type="number" name="grandTotal" step="any" required=""
+					class="input-medium" value="${invoiceInstance.grandTotal}" />
+				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'grandTotal', 'error')}
+				</span>
+			</div>
+		</div>
+	</div>
+</div>	
+
+<div class="row-fluid">
+	<div class="span4">
+		
+	</div>
+	
+	<div class="span4">
+		
 	</div>
 </div>
 

@@ -42,7 +42,7 @@
 						<div class="form-actions">
 							<button type="submit" class="btn btn-primary">
 								<i class="icon-ok icon-white"></i>
-								<g:message code="default.button.saveAndAddLineItem.label" default="Save & Add Line Item" />
+								<g:message code="default.button.create.label" default="Create" />
 							</button>
 						</div>
 					</fieldset>

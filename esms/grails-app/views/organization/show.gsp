@@ -178,11 +178,11 @@
 					</richui:tabContent>
 
 					<richui:tabContent>
-						<g:render template="paymentList" />
-					</richui:tabContent>
-
-					<richui:tabContent>
 						<g:render template="invoiceList" />
+					</richui:tabContent>
+					
+					<richui:tabContent>
+						<g:render template="paymentList" />
 					</richui:tabContent>
 
 					<richui:tabContent>

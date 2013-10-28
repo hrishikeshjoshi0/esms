@@ -9,10 +9,17 @@
 	value="${message(code: 'organization.label', default: 'Leads')}" />
 <resource:tabView />
 <title>Venus CRM</title>
+<style type="text/css"><%--
+	.dashboard-widget {
+		height: 350px;
+		overflow: auto;
+		overflow-y: auto;
+	}
+--%></style>
 </head>
 <body>
 	<div class="row-fluid">
-		<div class="span12">
+		<div class="span12 dashboard-widget">
 			<div class="page-header">
 				<h1>Upcoming Renewals And Tasks (for the next 10 Years)</h1>
 			</div>
@@ -39,13 +46,13 @@
 	<hr />
 
 	<div class="row-fluid">
-		<div class="span6">
+		<div class="span6 dashboard-widget">
 			<div id="recentLeadsWidget" class="dashboard-widget">
 				<g:render template="/dashboard/recentLeads" />
 			</div>
 		</div>
 
-		<div class="span6">
+		<div class="span6 dashboard-widget">
 			<div id="recentCustomers" class="dashboard-widget">
 				<g:render template="/dashboard/recentCustomers" />
 			</div>
@@ -55,13 +62,13 @@
 	<hr />
 
 	<div class="row-fluid">
-		<div class="span6">
+		<div class="span6 dashboard-widget">
 			<div id="recentQuotesWidget" class="dashboard-widget">
 				<g:render template="/dashboard/recentQuotes" />
 			</div>
 		</div>
 
-		<div class="span6">
+		<div class="span6 dashboard-widget">
 			<div class="dashboard-widget">
 				<g:render template="/dashboard/recentRepairModernizationInstallationQuotes" />
 			</div>
@@ -71,11 +78,11 @@
 	<hr />
 
 	<div class="row-fluid">
-		<div class="span6">
+		<div class="span6 dashboard-widget">
 			<g:render template="/dashboard/ordersPendingPayment" />
 		</div>
 
-		<div class="span6">
+		<div class="span6 dashboard-widget">
 			<g:render template="/dashboard/openPayments" />
 		</div>
 	</div>
@@ -83,11 +90,11 @@
 	<hr />
 	
 	<div class="row-fluid">
-		<div class="span6">
+		<div class="span6 dashboard-widget">
 			<g:render template="/dashboard/upcomingEvents" />
 		</div>
 
-		<div class="span6">
+		<div class="span6 dashboard-widget">
 			<g:render template="/dashboard/overdueEvents" />
 		</div>
 	</div>
@@ -95,16 +102,12 @@
 	<hr />
 
 	<div class="row-fluid">
-		<div class="span6">
-			<div class="dashboard-widget">
-				<g:render template="/dashboard/recentDocuments" />
-			</div>
+		<div class="span6 dashboard-widget">
+			<g:render template="/dashboard/recentDocuments" />
 		</div>
 
-		<div class="span6">
-			<div class="dashboard-widget">
-				<g:render template="/dashboard/recentPayments" />
-			</div>
+		<div class="span6 dashboard-widget">
+			<g:render template="/dashboard/recentPayments" />
 		</div>
 	</div>
 </body>

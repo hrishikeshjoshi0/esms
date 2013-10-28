@@ -166,9 +166,17 @@
 						<dd>
 							<g:fieldValue bean="${invoiceInstance}" field="totalAmount" />
 						</dd>
-
-
+						
 						<dt>
+							<g:message code="invoice.adjustment.label"
+								default="Adjustment" />
+						</dt>
+
+						<dd>
+							<g:fieldValue bean="${invoiceInstance}" field="adjustment" />
+						</dd>
+
+						<%--<dt>
 							<g:message code="invoice.totalTax.label" default="Total Tax" />
 						</dt>
 
@@ -185,8 +193,8 @@
 						<dd>
 							<g:fieldValue bean="${invoiceInstance}" field="totalDiscount" />
 						</dd>
-
-
+						--%>
+						
 						<dt>
 							<g:message code="invoice.grandTotal.label" default="Grand Total" />
 						</dt>

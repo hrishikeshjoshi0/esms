@@ -23,7 +23,7 @@ class Organization extends Party {
 	
     static constraints = {
 		name blank:true
-		salesStatus inList: ["LEAD", "CUSTOMER","DISQUALIFIED"]
+		salesStatus inList: ["LEAD", "CUSTOMER","DISQUALIFIED","LOST_IN_RENEWAL"]
 		liftInfo nullable:true
 		purchaseOrders nullable:true 
 		payments nullable:true
@@ -36,4 +36,19 @@ class Organization extends Party {
 		}
 	}
 	
+	def activeServiceContract() {
+		def c = Order.createCriteria()
+		def orders = c.list() {
+			and {
+				'in'('type', ['SERVICE'])
+				and {
+					le("contractToDate", new Date())
+				}
+			}
+		}
+		
+		orders?.each {
+			return it
+		}
+	}
 }

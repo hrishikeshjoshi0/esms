@@ -36,10 +36,10 @@
 <div
 	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'receivedDateTime', 'error')} " style="width:500px;">
 	<label for="receivedDateTime" class="control-label"><g:message
-			code="quote.receivedDateTime.label" default="Received DateTime" />
+			code="quote.receivedDateTime.label" default="Received Date & Time (24 hr format)" />
 	</label>		
 	<div class="controls">
-		<richui:dateChooser name="receivedDateTime" value="${quoteInstance?.receivedDateTime}"/>
+		<richui:dateChooser name="receivedDateTime" value="${quoteInstance?.receivedDateTime}" time="true" hourClass="input-mini" minuteClass="input-mini"/>
 		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'receivedDateTime', 'error')}
 		</span>
 	</div>

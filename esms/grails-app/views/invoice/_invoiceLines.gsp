@@ -1,41 +1,39 @@
+<%@page import="com.esms.model.product.Product"%>
 <script type="text/javascript">
-	function calc(i) {
-    	//var lineTotal = (parseFloat($("#invoice[" + i + "].unitPrice").val()) * parseFloat($("#invoice[" + i + "].quantity").val())) + parseFloat($("#invoice[" + i + "].tax").val()) - parseFloat($("#invoice[" + i + "].discount").val());
-		//$("#invoice[" + i + "].lineTotalAmount").val(lineTotal);
+	$('document').ready(function(){
+		$('.calc').change(function(){
+			var idx = $(this).data("index");
+			var unitPrice = $('#' + 'unitPrice' + idx).val();
+			var quantity = $('#' + 'quantity' + idx).val();
+			var tax = $('#' + 'tax' + idx).val();
+			var discount = $('#' + 'discount' + idx).val();
+			var percentageInvoiced = $('#' + 'percentageInvoiced' + idx).val();
 
-		//$('#totalAmount').val(lineTotal);
-		//$('#quantity').val($("#invoice[" + i + "].quantity").val());
-		//$('#totalTax').val($("#invoice[" + i + "].tax").val());
-		//$('#totalDiscount').val($("#invoice[" + i + "].discount").val());
-    }
-    
-	function fetchUnitPriceForProduct(id) {
-		if(id == 'null') {
-			$(".create").attr("disabled", "disabled");
-		} else {
-			var url = "${createLink(controller:'product', action:'getPrice')}" + "/" + id;
-			$.ajax({
-			    url:url,
-			    dataType: 'xml',	
-			    success: function(data) {
-			    	$(data).find("unitPrice").each(function() {  
-			    		//find each instance of loc in xml file and wrap it in a link  
-			    		$("#unitPrice").val($(this).text());
-	
-			    		calculateLineTotalAmount();
-			    	});  
-			    },
-			    error: function(request, status, error) {
-			      alert(error)
-			    },
-			    complete: function() {
-			    }
-			});
+			var lineTotal = (parseFloat(unitPrice) * parseFloat(quantity) + parseFloat(tax) - parseFloat(discount));
+			var lineAmountInvoiced = (parseFloat(lineTotal) * parseFloat(percentageInvoiced)/100);
+			
+			$("#" + "lineTotalAmount" + idx).val(lineTotal);
+			$("#" + "amountInvoiced" + idx).val(lineAmountInvoiced);
+			
+			$('#totalAmount').val(lineAmountInvoiced);
+			//$('#totalTax').val(tax);
+			//$('#totalDiscount').val(discount);
+			var grandTotal = parseFloat($('#totalAmount').val()) - parseFloat($('#adjustment').val());
+			$("#grandTotal").val(grandTotal);
+		});
 
-			$(".create").removeAttr("disabled");
-		}
+		$('#adjustment').change(function(){
+			var grandTotal = parseFloat($('#totalAmount').val()) - parseFloat($('#adjustment').val());
+			$("#grandTotal").val(grandTotal);
+		});
+	});
+
+	function updateInvoiceTotals() {
+		
 	}
+	
 </script>
+
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
@@ -61,38 +59,62 @@
 			<g:sortableColumn property="lineTotalAmount"
 				title="${message(code: 'invoiceLine.lineTotalAmount.label', default: 'Line Total Amount')}" />
 
-			<th></th>
+			<th>
+				Percentage
+			</th>
+			
+			<th>
+				Invoiced Amount
+			</th>
 		</tr>
 	</thead>
 	<tbody>
 		<g:each in="${invoiceInstance?.invoiceLines}" var="invoiceLineInstance" status="index">
 			<tr>
 				<td>
-					<g:textField name="invoice[${index}].lineNumber" value="${invoiceLineInstance.lineNumber}" size="3" class="input-mini"/>
+					<g:textField readonly="readonly" name="invoice[${index}].lineNumber" value="${invoiceLineInstance.lineNumber}" size="3" class="input-mini "/>
 				</td>
 				
 				<td>
 					<g:textField name="invoice[${index}].productNumber" value="${invoiceLineInstance.productNumber}" size="3" class="input-mini"/>
+					<br/>
+					<g:set var="product" value="${Product.findByProductNumber(invoiceLineInstance.productNumber)}"/>
+					${product.productName}
 				</td>
 
 				<td>
-					<g:textField onchange="calc(${index});" name="invoice[${index}].quantity" value="${invoiceLineInstance.quantity}" size="3" class="input-mini"/>
+					<g:field id="quantity${index}" data-index="${index}" name="invoice[${index}].quantity" value="${invoiceLineInstance.quantity}" size="3" class="input-mini calc"
+							type="number" step="any" required="true"/>
 				</td>
 
 				<td>
-					<g:textField onchange="calc(${index});" name="invoice[${index}].unitPrice" value="${invoiceLineInstance.unitPrice}" size="5" class="input-mini"/>
+					<g:field id="unitPrice${index}" data-index="${index}" name="invoice[${index}].unitPrice" value="${invoiceLineInstance.unitPrice}" size="3" class="input-mini calc"
+							type="number" step="any" required="true"/>
 				</td>
 
 				<td>
-					<g:textField onchange="calc(${index});" name="invoice[${index}].tax" value="${invoiceLineInstance.tax}" size="5" class="input-mini"/>
+					<g:field id="tax${index}" data-index="${index}" name="invoice[${index}].tax" value="${invoiceLineInstance.tax}" size="3" class="input-mini calc"
+							type="number" step="any" required="true"/>
 				</td>
 
 				<td>
-					<g:textField onchange="calc(${index});" name="invoice[${index}].discount" value="${invoiceLineInstance.discount}" size="5" class="input-mini"/>
+					<g:field id="discount${index}" data-index="${index}" name="invoice[${index}].discount" value="${invoiceLineInstance.discount}" size="3" class="input-mini calc"
+							type="number" step="any" required="true"/>
 				</td>
 				
 				<td>
-					<g:textField onchange="calc(${index});" name="invoice[${index}].lineTotalAmount" value="${invoiceLineInstance.lineTotalAmount}" size="5" class="input-mini"/>
+					<g:field id="lineTotalAmount${index}" data-index="${index}" name="invoice[${index}].lineTotalAmount" value="${invoiceLineInstance.lineTotalAmount}" size="3" class="input-mini calc"
+						readonly="readonly"	type="number" step="any" required="true"/>
+				</td>
+				
+				<td>
+					<g:field id="percentageInvoiced${index}" data-index="${index}" name="invoice[${index}].percentageInvoiced" value="${invoiceLineInstance.percentageInvoiced}" size="3" class="input-mini calc"
+						type="number" min="0" max="100" step="any" required="true"/>
+				</td>
+				
+				<td>
+					<g:field id="amountInvoiced${index}" data-index="${index}" name="invoice[${index}].amountInvoiced" value="${invoiceLineInstance.amountInvoiced}" size="3" class="input-mini calc"
+						type="number" step="any" required="true"/>
 				</td>
 
 			</tr>

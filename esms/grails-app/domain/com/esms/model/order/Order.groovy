@@ -1,10 +1,9 @@
 package com.esms.model.order
 
-import java.util.Date;
-
 import com.esms.model.inventory.InventoryJournal
 import com.esms.model.party.Organization
 import com.esms.model.payment.PaymentItem
+import com.esms.model.product.Product
 
 class Order {
 
@@ -43,6 +42,8 @@ class Order {
 	String recepientContactNumber
 	Date receivedDateTime
 	String handedOveryBy
+	
+	BigDecimal adjustment = new BigDecimal("0.0")
 	
 	BigDecimal pendingInvoiceGrandTotal = new BigDecimal("0.0")
 	BigDecimal invoicedGrandTotal = new BigDecimal("0.0")
@@ -83,11 +84,23 @@ class Order {
 		recepientContactNumber nullable:true,blank:true
 		receivedDateTime nullable:true,blank:true
 		handedOveryBy nullable:true,blank:true
+		
+		adjustment nullable:true,blank:true
     }
 	
 	static mapping = {
 		tablePerHierarchy false
 		
 		table 'Order_Hdr'
+	}
+	
+	def fetchServiceOrderItems() {
+		def orderItems = []
+		this.orderItems?.each {
+			if(Product.findByProductNumber(it.productNumber)?.productType == 'SERVICE') {
+				orderItems.add(it)
+			}
+		}
+		orderItems
 	}
 }

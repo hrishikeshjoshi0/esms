@@ -87,25 +87,52 @@ class PaymentController {
 			int no = (list?list.size():0) + 1;
 			params.paymentNumber = "PAY" + String.format("%05d", no)
 			
-			def order = Order.get(params.orderId)
 			def invoice = Invoice.get(params.invoiceId)
 			params."organization.id" = invoice?.organization?.id
 			params.orderId = params.orderId
 			params.invoiceId = params.invoiceId
+			params.totalAmount = invoice.openGrandTotal
+			  
+			def order = Order.findByOrderNumber(invoice.referenceOrderNumber)
 			
-        	[paymentInstance: new Payment(params)]
+        	[paymentInstance: new Payment(params),invoice:invoice]
 			break
 		case 'POST':
 	        def paymentInstance = new Payment(params)
-			paymentInstance.balanceAmount = paymentInstance.totalAmount
-			paymentInstance.matchedAmount = new BigDecimal("0.0")
-	        if (!paymentInstance.save(flush: true)) {
-	            render view: 'create', model: [paymentInstance: paymentInstance]
-	            return
-	        }
-
-			flash.message = 'Payment Created. Please Match the Lines to the Open Invoices'
-	        redirect action: 'show', id: paymentInstance.id
+			paymentInstance.balanceAmount = new BigDecimal("0.0")
+			paymentInstance.matchedAmount = paymentInstance.totalAmount
+			if (!paymentInstance.save(flush: true)) {
+				render view: 'create', model: [paymentInstance: paymentInstance]
+				return
+			}
+			
+			//
+			def c = PaymentItem.createCriteria()
+			def maxLineNumber = c.get {
+				eq("payment", paymentInstance)
+				projections {
+					max ("lineNumber")
+				}
+			}
+	        def invoice = Invoice.get(params.invoiceId)
+			
+			params.lineNumber = (maxLineNumber?maxLineNumber:0) + 1
+			
+			def paymentItemInstance = new PaymentItem(params)
+			paymentItemInstance.amount = paymentInstance.totalAmount
+			paymentItemInstance.invoice = invoice
+			paymentItemInstance.payment = paymentInstance
+			paymentItemInstance.save(flush:true)
+			
+			invoice.receviedGrandTotal += paymentItemInstance.amount
+			invoice.openGrandTotal -= paymentItemInstance.amount
+			if(invoice.openGrandTotal <= 0) {
+				invoice.status = 'CLOSED'
+			}
+			invoice.save(flush:true)
+			
+			flash.message = "Added New Line."
+			redirect action: 'show', id: invoice.id,controller:"invoice"
 			break
 		}
     }

@@ -26,6 +26,10 @@
 				title="${message(code: 'orderItem.discount.label', default: 'Discount')}" />
 			<g:sortableColumn property="lineTotalAmount"
 				title="${message(code: 'orderItem.lineTotalAmount.label', default: 'Line Total Amount')}" />
+			<g:sortableColumn property="percentageInvoiced"
+				title="${message(code: 'orderItem.percentageInvoiced.label', default: 'Invoiced Amount (%)')}" />
+			<g:sortableColumn property="amountInvoiced"
+				title="${message(code: 'orderItem.amountInvoiced.label', default: 'Invoiced Amount')}" />
 			<th>
 				<a ref="#">
 					Assigned To (Vendor)
@@ -63,6 +67,12 @@
 				</td>
 				<td>
 					${fieldValue(bean: orderItemInstance, field: "lineTotalAmount")}
+				</td>
+				<td>
+					${fieldValue(bean: orderItemInstance, field: "percentageInvoiced")}
+				</td>
+				<td>
+					${fieldValue(bean: orderItemInstance, field: "amountInvoiced")}
 				</td>
 				<g:if test="${orderItemInstance.relatedOrderNumber}">
 					<g:set var="purchaseOrder" value="${PurchaseOrder.findByPurchaseOrderNumber(orderItemInstance.relatedOrderNumber)}"/>

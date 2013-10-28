@@ -317,4 +317,21 @@ class OrganizationController {
 		flash.message = 'Converted to Customer.'
 		redirect controller: 'organization', action: 'show', id: organization?.id
 	}
+	
+	def search() {
+		def organizations = Organization.findAllByNameLike("${params.query}%")
+
+		//Create XML response
+		render(contentType: "text/xml") {
+			results() {
+				organizations.each { organization ->
+					result(){
+						name(organization.name)
+						//Optional id which will be available in onItemSelect
+						id(organization.id)
+					}
+				}
+			}
+		}
+	}
 }

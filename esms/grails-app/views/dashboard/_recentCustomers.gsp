@@ -1,7 +1,7 @@
-<%@ page import="com.esms.model.party.*"%>
+	<%@ page import="com.esms.model.party.*"%>
 
 <div class="page-header">
-	<h1>Recent Customers</h1>
+	<h1>Recent Service Contracts</h1>
 </div>
 
 
@@ -9,30 +9,34 @@
 	<thead>
 		<tr>
 			<th>
-				${message(code: 'organization.externalId.label', default: 'External Id')}
+				${message(code: 'organization.name.label', default: 'Name')}
 			</th>
 			<th>
-				${message(code: 'organization.name.label', default: 'Name')}
+				Type of Enquiry
 			</th>	
 			<th>
-				Contact 
+				Contact Person
 			</th>	
 			<th>
-				${message(code: 'organization.assignedTo.label', default: 'Assigned To')}
+				Contact Number
 			</th>	
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${recentCustomers}" var="organization">
+		<g:each in="${recentOrders}" var="order">
+			<g:set var="organization"
+				value="${order.organization}" />
 			<g:set var="addressInstance"
 				value="${Address.findByAddressTypeAndParty('BILLING',organization) }" />
 			<tr>
 				<td>
-					${fieldValue(bean: organization, field: "externalId")}
+					<g:link controller="organization" action="show" id="${organization?.id}">
+						${fieldValue(bean: organization, field: "name")}
+					</g:link>
 				</td>
 				<td>
-					${fieldValue(bean: organization, field: "name")}
+					${order.organization?.liftInfo?.typeOfEnquiry}
 				</td>
 				<td>
 					<%
@@ -43,16 +47,21 @@
 					 %>
 				</td>
 				<td>
-					${fieldValue(bean: organization, field: "assignedTo")}
+					<%
+						if(!organization?.contacts?.isEmpty()) {
+							def contact = organization?.contacts.first()
+							println contact?.phoneBooks?.first()?.mobilePhone
+						}
+					 %>
 				</td>
-				<td class="link"><g:link controller="organization" action="show" id="${organization?.id}">Show &raquo;</g:link></td>
+				<td class="link"><g:link controller="order" action="show" id="${order?.id}">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
 	<tfoot>
 			<tr>
-				<th colspan="6" class="link">
-					<g:link controller="organization" action="list">Show All &raquo;</g:link>
+				<th colspan="5" class="link">
+					<g:link controller="order" action="list">Show All &raquo;</g:link>
 				</th>				
 			</tr>
 		</tfoot>

@@ -22,6 +22,13 @@
 				
 			<g:sortableColumn property="lineTotalAmount"
 				title="${message(code: 'invoiceLine.lineTotalAmount.label', default: 'Line Total Amount')}" />
+				
+			<g:sortableColumn property="percentageInvoiced"
+				title="${message(code: 'invoiceLine.percentageInvoiced.label', default: 'Invoiced Line Total Amount (%)')}" />
+			
+			<g:sortableColumn property="amountInvoiced"
+				title="${message(code: 'invoiceLine.amountInvoiced.label', default: 'Line Total Amount Invoiced')}" />
+						
 
 			<th></th>
 		</tr>
@@ -56,7 +63,14 @@
 				<td>
 					${invoiceLineInstance.lineTotalAmount}
 				</td>
-
+				
+				<td>
+					${invoiceLineInstance.percentageInvoiced}
+				</td>
+				
+				<td>
+					${invoiceLineInstance.amountInvoiced}
+				</td>
 			</tr>
 		</g:each>
 	</tbody>

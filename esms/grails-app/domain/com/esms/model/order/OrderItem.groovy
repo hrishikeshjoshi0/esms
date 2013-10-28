@@ -1,6 +1,5 @@
 package com.esms.model.order
 
-
 class OrderItem {
 
     int lineNumber
@@ -13,8 +12,11 @@ class OrderItem {
 	
 	String relatedOrderNumber
 	
+	BigDecimal percentageInvoiced = 0.0
+	BigDecimal amountInvoiced = 0.0
+	
 	static belongsTo = [order:Order]
-
+	
     static constraints = {
 		lineNumber nullable:false
 		quantity nullable:false

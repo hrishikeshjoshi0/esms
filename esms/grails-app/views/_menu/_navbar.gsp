@@ -1,3 +1,6 @@
+<head>
+	<resource:autoComplete skin="esmsAutocomplete"/>
+</head>
 <header>
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
@@ -67,11 +70,19 @@
 								</ul>
 							</li>
 						</ul>
+						
+				<ul class="nav user_menu pull-left" style="margin-left:2px;">
+					<li>
+						<g:form style="margin-top:10px;">
+							<richui:autoComplete name="q" action="${createLinkTo('dir': 'organization/search')}"
+									class="input-xxlarge" shadow="true" minQueryLength="1"  
+						    		onItemSelect="document.location.href = '${createLinkTo(dir: 'organization/show')}/' + id;" />
+						</g:form>
+					</li>
+				</ul>		
 				
 				<!-- Nav Right -->
 				<ul class="nav user_menu pull-right" style="margin-left:2px;">
-					
-					
 					<li class="hidden-phone hidden-tablet">
 						<div class="nb_boxes clearfix">
 							<%--<a data-toggle="modal" data-backdrop="static" href="#myMail" class="label ttip_b" title="New messages">
@@ -99,7 +110,7 @@
 						</a>
 					</li>
 					
-					<li>
+					<%--<li>
 						<a> | </a>
 					</li>
 					
@@ -110,7 +121,7 @@
 							<g:formatDate date="${session.lastLoginDate}" format="yyyy-MM-dd" type="datetime" style="SHORT"/>
 						</a>
 					</li>
-					
+					--%>
 					<li>
 						<a> | </a>
 					</li>
