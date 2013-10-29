@@ -102,14 +102,6 @@ class OrderController {
 			quote.status = "CONVERTED_TO_SALES_ORDER"
 		}
 
-		order.totalAmount = quote.totalAmount
-		order.totalTax = quote.totalTax
-		order.totalDiscount = quote.totalDiscount
-		order.adjustment = quote.adjustment
-		order.grandTotal = quote.grandTotal
-		order.referenceQuoteNumber = quote.quoteNumber
-		order.notes = quote.notes
-		
 		//Invoiced And Pending Invoiced Grand Total
 		order.organization = quote.organization
 		order.invoicedGrandTotal = 0.0
@@ -121,7 +113,12 @@ class OrderController {
 		}
 
 		order.orderItems = new HashSet<OrderItem>()
-
+		
+		def unitPrice = 0.0
+		def tax = 0.0
+		def discount = 0.0
+		def lineTotalAmount = 0.0
+		
 		int lineNo = 1
 		quote.quoteItems.each { it ->
 			def orderItem = new OrderItem()
@@ -129,15 +126,27 @@ class OrderController {
 			orderItem.quantity = it.quantity
 			orderItem.unitPrice = it.unitPrice
 			orderItem.tax = it.tax
-			orderItem.lineTotalAmount = it.lineTotalAmount
 			orderItem.discount = it.discount
+			orderItem.lineTotalAmount = it.quantity*it.unitPrice + it.tax - it.discount 
 			orderItem.productNumber= it.productNumber
 			orderItem.order = order
 			orderItem.save(flush:true)
-
 			lineNo++
+			
+			unitPrice += it.unitPrice
+			tax += it.tax
+			discount += it.discount
+			lineTotalAmount += it.lineTotalAmount
 		}
 
+		order.totalAmount = unitPrice
+		order.totalTax = tax
+		order.totalDiscount = discount
+		order.adjustment = 0.0
+		order.grandTotal = unitPrice + tax - discount 
+		order.referenceQuoteNumber = quote.quoteNumber
+		order.notes = quote.notes
+		
 		flash.message = 'Order Created from Quote: ' + quote.quoteName
 		redirect action: 'show', id: order.id
 	}

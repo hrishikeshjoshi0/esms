@@ -42,7 +42,7 @@ class Organization extends Party {
 			and {
 				'in'('type', ['SERVICE'])
 				and {
-					le("contractToDate", new Date())
+					ge("contractToDate", new Date())
 				}
 			}
 		}

@@ -25,4 +25,9 @@ class QuoteItem {
 	static mapping = {
 		sort "lineNumber"
 	}
+	
+	def calculateLineTotal() {
+		lineTotalAmount = unitPrice * quantity + tax - discount
+		lineTotalAmount
+	}
 }

@@ -31,4 +31,9 @@ class OrderItem {
 	static mapping = {
 		sort "lineNumber"
 	}
+	
+	def calculateLineTotal() {
+		lineTotalAmount = unitPrice * quantity + tax - discount
+		lineTotalAmount
+	}
 }

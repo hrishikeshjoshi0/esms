@@ -19,6 +19,29 @@
 					${organizationInstance?.externalId}
 					|
 					${organizationInstance?.name}
+					<g:if test="${organizationInstance?.activeServiceContract()}">
+						|
+						<g:link controller="organization" action="show"
+							id="${orderInstance?.organization?.id}">
+							${orderInstance?.organization?.name}
+						</g:link>
+						<g:if test="${orderInstance?.type == 'SERVICE'}">
+							|
+							CONTRACT PERIOD :
+							<g:formatDate date="${orderInstance?.contractFromDate}" format="dd.MM.yyyy"/>
+							-
+							<g:formatDate date="${orderInstance?.contractToDate}" format="dd.MM.yyyy"/>
+						</g:if>
+						<g:if test="${orderInstance?.type == 'SERVICE'}">
+							|
+							CONTRACT :
+							${contractName}
+						</g:if>
+						<g:elseif test="${orderInstance?.type == 'REPAIR'}">
+							|
+							REPAIR
+						</g:elseif>
+					</g:if>
 				</h1>
 			</div>
 
