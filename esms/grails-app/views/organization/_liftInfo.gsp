@@ -64,7 +64,16 @@
 			<dd>
 				<g:fieldValue bean="${liftInfoInstance}" field="gateType" />
 			</dd>
-
+			
+			<g:if test="${liftInfoInstance.gateType == 'OTHER'}">
+				<dt>
+					<g:message code="liftInfo.gateTypeOther.label" default="Gate Type (Other)" />
+				</dt>
+	
+				<dd>
+					<g:fieldValue bean="${liftInfoInstance}" field="gateTypeOther" />
+				</dd>				
+			</g:if>
 
 			<dt>
 				<g:message code="liftInfo.retiringCamType.label"
@@ -92,26 +101,25 @@
 				<g:fieldValue bean="${liftInfoInstance}" field="drive" />
 			</dd>
 
-
-			<dt>
+			<g:if test="${liftInfoInstance.drive == 'YES'}">
+				<dt>
 				<g:message code="liftInfo.driveCapacity.label"
 					default="Drive Capacity" />
-			</dt>
-
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="driveCapacity" />
-			</dd>
-
-
-			<dt>
-				<g:message code="liftInfo.driveSerialNumber.label"
-					default="Drive Serial Number" />
-			</dt>
-
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="driveSerialNumber" />
-			</dd>
-
+				</dt>
+	
+				<dd>
+					<g:fieldValue bean="${liftInfoInstance}" field="driveCapacity" />
+				</dd>
+	
+				<dt>
+					<g:message code="liftInfo.driveSerialNumber.label"
+						default="Drive Serial Number" />
+				</dt>
+	
+				<dd>
+					<g:fieldValue bean="${liftInfoInstance}" field="driveSerialNumber" />
+				</dd>
+			</g:if>
 
 			<dt>
 				<g:message code="liftInfo.buildingOpening.label"

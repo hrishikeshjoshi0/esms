@@ -8,6 +8,23 @@
 			$('.drive').hide();
 		}
 	}
+
+	$(document).ready(function() {
+
+		if($(this).val() == 'OTHER') {
+			$('.gateTypeOther').show();	
+		} else {
+			$('.gateTypeOther').hide();
+		}
+		
+		$('#gateType').change(function(){
+			if($(this).val() == 'OTHER') {
+				$('.gateTypeOther').show();	
+			} else {
+				$('.gateTypeOther').hide();
+			}
+		});
+	});
 </script>
 
 <div class="row-fluid">
@@ -106,6 +123,19 @@
 					valueMessagePrefix="liftInfo.gateType" noSelection="['': '']" />
 				<span class="help-inline">
 					${hasErrors(bean: liftInfoInstance, field: 'gateType', 'error')}
+				</span>
+			</div>
+		</div>
+		
+		<div
+			class="gateTypeOther control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'gateTypeOther', 'error')} ">
+			<label for=gateTypeOther class="control-label"><g:message
+					code="liftInfo.gateTypeOther.label" default="Gate Type (Other)" /></label>
+			<div class="controls">
+				<g:textField name="gateTypeOther"
+					value="${liftInfoInstance?.gateTypeOther}" />
+				<span class="help-inline">
+					${hasErrors(bean: liftInfoInstance, field: 'gateTypeOther', 'error')}
 				</span>
 			</div>
 		</div>

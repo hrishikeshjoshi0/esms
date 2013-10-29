@@ -1,4 +1,5 @@
 <%@ page import="com.esms.model.invoice.Invoice"%>
+<%@ page import="com.esms.model.product.*"%>
 <g:hiddenField id="organization" name="organization.id" value="${invoiceInstance?.organization?.id}"/>
 <g:hiddenField id="invoiceLinesTotal" name="invoiceLinesTotal" value="${invoiceInstance?.invoiceLines?invoiceInstance?.invoiceLines.size():0}"/>
 <g:hiddenField id="referenceOrderNumber" name="referenceOrderNumber" value="${invoiceInstance?.referenceOrderNumber}"/>
@@ -151,7 +152,7 @@
 
 <div class="row-fluid">
 	<div class="span6">
-		<div
+		<%--<div
 			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'referenceQuoteNumber', 'error')} ">
 			<label for="referenceQuoteNumber" class="control-label"><g:message
 					code="invoice.referenceQuoteNumber.label"
@@ -163,9 +164,7 @@
 				</span>
 			</div>
 		</div>
-	</div>
-	
-	<div class="span6">
+		--%>
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'assignedTo', 'error')} ">
 			<label for="assignedTo" class="control-label"><g:message
@@ -173,6 +172,22 @@
 			<div class="controls">
 				<g:textField name="assignedTo" value="${invoiceInstance?.assignedTo}" />
 				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'assignedTo', 'error')}
+				</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="span6">
+		<div
+			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'status', 'error')} ">
+			<label for="status" class="control-label"><g:message
+					code="invoice.status.label" default="Status" /></label>
+			<div class="controls">
+				<g:select name="status"
+					from="${invoiceInstance.constraints.status.inList}"
+					value="${invoiceInstance?.status}"
+					valueMessagePrefix="invoice.status" noSelection="['': '']" />
+				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'status', 'error')}
 				</span>
 			</div>
 		</div>
@@ -196,19 +211,7 @@
 	</div>
 	
 	<div class="span6">
-		<div
-			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'status', 'error')} ">
-			<label for="status" class="control-label"><g:message
-					code="invoice.status.label" default="Status" /></label>
-			<div class="controls">
-				<g:select name="status"
-					from="${invoiceInstance.constraints.status.inList}"
-					value="${invoiceInstance?.status}"
-					valueMessagePrefix="invoice.status" noSelection="['': '']" />
-				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'status', 'error')}
-				</span>
-			</div>
-		</div>
+		
 	</div>
 </div>
 
@@ -225,7 +228,7 @@
 
 <div class="row-fluid">
 	<div class="span6">
-		<h3>Original Order Details</h3>
+		<%--<h3>Original Order Details</h3>
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: order, field: 'totalAmount', 'error')} required">
 			<label for="totalAmount" class="control-label"><g:message
@@ -291,10 +294,7 @@
 				</span>
 			</div>
 		</div>
-	</div>
-	
-	<div class="span6">
-		<h3>Modified Order Details</h3>
+		--%>
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'totalAmount', 'error')} required">
 			<label for="totalAmount" class="control-label"><g:message
@@ -335,17 +335,11 @@
 			</div>
 		</div>
 	</div>
-</div>	
-
-<div class="row-fluid">
-	<div class="span4">
-		
-	</div>
 	
-	<div class="span4">
+	<div class="span6">
 		
 	</div>
-</div>
+</div>	
 
 <div class="row-fluid">
 	<div class="span12">

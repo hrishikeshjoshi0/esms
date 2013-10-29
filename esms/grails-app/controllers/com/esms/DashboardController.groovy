@@ -71,7 +71,10 @@ class DashboardController {
 		}
 		
 		
-		def years = [y,y+1,y+2,y+3,y+4,y+5,y+6,y+7,y+8,y+9,y+10]
+		def years = []
+		for(int i=0; i <= 100; i++) {
+			years.add(y+i)
+		}
 		
 		nowCal.set Calendar.DATE, 1
 		nowCal.set Calendar.MONTH, (m+1)

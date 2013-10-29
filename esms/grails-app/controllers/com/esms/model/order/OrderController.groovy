@@ -108,7 +108,8 @@ class OrderController {
 		order.adjustment = quote.adjustment
 		order.grandTotal = quote.grandTotal
 		order.referenceQuoteNumber = quote.quoteNumber
-
+		order.notes = quote.notes
+		
 		//Invoiced And Pending Invoiced Grand Total
 		order.organization = quote.organization
 		order.invoicedGrandTotal = 0.0
@@ -432,8 +433,8 @@ class OrderController {
 			invoiceLine.discount = it.discount
 			invoiceLine.productNumber = it.productNumber
 			invoiceLine.relatedOrderNumber = it.relatedOrderNumber
-			invoiceLine.percentageInvoiced = 100.0
-			invoiceLine.amountInvoiced = invoiceLine.lineTotalAmount
+			invoiceLine.percentageInvoiced = 100.0 - it.percentageInvoiced
+			invoiceLine.amountInvoiced = it.lineTotalAmount - it.amountInvoiced
 			
 			invoiceLines.add(invoiceLine)
 		}

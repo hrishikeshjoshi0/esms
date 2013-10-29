@@ -46,6 +46,7 @@
 				</td>
 				
 				<td>
+					${fieldValue(bean: quoteItemInstance, field: "productNumber")} <br/>
 					${Product.findByProductNumber(quoteItemInstance.productNumber)?.productName}
 				</td>
 

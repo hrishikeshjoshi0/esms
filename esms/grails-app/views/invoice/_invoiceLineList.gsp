@@ -1,3 +1,4 @@
+<%@ page import="com.esms.model.product.*"%>
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
@@ -41,7 +42,8 @@
 				</td>
 				
 				<td>
-					${invoiceLineInstance.productNumber}
+					${invoiceLineInstance.productNumber} <br/>
+					${Product.findByProductNumber(invoiceLineInstance.productNumber)?.productName}
 				</td>
 
 				<td>

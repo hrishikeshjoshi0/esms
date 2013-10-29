@@ -410,11 +410,16 @@
 			<richui:tabView id="tabView">
 				<richui:tabLabels>
 					<richui:tabLabel selected="true" title="Order Lines" />
+					<richui:tabLabel title="Notes" />
 				</richui:tabLabels>
 
 				<richui:tabContents>
 					<richui:tabContent>
 						<g:render template="orderItemList" />
+					</richui:tabContent>
+					
+					<richui:tabContent>
+						<g:fieldValue bean="${orderInstance}" field="notes" />
 					</richui:tabContent>
 				</richui:tabContents>
 			</richui:tabView>

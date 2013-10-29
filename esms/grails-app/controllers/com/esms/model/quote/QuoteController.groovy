@@ -292,6 +292,7 @@ class QuoteController {
 		} else if(quoteInstance.type == 'REPAIR') {
 			quoteInstance.status = 'CONVERTED_TO_REPAIR_SALES_ORDER'
 		}
+		quoteInstance.notes = params.notes
 		quoteInstance.save(flush:true)
 
 		flash.message = 'Sales Order created.'

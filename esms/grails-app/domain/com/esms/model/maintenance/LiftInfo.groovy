@@ -17,6 +17,7 @@ class LiftInfo {
 	String driveCapacity
 	String driveSerialNumber
 	String gateType
+	String gateTypeOther
 	String retiringCamType
 	String lockType
 	String servicePeriod
@@ -63,5 +64,6 @@ class LiftInfo {
 		numberOfGrooves nullable:true,blank:true
 		ropeSize nullable:true,blank:true
 		numberOfRopes nullable:true,blank:true
+		gateTypeOther nullable:true,blank:true
     }
 }

@@ -1,4 +1,5 @@
 <%@ page import="com.esms.model.order.PurchaseOrder"%>
+<%@ page import="com.esms.model.product.Product"%>
 
 <div class="pull-right">
 	<g:if test="${orderInstance?.status != 'INVOICED' && orderInstance?.status != 'PAID'}">
@@ -51,7 +52,8 @@
 					${fieldValue(bean: orderItemInstance, field: "lineNumber")}
 				</td>
 				<td>
-					${fieldValue(bean: orderItemInstance, field: "productNumber")}
+					${fieldValue(bean: orderItemInstance, field: "productNumber")} <br/>
+					${Product.findByProductNumber(orderItemInstance.productNumber)?.productName}
 				</td>
 				<td>
 					${fieldValue(bean: orderItemInstance, field: "quantity")}

@@ -91,7 +91,7 @@ class InvoiceController {
 					order.orderItems?.each { oit ->
 						if(oit.productNumber == iit.productNumber) {
 							oit.percentageInvoiced = iit.percentageInvoiced
-							oit.amountInvoiced = oit.amountInvoiced
+							oit.amountInvoiced = iit.amountInvoiced
 							oit.save(flush:true)
 						}
 					}
@@ -102,6 +102,9 @@ class InvoiceController {
 			if(invoiceInstance.expiryDate) {
 				def taskInstance = new Task()
 				taskInstance.taskName = 'REMINDER TASK FOR INVOICE: ' + invoiceInstance.invoiceNumber
+				def taskDescription = 'This is a reminder for the invoice to be raised for the Order ' + order.orderNumber + '.\n'
+				taskDescription += 'The pending amount is ' +  order.pendingInvoiceGrandTotal + '.\n'
+				taskInstance.taskDescription = taskDescription
 				taskInstance.dateTime = invoiceInstance.expiryDate
 				taskInstance.dueDateTime = invoiceInstance.expiryDate
 				taskInstance.relatedTo = 'INVOICE'

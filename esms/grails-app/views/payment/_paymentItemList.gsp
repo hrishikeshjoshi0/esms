@@ -34,7 +34,7 @@
 				</td>
 
 				<td>
-					${fieldValue(bean: paymentItemInstance, field: "order.orderNumber")}
+					${fieldValue(bean: paymentItemInstance, field: "invoice.referenceOrderNumber")}
 				</td>
 
 				<td>

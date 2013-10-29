@@ -22,10 +22,7 @@
 		<g:each in="${invoiceInstance?.paymentItems}" var="paymentItemInstance">
 			<tr>
 				<td class="link">
-					<g:link action="show" controller="payment"
-						id="${paymentItemInstance.payment?.id}">
-							${paymentItemInstance.payment?.paymentNumber}
-					</g:link>
+					${paymentItemInstance.payment?.paymentNumber}
 				</td>
 				
 				<td>
@@ -52,6 +49,11 @@
 				
 				<td>
 					${fieldValue(bean: paymentItemInstance, field: "amount")}
+				</td>
+				
+				<td class="link">
+					<g:link action="show" controller="payment" id="${paymentItemInstance.payment?.id}" class="btn btn-small">
+						Show &raquo;</g:link>
 				</td>
 			</tr>
 		</g:each>

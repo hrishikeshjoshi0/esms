@@ -30,9 +30,9 @@
 </div>
 
 <div
-	class="fieldcontain ${hasErrors(bean: eventInstance, field: 'notes', 'error')}">
+	class="fieldcontain ${hasErrors(bean: quoteInstance, field: 'notes', 'error')}">
 	<label for="notes"><g:message
-			code="event.notes.label" default="Notes" /></label>
-	<g:textArea name="notes" value="${eventInstance?.notes}"
+			code="quote.notes.label" default="Notes" /></label>
+	<g:textArea name="notes" value="${quoteInstance?.notes}"
 		rows="10" cols="100" />
 </div>

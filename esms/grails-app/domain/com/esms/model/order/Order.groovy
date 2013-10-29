@@ -48,6 +48,8 @@ class Order {
 	BigDecimal pendingInvoiceGrandTotal = new BigDecimal("0.0")
 	BigDecimal invoicedGrandTotal = new BigDecimal("0.0")
 	
+	String notes
+	
 	static hasMany = [orderItems : OrderItem,inventoryJournalEntries : InventoryJournal,paymentItems : PaymentItem]
 	
 	static belongsTo = [organization : Organization]
@@ -86,6 +88,7 @@ class Order {
 		handedOveryBy nullable:true,blank:true
 		
 		adjustment nullable:true,blank:true
+		notes nullable:true,blank:true,length:1000
     }
 	
 	static mapping = {

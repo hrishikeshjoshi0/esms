@@ -13,6 +13,10 @@
 
 			<th>
 				${message(code: 'paymentItem.invoiceNumber.label', default: 'Invoice Number')}
+			</th>
+			
+			<th>
+				${message(code: 'paymentItem.orderNumber.label', default: 'Order Number')}
 			</th>	
 
 			<th>
@@ -45,6 +49,10 @@
 
 					<td>
 						${paymentItemInstance?.invoice?.invoiceNumber}
+					</td>
+					
+					<td>
+						${paymentItemInstance?.invoice?.referenceOrderNumber}
 					</td>
 
 					<td>

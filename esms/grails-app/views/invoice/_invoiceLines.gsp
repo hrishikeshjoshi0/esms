@@ -1,25 +1,10 @@
 <%@page import="com.esms.model.product.Product"%>
 <script type="text/javascript">
 	$('document').ready(function(){
+		updateInvoiceTotals();
+		
 		$('.calc').change(function(){
-			var idx = $(this).data("index");
-			var unitPrice = $('#' + 'unitPrice' + idx).val();
-			var quantity = $('#' + 'quantity' + idx).val();
-			var tax = $('#' + 'tax' + idx).val();
-			var discount = $('#' + 'discount' + idx).val();
-			var percentageInvoiced = $('#' + 'percentageInvoiced' + idx).val();
-
-			var lineTotal = (parseFloat(unitPrice) * parseFloat(quantity) + parseFloat(tax) - parseFloat(discount));
-			var lineAmountInvoiced = (parseFloat(lineTotal) * parseFloat(percentageInvoiced)/100);
-			
-			$("#" + "lineTotalAmount" + idx).val(lineTotal);
-			$("#" + "amountInvoiced" + idx).val(lineAmountInvoiced);
-			
-			$('#totalAmount').val(lineAmountInvoiced);
-			//$('#totalTax').val(tax);
-			//$('#totalDiscount').val(discount);
-			var grandTotal = parseFloat($('#totalAmount').val()) - parseFloat($('#adjustment').val());
-			$("#grandTotal").val(grandTotal);
+			updateInvoiceTotals($(this));
 		});
 
 		$('#adjustment').change(function(){
@@ -28,8 +13,25 @@
 		});
 	});
 
-	function updateInvoiceTotals() {
+	function updateInvoiceTotals(elem) {
+		var idx = $(elem).data("index");
+		var unitPrice = $('#' + 'unitPrice' + idx).val();
+		var quantity = $('#' + 'quantity' + idx).val();
+		var tax = $('#' + 'tax' + idx).val();
+		var discount = $('#' + 'discount' + idx).val();
+		var percentageInvoiced = $('#' + 'percentageInvoiced' + idx).val();
+
+		var lineTotal = (parseFloat(unitPrice) * parseFloat(quantity) + parseFloat(tax) - parseFloat(discount));
+		var lineAmountInvoiced = (parseFloat(lineTotal) * parseFloat(percentageInvoiced)/100);
 		
+		$("#" + "lineTotalAmount" + idx).val(lineTotal);
+		$("#" + "amountInvoiced" + idx).val(lineAmountInvoiced);
+		
+		$('#totalAmount').val(lineAmountInvoiced);
+		//$('#totalTax').val(tax);
+		//$('#totalDiscount').val(discount);
+		var grandTotal = parseFloat($('#totalAmount').val()) - parseFloat($('#adjustment').val());
+		$("#grandTotal").val(grandTotal);
 	}
 	
 </script>
@@ -109,7 +111,7 @@
 				
 				<td>
 					<g:field id="percentageInvoiced${index}" data-index="${index}" name="invoice[${index}].percentageInvoiced" value="${invoiceLineInstance.percentageInvoiced}" size="3" class="input-mini calc"
-						type="number" min="0" max="100" step="any" required="true"/>
+						type="number" min="0" max="${invoiceLineInstance.percentageInvoiced}" step="any" required="true"/>
 				</td>
 				
 				<td>

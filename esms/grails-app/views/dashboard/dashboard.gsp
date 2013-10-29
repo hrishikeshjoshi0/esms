@@ -21,7 +21,7 @@
 	<div class="row-fluid">
 		<div class="span12 dashboard-widget">
 			<div class="page-header">
-				<h1>Upcoming Renewals And Tasks (for the next 10 Years)</h1>
+				<h1>Upcoming Renewals And Tasks</h1>
 			</div>
 
 			<richui:tabView id="tabView">

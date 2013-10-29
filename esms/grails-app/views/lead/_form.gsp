@@ -399,7 +399,7 @@
 </div>
 <div class="row-fluid">
 	<div class="span6">
-		<h3>Site Address (<a id="copyToBillingAddressLink" href="#copyToBillingAddressLink">Copy To Billing Address</a>)</h3>
+		<h3>Site Address (<a id="	" href="#copyToBillingAddressLink">Copy To Billing Address</a>)</h3>
 		<g:render template="/address/shippingAddressForm"></g:render>
 	</div>
 	
