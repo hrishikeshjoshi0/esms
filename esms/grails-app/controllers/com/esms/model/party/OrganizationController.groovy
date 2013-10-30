@@ -6,6 +6,8 @@ import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
 import com.esms.model.maintenance.LiftInfo
+import com.esms.model.order.Order
+import com.esms.model.product.Product
 import com.esms.model.quote.Quote
 
 class OrganizationController {
@@ -142,17 +144,36 @@ class OrganizationController {
 		
 		def invoicedTotal = 0.0
 		def receviedGrandTotal = 0.0
-		organizationInstance?.orders?.each { it ->
-			if(it.status == 'INVOICED') {
-				invoicedTotal += it.grandTotal
-				receviedGrandTotal += it.receviedGrandTotal
-			}
+		organizationInstance?.invoices?.each { it ->
+			invoicedTotal += it.grandTotal
+			receviedGrandTotal += it.receviedGrandTotal
 		}
 		
 		params.totalInvoicedAmount = invoicedTotal
 		params.totalReceivedAmount = receviedGrandTotal
+		
+		def today = new Date()
+		def activeContracts = Order.withCriteria(sort: "contractToDate", order: "asc") {
+			and {
+				eq("type", 'SERVICE')
+				eq("organization", organizationInstance)
+				ge("contractToDate", today)
+				le("contractFromDate", today)
+			}
+			maxResults(1)
+		}
+		
+		def activeContract = activeContracts?.first()
+		
+		def productName 
+		activeContract?.orderItems?.each {
+			def p = Product.findByProductNumber(it.productNumber)
+			if(p.productType == 'SERVICE') {
+				productName = p.productName
+			}
+		}
 
-        [organizationInstance: organizationInstance,params:params]
+        [organizationInstance: organizationInstance,params:params,activeContract:activeContract,contractName:productName]
     }
 
     def edit() {

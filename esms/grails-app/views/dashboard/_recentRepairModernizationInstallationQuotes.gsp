@@ -1,11 +1,5 @@
 <%@ page import="com.esms.model.quote.*"%>
 
-<div class="page-header">
-	<h1>
-		Recent Repair,Modernization & Installation Quotes
-	</h1>
-</div>
-
 <table class="table table-striped table-bordered mediaTable">
 	<thead>
 		<tr>

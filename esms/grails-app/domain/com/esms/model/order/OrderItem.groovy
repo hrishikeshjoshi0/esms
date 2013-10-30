@@ -2,7 +2,7 @@ package com.esms.model.order
 
 class OrderItem {
 
-    int lineNumber
+	int lineNumber
 	BigDecimal quantity = 1.0
 	BigDecimal unitPrice
 	BigDecimal tax = 0.0
@@ -17,7 +17,7 @@ class OrderItem {
 	
 	static belongsTo = [order:Order]
 	
-    static constraints = {
+	static constraints = {
 		lineNumber nullable:false
 		quantity nullable:false
 		unitPrice nullable:false
@@ -26,7 +26,7 @@ class OrderItem {
 		discount nullable:false
 		productNumber nullable:false
 		relatedOrderNumber nullable:true
-    }
+	}
 	
 	static mapping = {
 		sort "lineNumber"

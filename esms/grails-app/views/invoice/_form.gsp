@@ -37,35 +37,37 @@
 	</div>
 </div>
 
-<div class="row-fluid">
-	<div class="span6">
-		<div
-			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'contractFromDate', 'error')} ">
-			<label for="contractFromDate" class="control-label"><g:message
-					code="invoice.contractFromDate.label" default="Contract From Date" /></label>
-			<div class="controls">
-				<richui:dateChooser name="contractFromDate"
-					value="${invoiceInstance?.contractFromDate}" />
-				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'contractFromDate', 'error')}
-				</span>
+<g:if test="${invoiceInstance?.type == 'SERVICE'}">
+	<div class="row-fluid">
+		<div class="span6">
+			<div
+				class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'contractFromDate', 'error')} ">
+				<label for="contractFromDate" class="control-label"><g:message
+						code="invoice.contractFromDate.label" default="Contract From Date" /></label>
+				<div class="controls">
+					<richui:dateChooser name="contractFromDate"
+						value="${invoiceInstance?.contractFromDate}" />
+					<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'contractFromDate', 'error')}
+					</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="span6">
+			<div
+				class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'contractToDate', 'error')} ">
+				<label for="contractToDate" class="control-label"><g:message
+						code="invoice.contractToDate.label" default="Contract To Date" /></label>
+				<div class="controls">
+					<richui:dateChooser name="contractToDate"
+						value="${invoiceInstance?.contractToDate}" />
+					<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'contractToDate', 'error')}
+					</span>
+				</div>
 			</div>
 		</div>
 	</div>
-	
-	<div class="span6">
-		<div
-			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'contractToDate', 'error')} ">
-			<label for="contractToDate" class="control-label"><g:message
-					code="invoice.contractToDate.label" default="Contract To Date" /></label>
-			<div class="controls">
-				<richui:dateChooser name="contractToDate"
-					value="${invoiceInstance?.contractToDate}" />
-				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'contractToDate', 'error')}
-				</span>
-			</div>
-		</div>
-	</div>
-</div>
+</g:if>
 
 <div class="row-fluid">
 	<div class="span6">
@@ -84,18 +86,20 @@
 	</div>
 	
 	<div class="span6">
-		<div
-			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'expiryDate', 'error')} required">
-			<label for="expiryDate" class="control-label"><g:message
-					code="invoice.expiryDate.label" default="Expiry Date" /><span
-				class="required-indicator">*</span></label>
-			<div class="controls">
-				<richui:dateChooser name="expiryDate"
-					value="${invoiceInstance?.expiryDate}" />
-				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'expiryDate', 'error')}
-				</span>
+		<g:if test="${invoiceInstance?.type == 'SERVICE'}">
+			<div
+				class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'expiryDate', 'error')} required">
+				<label for="expiryDate" class="control-label"><g:message
+						code="invoice.expiryDate.label" default="Expiry Date" /><span
+					class="required-indicator">*</span></label>
+				<div class="controls">
+					<richui:dateChooser name="expiryDate"
+						value="${invoiceInstance?.expiryDate}" />
+					<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'expiryDate', 'error')}
+					</span>
+				</div>
 			</div>
-		</div>
+		</g:if>
 	</div>
 </div>
 
@@ -214,6 +218,17 @@
 		
 	</div>
 </div>
+
+<div class="row-fluid">
+	<div class="span12">
+		<div class="page-header">
+			<h1>
+				Invoice Lines
+			</h1>
+		</div>
+		<g:render template="invoiceLines" />
+	</div>
+</div>		
 
 <!-- Totals -->
 <div class="row-fluid">
@@ -340,17 +355,6 @@
 		
 	</div>
 </div>	
-
-<div class="row-fluid">
-	<div class="span12">
-		<div class="page-header">
-			<h1>
-				Invoice Lines
-			</h1>
-		</div>
-		<g:render template="invoiceLines" />
-	</div>
-</div>		
 
 <%--<div
 	class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'referenceOrderNumber', 'error')} ">

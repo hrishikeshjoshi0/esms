@@ -12,7 +12,7 @@ class QuoteItem {
 	
 	static belongsTo = [quote:Quote]
 
-    static constraints = {
+	static constraints = {
 		lineNumber nullable:false
 		quantity nullable:false
 		unitPrice nullable:false
@@ -20,7 +20,7 @@ class QuoteItem {
 		lineTotalAmount nullable:false
 		discount nullable:false
 		productNumber nullable:false
-    }
+	}
 	
 	static mapping = {
 		sort "lineNumber"

@@ -23,7 +23,7 @@ class QuoteController {
 
 	def filter = {
 		if(!params.max) params.max = 10
-		render( view:'list', model:[ quoteInstanceList: filterPaneService.filter( params, Quote), 
+		render( view:'list', model:[ quoteInstanceList: filterPaneService.filter( params, Quote),
 			quoteInstanceCount: filterPaneService.count( params, Quote), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
 	}
 
@@ -230,7 +230,7 @@ class QuoteController {
 					if(quoteInstance.status == "PENDING" && quoteInstance.sent) {
 						quoteInstance.quotedGrandTotal = quoteInstance.grandTotal
 					}
- 				}
+				 }
 
 				quoteInstance.status = 'ACCEPT'
 				quoteInstance.save(flush:true)
@@ -289,13 +289,23 @@ class QuoteController {
 		//'CONVERTED_TO_SERVICE_CONTRACT','CONVERTED_TO_REPAIR_SALES_ORDER'
 		if(quoteInstance.type == 'CONTRACT') {
 			quoteInstance.status = 'CONVERTED_TO_SERVICE_CONTRACT'
+			
+			//Works with only order items --> Service Contract and Repair Order
 			quoteInstance.quoteItems?.each {
 				it.discount = diff
 				it.save(flush:true)
 			}
+			
 		} else if(quoteInstance.type == 'REPAIR') {
 			quoteInstance.status = 'CONVERTED_TO_REPAIR_SALES_ORDER'
+			
+			//Works with only order items --> Service Contract and Repair Order
+			quoteInstance.quoteItems?.each {
+				it.discount = diff
+				it.save(flush:true)
+			}
 		}
+		
 		quoteInstance.notes = params.notes
 		quoteInstance.save(flush:true)
 
@@ -493,7 +503,7 @@ class QuoteController {
 			quote.grandTotal = lineTotalAmount
 			
 			if(quote.status == "PENDING" && quote.sent) {
-				quote.quotedGrandTotal = quote.grandTotal 
+				quote.quotedGrandTotal = quote.grandTotal
 			}
 			
 			quote.save(flush:true)

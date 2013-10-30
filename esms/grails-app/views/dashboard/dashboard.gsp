@@ -8,6 +8,7 @@
 <g:set var="entityName"
 	value="${message(code: 'organization.label', default: 'Leads')}" />
 <resource:tabView />
+<resource:accordion />
 <title>Venus CRM</title>
 <style type="text/css"><%--
 	.dashboard-widget {
@@ -53,8 +54,8 @@
 		</div>
 
 		<div class="span6 dashboard-widget">
-			<div id="recentCustomers" class="dashboard-widget">
-				<g:render template="/dashboard/recentCustomers" />
+			<div id="recentQuotesWidget" class="dashboard-widget">
+				<g:render template="/dashboard/recentQuotes" />
 			</div>
 		</div>
 	</div>
@@ -62,21 +63,42 @@
 	<hr />
 
 	<div class="row-fluid">
-		<div class="span6 dashboard-widget">
-			<div id="recentQuotesWidget" class="dashboard-widget">
-				<g:render template="/dashboard/recentQuotes" />
-			</div>
-		</div>
-
-		<div class="span6 dashboard-widget">
-			<div class="dashboard-widget">
-				<g:render template="/dashboard/recentRepairModernizationInstallationQuotes" />
-			</div>
+		<div class="span12 dashboard-widget">
+			<div id="recentCustomers" class="dashboard-widget">
+				<g:render template="/dashboard/recentCustomers" />
+			</div>			
 		</div>
 	</div>
 
 	<hr />
+	
+	<div class="row-fluid">
+		<div class="span12 dashboard-widget">
+			<div class="page-header">
+				<h1>Repair, Modernization & Installation Quotes & Orders</h1>
+			</div>
+			
+			<richui:tabView id="rmiQuotesAndOrdersTabView">
+				<richui:tabLabels>
+					<richui:tabLabel selected="true" title="Quotes" />
+					<richui:tabLabel title="Orders" />
+				</richui:tabLabels>
 
+				<richui:tabContents>
+					<richui:tabContent>
+						<g:render template="/dashboard/recentRepairModernizationInstallationQuotes" />
+					</richui:tabContent>
+
+					<richui:tabContent>
+				   	 	<g:render template="/dashboard/recentRepairModernizationInstallationOrders" />
+					</richui:tabContent>
+				</richui:tabContents>
+			</richui:tabView>
+		</div>
+	</div>
+	
+	<hr />
+	
 	<div class="row-fluid">
 		<div class="span6 dashboard-widget">
 			<g:render template="/dashboard/ordersPendingPayment" />

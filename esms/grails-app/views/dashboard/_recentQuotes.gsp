@@ -2,7 +2,7 @@
 
 <div class="page-header">
 	<h1>
-		Top Active Quotes
+		Recent Maintenance Quotes
 	</h1>
 </div>
 

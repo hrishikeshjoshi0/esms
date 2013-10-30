@@ -19,25 +19,20 @@
 					${organizationInstance?.externalId}
 					|
 					${organizationInstance?.name}
-					<g:if test="${organizationInstance?.activeServiceContract()}">
-						|
-						<g:link controller="organization" action="show"
-							id="${orderInstance?.organization?.id}">
-							${orderInstance?.organization?.name}
-						</g:link>
-						<g:if test="${orderInstance?.type == 'SERVICE'}">
+					<g:if test="${activeContract}">
+						<g:if test="${activeContract?.type == 'SERVICE'}">
 							|
 							CONTRACT PERIOD :
-							<g:formatDate date="${orderInstance?.contractFromDate}" format="dd.MM.yyyy"/>
+							<g:formatDate date="${activeContract?.contractFromDate}" format="dd.MM.yyyy"/>
 							-
-							<g:formatDate date="${orderInstance?.contractToDate}" format="dd.MM.yyyy"/>
+							<g:formatDate date="${activeContract?.contractToDate}" format="dd.MM.yyyy"/>
 						</g:if>
-						<g:if test="${orderInstance?.type == 'SERVICE'}">
+						<g:if test="${activeContract?.type == 'SERVICE'}">
 							|
 							CONTRACT :
 							${contractName}
 						</g:if>
-						<g:elseif test="${orderInstance?.type == 'REPAIR'}">
+						<g:elseif test="${activeContract?.type == 'REPAIR'}">
 							|
 							REPAIR
 						</g:elseif>
@@ -85,7 +80,7 @@
 				</div>
 			</g:form>
 
-			<dl class="dl-horizontal" style="margin-left: -30px;">
+			<dl class="dl-horizontal" style="margin-left: -10px;">
 				<dt>
 					<g:message code="organization.externalId.label"
 						default="External Id" />

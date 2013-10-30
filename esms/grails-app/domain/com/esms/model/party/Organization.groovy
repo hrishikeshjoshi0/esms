@@ -21,14 +21,14 @@ class Organization extends Party {
 	
 	static hasOne = [liftInfo : LiftInfo]
 	
-    static constraints = {
+	static constraints = {
 		name blank:true
 		salesStatus inList: ["LEAD", "CUSTOMER","DISQUALIFIED","LOST_IN_RENEWAL"]
 		liftInfo nullable:true
-		purchaseOrders nullable:true 
+		purchaseOrders nullable:true
 		payments nullable:true
 		invoices nullable:true
-    }
+	}
 	
 	def convertLead() {
 		if(this.salesStatus == 'LEAD') {

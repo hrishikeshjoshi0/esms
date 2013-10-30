@@ -104,8 +104,6 @@ class OrderController {
 
 		//Invoiced And Pending Invoiced Grand Total
 		order.organization = quote.organization
-		order.invoicedGrandTotal = 0.0
-		order.pendingInvoiceGrandTotal = order.grandTotal
 		
 		if(!order.save(flush:true)) {
 			redirect controller: 'quote',action: 'show', id: quote.id
@@ -127,7 +125,7 @@ class OrderController {
 			orderItem.unitPrice = it.unitPrice
 			orderItem.tax = it.tax
 			orderItem.discount = it.discount
-			orderItem.lineTotalAmount = it.quantity*it.unitPrice + it.tax - it.discount 
+			orderItem.lineTotalAmount = it.quantity*it.unitPrice + it.tax - it.discount
 			orderItem.productNumber= it.productNumber
 			orderItem.order = order
 			orderItem.save(flush:true)
@@ -143,9 +141,12 @@ class OrderController {
 		order.totalTax = tax
 		order.totalDiscount = discount
 		order.adjustment = 0.0
-		order.grandTotal = unitPrice + tax - discount 
+		order.grandTotal = unitPrice + tax - discount
 		order.referenceQuoteNumber = quote.quoteNumber
 		order.notes = quote.notes
+		order.invoicedGrandTotal = 0.0
+		order.pendingInvoiceGrandTotal = order.grandTotal
+		order.save(flush:true)
 		
 		flash.message = 'Order Created from Quote: ' + quote.quoteName
 		redirect action: 'show', id: order.id
@@ -196,7 +197,7 @@ class OrderController {
 			return
 		}
 		
-		def productName 
+		def productName
 		
 		orderInstance?.orderItems?.each {
 			def p = Product.findByProductNumber(it.productNumber)

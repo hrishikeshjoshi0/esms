@@ -146,18 +146,18 @@
 	/* main content */
 		#maincontainer {background-image: url(../img/main_bg.gif);background-repeat:repeat-y;min-height:100%}
         #contentwrapper{float: left;width: 100%}
-		.main_content{padding:60px 0px 0px;background:#fff;border-left:1px solid transparent;margin-left:230px}
+		.main_content{padding:60px 0px 0px;background:#fff;border-left:1px solid transparent;margin-left:240px}
 		.main_content li{line-height:22px}
 	
 	/* main content dashboard */	
 		#maincontainerDashBoard {min-height:100%}
         #contentwrapperDashBoard {float: left;width: 100%}
-		.main_contentDashBoard{padding:64px 30px 30px;background:#fff;border-left:1px solid transparent;margin-left:230px}
+		.main_contentDashBoard{padding:64px 30px 30px;background:#fff;border-left:1px solid transparent;margin-left:240px}
 		.main_contentDashBoard li{line-height:22px}
 		
 	
 	/* sidebar */
-		.sidebar{margin-left:-100%;width:230px;float:left;position:relative}
+		.sidebar{margin-left:-100%;width:240px;float:left;position:relative}
 		.sidebar_sep{background:#efefef;clear:both;float:none;height:5px;border-color:#ccc;border-style:solid;border-width:1px 0;margin:14px 0}
 		.sidebar_switch{text-indent:-10000px;width:16px;position:fixed;left:220px;top:45px;height:14px;cursor:pointer;z-index:100;display:block;opacity:.5}
 		.on_switch {background: url(../img/sidebar_switch.png) no-repeat 0 -19px}
@@ -608,7 +608,7 @@
 		.antiscroll-scrollbar-horizontal{height:7px;margin-left:2px;bottom:2px;left:0}
 		.antiscroll-scrollbar-vertical{width:7px;margin:2px 0;left:2px;top:0}
 		.antiscroll-inner{overflow-y:scroll}
-		.antiScroll,.antiscroll-content,.antiscroll-inner{width:230px}
+		.antiScroll,.antiscroll-content,.antiscroll-inner{width:240px}
 		.antiscroll-inner::-webkit-scrollbar,.antiscroll-inner::scrollbar{width:0;height:0}
 
     /* document view */
@@ -724,7 +724,7 @@
 			.sidebar_right #maincontainer {background-image: url(../img/main_bg_right.gif);background-position: right 0 }
 			.sidebar_right .sidebar {left:auto;right:-1px}
 			.sidebar_right .sidebar_switch {left:auto;right:6px}
-			.sidebar_right .main_content {margin-right:230px;margin-left:0;border-left:none}
+			.sidebar_right .main_content {margin-right:240px;margin-left:0;border-left:none}
 			.sidebar_right.sidebar_hidden #maincontainer {background: #fff}
 			.sidebar_right.sidebar_hidden .main_content {margin:0}
 			

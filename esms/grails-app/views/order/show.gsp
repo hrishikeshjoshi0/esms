@@ -42,7 +42,7 @@
 					</g:elseif>
 					
 					
-					<g:if test="${orderInstance?.taggedForRenewal == true}">
+					<g:if test="${orderInstance?.type == 'SERVICE' && orderInstance?.taggedForRenewal == true}">
 						<g:if
 							test="${orderInstance?.renewalStage == 'RENEWAL_LETTER_SENT'}">
 							<span class="badge badge-warning"> <i
@@ -103,6 +103,7 @@
 					 	Create Task
 					</g:link>
 
+					<g:if test="${orderInstance?.type == 'SERVICE'}">
 					<g:if test="${!orderInstance?.taggedForRenewal}">
 						<g:link class="btn btn-info" action="tagForRenewal"
 							controller="order" id="${orderInstance.id}">
@@ -146,6 +147,7 @@
 							</ul>
 						</div>
 					</g:elseif>
+					</g:if>
 
 					<%--<g:if test="${orderInstance?.status == 'INVOICED'}">
 						<g:link class="btn" action="create" controller="payment"
