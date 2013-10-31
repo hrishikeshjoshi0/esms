@@ -62,18 +62,18 @@
 				<div id="container">
 					<div class="row-fluid">
 						<div class="span12">
-							
-							<g:if
-								test="${	params.view != null
-										&&	params.view != ''
-										&&	params.view != 'index'
-							}">
+							<g:if test="${params.view != null &&	params.view != '' &&	params.view != 'index'}">
 								<div class="row-fluid">
 									<div class="span12">
 										<g:render template="/_menu/submenubar" />
 									</div>
 								</div>
 							</g:if>
+							
+							<!-- Bread Crumbs -->
+							<div id="breadcrumb">
+								<g:render template="/_menu/breadcrumb"></g:render>
+							</div>
 							
 							<!--Body content-->
 							<!-- Secondary menu in one line (e.g., actions for current controller) -->
