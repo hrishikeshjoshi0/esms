@@ -684,7 +684,7 @@
 		h3.style_switcher_header{color:#fff;}
 		hr.style_switcher_header{margin:2px;}
 
-.style_switcher p {margin:0 0 6px;font-weight:700}
+		.style_switcher p {margin:0 0 6px;font-weight:700}
 		.style_item {display:block;margin-right:6px;height:20px;width:20px;border:2px solid #fff;float:left;text-indent:-9999px}
 		.style_switcher .ptrn_def {background: #fff }
 		
@@ -809,4 +809,11 @@
 			.sidebar_switch {left:50%;margin-left:-620px}
 			.sidebar_hidden .main_content {border-left:1px solid #ccc}
 			.sidebar_hidden .sidebar_switch {margin-left:-832px;left:50%}
+		}
+		
+		hr.dashboard-hr {
+		  margin: 3px 0;
+		  border: 0;
+		  border-top: 1px solid #eeeeee;
+		  border-bottom: 1px solid #ffffff;
 		}

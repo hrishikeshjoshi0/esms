@@ -10,13 +10,6 @@
 <resource:tabView />
 <resource:accordion />
 <title>Venus CRM</title>
-<style type="text/css"><%--
-	.dashboard-widget {
-		height: 350px;
-		overflow: auto;
-		overflow-y: auto;
-	}
---%></style>
 </head>
 <body>
 	<div class="row-fluid">
@@ -37,14 +30,14 @@
 					</richui:tabContent>
 
 					<richui:tabContent>
-				   	 	<g:render template="/dashboard/upcomingTasks" />
+						<g:render template="/dashboard/upcomingTasks" />
 					</richui:tabContent>
 				</richui:tabContents>
 			</richui:tabView>
 		</div>
 	</div>
 
-	<hr />
+	<hr class="dashboard-hr" />
 
 	<div class="row-fluid">
 		<div class="span6 dashboard-widget">
@@ -60,24 +53,24 @@
 		</div>
 	</div>
 
-	<hr />
+	<hr class="dashboard-hr" />
 
 	<div class="row-fluid">
 		<div class="span12 dashboard-widget">
 			<div id="recentCustomers" class="dashboard-widget">
 				<g:render template="/dashboard/recentCustomers" />
-			</div>			
+			</div>
 		</div>
 	</div>
 
-	<hr />
-	
+	<hr class="dashboard-hr" />
+
 	<div class="row-fluid">
 		<div class="span12 dashboard-widget">
 			<div class="page-header">
 				<h1>Repair, Modernization & Installation Quotes & Orders</h1>
 			</div>
-			
+
 			<richui:tabView id="rmiQuotesAndOrdersTabView">
 				<richui:tabLabels>
 					<richui:tabLabel selected="true" title="Quotes" />
@@ -86,19 +79,21 @@
 
 				<richui:tabContents>
 					<richui:tabContent>
-						<g:render template="/dashboard/recentRepairModernizationInstallationQuotes" />
+						<g:render
+							template="/dashboard/recentRepairModernizationInstallationQuotes" />
 					</richui:tabContent>
 
 					<richui:tabContent>
-				   	 	<g:render template="/dashboard/recentRepairModernizationInstallationOrders" />
+						<g:render
+							template="/dashboard/recentRepairModernizationInstallationOrders" />
 					</richui:tabContent>
 				</richui:tabContents>
 			</richui:tabView>
 		</div>
 	</div>
-	
-	<hr />
-	
+
+	<hr class="dashboard-hr" />
+
 	<div class="row-fluid">
 		<div class="span6 dashboard-widget">
 			<g:render template="/dashboard/ordersPendingPayment" />
@@ -109,8 +104,8 @@
 		</div>
 	</div>
 
-	<hr />
-	
+	<hr class="dashboard-hr" />
+
 	<div class="row-fluid">
 		<div class="span6 dashboard-widget">
 			<g:render template="/dashboard/upcomingEvents" />
@@ -121,7 +116,7 @@
 		</div>
 	</div>
 
-	<hr />
+	<hr class="dashboard-hr" />
 
 	<div class="row-fluid">
 		<div class="span6 dashboard-widget">

@@ -101,7 +101,14 @@
 			</tr>
 		</g:each>
 	</tbody>
-	<div class="pagination">
-		<bootstrap:paginate total="${upcomingTasks?upcomingTasks.size():0}" />
-	</div>
+	<tfoot>
+		<tr>
+			<th class="link" colspan="10">
+				<g:link controller="task" action="list">Show All &raquo;</g:link>
+			</th>				
+		</tr>
+	</tfoot>
 </table>
+<div class="pagination">
+	<bootstrap:paginate total="${upcomingTasks?upcomingTasks.size():0}" />
+</div>

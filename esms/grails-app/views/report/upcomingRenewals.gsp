@@ -1,118 +1,160 @@
 
-<%@ page import="com.esms.model.order.Order" %>
+<%@ page import="com.esms.model.order.Order"%>
 <!doctype html>
 <html>
-	<head>
-		<meta name="layout" content="bootstrap">
-		<g:set var="entityName" value="${message(code: 'order.label', default: 'Order')}" />
-		<title><g:message code="default.list.label" args="[entityName]" /></title>
-	</head>
-	<body>
-		<div class="row-fluid">
-			<div class="span12">
-				
-				<filterpane:currentCriteria domainBean="com.esms.model.order.Order" 
-                removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"/>
-                
-				<div class="slidingDiv">
-					<div class="page-header">
-						<h1>
-							Search
-						</h1>
-					</div>
-					<fieldset>
-						<filterpane:filterPane domain="com.esms.model.order.Order"
-		                                   filterProperties="${['orderNumber', 'status','type','contactName']}"
-		                                   titleKey="default.filterPane.header"
-		                                   dialog="false"
-		                                   visible="y"
-		                                   showSortPanel="n"
-		                                   showTitle="n"
-		                                   fullAssociationPathFieldNames="false"/>
-	                 </fieldset>       
-				</div>
-				
+<head>
+<meta name="layout" content="bootstrap">
+<g:set var="entityName"
+	value="${message(code: 'order.label', default: 'Order')}" />
+<title><g:message code="default.list.label" args="[entityName]" /></title>
+</head>
+<body>
+	<div class="row-fluid">
+		<div class="span12">
+
+			<filterpane:currentCriteria domainBean="com.esms.model.order.Order"
+				removeImgDir="images" removeImgFile="skin/database_delete.png"
+				fullAssociationPathFieldNames="no" />
+
+			<div class="slidingDiv">
 				<div class="page-header">
-					<h1>
-						Upcoming Renewals
-					</h1>
+					<h1>Search</h1>
 				</div>
-				
-				<div class="pagination">
-					<bootstrap:paginate params="${filterParams}" total="${orderInstanceTotal?orderInstanceTotal:upcomingRenewals.size()}" />
-				</div>
-				<br/>
-				<table class="table table-striped table-hover">
-					<thead>
-						<tr>
-							<g:sortableColumn property="orderNumber" title="${message(code: 'order.orderNumber.label', default: 'Order Number')}" />
-							
-							<g:sortableColumn property="organization.name" title="${message(code: 'quote.organization.name.label', default: 'Organization')}" />
-						
-							<g:sortableColumn property="status" title="${message(code: 'order.status.label', default: 'Status')}" />
-						
-							<g:sortableColumn property="type" title="${message(code: 'order.type.label', default: 'Type')}" />
-						
-							<g:sortableColumn property="issueDate" title="${message(code: 'order.issueDate.label', default: 'Issue Date')}" />
-							
-							<g:sortableColumn property="contractFromDate" title="${message(code: 'order.contractFromDate.label', default: 'From Date')}" />
-							
-							<g:sortableColumn property="contractToDate" title="${message(code: 'order.contractToDate.label', default: 'To Date')}" />
-						
-							<g:sortableColumn property="grandTotal" title="${message(code: 'order.grandTotal.label', default: 'Grand Total')}" />
-						
-							<g:sortableColumn property="receviedGrandTotal" title="${message(code: 'order.receviedGrandTotal.label', default: 'Received Amount')}" />
-							
-							<g:sortableColumn property="openGrandTotal" title="${message(code: 'order.openGrandTotal.label', default: 'Open Amount')}" />
-						
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
+				<fieldset>
+					<filterpane:filterPane domain="com.esms.model.order.Order"
+						filterProperties="${['orderNumber', 'status','type','contactName']}"
+						titleKey="default.filterPane.header" dialog="false" visible="y"
+						showSortPanel="n" showTitle="n"
+						fullAssociationPathFieldNames="false" />
+				</fieldset>
+			</div>
+
+			<div class="page-header">
+				<h1>Upcoming Renewals</h1>
+			</div>
+
+			<div class="pagination">
+				<bootstrap:paginate params="${filterParams}"
+					total="${orderInstanceTotal?orderInstanceTotal:upcomingRenewals.size()}" />
+			</div>
+			<br />
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>
+							${message(code: 'order.orderNumber.label', default: 'Order Number')}
+						</th>
+
+						<th>
+							${message(code: 'quote.organization.name.label', default: 'Organization')}
+						</th>
+
+						<th>
+							${message(code: 'order.type.label', default: 'Type')}
+						</th>
+
+						<th>
+							${message(code: 'order.contractFromDate.label', default: 'From Date')}
+						</th>
+
+						<th>
+							${message(code: 'order.contractToDate.label', default: 'To Date')}
+						</th>
+
+						<th>
+							${message(code: 'order.grandTotal.label', default: 'Grand Total')}
+						</th>
+
+						<th>
+							${message(code: 'order.receviedGrandTotal.label', default: 'Received Amount')}
+						</th>
+
+						<th>
+							${message(code: 'order.openGrandTotal.label', default: 'Open Amount')}
+						</th>
+
+						<th></th>
+
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
 					<g:each in="${upcomingRenewals}" var="orderInstance">
 						<tr>
-							<td>${fieldValue(bean: orderInstance, field: "orderNumber")}</td>
-							
 							<td>
-								<g:link controller="organization" action="show" id="${orderInstance?.organization?.id}">
-									${fieldValue(bean: orderInstance, field: "organization.name")}
-								</g:link>
+								${fieldValue(bean: orderInstance, field: "orderNumber")}
 							</td>
-						
-							<td>${fieldValue(bean: orderInstance, field: "status")}</td>
-						
-							<td>${fieldValue(bean: orderInstance, field: "type")}</td>
-						
-							<td><g:formatDate date="${orderInstance.issueDate}" /></td>
-						
+
+							<td><g:link controller="organization" action="show"
+									id="${orderInstance?.organization?.id}">
+									${fieldValue(bean: orderInstance, field: "organization.name")}
+								</g:link></td>
+
+							<td>
+								${fieldValue(bean: orderInstance, field: "type")}
+							</td>
+
 							<td><g:formatDate date="${orderInstance.contractFromDate}" /></td>
-								
+
 							<td><g:formatDate date="${orderInstance.contractToDate}" /></td>
-						
+
 							<td>
 								${fieldValue(bean : orderInstance, field : "grandTotal") }
 							</td>
-							
+
 							<td>
 								${fieldValue(bean : orderInstance, field : "receviedGrandTotal") }
 							</td>
-							
+
 							<td>
 								${fieldValue(bean : orderInstance, field : "openGrandTotal") }
 							</td>
-						
-							<td class="link">
-								<g:link action="show" id="${orderInstance.id}" class="btn btn-small">Show &raquo;</g:link>
-							</td>
+
+							<td><g:if test="${orderInstance?.taggedForRenewal == true}">
+									<g:if
+										test="${orderInstance?.renewalStage == 'RENEWAL_LETTER_SENT'}">
+										<span class="badge badge-warning"> <i
+											class="icon-tag icon-white"></i> Renewal Letter Sent
+										</span>
+									</g:if>
+									<g:elseif
+										test="${orderInstance?.renewalStage == 'RENEWAL_WON'}">
+										<span class="badge badge-success"> <i
+											class="icon-tag icon-white"></i> Renewal Won
+										</span>
+									</g:elseif>
+									<g:elseif
+										test="${orderInstance?.renewalStage == 'RENEWAL_LOST'}">
+										<span class="badge badge-warning"> <i
+											class="icon-tag icon-white"></i> Renewal Lost
+										</span>
+									</g:elseif>
+									<g:else>
+										<span class="badge badge-info"> <i
+											class="icon-tag icon-white"></i> Tagged For Renewal
+										</span>
+									</g:else>
+								</g:if></td>
+
+							<td class="link"><g:link action="show"
+									id="${orderInstance.id}" controller="order"
+									class="btn btn-small">Show &raquo;</g:link></td>
 						</tr>
 					</g:each>
-					</tbody>
-				</table>
-				<div class="pagination">
-					<bootstrap:paginate params="${filterParams}" total="${orderInstanceTotal?orderInstanceTotal:upcomingRenewals.size()}" />
-				</div>
-				<br/>
+				</tbody>
+				<tfoot>
+					<tr>
+						<th class="link" colspan="10"><g:link controller="report"
+								action="upcomingRenewals">Show All &raquo;</g:link></th>
+					</tr>
+				</tfoot>
+			</table>
+			<div class="pagination">
+				<bootstrap:paginate params="${filterParams}"
+					total="${orderInstanceTotal?orderInstanceTotal:upcomingRenewals.size()}" />
 			</div>
+			<br />
 		</div>
-	</body>
+	</div>
+</body>
 </html>

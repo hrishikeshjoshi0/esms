@@ -2,11 +2,12 @@
 	<resource:autoComplete skin="esmsAutocomplete"/>
 </head>
 <header>
-	<div class="navbar navbar-fixed-top">
+	<div class="navbar navbar-fixed-top" >
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<a class="brand" href="${createLink(uri: '/')}">
-					<img src="${resource(dir: 'images', file: 'venus_crm_logo.png')}" alt="${meta(name:'app.name')}" style="width:180px;"/> <br/>
+					<img src="${resource(dir: 'images', file: 'venus_crm_logo.png')}" alt="${meta(name:'app.name')}" 
+							style="height:40px;width:auto;"/> <br/>
 				</a>
 				
 						<ul class="nav">

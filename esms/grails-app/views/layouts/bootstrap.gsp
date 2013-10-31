@@ -32,7 +32,8 @@
 		<img src="${resource(dir: 'img', file: 'ajax_loader.gif')}" alt="" />
 	</div>
 	
-	<div class="style_switcher">
+	<!-- Disabling Notifications temporarily -->
+	<%--<div class="style_switcher">
 			<h2 class='style_switcher_header'>
 				Notifications
 			</h2>
@@ -47,6 +48,7 @@
 				</ul>
 			</div>
 		</div>
+	--%>
 	
 	<div id="maincontainer" class="clearfix">
 		
