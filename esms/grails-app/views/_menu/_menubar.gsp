@@ -34,7 +34,7 @@
 							&&	params.controller != 'home'
 							&&	params.controller != 'dashboard'
 					}">
-						<ul class="nav nav-list" style="margin-top: 65px;">
+						<ul class="nav nav-list" style="margin-top: 35px;">
 							<g:set var="entityName"
 								value="${message(code: params.controller+'.label', default: params.controller.substring(0,1).toUpperCase() + params.controller.substring(1).toLowerCase())}" />
 							<li class="nav-header">
@@ -213,7 +213,8 @@
 					<g:else>
 
 					</g:else>
-					<%--<div id="side_accordion" class="accordion">
+					<%--
+					<div id="side_accordion" class="accordion">
 						<div class="accordion-group">
 							<div class="accordion-heading">
 								<a href="#collapseOne" data-parent="#side_accordion"

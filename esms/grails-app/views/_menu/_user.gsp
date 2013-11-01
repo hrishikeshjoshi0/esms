@@ -8,7 +8,8 @@
 	<li class="dropdown">
 		<a class="user-link dropdown-toggle" data-toggle="dropdown" href="#">
 			<i class="icon-user icon-white"></i>
-			<sec:username />
+			Welcome, <sec:username />
+			<b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu">
 			<li>

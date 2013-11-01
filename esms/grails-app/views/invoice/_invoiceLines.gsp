@@ -1,8 +1,6 @@
 <%@page import="com.esms.model.product.Product"%>
 <script type="text/javascript">
 	$('document').ready(function(){
-		updateInvoiceTotals();
-		
 		$('.calc').change(function(){
 			updateInvoiceTotals($(this));
 		});

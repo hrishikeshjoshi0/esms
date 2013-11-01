@@ -220,8 +220,8 @@
 
 					<div class="row-fluid">
 						<div class="span12">
-							<div class="pull-right">
-								<ul class="nav user_menu pull-left">
+							<div class="pull-right" style="margin-left:0%;">
+								<ul class="nav user_menu">
 									<li><g:form style="height:32px;margin:0px;">
 											<richui:autoComplete name="q"
 												action="${createLinkTo('dir': 'organization/search')}"

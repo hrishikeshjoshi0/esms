@@ -318,7 +318,7 @@
 			<div class="controls">
 				<g:field readonly="readonly" type="number" name="totalAmount" step="any" required=""
 					class="input-medium"
-					value="${invoiceInstance.totalAmount}" />
+					value="${order.totalAmount}" />
 				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'totalAmount', 'error')}
 				</span>
 			</div>
@@ -331,7 +331,7 @@
 				class="required-indicator">*</span></label>
 			<div class="controls">
 				<g:field id="adjustment" type="number" name="adjustment" step="any" required="" class="calc"
-					class="input-medium" value="${invoiceInstance.adjustment}" />
+					class="input-medium" value="${order.adjustment}" />
 				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'adjustment', 'error')}
 				</span>
 			</div>
@@ -344,7 +344,7 @@
 				class="required-indicator">*</span></label>
 			<div class="controls">
 				<g:field readonly="readonly" type="number" name="grandTotal" step="any" required=""
-					class="input-medium" value="${invoiceInstance.grandTotal}" />
+					class="input-medium" value="${order.grandTotal}" />
 				<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'grandTotal', 'error')}
 				</span>
 			</div>
