@@ -1,6 +1,6 @@
 <%@ page import="com.esms.model.payment.Payment" %>
 
-<div class="page-header">
+<div class="dashboard-widget-header">
 	<h1>Recent Payments</h1>
 </div>
 
@@ -80,7 +80,7 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<th colspan="7" class="link">
+			<th colspan="8" class="link">
 				<g:link controller="payment" action="list">Show All &raquo;</g:link>
 			</th>				
 		</tr>

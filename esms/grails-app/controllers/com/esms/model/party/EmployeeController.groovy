@@ -14,12 +14,24 @@ class EmployeeController {
     }
 
     def list() {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		if(!params.offset) {
+			params.offset= 0
+		}
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
         [employeeInstanceList: Employee.list(params), employeeInstanceTotal: Employee.count()]
     }
 	
 	def filter = {
-		if(!params.max) params.max = 10
+		if(!params.offset) {
+			params.offset= 0
+		} 
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
 		render( view:'list', model:[ employeeInstanceTotal: filterPaneService.filter( params, Employee),
 			employeeInstanceTotal: filterPaneService.count( params, Employee), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
 	}

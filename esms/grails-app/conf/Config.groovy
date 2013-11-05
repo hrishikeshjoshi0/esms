@@ -106,8 +106,6 @@ grails.resources.modules = {
 		resource url:'/bootstrap/css/bootstrap.min.css'
 		resource url:'/bootstrap/css/bootstrap-responsive.min.css'
 		resource url:'/css/dark.css'
-		resource url: '/lib/jBreadcrumbs/css/BreadCrumb.css'
-		resource url: '/lib/qtip2/jquery.qtip.min.css'
 		resource url: '/lib/colorbox/colorbox.css'
 		resource url: '/lib/google-code-prettify/prettify.css'
 		resource url: '/lib/sticky/sticky.css'
@@ -203,5 +201,12 @@ fileuploader {
 		maxSize = 1000 * 1024 * 4 //4 mbytes
 		allowedExtensions = ["doc", "docx", "pdf", "rtf"]
 		path = "/tmp/docs/"
+	}
+}
+
+
+esms {
+	settings {
+		max = "10"
 	}
 }

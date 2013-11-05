@@ -8,14 +8,6 @@ if (typeof jQuery !== 'undefined') {
 		
 	   $("select").chosen();
 		
-	   $(".slidingDiv").hide();
-       $(".show_hide").show();
- 
-       $('.show_hide').click(function(){
-    	   $(".slidingDiv").slideToggle();
-	   });
-       
-       
        var loadUrl = $('#new_tasks').attr('data-url');
        $.ajaxSetup ({  
            cache: false  
@@ -30,8 +22,49 @@ if (typeof jQuery !== 'undefined') {
        $(document).ready(function() {
 			var autocompleteQueryField = $('input[name="q"]');
 			autocompleteQueryField.attr('placeholder','Search Customer...');
-			//$('.yui-ac').prepend("<span class='add-on'><i class='icon-user'></i></span>");
+			resize();
 	   });
 
 	})(jQuery);
+}
+
+
+function resize() {
+	//Resize
+	var  dheight = $('body').height(),
+	alert(dheight);
+	
+    cbody = $('#maincontainer').height(),
+    wheight = $(window).height(),
+    cheight = wheight - dheight + cbody;
+    
+    if (wheight > dheight){
+        $('#maincontainer').height(cheight);
+    }
+    
+    $(window).resize(function(){
+        wheight = $(window).height();
+        noscroll();
+        changepush();
+    });
+
+    function noscroll(){
+       if (wheight > dheight) {
+            $('body').addClass('noscroll');
+       }
+
+        else if (wheight <= dheight) {
+            $('body').removeClass('noscroll');
+        }
+        
+        else {}
+
+    }
+
+    function changepush(){
+       if (wheight > dheight) {
+               $('#maincontainer').height(wheight-dheight+cbody);
+       }
+        
+    }
 }

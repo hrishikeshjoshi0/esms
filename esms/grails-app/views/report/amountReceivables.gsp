@@ -4,62 +4,47 @@
 <html>
 	<head>
 		<meta name="layout" content="bootstrap">
-		<g:set var="entityName" value="${message(code: 'order.label', default: 'Order')}" />
+		<g:set var="entityName" value="Amount Receivables" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
 		<div class="row-fluid">
 			<div class="span12">
-				
-				<filterpane:currentCriteria domainBean="com.esms.model.order.Order" 
-                removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"/>
-                
-				<div class="slidingDiv">
-					<div class="page-header">
-						<h1>
-							Search
-						</h1>
-					</div>
-					<fieldset>
-						<filterpane:filterPane domain="com.esms.model.order.Order"
-		                                   filterProperties="${['orderNumber', 'status','type','contactName']}"
-		                                   titleKey="default.filterPane.header"
-		                                   dialog="false"
-		                                   visible="y"
-		                                   showSortPanel="n"
-		                                   showTitle="n"
-		                                   fullAssociationPathFieldNames="false"/>
-	                 </fieldset>       
-				</div>
-				
 				<div class="page-header">
 					<h1>
-						Open Orders
+						Amount Receivables
 					</h1>
 				</div>
-				
+
+				<filterpane:filterPane domain="com.esms.model.order.Order"
+				filterProperties="${['orderNumber', 'status','type','contactName']}"
+				 titleKey="default.filterPane.header" dialog="y" visible="n"
+				 showSortPanel="y" showTitle="y" showButtons="y"
+				 fullAssociationPathFieldNames="false" />
+
 				<div class="pagination">
-					<bootstrap:paginate params="${filterParams}" total="${orderInstanceTotal?orderInstanceTotal:amountReceivables.size()}" />
+					<bootstrap:paginate params="${filterParams}" total="${orderInstanceTotal}" />
 				</div>
 				<br/>
+				
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<g:sortableColumn property="orderNumber" title="${message(code: 'order.orderNumber.label', default: 'Order Number')}" />
+							<g:sortableColumn params="${filterParams}" property="orderNumber" title="${message(code: 'order.orderNumber.label', default: 'Order Number')}" />
 							
-							<g:sortableColumn property="organization.name" title="${message(code: 'quote.organization.name.label', default: 'Organization')}" />
+							<g:sortableColumn params="${filterParams}" property="organization.name" title="${message(code: 'quote.organization.name.label', default: 'Organization')}" />
 						
-							<g:sortableColumn property="status" title="${message(code: 'order.status.label', default: 'Status')}" />
+							<g:sortableColumn params="${filterParams}" property="status" title="${message(code: 'order.status.label', default: 'Status')}" />
 						
-							<g:sortableColumn property="type" title="${message(code: 'order.type.label', default: 'Type')}" />
+							<g:sortableColumn params="${filterParams}" property="type" title="${message(code: 'order.type.label', default: 'Type')}" />
 						
-							<g:sortableColumn property="issueDate" title="${message(code: 'order.issueDate.label', default: 'Issue Date')}" />
+							<g:sortableColumn params="${filterParams}" property="issueDate" title="${message(code: 'order.issueDate.label', default: 'Issue Date')}" />
 						
-							<g:sortableColumn property="grandTotal" title="${message(code: 'order.grandTotal.label', default: 'Grand Total')}" />
+							<g:sortableColumn params="${filterParams}" property="grandTotal" title="${message(code: 'order.grandTotal.label', default: 'Grand Total')}" />
 						
-							<g:sortableColumn property="receviedGrandTotal" title="${message(code: 'order.receviedGrandTotal.label', default: 'Received Amount')}" />
+							<g:sortableColumn params="${filterParams}" property="receviedGrandTotal" title="${message(code: 'order.receviedGrandTotal.label', default: 'Received Amount')}" />
 							
-							<g:sortableColumn property="openGrandTotal" title="${message(code: 'order.openGrandTotal.label', default: 'Open Amount')}" />
+							<g:sortableColumn params="${filterParams}" property="openGrandTotal" title="${message(code: 'order.openGrandTotal.label', default: 'Open Amount')}" />
 						
 							<th></th>
 						</tr>
@@ -100,10 +85,6 @@
 					</g:each>
 					</tbody>
 				</table>
-				<div class="pagination">
-					<bootstrap:paginate params="${filterParams}" total="${orderInstanceTotal?orderInstanceTotal:amountReceivables.size()}" />
-				</div>
-				<br/>
 			</div>
 		</div>
 	</body>

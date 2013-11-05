@@ -14,15 +14,29 @@ class LeadController {
     }
 	
 	def list() {
-		params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		if(!params.offset) {
+			params.offset= 0
+		}
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
 		def organizations = Organization.findAllBySalesStatusAndIsOneTimeCustomer('LEAD',false,params)
+		def organizationInstanceTotal = Organization.countBySalesStatusAndIsOneTimeCustomer('LEAD',false,params)
+		
 		[organizationInstanceList: organizations, organizationInstanceTotal: Organization.count()]
 	}
 
 	def filter = {
-		if(!params.max) params.max = 10
+		if(!params.offset) {
+			params.offset= 0
+		}
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
 		render( view:'list', model:[ organizationInstanceList: filterPaneService.filter( params, Organization), 
-			organizationInstanceCount: filterPaneService.count( params, Organization), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
+			organizationInstanceTotal: filterPaneService.count( params, Organization), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
 	}
 	
 	def create() {

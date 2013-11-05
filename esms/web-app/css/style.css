@@ -1,5 +1,5 @@
-    html {overflow-y: scroll}
-    body {color: #222;padding: 0}
+    html {overflow-y: scroll;min-height:100%;}
+    body {color: #222;padding: 0;height:100%;min-height:100%;}
     
     /* fix for inputs inline shadow */
 		input[type="text"], input[type="email"], input[type="search"], input[type="password"] {
@@ -77,12 +77,6 @@
 		.navbar-fixed-top .navHover:after {height:1px;width:100%;bottom:-1px;position:absolute;content:'';display:block}
 		.navbar .nav > li > a.nav_condensed {padding-left:2px;padding-right:2px}
 		
-		.pagination {height:26px}
-		.pagination a.active {background-color: #f5f5f5}
-		.pagination a.active {color: #999;cursor: default}
-		.pagination a {line-height: 24px;padding:0 10px}
-		.pagination ul li>div.page {display:inline}
-		
 		.pager a {-webkit-border-radius: 6px;-moz-border-radius: 6px;-ms-border-radius: 6px;border-radius: 6px;padding:4px 12px}
 		
 		.label {cursor:default}
@@ -131,6 +125,17 @@
 		.modal_box form {background: #fff}
 		#colorbox ~ .bootstrap-timepicker,#colorbox ~ .colorpicker,#colorbox ~ .datepicker {z-index:10000}
 		textarea, input {outline: none}
+		
+		.pagination ul > li > a,
+		.pagination ul > li > span {
+		  float: left;
+		  padding: 4px 10px;
+		  line-height: 12px;
+		  text-decoration: none;
+		  background-color: #ffffff;
+		  border: 1px solid #dddddd;
+		  border-left-width: 0;
+		}
 
 	/* header */
 		.navbar .brand {width: 200px;padding-bottom:0;padding-top:0;font: 100 18px/40px 'PT Sans', sans-serif;text-decoration:none;color: #fff}
@@ -146,7 +151,17 @@
 	/* main content */
 		#maincontainer {background-image: url(../img/main_bg.gif);background-repeat:repeat-y;min-height:100%}
         #contentwrapper{float: left;width: 100%}
-		.main_content{padding:35px 0px 0px;background:#fff;border-left:1px solid transparent;margin-left:240px}
+		.main_content {
+			padding: 35px 0px 0px;
+			background: #fff;
+			border-left: 1px solid transparent;
+			margin-left: 240px;
+			height: auto !important;
+			/* ie6 ignores !important, so this will be overridden below */
+			min-height: 100%; /* ie6 ignores min-height completely */
+			height: 100%;
+		}
+
 		.main_content li{line-height:22px}
 	
 	/* main content dashboard */	
@@ -655,7 +670,7 @@
 		.ptrn_e .main_content {background-image: url(../img/bg_e.png)}
 
 	/* Style switcher */
-		.ssw_trigger{position:fixed;top:62px;right:-1px;z-index:1001;text-decoration: none;font-size: 12px;color:#fff;width:15px;padding: 2px 3px;background:#333;display: block;-webkit-border-top-left-radius: 8px;-webkit-border-bottom-left-radius: 8px;-moz-border-radius-topleft: 8px;-moz-border-radius-bottomleft: 8px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;border:1px solid transparent}
+		.ssw_trigger{/*Hidden*/visibility:hidden;position:fixed;top:62px;right:-1px;z-index:1001;text-decoration: none;font-size: 12px;color:#fff;width:15px;padding: 2px 3px;background:#333;display: block;-webkit-border-top-left-radius: 8px;-webkit-border-bottom-left-radius: 8px;-moz-border-radius-topleft: 8px;-moz-border-radius-bottomleft: 8px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;border:1px solid transparent}
 		.ssw_trigger.active {border-color:#555}
 		.style_switcher {
 			font-size: 12px;
@@ -812,8 +827,21 @@
 		}
 		
 		hr.dashboard-hr {
-		  margin: 3px 0;
+		  margin: 5px 0;
 		  border: 0;
-		  border-top: 1px solid #eeeeee;
-		  border-bottom: 1px solid #ffffff;
+		  border-top: 1px dashed #eeeeee;
+		  border-bottom: 1px dashed #ffffff;
+		}
+		
+		.fill {
+			min-height: 100%;
+		}
+		
+		.fp-dialog {
+			top:20%;
+		}
+		
+		
+		.dashboard-widget-header > .h1{
+			color: #336699;
 		}

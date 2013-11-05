@@ -1,6 +1,6 @@
 <%@ page import="com.esms.model.payment.Payment" %>
 
-<div class="page-header">
+<div class="dashboard-widget-header">
 	<h1>
 		Uncleared Cheques 
 	</h1>

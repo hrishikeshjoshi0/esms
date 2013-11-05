@@ -5456,6 +5456,7 @@ body {
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fafafa), color-stop(1, #fff));
 	background-image: linear-gradient(top, #fafafa, #fff);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#fafafa', EndColorStr = '#ffffff');
+	min-height: 100%;
 	background-repeat: no-repeat;
 	height: 100%;
 	/* change the box model to exclude the padding from the calculation of 100% height (IE8+) */

@@ -5,57 +5,42 @@
 		<meta name="layout" content="bootstrap">
 		<g:set var="entityName" value="${message(code: 'quote.label', default: 'Quote')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
-		<filterpane:includes />
 	</head>
 	<body>
 		<div class="row-fluid">
 			<div class="span12">
-				<filterpane:currentCriteria domainBean="com.esms.model.quote.Quote" 
-                removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"/>
-                
-				<div class="slidingDiv">
-					<div class="page-header">
-						<h1>
-							Search
-						</h1>
-					</div>
-					<fieldset>
-						<filterpane:filterPane domain="com.esms.model.quote.Quote"
-                                   filterProperties="${['quoteNumber', 'quoteName','status','organization.name']}"
-                                   titleKey="default.filterPane.header"
-                                   dialog="false"
-                                   visible="y"
-                                   showSortPanel="n"
-                                   showTitle="n"
-                                   fullAssociationPathFieldNames="false"/>
-	                 </fieldset>       
-				</div>
-				
 				<div class="page-header">
 					<h1>
 						<g:message code="default.list.label" args="[entityName]" />
 					</h1>
 				</div>
 				
+				<filterpane:filterPane domain="com.esms.model.quote.Quote"
+                     filterProperties="${['quoteNumber', 'quoteName','status','organization.name']}"
+                     titleKey="default.filterPane.header" dialog="y" visible="n"
+										showSortPanel="y" showTitle="y" showButtons="y"
+										fullAssociationPathFieldNames="false" />
+				
                <div class="pagination">
-					<bootstrap:paginate params="${filterParams}" total="${quoteInstanceTotal?quoteInstanceTotal:quoteInstanceList.size()}" />
+					<bootstrap:paginate params="${filterParams}" total="${quoteInstanceTotal}" />
 				</div>
 				<br/>                 
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-						
-							<g:sortableColumn property="quoteName" title="${message(code: 'quote.quoteName.label', default: 'Quote Name')}" />
+							<g:sortableColumn params="${filterParams}" property="quoteNumber" title="${message(code: 'quote.quoteNumber.label', default: 'Quote Number')}" />
 							
-							<g:sortableColumn property="organization.name" title="${message(code: 'quote.organization.name.label', default: 'Organization')}" />
+							<g:sortableColumn params="${filterParams}" property="quoteName" title="${message(code: 'quote.quoteName.label', default: 'Quote Name')}" />
+							
+							<g:sortableColumn params="${filterParams}" property="organization.name" title="${message(code: 'quote.organization.name.label', default: 'Organization')}" />
 						
-							<g:sortableColumn property="status" title="${message(code: 'quote.status.label', default: 'Status')}" />
+							<g:sortableColumn params="${filterParams}" property="status" title="${message(code: 'quote.status.label', default: 'Status')}" />
 						
-							<g:sortableColumn property="type" title="${message(code: 'quote.type.label', default: 'Type')}" />
+							<g:sortableColumn params="${filterParams}" property="type" title="${message(code: 'quote.type.label', default: 'Type')}" />
 						
-							<g:sortableColumn property="salesChannel" title="${message(code: 'quote.salesChannel.label', default: 'Sales Channel')}" />
+							<g:sortableColumn params="${filterParams}" property="salesChannel" title="${message(code: 'quote.salesChannel.label', default: 'Sales Channel')}" />
 						
-							<g:sortableColumn property="description" title="${message(code: 'quote.description.label', default: 'Description')}" />
+							<g:sortableColumn params="${filterParams}" property="description" title="${message(code: 'quote.description.label', default: 'Description')}" />
 						
 							<th></th>
 						</tr>
@@ -63,6 +48,8 @@
 					<tbody>
 					<g:each in="${quoteInstanceList}" var="quoteInstance">
 						<tr>
+							<td>${fieldValue(bean: quoteInstance, field: "quoteNumber")}</td>
+							
 							<td>${fieldValue(bean: quoteInstance, field: "quoteName")}</td>
 							
 							<td>
@@ -86,18 +73,6 @@
 					</g:each>
 					</tbody>
 				</table>
-				<%--
-				<div class="pagination">
-					<filterpane:paginate total="${quoteInstanceTotal?quoteInstanceTotal:quoteInstanceList.size()}" domainBean="com.esms.model.party.Organization" />
-					<filterpane:filterButton text="Filter Me" appliedText="Change Filter" />
-	                <filterpane:isNotFiltered>Pure and Unfiltered!</filterpane:isNotFiltered>
-	                <filterpane:isFiltered>Filter Applied!</filterpane:isFiltered>
-				</div>
-					--%>
-				<div class="pagination">
-					<bootstrap:paginate params="${filterParams}" total="${quoteInstanceTotal?quoteInstanceTotal:quoteInstanceList.size()}" />
-				</div>
-				<br/>
 			</div>
 		</div>
 	</body>

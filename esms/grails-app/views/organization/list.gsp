@@ -11,45 +11,35 @@
 	<body>
 		<div class="row-fluid">
 			<div class="span12">
-				<filterpane:currentCriteria domainBean="com.esms.model.party.Organization" 
-                removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"/>
-                
-				<div class="slidingDiv">
-					<div class="page-header">
-						<h1>
-							Search
-						</h1>
-					</div>
-					<fieldset>
-						<filterpane:filterPane domain="com.esms.model.party.Organization"
-                                   filterProperties="${['name', 'salesStatus','assignedTo']}"
-                                   titleKey="default.filterPane.header"
-                                   dialog="false"
-                                   visible="y"
-                                   showSortPanel="n"
-                                   showTitle="n"
-                                   fullAssociationPathFieldNames="false"/>
-	                 </fieldset>       
-				</div>
-				
 				<div class="page-header">
 					<h1>
 						<g:message code="default.list.label" args="[entityName]" />
 					</h1>
 				</div>
 				
+				<filterpane:filterPane domain="com.esms.model.party.Organization"
+										filterProperties="${['name', 'salesStatus','assignedTo']}"
+										titleKey="default.filterPane.header" dialog="yes" visible="n"
+										showSortPanel="y" showTitle="y" showButtons="y"
+										fullAssociationPathFieldNames="false" />
+				
+				<div class="pagination">
+					<bootstrap:paginate total="${organizationInstanceTotal}" params="${filterParams}"  />
+				</div>
+				<br/>
+														
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<g:sortableColumn property="externalId" title="${message(code: 'organization.externalId.label', default: 'External Id')}" />
-							<g:sortableColumn property="name" title="${message(code: 'organization.name.label', default: 'Name')}" />
-							<g:sortableColumn property="assignedTo" title="${message(code: 'organization.assignedTo.label', default: 'Assigned To')}" />
-							<g:sortableColumn property="addresses.addressType" title="${message(code: 'address.addressType.label', default: 'Address Type')}" />
-							<g:sortableColumn property="addresses.buildingName" title="${message(code: 'address.buildingName.label', default: 'Building Name')}" />
-							<g:sortableColumn property="addresses.address1" title="${message(code: 'address.address1.label', default: 'Address1')}" />
-							<g:sortableColumn property="addresses.address2" title="${message(code: 'address.address2.label', default: 'Address2')}" />
-							<g:sortableColumn property="addresses.city" title="${message(code: 'address.city.label', default: 'City')}" />
-							<g:sortableColumn property="liftInfo.numberOfLifts" title="${message(code: 'liftInfo.numberOfLifts.label', default: 'No. Of Lists')}" />
+							<g:sortableColumn params="${filterParams}" property="externalId" title="${message(code: 'organization.externalId.label', default: 'External Id')}" />
+							<g:sortableColumn params="${filterParams}" property="name" title="${message(code: 'organization.name.label', default: 'Name')}" />
+							<g:sortableColumn params="${filterParams}" property="assignedTo" title="${message(code: 'organization.assignedTo.label', default: 'Assigned To')}" />
+							<g:sortableColumn params="${filterParams}" property="addresses.addressType" title="${message(code: 'address.addressType.label', default: 'Address Type')}" />
+							<g:sortableColumn params="${filterParams}" property="addresses.buildingName" title="${message(code: 'address.buildingName.label', default: 'Building Name')}" />
+							<g:sortableColumn params="${filterParams}" property="addresses.address1" title="${message(code: 'address.address1.label', default: 'Address1')}" />
+							<g:sortableColumn params="${filterParams}" property="addresses.address2" title="${message(code: 'address.address2.label', default: 'Address2')}" />
+							<g:sortableColumn params="${filterParams}" property="addresses.city" title="${message(code: 'address.city.label', default: 'City')}" />
+							<g:sortableColumn params="${filterParams}" property="liftInfo.numberOfLifts" title="${message(code: 'liftInfo.numberOfLifts.label', default: 'No. Of Lists')}" />
 							<th></th>
 						</tr>
 					</thead>
@@ -73,10 +63,6 @@
 						</g:each>
 					</tbody>
 				</table>
-				<div class="pagination">
-					<bootstrap:paginate params="${filterParams}" total="${organizationInstanceList.size()}" />
-				</div>
-				<br/>
 			</div>
 		</div>
 	</body>

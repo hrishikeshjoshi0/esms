@@ -7,7 +7,7 @@
 </head>
 <body>
 
-	<div id="calendar" style="margin: 10px;"></div>
+	<div id="calendar" style=""></div>
 
 	<script>
   	$(document).ready(function() {

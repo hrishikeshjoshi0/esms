@@ -10,11 +10,14 @@
 <resource:tabView />
 <resource:accordion />
 <title>Venus CRM</title>
+<style type="text/css">
+</style>
+
 </head>
 <body>
 	<div class="row-fluid">
 		<div class="span12 dashboard-widget">
-			<div class="page-header">
+			<div class="dashboard-widget-header">
 				<h1>Upcoming Renewals And Tasks</h1>
 			</div>
 
@@ -119,11 +122,11 @@
 	<hr class="dashboard-hr" />
 
 	<div class="row-fluid">
-		<div class="span6 dashboard-widget">
+		<div class="span4 dashboard-widget">
 			<g:render template="/dashboard/recentDocuments" />
 		</div>
 
-		<div class="span6 dashboard-widget">
+		<div class="span8 dashboard-widget">
 			<g:render template="/dashboard/recentPayments" />
 		</div>
 	</div>

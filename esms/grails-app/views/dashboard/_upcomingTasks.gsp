@@ -5,7 +5,7 @@
 		$('#upcomingTasks').html('Loading...');
 	}
 </script>
-<div class="page-header">
+<div class="dashboard-widget-header">
 	<h1>
 		Upcoming Tasks for
 		<g:select name="upcomingRenewalMonthParam1" from="${filteredMonthMap}"

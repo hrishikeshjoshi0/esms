@@ -10,32 +10,20 @@
 	<body>
 		<div class="row-fluid">
 			<div class="span12">
-				<filterpane:currentCriteria domainBean="com.esms.model.product.Product" 
-                removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"/>
-                
-				<div class="slidingDiv">
-					<div class="page-header">
-						<h1>
-							Search
-						</h1>
-					</div>
-					<fieldset>
-						<filterpane:filterPane domain="com.esms.model.product.Product"
-                                   filterProperties="${['productNumber', 'productName','productType','isVirtual']}"
-                                   titleKey="default.filterPane.header"
-                                   dialog="false"
-                                   visible="y"
-                                   showSortPanel="n"
-                                   showTitle="n"
-                                   fullAssociationPathFieldNames="false"/>
-	                 </fieldset>       
-				</div>
-				
 				<div class="page-header">
 					<h1>
 						<g:message code="default.list.label" args="[entityName]" />
 					</h1>
 				</div>
+				
+				<filterpane:filterPane domain="com.esms.model.product.Product"
+                     filterProperties="${['productNumber', 'productName','productType','isVirtual']}"
+                     titleKey="default.filterPane.header"
+                     dialog="y"
+                     visible="n"
+                     showSortPanel="n"
+                     showTitle="n"
+                     fullAssociationPathFieldNames="false"/>
 				
 				<div class="pagination">
 					<bootstrap:paginate params="${filterParams}" total="${productInstanceTotal?productInstanceTotal:productInstanceList.size()}" />

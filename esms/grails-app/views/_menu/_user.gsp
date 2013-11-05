@@ -13,7 +13,7 @@
 		</a>
 		<ul class="dropdown-menu">
 			<li>
-				<g:link class="user-link dropdown-toggle" controller="logout">sign out</g:link>
+				<g:link controller="logout"><i class="icon-off"></i> Sign Out</g:link>
 			</li>
 		</ul>
 	</li>

@@ -18,6 +18,8 @@
 	<r:require module="calendar" />
 	<r:require module="chosen" />
 	<r:require module="gebo" />
+	<r:require module="filterpane"/>
+	<resource:autoComplete skin="esmsAutocomplete" />
 	<resource:dateChooser />
 	<resource:tabView/>
 	
@@ -31,24 +33,6 @@
 	<div id="spinner" style="display: none">
 		<img src="${resource(dir: 'img', file: 'ajax_loader.gif')}" alt="" />
 	</div>
-	
-	<!-- Disabling Notifications temporarily -->
-	<%--<div class="style_switcher">
-			<h2 class='style_switcher_header'>
-				Notifications
-			</h2>
-			<hr/>
-			<!-- Style Switcher Content -->
-			<g:render template="/layouts/notification" />		
-			
-			<div class="hide">
-				<ul id="ssw_styles">
-					<li class="small ssw_mbColor sepH_a" style="display:none">body {<span class="ssw_mColor sepH_a" style="display:none"> color: #<span></span>;</span> <span class="ssw_bColor" style="display:none">background-color: #<span></span> </span>}</li>
-					<li class="small ssw_lColor sepH_a" style="display:none">a { color: #<span></span> }</li>
-				</ul>
-			</div>
-		</div>
-	--%>
 	
 	<div id="maincontainer" class="clearfix">
 		

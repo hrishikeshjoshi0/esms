@@ -17,14 +17,28 @@ class PaymentController {
     }
 
     def list() {
-		params.max = Math.min(params.max ? params.int('max') : 10, 100)
-		[paymentInstanceList: Payment.list(params), quoteInstanceTotal: Payment.count()]
+		if(!params.offset) {
+			params.offset= 0
+		} 
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}		
+		
+		def paymentInstanceTotal = Payment.count()
+		def paymentInstanceList = Payment.list(params)
+		[paymentInstanceList: paymentInstanceList, paymentInstanceTotal: paymentInstanceTotal]
 	}
 
 	def filter = {
-		if(!params.max) params.max = 10
+		if(!params.offset) {
+			params.offset= 0
+		} 
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
 		render( view:'list', model:[ paymentInstanceList: filterPaneService.filter( params, Payment), 
-			paymentInstanceCount: filterPaneService.count( params, Payment), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
+			paymentInstanceTotal: filterPaneService.count( params, Payment), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
 	}
 	
 	def createPaymentItem() {

@@ -141,7 +141,49 @@
 									</g:link>
 								</li>
 							</g:if>
+							
 							<li class="divider"></li>
+							
+							<li class="nav-header">
+								Options
+							</li>
+							
+							<li class="divider"></li>
+							
+							<g:if
+								test="${params.controller == 'lead' || params.controller == 'organization'}">
+								<!-- Filter -->
+								<filterpane:currentCriteria domainBean="com.esms.model.party.Organization" 
+					                removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"/>
+							</g:if>
+							<g:elseif test="${params.controller == 'quote'}">
+								<filterpane:currentCriteria domainBean="com.esms.model.quote.Quote" 
+               	 					removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"/>
+							</g:elseif>
+							<g:elseif test="${params.controller == 'order'}">
+								<filterpane:currentCriteria domainBean="com.esms.model.order.Order" 
+               	 					removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"/>
+							</g:elseif>
+							<g:elseif test="${params.controller == 'employee'}">
+								<filterpane:currentCriteria domainBean="com.esms.model.party.Employee" 
+               	 					removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"/>
+							</g:elseif>
+							<g:elseif test="${params.controller == 'employee'}">
+								<filterpane:currentCriteria domainBean="com.esms.model.party.Employee" 
+               	 					removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"/>
+							</g:elseif>
+							<g:elseif test="${params.controller == 'product'}">
+								<filterpane:currentCriteria domainBean="com.esms.model.product.Product" 
+                					removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"/>
+							</g:elseif>
+							<g:elseif test="${params.controller == 'report' && params.view == 'amountReceivables'}">
+								<filterpane:currentCriteria domainBean="com.esms.model.order.Order" 
+               	 					removeImgDir="images" removeImgFile="skin/database_delete.png" fullAssociationPathFieldNames="no"/>
+							</g:elseif>
+								
+								<filterpane:filterButton title="Filter" /> 
+							<li class="divider"></li>
+							
 							<li>
 								Venus CRM - <g:meta name="app.version"/>
 							</li>

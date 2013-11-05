@@ -10,6 +10,14 @@ class ReportController {
 	}
 
     def upcomingRepairs() {
+		if(!params.offset) {
+			params.offset= 0
+		}
+		
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
 		def startRange = new Date()
 		def endRange = startRange.plus(30)
 		
@@ -18,13 +26,35 @@ class ReportController {
 				eq("eventType", 'MAINTENANCE VISIT')
 				ge("startTime", startRange)
 				le("endTime",endRange)
-			}		
+			}
+			firstResult(params.offset?.toInteger())
+			maxResults(params.max?.toInteger())
 		}
 		
-		[eventInstanceList : events,eventInstanceTotal : events?events.size():0]
+		def c1 = Event.createCriteria()
+		def eventInstanceTotal = c1.get {
+			and {
+				eq("eventType", 'MAINTENANCE VISIT')
+				ge("startTime", startRange)
+				le("endTime",endRange)
+			}
+			projections {
+				countDistinct "id"
+			}
+		}
+		
+		[eventInstanceList : events,eventInstanceTotal : eventInstanceTotal]
 	}
 	
 	def upcomingRenewals() {
+		if(!params.offset) {
+			params.offset= 0
+		}
+		
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
 		def now = new Date()
 		def endDate = now.plus(30)
 		
@@ -35,18 +65,49 @@ class ReportController {
 				ne("renewalStage",'RENEWAL_WON')
 				ne("renewalStage",'RENEWAL_LOST')
 			}
+			firstResult(params.offset?.toInteger())
+			maxResults(params.max?.toInteger())
 		}
 		
-		[upcomingRenewals : upcomingRenewals]
-	}
-	
-	def amountReceivables() {
-		def amountReceivables = Order.withCriteria(sort: "contractToDate", order: "asc") {
+		def c1 = Order.createCriteria()
+		def orderInstanceTotal = c1.get {
 			and {
-				gt("openGrandTotal", new BigDecimal("0.0"))
+				eq("type", 'SERVICE')
+				le("contractToDate", endDate)
+				ne("renewalStage",'RENEWAL_WON')
+				ne("renewalStage",'RENEWAL_LOST')
+			}
+			projections {
+				countDistinct "id"
 			}
 		}
 		
-		[amountReceivables : amountReceivables]
+		[upcomingRenewals : upcomingRenewals,orderInstanceTotal:orderInstanceTotal]
+	}
+	
+	def amountReceivables() {
+		if(!params.offset) {
+			params.offset= 0
+		}
+		
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
+		def amountReceivables = Order.withCriteria(sort: "contractToDate", order: "asc") {
+			gt("openGrandTotal", new BigDecimal("0.0"))
+			firstResult(params.offset?.toInteger())
+			maxResults(params.max?.toInteger())
+		}
+		
+		def c1 = Order.createCriteria()
+		def orderInstanceTotal = c1.get {
+			gt("openGrandTotal", new BigDecimal("0.0"))
+			projections {
+				countDistinct "id"
+			}
+		}
+		
+		[amountReceivables : amountReceivables,orderInstanceTotal:orderInstanceTotal]
 	}
 }

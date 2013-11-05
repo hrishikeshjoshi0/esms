@@ -1,6 +1,3 @@
-<head>
-<resource:autoComplete skin="esmsAutocomplete" />
-</head>
 <header>
 	<div class="navbar navbar-fixed-top">
 		<%--<div class="navbar-inner">
@@ -170,7 +167,7 @@
 									</g:link>
 									</li>
 									<li
-										<%= 'activity' == controllerName ? ' class="active"' : '' %>>
+										<%= 'event' == controllerName ? ' class="active"' : '' %>>
 										<g:link controller="event">
 										Calendar
 									</g:link>
@@ -200,10 +197,6 @@
 								<ul class="nav user_menu pull-right">
 									<li class="hidden-phone hidden-tablet">
 										<div class="nb_boxes clearfix">
-											<a data-toggle="modal" data-backdrop="static" href="#myMail" class="label ttip_b" title="New messages">
-												25 <i class="splashy-mail_light"></i>
-											</a> 
-											
 											<g:link controller="event" action="listView" class="label ttip_b"
 												title="New tasks">
 												<span id="new_tasks"

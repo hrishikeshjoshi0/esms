@@ -4,7 +4,7 @@
 		$('#updateDiv').html('Loading...');
 	}
 </script>
-<div class="page-header">
+<div class="dashboard-widget-header">
 	<h1>
 		Upcoming Renewals for 
 		<g:select name="upcomingRenewalMonthParam" from="${filteredMonthMap}" style="padding:10px;"

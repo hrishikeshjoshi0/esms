@@ -5,39 +5,28 @@
 <head>
 <meta name="layout" content="bootstrap">
 <g:set var="entityName"
-	value="${message(code: 'order.label', default: 'Order')}" />
+	value="Upcoming Renewals" />
 <title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 <body>
 	<div class="row-fluid">
 		<div class="span12">
-
-			<filterpane:currentCriteria domainBean="com.esms.model.order.Order"
-				removeImgDir="images" removeImgFile="skin/database_delete.png"
-				fullAssociationPathFieldNames="no" />
-
-			<div class="slidingDiv">
-				<div class="page-header">
-					<h1>Search</h1>
-				</div>
-				<fieldset>
-					<filterpane:filterPane domain="com.esms.model.order.Order"
-						filterProperties="${['orderNumber', 'status','type','contactName']}"
-						titleKey="default.filterPane.header" dialog="false" visible="y"
-						showSortPanel="n" showTitle="n"
-						fullAssociationPathFieldNames="false" />
-				</fieldset>
-			</div>
-
 			<div class="page-header">
 				<h1>Upcoming Renewals</h1>
 			</div>
+			
+			<filterpane:filterPane domain="com.esms.model.order.Order"
+						filterProperties="${['orderNumber', 'status','type','contactName']}"
+						titleKey="default.filterPane.header" dialog="y" visible="n"
+						 showSortPanel="y" showTitle="y" showButtons="y"
+						 fullAssociationPathFieldNames="false" />
 
 			<div class="pagination">
 				<bootstrap:paginate params="${filterParams}"
-					total="${orderInstanceTotal?orderInstanceTotal:upcomingRenewals.size()}" />
+					total="${orderInstanceTotal}" />
 			</div>
 			<br />
+			
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
@@ -149,11 +138,6 @@
 					</tr>
 				</tfoot>
 			</table>
-			<div class="pagination">
-				<bootstrap:paginate params="${filterParams}"
-					total="${orderInstanceTotal?orderInstanceTotal:upcomingRenewals.size()}" />
-			</div>
-			<br />
 		</div>
 	</div>
 </body>

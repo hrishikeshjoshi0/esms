@@ -1,6 +1,6 @@
 <%@ page import="com.esms.model.order.*"%>
 
-<div class="page-header">
+<div class="dashboard-widget-header">
 	<h1>Invoices Pending Payments</h1>
 </div>
 

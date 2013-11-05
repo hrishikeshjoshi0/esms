@@ -11,55 +11,48 @@
 <body>
 	<div class="row-fluid">
 		<div class="span12">
-			<filterpane:currentCriteria
-				domainBean="com.esms.model.party.Employee" removeImgDir="images"
-				removeImgFile="skin/database_delete.png"
-				fullAssociationPathFieldNames="no" />
-
-			<div class="slidingDiv">
-				<div class="page-header">
-					<h1>Search</h1>
-				</div>
-				<fieldset>
-					<filterpane:filterPane domain="com.esms.model.party.Employee"
-						filterProperties="${['firstName', 'lastName']}"
-						titleKey="default.filterPane.header" dialog="false" visible="y"
-						showSortPanel="n" showTitle="n"
-						fullAssociationPathFieldNames="false" />
-				</fieldset>
-			</div>
-
 			<div class="page-header">
 				<h1>
 					<g:message code="default.list.label" args="[entityName]" />
 				</h1>
 			</div>
+			
+			<filterpane:filterPane domain="com.esms.model.party.Employee"
+						filterProperties="${['firstName', 'lastName']}"
+						titleKey="default.filterPane.header" dialog="yes" visible="n"
+										showSortPanel="y" showTitle="y" showButtons="y"
+										fullAssociationPathFieldNames="false" />
+						
+			<div class="pagination">
+				<bootstrap:paginate total="${employeeInstanceTotal}" />
+			</div>
+			<br/>			
 
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<g:sortableColumn property="firstName"
+						<g:sortableColumn params="${filterParams}" property="firstName"
 							title="${message(code: 'employee.firstName.label', default: 'First Name')}" />
 
-						<g:sortableColumn property="lastName"
+						<g:sortableColumn params="${filterParams}" property="lastName"
 							title="${message(code: 'employee.lastName.label', default: 'Last Name')}" />
 
-						<g:sortableColumn property="middleName"
+						<g:sortableColumn params="${filterParams}" property="middleName"
 							title="${message(code: 'employee.middleName.label', default: 'Middle Name')}" />
 
-						<g:sortableColumn property="previousExperience"
+						<g:sortableColumn params="${filterParams}" property="previousExperience"
 							title="${message(code: 'employee.previousExperience.label', default: 'Previous Experience')}" />
 
-						<g:sortableColumn property="salary"
+						<g:sortableColumn params="${filterParams}" property="salary"
 							title="${message(code: 'employee.salary.label', default: 'Salary')}" />
 
-						<g:sortableColumn property="benefits"
+						<g:sortableColumn params="${filterParams}" property="benefits"
 							title="${message(code: 'employee.benefits.label', default: 'Benefits')}" />
 							
-						<g:sortableColumn property="employmentStartDate"
+						<g:sortableColumn params="${filterParams}" property="employmentStartDate"
 							title="${message(code: 'employee.employmentStartDate.label', default: 'Employment Start Date')}" />
 							
-						<g:sortableColumn property="employmentEndDate"
+						<g:sortableColumn params="${filterParams}" property="employmentEndDate"
 							title="${message(code: 'employee.employmentEndDate.label', default: 'Employment End Date')}" />		
 
 						<th></th>
@@ -108,9 +101,6 @@
 					</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
-				<bootstrap:paginate total="${employeeInstanceTotal}" />
-			</div>
 		</div>
 	</div>
 </body>

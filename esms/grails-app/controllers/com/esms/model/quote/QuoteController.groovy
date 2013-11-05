@@ -17,14 +17,25 @@ class QuoteController {
 	}
 
 	def list() {
-		params.max = Math.min(params.max ? params.int('max') : 10, 100)
-		[quoteInstanceList: Quote.list(), quoteInstanceTotal: Quote.count()]
+		if(!params.offset) {
+			params.offset= 0
+		} 
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
+		[quoteInstanceList: Quote.list(params), quoteInstanceTotal: Quote.count()]
 	}
 
 	def filter = {
-		if(!params.max) params.max = 10
+		if(!params.offset) {
+			params.offset= 0
+		} 
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
 		render( view:'list', model:[ quoteInstanceList: filterPaneService.filter( params, Quote),
-			quoteInstanceCount: filterPaneService.count( params, Quote), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
+			quoteInstanceTotal: filterPaneService.count( params, Quote), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
 	}
 
 	def create() {

@@ -1,6 +1,6 @@
 	<%@ page import="com.esms.model.party.*"%>
 
-<div class="page-header">
+<div class="dashboard-widget-header">
 	<h1>Recent Service Contracts</h1>
 </div>
 

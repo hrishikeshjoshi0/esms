@@ -21,24 +21,49 @@ class OrderController {
 	}
 
 	def list() {
-
-		def orders = Order.withCriteria {
+		if(!params.offset) {
+			params.offset= 0
+		} 
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
+		def c = Order.createCriteria()
+		def orders = c.list {
 			'in'('type', [
 				'REPAIR',
 				'MODERNIZATION',
 				'INSTALLATION'
 			])
+			firstResult(params.offset?.toInteger())
+			maxResults(params.max?.toInteger())
+		}
+		
+		def c1 = Order.createCriteria()
+		def orderInstanceTotal = c1.get {
+			'in'('type', [
+				'REPAIR',
+				'MODERNIZATION',
+				'INSTALLATION'
+			])
+			projections {
+		        countDistinct "id"
+		    }
 		}
 
-		orders = Order.list()
-
-		[orderInstanceList: orders, orderInstanceTotal: orders?orders.size():0]
+		[orderInstanceList: orders, orderInstanceTotal: orderInstanceTotal]
 	}
 
 	def filter = {
-		if(!params.max) params.max = 10
+		if(!params.offset) {
+			params.offset= 0
+		} 
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
 		render( view:'list', model:[ orderInstanceList: filterPaneService.filter( params, Order),
-			orderInstanceCount: filterPaneService.count( params, Order), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
+			orderInstanceTotal: filterPaneService.count( params, Order), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
 	}
 
 	def confirmSale() {

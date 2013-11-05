@@ -1,5 +1,5 @@
 <%@page import="com.esms.model.party.Organization"%>
-<ol class="breadcrumb" style="color: #222; margin-top: 0px; font: 16px;">
+<ol class="breadcrumb" style="color: #222; margin-top: 0px; font: 14px;">
 	<g:if
 		test="${params.controller == 'home' || params.controller == 'dashboard' }">
 		<li>

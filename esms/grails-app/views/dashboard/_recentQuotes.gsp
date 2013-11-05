@@ -1,6 +1,6 @@
 <%@ page import="com.esms.model.quote.*"%>
 
-<div class="page-header">
+<div class="dashboard-widget-header">
 	<h1>
 		Recent Maintenance Quotes
 	</h1>

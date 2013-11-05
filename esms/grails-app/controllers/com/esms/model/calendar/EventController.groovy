@@ -13,9 +13,89 @@ import com.esms.model.party.Organization;
 class EventController {
     def eventService
 
-    def index = {
+	def index = {
+		//redirect action: 'month', params: params
+	}
+	
+	def week = {
+	
+	}
+	
+	def day = {
+		
+	}
+	
+	def month = {
+		def nowCal = Calendar.instance
+		Date nowDate = nowCal.time
+		
+		int y = nowCal.get(Calendar.YEAR)
+		int m = nowDate[Calendar.MONTH]
+		int d = nowDate[Calendar.DATE]
+		
+		def s = Calendar.instance
+		s.set Calendar.DATE, 1
+		s.set Calendar.MONTH, m
+		s.set Calendar.YEAR, y
+		def startDate = s.getTime()
+		
+		def e = Calendar.instance
+		e.set Calendar.DATE, 1
+		e.set Calendar.MONTH, (m+1)
+		e.set Calendar.YEAR, y
+		def endDate = e.getTime().minus(1)
+		
+		def (startRange, endRange) = [startDate,endDate]
 
-    }
+		def events = Event.withCriteria {
+			or {
+				and {
+					eq("isRecurring", false)
+					between("startTime", startRange, endRange)
+				}
+				and {
+					eq("isRecurring", true)
+					or {
+						isNull("recurUntil")
+						ge("recurUntil", startRange)
+					}
+				}
+			}
+		}
+
+
+		// iterate through to see if we need to add additional Event instances because of recurring
+		// events
+		def eventList = []
+
+		def displayDateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+
+		events.each {event ->
+
+			def dates = eventService.findOccurrencesInRange(event, startRange, endRange)
+
+			dates.each { date ->
+				DateTime startTime = new DateTime(date)
+				DateTime endTime = startTime.plusMinutes(event.durationMinutes)
+
+				/*
+				 start/end and occurrenceStart/occurrenceEnd are separate because fullCalendar will use the client's local timezone (which may be different than the server's timezone)
+				 start/end are used to render the events on the calendar and the occurrenceStart/occurrenceEnd values are passed along to the show popup
+				 */
+
+				eventList << [
+					id: event.id,
+					title: event.title,
+					allDay: false,
+					start: displayDateFormatter.format(startTime.toDate()),
+					end: displayDateFormatter.format(endTime.toDate()),
+					occurrenceStart: startTime.toInstant().millis,
+					occurrenceEnd: endTime.toInstant().millis
+				]
+			}
+		}
+		[events:eventList]
+	}
 	
 	def listView = {
 		def listView = Event.list(params)

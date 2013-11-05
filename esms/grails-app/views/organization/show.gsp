@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<div class="row-fluid" style="margin-top: -15px;">
+	<div class="row-fluid" style="">
 		<div class="span12">
 			<div class="page-header">
 				<h1>

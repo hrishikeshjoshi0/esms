@@ -1,4 +1,4 @@
-<div class="page-header">
+<div class="dashboard-widget-header">
 	<h1>Upcoming Events</h1>
 </div>
 
