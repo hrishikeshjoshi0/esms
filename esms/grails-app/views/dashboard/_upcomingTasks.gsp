@@ -9,21 +9,21 @@
 	<h1>
 		Upcoming Tasks for
 		<g:select name="upcomingRenewalMonthParam1" from="${filteredMonthMap}"
-			style="padding:10px;" optionKey="key" optionValue="value"
+			optionKey="key" optionValue="value"
 			value="${params.upcomingRenewalMonthParam}"
 			onchange="${remoteFunction(action: 'upcomingTasks',onLoading:'updateTasks();',
                        update: [success: 'upcomingTasks'],method:'GET',onFailure:'alert(\'Error\');',
                        params: '\'upcomingRenewalMonthParam=\' + this.value + \'&upcomingRenewalYearParam=\' + document.getElementById(\'upcomingRenewalYearParam1\').value')}" />
 
 		<g:select name="upcomingRenewalYearParam1" from="${years}"
-			style="padding:10px;" value="${params.upcomingRenewalYearParam}"
+			value="${params.upcomingRenewalYearParam}"
 			onchange="${remoteFunction(action: 'upcomingTasks',onLoading:'updateTasks();',
                        update: [success: 'upcomingTasks'],method:'GET',onFailure:'alert(\'Error\');',
                        params: '\'upcomingRenewalMonthParam=\' + document.getElementById(\'upcomingRenewalMonthParam1\').value + \'&upcomingRenewalYearParam=\' + this.value')}" />
 	</h1>
 </div>
 
-<table class="table table-striped table-hover">
+<table class="table table-striped table-bordered mediaTable">
 	<thead>
 		<tr>
 

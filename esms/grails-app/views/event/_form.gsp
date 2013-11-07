@@ -84,6 +84,13 @@
 		</div>
 		
 		<div
+			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'assignedTo', 'error')}">
+			<label for="assignedTo"><g:message code="event.assignedTo.label"
+					default="Assigned To" /></label>
+			<g:textField name="assignedTo" value="${eventInstance?.assignedTo}" />
+		</div>
+		
+		<div
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'title', 'error')}">
 			<label for="title"><g:message code="event.title.label"
 					default="Title" /></label>
@@ -206,28 +213,34 @@
 				valueMessagePrefix="event.priority" noSelection="['': '']" />
 		</div>
 
-		<%--<div
+		<div
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'relatedTo', 'error')}">
 			<label for="relatedTo"><g:message
 					code="event.relatedTo.label" default="Related To" /></label>
+			
 			<g:select name="relatedTo"
 				from="${eventInstance.constraints.relatedTo.inList}"
 				value="${eventInstance?.relatedTo}"
 				valueMessagePrefix="event.relatedTo" noSelection="['': '']" />
-			<g:textField name="relatedTo"
-				value="${eventInstance?.relatedToValue}" />
+				
+			<g:textField name="relatedToValue" value="${eventInstance?.relatedToValue}" />
+			<!-- Add a link here. Link the order or the organization from here. -->
 		</div>
-		--%>
-		
+
 		<div
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'startTime', 'error')}">
 			<label for="startTime"><g:message
 					code="event.startTime.label" default="Start Time" /></label>
-			<g:datePicker name="startTime" value="${eventInstance?.startTime}" />
-			<%--<g:textField name="startTime"
+			<richui:dateChooser name="startTime"
+				value="${eventInstance?.startTime}" time="true"
+				hourClass="input-mini" minuteClass="input-mini" />
+			<%--
+				<g:datePicker name="startTime" value="${eventInstance?.startTime}" />
+				
+				<g:textField name="startTime"
 				value="${formatDate(date: occurrenceStart ? new Instant(occurrenceStart).toDate() : eventInstance?.startTime, format: 'MM/dd/yyyy hh:mm a')}"
 				class="datetime" />
-		--%>
+			--%>
 		</div>
 
 
@@ -235,11 +248,14 @@
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'endTime', 'error')}">
 			<label for="endTime"><g:message code="event.endTime.label"
 					default="End Time" /></label>
+			<richui:dateChooser name="endTime" value="${eventInstance?.endTime}" 
+				time="true" hourClass="input-mini" minuteClass="input-mini" />		
+			<%--
 			<g:datePicker name="endTime" value="${eventInstance?.endTime}" />
-			<%--<g:textField name="endTime"
+			<g:textField name="endTime"
 				value="${formatDate(date: occurrenceEnd ? new Instant(occurrenceEnd).toDate() : eventInstance?.endTime, format: 'MM/dd/yyyy hh:mm a')}"
 				class="datetime" />
-		--%>
+			--%>
 		</div>
 
 		<%--<div

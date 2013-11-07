@@ -1,47 +1,94 @@
 <%@ page import="com.esms.model.calendar.EventLog"%>
 
-<div
-	class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'loggedDate', 'error')} required">
-	<label for="loggedDate" class="control-label"><g:message
-			code="eventLog.loggedDate.label" default="Logged Date" /><span
-		class="required-indicator">*</span></label>
-	<div class="controls">
-		<g:datePicker name="loggedDate"
-			value="${eventLogInstance?.loggedDate}" precision="day"/>
-		<span class="help-inline">
-			${hasErrors(bean: eventLogInstance, field: 'loggedDate', 'error')}
-		</span>
+<div class="row-fluid">
+	<div class="span6">
+		<div
+			class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'loggedDate', 'error')} required">
+			<label for="loggedDate" class="control-label"><g:message
+					code="eventLog.loggedDate.label" default="Logged Date" /><span
+				class="required-indicator">*</span></label>
+			<div class="controls">
+				<richui:dateChooser name="loggedDate" value="${eventLogInstance?.loggedDate}"/>	
+				<span class="help-inline">
+					${hasErrors(bean: eventLogInstance, field: 'loggedDate', 'error')}
+				</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="span6">
+		<div
+			class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'workDoneBy', 'error')} required">
+			<label for="workDoneBy" class="control-label"><g:message
+					code="eventLog.workDoneBy.label" default="Work Done By" /><span
+				class="required-indicator">*</span></label>
+			<div class="controls">
+				<g:textField name="workDoneBy" required=""
+					value="${eventLogInstance?.workDoneBy}" />
+				<span class="help-inline">
+					${hasErrors(bean: eventLogInstance, field: 'workDoneBy', 'error')}
+				</span>
+			</div>
+		</div>
 	</div>
 </div>
 
-<div
-	class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'workDoneBy', 'error')} required">
-	<label for="workDoneBy" class="control-label"><g:message
-			code="eventLog.workDoneBy.label" default="Work Done By" /><span
-		class="required-indicator">*</span></label>
-	<div class="controls">
-		<g:textField name="workDoneBy" required=""
-			value="${eventLogInstance?.workDoneBy}" />
-		<span class="help-inline">
-			${hasErrors(bean: eventLogInstance, field: 'workDoneBy', 'error')}
-		</span>
+<div class="row-fluid">
+	<div class="span6">
+		<div
+			class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'reviewedBy', 'error')} required">
+			<label for="reviewedBy" class="control-label"><g:message
+					code="eventLog.reviewedBy.label" default="Reviewed By" /><span
+				class="required-indicator">*</span></label>
+			<div class="controls">
+				<g:textField name="reviewedBy" required=""
+					value="${eventLogInstance?.reviewedBy}" />
+				<span class="help-inline">
+					${hasErrors(bean: eventLogInstance, field: 'reviewedBy', 'error')}
+				</span>
+			</div>
+		</div>
 	</div>
-</div>
+</div>		
 
-<div
-	class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'reviewedBy', 'error')} required">
-	<label for="reviewedBy" class="control-label"><g:message
-			code="eventLog.reviewedBy.label" default="Reviewed By" /><span
-		class="required-indicator">*</span></label>
-	<div class="controls">
-		<g:textField name="reviewedBy" required=""
-			value="${eventLogInstance?.reviewedBy}" />
-		<span class="help-inline">
-			${hasErrors(bean: eventLogInstance, field: 'reviewedBy', 'error')}
-		</span>
-	</div>
-</div>
+<div class="row-fluid">
+	<g:if test="${eventInstance?.eventType == 'BREAKDOWN CALL'}">
+		<div class="span6">
+			<div
+				class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'isProblemReported', 'error')} ">
+				<label for="isProblemReported" class="control-label"><g:message
+						code="eventLog.isProblemReported.label" default="Is Problem Repeated" /></label>
+				<div class="controls">
+					<g:checkBox name="isProblemReported"
+						value="${eventLogInstance?.isProblemReported}" />
+					<span class="help-inline">
+						${hasErrors(bean: eventLogInstance, field: 'isProblemReported', 'error')}
+					</span>
+				</div>
+			</div>		
+		</div>
+	</g:if>
+	
+	<!-- To Be Replaced -->
+	<g:if test="${eventInstance?.eventType == 'MAINTENANCE VISIT'}">
+		<div class="span6">
+			<div
+				class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'toBeReplaced', 'error')} ">
+				<label for="tobeReplaced" class="control-label"><g:message
+						code="eventLog.toBeReplaced.label" default="To Be Replaced" /></label>
+				<div class="controls">
+					<g:checkBox name="toBeReplaced"
+						value="${eventLogInstance?.toBeReplaced}" />
+					<span class="help-inline">
+						${hasErrors(bean: eventLogInstance, field: 'toBeReplaced', 'error')}
+					</span>
+				</div>
+			</div>
+		</div>
+	</g:if>
+</div>			
 
+<!--  Comments  -->
 <div
 	class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'comments', 'error')} ">
 	<label for="comments" class="control-label"><g:message
@@ -51,19 +98,6 @@
 			value="${eventLogInstance?.comments}" />
 		<span class="help-inline">
 			${hasErrors(bean: eventLogInstance, field: 'comments', 'error')}
-		</span>
-	</div>
-</div>
-
-<div
-	class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'isProblemReported', 'error')} ">
-	<label for="isProblemReported" class="control-label"><g:message
-			code="eventLog.isProblemReported.label" default="Is Problem Reported" /></label>
-	<div class="controls">
-		<g:checkBox name="isProblemReported"
-			value="${eventLogInstance?.isProblemReported}" />
-		<span class="help-inline">
-			${hasErrors(bean: eventLogInstance, field: 'isProblemReported', 'error')}
 		</span>
 	</div>
 </div>

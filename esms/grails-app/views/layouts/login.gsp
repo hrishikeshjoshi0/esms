@@ -24,17 +24,10 @@
 	<r:layoutResources />
 </head>
 
-<body class="login_page" style="background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #666), color-stop(1, #fff));">
+<body class="login_page" style="">
 	<g:layoutBody />
 	<g:pageProperty name="page.body" />
 	
-	<script>
-		$(document).ready(function() {
-			//* show all elements & remove preloader
-			setTimeout('$("html").removeClass("js")', 1000);
-		});
-	</script>
-
 	<script src="${resource(dir: 'js', file: 'jquery.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'jquery.debouncedresize.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'jquery.actual.min.js')}"></script>

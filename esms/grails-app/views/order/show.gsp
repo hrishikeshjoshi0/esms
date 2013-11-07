@@ -89,13 +89,8 @@
 								default="Create Invoice" />
 						</g:link>
 					</g:if>
-					<%--<g:link class="btn" action="create" controller="event"
-						params="['party.id':orderInstance?.organization.id]">
-						<i class="icon-calendar"></i>
-						<g:message code="default.button.createEvent.label"
-							default="Create Event" />
-					</g:link>
-					--%>
+					
+					<g:render template="/order/btnCreateEvent" />
 
 					<g:link controller="task" action="create" role="button" class="btn"
 						params="[relatedTo:'ORDER',relatedToValue:orderInstance?.orderNumber,taskName:'Reminder For Invoice']">
@@ -104,13 +99,13 @@
 					</g:link>
 
 					<g:if test="${orderInstance?.type == 'SERVICE'}">
-					<g:if test="${!orderInstance?.taggedForRenewal}">
-						<g:link class="btn btn-info" action="tagForRenewal"
-							controller="order" id="${orderInstance.id}">
-							<i class="icon-tag icon-white"></i>
-							Tag For Renewal
-						</g:link>
-					</g:if>
+						<g:if test="${!orderInstance?.taggedForRenewal}">
+							<g:link class="btn btn-info" action="tagForRenewal"
+								controller="order" id="${orderInstance.id}">
+								<i class="icon-tag icon-white"></i>
+								Tag For Renewal
+							</g:link>
+						</g:if>
 					<g:elseif
 						test="${orderInstance?.taggedForRenewal && (orderInstance.renewalStage == 'RENEWAL_LETTER_SENT' || orderInstance.renewalStage == 'TAGGED_FOR_RENEWAL')}">
 						<!-- Single button -->
@@ -161,7 +156,7 @@
 				</div>
 			</g:form>
 
-			<g:if
+			<%--<g:if
 				test="${orderInstance?.status == 'PENDING_INVOICE' && orderInstance?.orderItems?.size() != 0}">
 				<div class="form-actions">
 					<g:jasperReport jasper="GoldContractTemplate" format="PDF"
@@ -171,7 +166,8 @@
 					</g:jasperReport>
 				</div>
 			</g:if>
-
+			--%>
+			
 			<div class="row-fluid">
 				<div class="span4">
 					<dl class="dl-horizontal">
@@ -399,7 +395,6 @@
 							</dt>
 
 							<dd>Renewal Won</dd>
-						Service Contract Renewed.
 					</g:elseif>
 					</dl>
 				</div>

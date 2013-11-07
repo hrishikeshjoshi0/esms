@@ -19,6 +19,9 @@
 			</th>	
 			<th>
 				Contact Number
+			</th>
+			<th>
+				Assigned To
 			</th>	
 			<th></th>
 		</tr>
@@ -54,13 +57,16 @@
 						}
 					 %>
 				</td>
+				<td>
+					${order.assignedTo}
+				</td>
 				<td class="link"><g:link controller="order" action="show" id="${order?.id}">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
 	<tfoot>
 			<tr>
-				<th colspan="5" class="link">
+				<th colspan="6" class="link">
 					<g:link controller="order" action="list">Show All &raquo;</g:link>
 				</th>				
 			</tr>

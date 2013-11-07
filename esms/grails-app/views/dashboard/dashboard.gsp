@@ -43,19 +43,23 @@
 	<hr class="dashboard-hr" />
 
 	<div class="row-fluid">
-		<div class="span6 dashboard-widget">
+		<div class="span12 dashboard-widget">
 			<div id="recentLeadsWidget" class="dashboard-widget">
 				<g:render template="/dashboard/recentLeads" />
 			</div>
 		</div>
+	</div>
 
-		<div class="span6 dashboard-widget">
+	<hr class="dashboard-hr" />
+	
+	<div class="row-fluid">
+		<div class="span12 dashboard-widget">
 			<div id="recentQuotesWidget" class="dashboard-widget">
 				<g:render template="/dashboard/recentQuotes" />
 			</div>
 		</div>
-	</div>
-
+	</div>	
+	
 	<hr class="dashboard-hr" />
 
 	<div class="row-fluid">
@@ -70,7 +74,7 @@
 
 	<div class="row-fluid">
 		<div class="span12 dashboard-widget">
-			<div class="page-header">
+			<div class="dashboard-widget-header">
 				<h1>Repair, Modernization & Installation Quotes & Orders</h1>
 			</div>
 
@@ -98,11 +102,15 @@
 	<hr class="dashboard-hr" />
 
 	<div class="row-fluid">
-		<div class="span6 dashboard-widget">
+		<div class="span12 dashboard-widget">
 			<g:render template="/dashboard/ordersPendingPayment" />
 		</div>
-
-		<div class="span6 dashboard-widget">
+	</div>
+	
+	<hr class="dashboard-hr" />
+	
+	<div class="row-fluid">
+		<div class="span12 dashboard-widget">
 			<g:render template="/dashboard/openPayments" />
 		</div>
 	</div>

@@ -1,6 +1,6 @@
 <%@ page import="com.esms.model.quote.*"%>
 
-<table class="table table-striped table-bordered mediaTable">
+<table class="table table-striped table-bordered table-compact mediaTable">
 	<thead>
 		<tr>
 
@@ -15,10 +15,10 @@
 
 			<g:sortableColumn property="type"
 				title="${message(code: 'quote.type.label', default: 'Type')}" />
+			
+			<g:sortableColumn property="assignedTo"
+				title="${message(code: 'quote.assignedTo.label', default: 'Assigned To')}" />	
 
-			<g:sortableColumn property="salesChannel"
-				title="${message(code: 'quote.salesChannel.label', default: 'Sales Channel')}" />
-				
 			<th>Disqualify</th>	
 
 			<th></th>
@@ -43,11 +43,11 @@
 				<td>
 					${fieldValue(bean: quoteInstance, field: "type")}
 				</td>
-
-				<td>
-					${fieldValue(bean: quoteInstance, field: "salesChannel")}
-				</td>
 				
+				<td>
+					${fieldValue(bean: quoteInstance, field: "assignedTo")}
+				</td>
+
 				<td class="link"><g:link action="markAsDisqualified" controller="quote"	id="${quoteInstance?.id}" >
 						<i class="icon-trash"></i>
 						Disqualify

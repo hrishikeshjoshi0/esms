@@ -32,8 +32,6 @@ if (typeof jQuery !== 'undefined') {
 function resize() {
 	//Resize
 	var  dheight = $('body').height(),
-	alert(dheight);
-	
     cbody = $('#maincontainer').height(),
     wheight = $(window).height(),
     cheight = wheight - dheight + cbody;

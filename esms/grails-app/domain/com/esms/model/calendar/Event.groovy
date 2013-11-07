@@ -52,12 +52,14 @@ class Event {
 	String breakdownVisitTechnicianNotes
 	String breakdownVisitSignedOffBy
 	
+	String assignedTo
+	
 	static hasOne = [workDoneCertificate : WorkDoneCertificate]
 
     def eventService
 
     static constraints = {
-        title(nullable: false, blank: false)
+        title(nullable: true, blank: true)
         location(nullable: true, blank:  true)
         description(nullable: true, blank: true)
         recurType(nullable: true)
@@ -76,7 +78,7 @@ class Event {
 		eventType InList : ['PHONE CALL/FOLLOW UP','MEETING','MAINTENANCE VISIT','BREAKDOWN CALL','REPAIR WORK', 'MODERNIZATION WORK']
 		status InList : ['HELD','PLANNED','NOT HELD'] 
 		priority InList : ['LOW','MEDIUM','HIGH']
-		relatedTo InLIst : ['ORGANIZATION','INCIDENT','INVOICE','QUOTE','ORDER','CONTACT','PAYMENT','EMPLOYEE']
+		relatedTo InList : ['ORGANIZATION','INCIDENT','INVOICE','QUOTE','ORDER','CONTACT','PAYMENT','EMPLOYEE']
 		activityLog type:'text'
 		
 		maintenanceVisitTechnician(nullable: true,blank:true)
@@ -93,6 +95,8 @@ class Event {
 		breakdownVisitSignedOffBy(nullable: true,blank:true)
 		
 		workDoneCertificate nullable:true
+		
+		assignedTo(nullable: true,blank:true)
     }
 	
 	static mapping = {

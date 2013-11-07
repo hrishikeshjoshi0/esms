@@ -4,7 +4,7 @@
 		<h1>Overdue Events</h1>
 	</div>
 
-	<table class="table table-striped table-hover">
+	<table class="table table-striped table-bordered mediaTable">
 		<thead>
 			<tr>
 				<th>
@@ -55,7 +55,7 @@
 					</td>
 
 					<td class="link"><g:link action="show" controller="event"
-							id="${eventInstance.id}" class="btn btn-small">Show &raquo;</g:link>
+							id="${eventInstance.id}">Show &raquo;</g:link>
 					</td>
 					</tr>
 				</g:each>

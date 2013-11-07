@@ -1,12 +1,41 @@
 package com.esms.model.report
 
 import com.esms.model.calendar.Event
+import com.esms.model.calendar.EventLog;
 import com.esms.model.order.Order
 
 class ReportController {
 	
 	def index() {
 		redirect(action:"amountReceivables")
+	}
+	
+	def toBeReplaced() {
+		if(!params.offset) {
+			params.offset= 0
+		}
+		
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
+		def events = EventLog.findAllByToBeReplaced(true,params)
+		def eventLogInstanceTotal = EventLog.countByToBeReplaced(true)
+		[eventLogInstanceList : events,eventLogInstanceTotal:eventLogInstanceTotal]
+	}
+	
+	def isProblemRepeated() {
+		if(!params.offset) {
+			params.offset= 0
+		}
+		
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
+		def events = EventLog.findAllByIsProblemReported(true,params)
+		def eventLogInstanceTotal = EventLog.countByIsProblemReported(true)
+		[eventLogInstanceList : events,eventLogInstanceTotal:eventLogInstanceTotal]
 	}
 
     def upcomingRepairs() {

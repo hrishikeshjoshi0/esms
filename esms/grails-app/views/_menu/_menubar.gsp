@@ -117,7 +117,7 @@
 							
 							<g:if
 								test="${params.controller == 'report'}">
-								<li>
+								<li class="${ params.action == "upcomingRepairs" ? 'active' : '' }">
 									<g:link controller="report" action="upcomingRepairs">
 										<i class="icon-chevron-right"></i>
 										<g:message code="default.button.upcomingRepairs.label"
@@ -125,7 +125,7 @@
 									</g:link>
 								</li>
 								
-								<li>
+								<li class="${ params.action == "upcomingRenewals" ? 'active' : '' }">
 									<g:link controller="report" action="upcomingRenewals">
 										<i class="icon-chevron-right"></i>
 										<g:message code="default.button.upcomingRenewals.label"
@@ -133,11 +133,27 @@
 									</g:link>
 								</li>
 								
-								<li>
+								<li class="${ params.action == "amountReceivables" ? 'active' : '' }">
 									<g:link controller="report" action="amountReceivables">
 										<i class="icon-chevron-right"></i>
 										<g:message code="default.button.amountReceivables.label"
 											default="Amount Receivables" />
+									</g:link>
+								</li>
+								
+								<li class="${ params.action == "toBeReplaced" ? 'active' : '' }">
+									<g:link controller="report" action="toBeReplaced">
+										<i class="icon-chevron-right"></i>
+										<g:message code="default.button.toBeReplaced.label"
+											default="To Be Replaced" />
+									</g:link>
+								</li>
+								
+								<li class="${ params.action == "isProblemRepeated" ? 'active' : '' }">
+									<g:link controller="report" action="isProblemRepeated">
+										<i class="icon-chevron-right"></i>
+										<g:message code="default.button.isProblemRepeated.label"
+											default="Is Problem Repeated" />
 									</g:link>
 								</li>
 							</g:if>

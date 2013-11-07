@@ -25,45 +25,50 @@
             <script src="js/ie/html5.js"></script>
 			<script src="js/ie/respond.min.js"></script>
         <![endif]-->
-		
-    <!-- Shared on MafiaShare.net  --><!-- Shared on MafiaShare.net  --></head>
-    <body class="login_page">
-		<center>
-			<img src="${resource(dir: 'images', file: 'venus_crm_logo.png')}" alt="${meta(name:'app.name')}" />
-		</center>
-		
-		<br/><br/>
+    </head>
+    <body>
+    	<div class="row-fluid">
+			<div class="span2 pull-left">
 				
-		<div class="login_box">
-			<form action="${resource(file: 'j_spring_security_check')}" method="post" id="login_form">
-				<div class="top_b">Sign in to Venus CRM</div>
-				<g:if test='${flash.message}'>
-					<div class='login_message'>${flash.message}</div>
-				</g:if>	    
-				<div class="cnt_b">
-					<div class="formRow">
-						<div class="input-prepend">
-							<span class="add-on"><i class="icon-user"></i></span>
-								<input type="text" id="j_username" name="j_username" placeholder="Username" />
+			</div>
+			
+			<div class="span8">
+				<center>
+					<img src="${resource(dir: 'images', file: 'venus_crm_logo.png')}" alt="${meta(name:'app.name')}" />
+				</center>	
+				
+				<br/><br/>
+				
+				<div class="login_box">
+					<form action="${resource(file: 'j_spring_security_check')}" method="post" id="login_form">
+						<div class="top_b">
+							Sign in to Venus CRM
 						</div>
-					</div>
-					<div class="formRow">
-						<div class="input-prepend">
-							<span class="add-on"><i class="icon-lock"></i></span><input type="password" id="j_password" name="j_password" placeholder="Password"/>
+						<g:if test='${flash.message}'>
+							<div class='login_message'>${flash.message}</div>
+						</g:if>	    
+						<div class="cnt_b">
+							<div class="formRow">
+								<div class="input-prepend">
+									<span class="add-on"><i class="icon-user"></i></span>
+										<input type="text" id="j_username" name="j_username" placeholder="Username" />
+								</div>
+							</div>
+							<div class="formRow">
+								<div class="input-prepend">
+									<span class="add-on"><i class="icon-lock"></i></span><input type="password" id="j_password" name="j_password" placeholder="Password"/>
+								</div>
+							</div>
 						</div>
-					</div>
+						<div class="btm_b clearfix">
+							<button class="btn btn-inverse pull-right" type="submit">Sign In</button>
+						</div>  
+					</form>
 				</div>
-				<div class="btm_b clearfix">
-					<button class="btn btn-inverse pull-right" type="submit">Sign In</button>
-				</div>  
-			</form>
-		</div>
-		
-		<%--<div class="links_b links_btm clearfix">
-			<span class="linkform"><a href="#pass_form">Forgot password?</a></span>
-			<span class="linkform" style="display:none">Never mind, <a href="#login_form">send me back to the sign-in screen</a></span>
-		</div>  
-        --%>
+				
+				<br/><br/>
+			</div>
+		</div>	
         
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.actual.min.js"></script>

@@ -10,14 +10,8 @@
 			</g:link></td>
 
 		<td>
-			${fieldValue(bean: orderInstance, field: "status")}
-		</td>
-
-		<td>
 			${fieldValue(bean: orderInstance, field: "type")}
 		</td>
-
-		<td><g:formatDate date="${orderInstance.issueDate}" /></td>
 
 		<td><g:formatDate date="${orderInstance.contractFromDate}" /></td>
 

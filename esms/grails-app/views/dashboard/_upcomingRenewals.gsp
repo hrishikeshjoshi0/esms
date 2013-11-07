@@ -7,14 +7,14 @@
 <div class="dashboard-widget-header">
 	<h1>
 		Upcoming Renewals for 
-		<g:select name="upcomingRenewalMonthParam" from="${filteredMonthMap}" style="padding:10px;"
+		<g:select name="upcomingRenewalMonthParam" from="${filteredMonthMap}"
 				optionKey="key" optionValue="value"
 				value="${params.upcomingRenewalMonthParam}"
 				onchange="${remoteFunction(action: 'upcomingRenewals',onLoading:'updateDiv();',
                        update: [success: 'updateDiv'],method:'GET',onFailure:'alert(\'Error\');',
                        params: '\'upcomingRenewalMonthParam=\' + this.value + \'&upcomingRenewalYearParam=\' + document.getElementById(\'upcomingRenewalYearParam\').value')}"/>
 						
-		<g:select name="upcomingRenewalYearParam" from="${years}" style="padding:10px;"
+		<g:select name="upcomingRenewalYearParam" from="${years}" 
 				value="${params.upcomingRenewalYearParam}"
 				onchange="${remoteFunction(action: 'upcomingRenewals',onLoading:'updateDiv();',
                        update: [success: 'updateDiv'],method:'GET',onFailure:'alert(\'Error\');',
@@ -57,6 +57,8 @@
 				${message(code: 'order.openGrandTotal.label', default: 'Open Amount')}
 			</th>
 
+			<th></th>
+			
 			<th></th>
 			
 			<th></th>

@@ -93,7 +93,7 @@
 				</div>
 			</g:form>
 
-			<g:if
+			<%--<g:if
 				test="${quoteInstance?.id && quoteInstance?.quoteItems?.size() != 0}">
 				<div class="form-actions">
 					<g:jasperReport jasper="QuotationLetter" format="PDF"
@@ -103,7 +103,8 @@
 					</g:jasperReport>
 				</div>
 			</g:if>
-
+			--%>
+			
 			<div class="row">
 				<div class="span4">
 					<dl class="dl-horizontal" style="margin-left: -30px;">

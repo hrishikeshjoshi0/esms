@@ -7,6 +7,7 @@ class EventLog {
 	String reviewedBy
 	String comments
 	boolean isProblemReported
+	boolean toBeReplaced
 	String urgency
 
     static constraints = {
@@ -15,6 +16,7 @@ class EventLog {
 		reviewedBy(nullable: false, blank: false)
 		comments(nullable: true,type:'text',maxSize: 1000,)
 		isProblemReported(nullable: true)
+		toBeReplaced(nullable: true)
 		urgency(InList:['LOW','MEDIUM','HIGH'])
     }
 	

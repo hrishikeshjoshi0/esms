@@ -55,16 +55,6 @@
 						<i class="icon-trash icon-white"></i>
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
-					<%--<a data-toggle="modal" href="#" data-target="#contactModal" role="button" class="btn"> 
-						<i class="icon-plus"></i> New Contact
-					</a>
-					<a data-toggle="modal" href="#" data-target="#addressModal" role="button" class="btn"> 
-						<i class="icon-plus"></i> New Address
-					</a>
-					<a data-toggle="modal" href="#" data-target="#phoneBookModal"
-						role="button" class="btn"> <i class="icon-plus"></i> New Phone Book
-					</a>
-					--%>
 					<g:if test="${organizationInstance.salesStatus == 'LEAD'}">
 						<g:link controller="organization" action="convertLeadToCustomer"
 							id="${organizationInstance?.id}" role="button" class="btn">
@@ -80,65 +70,213 @@
 				</div>
 			</g:form>
 
-			<dl class="dl-horizontal" style="margin-left: -10px;">
-				<dt>
-					<g:message code="organization.externalId.label"
-						default="External Id" />
-				</dt>
+			<div class="row-fluid">
+				<div class="span4">
+					<dl class="dl-horizontal">
+						<dt>
+							<g:message code="organization.externalId.label"
+								default="External Id" />
+						</dt>
+		
+						<dd>
+							<g:fieldValue bean="${organizationInstance}" field="externalId" />
+						</dd>
+		
+		
+						<dt>
+							<g:message code="organization.assignedTo.label"
+								default="Assigned To" />
+						</dt>
+		
+						<dd>
+							<g:fieldValue bean="${organizationInstance}" field="assignedTo" />
+						</dd>
+		
+						<dt>
+							<g:message code="organization.salesStatus.label"
+								default="Sales Status" />
+						</dt>
+		
+						<dd>
+							<g:fieldValue bean="${organizationInstance}" field="salesStatus" />
+						</dd>
+		
+						<dt>
+							<g:message code="organization.reasonForChange.label"
+								default="Reason for Change" />
+						</dt>
+		
+						<dd>
+							<g:fieldValue bean="${organizationInstance}" field="description" />
+						</dd>
+		
+						<dt>
+							<g:message code="organization.totalInvoicedAmount.label"
+								default="Total Invoiced Amount" />
+						</dt>
+		
+						<dd>
+							<b> ${params.totalInvoicedAmount}
+							</b>
+						</dd>
+		
+						<dt>
+							<g:message code="organization.totalReceivedAmount.label"
+								default="Total Received Amount" />
+						</dt>
+		
+						<dd>
+							<b> ${params.totalReceivedAmount}
+							</b>
+						</dd>
+		
+					</dl>
+				</div>
+				
+				<!-- Order Instance -->
+				<div class="span4">
+					<dl class="dl-horizontal">
+						<dt>
+							<g:message code="order.totalAmount.label" default="Total Amount" />
+						</dt>
 
-				<dd>
-					<g:fieldValue bean="${organizationInstance}" field="externalId" />
-				</dd>
+						<dd>
+							<g:fieldValue bean="${activeContract}" field="totalAmount" />
+						</dd>
 
 
-				<dt>
-					<g:message code="organization.assignedTo.label"
-						default="Assigned To" />
-				</dt>
+						<dt>
+							<g:message code="order.totalTax.label" default="Total Tax" />
+						</dt>
 
-				<dd>
-					<g:fieldValue bean="${organizationInstance}" field="assignedTo" />
-				</dd>
+						<dd>
+							<g:fieldValue bean="${activeContract}" field="totalTax" />
+						</dd>
 
-				<dt>
-					<g:message code="organization.salesStatus.label"
-						default="Sales Status" />
-				</dt>
 
-				<dd>
-					<g:fieldValue bean="${organizationInstance}" field="salesStatus" />
-				</dd>
+						<dt>
+							<g:message code="order.totalDiscount.label"
+								default="Total Discount" />
+						</dt>
 
-				<dt>
-					<g:message code="organization.reasonForChange.label"
-						default="Reason for Change" />
-				</dt>
+						<dd>
+							<g:fieldValue bean="${activeContract}" field="totalDiscount" />
+						</dd>
+						
+						<dt>
+							<g:message code="order.adjustment.label"
+								default="Adjustment" />
+						</dt>
 
-				<dd>
-					<g:fieldValue bean="${organizationInstance}" field="description" />
-				</dd>
+						<dd>
+							<g:fieldValue bean="${activeContract}" field="adjustment" />
+						</dd>
 
-				<dt>
-					<g:message code="organization.totalInvoicedAmount.label"
-						default="Total Invoiced Amount" />
-				</dt>
 
-				<dd>
-					<b> ${params.totalInvoicedAmount}
-					</b>
-				</dd>
+						<dt>
+							<g:message code="order.grandTotal.label" default="Grand Total" />
+						</dt>
 
-				<dt>
-					<g:message code="organization.totalReceivedAmount.label"
-						default="Total Received Amount" />
-				</dt>
+						<dd>
+							<g:fieldValue bean="${activeContract}" field="grandTotal" />
+						</dd>
+						
+						<!-- Invoiced -->
+						<dt>
+							<g:message code="order.invoicedGrandTotal.label" default="Invoiced Amount" />
+						</dt>
 
-				<dd>
-					<b> ${params.totalReceivedAmount}
-					</b>
-				</dd>
+						<dd>
+							<g:fieldValue bean="${activeContract}" field="invoicedGrandTotal" />
+						</dd>
+						
+						<dt>
+							<g:message code="order.pendingInvoiceGrandTotal.label" default="Pending Invoice Amount" />
+						</dt>
 
-			</dl>
+						<dd>
+							<g:fieldValue bean="${activeContract}" field="pendingInvoiceGrandTotal" />
+						</dd>
+					</dl>
+				</div>
+				
+				<div class="span4">
+					<dl class="dl-horizontal">
+						<g:if
+							test="${activeContract?.renewalStage == 'RENEWAL_LETTER_SENT'}">
+							<dt>
+								<g:message code="order.renewalStage.label"
+									default="Renewal Stage" />
+							</dt>
+
+							<dd>Renewal Letter Sent</dd>
+
+							<dt>
+								<g:message code="order.recepientContactName.label"
+									default="Recipient Contact Name" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${activeContract}"
+									field="recepientContactName" />
+							</dd>
+
+							<dt>
+								<g:message code="order.recepientContactNumber.label"
+									default="Recipient Contact Name" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${activeContract}"
+									field="recepientContactNumber" />
+							</dd>
+
+							<dt>
+								<g:message code="order.receivedDateTime.label"
+									default="Recipient Contact Name" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${activeContract}" field="receivedDateTime" />
+							</dd>
+
+							<dt>
+								<g:message code="order.handedOveryBy.label"
+									default="Recipient Contact Name" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${activeContract}" field="handedOveryBy" />
+							</dd>
+						</g:if>
+						<g:elseif test="${activeContract?.renewalStage == 'RENEWAL_LOST'}">
+							<dt>
+								<g:message code="order.renewalStage.label"
+									default="Renewal Stage" />
+							</dt>
+
+							<dd>Renewal Lost</dd>
+
+							<dt>
+								<g:message code="order.renewalLostReason.label"
+									default="Recipient Contact Name" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${activeContract}" field="renewalLostReason" />
+							</dd>
+						</g:elseif>
+						<g:elseif test="${activeContract?.renewalStage == 'RENEWAL_WON'}">
+							<dt>
+								<g:message code="order.renewalStage.label"
+									default="Renewal Stage" />
+							</dt>
+
+							<dd>Renewal Won</dd>
+						</g:elseif>
+					</dl>
+				</div>
+			</div>
 		</div>
 
 		<div class="span12">
