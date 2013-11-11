@@ -70,14 +70,61 @@ class QuoteController {
 					}
 				}
 				
-				if(params.contractQuote) {
-					//params.type = "CONTRACT"
-					//params.relatedTo = 'CONTRACT'
-				}
-				
 				def quote = new Quote(params)
 				
-				[quoteInstance: quote]
+				if(params.contractQuote) {
+					int lineNo = 1
+					if(quote.type == "CONTRACT") {
+						def products = Product.findAllByProductType("SERVICE")
+						if(products) {
+							def unitPrice = new BigDecimal("0.0")
+							def tax = new BigDecimal("0.0")
+							def discount = new BigDecimal("0.0")
+							def lineTotalAmount = new BigDecimal("0.0")
+
+							quote.quoteItems = new ArrayList<QuoteItem>()
+							products?.each {
+								def quoteItemInstance = new QuoteItem()
+								quoteItemInstance.quantity = 1.0
+								quoteItemInstance.productNumber = it.productNumber
+								quoteItemInstance.lineNumber  = lineNo
+
+								quoteItemInstance.tax = 0.0
+								quoteItemInstance.discount = 0.0
+
+								it?.prices?.each { price ->
+									quoteItemInstance.unitPrice = price.price
+								}
+
+								quoteItemInstance.lineTotalAmount = quoteItemInstance.unitPrice
+								quoteItemInstance.quote = quote
+
+								unitPrice += quoteItemInstance.unitPrice
+								tax +=  quoteItemInstance.tax
+								discount +=  quoteItemInstance.discount
+								lineTotalAmount +=  quoteItemInstance.lineTotalAmount
+
+								quote.quoteItems.add(quoteItemInstance)
+								
+								lineNo++;
+							}
+
+							BigDecimal totalDiscount = new BigDecimal("0.0")
+							BigDecimal grandTotal = new BigDecimal("0.0")
+
+							quote.totalAmount = unitPrice
+							quote.totalTax = tax
+							quote.totalDiscount = discount
+							quote.grandTotal = lineTotalAmount
+
+							//Initialize the Quoted and the Negotiated Total to the Grand Total.
+							quote.quotedGrandTotal = lineTotalAmount
+							quote.negotiatedGrandTotal = 0
+						}
+					}
+				}
+				
+				[quoteInstance: quote,quoteLinesTotal:quote?.quoteItems?.size()]
 				break
 			case 'POST':
 				def quoteInstance = new Quote(params)
@@ -87,56 +134,45 @@ class QuoteController {
 					return
 				}
 				
-				/*int lineNo = 0
-				if(quoteInstance.type == "CONTRACT") {
-					def products = Product.findAllByProductType("SERVICE")
-					if(products) {
-							def unitPrice = new BigDecimal("0.0")
-							def tax = new BigDecimal("0.0")
-							def discount = new BigDecimal("0.0")
-							def lineTotalAmount = new BigDecimal("0.0")
-							
-							quoteInstance.quoteItems = new ArrayList<QuoteItem>()
-							products?.each {
-								def quoteItemInstance = new QuoteItem()
-								quoteItemInstance.quantity = 1.0
-								quoteItemInstance.productNumber = it.productNumber
-								quoteItemInstance.lineNumber  = lineNo
-								
-								quoteItemInstance.tax = 0.0
-								quoteItemInstance.discount = 0.0
-								
-								it?.prices?.each { price ->
-									quoteItemInstance.unitPrice = price.price
-								}
-								
-								quoteItemInstance.lineTotalAmount = quoteItemInstance.unitPrice
-								quoteItemInstance.quote = quoteInstance
-								
-								unitPrice += quoteItemInstance.unitPrice
-								tax +=  quoteItemInstance.tax
-								discount +=  quoteItemInstance.discount
-								lineTotalAmount +=  quoteItemInstance.lineTotalAmount
-								
-								quoteItemInstance.save(flush:true)
-								lineNo++;
-							}
-						
-							BigDecimal totalDiscount = new BigDecimal("0.0")
-							BigDecimal grandTotal = new BigDecimal("0.0")
-						
-							quoteInstance.totalAmount = unitPrice
-							quoteInstance.totalTax = tax
-							quoteInstance.totalDiscount = discount
-							quoteInstance.grandTotal = lineTotalAmount
-										
-							//Initialize the Quoted and the Negotiated Total to the Grand Total.
-							quoteInstance.quotedGrandTotal = lineTotalAmount
-							quoteInstance.negotiatedGrandTotal = 0
-							quoteInstance.save(flush:true)
-					}
-				}*/
+				int quoteLinesTotal = params.quoteLinesTotal?params.quoteLinesTotal.toInteger():0
+				
+				quoteInstance.quoteItems = []
+				
+				def quoteItem
+				for(int i = 0; i < quoteLinesTotal;i++) {
+					quoteItem = new QuoteItem()
+					bindData(quoteItem, params["quoteItem["+i+"]"])
+					quoteItem.quote = quoteInstance
+					quoteInstance.addToQuoteItems(quoteItem)
+					quoteItem.save(flush:true)
+				}
+				
+				def unitPrice = new BigDecimal("0.0")
+				def tax = new BigDecimal("0.0")
+				def discount = new BigDecimal("0.0")
+				def lineTotalAmount = new BigDecimal("0.0")
 
+				quoteInstance?.quoteItems?.each { it ->
+					unitPrice += it.unitPrice
+					tax +=  it.tax
+					discount +=  it.discount
+					lineTotalAmount +=  it.lineTotalAmount
+				}
+
+				BigDecimal totalDiscount = new BigDecimal("0.0")
+				BigDecimal grandTotal = new BigDecimal("0.0")
+
+				quoteInstance.totalAmount = unitPrice
+				quoteInstance.totalTax = tax
+				quoteInstance.totalDiscount = discount
+				
+				quoteInstance.grandTotal = lineTotalAmount
+				
+				//Initialize the Quoted and the Negotiated Total to the Grand Total.
+				quoteInstance.quotedGrandTotal = lineTotalAmount
+				quoteInstance.negotiatedGrandTotal = 0
+				
+				quoteInstance.save(flush:true)
 				flash.message = "New Quote Created."
 				redirect action: 'show', id: quoteInstance.id
 				break

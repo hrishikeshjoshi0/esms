@@ -2,36 +2,53 @@
 <%@ page import="com.esms.model.quote.Quote"%>
 
 <script>
+	function fetchInfo(id) {
+		var url = "${createLink(controller:'organization', action:'fetchInfo')}" + "/" + id;
+		$.ajax({
+			url : url,
+			dataType : 'xml',
+			success : function(data) {
+				//alert(data);
+				$(data).find("contactName").each(function() {
+					//find each instance of loc in xml file and wrap it in a link  
+					$("#contactName").val($(this).text());
+				});
 
-function fetchInfo(id) {
-	var url = "${createLink(controller:'organization', action:'fetchInfo')}" + "/" + id;
-	$.ajax({
-	    url:url,
-	    dataType: 'xml',	
-	    success: function(data) {
-		    //alert(data);
-	    	$(data).find("contactName").each(function() {  
-	    		//find each instance of loc in xml file and wrap it in a link  
-	    		$("#contactName").val($(this).text());
-	    	});
+				$(data).find("assignedTo").each(function() {
+					//find each instance of loc in xml file and wrap it in a link  
+					$("#assignedTo").val($(this).text());
+				});
 
-	    	$(data).find("assignedTo").each(function() {  
-	    		//find each instance of loc in xml file and wrap it in a link  
-	    		$("#assignedTo").val($(this).text());
-	    	});  
+				$(data).find("liftInfo.typeOfEnquiry").each(function() {
+					//find each instance of loc in xml file and wrap it in a link  
+					$("#type").val($(this).text());
+				});
+			},
+			error : function(request, status, error) {
+				alert(error);
+			},
+			complete : function() {
+			}
+		});
+	}
 
-	    	$(data).find("liftInfo.typeOfEnquiry").each(function() {  
-	    		//find each instance of loc in xml file and wrap it in a link  
-	    		$("#type").val($(this).text());
-	    	});  
-	    },
-	    error: function(request, status, error) {
-	      alert(error);
-	    },
-	    complete: function() {
-	    }
+	function updateTotals(elem) {
+		var idx = $(elem).data("index");
+		var unitPrice = $('#' + 'unitPrice' + idx).val();
+		var quantity = $('#' + 'quantity' + idx).val();
+		var tax = $('#' + 'tax' + idx).val();
+		var discount = $('#' + 'discount' + idx).val();
+		//Line Total	
+		var lineTotal = (parseFloat(unitPrice) * parseFloat(quantity)
+				+ parseFloat(tax) - parseFloat(discount));
+		$("#" + "lineTotalAmount" + idx).val(lineTotal);
+	}
+
+	$('document').ready(function() {
+		$('.calc').change(function() {
+			updateTotals($(this));
+		});
 	});
-}
 </script>
 
 <div
