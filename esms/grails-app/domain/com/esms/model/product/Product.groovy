@@ -15,6 +15,7 @@ class Product {
 	Boolean taxable
 	Boolean isVirtual
 	String comments
+	boolean serviceContract = false
 	
 	static hasMany = [prices : ProductPrice]
 	
@@ -34,6 +35,7 @@ class Product {
 		isVirtual nullable:true,blank:true
 		comments nullable:true,blank:true
 		inventory unique: true, nullable:true
+		serviceContract nullable:true,blank:true
     }
 	
 	static mapping = {

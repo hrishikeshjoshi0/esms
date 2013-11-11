@@ -71,7 +71,7 @@
 						code="quoteItem.productNumber.label" default="Product" /><span
 					class="required-indicator">*</span></label>
 				<div class="controls">	
-					<g:select name="productNumber" onChange="fetchUnitPriceForProduct(this.value);" from="${Product.list()}"
+					<g:select name="productNumber" onChange="fetchUnitPriceForProduct(this.value);" from="${Product.findAllByProductTypeAndServiceContract("SERVICE",true)}"
 						required=""
 						optionKey="productNumber" optionValue="productName" value="${quoteItemInstance?.productNumber}"
 						noSelection="${['null':'Select Product..']}" />

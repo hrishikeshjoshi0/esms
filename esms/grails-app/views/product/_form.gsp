@@ -44,6 +44,14 @@
 				</div>
 			</div>
 
+			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'serviceContract', 'error')} ">
+				<label for="serviceContract" class="control-label"><g:message code="product.serviceContract.label" default="Is Service Contract?" /></label>
+				<div class="controls">
+					<g:checkBox name="serviceContract" value="${productInstance?.serviceContract}" />
+					<span class="help-inline">${hasErrors(bean: productInstance, field: 'serviceContract', 'error')}</span>
+				</div>
+			</div>
+			
 			<div class="control-group fieldcontain ${hasErrors(bean: productInstance, field: 'requiresInventory', 'error')} ">
 				<label for="requiresInventory" class="control-label"><g:message code="product.requiresInventory.label" default="Requires Inventory" /></label>
 				<div class="controls">

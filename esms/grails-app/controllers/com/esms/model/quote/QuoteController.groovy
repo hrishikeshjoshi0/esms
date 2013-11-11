@@ -75,7 +75,7 @@ class QuoteController {
 				if(params.contractQuote) {
 					int lineNo = 1
 					if(quote.type == "CONTRACT") {
-						def products = Product.findAllByProductType("SERVICE")
+						def products = Product.findAllByProductTypeAndServiceContract("SERVICE",true)
 						if(products) {
 							def unitPrice = new BigDecimal("0.0")
 							def tax = new BigDecimal("0.0")
