@@ -12,7 +12,7 @@
 			<th>${message(code: 'quote.organization.name.label', default: 'Organization')} </th>
 
 			<th>
-				${message(code: 'quote.type.label', default: 'Type')}
+				${message(code: 'quote.type.label', default: 'Type of Enquiry')}
 			</th>	
 				
 			<th>

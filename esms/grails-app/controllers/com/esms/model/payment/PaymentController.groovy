@@ -101,13 +101,15 @@ class PaymentController {
 			int no = (list?list.size():0) + 1;
 			params.paymentNumber = "PAY" + String.format("%05d", no)
 			
-			def invoice = Invoice.get(params.invoiceId)
-			params."organization.id" = invoice?.organization?.id
-			params.orderId = params.orderId
-			params.invoiceId = params.invoiceId
-			params.totalAmount = invoice.openGrandTotal
-			  
-			def order = Order.findByOrderNumber(invoice.referenceOrderNumber)
+			def invoice = null
+			if(params.invoiceId) {
+				invoice = Invoice.get(params.invoiceId)
+				params."organization.id" = invoice?.organization?.id
+				params.orderId = params.orderId
+				params.invoiceId = params.invoiceId
+				params.totalAmount = invoice?.openGrandTotal
+				def order = Order.findByOrderNumber(invoice.referenceOrderNumber)
+			}
 			
         	[paymentInstance: new Payment(params),invoice:invoice]
 			break

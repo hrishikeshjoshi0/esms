@@ -70,11 +70,22 @@
 					<label for="productNumber" class="control-label"><g:message
 						code="quoteItem.productNumber.label" default="Product" /><span
 					class="required-indicator">*</span></label>
-				<div class="controls">	
-					<g:select name="productNumber" onChange="fetchUnitPriceForProduct(this.value);" from="${Product.findAllByProductTypeAndServiceContract("SERVICE",true)}"
-						required=""
-						optionKey="productNumber" optionValue="productName" value="${quoteItemInstance?.productNumber}"
-						noSelection="${['null':'Select Product..']}" />
+				<div class="controls">
+					<g:if test="${quoteInstance?.type == 'CONTRACT' }">
+						<g:select name="productNumber" onChange="fetchUnitPriceForProduct(this.value);" 
+							from="${Product.findAllByProductTypeAndServiceContract("SERVICE",true)}"
+							required=""
+							optionKey="productNumber" optionValue="productName" value="${quoteItemInstance?.productNumber}"
+							noSelection="${['null':'Select Product..']}" />
+					</g:if>
+					<g:else>
+						<g:select name="productNumber" onChange="fetchUnitPriceForProduct(this.value);" 
+							from="${Product.findAllByProductTypeNotEqual("SERVICE")}"
+							required=""
+							optionKey="productNumber" optionValue="productName" value="${quoteItemInstance?.productNumber}"
+							noSelection="${['null':'Select Product..']}" />
+					</g:else>
+					
 					<span class="help-inline">
 						${hasErrors(bean: quoteInstance, field: 'productNumber', 'error')}
 					</span>

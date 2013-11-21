@@ -6,8 +6,10 @@ if (typeof jQuery !== 'undefined') {
 			$(this).fadeOut();
 		});
 		
-	   $("select").chosen();
-		
+	   
+	   var p = $("select:not([name^='filter.'])");
+	   $(p).chosen();
+	   
        var loadUrl = $('#new_tasks').attr('data-url');
        $.ajaxSetup ({  
            cache: false  

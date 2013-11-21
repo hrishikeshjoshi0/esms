@@ -135,69 +135,76 @@
 				
 				<!-- Order Instance -->
 				<div class="span4">
-					<dl class="dl-horizontal">
-						<dt>
-							<g:message code="order.totalAmount.label" default="Total Amount" />
-						</dt>
+					<g:if test="${activeContract}">
+						<dl class="dl-horizontal">
+							<dt>
+								<g:message code="order.totalAmount.label" default="Total Amount" />
+							</dt>
 
-						<dd>
-							<g:fieldValue bean="${activeContract}" field="totalAmount" />
-						</dd>
-
-
-						<dt>
-							<g:message code="order.totalTax.label" default="Total Tax" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${activeContract}" field="totalTax" />
-						</dd>
+							<dd>
+								<g:fieldValue bean="${activeContract}" field="totalAmount" />
+							</dd>
 
 
-						<dt>
-							<g:message code="order.totalDiscount.label"
-								default="Total Discount" />
-						</dt>
+							<dt>
+								<g:message code="order.totalTax.label" default="Total Tax" />
+							</dt>
 
-						<dd>
-							<g:fieldValue bean="${activeContract}" field="totalDiscount" />
-						</dd>
-						
-						<dt>
-							<g:message code="order.adjustment.label"
-								default="Adjustment" />
-						</dt>
+							<dd>
+								<g:fieldValue bean="${activeContract}" field="totalTax" />
+							</dd>
 
-						<dd>
-							<g:fieldValue bean="${activeContract}" field="adjustment" />
-						</dd>
+							<dt>
+								<g:message code="order.totalDiscount.label"
+									default="Total Discount" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${activeContract}" field="totalDiscount" />
+							</dd>
+
+							<dt>
+								<g:message code="order.adjustment.label" default="Adjustment" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${activeContract}" field="adjustment" />
+							</dd>
 
 
-						<dt>
-							<g:message code="order.grandTotal.label" default="Grand Total" />
-						</dt>
+							<dt>
+								<g:message code="order.grandTotal.label" default="Grand Total" />
+							</dt>
 
-						<dd>
-							<g:fieldValue bean="${activeContract}" field="grandTotal" />
-						</dd>
-						
-						<!-- Invoiced -->
-						<dt>
-							<g:message code="order.invoicedGrandTotal.label" default="Invoiced Amount" />
-						</dt>
+							<dd>
+								<g:fieldValue bean="${activeContract}" field="grandTotal" />
+							</dd>
 
-						<dd>
-							<g:fieldValue bean="${activeContract}" field="invoicedGrandTotal" />
-						</dd>
-						
-						<dt>
-							<g:message code="order.pendingInvoiceGrandTotal.label" default="Pending Invoice Amount" />
-						</dt>
+							<!-- Invoiced -->
+							<dt>
+								<g:message code="order.invoicedGrandTotal.label"
+									default="Invoiced Amount" />
+							</dt>
 
-						<dd>
-							<g:fieldValue bean="${activeContract}" field="pendingInvoiceGrandTotal" />
-						</dd>
-					</dl>
+							<dd>
+								<g:fieldValue bean="${activeContract}"
+									field="invoicedGrandTotal" />
+							</dd>
+
+							<dt>
+								<g:message code="order.pendingInvoiceGrandTotal.label"
+									default="Pending Invoice Amount" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${activeContract}"
+									field="pendingInvoiceGrandTotal" />
+							</dd>
+						</dl>
+					</g:if>
+					<g:else>
+						<b>No Active Contract</b>
+					</g:else>
 				</div>
 				
 				<div class="span4">

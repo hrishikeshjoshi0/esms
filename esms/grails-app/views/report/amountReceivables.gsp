@@ -1,4 +1,5 @@
-
+<%@page import="com.esms.model.invoice.Invoice"%>
+<%@page import="com.esms.model.calendar.Event"%>
 <%@ page import="com.esms.model.order.Order" %>
 <!doctype html>
 <html>
@@ -12,7 +13,7 @@
 			<div class="span12">
 				<div class="page-header">
 					<h1>
-						Amount Receivables
+						Amount Receivables (Sales, Repair, Modernization, Installation)
 					</h1>
 				</div>
 
@@ -23,34 +24,37 @@
 				 fullAssociationPathFieldNames="false" />
 
 				<div class="pagination">
-					<bootstrap:paginate params="${filterParams}" total="${orderInstanceTotal}" />
+					<bootstrap:paginate params="${filterParams}" total="${amountReceivablesTotal}" />
 				</div>
 				<br/>
 				
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<g:sortableColumn params="${filterParams}" property="orderNumber" title="${message(code: 'order.orderNumber.label', default: 'Order Number')}" />
+							<g:sortableColumn params="${filterParams}" property="orderNumber" title="${message(code: 'invoice.invoiceNumber.label', default: 'Invoice Number')}" />
 							
-							<g:sortableColumn params="${filterParams}" property="organization.name" title="${message(code: 'quote.organization.name.label', default: 'Organization')}" />
-						
-							<g:sortableColumn params="${filterParams}" property="status" title="${message(code: 'order.status.label', default: 'Status')}" />
-						
-							<g:sortableColumn params="${filterParams}" property="type" title="${message(code: 'order.type.label', default: 'Type')}" />
-						
-							<g:sortableColumn params="${filterParams}" property="issueDate" title="${message(code: 'order.issueDate.label', default: 'Issue Date')}" />
-						
-							<g:sortableColumn params="${filterParams}" property="grandTotal" title="${message(code: 'order.grandTotal.label', default: 'Grand Total')}" />
-						
-							<g:sortableColumn params="${filterParams}" property="receviedGrandTotal" title="${message(code: 'order.receviedGrandTotal.label', default: 'Received Amount')}" />
+							<g:sortableColumn params="${filterParams}" property="organization.name" title="${message(code: 'invoice.organization.name.label', default: 'Organization')}" />
 							
-							<g:sortableColumn params="${filterParams}" property="openGrandTotal" title="${message(code: 'order.openGrandTotal.label', default: 'Open Amount')}" />
+							<th>Title</th>
+						
+							<g:sortableColumn params="${filterParams}" property="type" title="${message(code: 'invoice.type.label', default: 'Type')}" />
+						
+							<g:sortableColumn params="${filterParams}" property="issueDate" title="${message(code: 'invoice.issueDate.label', default: 'Issue Date')}" />
+						
+							<th>Total Amount</th>
+							
+							<th>Invoiced Amount</th>
+						
+							<th>Received Amount</th>
+							
+							<th>Pending Invoice Amount</th>
 						
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 					<g:each in="${amountReceivables}" var="orderInstance">
+						<g:set var="eventInstance" value="${Event.findByRelatedToAndRelatedToValue('ORDER',orderInstance?.orderNumber) }" />
 						<tr>
 							<td>${fieldValue(bean: orderInstance, field: "orderNumber")}</td>
 							
@@ -59,27 +63,33 @@
 									${fieldValue(bean: orderInstance, field: "organization.name")}
 								</g:link>
 							</td>
-						
-							<td>${fieldValue(bean: orderInstance, field: "status")}</td>
+							
+							<td>
+								${eventInstance?.title}
+							</td>
 						
 							<td>${fieldValue(bean: orderInstance, field: "type")}</td>
 						
 							<td><g:formatDate date="${orderInstance.issueDate}" /></td>
 						
 							<td>
-								${fieldValue(bean : orderInstance, field : "grandTotal") }
+								${orderInstance?.grandTotal}
 							</td>
 							
 							<td>
-								${fieldValue(bean : orderInstance, field : "receviedGrandTotal") }
+								${orderInstance?.invoicedGrandTotal}
 							</td>
 							
 							<td>
-								${fieldValue(bean : orderInstance, field : "openGrandTotal") }
+								${orderInstance?.getReceivedAmount()}
+							</td>
+							
+							<td>
+								${fieldValue(bean : orderInstance, field : "pendingInvoiceGrandTotal") }
 							</td>
 						
 							<td class="link">
-								<g:link action="show" id="${orderInstance.id}" class="btn btn-small">Show &raquo;</g:link>
+								<g:link action="show" controller="order" id="${orderInstance.id}" class="btn btn-small">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>

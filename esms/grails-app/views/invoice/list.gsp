@@ -16,11 +16,24 @@
 					</h1>
 				</div>
 				
+				<filterpane:filterPane domain="com.esms.model.invoice.Invoice"
+		                filterProperties="${['invoiceNumber', 'status','type','contactName']}"
+						 titleKey="default.filterPane.header" dialog="y" visible="n"
+										showSortPanel="y" showTitle="y" showButtons="y"
+										fullAssociationPathFieldNames="false" />
+										
+				<div class="pagination">
+					<bootstrap:paginate total="${invoiceInstanceTotal}" />
+				</div>
+				<br/>
+				
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
 						
 							<g:sortableColumn property="invoiceNumber" title="${message(code: 'invoice.invoiceNumber.label', default: 'Invoice Number')}" />
+							
+							<g:sortableColumn property="invoiceNumber" title="${message(code: 'invoice.referenceOrderNumber.label', default: 'Reference Order Number')}" />
 						
 							<g:sortableColumn property="status" title="${message(code: 'invoice.status.label', default: 'Status')}" />
 						
@@ -40,6 +53,8 @@
 						<tr>
 						
 							<td>${fieldValue(bean: invoiceInstance, field: "invoiceNumber")}</td>
+							
+							<td>${fieldValue(bean: invoiceInstance, field: "referenceOrderNumber")}</td>
 						
 							<td>${fieldValue(bean: invoiceInstance, field: "status")}</td>
 						
@@ -58,9 +73,6 @@
 					</g:each>
 					</tbody>
 				</table>
-				<div class="pagination">
-					<bootstrap:paginate total="${invoiceInstanceTotal}" />
-				</div>
 			</div>
 		</div>
 	</body>

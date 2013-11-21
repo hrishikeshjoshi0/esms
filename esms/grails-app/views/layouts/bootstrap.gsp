@@ -18,7 +18,8 @@
 	<r:require module="calendar" />
 	<r:require module="chosen" />
 	<r:require module="gebo" />
-	<r:require module="filterpane"/>
+	<filterpane:includes />
+
 	<resource:autoComplete skin="esmsAutocomplete" />
 	<resource:dateChooser />
 	<resource:tabView/>

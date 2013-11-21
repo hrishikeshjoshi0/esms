@@ -6,21 +6,17 @@
 	<thead>
 		<tr>
 			<th>
-				${message(code: 'event.party.label', default: 'Organization')}
+				${message(code: 'event.party.label', default: 'Building Name')}
 			</th>
 			
-			<th>
-				${message(code: 'event.startTime.label', default: 'Start Time')}
-			</th>	
-
 			<th>
 				${message(code: 'event.eventType.label', default: 'Event Type')}
 			</th>
 			
 			<th>
-				${message(code: 'event.status.label', default: 'Status')}
-			</th>
-			
+				${message(code: 'event.startTime.label', default: 'Time')}
+			</th>	
+
 			<th>
 				${message(code: 'event.assignedTo.label', default: 'Assigned To')}
 			</th>
@@ -37,17 +33,13 @@
 					</td>
 					
 					<td>
-						${fieldValue(bean: eventInstance, field: "startTime")}
-					</td>
-
-					<td>
 						${fieldValue(bean: eventInstance, field: "eventType")}
 					</td>
 					
 					<td>
-						${fieldValue(bean: eventInstance, field: "status")}
+						${fieldValue(bean: eventInstance, field: "startTime")}
 					</td>
-					
+
 					<td>
 						${fieldValue(bean: eventInstance, field: "assignedTo")}
 					</td>

@@ -14,6 +14,13 @@
 				<h1>
 					EVENT 
 					|
+					${eventInstance?.title}
+					|
+					<g:link controller="organization" action="show"
+						id="${eventInstance?.party?.id}">
+						${eventInstance?.party?.name}
+					</g:link>
+					|
 					<g:formatDate date="${eventInstance?.startTime}" format="dd.MM.yyyy HH:mm:ss" />
 						-
 					<g:formatDate date="${eventInstance?.endTime}" format="dd.MM.yyyy HH:mm:ss" />
@@ -62,126 +69,202 @@
 				</div>
 			</g:form>
 
-			<dl class="dl-horizontal">
-
-				<dt>
-					<g:message code="event.title.label" default="Title" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${eventInstance}" field="title" />
-				</dd>
-
-
-				<dt>
-					<g:message code="event.location.label" default="Location" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${eventInstance}" field="location" />
-				</dd>
-
-
-				<dt>
-					<g:message code="event.startTime.label" default="Start Time" />
-				</dt>
-
-				<dd>
-					<g:formatDate date="${eventInstance?.startTime}" type="datetime" />
-				</dd>
-
-				<dt>
-					<g:message code="event.endTime.label" default="End Time" />
-				</dt>
-
-				<dd>
-					<g:formatDate date="${eventInstance?.endTime}" type="datetime" />
-				</dd>
-
-				<g:if test="${eventInstance?.isRecurring}">
-					<dt>
-						<g:message code="event.isRecurring.label" default="Is Recurring" />
-					</dt>
-
-					<dd>
-						<g:formatBoolean boolean="${eventInstance?.isRecurring}" />
-					</dd>
-
-					<dt>
-						<g:message code="event.recurType.label" default="Recur Type" />
-					</dt>
-
-					<dd>
-						<g:fieldValue bean="${eventInstance}" field="recurType" />
-					</dd>
-
-
-					<dt>
-						<g:message code="event.recurInterval.label"
-							default="Recur Interval" />
-					</dt>
-
-					<dd>
-						<g:fieldValue bean="${eventInstance}" field="recurInterval" />
-					</dd>
-
-
-					<dt>
-						<g:message code="event.recurUntil.label" default="Recur Until" />
-					</dt>
-
-					<dd>
-						<g:formatDate date="${eventInstance?.recurUntil}" />
-					</dd>
-
-
-					<dt>
-						<g:message code="event.recurCount.label" default="Recur Count" />
-					</dt>
-
-					<dd>
-						<g:fieldValue bean="${eventInstance}" field="recurCount" />
-					</dd>
-
-
-					<dt>
-						<g:message code="event.excludeDays.label" default="Exclude Days" />
-					</dt>
-
-					<dd>
-						<g:fieldValue bean="${eventInstance}" field="excludeDays" />
-					</dd>
-
-					<dt>
-						<g:message code="event.recurDaysOfWeek.label"
-							default="Recur Days Of Week" />
-					</dt>
-
-					<dd>
-						<g:fieldValue bean="${eventInstance}" field="recurDaysOfWeek" />
-					</dd>
-				</g:if>
-
-				<dt>
-					<g:message code="event.sourceEvent.label" default="Source Event" />
-				</dt>
-
-				<dd>
-					<g:link controller="event" action="show"
-						id="${eventInstance?.sourceEvent?.id}">
-						${eventInstance?.sourceEvent?.title}
-					</g:link>
-				</dd>
-
-				<dt>
-					<g:message code="event.description.label" default="Description" />
-				</dt>
-
-				<dd>
-					<g:fieldValue bean="${eventInstance}" field="description" />
-				</dd>
-			</dl>
-
+			<div class="row-fluid">
+				<div class="span6">
+					<dl class="dl-horizontal">
+						<dt>
+							<g:message code="event.title.label" default="Title" />
+						</dt>
+		
+						<dd>
+							<g:fieldValue bean="${eventInstance}" field="title" />
+						</dd>
+		
+		
+						<dt>
+							<g:message code="event.location.label" default="Location" />
+						</dt>
+		
+						<dd>
+							<g:fieldValue bean="${eventInstance}" field="location" />
+						</dd>
+		
+		
+						<dt>
+							<g:message code="event.startTime.label" default="Start Time" />
+						</dt>
+		
+						<dd>
+							<g:formatDate date="${eventInstance?.startTime}" type="datetime" />
+						</dd>
+		
+						<dt>
+							<g:message code="event.endTime.label" default="End Time" />
+						</dt>
+		
+						<dd>
+							<g:formatDate date="${eventInstance?.endTime}" type="datetime" />
+						</dd>
+		
+						<%--<g:if test="${eventInstance?.isRecurring}">
+							<dt>
+								<g:message code="event.isRecurring.label" default="Is Recurring" />
+							</dt>
+		
+							<dd>
+								<g:formatBoolean boolean="${eventInstance?.isRecurring}" />
+							</dd>
+		
+							<dt>
+								<g:message code="event.recurType.label" default="Recur Type" />
+							</dt>
+		
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="recurType" />
+							</dd>
+		
+		
+							<dt>
+								<g:message code="event.recurInterval.label"
+									default="Recur Interval" />
+							</dt>
+		
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="recurInterval" />
+							</dd>
+		
+		
+							<dt>
+								<g:message code="event.recurUntil.label" default="Recur Until" />
+							</dt>
+		
+							<dd>
+								<g:formatDate date="${eventInstance?.recurUntil}" />
+							</dd>
+		
+		
+							<dt>
+								<g:message code="event.recurCount.label" default="Recur Count" />
+							</dt>
+		
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="recurCount" />
+							</dd>
+		
+		
+							<dt>
+								<g:message code="event.excludeDays.label" default="Exclude Days" />
+							</dt>
+		
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="excludeDays" />
+							</dd>
+		
+							<dt>
+								<g:message code="event.recurDaysOfWeek.label"
+									default="Recur Days Of Week" />
+							</dt>
+		
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="recurDaysOfWeek" />
+							</dd>
+						</g:if>
+		
+						<dt>
+							<g:message code="event.sourceEvent.label" default="Source Event" />
+						</dt>
+		
+						<dd>
+							<g:link controller="event" action="show"
+								id="${eventInstance?.sourceEvent?.id}">
+								${eventInstance?.sourceEvent?.title}
+							</g:link>
+						</dd>
+						--%>
+						<dt>
+							<g:message code="event.description.label" default="Description" />
+						</dt>
+		
+						<dd>
+							<g:fieldValue bean="${eventInstance}" field="description" />
+						</dd>
+					</dl>
+				</div>
+				
+				<div class="span6">
+					<dl class="dl-horizontal">
+						<g:if test="${eventInstance?.eventType == 'MAINTENANCE VISIT' }">
+							<dt>
+								<g:message code="event.eventType.label" default="Type" />
+							</dt>
+							
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="eventType" />
+							</dd>
+							
+							<dt>
+								<g:message code="event.maintenanceVisitTechnician.label" default="Technician" />
+							</dt>
+							
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="maintenanceVisitTechnician" />
+							</dd>
+							
+							<dt>
+								<g:message code="event.maintenanceVisitTechnicianNotes.label" default="Notes" />
+							</dt>
+							
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="maintenanceVisitTechnicianNotes" />
+							</dd>
+						</g:if>
+						
+						<g:if test="${eventInstance?.eventType == 'BREAKDOWN CALL' }">
+							<dt>
+								<g:message code="event.eventType.label" default="Type" />
+							</dt>
+							
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="eventType" />
+							</dd>
+							
+							<dt>
+								<g:message code="event.breakdownVisitTechnician.label" default="Technician" />
+							</dt>
+							
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="breakdownVisitTechnician" />
+							</dd>
+							
+							<dt>
+								<g:message code="event.breakdownVisitTechnicianNotes.label" default="Notes" />
+							</dt>
+							
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="breakdownVisitTechnicianNotes" />
+							</dd>
+							
+							<dt>
+								<g:message code="event.breakdownVisitSignedOffBy.label" default="Signed Off By" />
+							</dt>
+							
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="breakdownVisitSignedOffBy" />
+							</dd>
+						</g:if>
+						
+						<g:if test="${eventInstance?.eventType == 'MEETING' }">
+							<dt>
+								<g:message code="event.meetingNotes.label" default="Type" />
+							</dt>
+							
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="meetingNotes" />
+							</dd>
+						</g:if>
+					</dl>	
+				</div>
+			</div>	
 		</div>
 	</div>
 

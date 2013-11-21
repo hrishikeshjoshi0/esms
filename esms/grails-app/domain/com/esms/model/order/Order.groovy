@@ -1,6 +1,7 @@
 package com.esms.model.order
 
 import com.esms.model.inventory.InventoryJournal
+import com.esms.model.invoice.Invoice;
 import com.esms.model.party.Organization
 import com.esms.model.payment.PaymentItem
 import com.esms.model.product.Product
@@ -105,5 +106,16 @@ class Order {
 			}
 		}
 		orderItems
+	}
+	
+	def getReceivedAmount() {
+		def amountReceivablesTotal = Invoice.createCriteria().get {
+			eq("referenceOrderNumber", orderNumber)
+			projections {
+				sum "receviedGrandTotal"
+			}
+		}
+		
+		amountReceivablesTotal?amountReceivablesTotal:0.0
 	}
 }

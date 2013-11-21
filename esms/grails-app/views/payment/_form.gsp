@@ -21,16 +21,6 @@
 <g:hiddenField name="order.id" value="${params.orderId}"/>
 <g:hiddenField name="invoice.id" value="${params.invoiceId}"/>
 
-<!--
-	<div class="row-fluid">
-		<div class="span6">
-		</div>
-		
-		<div class="span6">
-		</div>
-	</div> 
- -->
-
 <!-- Row 1 -->
 <div class="row-fluid">
 	<div class="span6">

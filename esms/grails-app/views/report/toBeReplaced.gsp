@@ -49,8 +49,6 @@
 							title="${message(code: 'eventLog.urgency.label', default: 'Urgency')}" />
 
 						<th></th>
-						
-						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -86,10 +84,6 @@
 							
 							<td class="link"><g:link action="show" controller="event"
 									id="${eventLogInstance.event?.id}">Show Event &raquo;</g:link>
-							</td>
-
-							<td class="link"><g:link action="show"
-									id="${eventLogInstance.id}">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>

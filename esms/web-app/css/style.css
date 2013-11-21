@@ -849,3 +849,7 @@
 		.dashboard-widget-header > .h1{
 			color: #336699;
 		}
+		
+		.chzn-container chzn-container-single {
+			width:auto;
+		}

@@ -21,6 +21,9 @@
 			</th>
 			<th>
 				Contact Number
+			</th>
+			<th>
+				Assigned To
 			</th>	
 			<th>
 				Disqualify
@@ -54,6 +57,9 @@
 							println contact?.phoneBooks?.first()?.mobilePhone
 						}
 					 %>
+				</td>
+				<td>
+					${organization?.assignedTo}
 				</td>
 				<td class="link"><g:link controller="lead" action="disqualifyLead"
 						id="${organization?.id}" class=" ">

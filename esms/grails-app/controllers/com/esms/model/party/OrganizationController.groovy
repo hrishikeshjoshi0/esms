@@ -177,7 +177,10 @@ class OrganizationController {
 			maxResults(1)
 		}
 		
-		def activeContract = activeContracts?.first()
+		def activeContract
+		if(activeContracts?.size() > 0) {
+			activeContract = activeContracts?.first()
+		}
 		
 		def productName 
 		activeContract?.orderItems?.each {

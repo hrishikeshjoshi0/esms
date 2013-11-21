@@ -10,16 +10,16 @@
 	<thead>
 		<tr>
 			<th>
+				Building Name
+			</th>
+			
+			<th>
 				${message(code: 'payment.paymentNumber.label', default: 'Payment Number')}
 			</th>	
 
 			<th>
 				${message(code: 'paymentItem.orderNumber.label', default: 'Order Number')}
 			</th>	
-
-			<th>
-				Customer
-			</th>
 
 			<th>
 				${message(code: 'paymentItem.amount.label', default: 'Amount')}
@@ -43,15 +43,15 @@
 					var="paymentItemInstance">
 					<tr>
 						<td>
+							${paymentItemInstance?.invoice?.organization?.name}
+						</td>
+						
+						<td>
 							${fieldValue(bean: paymentInstance, field: "paymentNumber")}
 						</td>
 	
 						<td>
 							${paymentItemInstance?.invoice?.referenceOrderNumber}
-						</td>
-	
-						<td>
-							${paymentItemInstance?.invoice?.organization?.name}
 						</td>
 	
 						<td>

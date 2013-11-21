@@ -1,4 +1,5 @@
-	<%@ page import="com.esms.model.party.*"%>
+<%@page import="com.esms.model.product.Product"%>
+<%@ page import="com.esms.model.party.*"%>
 
 <div class="dashboard-widget-header">
 	<h1>Recent Service Contracts</h1>
@@ -12,7 +13,7 @@
 				${message(code: 'organization.name.label', default: 'Name')}
 			</th>
 			<th>
-				Type of Enquiry
+				Type of Contract
 			</th>	
 			<th>
 				Contact Person
@@ -39,7 +40,12 @@
 					</g:link>
 				</td>
 				<td>
-					${order.organization?.liftInfo?.typeOfEnquiry}
+					<g:if test="${order?.orderItems?.size() != 0}">
+						${Product.findByProductNumber(order?.orderItems?.first().productNumber)?.productName}
+					</g:if>
+					<g:else>
+						-
+					</g:else>
 				</td>
 				<td>
 					<%

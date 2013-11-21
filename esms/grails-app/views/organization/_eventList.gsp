@@ -10,11 +10,23 @@
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
-			<g:sortableColumn property="status"
-				title="${message(code: 'event.status.label', default: 'Status')}" />
+			<g:sortableColumn property="eventType"
+				title="${message(code: 'event.eventType.label', default: 'Event Type')}" />
 				
 			<g:sortableColumn property="title"
 				title="${message(code: 'event.title.label', default: 'Title')}" />
+				
+			<g:sortableColumn property="startTime"
+				title="${message(code: 'event.startTime.label', default: 'Start Date Time')}" />
+				
+			<g:sortableColumn property="endTime"
+				title="${message(code: 'event.endTime.label', default: 'End Date Time')}" />	
+				
+			<g:sortableColumn property="status"
+				title="${message(code: 'event.assignedTo.label', default: 'Assigned To')}" />
+				
+			<g:sortableColumn property="description"
+				title="${message(code: 'event.description.label', default: 'Description')}" />	
 
 			<th></th>
 		</tr>
@@ -22,25 +34,29 @@
 	<tbody>
 		<g:each in="${organizationInstance?.events}" var="eventInstance">
 			<tr>
+			
 				<td>
-					${fieldValue(bean: eventInstance, field: "status")}
+					${fieldValue(bean: eventInstance, field: "eventType")}
 				</td>
 
 				<td>
 					${fieldValue(bean: eventInstance, field: "title")}
-					<br/>
-					<g:if test="${eventInstance.eventType == 'CALL' }">
-						${eventInstance.description}
-					</g:if>
-					<g:elseif test="${eventInstance.eventType == 'MEETING' }">
-						${eventInstance.meetingNotes}
-					</g:elseif>
-					<g:elseif test="${eventInstance.eventType == 'MAINTENANCE VISIT' }">
-						${eventInstance.maintenanceVisitTechnicianNotes}
-					</g:elseif>
-					<g:elseif test="${eventInstance.eventType == 'BREAKDOWN CALL' }">
-						${eventInstance.breakdownVisitTechnicianNotes}
-					</g:elseif>
+				</td>
+
+				<td>
+					${fieldValue(bean: eventInstance, field: "startTime")}
+				</td>
+				
+				<td>
+					${fieldValue(bean: eventInstance, field: "endTime")}
+				</td>
+				
+				<td>
+					${fieldValue(bean: eventInstance, field: "assignedTo")}
+				</td>
+
+				<td>
+					${fieldValue(bean: eventInstance, field: "description")}
 				</td>
 
 				<td class="link"><g:link controller="event" action="show"
