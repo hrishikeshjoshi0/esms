@@ -77,6 +77,15 @@
 						<dd>
 							<g:fieldValue bean="${invoiceInstance}" field="invoiceNumber" />
 						</dd>
+						
+						<dt>
+							<g:message code="invoice.referenceOrderNumber.label"
+								default="Reference Order Number" />
+						</dt>
+
+						<dd>
+							<g:fieldValue bean="${invoiceInstance}" field="referenceOrderNumber" />
+						</dd>
 
 
 						<dt>

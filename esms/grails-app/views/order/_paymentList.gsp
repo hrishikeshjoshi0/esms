@@ -16,6 +16,10 @@
 				
 			<g:sortableColumn property="amount"
 				title="${message(code: 'paymentItem.amount.label', default: 'Amount')}" />
+			
+			<th>
+				Reference Order Number
+			</th>	
 		</tr>
 	</thead>
 	<tbody>
@@ -52,6 +56,12 @@
 				
 				<td>
 					${fieldValue(bean: paymentItemInstance, field: "amount")}
+				</td>
+				
+				<td>
+					<g:if test="${paymentInstance?.paymentItems()?.size() != 0}">
+						${paymentInstance?.paymentItems()?.first().invoice?.referenceOrderNumber}
+					</g:if>
 				</td>
 			</tr>
 		</g:each>

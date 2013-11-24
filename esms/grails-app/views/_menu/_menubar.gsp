@@ -43,8 +43,7 @@
 							<li class="divider"></li>
 
 							<g:if test="${params.controller != 'quote' && params.controller != 'report'
-											&& params.controller != 'payment'
-											&& params.controller != 'invoice'}">
+											}">
 								<li class="${ params.action == "create" ? 'active' : '' }">
 									<g:link action="create">
 										<i class="icon-chevron-right"></i>

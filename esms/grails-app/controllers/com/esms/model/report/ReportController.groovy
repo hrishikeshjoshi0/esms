@@ -19,8 +19,35 @@ class ReportController {
 			params.max= grailsApplication.config.esms.settings.max?.toInteger()
 		}
 		
-		def events = EventLog.findAllByToBeReplaced(true,params)
-		def eventLogInstanceTotal = EventLog.countByToBeReplaced(true)
+		def events = EventLog.withCriteria(sort: "startTime", order: "desc") {
+			and {
+				eq('toBeReplaced',true)
+				event {
+					and {
+						ne("status", 'CLOSED')
+					}
+				}
+			}
+			
+			firstResult(params.offset?.toInteger())
+			maxResults(params.max?.toInteger())
+		}
+		
+		def c1 = EventLog.createCriteria()
+		def eventLogInstanceTotal = c1.get {
+			and {
+				eq('toBeReplaced',true)
+				event {
+					and {
+						ne("status", 'CLOSED')
+					}
+				}
+			}
+			projections {
+				countDistinct "id"
+			}
+		}
+		
 		[eventLogInstanceList : events,eventLogInstanceTotal:eventLogInstanceTotal]
 	}
 	
@@ -33,8 +60,38 @@ class ReportController {
 			params.max= grailsApplication.config.esms.settings.max?.toInteger()
 		}
 		
-		def events = EventLog.findAllByIsProblemReported(true,params)
+		//def events = EventLog.findAllByIsProblemReported(true,params)
 		def eventLogInstanceTotal = EventLog.countByIsProblemReported(true)
+		
+		def events = EventLog.withCriteria(sort: "startTime", order: "desc") {
+			and {
+				eq('isProblemReported',true)
+				event {
+					and {
+						ne("status", 'CLOSED')
+					}
+				}
+			}
+			
+			firstResult(params.offset?.toInteger())
+			maxResults(params.max?.toInteger())
+		}
+		
+		def c1 = EventLog.createCriteria()
+		def eventInstanceTotal = c1.get {
+			and {
+				eq('isProblemReported',true)
+				event {
+					and {
+						ne("status", 'CLOSED')
+					}
+				}
+			}
+			projections {
+				countDistinct "id"
+			}
+		}
+		
 		[eventLogInstanceList : events,eventLogInstanceTotal:eventLogInstanceTotal]
 	}
 

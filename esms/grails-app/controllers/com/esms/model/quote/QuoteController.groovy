@@ -339,7 +339,7 @@ class QuoteController {
 			
 			//Works with only order items --> Service Contract and Repair Order
 			quoteInstance.quoteItems?.each {
-				it.discount = diff
+				it.discount += diff
 				it.save(flush:true)
 			}
 			
@@ -348,7 +348,7 @@ class QuoteController {
 			
 			//Works with only order items --> Service Contract and Repair Order
 			quoteInstance.quoteItems?.each {
-				it.discount = diff
+				it.discount += diff
 				it.save(flush:true)
 			}
 		}

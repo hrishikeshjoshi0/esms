@@ -30,7 +30,6 @@ if (typeof jQuery !== 'undefined') {
 	})(jQuery);
 }
 
-
 function resize() {
 	//Resize
 	var  dheight = $('body').height(),

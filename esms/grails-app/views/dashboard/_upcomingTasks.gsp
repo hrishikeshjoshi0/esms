@@ -1,4 +1,5 @@
 <%@page import="com.esms.model.party.Organization"%>
+<%@ page import="com.esms.model.order.Order" %>
 <script>
 	function updateTasks() {
 		$('#upcomingTasks').html('');
@@ -30,6 +31,14 @@
 			<th>
 				${message(code: 'task.taskName.label', default: 'Task Name')}
 			</th>
+			
+			<th>
+				${message(code: 'task.relatedToValue.label', default: 'Order Number')}
+			</th>
+			
+			<th>
+				${message(code: 'task.organization.label', default: 'Building Name')}
+			</th>
 
 			<th>
 				${message(code: 'task.dateTime.label', default: 'Date')}
@@ -39,10 +48,6 @@
 				${message(code: 'task.dueDateTime.label', default: 'Due Date')}
 			</th>
 			
-			<th>
-				${message(code: 'task.relatedToValue.label', default: 'Organization')}
-			</th>
-
 			<th>
 				${message(code: 'task.status.label', default: 'Status')}
 			</th>
@@ -60,10 +65,19 @@
 	</thead>
 	<tbody id="upcomingTasks">
 		<g:each in="${upcomingTasks}" var="taskInstance">
+			<g:set var="order" value="${Order.findByOrderNumber(taskInstance.relatedToValue)}"/>
 			<tr>
 
 				<td>
 					${fieldValue(bean: taskInstance, field: "taskName")}
+				</td>
+				
+				<td>
+					${order?.orderNumber}
+				</td>
+				
+				<td>
+					${order?.organization?.name}
 				</td>
 
 				<td>
@@ -74,16 +88,6 @@
 					${fieldValue(bean: taskInstance, field: "dueDateTime")}
 				</td>
 				
-				<td>
-					<%
-						def o
-						if(taskInstance.relatedToValue?.startsWith('ORG')) {
-							o = Organization.findByExternalId(taskInstance.relatedToValue)
-							println o?.name
-						}
-					 %>
-				</td>
-
 				<td>
 					${fieldValue(bean: taskInstance, field: "status")}
 				</td>

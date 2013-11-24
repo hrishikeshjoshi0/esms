@@ -39,11 +39,13 @@
 						
 							<g:sortableColumn params="${filterParams}" property="issueDate" title="${message(code: 'order.issueDate.label', default: 'Issue Date')}" />
 						
-							<g:sortableColumn params="${filterParams}" property="grandTotal" title="${message(code: 'order.grandTotal.label', default: 'Grand Total')}" />
-						
-							<g:sortableColumn params="${filterParams}" property="receviedGrandTotal" title="${message(code: 'order.receviedGrandTotal.label', default: 'Received Amount')}" />
+							<th>Total Amount</th>
 							
-							<g:sortableColumn params="${filterParams}" property="openGrandTotal" title="${message(code: 'order.openGrandTotal.label', default: 'Open Amount')}" />
+							<th>Invoiced Amount</th>
+						
+							<th>Received Amount</th>
+							
+							<th>Pending Invoice Amount</th>
 						
 							<th></th>
 						</tr>
@@ -70,13 +72,17 @@
 							</td>
 							
 							<td>
-								${fieldValue(bean : orderInstance, field : "receviedGrandTotal") }
+								${orderInstance?.invoicedGrandTotal}
 							</td>
 							
 							<td>
-								${fieldValue(bean : orderInstance, field : "openGrandTotal") }
+								${orderInstance?.getReceivedAmount()}
 							</td>
-						
+							
+							<td>
+								${fieldValue(bean : orderInstance, field : "pendingInvoiceGrandTotal") }
+							</td>
+							
 							<td class="link">
 								<g:link action="show" id="${orderInstance.id}" class="btn btn-small">Show &raquo;</g:link>
 							</td>

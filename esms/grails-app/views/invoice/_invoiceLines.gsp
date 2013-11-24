@@ -1,38 +1,4 @@
 <%@page import="com.esms.model.product.Product"%>
-<script type="text/javascript">
-	$('document').ready(function(){
-		$('.calc').change(function(){
-			updateInvoiceTotals($(this));
-		});
-
-		$('#adjustment').change(function(){
-			var grandTotal = parseFloat($('#totalAmount').val()) - parseFloat($('#adjustment').val());
-			$("#grandTotal").val(grandTotal);
-		});
-	});
-
-	function updateInvoiceTotals(elem) {
-		var idx = $(elem).data("index");
-		var unitPrice = $('#' + 'unitPrice' + idx).val();
-		var quantity = $('#' + 'quantity' + idx).val();
-		var tax = $('#' + 'tax' + idx).val();
-		var discount = $('#' + 'discount' + idx).val();
-		var percentageInvoiced = $('#' + 'percentageInvoiced' + idx).val();
-
-		var lineTotal = (parseFloat(unitPrice) * parseFloat(quantity) + parseFloat(tax) - parseFloat(discount));
-		var lineAmountInvoiced = (parseFloat(lineTotal) * parseFloat(percentageInvoiced)/100);
-		
-		$("#" + "lineTotalAmount" + idx).val(lineTotal);
-		$("#" + "amountInvoiced" + idx).val(lineAmountInvoiced);
-		
-		$('#totalAmount').val(lineAmountInvoiced);
-		//$('#totalTax').val(tax);
-		//$('#totalDiscount').val(discount);
-		var grandTotal = parseFloat($('#totalAmount').val()) - parseFloat($('#adjustment').val());
-		$("#grandTotal").val(grandTotal);
-	}
-	
-</script>
 
 <table class="table table-striped table-hover">
 	<thead>
@@ -68,7 +34,7 @@
 			</th>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody id="invoiceLines">
 		<g:each in="${invoiceInstance?.invoiceLines}" var="invoiceLineInstance" status="index">
 			<tr>
 				<td>

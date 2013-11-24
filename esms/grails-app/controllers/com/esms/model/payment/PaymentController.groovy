@@ -102,6 +102,8 @@ class PaymentController {
 			params.paymentNumber = "PAY" + String.format("%05d", no)
 			
 			def invoice = null
+			def pendingInvoices = null
+			
 			if(params.invoiceId) {
 				invoice = Invoice.get(params.invoiceId)
 				params."organization.id" = invoice?.organization?.id
@@ -109,14 +111,24 @@ class PaymentController {
 				params.invoiceId = params.invoiceId
 				params.totalAmount = invoice?.openGrandTotal
 				def order = Order.findByOrderNumber(invoice.referenceOrderNumber)
+			} else {
+				pendingInvoices = Invoice.withCriteria() {
+					gt("openGrandTotal",0.0)
+				}
 			}
-			
-        	[paymentInstance: new Payment(params),invoice:invoice]
+        	[paymentInstance: new Payment(params),invoice:invoice,pendingInvoices:pendingInvoices]
 			break
 		case 'POST':
 	        def paymentInstance = new Payment(params)
 			paymentInstance.balanceAmount = new BigDecimal("0.0")
 			paymentInstance.matchedAmount = paymentInstance.totalAmount
+			
+			def invoice = Invoice.get(params.invoiceId?.toInteger())
+			
+			if(!paymentInstance.organization) {
+				paymentInstance.organization = invoice?.organization
+			}
+			
 			if (!paymentInstance.save(flush: true)) {
 				render view: 'create', model: [paymentInstance: paymentInstance]
 				return
@@ -130,7 +142,6 @@ class PaymentController {
 					max ("lineNumber")
 				}
 			}
-	        def invoice = Invoice.get(params.invoiceId)
 			
 			params.lineNumber = (maxLineNumber?maxLineNumber:0) + 1
 			
@@ -147,7 +158,7 @@ class PaymentController {
 			}
 			invoice.save(flush:true)
 			
-			flash.message = "Added New Line."
+			flash.message = "Invoice Created."
 			redirect action: 'show', id: invoice.id,controller:"invoice"
 			break
 		}

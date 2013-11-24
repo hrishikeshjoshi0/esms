@@ -32,6 +32,8 @@
 							
 							<g:sortableColumn params="${filterParams}" property="paymentItem.invoice.invoiceNumber" title="${message(code: 'paymentItem.invoice.label', default: 'Invoice Number')}" />
 							
+							<g:sortableColumn params="${filterParams}" property="paymentItem.invoice.referenceOrderNumber" title="${message(code: 'paymentItem.invoice.referenceOrderNumber.label', default: 'Order Number')}" />
+							
 							<g:sortableColumn params="${filterParams}" property="organization.name" title="Customer/Building Name" />
 						
 							<g:sortableColumn params="${filterParams}" property="bank" title="${message(code: 'payment.bank.label', default: 'Bank')}" />
@@ -56,6 +58,15 @@
 									<td>
 										<g:if test="${paymentInstance?.paymentItems?.size() > 0}">
 											${paymentInstance?.paymentItems?.first()?.invoice?.invoiceNumber}
+										</g:if>
+										<g:else>
+											
+										</g:else>
+									</td>
+									
+									<td>
+										<g:if test="${paymentInstance?.paymentItems?.size() > 0}">
+											${paymentInstance?.paymentItems?.first()?.invoice?.referenceOrderNumber}
 										</g:if>
 										<g:else>
 											

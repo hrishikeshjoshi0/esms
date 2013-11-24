@@ -1,5 +1,7 @@
 package com.esms.model.invoice
 
+import grails.converters.JSON;
+
 import org.springframework.dao.DataIntegrityViolationException
 
 import com.esms.model.calendar.Task
@@ -23,13 +25,20 @@ class InvoiceController {
 		case 'GET':
 			def invoiceInstance
 			def order
-			if(!chainModel.invoiceInstance) {
-				invoiceInstance = new Invoice(params)
-			} else {
+			def openOrders
+			if(chainModel?.invoiceInstance) {
 				invoiceInstance = chainModel.invoiceInstance
 				order = chainModel.order
+			} else {
+				def list = Invoice.list();
+				int no = (list?list.size():0) + 1;
+				params.invoiceNumber = "INV" + String.format("%05d", no)
+				invoiceInstance = new Invoice(params)
+				openOrders = Order.withCriteria() {
+					gt("openGrandTotal",0.0)
+				}
 			}
-        	[invoiceInstance: invoiceInstance,order:order]
+        	[invoiceInstance: invoiceInstance,order:order,openOrders:openOrders]
 			break
 		case 'POST':
 	        def invoiceInstance = new Invoice(params)
@@ -90,8 +99,8 @@ class InvoiceController {
 				invoiceInstance?.invoiceLines?.each { iit ->
 					order.orderItems?.each { oit ->
 						if(oit.productNumber == iit.productNumber) {
-							oit.percentageInvoiced = iit.percentageInvoiced
-							oit.amountInvoiced = iit.amountInvoiced
+							oit.amountInvoiced += iit.amountInvoiced
+							oit.percentageInvoiced = (oit.amountInvoiced/oit.lineTotalAmount)*100
 							oit.save(flush:true)
 						}
 					}
@@ -107,8 +116,8 @@ class InvoiceController {
 				taskInstance.taskDescription = taskDescription
 				taskInstance.dateTime = invoiceInstance.expiryDate
 				taskInstance.dueDateTime = invoiceInstance.expiryDate
-				taskInstance.relatedTo = 'INVOICE'
-				taskInstance.relatedToValue = invoiceInstance.invoiceNumber
+				taskInstance.relatedTo = 'ORDER'
+				taskInstance.relatedToValue = order.orderNumber
 				taskInstance.status = 'NOT_STARTED'
 				taskInstance.priority = 'MEDIUM'
 				taskInstance.notification = true
@@ -123,13 +132,17 @@ class InvoiceController {
 
     def show() {
         def invoiceInstance = Invoice.get(params.id)
-        if (!invoiceInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'invoice.label', default: 'Invoice'), params.id])
-            redirect action: 'list'
-            return
-        }
-
-        [invoiceInstance: invoiceInstance]
+		if(request.xhr) {
+			render invoiceInstance as JSON
+		} else {
+			if (!invoiceInstance) {
+				flash.message = message(code: 'default.not.found.message', args: [message(code: 'invoice.label', default: 'Invoice'), params.id])
+						redirect action: 'list'
+							return
+			}
+			
+			[invoiceInstance: invoiceInstance]
+		}
     }
 
     def edit() {
@@ -194,4 +207,94 @@ class InvoiceController {
             redirect action: 'show', id: params.id
         }
     }
+
+	def addInvoiceLine() {
+		def order = Order.get(params.id?.toInteger())
+		def lineNumber = 1
+		def invoiceLines = []
+		order.orderItems?.each {
+			def invoiceLine = new InvoiceLine()
+			invoiceLine.lineNumber = (lineNumber++)
+			invoiceLine.quantity = it.quantity
+
+			invoiceLine.unitPrice = it.unitPrice
+			invoiceLine.tax = it.tax
+			invoiceLine.lineTotalAmount = it.lineTotalAmount
+			invoiceLine.discount = it.discount
+			invoiceLine.productNumber = it.productNumber
+			invoiceLine.relatedOrderNumber = it.relatedOrderNumber
+			invoiceLine.percentageInvoiced = 100.0 - it.percentageInvoiced
+			invoiceLine.amountInvoiced = it.lineTotalAmount - it.amountInvoiced
+
+			invoiceLines.add(invoiceLine)
+		}
+		
+		render(view: "addInvoiceLine", model: [invoiceLines:invoiceLines])
+	}
+	
+	def fillInvoiceForm = {
+		if(!params.id) {
+			return
+		}
+		def order = Order.get(params.id)
+		order.status = "INVOICED"
+		order.openGrandTotal = order.grandTotal
+		order.receviedGrandTotal = new BigDecimal("0.0")
+		if(!order.adjustment) {
+			order.adjustment = new BigDecimal("0.0")
+		}
+
+		//Create Invoice -- Start
+		def invoice = new Invoice()
+		def list = Invoice.list();
+		int no = (list?list.size():0) + 1;
+		String invoiceNumber = "INV" + String.format("%05d", no)
+
+		invoice.invoiceNumber = invoiceNumber
+		invoice.contactName = order.contactName
+		invoice.status = "CREATED"
+
+		invoice.relatedTo = "ORDER"
+		invoice.relatedToValue = order.orderNumber
+
+		invoice.assignedTo = order.assignedTo
+		invoice.termsAndConditions = order.termsAndConditions
+
+		invoice.contractFromDate = order.contractFromDate
+		invoice.contractToDate = order.contractToDate
+		invoice.type = order.type
+		
+		invoice.totalAmount = order.totalAmount + order.totalTax - order.totalDiscount - order.adjustment - order.invoicedGrandTotal//Doesnt include negotitation discount,
+		invoice.totalTax = 0.0
+		invoice.totalDiscount = 0.0
+		invoice.adjustment = 0.0
+		invoice.grandTotal = invoice.totalAmount
+		invoice.referenceOrderNumber = order.orderNumber
+
+		invoice.organization = order.organization
+		int lineNumber = 1;
+
+		def invoiceLines = []
+
+		order.orderItems?.each {
+			def invoiceLine = new InvoiceLine()
+			invoiceLine.lineNumber = (lineNumber++)
+			invoiceLine.quantity = it.quantity
+
+			invoiceLine.unitPrice = it.unitPrice
+			invoiceLine.tax = it.tax
+			invoiceLine.lineTotalAmount = it.lineTotalAmount
+			invoiceLine.discount = it.discount
+			invoiceLine.productNumber = it.productNumber
+			invoiceLine.relatedOrderNumber = it.relatedOrderNumber
+			invoiceLine.percentageInvoiced = 100.0 - it.percentageInvoiced
+			invoiceLine.amountInvoiced = it.lineTotalAmount - it.amountInvoiced
+			
+			invoiceLines.add(invoiceLine)
+		}
+
+		invoice?.invoiceLines = invoiceLines
+
+		render(template: "formTemplate", model: [invoiceInstance:invoice])
+	}
 }

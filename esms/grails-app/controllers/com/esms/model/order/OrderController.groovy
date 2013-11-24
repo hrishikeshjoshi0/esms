@@ -1,8 +1,11 @@
 package com.esms.model.order
 
+import grails.converters.JSON;
+
 import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
+import com.esms.model.calendar.Event;
 import com.esms.model.inventory.InventoryJournal
 import com.esms.model.invoice.Invoice
 import com.esms.model.invoice.InvoiceLine
@@ -213,25 +216,31 @@ class OrderController {
 
 	def show() {
 		def orderInstance = Order.get(params.id)
-		if (!orderInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [
-				message(code: 'order.label', default: 'Order'),
-				params.id
-			])
-			redirect action: 'list'
-			return
-		}
 		
-		def productName
-		
-		orderInstance?.orderItems?.each {
-			def p = Product.findByProductNumber(it.productNumber)
-			if(p.productType == 'SERVICE') {
-				productName = p.productName
+		if(request.xhr) {
+			render orderInstance as JSON
+		} else {
+			if (!orderInstance) {
+				flash.message = message(code: 'default.not.found.message', args: [message(code: 'order.label', default: 'Order'),params.id])
+                redirect action: 'list'
 			}
+			
+			def productName
+			
+			orderInstance?.orderItems?.each {
+				def p = Product.findByProductNumber(it.productNumber)
+						if(p.productType == 'SERVICE') {
+							productName = p.productName
+						}
+			}
+			
+			def invoices = Invoice.findAllByReferenceOrderNumber(orderInstance?.orderNumber)
+			
+			def events = Event.findAllByRelatedToValue(orderInstance?.orderNumber)
+			
+			[orderInstance: orderInstance,contractName:productName,invoices:invoices,events:events]
 		}
-
-		[orderInstance: orderInstance,contractName:productName]
+		
 	}
 
 	def edit() {
@@ -423,6 +432,11 @@ class OrderController {
 		order.status = "INVOICED"
 		order.openGrandTotal = order.grandTotal
 		order.receviedGrandTotal = new BigDecimal("0.0")
+		
+		if(order.adjustment == null) {
+			order.adjustment = new BigDecimal("0.0")
+		}
+		
 		order.save(flush:true)
 
 		//Create Invoice -- Start
@@ -445,7 +459,7 @@ class OrderController {
 		invoice.contractToDate = order.contractToDate
 		invoice.type = order.type
 		
-		invoice.totalAmount = order.totalAmount + order.totalTax - order.totalDiscount - order.adjustment //Doesnt include negotitation discount,
+		invoice.totalAmount = order.totalAmount + order.totalTax - order.totalDiscount - order.adjustment - order.invoicedGrandTotal //Doesnt include negotitation discount,
 		invoice.totalTax = 0.0
 		invoice.totalDiscount = 0.0
 		invoice.adjustment = 0.0
@@ -475,7 +489,7 @@ class OrderController {
 		}
 
 		invoice?.invoiceLines = invoiceLines
-
+		
 		//flash.message = "Invoiced.."
 		//redirect action: 'show', id: order.id
 		chain controller:'invoice',action: 'create', model: [invoiceInstance:invoice,order:order]

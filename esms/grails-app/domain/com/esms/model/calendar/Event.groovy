@@ -76,7 +76,7 @@ class Event {
             if (obj.recurType == EventRecurType.WEEKLY && !val) {return 'null'}
         })
 		eventType InList : ['PHONE CALL/FOLLOW UP','MEETING','MAINTENANCE VISIT','BREAKDOWN CALL','REPAIR WORK', 'MODERNIZATION WORK']
-		status InList : ['HELD','PLANNED','NOT HELD'] 
+		status InList : ['CLOSED','PLANNED','NOT HELD'] 
 		priority InList : ['LOW','MEDIUM','HIGH']
 		relatedTo InList : ['ORGANIZATION','INCIDENT','INVOICE','QUOTE','ORDER','CONTACT','PAYMENT','EMPLOYEE']
 		activityLog type:'text'

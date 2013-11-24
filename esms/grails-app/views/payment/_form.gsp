@@ -4,9 +4,31 @@
 	$(document).ready(function(){
 		$('.chequeFields').hide();
 		var val = $('#paymentMethod').val();
-		onPaymentMethodChange(val);		
+		onPaymentMethodChange(val);	
+
+		fetchInvoiceInfo($("#invoiceId").val())
+		
+		$("#invoiceId").change(function() {
+			fetchInvoiceInfo($(this).val())			
+		});	
 	});
 
+	function fetchInvoiceInfo(id) {
+		var url = "${createLink(controller:'invoice', action:'show')}" + "/" + id;
+		$.ajax({
+		    url:url,
+		    dataType: 'json',	
+		    success: function(data) {
+		    	$("#totalAmount").val(data.openGrandTotal); 
+		    },
+		    error: function(request, status, error) {
+		      alert(error)
+		    },
+		    complete: function() {
+		    }
+		});
+	}
+	
 	function onPaymentMethodChange(val) {
 		//['CALL','MEETING','MAINTENANCE VISIT','BREAKDOWN CALL']
 		if(val == 'CASH') {
@@ -19,7 +41,6 @@
 
 <g:hiddenField name="organization.id" value="${params.'organization.id'}"/>
 <g:hiddenField name="order.id" value="${params.orderId}"/>
-<g:hiddenField name="invoice.id" value="${params.invoiceId}"/>
 
 <!-- Row 1 -->
 <div class="row-fluid">
@@ -46,10 +67,19 @@
 				Invoice
 			</label>
 			<div class="controls">
-				<g:hiddenField name="invoiceId" value="${invoice.id}"/>
-				<b>
-					${invoice.invoiceNumber + ' - ' + ' : ' + invoice.organization?.name + '(Open Amount :' + invoice.openGrandTotal + ')' }}
-				</b>
+				<g:if test="${invoice}">
+					<g:hiddenField id="invoiceId" name="invoiceId" value="${invoice.id}"/>
+					<b>
+						${invoice.invoiceNumber + ' - ' + ' : ' + invoice.organization?.name + '(Open Amount :' + invoice.openGrandTotal + ')' }
+					</b>
+				</g:if>
+				<g:else>
+					<g:select id="invoiceId" name="invoiceId" from="${pendingInvoices}" optionKey="id" class="large"
+						optionValue="${{it.invoiceNumber + ' - ' + ' : ' + it.organization?.name + '(Open Amount :' + it.openGrandTotal + ')' }}" 
+						/>
+					<span class="help-inline"> ${hasErrors(bean: paymentItemInstance, field: 'order', 'error')}
+					</span>
+				</g:else>
 			</div>
 		</div>
 	</div>

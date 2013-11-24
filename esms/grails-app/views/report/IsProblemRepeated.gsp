@@ -89,7 +89,7 @@
 									id="${eventLogInstance.event?.id}">Show Event &raquo;</g:link>
 							</td>
 
-							<td class="link"><g:link action="show"
+							<td class="link"><g:link action="show" 
 									id="${eventLogInstance.id}">Show &raquo;</g:link>
 							</td>
 						</tr>

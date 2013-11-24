@@ -8,6 +8,7 @@ import org.joda.time.DateTime
 import org.joda.time.Instant
 
 import com.esms.model.maintenance.WorkDoneCertificate
+import com.esms.model.order.Order;
 import com.esms.model.party.Organization;
 
 class EventController {
@@ -197,7 +198,13 @@ class EventController {
 		eventInstance.activityLog = 'Init'
         if (eventInstance.save(flush: true)) {
             flash.message = "Event Created."
-            redirect(action: "show", id: eventInstance.id)
+			def order
+			if(eventInstance?.relatedTo == 'ORDER' && eventInstance?.relatedToValue) {
+				order = Order.findByOrderNumber(eventInstance?.relatedToValue)
+				redirect(controller:"order",action: "show",id:order?.id)
+				return
+			}
+            //redirect(action: "show", id: eventInstance.id)
         }
         else {
             render(view: "create", model: [eventInstance: eventInstance])
@@ -226,7 +233,13 @@ class EventController {
         def result = eventService.updateEvent(eventInstance, editType, params)
 
         if (!result.error) {
-            flash.message = "${message(code: 'default.updated.message', args: [message(code: 'event.label', default: 'Event'), eventInstance.id])}"
+             flash.message = "Event Updated."
+			def order
+			if(eventInstance?.relatedTo == 'ORDER' && eventInstance?.relatedToValue) {
+				order = Order.findByOrderNumber(eventInstance?.relatedToValue)
+				redirect(controller:"order",action: "show",id:order?.id)
+				return
+			}
             redirect(action: "index")
         }
         if (result.error == 'not.found') {
