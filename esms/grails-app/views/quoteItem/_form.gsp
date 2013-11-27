@@ -80,7 +80,7 @@
 					</g:if>
 					<g:else>
 						<g:select name="productNumber" onChange="fetchUnitPriceForProduct(this.value);" 
-							from="${Product.findAllByProductTypeNotEqual("SERVICE")}"
+							from="${Product.findAllByServiceContractNotEqual(true)}"
 							required=""
 							optionKey="productNumber" optionValue="productName" value="${quoteItemInstance?.productNumber}"
 							noSelection="${['null':'Select Product..']}" />

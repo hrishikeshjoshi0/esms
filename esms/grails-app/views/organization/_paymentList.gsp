@@ -62,8 +62,8 @@
 				</td>
 				
 				<td>
-					<g:if test="${paymentInstance?.paymentItems()?.size() != 0}">
-						${paymentInstance?.paymentItems()?.first().invoice?.referenceOrderNumber}
+					<g:if test="${paymentInstance?.paymentItems?.size() != 0}">
+						${paymentInstance?.paymentItems?.first().invoice?.referenceOrderNumber}
 					</g:if>
 				</td>
 				

@@ -56,11 +56,22 @@
 	
 			var lineTotal = (parseFloat(unitPrice) * parseFloat(quantity) + parseFloat(tax) - parseFloat(discount));
 			var lineAmountInvoiced = (parseFloat(lineTotal) * parseFloat(percentageInvoiced)/100);
-			
+
+			//
 			$("#" + "lineTotalAmount" + idx).val(lineTotal);
 			$("#" + "amountInvoiced" + idx).val(lineAmountInvoiced);
 			
-			$('#totalAmount').val(lineAmountInvoiced);
+			var invoiceLinesTotal= $("#invoiceLinesTotal").val()
+			var totalAmt = 0.0;
+			var adjustment = 0.0;
+			var grandTotalAmt = 0.0;
+
+			for(var i=0; i < invoiceLinesTotal; i++) {
+				totalAmt += parseFloat($("#" + "amountInvoiced" + i).val());
+			}
+			//alert(totalAmt);
+
+			$('#totalAmount').val(totalAmt);
 			//$('#totalTax').val(tax);
 			//$('#totalDiscount').val(discount);
 			var grandTotal = parseFloat($('#totalAmount').val()) - parseFloat($('#adjustment').val());

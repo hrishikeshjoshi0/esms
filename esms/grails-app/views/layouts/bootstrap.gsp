@@ -46,7 +46,11 @@
 			<div class="main_content">
 				<div id="container">
 					<div class="row-fluid">
-						<div class="span12">
+						<div class="span2">
+							<!-- sidebar -->
+							<g:render template="/_menu/menubar"></g:render>	
+						</div>
+						<div class="span10" style="padding-left:15px;">
 							<g:if test="${params.view != null &&	params.view != '' &&	params.view != 'index'}">
 								<div class="row-fluid">
 									<div class="span12">
@@ -70,7 +74,7 @@
 								</div>
 							</g:if>
 							
-							<div id="body_content">
+							<div id="body_content1">
 								<g:layoutBody />
 								<g:pageProperty name="page.body" />
 							</div>
@@ -80,8 +84,7 @@
 			</div>
 		</div>
 
-		<!-- sidebar -->
-		<g:render template="/_menu/menubar"></g:render>	
+		
 		
 		<script>
 			$(document).ready(function() {

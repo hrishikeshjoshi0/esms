@@ -32,14 +32,13 @@
 			<g:sortableColumn property="amountInvoiced"
 				title="${message(code: 'orderItem.amountInvoiced.label', default: 'Invoiced Amount')}" />
 			<th>
-				<a ref="#">
-					Assigned To (Vendor)
-				</a>
+				Assigned To (Vendor)
 			</th>
 			<th>
-				<a ref="#">
-					Status
-				</a>
+				Status
+			</th>
+			<th>
+				Work Completed
 			</th>		
 			<th></th>
 			<th></th>
@@ -84,14 +83,24 @@
 					<td>
 						${purchaseOrder?.status}
 					</td>
+					<td>
+						${purchaseOrder?.workCompleted}	%					
+					</td>
 				</g:if>
 				<g:else>
+					<td></td>
 					<td></td>
 					<td></td>
 				</g:else>
 				<td>
 					<a href="#" class="btn open-AssignOrderItem" data-id="${orderItemInstance?.id}"
-						role="button" class="btn">Assign
+						role="button" class="btn">
+						<g:if test="${orderItemInstance?.relatedOrderNumber}">
+							Edit Assignment
+						</g:if>
+						<g:else>
+							Create Assignment
+						</g:else>
 					</a>
 				</td>
 				<td class="link"><g:link action="show" controller="orderItem"
@@ -131,7 +140,6 @@
 
 <div id="purchaseOrderModal" class="modal hide fade" tabindex="-1" style="width:70%;top:50%;left:40%;"
 	role="dialog"
-	data-remote="<g:createLink controller="order" action="assignOrderItem" params="[orderId:orderInstance?.id]"/>"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"
@@ -158,6 +166,21 @@
 	    var orderItemId = $(this).data('id');
 	    $("#orderItemInstanceId").attr('value',orderItemId);
 	    //alert($("#orderItemInstanceId").val());	    
-	    $('#purchaseOrderModal').modal('show');
+	   
+	    var url = "${createLink(controller:'order', action:'assignOrderItem')}" + "/" + orderItemId;
+		$.ajax({
+		    url:url,
+		    dataType: 'html',	
+		    success: function(data) {
+			    $('.modal-body').html(data);
+		    	$('#purchaseOrderModal').modal('show');
+		    },
+		    error: function(request, status, error) {
+		      alert(error)
+		    },
+		    complete: function() {
+		    }
+		});	
+	    
 	});
 </script>

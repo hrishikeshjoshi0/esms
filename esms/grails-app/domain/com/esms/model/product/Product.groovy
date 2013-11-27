@@ -41,4 +41,21 @@ class Product {
 	static mapping = {
 		tablePerHierarchy false
 	}
+	
+	def static getDiscountProduct() {
+		def product = Product.findByProductName("DISCOUNT")
+		if(!product) {
+			product = new Product()
+			def list = Product.list();
+			int no = (list?list.size():0) + 1;
+			String productNumber = "PROD" + String.format("%05d", no)
+			product.productNumber = productNumber
+			
+			product.productName = "DISCOUNT"
+			product.isVirtual = true
+			product.save(flush:true)
+		}
+		
+		product
+	}
 }

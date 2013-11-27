@@ -277,20 +277,22 @@ class InvoiceController {
 		def invoiceLines = []
 
 		order.orderItems?.each {
-			def invoiceLine = new InvoiceLine()
-			invoiceLine.lineNumber = (lineNumber++)
-			invoiceLine.quantity = it.quantity
-
-			invoiceLine.unitPrice = it.unitPrice
-			invoiceLine.tax = it.tax
-			invoiceLine.lineTotalAmount = it.lineTotalAmount
-			invoiceLine.discount = it.discount
-			invoiceLine.productNumber = it.productNumber
-			invoiceLine.relatedOrderNumber = it.relatedOrderNumber
-			invoiceLine.percentageInvoiced = 100.0 - it.percentageInvoiced
-			invoiceLine.amountInvoiced = it.lineTotalAmount - it.amountInvoiced
-			
-			invoiceLines.add(invoiceLine)
+			if(it.amountInvoiced != it.lineTotalAmount) {
+				def invoiceLine = new InvoiceLine()
+				invoiceLine.lineNumber = (lineNumber++)
+				invoiceLine.quantity = it.quantity
+				
+				invoiceLine.unitPrice = it.unitPrice
+				invoiceLine.tax = it.tax
+				invoiceLine.lineTotalAmount = it.lineTotalAmount
+				invoiceLine.discount = it.discount
+				invoiceLine.productNumber = it.productNumber
+				invoiceLine.relatedOrderNumber = it.relatedOrderNumber
+				invoiceLine.percentageInvoiced = 100.0 - it.percentageInvoiced
+				invoiceLine.amountInvoiced = it.lineTotalAmount - it.amountInvoiced
+				
+				invoiceLines.add(invoiceLine)
+			}
 		}
 
 		invoice?.invoiceLines = invoiceLines

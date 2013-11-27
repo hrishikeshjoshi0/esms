@@ -1,3 +1,4 @@
+<g:hiddenField name="purchaseOrderId" value="${purchaseOrderInstance?.id}"/>
 <div
 	class="control-group fieldcontain ${hasErrors(bean: purchaseOrderInstance, field: 'purchaseOrderNumber', 'error')} required">
 	<label for="purchaseOrderNumber" class="control-label"><g:message

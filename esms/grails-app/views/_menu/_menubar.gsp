@@ -46,7 +46,6 @@
 											}">
 								<li class="${ params.action == "create" ? 'active' : '' }">
 									<g:link action="create">
-										<i class="icon-chevron-right"></i>
 										<g:message code="default.new.label" args="[entityName]" />
 									</g:link>
 								</li>
@@ -54,13 +53,11 @@
 							<g:elseif test="${params.controller == 'quote'}">
 								<li><g:link action="create"
 										params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]">
-										<i class="icon-chevron-right"></i> 
 										Create Contract Quote
 									</g:link></li>
 
 								<li><g:link action="create"
 										params="[type:'REPAIR',organizationId:organizationInstance?.id]">
-										<i class="icon-chevron-right"></i> 
 										Create Repair Quote
 									</g:link></li>
 							</g:elseif>
@@ -68,8 +65,7 @@
 							<g:if test="${params.controller != 'event' && params.controller != 'report'}">
 								<li class="${ params.action == "listView" ? 'active' : '' }">
 									<g:link
-										action="listView">
-										<i class="icon-chevron-right"></i>
+										action="list">
 										<g:message code="default.list.label" args="[entityName]" />
 									</g:link>
 								</li>
@@ -80,7 +76,6 @@
 								<!-- the item is an object (not a list) -->
 								<li class="${ params.action == "edit" ? 'active' : '' }"><g:link
 										action="edit" id="${params.id}">
-										<i class="icon-chevron-right"></i>
 										<g:message code="default.edit.label" args="[entityName]" />
 									</g:link></li>
 								<li class=""><g:render
@@ -90,7 +85,6 @@
 							<g:if test="${params.controller == 'product'}">
 								<g:link action="create" controller="productInventory"
 									param="['product.id':productInstance?.id]">
-									<i class="icon-plus"></i>
 									Add Inventory
 								</g:link>
 							</g:if>
@@ -99,7 +93,6 @@
 								test="${params.controller == 'lead' || params.controller == 'organization'}">
 								<li><g:link controller="quote" action="create"
 										params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]">
-										<i class="icon-chevron-right"></i>
 										Create Contract Quote
 									</g:link></li>
 							</g:if>
@@ -108,7 +101,6 @@
 								test="${params.controller == 'report'}">
 								<li class="${ params.action == "upcomingRepairs" ? 'active' : '' }">
 									<g:link controller="report" action="upcomingRepairs">
-										<i class="icon-chevron-right"></i>
 										<g:message code="default.button.upcomingRepairs.label"
 											default="Upcoming Repairs" />
 									</g:link>
@@ -116,7 +108,6 @@
 								
 								<li class="${ params.action == "upcomingRenewals" ? 'active' : '' }">
 									<g:link controller="report" action="upcomingRenewals">
-										<i class="icon-chevron-right"></i>
 										<g:message code="default.button.upcomingRenewals.label"
 											default="Upcoming Renewals" />
 									</g:link>
@@ -124,7 +115,6 @@
 								
 								<li class="${ params.action == "amountReceivables" ? 'active' : '' }">
 									<g:link controller="report" action="amountReceivables">
-										<i class="icon-chevron-right"></i>
 										<g:message code="default.button.amountReceivables.label"
 											default="Amount Receivables" />
 									</g:link>
@@ -132,7 +122,6 @@
 								
 								<li class="${ params.action == "toBeReplaced" ? 'active' : '' }">
 									<g:link controller="report" action="toBeReplaced">
-										<i class="icon-chevron-right"></i>
 										<g:message code="default.button.toBeReplaced.label"
 											default="To Be Replaced" />
 									</g:link>
@@ -140,7 +129,6 @@
 								
 								<li class="${ params.action == "isProblemRepeated" ? 'active' : '' }">
 									<g:link controller="report" action="isProblemRepeated">
-										<i class="icon-chevron-right"></i>
 										<g:message code="default.button.isProblemRepeated.label"
 											default="Is Problem Repeated" />
 									</g:link>

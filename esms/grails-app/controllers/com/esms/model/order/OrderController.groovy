@@ -168,8 +168,8 @@ class OrderController {
 		order.totalAmount = unitPrice
 		order.totalTax = tax
 		order.totalDiscount = discount
-		order.adjustment = 0.0
-		order.grandTotal = unitPrice + tax - discount
+		order.adjustment = quote.adjustment
+		order.grandTotal = unitPrice + tax - discount - order.adjustment
 		order.referenceQuoteNumber = quote.quoteNumber
 		order.notes = quote.notes
 		order.invoicedGrandTotal = 0.0
@@ -229,9 +229,9 @@ class OrderController {
 			
 			orderInstance?.orderItems?.each {
 				def p = Product.findByProductNumber(it.productNumber)
-						if(p.productType == 'SERVICE') {
-							productName = p.productName
-						}
+				if(p.productType == 'SERVICE') {
+					productName = p.productName
+				}
 			}
 			
 			def invoices = Invoice.findAllByReferenceOrderNumber(orderInstance?.orderNumber)
@@ -328,23 +328,36 @@ class OrderController {
 	def assignOrderItem() {
 		switch (request.method) {
 			case 'GET':
-				def list = PurchaseOrder.list();
-				int no = (list?list.size():0) + 1;
-				String orderNumber = "PO" + String.format("%05d", no)
-				params.purchaseOrderNumber = orderNumber
-
-				def order = PurchaseOrder.get(params.orderId)
-
-				def c = PurchaseOrderItem.createCriteria()
-				def maxLineNumber = c.get {
-					eq("purchaseOrder", order)
-					projections { max ("lineNumber") }
+				def purchaseOrderInstance
+				def orderItem = OrderItem.get(params.id?.toInteger())
+				
+				if(orderItem?.relatedOrderNumber) {
+					purchaseOrderInstance =	PurchaseOrder.findByPurchaseOrderNumber(orderItem.relatedOrderNumber)					 
+				} else {
+					def list = PurchaseOrder.list();
+					int no = (list?list.size():0) + 1;
+					String orderNumber = "PO" + String.format("%05d", no)
+					params.purchaseOrderNumber = orderNumber
+							
+					def order = PurchaseOrder.get(params.orderId)
+					def c = PurchaseOrderItem.createCriteria()
+					def maxLineNumber = c.get {
+						eq("purchaseOrder", order)
+						projections { max ("lineNumber") }
+					}
+					params.lineNumber = maxLineNumber?maxLineNumber:0 + 1
+					purchaseOrderInstance = new PurchaseOrder(params)
 				}
-				params.lineNumber = maxLineNumber?maxLineNumber:0 + 1
-				[purchaseOrderInstance: new PurchaseOrder(params)]
+				[purchaseOrderInstance: purchaseOrderInstance]
 				break
 			case 'POST':
-				def purchaseOrderInstance = new PurchaseOrder(params)
+				def purchaseOrderInstance
+				if(params.purchaseOrderId) {
+					purchaseOrderInstance = PurchaseOrder.get(params.purchaseOrderId)
+					purchaseOrderInstance.properties = params
+				} else {
+					purchaseOrderInstance = new PurchaseOrder(params)
+				}
 
 				if (!purchaseOrderInstance.save(flush: true)) {
 					render view: 'show', model: [purchaseOrderItemInstance: purchaseOrderInstance]
@@ -472,20 +485,22 @@ class OrderController {
 		def invoiceLines = []
 
 		order.orderItems?.each {
-			def invoiceLine = new InvoiceLine()
-			invoiceLine.lineNumber = (lineNumber++)
-			invoiceLine.quantity = it.quantity
-
-			invoiceLine.unitPrice = it.unitPrice
-			invoiceLine.tax = it.tax
-			invoiceLine.lineTotalAmount = it.lineTotalAmount
-			invoiceLine.discount = it.discount
-			invoiceLine.productNumber = it.productNumber
-			invoiceLine.relatedOrderNumber = it.relatedOrderNumber
-			invoiceLine.percentageInvoiced = 100.0 - it.percentageInvoiced
-			invoiceLine.amountInvoiced = it.lineTotalAmount - it.amountInvoiced
-			
-			invoiceLines.add(invoiceLine)
+			if(it.amountInvoiced != it.lineTotalAmount) {
+				def invoiceLine = new InvoiceLine()
+				invoiceLine.lineNumber = (lineNumber++)
+				invoiceLine.quantity = it.quantity
+				
+				invoiceLine.unitPrice = it.unitPrice
+				invoiceLine.tax = it.tax
+				invoiceLine.lineTotalAmount = it.lineTotalAmount
+				invoiceLine.discount = it.discount
+				invoiceLine.productNumber = it.productNumber
+				invoiceLine.relatedOrderNumber = it.relatedOrderNumber
+				invoiceLine.percentageInvoiced = 100.0 - it.percentageInvoiced
+				invoiceLine.amountInvoiced = it.lineTotalAmount - it.amountInvoiced
+				
+				invoiceLines.add(invoiceLine)
+			}
 		}
 
 		invoice?.invoiceLines = invoiceLines

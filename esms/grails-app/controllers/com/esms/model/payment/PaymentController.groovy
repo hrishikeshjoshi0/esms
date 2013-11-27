@@ -158,7 +158,7 @@ class PaymentController {
 			}
 			invoice.save(flush:true)
 			
-			flash.message = "Invoice Created."
+			flash.message = "Payment registered for Invoice " + invoice.invoiceNumber
 			redirect action: 'show', id: invoice.id,controller:"invoice"
 			break
 		}

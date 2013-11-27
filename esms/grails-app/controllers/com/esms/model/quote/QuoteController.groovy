@@ -274,7 +274,7 @@ class QuoteController {
 					quoteInstance.totalDiscount = discount
 					quoteInstance.grandTotal = lineTotalAmount
 					
-					if(quoteInstance.status == "PENDING" && quoteInstance.sent) {
+					if(quoteInstance.status == "PENDING" /*&& quoteInstance.sent*/) {
 						quoteInstance.quotedGrandTotal = quoteInstance.grandTotal
 					}
 				 }
@@ -333,28 +333,71 @@ class QuoteController {
 		
 		quoteInstance.grandTotal = quoteInstance.negotiatedGrandTotal
 		
-		//'CONVERTED_TO_SERVICE_CONTRACT','CONVERTED_TO_REPAIR_SALES_ORDER'
+		//'CONVERTED_TO_SERVICE_CONTRACT','CONVERTED_TO_SALES_ORDER'
 		if(quoteInstance.type == 'CONTRACT') {
 			quoteInstance.status = 'CONVERTED_TO_SERVICE_CONTRACT'
+			quoteInstance.adjustment = 0.0
 			
 			//Works with only order items --> Service Contract and Repair Order
-			quoteInstance.quoteItems?.each {
+			/*quoteInstance.quoteItems?.each {
 				it.discount += diff
 				it.save(flush:true)
-			}
+			}*/
 			
-		} else if(quoteInstance.type == 'REPAIR') {
-			quoteInstance.status = 'CONVERTED_TO_REPAIR_SALES_ORDER'
-			
+		} else {
+			quoteInstance.status = 'CONVERTED_TO_SALES_ORDER'
+			quoteInstance.adjustment = 0.0
 			//Works with only order items --> Service Contract and Repair Order
-			quoteInstance.quoteItems?.each {
+			/*quoteInstance.quoteItems?.each {
 				it.discount += diff
 				it.save(flush:true)
-			}
+			}*/
 		}
 		
-		quoteInstance.notes = params.notes
-		quoteInstance.save(flush:true)
+		//
+		if(diff > 0) {
+			def product = Product.getDiscountProduct()
+			def quoteItemInstance = new QuoteItem()
+			quoteItemInstance.quote = quoteInstance
+			quoteItemInstance.lineNumber = quoteInstance?.quoteItems?quoteInstance?.quoteItems.size()+1:1
+			quoteItemInstance.quantity = 1
+			quoteItemInstance.unitPrice = -diff
+			quoteItemInstance.discount = 0
+			quoteItemInstance.lineTotalAmount = quoteItemInstance.unitPrice
+			quoteItemInstance.productNumber = product.productNumber
+			quoteItemInstance.save(flush: true)
+			
+			def quoteItems = quoteInstance.quoteItems
+			def unitPrice = new BigDecimal("0.0")
+			def tax = new BigDecimal("0.0")
+			def discount = new BigDecimal("0.0")
+			def lineTotalAmount = new BigDecimal("0.0")
+			
+			quoteItems?.each { q ->
+				unitPrice += q.unitPrice
+				tax +=  q.tax
+				discount +=  q.discount
+				lineTotalAmount +=  q.lineTotalAmount
+			}
+			
+			BigDecimal totalDiscount = new BigDecimal("0.0")
+			BigDecimal grandTotal = new BigDecimal("0.0")
+			
+			quoteInstance.totalAmount = unitPrice
+			quoteInstance.totalTax = tax
+			quoteInstance.totalDiscount = discount
+			quoteInstance.grandTotal = lineTotalAmount
+							
+			//Initialize the Quoted and the Negotiated Total to the Grand Total.
+			quoteInstance.quotedGrandTotal = lineTotalAmount
+			quoteInstance.negotiatedGrandTotal = 0
+							
+			quoteInstance.save(flush:true)
+			//
+			
+			quoteInstance.notes = params.notes
+			quoteInstance.save(flush:true)
+		}
 
 		flash.message = 'Sales Order created.'
 		redirect controller:'order', action: 'convertQuoteToOrder',params:[id : quoteInstance?.id]

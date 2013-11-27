@@ -169,6 +169,7 @@ grails.plugins.springsecurity.authority.className = 'com.esms.model.security.Sec
 grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
 grails.plugins.springsecurity.interceptUrlMap = [
 	'/login/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/static/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/**': ['ROLE_USER','ROLE_ADMIN']
 ]
 

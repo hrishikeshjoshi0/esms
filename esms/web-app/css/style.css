@@ -155,7 +155,7 @@
 			padding: 35px 0px 0px;
 			background: #fff;
 			border-left: 1px solid transparent;
-			margin-left: 240px;
+			/*margin-left: 240px;*/
 			height: auto !important;
 			/* ie6 ignores !important, so this will be overridden below */
 			min-height: 100%; /* ie6 ignores min-height completely */
@@ -172,7 +172,7 @@
 		
 	
 	/* sidebar */
-		.sidebar{margin-left:-100%;width:240px;float:left;position:relative}
+		.sidebar{margin-left:-100%;float:left;position:relative;background:#efefef;}
 		.sidebar_sep{background:#efefef;clear:both;float:none;height:5px;border-color:#ccc;border-style:solid;border-width:1px 0;margin:14px 0}
 		.sidebar_switch{text-indent:-10000px;width:16px;position:fixed;left:220px;top:45px;height:14px;cursor:pointer;z-index:100;display:block;opacity:.5}
 		.on_switch {background: url(../img/sidebar_switch.png) no-repeat 0 -19px}
@@ -627,7 +627,7 @@
 		.antiscroll-scrollbar-horizontal{height:7px;margin-left:2px;bottom:2px;left:0}
 		.antiscroll-scrollbar-vertical{width:7px;margin:2px 0;left:2px;top:0}
 		.antiscroll-inner{overflow-y:scroll}
-		.antiScroll,.antiscroll-content,.antiscroll-inner{width:240px}
+		.antiScroll,.antiscroll-content,.antiscroll-inner{/* width:240px */}
 		.antiscroll-inner::-webkit-scrollbar,.antiscroll-inner::scrollbar{width:0;height:0}
 
     /* document view */

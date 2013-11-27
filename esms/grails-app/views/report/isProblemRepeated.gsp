@@ -56,10 +56,13 @@
 				</thead>
 				<tbody>
 					<g:each in="${eventLogInstanceList}" var="eventLogInstance">
+						<g:if test="${eventLogInstance?.event?.relatedTo == 'ORDER' }">
+							<g:set var="order" value="${Order.findByOrderNumber(eventLogInstance?.event?.relatedToValue)}" />
+						</g:if>
 						<tr>
 							<td>
 								<g:if test="${eventLogInstance?.event?.relatedTo == 'ORDER' }">
-									${Order.findByOrderNumber(eventLogInstance?.event?.relatedToValue)?.organization?.name}
+									${order?.organization?.name}
 								</g:if>
 							</td>
 							
@@ -89,8 +92,11 @@
 									id="${eventLogInstance.event?.id}">Show Event &raquo;</g:link>
 							</td>
 
-							<td class="link"><g:link action="show" 
-									id="${eventLogInstance.id}">Show &raquo;</g:link>
+							<td class="link">
+								<g:if test="${eventLogInstance?.event?.relatedTo == 'ORDER' }">
+									<g:link action="show" controller="order" 
+									id="${order?.id}">Show Order &raquo;</g:link>
+								</g:if>
 							</td>
 						</tr>
 					</g:each>

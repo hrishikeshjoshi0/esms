@@ -81,7 +81,9 @@
 					</button>
 
 					<g:if
-						test="${orderInstance?.orderItems?.size() != 0}">
+						test="${orderInstance?.orderItems?.size() != 0
+								&& orderInstance?.pendingInvoiceGrandTotal != null
+								&& orderInstance?.pendingInvoiceGrandTotal > 0.0}">
 						<g:link class="btn" action="createInvoice"
 							id="${orderInstance?.id}">
 							<i class="icon-briefcase"></i>

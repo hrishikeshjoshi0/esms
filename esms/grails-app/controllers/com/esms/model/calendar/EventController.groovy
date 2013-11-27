@@ -204,7 +204,7 @@ class EventController {
 				redirect(controller:"order",action: "show",id:order?.id)
 				return
 			}
-            //redirect(action: "show", id: eventInstance.id)
+            redirect(action: "show", id: eventInstance.id)
         }
         else {
             render(view: "create", model: [eventInstance: eventInstance])
