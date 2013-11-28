@@ -18,8 +18,7 @@
 	<r:require module="calendar" />
 	<r:require module="chosen" />
 	<r:require module="gebo" />
-	<filterpane:includes />
-
+	<filterpane:includes/>
 	<resource:autoComplete skin="esmsAutocomplete" />
 	<resource:dateChooser />
 	<resource:tabView/>
@@ -35,7 +34,30 @@
 		<img src="${resource(dir: 'img', file: 'ajax_loader.gif')}" alt="" />
 	</div>
 	
-	<div id="maincontainer" class="clearfix">
+	<div id="maincontainer">
+		
+		<!-- header start-->
+		<g:render template="/_menu/navbar"></g:render>
+		
+		<div class="push"></div>
+	
+		<div id="wrapper-container" class="container-fluid">
+		    <div class="row-fluid">
+		        <div class="span2">
+		        	<g:render template="/_menu/menubar" />
+				</div>
+				
+				<!-- Body -->
+		        <div class="span10">
+					<g:layoutBody />
+					<g:pageProperty name="page.body" />
+		        </div>
+		    </div>
+		</div>
+	
+	</div>
+	
+	<%--<div id="maincontainer" class="clearfix">
 		
 		<!-- header start-->
 		<g:render template="/_menu/navbar"></g:render>
@@ -46,11 +68,7 @@
 			<div class="main_content">
 				<div id="container">
 					<div class="row-fluid">
-						<div class="span2">
-							<!-- sidebar -->
-							<g:render template="/_menu/menubar"></g:render>	
-						</div>
-						<div class="span10" style="padding-left:15px;">
+						<div class="span12">
 							<g:if test="${params.view != null &&	params.view != '' &&	params.view != 'index'}">
 								<div class="row-fluid">
 									<div class="span12">
@@ -74,7 +92,7 @@
 								</div>
 							</g:if>
 							
-							<div id="body_content1">
+							<div id="body_content">
 								<g:layoutBody />
 								<g:pageProperty name="page.body" />
 							</div>
@@ -84,7 +102,8 @@
 			</div>
 		</div>
 
-		
+		<!-- sidebar -->
+		<g:render template="/_menu/menubar"></g:render>	
 		
 		<script>
 			$(document).ready(function() {
@@ -94,7 +113,7 @@
 		</script>
 	</div>
 
-	<script src="${resource(dir: 'js', file: 'jquery.min.js')}"></script>
+	--%><script src="${resource(dir: 'js', file: 'jquery.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'jquery.debouncedresize.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'jquery.actual.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'jquery.cookie.min.js')}"></script>
