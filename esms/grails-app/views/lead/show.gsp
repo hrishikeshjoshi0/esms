@@ -93,7 +93,9 @@
 
 			</dl>
 		</div>
-
+		</div>
+		
+		<div class="row-fluid">
 		<div class="span12">
 			<richui:tabView id="tabView">
 				<richui:tabLabels>

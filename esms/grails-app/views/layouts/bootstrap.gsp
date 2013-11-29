@@ -49,6 +49,20 @@
 				
 				<!-- Body -->
 		        <div class="span10">
+		        	<!-- Bread Crumbs -->
+					<div id="breadcrumb">
+						<g:render template="/_menu/breadcrumb"></g:render>
+					</div>
+							
+					<!--Body content-->
+					<!-- Secondary menu in one line (e.g., actions for current controller) -->
+					<g:if test="${flash.message}">
+						<div style="margin: 5px;">
+							<bootstrap:alert class="alert-info">
+								${flash.message}
+							</bootstrap:alert>
+						</div>
+					</g:if>
 					<g:layoutBody />
 					<g:pageProperty name="page.body" />
 		        </div>

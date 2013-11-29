@@ -28,7 +28,7 @@
 							&&	params.controller != ''
 							&&	params.controller != 'home'
 							&&	params.controller != 'dashboard'}">
-	<ul class="nav nav-list bs-docs-sidenav" style="background: #F6F6F6;">
+	<ul class="nav nav-list bs-docs-sidenav" style="background: #f5f5f5;">
 		<g:set var="entityName"
 			value="${message(code: params.controller+'.label', default: params.controller.substring(0,1).toUpperCase() + params.controller.substring(1).toLowerCase())}" />
 		<li class="nav-header">

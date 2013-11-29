@@ -45,17 +45,13 @@
 				${message(code: 'order.contractToDate.label', default: 'To Date')}
 			</th>
 
-			<th>
-				${message(code: 'order.grandTotal.label', default: 'Grand Total')}
-			</th>
-
-			<th>
-				${message(code: 'order.receviedGrandTotal.label', default: 'Received Amount')}
-			</th>
-
-			<th>
-				${message(code: 'order.openGrandTotal.label', default: 'Open Amount')}
-			</th>
+			<th>Total Amount</th>
+							
+			<th>Invoiced Amount</th>
+						
+			<th>Received Amount</th>
+						
+			<th>Pending Invoice Amount</th>
 
 			<th></th>
 			
@@ -85,15 +81,19 @@
 				<td><g:formatDate date="${orderInstance.contractToDate}" /></td>
 
 				<td>
-					${fieldValue(bean : orderInstance, field : "grandTotal") }
+					${orderInstance?.grandTotal}
 				</td>
-
+							
 				<td>
-					${fieldValue(bean : orderInstance, field : "receviedGrandTotal") }
+					${orderInstance?.invoicedGrandTotal}
 				</td>
-
+							
 				<td>
-					${fieldValue(bean : orderInstance, field : "openGrandTotal") }
+					${orderInstance?.getReceivedAmount()}
+				</td>
+							
+				<td>
+					${fieldValue(bean : orderInstance, field : "pendingInvoiceGrandTotal") }
 				</td>
 				
 				<td>

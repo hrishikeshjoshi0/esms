@@ -268,426 +268,428 @@
 		</div>
 	</div>
 
-	<div class="span12">
-		<richui:tabView id="tabView">
-			<richui:tabLabels>
-				<richui:tabLabel selected="true" title="Activity Log" />
-				<g:if test="${eventInstance?.eventType != 'REPAIR WORK'}">
-					<richui:tabLabel title="Work Done Certificate" />
-				</g:if>	
-			</richui:tabLabels>
-
-			<richui:tabContents>
-				<richui:tabContent>
-					<g:each in="${eventInstance.eventLogs}" var="log">
-						<dl>
-							<dt>Logged Date</dt>
-							<dd>
-								<g:formatDate date="${log?.loggedDate}" />
-							</dd>
-
-							<dt>Work Done By</dt>
-							<dd>
-								${log?.workDoneBy}
-							</dd>
-
-							<dt>Reviewed By</dt>
-							<dd>
-								${log?.reviewedBy}
-							</dd>
-
-							<g:if test="${eventInstance?.eventType == 'BREAKDOWN CALL'}">
-								<dt>Was Problem Repeated ?</dt>
-								<dd>
-									<g:formatBoolean boolean="${log?.isProblemReported}" true="Yes"
-										false="No" />
-								</dd>
-								<dt>Problem Description</dt>
-								<dd>
-									${log?.comments}
-								</dd>
-							</g:if>
-							<g:elseif test="${eventInstance?.eventType == 'MAINTENANCE VISIT'}">
-								<dt>To Be Replaced</dt>
-								<dd>
-									<g:formatBoolean boolean="${log?.toBeReplaced}" true="Yes"
-										false="No" />
-								</dd>
-								<dt>To Be Replaced Parts</dt>
-								<dd>
-									${log?.comments}
-								</dd>
-							</g:elseif>
-							
-							<dt>Urgency</dt>
-							<dd>
-								${log?.urgency}
-							</dd>
-						</dl>
-					</g:each>
-				</richui:tabContent>
-
-				<g:if test="${eventInstance?.eventType != 'REPAIR WORK'}">
+	<div class="row-fluid">
+		<div class="span12">
+			<richui:tabView id="tabView">
+				<richui:tabLabels>
+					<richui:tabLabel selected="true" title="Activity Log" />
+					<g:if test="${eventInstance?.eventType != 'REPAIR WORK'}">
+						<richui:tabLabel title="Work Done Certificate" />
+					</g:if>	
+				</richui:tabLabels>
+	
+				<richui:tabContents>
 					<richui:tabContent>
-						<div class="row-fluid">
-							<div class="span6">
-								<dl class="dl-horizontal">
+						<g:each in="${eventInstance.eventLogs}" var="log">
+							<dl>
+								<dt>Logged Date</dt>
+								<dd>
+									<g:formatDate date="${log?.loggedDate}" />
+								</dd>
 	
-									<dt>
-										<g:message code="workDoneCertificate.date.label"
-											default="Work Done Date" />
-									</dt>
+								<dt>Work Done By</dt>
+								<dd>
+									${log?.workDoneBy}
+								</dd>
 	
+								<dt>Reviewed By</dt>
+								<dd>
+									${log?.reviewedBy}
+								</dd>
+	
+								<g:if test="${eventInstance?.eventType == 'BREAKDOWN CALL'}">
+									<dt>Was Problem Repeated ?</dt>
 									<dd>
-										<g:formatDate
-											date="${eventInstance?.workDoneCertificate?.date}" />
+										<g:formatBoolean boolean="${log?.isProblemReported}" true="Yes"
+											false="No" />
 									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.customerName.label"
-											default="Customer Name" />
-									</dt>
-	
+									<dt>Problem Description</dt>
 									<dd>
-										<g:fieldValue bean="${workDoneCertificateInstance}"
-											field="customerName" />
+										${log?.comments}
 									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.contract.label"
-											default="Contract" />
-									</dt>
-	
+								</g:if>
+								<g:elseif test="${eventInstance?.eventType == 'MAINTENANCE VISIT'}">
+									<dt>To Be Replaced</dt>
 									<dd>
-										<g:fieldValue bean="${workDoneCertificateInstance}"
-											field="contract" />
+										<g:formatBoolean boolean="${log?.toBeReplaced}" true="Yes"
+											false="No" />
 									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.machineNumber.label"
-											default="Machine Number" />
-									</dt>
-	
+									<dt>To Be Replaced Parts</dt>
 									<dd>
-										<g:fieldValue bean="${workDoneCertificateInstance}"
-											field="machineNumber" />
+										${log?.comments}
 									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.routeNumber.label"
-											default="Route Number" />
-									</dt>
-	
-									<dd>
-										<g:fieldValue bean="${workDoneCertificateInstance}"
-											field="routeNumber" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.location.label"
-											default="Location" />
-									</dt>
-	
-									<dd>
-										<g:fieldValue bean="${workDoneCertificateInstance}"
-											field="location" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.routineService.label"
-											default="Routine Service" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.routineService}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.serviceCodeAttended.label"
-											default="Service Code Attended" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.serviceCodeAttended}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.breakDownCall.label"
-											default="Break Down Call" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.breakDownCall}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message
-											code="workDoneCertificate.callBackCodeAttended.label"
-											default="Call Back Code Attended" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.callBackCodeAttended}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.arrivalTime.label"
-											default="Arrival Time" />
-									</dt>
-	
-									<dd>
-										<g:formatDate
-											date="${eventInstance?.workDoneCertificate?.arrivalTime}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.repairs.label"
-											default="Repairs" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.repairs}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message
-											code="workDoneCertificate.repairsWorkCompleted.label"
-											default="Repairs Work Completed" />
-									</dt>
-	
-									<dd>
-										<g:formatDate
-											date="${eventInstance?.workDoneCertificate?.repairsWorkCompleted}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message
-											code="workDoneCertificate.ind_T_S_OrderExecution.label"
-											default="Ind TSO rder Execution" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.ind_T_S_OrderExecution}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message
-											code="workDoneCertificate.ind_T_S_OrderExecutionWorkStarted.label"
-											default="Ind TSO rder Execution Work Started" />
-									</dt>
-	
-									<dd>
-										<g:formatDate
-											date="${eventInstance?.workDoneCertificate?.ind_T_S_OrderExecutionWorkStarted}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message
-											code="workDoneCertificate.ind_T_S_OrderExecutionWorkCompleted.label"
-											default="Ind TSO rder Execution Work Completed" />
-									</dt>
-	
-									<dd>
-										<g:formatDate
-											date="${eventInstance?.workDoneCertificate?.ind_T_S_OrderExecutionWorkCompleted}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message
-											code="workDoneCertificate.majorRepairs_Adjustment_ExtraExamination.label"
-											default="Major Repairs Adjustment Extra Examination" />
-									</dt>
-	
-									<dd>
-										<g:fieldValue bean="${workDoneCertificateInstance}"
-											field="majorRepairs_Adjustment_ExtraExamination" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.examinerName.label"
-											default="Examiner Name" />
-									</dt>
-	
-									<dd>
-										<g:fieldValue bean="${workDoneCertificateInstance}"
-											field="examinerName" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.customerSignedOffBy.label"
-											default="Customer Signed Off By" />
-									</dt>
-	
-									<dd>
-										<g:fieldValue bean="${workDoneCertificateInstance}"
-											field="customerSignedOffBy" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.customerRemark.label"
-											default="Customer Remark" />
-									</dt>
-	
-									<dd>
-										<g:fieldValue bean="${workDoneCertificateInstance}"
-											field="customerRemark" />
-									</dd>
-								</dl>
-							</div>
-	
-							<div class="span6">
-								<dl class="dl-horizontal">
-									<dt>
-										<g:message code="workDoneCertificate.buttonsAndSignals.label"
-											default="Buttons And Signals" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.buttonsAndSignals}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.carEntrance.label"
-											default="Car Entrance" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.carEntrance}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.carFanLight.label"
-											default="Car Fan Light" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.carFanLight}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.carOperatingPanel.label"
-											default="Car Operating Panel" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.carOperatingPanel}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.doorOperation.label"
-											default="Door Operation" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.doorOperation}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.doorProtection.label"
-											default="Door Protection" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.doorProtection}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.emergencyAlarm.label"
-											default="Emergency Alarm" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.emergencyAlarm}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.entrance.label"
-											default="Entrance" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.entrance}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.floorLevels.label"
-											default="Floor Levels" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.floorLevels}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.machineRoom.label"
-											default="Machine Room" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.machineRoom}" />
-									</dd>
-	
-	
-									<dt>
-										<g:message code="workDoneCertificate.rideQuality.label"
-											default="Ride Quality" />
-									</dt>
-	
-									<dd>
-										<g:formatBoolean
-											boolean="${eventInstance?.workDoneCertificate?.rideQuality}" />
-									</dd>
-								</dl>
-							</div>
-						</div>
+								</g:elseif>
+								
+								<dt>Urgency</dt>
+								<dd>
+									${log?.urgency}
+								</dd>
+							</dl>
+						</g:each>
 					</richui:tabContent>
-				</g:if>
-			</richui:tabContents>
-		</richui:tabView>
+	
+					<g:if test="${eventInstance?.eventType != 'REPAIR WORK'}">
+						<richui:tabContent>
+							<div class="row-fluid">
+								<div class="span6">
+									<dl class="dl-horizontal">
+		
+										<dt>
+											<g:message code="workDoneCertificate.date.label"
+												default="Work Done Date" />
+										</dt>
+		
+										<dd>
+											<g:formatDate
+												date="${eventInstance?.workDoneCertificate?.date}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.customerName.label"
+												default="Customer Name" />
+										</dt>
+		
+										<dd>
+											<g:fieldValue bean="${workDoneCertificateInstance}"
+												field="customerName" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.contract.label"
+												default="Contract" />
+										</dt>
+		
+										<dd>
+											<g:fieldValue bean="${workDoneCertificateInstance}"
+												field="contract" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.machineNumber.label"
+												default="Machine Number" />
+										</dt>
+		
+										<dd>
+											<g:fieldValue bean="${workDoneCertificateInstance}"
+												field="machineNumber" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.routeNumber.label"
+												default="Route Number" />
+										</dt>
+		
+										<dd>
+											<g:fieldValue bean="${workDoneCertificateInstance}"
+												field="routeNumber" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.location.label"
+												default="Location" />
+										</dt>
+		
+										<dd>
+											<g:fieldValue bean="${workDoneCertificateInstance}"
+												field="location" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.routineService.label"
+												default="Routine Service" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.routineService}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.serviceCodeAttended.label"
+												default="Service Code Attended" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.serviceCodeAttended}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.breakDownCall.label"
+												default="Break Down Call" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.breakDownCall}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message
+												code="workDoneCertificate.callBackCodeAttended.label"
+												default="Call Back Code Attended" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.callBackCodeAttended}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.arrivalTime.label"
+												default="Arrival Time" />
+										</dt>
+		
+										<dd>
+											<g:formatDate
+												date="${eventInstance?.workDoneCertificate?.arrivalTime}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.repairs.label"
+												default="Repairs" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.repairs}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message
+												code="workDoneCertificate.repairsWorkCompleted.label"
+												default="Repairs Work Completed" />
+										</dt>
+		
+										<dd>
+											<g:formatDate
+												date="${eventInstance?.workDoneCertificate?.repairsWorkCompleted}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message
+												code="workDoneCertificate.ind_T_S_OrderExecution.label"
+												default="Ind TSO rder Execution" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.ind_T_S_OrderExecution}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message
+												code="workDoneCertificate.ind_T_S_OrderExecutionWorkStarted.label"
+												default="Ind TSO rder Execution Work Started" />
+										</dt>
+		
+										<dd>
+											<g:formatDate
+												date="${eventInstance?.workDoneCertificate?.ind_T_S_OrderExecutionWorkStarted}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message
+												code="workDoneCertificate.ind_T_S_OrderExecutionWorkCompleted.label"
+												default="Ind TSO rder Execution Work Completed" />
+										</dt>
+		
+										<dd>
+											<g:formatDate
+												date="${eventInstance?.workDoneCertificate?.ind_T_S_OrderExecutionWorkCompleted}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message
+												code="workDoneCertificate.majorRepairs_Adjustment_ExtraExamination.label"
+												default="Major Repairs Adjustment Extra Examination" />
+										</dt>
+		
+										<dd>
+											<g:fieldValue bean="${workDoneCertificateInstance}"
+												field="majorRepairs_Adjustment_ExtraExamination" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.examinerName.label"
+												default="Examiner Name" />
+										</dt>
+		
+										<dd>
+											<g:fieldValue bean="${workDoneCertificateInstance}"
+												field="examinerName" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.customerSignedOffBy.label"
+												default="Customer Signed Off By" />
+										</dt>
+		
+										<dd>
+											<g:fieldValue bean="${workDoneCertificateInstance}"
+												field="customerSignedOffBy" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.customerRemark.label"
+												default="Customer Remark" />
+										</dt>
+		
+										<dd>
+											<g:fieldValue bean="${workDoneCertificateInstance}"
+												field="customerRemark" />
+										</dd>
+									</dl>
+								</div>
+		
+								<div class="span6">
+									<dl class="dl-horizontal">
+										<dt>
+											<g:message code="workDoneCertificate.buttonsAndSignals.label"
+												default="Buttons And Signals" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.buttonsAndSignals}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.carEntrance.label"
+												default="Car Entrance" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.carEntrance}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.carFanLight.label"
+												default="Car Fan Light" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.carFanLight}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.carOperatingPanel.label"
+												default="Car Operating Panel" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.carOperatingPanel}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.doorOperation.label"
+												default="Door Operation" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.doorOperation}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.doorProtection.label"
+												default="Door Protection" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.doorProtection}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.emergencyAlarm.label"
+												default="Emergency Alarm" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.emergencyAlarm}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.entrance.label"
+												default="Entrance" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.entrance}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.floorLevels.label"
+												default="Floor Levels" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.floorLevels}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.machineRoom.label"
+												default="Machine Room" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.machineRoom}" />
+										</dd>
+		
+		
+										<dt>
+											<g:message code="workDoneCertificate.rideQuality.label"
+												default="Ride Quality" />
+										</dt>
+		
+										<dd>
+											<g:formatBoolean
+												boolean="${eventInstance?.workDoneCertificate?.rideQuality}" />
+										</dd>
+									</dl>
+								</div>
+							</div>
+						</richui:tabContent>
+					</g:if>
+				</richui:tabContents>
+			</richui:tabView>
+		</div>
 	</div>
 
 	<div id="activityModal" class="modal hide fade" tabindex="-1"

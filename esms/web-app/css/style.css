@@ -72,7 +72,7 @@
 		
 		.navbar-fixed-top, .navbar-fixed-bottom {z-index:999;}
 		.navbar-fixed-top .nav-collapse i {opacity:0.8}
-		.navbar-fixed-top .nav-collapse li:hover i {opacity:1}
+		.navbar-fixed-top .nav-collapse li:hover i {opacity:0}
 		.nav-list > li > a,.dropdown-menu li a {-webkit-border-radius: 4px;-moz-border-radius: 4px;-ms-border-radius: 4px;border-radius: 4px}
 		.navbar-fixed-top .navHover:after {height:1px;width:100%;bottom:-1px;position:absolute;content:'';display:block}
 		.navbar .nav > li > a.nav_condensed {padding-left:2px;padding-right:2px}
@@ -205,8 +205,7 @@
 
 	/* login page */
 		 body.login_page {
-			background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #336699),
-				color-stop(1, #EEE));
+			background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #3a87ad),color-stop(1, #3a87ad));
 		}
         .login_page  {margin:40px 20px 20px;}
 		.login_page .login_box {width:380px;margin:0 auto;background:#fff;border:1px solid #ccc;-webkit-border-radius: 6px;-moz-border-radius: 6px;-ms-border-radius: 6px;border-radius: 6px;-webkit-box-shadow: 0 0 6px rgba(0,0,0,0.2);-moz-box-shadow: 0 0 6px rgba(0,0,0,0.2);-ms-box-shadow: 0 0 6px rgba(0,0,0,0.2);box-shadow: 0 0 6px rgba(0,0,0,0.2);margin-bottom:10px}

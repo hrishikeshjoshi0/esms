@@ -14,6 +14,10 @@
 	});
 
 	function fetchInvoiceInfo(id) {
+		/*if(id == null) {
+			alert('There is no invoice pending for payment');
+			return;
+		}*/
 		var url = "${createLink(controller:'invoice', action:'show')}" + "/" + id;
 		$.ajax({
 		    url:url,

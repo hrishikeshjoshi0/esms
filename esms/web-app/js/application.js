@@ -29,12 +29,12 @@ if (typeof jQuery !== 'undefined') {
        
        $(window).resize(function () { 
     	    var h = parseInt($('#main-navbar').css("height"));
-    	    $('body').css('padding-top', h-h/2);
+    	    $('body').css('padding-top', h-h/2-3);
     	});
 
     	$(window).load(function () { 
     		var h = parseInt($('#main-navbar').css("height"));
-    	    $('body').css('padding-top', h-h/2);        
+    	    $('body').css('padding-top', h-h/2-3);        
     	});
 
 	})(jQuery);

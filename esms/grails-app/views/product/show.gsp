@@ -124,9 +124,10 @@
 				<dd>
 					<g:formatBoolean boolean="${productInstance?.isVirtual}" />
 				</dd>
-				
+
 				<dt>
-					<g:message code="product.serviceContract.label" default="Is Service Contract?" />
+					<g:message code="product.serviceContract.label"
+						default="Is Service Contract?" />
 				</dt>
 
 				<dd>
@@ -134,7 +135,9 @@
 				</dd>
 			</dl>
 		</div>
+	</div>
 
+	<div class="row-fluid">
 		<div class="span12">
 			<richui:tabView id="tabView">
 				<richui:tabLabels>

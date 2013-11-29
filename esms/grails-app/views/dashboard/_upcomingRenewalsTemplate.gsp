@@ -18,16 +18,20 @@
 		<td><g:formatDate date="${orderInstance.contractToDate}" /></td>
 
 		<td>
-			${fieldValue(bean : orderInstance, field : "grandTotal") }
-		</td>
-
-		<td>
-			${fieldValue(bean : orderInstance, field : "receviedGrandTotal") }
-		</td>
-
-		<td>
-			${fieldValue(bean : orderInstance, field : "openGrandTotal") }
-		</td>
+					${orderInstance?.grandTotal}
+				</td>
+							
+				<td>
+					${orderInstance?.invoicedGrandTotal}
+				</td>
+							
+				<td>
+					${orderInstance?.getReceivedAmount()}
+				</td>
+							
+				<td>
+					${fieldValue(bean : orderInstance, field : "pendingInvoiceGrandTotal") }
+				</td>
 		
 		<td>
 			<g:if test="${orderInstance?.taggedForRenewal == true}">
