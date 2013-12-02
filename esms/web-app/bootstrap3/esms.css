@@ -1,0 +1,116 @@
+@CHARSET "ISO-8859-1";
+
+/*
+* HJ : Update the valign to middle.
+*/
+.table>thead>tr>th,.table>tbody>tr>th,.table>tfoot>tr>th,.table>thead>tr>td,.table>tbody>tr>td,.table>tfoot>tr>td
+	{
+	padding: 8px;
+	line-height: 1.428571429;
+	vertical-align: middle;
+	border-top: 1px solid #dddddd;
+}
+
+.table>thead>tr>td,.table>tbody>tr>td,.table>tfoot>tr>td {
+	
+}
+
+.table>thead>tr>th,.table>tbody>tr>th,.table>tfoot>tr>th {
+	z-index: 2;
+	color: #ffffff;
+	background-color: #008cba;
+	border-color: #008cba;
+}
+
+.sortable a {
+	color: #ffffff;
+	background-color: #008cba;
+	border-color: #008cba;
+}
+
+.page-header {
+  padding-bottom: 5px;
+  margin: 0px 0 10.5px;
+}
+
+h1, h2, h3 {
+  margin-top: 7px;
+  margin-bottom: 5px;
+}
+
+.yui-skin-sam .yui-navset .yui-content {
+	background: #fff;
+}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a,
+.yui-skin-sam .yui-navset .yui-nav a,
+.yui-skin-sam .yui-navset .yui-nav .selected a em
+.yui-skin-sam .yui-navset .yui-nav a em {
+	border : 1px;
+	vertical-align: middle;
+	font-size: 12px;
+}
+
+.yui-skin-sam .yui-navset .yui-content, .yui-skin-sam .yui-navset .yui-navset-top .yui-content {
+	border: 1px solid #dddddd;
+	border-top-color: #dddddd;
+	padding: .05em .05em;
+}
+
+.yui-skin-sam .yui-navset .yui-nav, .yui-skin-sam .yui-navset .yui-navset-top .yui-nav {
+	border: 1px solid #dddddd;
+	border-width: 0 0px 1px;
+	zoom: 1;
+}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a,.yui-skin-sam .yui-navset .yui-nav .selected a:focus,.yui-skin-sam .yui-navset .yui-nav .selected a:hover
+	{
+	background: #008cba;
+	color: #fff;
+}
+
+.yui-skin-sam .yui-navset .yui-nav a em, .yui-skin-sam .yui-navset .yui-navset-top .yui-nav a em {
+	border-width: 1px 1px 0;
+	/* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-radius: 1px; 
+
+  /* Firefox 1-3.6 */
+  -moz-border-radius: 1px; 
+  
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-radius: 1px; 
+}
+
+select option {
+	height: auto;
+}
+
+.yui-skin-sam .yui-calendar td.calcell a {
+	color: #008cba;
+	display: block;
+	height: 100%;
+	text-decoration: none;
+}
+
+/**/
+.yui-skin-sam .yui-calendar {
+	border-spacing: 0;
+	border-collapse: collapse;
+	font-size: 10px;
+	text-align: center;
+	margin: 0;
+}
+
+footer {
+	border-top: 1px solid #dddddd;
+}
+
+.quicklinks-header {
+	text-align: center;
+	border-bottom: 1px solid #dddddd;
+	padding-bottom: 5px;
+}
+
+.pagination {
+	text-align: center;
+}

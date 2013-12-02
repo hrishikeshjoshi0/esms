@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'product.label', default: 'Product')}" />
 <title><g:message code="default.create.label"
@@ -24,25 +24,26 @@
 			</g:hasErrors>
 
 			<div class="page-header">
-				<h1>
+				<h2>
 					<g:message code="default.create.label" args="[entityName]" />
-				</h1>
+				</h2>
 			</div>
 
-			<fieldset>
-				<g:form class="form-horizontal" action="create"
-					>
+			<div class="well">
+				<g:form class="form-horizontal" action="create">
 					<fieldset>
 						<g:render template="form"></g:render>
-						<div class="form-actions">
-							<button type="submit" class="btn btn-primary">
-								<i class="icon-ok icon-white"></i>
-								<g:message code="default.button.create.label" default="Create" />
-							</button>
+						<div class="form-group">
+							<div class="col-lg-10 col-lg-offset-2">
+								<button type="submit" class="btn btn-sm btn-primary">
+									<i class="icon-ok icon-white"></i>
+									<g:message code="default.button.create.label" default="Create" />
+								</button>
+							</div>
 						</div>
 					</fieldset>
 				</g:form>
-			</fieldset>
+			</div>
 		</div>
 	</div>
 </body>

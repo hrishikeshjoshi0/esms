@@ -14,7 +14,7 @@ class ProductController {
 	
 	def list() {
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
-		[productInstanceList: Product.list(), productInstanceTotal: Product.count()]
+		[productInstanceList: Product.list(params), productInstanceTotal: Product.count()]
 	}
 
 	def filter = {
@@ -122,9 +122,10 @@ class ProductController {
 	def createPrice() {
 		switch (request.method) {
 		case 'GET':
+			def productInstance = Product.get(params.id)
 			params.fromDate = new Date()
 			params.toDate = new Date() + 365
-		    [productPriceInstance: new ProductPrice(params)]
+		    [productPriceInstance: new ProductPrice(params),productInstance:productInstance]
 			break
 		case 'POST':
 			def productPriceInstance = new ProductPrice(params)
@@ -141,6 +142,7 @@ class ProductController {
 				flash.message = message(code: 'productPrice.overlap.message', 
 						args: [message(code: 'productPrice.label', default: 'Price'), productPriceInstance.id])
 				redirect controller: "product", action: 'show', id: productPriceInstance.id
+				return
 			}
 			
 			if (!productPriceInstance.save(flush: true)) {
@@ -149,7 +151,7 @@ class ProductController {
 			}
 
 			flash.message = message(code: 'default.created.message', args: [message(code: 'productPrice.label', default: 'ProductPrice'), productPriceInstance.id])
-			redirect controller: "product", action: 'show', id: productPriceInstance.id
+			redirect controller: "product", action: 'show', id: productPriceInstance?.product?.id
 			break
 		}
 	}

@@ -22,6 +22,7 @@ class PaginationTagLib {
         def offset = params.int('offset') ?: 0
         def max = params.int('max')
         def maxsteps = (attrs.int('maxsteps') ?: 10)
+		def ulAttrClass = attrs.class ? attrs.class : ""
 
         if (!offset) offset = (attrs.int('offset') ?: 0)
         if (!max) max = (attrs.int('max') ?: 10)
@@ -51,7 +52,8 @@ class PaginationTagLib {
         int firststep = 1
         int laststep = Math.round(Math.ceil(total / max))
 
-		writer << '<ul>'
+		writer << '<center>'
+		writer << '<ul class=\'pagination\'>'
 
         // display previous link when not on firststep
 		if (currentstep > firststep) {
@@ -111,6 +113,7 @@ class PaginationTagLib {
 		}
 		
 		writer << '</ul>'
+		writer << '</center>'
 	}
 
 }
