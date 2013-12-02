@@ -2,101 +2,65 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'organization.label', default: 'Organization')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
 
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<div class="page-header">
-				<h1>
+				<h3>
 					LEAD #
 					${organizationInstance?.externalId}
 					|
-					${organizationInstance?.name} 
-				</h1>
+					${organizationInstance?.name}
+				</h3>
 			</div>
-			
-			<g:form>
-				<g:hiddenField name="id" value="${organizationInstance?.id}" />
-				<div class="form-actions">
-					<!-- TODO : HRISHI disabled temporarily -->
-					<g:link class="btn" action="edit" id="${organizationInstance?.id}">
-						<i class="icon-pencil"></i>
-						<g:message code="default.button.edit.label" default="Edit" />
-					</g:link>
-					<button class="btn btn-danger" type="submit" name="_action_delete">
-						<i class="icon-trash icon-white"></i>
-						<g:message code="default.button.delete.label" default="Delete" />
-					</button>
-					<%--<a data-toggle="modal" href="#" data-target="#contactModal" role="button" class="btn"> 
-						<i class="icon-plus"></i> New Contact
-					</a>
-					<a data-toggle="modal" href="#" data-target="#addressModal" role="button" class="btn"> 
-						<i class="icon-plus"></i> New Address
-					</a>
-					<a data-toggle="modal" href="#" data-target="#phoneBookModal"
-						role="button" class="btn"> <i class="icon-plus"></i> New Phone Book
-					</a>
-					--%><g:if test="${organizationInstance.salesStatus == 'LEAD'}">
-						<g:link controller="organization" action="convertLeadToCustomer"  id="${organizationInstance?.id}" role="button" class="btn">
-						 	<i class="icon-share-alt"></i> Convert Lead
-						</g:link>
-						
-						<button class="btn btn-danger" type="submit" name="_action_disqualifyLead">
-							<i class="icon-trash icon-white"></i>
-							Disqualify Lead
-						</button>
-					</g:if>
-				</div>
-			</g:form>
 
-			<dl class="dl-horizontal" style="margin-left: -30px;">
-				<dt>
-					<g:message code="organization.externalId.label"
-						default="External Id" />
-				</dt>
+			<div class="table-responsive">
+				<table class="table table-striped table-condensed table-bordered">
+					<tbody>
+						<tr>
+							<td><g:message code="organization.externalId.label" default="External Id" /></td>
 
-				<dd>
-					<g:fieldValue bean="${organizationInstance}" field="externalId" />
-				</dd>
+							<td><g:fieldValue bean="${organizationInstance}" field="externalId" /></td>
 
-				<dt>
-					<g:message code="organization.assignedTo.label"
-						default="Assigned To" />
-				</dt>
+							<td><g:message code="organization.assignedTo.label"
+									default="Assigned To" /></td>
+							
+							<td><g:fieldValue bean="${organizationInstance}" field="assignedTo" /></td>		
+						</tr>
 
-				<dd>
-					<g:fieldValue bean="${organizationInstance}" field="assignedTo" />
-				</dd>
-				
-				<dt>
-					<g:message code="organization.salesStatus.label"
-						default="Sales Status" />
-				</dt>
+						<tr>
+							<td>
+								<g:message code="organization.salesStatus.label"
+									default="Sales Status" />
+							</td>
 
-				<dd>
-					<g:fieldValue bean="${organizationInstance}" field="salesStatus" />
-				</dd>
-				
-				<dt>
-					<g:message code="organization.reasonForChange.label"
-						default="Reason for Change" />
-				</dt>
+							<td>
+								<g:fieldValue bean="${organizationInstance}" field="salesStatus" />
+							</td>
 
-				<dd>
-					<g:fieldValue bean="${organizationInstance}" field="description" />
-				</dd>
+							<td>
+								<g:message code="organization.reasonForChange.label"
+									default="Reason for Change" />
+							</td>
 
-			</dl>
+							<td>
+								<g:fieldValue bean="${organizationInstance}" field="description" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
-		</div>
-		
-		<div class="row-fluid">
-		<div class="span12">
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
 			<richui:tabView id="tabView">
 				<richui:tabLabels>
 					<richui:tabLabel selected="true" title="Contacts" />
@@ -114,15 +78,15 @@
 					<richui:tabContent>
 						<g:render template="liftInfo" />
 					</richui:tabContent>
-					
+
 					<richui:tabContent>
 						<g:render template="addressList" />
 					</richui:tabContent>
-					
+
 					<richui:tabContent>
 						<g:render template="quoteList" />
 					</richui:tabContent>
-					
+
 					<richui:tabContent>
 						<g:render template="eventList" />
 					</richui:tabContent>

@@ -54,7 +54,7 @@ h1, h2, h3 {
 .yui-skin-sam .yui-navset .yui-content, .yui-skin-sam .yui-navset .yui-navset-top .yui-content {
 	border: 1px solid #dddddd;
 	border-top-color: #dddddd;
-	padding: .05em .05em;
+	padding: 0;
 }
 
 .yui-skin-sam .yui-navset .yui-nav, .yui-skin-sam .yui-navset .yui-navset-top .yui-nav {

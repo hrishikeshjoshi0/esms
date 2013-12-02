@@ -1,71 +1,72 @@
-<div class="pull-right">
+<%--<div class="pull-right">
 	<a
 		href="<g:createLink controller="event" action="create" params="['party.id':organizationInstance.id]" />"
-		role="button" class="btn"> <i class="icon-plus"></i> New Event
+		role="button" class="btn btn-default btn-sm"> <i class="icon-plus"></i> New
+		Event
 	</a>
 </div>
-
-
-<!-- Quotes -->
-<table class="table table-striped table-hover">
-	<thead>
-		<tr>
-			<g:sortableColumn property="eventType"
-				title="${message(code: 'event.eventType.label', default: 'Event Type')}" />
-				
-			<g:sortableColumn property="title"
-				title="${message(code: 'event.title.label', default: 'Title')}" />
-				
-			<g:sortableColumn property="startTime"
-				title="${message(code: 'event.startTime.label', default: 'Start Date Time')}" />
-				
-			<g:sortableColumn property="endTime"
-				title="${message(code: 'event.endTime.label', default: 'End Date Time')}" />	
-				
-			<g:sortableColumn property="status"
-				title="${message(code: 'event.assignedTo.label', default: 'Assigned To')}" />
-				
-			<g:sortableColumn property="description"
-				title="${message(code: 'event.description.label', default: 'Description')}" />	
-
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		<g:each in="${organizationInstance?.events}" var="eventInstance">
+--%>
+<div class="table-responsive">
+	<table class="table table-striped table-condensed table-bordered">
+		<thead>
 			<tr>
-			
-				<td>
-					${fieldValue(bean: eventInstance, field: "eventType")}
-				</td>
+				<g:sortableColumn property="eventType"
+					title="${message(code: 'event.eventType.label', default: 'Event Type')}" />
 
-				<td>
-					${fieldValue(bean: eventInstance, field: "title")}
-				</td>
+				<g:sortableColumn property="title"
+					title="${message(code: 'event.title.label', default: 'Title')}" />
 
-				<td>
-					${fieldValue(bean: eventInstance, field: "startTime")}
-				</td>
-				
-				<td>
-					${fieldValue(bean: eventInstance, field: "endTime")}
-				</td>
-				
-				<td>
-					${fieldValue(bean: eventInstance, field: "assignedTo")}
-				</td>
+				<g:sortableColumn property="startTime"
+					title="${message(code: 'event.startTime.label', default: 'Start Date Time')}" />
 
-				<td>
-					${fieldValue(bean: eventInstance, field: "description")}
-				</td>
+				<g:sortableColumn property="endTime"
+					title="${message(code: 'event.endTime.label', default: 'End Date Time')}" />
 
-				<td class="link"><g:link controller="event" action="show"
-						id="${eventInstance.id}" class="btn btn-small">Show &raquo;</g:link></td>
+				<g:sortableColumn property="status"
+					title="${message(code: 'event.assignedTo.label', default: 'Assigned To')}" />
+
+				<g:sortableColumn property="description"
+					title="${message(code: 'event.description.label', default: 'Description')}" />
+
+				<th></th>
 			</tr>
-		</g:each>
-	</tbody>
-</table>
-<div class="pagination">
-	<bootstrap:paginate
-		total="${organizationInstance?.events?organizationInstance?.events.size():0}" />
+		</thead>
+		<tbody>
+			<g:each in="${organizationInstance?.events}" var="eventInstance">
+				<tr>
+
+					<td>
+						${fieldValue(bean: eventInstance, field: "eventType")}
+					</td>
+
+					<td>
+						${fieldValue(bean: eventInstance, field: "title")}
+					</td>
+
+					<td>
+						${fieldValue(bean: eventInstance, field: "startTime")}
+					</td>
+
+					<td>
+						${fieldValue(bean: eventInstance, field: "endTime")}
+					</td>
+
+					<td>
+						${fieldValue(bean: eventInstance, field: "assignedTo")}
+					</td>
+
+					<td>
+						${fieldValue(bean: eventInstance, field: "description")}
+					</td>
+
+					<td class="link"><g:link controller="event" action="show"
+							id="${eventInstance.id}" class="btn btn-xs">Show &raquo;</g:link></td>
+				</tr>
+			</g:each>
+		</tbody>
+	</table>
+	<div class="pagination">
+		<bootstrap:paginate
+			total="${organizationInstance?.events?organizationInstance?.events.size():0}" />
+	</div>
 </div>

@@ -15,18 +15,48 @@
 				<g:message code="default.new.label" args="[entityName]" />
 			</g:link>
 		</g:if>
-		<g:elseif test="${params.controller == 'quote'}">
+		<g:if test="${params.controller == 'lead' && params.action == 'show'}">
+			<g:if test="${organizationInstance.salesStatus == 'LEAD'}">
+				<g:link controller="organization" action="convertLeadToCustomer" id="${organizationInstance?.id}" 
+					class="list-group-item">
+					Convert Lead
+				</g:link>
+
+				<button class="list-group-item" type="submit"
+					name="_action_disqualifyLead">
+					<i class="icon-trash icon-white"></i> Disqualify Lead
+				</button>
+			</g:if>
 			<g:link action="create"
 				class="list-group-item ${ params.action == "create"  && params.type=='CONTRACT'? 'active' : '' }"
 				params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]">
 					Create Contract Quote
-				</g:link>
+			</g:link>
 			<g:link action="create"
 				class="list-group-item ${ params.action == "create"  && params.type=='REPAIR'? 'active' : '' }"
 				params="[type:'REPAIR',organizationId:organizationInstance?.id]">
 					Create Repair Quote
-				</g:link>
-		</g:elseif>
+			</g:link>
+			<a data-toggle="modal" data-target="#addressModal" role="button"
+				class="list-group-item"
+				href="<g:createLink controller="lead" action="createAddress" params="['party.id':organizationInstance?.id]" />"> 
+				New Address
+			</a>
+			<a data-toggle="modal" data-target="#contactModal" role="button"
+				href="<g:createLink controller="lead" action="createContact" params="['party.id':organizationInstance?.id]" />" 
+				class="list-group-item"> <i class="icon-plus"></i> New
+				Contact
+			</a>
+			<a
+				href="<g:createLink controller="event" action="create" params="['party.id':organizationInstance.id]" />"
+				role="button" class="list-group-item"> <i class="icon-plus"></i> New
+				Event
+			</a>
+			<a data-toggle="modal" href="#" data-target="#phoneBookModal"
+				role="button" class="list-group-item"> <i class="icon-plus"></i> New
+				Phone Book
+			</a>
+		</g:if>
 		<g:if
 			test="${params.controller != 'event' && params.controller != 'report'}">
 			<g:link

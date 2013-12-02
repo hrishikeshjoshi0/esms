@@ -1,302 +1,234 @@
 <g:set var="liftInfoInstance" value="${organizationInstance?.liftInfo}" />
-<div class="row-fluid">
-	<div class="span6">
-		<dl class="dl-horizontal">
-			<dt>
-				<g:message code="liftInfo.liftMake.label" default="Lift Make" />
-			</dt>
+<div class="table-responsive">
+	<table class="table table-striped table-condensed table-bordered">
+		<tr>
+			<td><g:message code="liftInfo.typeOfEnquiry.label"
+					default="Type Of Enquiry" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="liftMake" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}"
+					field="typeOfEnquiry" /></td>
 
-			<dt>
-				<g:message code="liftInfo.liftControlSystem.label"
-					default="Lift Control System" />
-			</dt>
+			<td><g:message code="liftInfo.lockType.label"
+					default="Lock Type" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="liftControlSystem" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}" field="lockType" />
+			</td>
+		</tr>
 
-			<dt>
-				<g:message code="liftInfo.lastServiceProvider.label"
-					default="Last Service Provider" />
-			</dt>
+		<tr>
+			<td><g:message code="liftInfo.liftMake.label"
+					default="Lift Make" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="lastServiceProvider" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}" field="liftMake" />
+			</td>
 
-			<dt>
-				<g:message code="liftInfo.lastContractEndDate.label"
-					default="Last Contract End Date" />
-			</dt>
+			<td><g:message code="liftInfo.liftControlSystem.label"
+					default="Lift Control System" /></td>
 
-			<dd>
-				<g:formatDate date="${liftInfoInstance?.lastContractEndDate}" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}"
+					field="liftControlSystem" /></td>
+		</tr>
 
-			<dt>
-				<g:message code="liftInfo.typeOfEnquiry.label"
-					default="Type Of Enquiry" />
-			</dt>
+		<tr>
+			<td><g:message code="liftInfo.lastServiceProvider.label"
+					default="Last Service Provider" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="typeOfEnquiry" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}"
+					field="lastServiceProvider" /></td>
 
+			<td><g:message code="liftInfo.lastContractEndDate.label"
+					default="Last Contract End Date" /></td>
 
-			<dt>
-				<g:message code="liftInfo.buildingType.label"
-					default="Building Type" />
-			</dt>
+			<td><g:formatDate
+					date="${liftInfoInstance?.lastContractEndDate}" /></td>
+		</tr>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="buildingType" />
-			</dd>
+		<tr>
+			<td><g:message code="liftInfo.buildingType.label"
+					default="Building Type" /></td>
+
+			<td><g:fieldValue bean="${liftInfoInstance}"
+					field="buildingType" /></td>
 
 
-			<dt>
-				<g:message code="liftInfo.gateType.label" default="Gate Type" />
-			</dt>
+			<td><g:message code="liftInfo.gateType.label"
+					default="Gate Type" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="gateType" />
-			</dd>
-			
 			<g:if test="${liftInfoInstance.gateType == 'OTHER'}">
-				<dt>
-					<g:message code="liftInfo.gateTypeOther.label" default="Gate Type (Other)" />
-				</dt>
-	
-				<dd>
-					<g:fieldValue bean="${liftInfoInstance}" field="gateTypeOther" />
-				</dd>				
+				<td><g:message code="liftInfo.gateTypeOther.label"
+						default="Gate Type (Other)" /></td>
+
+				<td><g:fieldValue bean="${liftInfoInstance}"
+						field="gateTypeOther" /></td>
 			</g:if>
+			<g:else>
+				<td><g:fieldValue bean="${liftInfoInstance}" field="gateType" />
+			</td>	
+			</g:else>
+		</tr>
 
-			<dt>
-				<g:message code="liftInfo.retiringCamType.label"
-					default="Retiring Cam Type" />
-			</dt>
+		<tr>
+			<td><g:message code="liftInfo.drive.label" default="Drive" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="retiringCamType" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}" field="drive" /></td>
 
+			<td><g:message code="liftInfo.retiringCamType.label"
+					default="Retiring Cam Type" /></td>
 
-			<dt>
-				<g:message code="liftInfo.lockType.label" default="Lock Type" />
-			</dt>
+			<td><g:fieldValue bean="${liftInfoInstance}"
+					field="retiringCamType" /></td>
+		</tr>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="lockType" />
-			</dd>
-			
-			<dt>
-				<g:message code="liftInfo.drive.label" default="Drive" />
-			</dt>
+		<g:if test="${liftInfoInstance.drive == 'YES'}">
+			<tr>
+				<td><g:message code="liftInfo.driveCapacity.label"
+						default="Drive Capacity" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="drive" />
-			</dd>
-			
-			<g:if test="${liftInfoInstance.drive == 'YES'}">
-				<dt>
-				<g:message code="liftInfo.driveCapacity.label"
-					default="Drive Capacity" />
-				</dt>
-	
-				<dd>
-					<g:fieldValue bean="${liftInfoInstance}" field="driveCapacity" />
-				</dd>
-	
-				<dt>
-					<g:message code="liftInfo.driveSerialNumber.label"
-						default="Drive Serial Number" />
-				</dt>
-	
-				<dd>
-					<g:fieldValue bean="${liftInfoInstance}" field="driveSerialNumber" />
-				</dd>
-			</g:if>
+				<td><g:fieldValue bean="${liftInfoInstance}"
+						field="driveCapacity" /></td>
 
-			<dt>
-				<g:message code="liftInfo.buildingOpening.label"
-					default="Building Opening" />
-			</dt>
+				<td><g:message code="liftInfo.driveSerialNumber.label"
+						default="Drive Serial Number" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="buildingOpening" />
-			</dd>
+				<td><g:fieldValue bean="${liftInfoInstance}"
+						field="driveSerialNumber" /></td>
+			</tr>
+		</g:if>
+
+		<tr>
+			<td><g:message code="liftInfo.buildingOpening.label"
+					default="Building Opening" /></td>
+
+			<td><g:fieldValue bean="${liftInfoInstance}"
+					field="buildingOpening" /></td>
 
 
-			<dt>
-				<g:message code="liftInfo.carCapacity.label" default="Car Capacity" />
-			</dt>
+			<td><g:message code="liftInfo.carCapacity.label"
+					default="Car Capacity" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="carCapacity" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}" field="carCapacity" />
+			</td>
+		</tr>
 
+		<tr>
+			<td><g:message code="liftInfo.typeOfElevator.label"
+					default="Type Of Elevator" /></td>
 
-			<dt>
-				<g:message code="liftInfo.typeOfElevator.label"
-					default="Type Of Elevator" />
-			</dt>
+			<td><g:fieldValue bean="${liftInfoInstance}"
+					field="typeOfElevator" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="typeOfElevator" />
-			</dd>
-		</dl>
-	</div>
+			<td><g:message code="liftInfo.motorHP.label" default="Motor HP" />
+			</td>
 
-	<div class="span6">
-		<dl class="dl-horizontal">
-			<dt>
-				<g:message code="liftInfo.motorHP.label" default="Motor HP" />
-			</dt>
+			<td><g:fieldValue bean="${liftInfoInstance}" field="motorHP" />
+			</td>
+		</tr>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="motorHP" />
-			</dd>
+		<tr>
+			<td><g:message code="liftInfo.motorCurrent.label"
+					default="Motor Current" /></td>
+
+			<td><g:fieldValue bean="${liftInfoInstance}"
+					field="motorCurrent" /></td>
 
 
-			<dt>
-				<g:message code="liftInfo.motorCurrent.label"
-					default="Motor Current" />
-			</dt>
+			<td><g:message code="liftInfo.motorRpm.label"
+					default="Motor Rpm" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="motorCurrent" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}" field="motorRpm" />
+			</td>
+		</tr>
 
+		<tr>
+			<td><g:message code="liftInfo.governerSpeed.label"
+					default="Governer Speed" /></td>
 
-			<dt>
-				<g:message code="liftInfo.motorRpm.label" default="Motor Rpm" />
-			</dt>
-
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="motorRpm" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}"
+					field="governerSpeed" /></td>
 
 
-			<dt>
-				<g:message code="liftInfo.governerSpeed.label"
-					default="Governer Speed" />
-			</dt>
+			<td><g:message code="liftInfo.trippingSpeed.label"
+					default="Tripping Speed" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="governerSpeed" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}"
+					field="trippingSpeed" /></td>
+		</tr>
 
+		<tr>
+			<td><g:message code="liftInfo.machineMake.label"
+					default="Machine Make" /></td>
 
-			<dt>
-				<g:message code="liftInfo.trippingSpeed.label"
-					default="Tripping Speed" />
-			</dt>
-
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="trippingSpeed" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}" field="machineMake" />
+			</td>
 
 
-			<dt>
-				<g:message code="liftInfo.machineMake.label" default="Machine Make" />
-			</dt>
+			<td><g:message code="liftInfo.pulleyDiameter.label"
+					default="Pulley Diameter" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="machineMake" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}"
+					field="pulleyDiameter" /></td>
+		</tr>
 
+		<tr>
+			<td><g:message code="liftInfo.numberOfGrooves.label"
+					default="Number Of Grooves" /></td>
 
-			<dt>
-				<g:message code="liftInfo.pulleyDiameter.label"
-					default="Pulley Diameter" />
-			</dt>
-
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="pulleyDiameter" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}"
+					field="numberOfGrooves" /></td>
 
 
-			<dt>
-				<g:message code="liftInfo.numberOfGrooves.label"
-					default="Number Of Grooves" />
-			</dt>
+			<td><g:message code="liftInfo.ropeSize.label"
+					default="Rope Size" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="numberOfGrooves" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}" field="ropeSize" />
+			</td>
+		</tr>
 
+		<tr>
+			<td><g:message code="liftInfo.numberOfRopes.label"
+					default="Number Of Ropes" /></td>
 
-			<dt>
-				<g:message code="liftInfo.ropeSize.label" default="Rope Size" />
-			</dt>
-
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="ropeSize" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}"
+					field="numberOfRopes" /></td>
 
 
-			<dt>
-				<g:message code="liftInfo.numberOfRopes.label"
-					default="Number Of Ropes" />
-			</dt>
+			<td><g:message code="liftInfo.driveMake.label"
+					default="Drive Make" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="numberOfRopes" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}" field="driveMake" />
+			</td>
+		</tr>
 
+		<tr>
+			<td><g:message code="liftInfo.noOfFloors.label"
+					default="No Of Floors" /></td>
 
-			<dt>
-				<g:message code="liftInfo.driveMake.label" default="Drive Make" />
-			</dt>
-
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="driveMake" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}" field="noOfFloors" />
+			</td>
 
 
-			<dt>
-				<g:message code="liftInfo.noOfFloors.label" default="No Of Floors" />
-			</dt>
+			<td><g:message code="liftInfo.numberOfLifts.label"
+					default="Number Of Lifts" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="noOfFloors" />
-			</dd>
+			<td><g:fieldValue bean="${liftInfoInstance}"
+					field="numberOfLifts" /></td>
+		</tr>
 
+		<tr>
+			<td><g:message code="liftInfo.organization.label"
+					default="Organization" /></td>
 
-			<dt>
-				<g:message code="liftInfo.numberOfLifts.label"
-					default="Number Of Lifts" />
-			</dt>
-
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="numberOfLifts" />
-			</dd>
-
-
-			<dt>
-				<g:message code="liftInfo.organization.label" default="Organization" />
-			</dt>
-
-			<dd>
-				<g:link controller="organization" action="show"
+			<td><g:link controller="organization" action="show"
 					id="${liftInfoInstance?.organization?.id}">
 					${liftInfoInstance?.organization?.name}
-				</g:link>
-			</dd>
+				</g:link></td>
 
 
-			<dt>
-				<g:message code="liftInfo.servicePeriod.label"
-					default="Service Period" />
-			</dt>
+			<td><g:message code="liftInfo.servicePeriod.label"
+					default="Service Period" /></td>
 
-			<dd>
-				<g:fieldValue bean="${liftInfoInstance}" field="servicePeriod" />
-			</dd>
-		</dl>
-	</div>
+			<td><g:fieldValue bean="${liftInfoInstance}"
+					field="servicePeriod" /></td>
+		</tr>
+	</table>
 </div>

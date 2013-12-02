@@ -23,7 +23,6 @@ class ContactController {
 		case 'POST':
 	        def contactInstance = new Contact(params)
 			contactInstance.partyType = "CONTACT"
-			contactInstance.status = "ACTIVE"
 			
 	        if (!contactInstance.save(flush: true)) {
 	            render view: 'create', model: [contactInstance: contactInstance]

@@ -11,7 +11,7 @@
 						minQueryLength="2" /></td>
 				<td>Sales Stage :</td>
 				<td>
-					<button type="submit" class="btn">
+					<button type="submit" class="btn btn-sm">
 						<i class="icon-search"></i> Search
 					</button>
 				</td>

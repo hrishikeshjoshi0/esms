@@ -4,6 +4,7 @@ import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
 import com.esms.model.maintenance.LiftInfo
+import com.esms.model.sales.Contract;
 
 class LeadController {
 	
@@ -195,6 +196,65 @@ class LeadController {
 
 		flash.message = "Marked As Disqualified"
 		redirect action: 'show', id: organizationInstance.id
+	}
+	
+	def createContact() {
+		switch (request.method) {
+		case 'GET':
+			def list = Contact.list();
+			int no = (list?list.size():0) + 1;
+			params.externalId = "CON" + String.format("%05d", no)
+			
+			[contactInstance: new Contact(params)]
+			break
+		case 'POST':
+			def contactInstance = new Contact(params)
+			contactInstance.partyType = "CONTACT"
+			
+			if (!contactInstance.save(flush: true)) {
+				flash.message = message(code: 'default.created.message', args: [message(code: 'contact.label', default: 'Contact'), contactInstance.id])
+				redirect controller : 'organization',action: 'list', model: [contactInstance: contactInstance]
+				return
+			}
+
+			flash.message = message(code: 'default.created.message', args: [message(code: 'contact.label', default: 'Contact'), contactInstance.id])
+			redirect controller: 'lead', action: 'show', id: contactInstance?.organization?.id
+		}
+	}
+	
+	def createAddress() {
+		switch (request.method) {
+		case 'GET':
+			[addressInstance: new Address(params)]
+			break
+		case 'POST':
+			def addressInstance = new Address(params)
+			if (!addressInstance.save(flush: true)) {
+				render view: 'create', model: [addressInstance: addressInstance]
+				return
+			}
+
+			flash.message = message(code: 'default.created.message', args: [message(code: 'contact.label', default: 'Contact'), addressInstance.id])
+			redirect controller: 'lead', action: 'show', id: addressInstance?.party?.id
+		}
+	}
+	
+	def createPhoneBook() {
+		switch (request.method) {
+		case 'GET':
+			[phoneBookInstance: new PhoneBook(params)]
+			break
+		case 'POST':
+			def phoneBookInstance = new PhoneBook(params)
+			if (!phoneBookInstance.save(flush: true)) {
+				render view: 'create', model: [phoneBookInstance: phoneBookInstance]
+				return
+			}
+
+			flash.message = message(code: 'default.created.message', args: [message(code: 'phoneBook.label', default: 'PhoneBook'), phoneBookInstance.id])
+			redirect controller: 'lead', action: 'show', id: phoneBookInstance?.party?.id
+			break
+		}
 	}
 	
 }
