@@ -3,14 +3,14 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'quote.label', default: 'Quote')}" />
 <title><g:message code="default.create.label" args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<g:hasErrors bean="${quoteInstance}">
 				<bootstrap:alert class="alert-error">
 					<ul>
@@ -24,9 +24,9 @@
 			</g:hasErrors>
 
 			<div class="page-header">
-				<h1>
+				<h3>
 					<g:message code="default.create.label" args="[entityName]" />
-				</h1>
+				</h3>
 			</div>
 
 			<fieldset>
@@ -38,7 +38,7 @@
 						<g:if test="${params.contractQuote}">
 							<g:hiddenField name="quoteLinesTotal" value="${quoteLinesTotal}" />
 							
-							<table class="table table-striped table-hover">
+							<table class="table table-striped table-condensed table-bordered">
 								<thead>
 									<tr>
 										<g:sortableColumn property="lineNumber"
@@ -111,9 +111,9 @@
 								</tbody>
 							</table>
 						</g:if>
-						<div class="form-actions">
+						<div class="form-group">
 							<button type="submit" class="btn btn-primary">
-								<i class="icon-ok icon-white"></i>
+								
 								<g:if test="${params.contractQuote}">
 									Save
 								</g:if>

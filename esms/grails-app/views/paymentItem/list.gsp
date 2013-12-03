@@ -3,20 +3,20 @@
 <!doctype html>
 <html>
 	<head>
-		<meta name="layout" content="bootstrap">
+		<meta name="layout" content="bootstrap3">
 		<g:set var="entityName" value="${message(code: 'paymentItem.label', default: 'PaymentItem')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<div class="row-fluid">
-			<div class="span12">
+		<div class="row">
+			<div class="col-md-12">
 				<div class="page-header">
-					<h1>
+					<h3>
 						<g:message code="default.list.label" args="[entityName]" />
-					</h1>
+					</h3>
 				</div>
 				
-				<table class="table table-striped table-hover">
+				<table class="table table-striped table-condensed table-bordered">
 					<thead>
 						<tr>
 						
@@ -48,7 +48,7 @@
 							<td>${fieldValue(bean: paymentItemInstance, field: "payment")}</td>
 						
 							<td class="link">
-								<g:link action="show" id="${paymentItemInstance.id}" class="btn btn-small">Show &raquo;</g:link>
+								<g:link action="show" id="${paymentItemInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>

@@ -41,14 +41,14 @@
 		
 		<div class="push"></div>
 	
-		<div id="wrapper-container" class="container-fluid">
-		    <div class="row-fluid">
-		        <div class="span2">
+		<div id="wrapper-container" class="container">
+		    <div class="row">
+		        <div class="col-md-2">
 		        	<g:render template="/_menu/menubar" />
 				</div>
 				
 				<!-- Body -->
-		        <div class="span10">
+		        <div class="col-md-10">
 		        	<!-- Bread Crumbs -->
 					<div id="breadcrumb">
 						<g:render template="/_menu/breadcrumb"></g:render>
@@ -81,11 +81,11 @@
 		<div id="contentwrapper">
 			<div class="main_content">
 				<div id="container">
-					<div class="row-fluid">
-						<div class="span12">
+					<div class="row">
+						<div class="col-md-12">
 							<g:if test="${params.view != null &&	params.view != '' &&	params.view != 'index'}">
-								<div class="row-fluid">
-									<div class="span12">
+								<div class="row">
+									<div class="col-md-12">
 										<g:render template="/_menu/submenubar" />
 									</div>
 								</div>

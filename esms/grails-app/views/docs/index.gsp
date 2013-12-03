@@ -4,7 +4,7 @@
 		<meta name="layout" content="bootstrap" />
     </head>
     <body>
-        <h1 style="margin-left:20px;">Grails File-Uploader Plugin Docs Demo</h1>
+        <h3 style="margin-left:20px;">Grails File-Uploader Plugin Docs Demo</h3>
         <p style="margin-left:20px;width:80%">
 			<fileuploader:form 	upload="docs" 
 								successAction="index"

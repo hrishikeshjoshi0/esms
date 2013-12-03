@@ -2,15 +2,15 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'payment.label', default: 'Payment')}" />
 <title><g:message code="default.create.label"
 		args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<g:hasErrors bean="${paymentInstance}">
 				<bootstrap:alert class="alert-error">
 					<ul>
@@ -24,14 +24,14 @@
 			</g:hasErrors>
 
 			<div class="page-header">
-				<h1>
+				<h3>
 					Register Payment # ${paymentInstance?.paymentNumber}
 					|
 					<g:link controller="organization" action="show"
 									id="${paymentInstance?.organization?.id}">
 							${paymentInstance?.organization?.name}
 					</g:link>
-				</h1>
+				</h3>
 			</div>
 
 			<fieldset>
@@ -39,9 +39,9 @@
 					>
 					<fieldset>
 						<g:render template="form"></g:render>
-						<div class="form-actions">
+						<div class="form-group">
 							<button type="submit" class="btn btn-primary">
-								<i class="icon-ok icon-white"></i>
+								
 								<g:message code="default.button.create.label" default="Create" />
 							</button>
 						</div>

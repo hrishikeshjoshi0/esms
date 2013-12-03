@@ -3,32 +3,33 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title><g:layoutTitle default="${meta(name: 'app.name')}" /></title>
-<meta name="description" content="">
-<meta name="author" content="">
-
-<meta name="viewport" content="initial-scale = 1.0">
-
-<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<title></title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="${resource(dir: 'bootstrap3', file: 'bootstrap.css')}" media="screen">
+	<link rel="stylesheet" href="${resource(dir: 'bootstrap3/assets/css', file: 'bootswatch.min.css')}" media="screen">
+	
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	  <script src="http://getbootstrap.com/assets/js/html5shiv.js"></script>
+	  <script src="http://getbootstrap.com/assets/js/respond.min.js"></script>
 	<![endif]-->
-<link href='http://fonts.googleapis.com/css?family=Open+Sans'
-	rel='stylesheet' type='text/css'>
-
-<r:require modules="scaffolding,jquery-ui" />
-<r:require module="calendar" />
-<r:require module="chosen" />
-<r:require module="gebo" />
-<resource:autoComplete skin="esmsAutocomplete" />
-
-<link rel="shortcut icon"
-	href="${resource(dir: 'images', file: 'favicon.ico')}"
-	type="image/x-icon">
-<link href="${resource(dir: 'lib/antiscroll', file: 'antiscroll.css')}"
-	type="text/css" rel='stylesheet'>
-<g:layoutHead />
-<r:layoutResources />
+	
+	<filterpane:includes/>
+	<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
+	<resource:autoComplete skin="esmsAutocomplete" />
+	<resource:dateChooser />
+	<resource:tabView/>
+	<g:javascript library="application" />
+	<link rel="stylesheet" href="${resource(dir: 'bootstrap3', file: 'esms.css')}" media="screen">
+	
+	<script src="${resource(dir: 'bootstrap3/jquery', file: 'jquery.min.js')}"></script>
+	<script src="${resource(dir: 'bootstrap3/bootstrap/dist/js', file: 'bootstrap.min.js')}"></script>
+	<script src="${resource(dir: 'bootstrap3/assets/js', file: 'bootswatch.js')}"></script>
+	
+	<script src="${resource(dir: 'bootstrap3/assets/js', file: 'bsa.js')}"></script>
+	<g:layoutHead />
 </head>
 
 <body>
@@ -39,14 +40,14 @@
 	<div id="maincontainerDashboard" class="clearfix" style="">
 
 		<!-- header start-->
-		<g:render template="/_menu/navbar"></g:render>
+		<g:render template="/_menu/navbar3"></g:render>
 		<!-- header end-->
 
 		<!-- main content start-->
 		<div id="contentwrapperDashboard">
 			<div id="containerDashboard" style="margin:5px;padding:10px;margin-top: 40px;">
-				<div class="row-fluid">
-					<div class="span12">
+				<div class="row">
+					<div class="col-md-12">
 						<!--Body content-->
 						<!-- Secondary menu in one line (e.g., actions for current controller) -->
 						<g:if test="${flash.message}">
@@ -58,7 +59,6 @@
 						</g:if>
 						
 						<div id="body_content">
-							<br />
 							<g:layoutBody />
 							<g:pageProperty name="page.body" />
 						</div>
@@ -68,22 +68,7 @@
 		</div>
 	</div>
 
-	<script src="${resource(dir: 'js', file: 'jquery.min.js')}"></script>
-	<script
-		src="${resource(dir: 'js', file: 'jquery.debouncedresize.min.js')}"></script>
-	<script src="${resource(dir: 'js', file: 'jquery.actual.min.js')}"></script>
-	<script src="${resource(dir: 'js', file: 'jquery.cookie.min.js')}"></script>
-	<script src="${resource(dir: 'js', file: 'jquery.mediaTable.min.js')}"></script>
-	<script src="${resource(dir: 'js', file: 'chosen.jquery.min.js')}"
-		type="text/javascript"></script>
-	<script src="${resource(dir: 'lib/antiScroll', file: 'antiscroll.js')}"
-		type="text/javascript"></script>
-	<link href="${resource(dir: 'lib/antiscroll', file: 'antiscroll.css')}"
-		type="text/css" rel='stylesheet'>
-
-	<r:require module="calendar" />
 	<g:javascript library="application" />
-	<r:layoutResources />
-
+	<r:layoutResources disposition="defer"/>
 </body>
 </html>

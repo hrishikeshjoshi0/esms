@@ -17,7 +17,7 @@
 						<div class="modal-footer">
 							<div class="form-group">
 								<div class="col-lg-10 col-lg-offset-2">
-									<a href="#" class="btn">Close</a>
+									<a href="#" class="btn btn-default btn-sm">Close</a>
 									<button type="submit" class="btn btn-sm btn-primary">
 										<g:message code="default.button.create.label" default="Create" />
 									</button>

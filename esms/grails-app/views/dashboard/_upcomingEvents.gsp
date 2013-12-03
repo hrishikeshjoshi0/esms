@@ -1,5 +1,5 @@
 <div class="dashboard-widget-header">
-	<h1>Upcoming Events</h1>
+	<h3>Upcoming Events</h3>
 </div>
 
 <table class="table table-striped table-bordered mediaTable">

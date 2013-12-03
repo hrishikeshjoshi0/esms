@@ -1,7 +1,7 @@
 <%@ page import="com.esms.model.calendar.Event"%>
-<div class="span12">
+<div class="col-md-12">
 	<div class="dashboard-widget-header">
-		<h1>Overdue Events</h1>
+		<h3>Overdue Events</h3>
 	</div>
 
 	<table class="table table-striped table-bordered mediaTable">

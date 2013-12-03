@@ -4,30 +4,30 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'workDoneCertificate.label', default: 'WorkDoneCertificate')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<div class="page-header">
-				<h1>
+				<h3>
 					<g:message code="default.show.label" args="[entityName]" />
-				</h1>
+				</h3>
 			</div>
 
 			<g:form>
 				<g:hiddenField name="id" value="${workDoneCertificateInstance?.id}" />
-				<div class="form-actions">
-					<g:link class="btn" action="edit"
+				<div class="form-group">
+					<g:link class="btn btn-default btn-sm" action="edit"
 						id="${workDoneCertificateInstance?.id}">
-						<i class="icon-pencil"></i>
+						
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					<button class="btn btn-danger" type="submit" name="_action_delete">
-						<i class="icon-trash icon-white"></i>
+					<button class="btn btn-sm btn-danger" type="submit" name="_action_delete">
+						
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
 				</div>

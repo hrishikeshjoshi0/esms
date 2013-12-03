@@ -6,13 +6,13 @@
 </head>
 <body>
 	<div class="page-header">
-		<h1>
+		<h3>
 			<g:message code="default.upload.label" args="[entityName]" default="Upload Document"/>
-		</h1>
+		</h3>
 	</div>
 	
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<fieldset>
 				<fileuploader:form upload="docs" successAction="createDocument" partyId="${params.partyId}" 
 						successController="docs" errorAction="index" errorController="docs" />

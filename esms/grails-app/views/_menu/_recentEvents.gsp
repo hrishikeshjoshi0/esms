@@ -1,7 +1,7 @@
 <%@ page import="com.esms.model.party.*"%>
 
 
-<table class="table table-striped table-hover">
+<table class="table table-striped table-condensed table-bordered">
 	<thead>
 		<tr>
 
@@ -53,7 +53,7 @@
 				<td><g:formatDate date="${eventInstance.recurUntil}" /></td>
 
 				<td class="link"><g:link action="show" id="${eventInstance.id}"
-						class="btn btn-small">Show &raquo;</g:link></td>
+						class="btn btn-default btn-sm">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>

@@ -24,7 +24,7 @@
 
 				<button class="list-group-item" type="submit"
 					name="_action_disqualifyLead">
-					<i class="icon-trash icon-white"></i> Disqualify Lead
+					 Disqualify Lead
 				</button>
 			</g:if>
 			<g:link action="create"
@@ -44,16 +44,16 @@
 			</a>
 			<a data-toggle="modal" data-target="#contactModal" role="button"
 				href="<g:createLink controller="lead" action="createContact" params="['party.id':organizationInstance?.id]" />" 
-				class="list-group-item"> <i class="icon-plus"></i> New
+				class="list-group-item"> <i class="glyphicon glyphicon-plus"></i> New
 				Contact
 			</a>
 			<a
 				href="<g:createLink controller="event" action="create" params="['party.id':organizationInstance.id]" />"
-				role="button" class="list-group-item"> <i class="icon-plus"></i> New
+				role="button" class="list-group-item"> <i class="glyphicon glyphicon-plus"></i> New
 				Event
 			</a>
 			<a data-toggle="modal" href="#" data-target="#phoneBookModal"
-				role="button" class="list-group-item"> <i class="icon-plus"></i> New
+				role="button" class="list-group-item"> <i class="glyphicon glyphicon-plus"></i> New
 				Phone Book
 			</a>
 		</g:if>

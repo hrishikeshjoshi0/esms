@@ -80,8 +80,8 @@
             <header>
                 <div class="navbar navbar-fixed-top">
                     <div class="navbar-inner">
-                        <div class="container-fluid">
-                            <a class="brand" href="dashboard.html"><i class="icon-home icon-white"></i> Gebo Admin</a>
+                        <div class="container">
+                            <a class="brand" href="dashboard.html"><i class="glyphicon glyphicon-home glyphicon glyphicon-white"></i> Gebo Admin</a>
                             <ul class="nav user_menu pull-right">
                                 <li class="hidden-phone hidden-tablet">
                                     <div class="nb_boxes clearfix">
@@ -111,13 +111,13 @@
                                 </li>
                             </ul>
 							<a data-target=".nav-collapse" data-toggle="collapse" class="btn_menu">
-								<span class="icon-align-justify icon-white"></span>
+								<span class="glyphicon glyphicon-align-justify glyphicon glyphicon-white"></span>
 							</a>
                             <nav>
                                 <div class="nav-collapse">
                                     <ul class="nav">
                                         <li class="dropdown">
-                                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-list-alt icon-white"></i> Forms <b class="caret"></b></a>
+                                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="glyphicon glyphicon-list-alt glyphicon glyphicon-white"></i> Forms <b class="caret"></b></a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="form_elements.html">Form elements</a></li>
                                                 <li><a href="form_extended.html">Extended form elements</a></li>
@@ -125,7 +125,7 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown">
-                                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-th icon-white"></i> Components <b class="caret"></b></a>
+                                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="glyphicon glyphicon-th glyphicon glyphicon-white"></i> Components <b class="caret"></b></a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="alerts_btns.html">Alerts & Buttons</a></li>
                                                 <li><a href="icons.html">Icons</a></li>
@@ -155,7 +155,7 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown">
-                                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-wrench icon-white"></i> Plugins <b class="caret"></b></a>
+                                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="glyphicon glyphicon-wrench glyphicon glyphicon-white"></i> Plugins <b class="caret"></b></a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="charts.html">Charts</a></li>
                                                 <li><a href="calendar.html">Calendar</a></li>
@@ -168,7 +168,7 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown">
-                                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-file icon-white"></i> Pages <b class="caret"></b></a>
+                                            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="glyphicon glyphicon-file glyphicon glyphicon-white"></i> Pages <b class="caret"></b></a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="chat.html">Chat</a></li>
                                                 <li><a href="error_404.html">Error 404</a></li>
@@ -181,7 +181,7 @@
                                         <li>
                                         </li>
                                         <li>
-                                            <a href="documentation.html"><i class="icon-book icon-white"></i> Help</a>
+                                            <a href="documentation.html"><i class="glyphicon glyphicon-book glyphicon glyphicon-white"></i> Help</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -234,7 +234,7 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <a href="javascript:void(0)" class="btn">Go to mailbox</a>
+                        <a href="javascript:void(0)" class="btn btn-default btn-sm">Go to mailbox</a>
                     </div>
                 </div>
                 <div class="modal hide fade" id="myTasks">
@@ -287,7 +287,7 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <a href="javascript:void(0)" class="btn">Go to task manager</a>
+                        <a href="javascript:void(0)" class="btn btn-default btn-sm">Go to task manager</a>
                     </div>
                 </div>
             </header>
@@ -296,8 +296,8 @@
             <div id="contentwrapper">
                 <div class="main_content">
                     
-					<div class="row-fluid">
-						<div class="span12 tac">
+					<div class="row">
+						<div class="col-md-12 tac">
 							<ul class="ov_boxes">
 								<li>
 									<div class="p_bar_up p_canvas">2,4,9,7,12,8,16</div>
@@ -330,8 +330,8 @@
 							</ul>
 						</div>
 					</div>
-					<div class="row-fluid">
-						<div class="span12">
+					<div class="row">
+						<div class="col-md-12">
 							<ul class="dshb_icoNav tac">
 								<li><a href="javascript:void(0)" style="background-image: url(img/gCons/multi-agents.png)"><span class="label label-info">+10</span> Users</a></li>
 								<li><a href="javascript:void(0)" style="background-image: url(img/gCons/world.png)">Map</a></li>
@@ -345,12 +345,12 @@
 							</ul>
 						</div>
 					</div>
-					<div class="row-fluid">
-						<div class="span5">
+					<div class="row">
+						<div class="col-md-5">
 							<h3 class="heading">Visitors by Country <small>last week</small></h3>
 							<div id="fl_2" style="height:200px;width:80%;margin:50px auto 0"></div>
 						</div>
-						<div class="span7">
+						<div class="col-md-7">
 							<div class="heading clearfix">
 								<h3 class="pull-left">Another Chart</h3>
 								<span class="pull-right label label-info ttip_t" title="Here is a sample info tooltip">Info</span>
@@ -358,8 +358,8 @@
 							<div id="fl_1" style="height:270px;width:100%;margin:15px auto 0"></div>
 						</div>
 					</div>
-                    <div class="row-fluid">
-                        <div class="span6">
+                    <div class="row">
+                        <div class="col-md-6">
 							<div class="heading clearfix">
 								<h3 class="pull-left">Latest Orders</h3>
 								<span class="pull-right label label-important">5 Orders</span>
@@ -439,7 +439,7 @@
 								</tbody>
 							</table>
                         </div>
-                        <div class="span6">
+                        <div class="col-md-6">
 							<div class="heading clearfix">
 								<h3 class="pull-left">Latest Images <small>(gallery grid)</small></h3>
 								<span class="pull-right label label-success">10</span>
@@ -547,16 +547,16 @@
 							</div>
                         </div>
                     </div>
-                    <div class="row-fluid">
-                        <div class="span8">
+                    <div class="row">
+                        <div class="col-md-8">
 							<h3 class="heading">Calendar</h3>
 							<div id="calendar"></div>
                         </div>
-                        <div class="span4" id="user-list">
+                        <div class="col-md-4" id="user-list">
 							<h3 class="heading">Users <small>last 24 hours</small></h3>
-							<div class="row-fluid">
-								<div class="input-prepend">
-									<span class="add-on ad-on-icon"><i class="icon-user"></i></span><input type="text" class="user-list-search search" placeholder="Search user" />
+							<div class="row">
+								<div class="input-group">
+									<span class="input-group-addon ad-on-icon"></span><input type="text" class="user-list-search search" placeholder="Search user" />
 								</div>
 								<ul class="nav nav-pills line_sep">
 									<li class="dropdown">
@@ -674,15 +674,15 @@
 						<div class="antiscroll-content">
 					
 							<div class="sidebar_inner">
-								<form action="index.php?uid=1&amp;page=search_page" class="input-append" method="post" >
-									<input autocomplete="off" name="query" class="search_query input-medium" size="16" type="text" placeholder="Search..." /><button type="submit" class="btn"><i class="icon-search"></i></button>
+								<form action="index.php?uid=1&amp;page=search_page" class="input-group" method="post" >
+									<input autocomplete="off" name="query" class="search_query input-medium" size="16" type="text" placeholder="Search..." /><button type="submit" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-search"></i></button>
 								</form>
 								<div id="side_accordion" class="accordion">
 									
 									<div class="accordion-group">
 										<div class="accordion-heading">
 											<a href="#collapseOne" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
-												<i class="icon-folder-close"></i> Content
+												<i class="glyphicon glyphicon-folder-close"></i> Content
 											</a>
 										</div>
 										<div class="accordion-body collapse" id="collapseOne">
@@ -699,7 +699,7 @@
 									<div class="accordion-group">
 										<div class="accordion-heading">
 											<a href="#collapseTwo" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
-												<i class="icon-th"></i> Modules
+												 Modules
 											</a>
 										</div>
 										<div class="accordion-body collapse" id="collapseTwo">
@@ -719,7 +719,7 @@
 									<div class="accordion-group">
 										<div class="accordion-heading">
 											<a href="#collapseThree" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
-												<i class="icon-user"></i> Account manager
+												 Account manager
 											</a>
 										</div>
 										<div class="accordion-body collapse" id="collapseThree">
@@ -737,7 +737,7 @@
 									<div class="accordion-group">
 										<div class="accordion-heading">
 											<a href="#collapseFour" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
-												<i class="icon-cog"></i> Configuration
+												<i class="glyphicon glyphicon-cog"></i> Configuration
 											</a>
 										</div>
 										<div class="accordion-body collapse" id="collapseFour">
@@ -759,7 +759,7 @@
 									<div class="accordion-group">
 										<div class="accordion-heading">
 											<a href="#collapseLong" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
-												<i class="icon-leaf"></i> Long content (scrollbar)
+												<i class="glyphicon glyphicon-leaf"></i> Long content (scrollbar)
 											</a>
 										</div>
 										<div class="accordion-body collapse" id="collapseLong">
@@ -773,14 +773,14 @@
 									<div class="accordion-group">
 										<div class="accordion-heading">
 											<a href="#collapse7" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
-											   <i class="icon-th"></i> Calculator
+											    Calculator
 											</a>
 										</div>
 										<div class="accordion-body collapse in" id="collapse7">
 											<div class="accordion-inner">
 												<form name="Calc" id="calc">
-													<div class="formSep control-group input-append">
-														<input type="text" style="width:142px" name="Input" /><button type="button" class="btn" name="clear" value="c" onclick="Calc.Input.value = ''"><i class="icon-remove"></i></button>
+													<div class="formSep control-group input-group">
+														<input type="text" style="width:142px" name="Input" /><button type="button" class="btn btn-default btn-sm" name="clear" value="c" onclick="Calc.Input.value = ''"><i class="glyphicon glyphicon-remove"></i></button>
 													</div>
 													<div class="control-group">
 														<input type="button" class="btn btn-large" name="seven" value="7" onclick="Calc.Input.value += '7'" />

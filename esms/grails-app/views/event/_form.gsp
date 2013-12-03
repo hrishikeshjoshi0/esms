@@ -55,24 +55,24 @@
 
 <hr/>
 
-<div class="row-fluid">
-	<div class="span12">
+<div class="row">
+	<div class="col-md-12">
 			<div class="maintenanceVisitFields page-header">
-				<h1>Maintenance Visit Information</h1>
+				<h3>Maintenance Visit Information</h3>
 			</div>
 			
 			<div class="meetingFields page-header">
-				<h1>Meeting Notes</h1>
+				<h3>Meeting Notes</h3>
 			</div>
 			
 			<div class="breakdownVisitFields page-header">
-				<h1>Breakdown Visit Information</h1>
+				<h3>Breakdown Visit Information</h3>
 			</div>
 	</div>
 </div>
 	
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'eventType', 'error')}">
 			<label for="eventType"><g:message code="event.eventType.label"
@@ -192,7 +192,7 @@
 		--%>
 	</div>
 
-	<div class="span6">
+	<div class="col-md-6">
 		<div
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'status', 'error')}">
 			<label for="status"><g:message code="event.status.label"

@@ -37,25 +37,25 @@
 			<g:if test="${orderInstance?.taggedForRenewal == true}">
 						<g:if test="${orderInstance?.renewalStage == 'RENEWAL_LETTER_SENT'}">
 							<span class="badge badge-warning">
-								<i class="icon-tag icon-white"></i>
+								
 								Renewal Letter Sent
 							</span>
 						</g:if>
 						<g:elseif test="${orderInstance?.renewalStage == 'RENEWAL_WON'}">
 							<span class="badge badge-success">
-								<i class="icon-tag icon-white"></i>
+								
 								Renewal Won
 							</span>
 						</g:elseif>
 						<g:elseif test="${orderInstance?.renewalStage == 'RENEWAL_LOST'}">
 							<span class="badge badge-warning">
-								<i class="icon-tag icon-white"></i>
+								
 								Renewal Lost
 							</span>
 						</g:elseif>
 						<g:else>
 							<span class="badge badge-info">
-								<i class="icon-tag icon-white"></i>
+								
 								Tagged For Renewal
 							</span>
 						</g:else>				
@@ -63,6 +63,6 @@
 		</td>
 
 		<td class="link"><g:link action="show" id="${orderInstance.id}"
-				controller="order" class="btn btn-small">Show &raquo;</g:link></td>
+				controller="order" class="btn btn-default btn-sm">Show &raquo;</g:link></td>
 	</tr>
 </g:each>

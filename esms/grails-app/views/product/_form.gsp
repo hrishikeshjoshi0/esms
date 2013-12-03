@@ -48,9 +48,6 @@
 	<div class="col-lg-6">
 		<richui:dateChooser name="introductionDate" class="form-control"
 			value="${productInstance?.introductionDate}" />
-		<%--<g:datePicker name="introductionDate"
-			value="${productInstance?.introductionDate}" precision="day" />	--%>
-		<%--<bootstrap:jqDatePicker name="introductionDate"  value="${productInstance?.introductionDate}"/>--%>
 		<span class="help-inline"> ${hasErrors(bean: productInstance, field: 'introductionDate', 'error')}
 		</span>
 	</div>

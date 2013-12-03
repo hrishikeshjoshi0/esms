@@ -16,8 +16,8 @@
 </script>
 
 <g:hiddenField name="salesStatus" value="LEAD"/>
-<div class="row-fluid">
-	<div class="span12">
+<div class="row">
+	<div class="col-md-12">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: organizationInstance, field: 'externalId', 'error')} required">
 			<label for="externalId" class="control-label"><g:message
@@ -75,8 +75,8 @@
 	</div>
 </div>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div class="page-header">
 			<h3>
 				Primary Contact
@@ -148,7 +148,7 @@
 		</div>
 	</div>
 	</div>
-	<div class="span6">
+	<div class="col-md-6">
 		<!-- PhoneBook -->
 		<div class="page-header">
 			<h3>
@@ -233,8 +233,8 @@
 	</div>
 </div>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div class="page-header">
 			<h3>
 				Secondary Contact
@@ -308,7 +308,7 @@
 		</div>
 	</div>
 	
-	<div class="span6">
+	<div class="col-md-6">
 		<!-- PhoneBook -->
 		<div class="page-header">
 			<h3>
@@ -398,13 +398,13 @@
 		Address
 	</h3>
 </div>
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<h3>Site Address (<a id="copyToBillingAddressLink" href="#">Copy To Billing Address</a>)</h3>
 		<g:render template="/address/shippingAddressForm"></g:render>
 	</div>
 	
-	<div class="span6">
+	<div class="col-md-6">
 		<div class="billingAddress">
 			<h3>Billing Address</h3>
 			<g:render template="/address/billingAddressForm"></g:render>

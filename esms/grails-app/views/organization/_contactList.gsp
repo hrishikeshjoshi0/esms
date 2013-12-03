@@ -1,11 +1,11 @@
 <div class="pull-right">
-	<a data-toggle="modal" href="#" data-target="#contactModal" role="button" class="btn"> 
-		<i class="icon-plus"></i> New Contact
+	<a data-toggle="modal" href="#" data-target="#contactModal" role="button" class="btn btn-default btn-sm"> 
+		<i class="glyphicon glyphicon-plus"></i> New Contact
 	</a>
 </div>
 
 <!-- Contacts -->
-<table class="table table-striped table-hover">
+<table class="table table-striped table-condensed table-bordered">
 	<thead>
 		<tr>
 			<g:sortableColumn property="externalId"
@@ -52,7 +52,7 @@
 					<td>${fieldValue(bean: phoneBookInstance, field: "otherPhone")}</td>
 							
 					<td class="link"><g:link action="show" controller="contact"
-							id="${contactInstance.id}" class="btn btn-small">Show</g:link>
+							id="${contactInstance.id}" class="btn btn-default btn-sm">Show</g:link>
 					</td>
 				</tr>
 			</g:each>	
@@ -80,9 +80,9 @@
 			
 		</div>
 		<div class="modal-footer">
-			<div class="form-actions">
+			<div class="form-group">
 				<button type="submit" class="btn btn-primary">
-					<i class="icon-ok icon-white"></i>
+					
 					<g:message code="default.button.create.label" default="Create" />
 				</button>
 			</div>

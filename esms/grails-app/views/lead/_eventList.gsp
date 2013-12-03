@@ -1,7 +1,7 @@
 <%--<div class="pull-right">
 	<a
 		href="<g:createLink controller="event" action="create" params="['party.id':organizationInstance.id]" />"
-		role="button" class="btn btn-default btn-sm"> <i class="icon-plus"></i> New
+		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New
 		Event
 	</a>
 </div>

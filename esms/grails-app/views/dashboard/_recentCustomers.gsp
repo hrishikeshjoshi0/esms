@@ -2,7 +2,7 @@
 <%@ page import="com.esms.model.party.*"%>
 
 <div class="dashboard-widget-header">
-	<h1>Recent Service Contracts</h1>
+	<h3>Recent Service Contracts</h3>
 </div>
 
 

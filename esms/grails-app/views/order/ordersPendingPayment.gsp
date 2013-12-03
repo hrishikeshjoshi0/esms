@@ -3,14 +3,14 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'order.label', default: 'Order')}" />
 <title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 
 			<filterpane:currentCriteria domainBean="com.esms.model.order.Order"
 				removeImgDir="images" removeImgFile="skin/database_delete.png"
@@ -18,7 +18,7 @@
 
 			<div class="slidingDiv">
 				<div class="page-header">
-					<h1>Search</h1>
+					<h3>Search</h3>
 				</div>
 				<fieldset>
 					<filterpane:filterPane domain="com.esms.model.order.Order"
@@ -30,7 +30,7 @@
 			</div>
 
 			<div class="page-header">
-				<h1>Open Orders</h1>
+				<h3>Open Orders</h3>
 			</div>
 
 			<div class="pagination">

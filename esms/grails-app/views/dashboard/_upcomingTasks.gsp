@@ -7,7 +7,7 @@
 	}
 </script>
 <div class="dashboard-widget-header">
-	<h1>
+	<h3>
 		Upcoming Tasks for
 		<g:select name="upcomingRenewalMonthParam1" from="${filteredMonthMap}"
 			optionKey="key" optionValue="value"
@@ -21,7 +21,7 @@
 			onchange="${remoteFunction(action: 'upcomingTasks',onLoading:'updateTasks();',
                        update: [success: 'upcomingTasks'],method:'GET',onFailure:'alert(\'Error\');',
                        params: '\'upcomingRenewalMonthParam=\' + document.getElementById(\'upcomingRenewalMonthParam1\').value + \'&upcomingRenewalYearParam=\' + this.value')}" />
-	</h1>
+	</h3>
 </div>
 
 <table class="table table-striped table-bordered mediaTable">
@@ -101,7 +101,7 @@
 				</td>
 
 				<td class="link"><g:link action="show" id="${taskInstance.id}"
-						controller="task" class="btn btn-small">Show &raquo;</g:link></td>
+						controller="task" class="btn btn-default btn-sm">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>

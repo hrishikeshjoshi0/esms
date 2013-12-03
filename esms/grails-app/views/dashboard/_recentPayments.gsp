@@ -1,7 +1,7 @@
 <%@ page import="com.esms.model.payment.Payment" %>
 
 <div class="dashboard-widget-header">
-	<h1>Recent Payments</h1>
+	<h3>Recent Payments</h3>
 </div>
 
 <table class="table table-striped table-bordered mediaTable">

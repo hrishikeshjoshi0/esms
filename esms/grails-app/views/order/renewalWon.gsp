@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-	<meta name="layout" content="bootstrap">
+	<meta name="layout" content="bootstrap3">
 	<g:set var="entityName"
 		value="${message(code: 'order.label', default: 'Order')}" />
 	<title>
@@ -10,8 +10,8 @@
 	</title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<g:hasErrors bean="${orderInstance}">
 				<bootstrap:alert class="alert-error">
 					<ul>
@@ -25,9 +25,9 @@
 			</g:hasErrors>
 
 			<div class="page-header">
-				<h1>
+				<h3>
 					Renewal Won
-				</h1>
+				</h3>
 			</div>
 
 			<fieldset>
@@ -126,9 +126,9 @@
 							</div>
 						</div>
 						
-						<div class="form-actions">
+						<div class="form-group">
 							<button type="submit" class="btn btn-primary">
-								<i class="icon-ok icon-white"></i>
+								
 								Save
 							</button>
 						</div>

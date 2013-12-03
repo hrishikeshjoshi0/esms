@@ -1,8 +1,8 @@
 <%@ page import="com.esms.model.product.Product" %>
 <div class="page-header">
-	<h1>
+	<h3>
 		Mark As Accepted
-	</h1>
+	</h3>
 </div>
 
 <div

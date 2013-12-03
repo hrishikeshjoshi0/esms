@@ -73,7 +73,7 @@
 
 					<ul class="dropdown-menu">
 						<li><g:link controller="logout">
-								<i class="icon-off"></i> Sign Out</g:link></li>
+								<i class="glyphicon glyphicon-off"></i> Sign Out</g:link></li>
 					</ul></li>
 			</ul>
 

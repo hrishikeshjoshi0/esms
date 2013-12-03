@@ -1,9 +1,9 @@
 <%@ page import="com.esms.model.quote.*"%>
 
 <div class="dashboard-widget-header">
-	<h1>
+	<h3>
 		Recent Maintenance Quotes
-	</h1>
+	</h3>
 </div>
 
 <table class="table table-striped table-bordered mediaTable">
@@ -76,7 +76,7 @@
 				</td>
 				
 				<td class="link"><g:link action="markAsDisqualified" controller="quote"	id="${quoteInstance?.id}" >
-						<i class="icon-trash"></i>Disqualify
+						<i class="glyphicon glyphicon-trash"></i>Disqualify
 					</g:link>
 				</td>
 

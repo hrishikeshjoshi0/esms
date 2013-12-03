@@ -2,16 +2,16 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'order.label', default: 'Order')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<div class="page-header">
-				<h1>
+				<h3>
 					<g:if test="${orderInstance?.type == 'SERVICE'}">
 						SERVICE CONTRACT #
 					</g:if>
@@ -46,37 +46,35 @@
 						<g:if
 							test="${orderInstance?.renewalStage == 'RENEWAL_LETTER_SENT'}">
 							<span class="badge badge-warning"> <i
-								class="icon-tag icon-white"></i> Renewal Letter Sent
+								class="glyphicon glyphicon-tag glyphicon glyphicon-white"></i> Renewal Letter Sent
 							</span>
 						</g:if>
 						<g:elseif test="${orderInstance?.renewalStage == 'RENEWAL_WON'}">
 							<span class="badge badge-success"> <i
-								class="icon-tag icon-white"></i> Renewal Won
+								class="glyphicon glyphicon-tag glyphicon glyphicon-white"></i> Renewal Won
 							</span>
 						</g:elseif>
 						<g:elseif test="${orderInstance?.renewalStage == 'RENEWAL_LOST'}">
 							<span class="badge badge-warning"> <i
-								class="icon-tag icon-white"></i> Renewal Lost
+								class="glyphicon glyphicon-tag glyphicon glyphicon-white"></i> Renewal Lost
 							</span>
 						</g:elseif>
 						<g:else>
 							<span class="badge badge-info"> <i
-								class="icon-tag icon-white"></i> Tagged For Renewal
+								class="glyphicon glyphicon-tag glyphicon glyphicon-white"></i> Tagged For Renewal
 							</span>
 						</g:else>
 					</g:if>
-				</h1>
+				</h3>
 			</div>
 
 			<g:form>
 				<g:hiddenField name="id" value="${orderInstance?.id}" />
-				<div class="form-actions">
-					<g:link class="btn" action="edit" id="${orderInstance?.id}">
-						<i class="icon-pencil"></i>
+				<div class="form-group">
+					<g:link class="btn btn-default btn-sm" action="edit" id="${orderInstance?.id}">
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					<button class="btn btn-danger" type="submit" name="_action_delete">
-						<i class="icon-trash icon-white"></i>
+					<button class="btn btn-sm btn-danger" type="submit" name="_action_delete">
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
 
@@ -84,9 +82,9 @@
 						test="${orderInstance?.orderItems?.size() != 0
 								&& orderInstance?.pendingInvoiceGrandTotal != null
 								&& orderInstance?.pendingInvoiceGrandTotal > 0.0}">
-						<g:link class="btn" action="createInvoice"
+						<g:link class="btn btn-default btn-sm" action="createInvoice"
 							id="${orderInstance?.id}">
-							<i class="icon-briefcase"></i>
+							
 							<g:message code="default.button.createInvoice.label"
 								default="Create Invoice" />
 						</g:link>
@@ -94,49 +92,44 @@
 					
 					<!--  -->
 					<g:if test="${orderInstance?.type == 'REPAIR' }">
-						<g:link class="btn btn-info" action="create" controller="event"
+						<g:link class="btn btn-sm btn-info" action="create" controller="event"
 							params="['party.id':orderInstance?.organization.id,relatedTo:'ORDER',relatedToValue:orderInstance?.orderNumber,eventType:'REPAIR WORK']">
-							<i class="icon-calendar icon-white"></i>
 							<g:message code="default.button.createRepairEvent.label"
 								default="Create Repair Event" />
 						</g:link>
 					</g:if>
 					<g:if test="${orderInstance?.type == 'MODERNIZATION' }">
-						<g:link class="btn btn-info" action="create" controller="event"
+						<g:link class="btn btn-sm btn-info" action="create" controller="event"
 							params="['party.id':orderInstance?.organization.id,relatedTo:'ORDER',relatedToValue:orderInstance?.orderNumber,eventType:'MODERNIZATION WORK']">
-							<i class="icon-calendar icon-white"></i>
 							<g:message code="default.button.createModernizationEvent.label"
 								default="Create Modernization Event" />
 						</g:link>
 					</g:if>
 					<g:if test="${orderInstance?.type == 'SERVICE' }">
-						<g:link class="btn btn-warning" action="create" controller="event"
+						<g:link class="btn btn-sm btn-warning" action="create" controller="event"
 							params="['party.id':orderInstance?.organization.id,relatedTo:'ORDER',relatedToValue:orderInstance?.orderNumber,eventType:'BREAKDOWN CALL',assignedTo:orderInstance?.assignedTo]">
-							<i class="icon-calendar icon-white"></i>
 							<g:message code="default.button.createBreakdownEvent.label"
 								default="Create Breakdown Event" />
 						</g:link>
 						
-						<g:link class="btn btn-warning" action="create" controller="event"
+						<g:link class="btn btn-sm btn-warning" action="create" controller="event"
 							params="['party.id':orderInstance?.organization.id,relatedTo:'ORDER',relatedToValue:orderInstance?.orderNumber,eventType:'MAINTENANCE VISIT',assignedTo:orderInstance?.assignedTo]">
-							<i class="icon-calendar icon-white"></i>
 							<g:message code="default.button.createMaintenanceEvent.label"
 								default="Create Maintenance Event" />
 						</g:link>
 					</g:if>
 					<!--  -->
 					
-					<g:link controller="task" action="create" role="button" class="btn"
+					<g:link controller="task" action="create" role="button" class="btn btn-default btn-sm"
 						params="[relatedTo:'ORDER',relatedToValue:orderInstance?.orderNumber,taskName:'Reminder For Invoice']">
-						<i class="icon-calendar"></i>
 					 	Create Task
 					</g:link>
 
 					<g:if test="${orderInstance?.type == 'SERVICE'}">
 						<g:if test="${!orderInstance?.taggedForRenewal}">
-							<g:link class="btn btn-info" action="tagForRenewal"
+							<g:link class="btn btn-sm btn-info" action="tagForRenewal"
 								controller="order" id="${orderInstance.id}">
-								<i class="icon-tag icon-white"></i>
+								
 								Tag For Renewal
 							</g:link>
 						</g:if>
@@ -151,7 +144,7 @@
 								<li><g:if
 										test="${orderInstance?.renewalStage == 'TAGGED_FOR_RENEWAL'}">
 										<a data-toggle="modal" href="#" data-target="#markAsSent"
-											role="button" class="link"> <i class="icon-envelope"></i>
+											role="button" class="link">
 											Renewal Letter Sent
 										</a>
 									</g:if></li>
@@ -160,7 +153,7 @@
 										<li class="divider"></li>
 										<g:link class="link link-info" action="renewalWon"
 											controller="order" id="${orderInstance.id}">
-											<i class="icon-ok-sign"></i>
+											<i class="glyphicon glyphicon-ok-sign"></i>
 										Renewal Won
 									</g:link>
 									</g:if></li>
@@ -169,7 +162,7 @@
 										<li class="divider"></li>
 										<g:link class="link link-info" action="renewalLost"
 											controller="order" id="${orderInstance.id}">
-											<i class="icon-remove-sign"></i>
+											<i class="glyphicon glyphicon-remove-sign"></i>
 										Renewal Lost
 									</g:link>
 									</g:if></li>
@@ -179,9 +172,9 @@
 					</g:if>
 
 					<%--<g:if test="${orderInstance?.status == 'INVOICED'}">
-						<g:link class="btn" action="create" controller="payment"
+						<g:link class="btn btn-default btn-sm" action="create" controller="payment"
 							params="[orderId :orderInstance.id]">
-							<i class="icon-briefcase"></i>
+							
 							<g:message code="default.button.registerPayment.label"
 								default="Register Payment" />
 						</g:link>
@@ -192,7 +185,7 @@
 
 			<%--<g:if
 				test="${orderInstance?.status == 'PENDING_INVOICE' && orderInstance?.orderItems?.size() != 0}">
-				<div class="form-actions">
+				<div class="form-group">
 					<g:jasperReport jasper="GoldContractTemplate" format="PDF"
 						name="Print Agreement" delimiterAfter=" " delimiterBefore=" "
 						heightAttr="15px">
@@ -202,8 +195,8 @@
 			</g:if>
 			--%>
 			
-			<div class="row-fluid">
-				<div class="span4">
+			<div class="row">
+				<div class="col-md-4">
 					<dl class="dl-horizontal">
 
 						<dt>
@@ -291,7 +284,7 @@
 						</g:if>
 					</dl>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<dl class="dl-horizontal">
 						<dt>
 							<g:message code="order.totalAmount.label" default="Total Amount" />
@@ -357,7 +350,7 @@
 						<!--  -->
 					</dl>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<dl class="dl-horizontal">
 						<g:if
 							test="${orderInstance?.renewalStage == 'RENEWAL_LETTER_SENT'}">
@@ -437,8 +430,8 @@
 		</div>
 	</div>
 
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<richui:tabView id="tabView">
 				<richui:tabLabels>
 					<richui:tabLabel selected="true" title="Order Lines" />

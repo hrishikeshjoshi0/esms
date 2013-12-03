@@ -1,7 +1,7 @@
 <div class="page-header">
-	<h1>
+	<h3>
 		Confirm Sale
-	</h1>
+	</h3>
 </div>
 
 <div

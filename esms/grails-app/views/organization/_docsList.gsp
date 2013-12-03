@@ -1,12 +1,12 @@
 <div class="pull-right">
 	<a
 		href="<g:createLink controller="docs" action="upload" params="['partyId':organizationInstance.id]" />"
-		role="button" class="btn"> <i class="icon-plus"></i> Upload Document
+		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> Upload Document
 	</a>
 </div>
 
 <!-- Contacts -->
-<table class="table table-striped table-hover">
+<table class="table table-striped table-condensed table-bordered">
 	<thead>
 		<tr>
 			<g:sortableColumn property="name"
@@ -64,9 +64,9 @@
 		<div class="modal-body">
 		</div>
 		<div class="modal-footer">
-			<div class="form-actions">
+			<div class="form-group">
 				<button type="submit" class="btn btn-primary">
-					<i class="icon-ok icon-white"></i>
+					
 					<g:message code="default.button.create.label" default="Create" />
 				</button>
 			</div>

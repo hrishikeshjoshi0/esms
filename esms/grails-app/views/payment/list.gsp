@@ -2,17 +2,17 @@
 <!doctype html>
 <html>
 	<head>
-		<meta name="layout" content="bootstrap">
+		<meta name="layout" content="bootstrap3">
 		<g:set var="entityName" value="${message(code: 'payment.label', default: 'Payment')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<div class="row-fluid">
-			<div class="span12">
+		<div class="row">
+			<div class="col-md-12">
 				<div class="page-header">
-					<h1>
+					<h3>
 						<g:message code="default.list.label" args="[entityName]" />
-					</h1>
+					</h3>
 				</div>
 				
 				<filterpane:filterPane domain="com.esms.model.payment.Payment"
@@ -21,11 +21,7 @@
 										showSortPanel="y" showTitle="y" showButtons="y"
 										fullAssociationPathFieldNames="false" />
 				
-				<div class="pagination">
-					<bootstrap:paginate params="${filterParams}" total="${paymentInstanceTotal}" />
-				</div>
-				<br/>
-				<table class="table table-striped table-hover">
+				<table class="table table-striped table-condensed table-bordered">
 					<thead>
 						<tr>
 							<g:sortableColumn params="${filterParams}" property="paymentNumber" title="${message(code: 'payment.paymentNumber.label', default: 'Payment Number')}" />
@@ -88,12 +84,15 @@
 									<td>${fieldValue(bean: paymentInstance, field: "branch")}</td>
 								
 									<td class="link">
-										<g:link action="show" id="${paymentInstance.id}" class="btn btn-small">Show &raquo;</g:link>
+										<g:link action="show" id="${paymentInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
 									</td>
 								</tr>
 						</g:each>
 					</tbody>
 				</table>
+				<div class="pagination">
+					<bootstrap:paginate params="${filterParams}" total="${paymentInstanceTotal}" />
+				</div>
 			</div>
 		</div>
 	</body>

@@ -1,4 +1,4 @@
-<table class="table table-striped table-hover">
+<table class="table table-striped table-condensed table-bordered">
 	<thead>
 		<tr>
 			<g:sortableColumn property="status"

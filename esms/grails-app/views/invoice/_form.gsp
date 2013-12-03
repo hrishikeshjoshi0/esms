@@ -122,8 +122,8 @@
 	</script>
 </head>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 			<g:if test="${order}">
 				<div
 					class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'organization', 'error')} required">
@@ -150,7 +150,7 @@
 			</g:else>
 		</div>
 	</div>
-	<div class="span6">
+	<div class="col-md-6">
 		<g:if test="${order}">
 				<div
 					class="control-group fieldcontain">

@@ -6,8 +6,8 @@
 <g:hiddenField id="referenceOrderNumber" name="referenceOrderNumber" value="${invoiceInstance?.referenceOrderNumber}"/>
 <g:hiddenField id="organizationId" name="organization.id" value="${invoiceInstance?.organization?.id}"/>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'invoiceNumber', 'error')} required">
 			<label for="invoiceNumber" class="control-label"><g:message
@@ -22,7 +22,7 @@
 		</div>
 	</div>
 
-	<div class="span6">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'type', 'error')} ">
 			<label for="type" class="control-label"><g:message
@@ -40,8 +40,8 @@
 </div>
 
 <g:if test="${invoiceInstance?.type == 'SERVICE'}">
-	<div class="row-fluid">
-		<div class="span6">
+	<div class="row">
+		<div class="col-md-6">
 			<div
 				class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'contractFromDate', 'error')} ">
 				<label for="contractFromDate" class="control-label"><g:message
@@ -55,7 +55,7 @@
 			</div>
 		</div>
 		
-		<div class="span6">
+		<div class="col-md-6">
 			<div
 				class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'contractToDate', 'error')} ">
 				<label for="contractToDate" class="control-label"><g:message
@@ -71,8 +71,8 @@
 	</div>
 </g:if>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'issueDate', 'error')} required">
 			<label for="issueDate" class="control-label"><g:message
@@ -87,7 +87,7 @@
 		</div>
 	</div>
 	
-	<div class="span6">
+	<div class="col-md-6">
 		<g:if test="${invoiceInstance?.type == 'SERVICE'}">
 			<div
 				class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'expiryDate', 'error')} required">
@@ -105,8 +105,8 @@
 	</div>
 </div>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'contactName', 'error')} ">
 			<label for="contactName" class="control-label"><g:message
@@ -120,12 +120,12 @@
 		</div>
 	</div>
 	
-	<div class="span6">
+	<div class="col-md-6">
 	</div>
 </div>		
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'relatedTo', 'error')} ">
 			<label for="relatedTo" class="control-label"><g:message
@@ -141,7 +141,7 @@
 		</div>
 	</div>	
 	
-	<div class="span6">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'relatedToValue', 'error')} ">
 			<label for="relatedToValue" class="control-label"><g:message
@@ -156,8 +156,8 @@
 	</div>
 </div>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'assignedTo', 'error')} ">
 			<label for="assignedTo" class="control-label"><g:message
@@ -170,7 +170,7 @@
 		</div>
 	</div>
 	
-	<div class="span6">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'status', 'error')} ">
 			<label for="status" class="control-label"><g:message
@@ -187,8 +187,8 @@
 	</div>
 </div>	
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'termsAndConditions', 'error')} ">
 			<label for="termsAndConditions" class="control-label"><g:message
@@ -203,35 +203,35 @@
 		</div>
 	</div>
 	
-	<div class="span6">
+	<div class="col-md-6">
 		
 	</div>
 </div>
 
-<div class="row-fluid">
-	<div class="span12">
+<div class="row">
+	<div class="col-md-12">
 		<div class="page-header">
-			<h1>
+			<h3>
 				Invoice Lines
-			</h1>
+			</h3>
 		</div>
 		<g:render template="invoiceLines" />
 	</div>
 </div>		
 
 <!-- Totals -->
-<div class="row-fluid">
-	<div class="span12">
+<div class="row">
+	<div class="col-md-12">
 		<div class="page-header">
-			<h1>
+			<h3>
 				Invoice Total
-			</h1>
+			</h3>
 		</div>
 	</div>
 </div>	
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'totalAmount', 'error')} required">
 			<label for="totalAmount" class="control-label"><g:message
@@ -273,7 +273,7 @@
 		</div>
 	</div>
 	
-	<div class="span6">
+	<div class="col-md-6">
 		
 	</div>
 </div>

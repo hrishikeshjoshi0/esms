@@ -1,11 +1,11 @@
 <%--<div class="pull-right">
 	<a
 		href="<g:createLink controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]"/>"
-		role="button" class="btn btn-default btn-sm"> <i class="icon-plus"></i> New
+		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New
 		Contract Quote
 	</a> <a
 		href="<g:createLink controller="quote" action="create" params="[type:'REPAIR',organizationId:organizationInstance?.id]" />"
-		role="button" class="btn btn-default btn-sm"> <i class="icon-plus"></i> New
+		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New
 		Repair Quote
 	</a>
 </div>
@@ -84,9 +84,9 @@
 		<g:hiddenField name="createdFromOrganizationDetailView" value="true" />
 		<div class="modal-body"></div>
 		<div class="modal-footer">
-			<div class="form-actions">
+			<div class="form-group">
 				<button type="submit" class="btn btn-primary">
-					<i class="icon-ok icon-white"></i>
+					
 					<g:message code="default.button.create.label" default="Create" />
 				</button>
 			</div>

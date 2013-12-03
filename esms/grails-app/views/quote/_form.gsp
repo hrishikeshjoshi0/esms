@@ -184,9 +184,9 @@
 
 <g:if test="${params.contractQuote}">
 	<div class="page-header">
-		<h1>
+		<h3>
 			Invoicing
-		</h1>
+		</h3>
 	</div>
 	<div
 		class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'invoicingIsFixedPrice', 'error')} ">
@@ -229,9 +229,9 @@
 </g:if>
 
 <div class="page-header">
-	<h1>
+	<h3>
 		Description
-	</h1>
+	</h3>
 </div>
 
 <div

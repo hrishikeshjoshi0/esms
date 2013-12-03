@@ -27,8 +27,8 @@
 	});
 </script>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'liftMake', 'error')} ">
 			<label for="liftMake" class="control-label"><g:message
@@ -249,7 +249,7 @@
 		</div>
 	</div>
 
-	<div class="span6">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'buildingOpening', 'error')} ">
 			<label for="buildingOpening" class="control-label"><g:message

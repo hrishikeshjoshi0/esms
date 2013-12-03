@@ -3,24 +3,20 @@
 <!doctype html>
 <html>
 	<head>
-		<meta name="layout" content="bootstrap">
+		<meta name="layout" content="bootstrap3">
 		<g:set var="entityName" value="${message(code: 'event.label', default: 'Event')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<div class="row-fluid">
-			<div class="span12">
+		<div class="row">
+			<div class="col-md-12">
 				<div class="page-header">
-					<h1>
+					<h3>
 						<g:message code="default.list.label" args="[entityName]" />
-					</h1>
+					</h3>
 				</div>
 				
-				<div class="pagination">
-					<bootstrap:paginate params="${filterParams}" total="${eventInstanceTotal}" />
-				</div>
-				<br/>
-				<table class="table table-striped table-hover">
+				<table class="table table-striped table-condensed table-bordered">
 					<thead>
 						<tr>
 						
@@ -40,7 +36,7 @@
 							<td>${fieldValue(bean: eventInstance, field: "location")}</td>
 						
 							<td class="link">
-								<g:link action="show" id="${eventInstance.id}" class="btn btn-small">Show &raquo;</g:link>
+								<g:link action="show" id="${eventInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>
@@ -49,7 +45,6 @@
 				<div class="pagination">
 					<bootstrap:paginate params="${filterParams}" total="${eventInstanceList.size()}" />
 				</div>
-				<br/>
 			</div>
 		</div>
 	</body>

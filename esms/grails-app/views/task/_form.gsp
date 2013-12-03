@@ -1,7 +1,7 @@
 <%@ page import="com.esms.model.calendar.Task"%>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'taskName', 'error')} required">
 			<label for="taskName" class="control-label"><g:message
@@ -16,11 +16,11 @@
 		</div>
 	</div>
 
-	<div class="span6"></div>
+	<div class="col-md-6"></div>
 </div>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'status', 'error')} ">
 			<label for="status" class="control-label"><g:message
@@ -36,7 +36,7 @@
 		</div>
 	</div>
 
-	<div class="span6">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'priority', 'error')} ">
 			<label for="priority" class="control-label"><g:message
@@ -53,8 +53,8 @@
 	</div>
 </div>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'assignedTo', 'error')} ">
 			<label for="assignedTo" class="control-label"><g:message
@@ -67,7 +67,7 @@
 		</div>
 	</div>
 
-	<div class="span6">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'assignedToValue', 'error')} ">
 			<label for="assignedToValue" class="control-label"><g:message
@@ -82,8 +82,8 @@
 	</div>
 </div>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'relatedTo', 'error')} ">
 			<label for="relatedTo" class="control-label"><g:message
@@ -99,7 +99,7 @@
 		</div>
 	</div>
 
-	<div class="span6">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'relatedToValue', 'error')} ">
 			<label for="relatedToValue" class="control-label"><g:message
@@ -114,8 +114,8 @@
 	</div>
 </div>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'dateTime', 'error')}">
 			<label for="dateTime" class="control-label"><g:message
@@ -128,7 +128,7 @@
 		</div>
 	</div>
 
-	<div class="span6">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'dueDateTime', 'error')}">
 			<label for="dueDateTime" class="control-label"><g:message
@@ -142,8 +142,8 @@
 	</div>
 </div>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'notification', 'error')} ">
 			<label for="notification" class="control-label"><g:message
@@ -157,17 +157,17 @@
 		</div>
 	</div>
 
-	<div class="span6"></div>
+	<div class="col-md-6"></div>
 </div>
 
 <div class="page-header">
-	<h1>
+	<h3>
 		Task Description
-	</h1>
+	</h3>
 </div>
 
-<div class="row-fluid">
-	<div class="span12">
+<div class="row">
+	<div class="col-md-12">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'taskDescription', 'error')} ">
 			<div class="controls">

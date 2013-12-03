@@ -1,7 +1,7 @@
 <%@ page import="com.esms.model.calendar.EventLog"%>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'loggedDate', 'error')} required">
 			<label for="loggedDate" class="control-label"><g:message
@@ -16,7 +16,7 @@
 		</div>
 	</div>
 	
-	<div class="span6">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'workDoneBy', 'error')} required">
 			<label for="workDoneBy" class="control-label"><g:message
@@ -33,8 +33,8 @@
 	</div>
 </div>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'reviewedBy', 'error')} required">
 			<label for="reviewedBy" class="control-label"><g:message
@@ -51,9 +51,9 @@
 	</div>
 </div>		
 
-<div class="row-fluid">
+<div class="row">
 	<g:if test="${eventInstance?.eventType == 'BREAKDOWN CALL'}">
-		<div class="span6">
+		<div class="col-md-6">
 			<div
 				class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'isProblemReported', 'error')} ">
 				<label for="isProblemReported" class="control-label"><g:message
@@ -71,7 +71,7 @@
 	
 	<!-- To Be Replaced -->
 	<g:if test="${eventInstance?.eventType == 'MAINTENANCE VISIT'}">
-		<div class="span6">
+		<div class="col-md-6">
 			<div
 				class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'toBeReplaced', 'error')} ">
 				<label for="tobeReplaced" class="control-label"><g:message

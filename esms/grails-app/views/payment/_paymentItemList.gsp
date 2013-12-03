@@ -1,12 +1,12 @@
 <g:if test="${paymentInstance?.balanceAmount > 0 }">
 <div class="pull-right">
 	<a data-toggle="modal" href="#" data-target="#paymentItemModel" role="button"
-		class="btn"> <i class="icon-plus"></i> New Line
+		class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Line
 	</a>
 </div>
 </g:if>
 
-<table class="table table-striped table-hover">
+<table class="table table-striped table-condensed table-bordered">
 	<thead>
 		<tr>
 
@@ -64,9 +64,9 @@
 			value="${paymentInstance?.id}" />
 		<div class="modal-body"></div>
 		<div class="modal-footer">
-			<div class="form-actions">
+			<div class="form-group">
 				<button type="submit" class="btn btn-primary">
-					<i class="icon-ok icon-white"></i>
+					
 					<g:message code="default.button.create.label" default="Create" />
 				</button>
 			</div>

@@ -1,6 +1,6 @@
 <g:set var="liftInfoInstance" value="${organizationInstance?.liftInfo}" />
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<dl class="dl-horizontal">
 			<dt>
 				<g:message code="liftInfo.liftMake.label" default="Lift Make" />
@@ -151,7 +151,7 @@
 		</dl>
 	</div>
 
-	<div class="span6">
+	<div class="col-md-6">
 		<dl class="dl-horizontal">
 			<dt>
 				<g:message code="liftInfo.motorHP.label" default="Motor HP" />

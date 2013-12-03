@@ -78,14 +78,14 @@ class BS3TagLib {
 									<button type="submit" class="btn btn-sm btn-primary">
 										${message(code:"default.button.${attrs.action}.label",default:"${GrailsNameUtils.getNaturalName(attrs.action)}")}
 									</button>
-						</div>"""
-		if(attrs.action == 'edit') {
-			out << """<button type="submit" class="btn btn-danger"
-						 name="_action_delete" formnovalidate>
-						 <i class="icon-trash icon-white"></i>
-						 <g:message code="default.button.delete.label" default="Delete" />
-					</button>"""
-		}
+								</div>"""
+								if(attrs.action == 'edit') {
+									out << """<button type="submit" class="btn btn-danger"
+												 name="_action_delete" formnovalidate>
+												 <i class="icon-trash icon-white"></i>
+												 <g:message code="default.button.delete.label" default="Delete" />
+											</button>"""
+								}
 
 		out <<	"""</div>
 						</fieldset>

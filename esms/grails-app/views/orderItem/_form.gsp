@@ -69,7 +69,7 @@
 						code="orderItem.productNumber.label" default="Product" /><span
 					class="required-indicator">*</span></label>
 				<g:select name="productNumber" from="${Product.list()}"
-					optionKey="productNumber" optionValue="productName" class="input-large"
+					optionKey="productNumber" optionValue="productName" class="input-lg"
 					noSelection="${['null':'Select Product..']}"
 					value="${orderItemInstance?.productNumber}" onChange="fetchUnitPriceForProduct(this.value);"/>
 				<span class="help-inline">

@@ -2,16 +2,16 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'event.label', default: 'Event')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<div class="page-header">
-				<h1>
+				<h3>
 					EVENT 
 					|
 					${eventInstance?.title}
@@ -34,43 +34,43 @@
 					|
 					PRIORITY : 
 					${eventInstance?.priority}
-				</h1>
+				</h3>
 			</div>
 
 			<g:form>
 				<g:hiddenField name="id" value="${eventInstance?.id}" />
-				<div class="form-actions">
-					<g:link class="btn" action="edit" id="${eventInstance?.id}">
-						<i class="icon-pencil"></i>
+				<div class="form-group">
+					<g:link class="btn btn-default btn-sm" action="edit" id="${eventInstance?.id}">
+						
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					<button class="btn btn-danger" type="submit" name="_action_delete">
-						<i class="icon-trash icon-white"></i>
+					<button class="btn btn-sm btn-danger" type="submit" name="_action_delete">
+						
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
 					<g:if test="${eventInstance?.eventType != 'REPAIR WORK' && eventInstance?.workDoneCertificate == null}">
-						<g:link class="btn" action="attachWorkDoneCertificate"
+						<g:link class="btn btn-default btn-sm" action="attachWorkDoneCertificate"
 							id="${eventInstance?.id}">
-							<i class="icon-pencil"></i>
+							
 							Attach Work Done Certificate
 						</g:link>
 					</g:if>
 					<g:elseif test="${eventInstance?.eventType != 'REPAIR WORK'}">
-						<g:link class="btn" action="editWorkDoneCertificate"
+						<g:link class="btn btn-default btn-sm" action="editWorkDoneCertificate"
 							id="${eventInstance?.workDoneCertificate?.id}">
-							<i class="icon-pencil"></i>
+							
 							Edit Work Done Certificate
 						</g:link>
 					</g:elseif>
 					<a href="#" data-toggle="modal" data-target="#activityModal"
-						role="button" class="btn"> <i class="icon-plus"></i> Add Event
+						role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> Add Event
 						Log
 					</a>
 				</div>
 			</g:form>
 
-			<div class="row-fluid">
-				<div class="span6">
+			<div class="row">
+				<div class="col-md-6">
 					<dl class="dl-horizontal">
 						<dt>
 							<g:message code="event.title.label" default="Title" />
@@ -191,7 +191,7 @@
 					</dl>
 				</div>
 				
-				<div class="span6">
+				<div class="col-md-6">
 					<dl class="dl-horizontal">
 						<g:if test="${eventInstance?.eventType == 'MAINTENANCE VISIT' }">
 							<dt>
@@ -268,8 +268,8 @@
 		</div>
 	</div>
 
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<richui:tabView id="tabView">
 				<richui:tabLabels>
 					<richui:tabLabel selected="true" title="Activity Log" />
@@ -330,8 +330,8 @@
 	
 					<g:if test="${eventInstance?.eventType != 'REPAIR WORK'}">
 						<richui:tabContent>
-							<div class="row-fluid">
-								<div class="span6">
+							<div class="row">
+								<div class="col-md-6">
 									<dl class="dl-horizontal">
 		
 										<dt>
@@ -561,7 +561,7 @@
 									</dl>
 								</div>
 		
-								<div class="span6">
+								<div class="col-md-6">
 									<dl class="dl-horizontal">
 										<dt>
 											<g:message code="workDoneCertificate.buttonsAndSignals.label"
@@ -705,9 +705,9 @@
 			<g:hiddenField name="event.id" value="${eventInstance?.id}" />
 			<div class="modal-body"></div>
 			<div class="modal-footer">
-				<div class="form-actions">
+				<div class="form-group">
 					<button type="submit" class="btn btn-primary">
-						<i class="icon-ok icon-white"></i>
+						
 						<g:message code="default.button.create.label" default="Save" />
 					</button>
 				</div>

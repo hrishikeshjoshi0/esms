@@ -2,7 +2,7 @@
 <%@page import="com.esms.model.calendar.Event"%>
 
 <div class="dashboard-widget-header">
-	<h1>Invoices Pending Payments</h1>
+	<h3>Invoices Pending Payments</h3>
 </div>
 
 <table class="table table-striped table-bordered mediaTable">

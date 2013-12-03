@@ -1,14 +1,14 @@
 <%@page import="com.esms.model.order.Order"%>
 <div class="pull-right">
 	<a href="<g:createLink controller="order" action="create" params="[type:'SERVICE']"/>"
-		role="button" class="btn"> <i class="icon-plus"></i> New Order
+		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Order
 	</a>
 </div>
 
 <g:set var="serviceOrders" value="${Order.findAllWhere(relatedTo:'CONTRACT',relatedToValue:contractInstance?.contractNumber,organization:contractInstance?.organization,type:'SALES') }"/>
 
 <!-- Orders -->
-<table class="table table-striped table-hover">
+<table class="table table-striped table-condensed table-bordered">
 	<thead>
 		<tr>
 			<g:sortableColumn property="orderNumber"
@@ -39,7 +39,7 @@
 					${fieldValue(bean: orderInstance, field: "description")}
 				</td>
 				<td class="link"><g:link controller="order" action="show" id="${orderInstance.id}"
-						class="btn btn-small">Show &raquo;</g:link></td>
+						class="btn btn-default btn-sm">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>

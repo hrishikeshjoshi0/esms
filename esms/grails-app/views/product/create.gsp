@@ -9,8 +9,8 @@
 		args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<g:hasErrors bean="${productInstance}">
 				<bootstrap:alert class="alert-error">
 					<ul>
@@ -23,27 +23,9 @@
 				</bootstrap:alert>
 			</g:hasErrors>
 
-			<div class="page-header">
-				<h2>
-					<g:message code="default.create.label" args="[entityName]" />
-				</h2>
-			</div>
+			<bs3:pageHeader pageHeaderLabel="${message(code: 'default.create.label',args:[entityName])}" />
 
-			<div class="well">
-				<g:form class="form-horizontal" action="create">
-					<fieldset>
-						<g:render template="form"></g:render>
-						<div class="form-group">
-							<div class="col-lg-10 col-lg-offset-2">
-								<button type="submit" class="btn btn-sm btn-primary">
-									<i class="icon-ok icon-white"></i>
-									<g:message code="default.button.create.label" default="Create" />
-								</button>
-							</div>
-						</div>
-					</fieldset>
-				</g:form>
-			</div>
+			<bs3:form action="create"/>		
 		</div>
 	</div>
 </body>

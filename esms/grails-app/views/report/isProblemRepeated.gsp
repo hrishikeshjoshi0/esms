@@ -4,27 +4,21 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'eventLog.label', default: 'Is Problem Repeated')}" />
 <title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<div class="page-header">
-				<h1>
+				<h3>
 					<g:message code="default.list.label" args="[entityName]" />
-				</h1>
+				</h3>
 			</div>
 			
-			<div class="pagination">
-				<bootstrap:paginate total="${eventLogInstanceTotal}" />
-			</div>
-			
-			<br/>
-
-			<table class="table table-striped table-hover">
+			<table class="table table-striped table-condensed table-bordered">
 				<thead>
 					<tr>
 						<th>
@@ -102,6 +96,10 @@
 					</g:each>
 				</tbody>
 			</table>
+			
+			<div class="pagination">
+				<bootstrap:paginate total="${eventLogInstanceTotal}" />
+			</div>
 		</div>
 	</div>
 </body>

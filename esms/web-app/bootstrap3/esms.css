@@ -1,5 +1,9 @@
 @CHARSET "ISO-8859-1";
 
+body {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+}
 /*
 * HJ : Update the valign to middle.
 */
@@ -55,6 +59,7 @@ h1, h2, h3 {
 	border: 1px solid #dddddd;
 	border-top-color: #dddddd;
 	padding: 0;
+	overflow: scroll;
 }
 
 .yui-skin-sam .yui-navset .yui-nav, .yui-skin-sam .yui-navset .yui-navset-top .yui-nav {

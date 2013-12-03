@@ -2,16 +2,16 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'quote.label', default: 'Quote')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<div class="page-header">
-				<h1>
+				<h3>
 					Quote :
 					${quoteInstance?.quoteName}
 					|
@@ -19,28 +19,27 @@
 						id="${quoteInstance?.organization?.id}">
 						${quoteInstance?.organization?.name}
 					</g:link>
-				</h1>
+				</h3>
 			</div>
 
 			<g:form>
 				<g:hiddenField name="id" value="${quoteInstance?.id}" />
-				<div class="form-actions">
+				<div class="form-group">
 					<%--<g:if test="${quoteInstance?.status != 'CONVERTED_TO_SERVICE_CONTRACT' && quoteInstance?.status != 'CONVERTED_TO_SALES_ORDER' }">
-						<g:link class="btn" action="edit" id="${quoteInstance?.id}">
-							<i class="icon-pencil"></i>
+						<g:link class="btn btn-default btn-sm" action="edit" id="${quoteInstance?.id}">
+							
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
 					</g:if>
 					--%>
-					<button class="btn btn-danger" type="submit" name="_action_delete">
-						<i class="icon-trash icon-white"></i>
+					<button class="btn btn-sm btn-danger" type="submit" name="_action_delete">
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
 
 					<g:if
 						test="${quoteInstance?.sent == false && quoteInstance?.quoteItems?.size() != 0}">
 						<a data-toggle="modal" href="#" data-target="#markAsSent"
-							role="button" class="btn"> <i class="icon-envelope"></i> Mark
+							role="button" class="btn btn-default btn-sm"> Mark
 							as Sent
 						</a>
 					</g:if>
@@ -51,20 +50,20 @@
 						<g:if
 							test="${quoteInstance?.type == 'CONTRACT' && quoteInstance?.quoteItems?.size() != 0}">
 							<a data-toggle="modal" href="#" data-target="#markAsAccepted"
-								role="button" class="btn"> Mark as Accepted </a>
+								role="button" class="btn btn-default btn-sm"> Mark as Accepted </a>
 						</g:if>
 						<g:elseif test="${quoteInstance?.quoteItems?.size() != 0}">
 							<g:link action="markAsAccepted" controller="quote"
-								id="${quoteInstance?.id}" class="btn">
+								id="${quoteInstance?.id}" class="btn btn-default btn-sm">
 								Mark as Accepted
 							</g:link>
 						</g:elseif>
 						<a data-toggle="modal" href="#" data-target="#markAsRevised"
-							role="button" class="btn"> <i class="icon-pencil"></i> Mark
+							role="button" class="btn btn-default btn-sm">  Mark
 							as Revised
 						</a>
 						<a data-toggle="modal" href="#" data-target="#markAsDeclinedModal"
-							role="button" class="btn"> <i class="icon-trash"></i> Mark as
+							role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-trash"></i> Mark as
 							Declined
 						</a>
 					</g:if>
@@ -74,20 +73,20 @@
 						&& quoteInstance?.quoteItems?.size() != 0}">
 						<!-- State:Accept -->
 						<a data-toggle="modal" href="#" data-target="#confirmSaleModal"
-							role="button" class="btn"> <i class="icon-wrench"></i>
+							role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-wrench"></i>
 							Confirm Sale
 						</a>
 					</g:elseif>
 					<g:elseif
 						test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'REPAIR' && quoteInstance?.quoteItems?.size() != 0}">
 						<a data-toggle="modal" href="#" data-target="#confirmSaleModal"
-							role="button" class="btn"> <i class="icon-wrench"></i>
+							role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-wrench"></i>
 							Confirm Sale
 						</a>
 					</g:elseif>
 					<g:link action="markAsDisqualified" controller="quote"
-								id="${quoteInstance?.id}" class="btn btn-warning">
-						<i class="icon-trash icon-white"></i>
+								id="${quoteInstance?.id}" class="btn btn-sm btn-warning">
+						
 						Mark as Disqualified
 					</g:link>
 				</div>
@@ -95,7 +94,7 @@
 
 			<%--<g:if
 				test="${quoteInstance?.id && quoteInstance?.quoteItems?.size() != 0}">
-				<div class="form-actions">
+				<div class="form-group">
 					<g:jasperReport jasper="QuotationLetter" format="PDF"
 						name="Print Quotation" delimiterAfter=" " delimiterBefore=" "
 						heightAttr="15px">
@@ -106,7 +105,7 @@
 			--%>
 			
 			<div class="row">
-				<div class="span4">
+				<div class="col-md-4">
 					<dl class="dl-horizontal" style="margin-left: -30px;">
 						<dt>
 							<g:message code="quote.sent.label" default="Sent" />
@@ -189,7 +188,7 @@
 						</g:if>
 					</dl>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<dl class="dl-horizontal" style="margin-left: -30px;">
 						<dt>
 							<g:message code="quote.quotedGrandTotal.label"
@@ -250,8 +249,8 @@
 		</div>
 	</div>
 
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<richui:tabView id="tabView">
 				<richui:tabLabels>
 					<richui:tabLabel selected="true" title="Lines" />

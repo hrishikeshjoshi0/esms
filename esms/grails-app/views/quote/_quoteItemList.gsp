@@ -2,13 +2,13 @@
 <g:if test="${quoteInstance?.status != 'CONVERTED_TO_SERVICE_CONTRACT' && quoteInstance?.status != 'CONVERTED_TO_SALES_ORDER' }">
 <div class="pull-right">
 	<a data-toggle="modal" href="#" data-target="#quoteItemModal" role="button"
-		class="btn"> <i class="icon-plus"></i> New Item
+		class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Item
 	</a>
 </div>
 </g:if>
 
 <!-- Quotes -->
-<table class="table table-striped table-hover">
+<table class="table table-striped table-condensed table-bordered">
 	<thead>
 		<tr>
 
@@ -72,12 +72,12 @@
 
 				<td class="link">
 					<g:link action="deleteQuoteItem" id="${quoteItemInstance?.id}">
-						<i class="icon-trash"></i>
+						<i class="glyphicon glyphicon-trash"></i>
 					</g:link>
 				</td>
 				
 				<td class="link"><g:link action="show" controller="quoteItem"
-						id="${quoteItemInstance.id}" class="btn btn-small">Show &raquo;</g:link>
+						id="${quoteItemInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
 				</td>
 			</tr>
 		</g:each>
@@ -101,9 +101,9 @@
 			value="${quoteInstance?.id}" />
 		<div class="modal-body"></div>
 		<div class="modal-footer">
-			<div class="form-actions">
+			<div class="form-group">
 				<button type="submit" class="btn btn-primary create">
-					<i class="icon-ok icon-white"></i>
+					
 					<g:message code="default.button.create.label" default="Create" />
 				</button>
 			</div>

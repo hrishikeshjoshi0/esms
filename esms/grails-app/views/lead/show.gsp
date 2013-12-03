@@ -20,7 +20,7 @@
 				</h3>
 			</div>
 
-			<div class="table-responsive">
+			<div class="table-responsive">				
 				<table class="table table-striped table-condensed table-bordered">
 					<tbody>
 						<tr>

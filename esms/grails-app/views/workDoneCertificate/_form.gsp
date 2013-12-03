@@ -1,7 +1,7 @@
 <%@ page import="com.esms.model.maintenance.WorkDoneCertificate"%>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: workDoneCertificateInstance, field: 'date', 'error')} required">
 			<label for="date" class="control-label"><g:message
@@ -206,7 +206,7 @@
 		</div>
 	</div>
 
-	<div class="span6">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: workDoneCertificateInstance, field: 'buttonsAndSignals', 'error')} ">
 			<label for="buttonsAndSignals" class="control-label"><g:message
@@ -349,8 +349,8 @@
 
 <hr />
 
-<div class="row-fluid">
-	<div class="span12">
+<div class="row">
+	<div class="col-md-12">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: workDoneCertificateInstance, field: 'majorRepairs_Adjustment_ExtraExamination', 'error')} ">
 			<label for="majorRepairs_Adjustment_ExtraExamination"

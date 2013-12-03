@@ -1,7 +1,7 @@
 <%--<div class="pull-right">
 	<a data-toggle="modal" data-target="#addressModal" role="button"
 		href="<g:createLink controller="lead" action="createAddress" params="['party.id':organizationInstance?.id]" />" 
-		class="btn btn-default btn-xs"> <i class="icon-plus"></i> New
+		class="btn btn-default btn-xs"> <i class="glyphicon glyphicon-plus"></i> New
 		Address
 	</a>
 </div>
@@ -119,9 +119,9 @@
 			
 		</div>
 		<div class="modal-footer">
-			<div class="form-actions">
+			<div class="form-group">
 				<button type="submit" class="btn btn-primary">
-					<i class="icon-ok icon-white"></i>
+					
 					<g:message code="default.button.create.label" default="Create" />
 				</button>
 			</div>

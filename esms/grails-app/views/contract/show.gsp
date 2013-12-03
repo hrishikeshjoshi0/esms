@@ -4,34 +4,34 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'contract.label', default: 'Contract')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<div class="page-header">
-				<h1>
+				<h3>
 					<g:message code="default.show.label" args="[entityName]" />
-				</h1>
+				</h3>
 			</div>
 
 			<g:form>
 				<g:hiddenField name="id" value="${contractInstance?.id}" />
-				<div class="form-actions">
-					<g:link class="btn" action="edit" id="${contractInstance?.id}">
-						<i class="icon-pencil"></i>
+				<div class="form-group">
+					<g:link class="btn btn-default btn-sm" action="edit" id="${contractInstance?.id}">
+						
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					<button class="btn btn-danger" type="submit" name="_action_delete">
-						<i class="icon-trash icon-white"></i>
+					<button class="btn btn-sm btn-danger" type="submit" name="_action_delete">
+						
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
-					<g:link class="btn" controller="order" action="create"
+					<g:link class="btn btn-default btn-sm" controller="order" action="create"
 						params="[type:'SALES',relatedTo:'CONTRACT',relatedToValue:contractInstance.contractNumber,'organization.id':contractInstance.organization.id]">
-						<i class="icon-briefcase"></i>
+						
 						Create Sales Order
 					</g:link>
 				</div>
@@ -153,8 +153,8 @@
 		</div>
 	</div>
 
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<!--  -->
 			<ul class="nav nav-tabs" id="organization_show_tab">
 			  <li class="active"><a href="#salesOrdersTabsPane" data-toggle="tab">Service & Repair Orders</a></li>

@@ -4,16 +4,16 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'payment.label', default: 'Payment')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-			<div class="span12">
+	<div class="row">
+			<div class="col-md-12">
 				<div class="page-header">
-					<h1>
+					<h3>
 						Payment# :
 						${paymentInstance?.paymentNumber}
 						|
@@ -21,24 +21,21 @@
 							id="${paymentInstance?.organization?.id}">
 							${paymentInstance?.organization?.name}
 						</g:link>
-					</h1>
+					</h3>
 				</div>
 	
 				<g:form>
 					<g:hiddenField name="id" value="${paymentInstance?.id}" />
-					<div class="form-actions">
-						<g:link class="btn" action="edit" id="${paymentInstance?.id}">
-							<i class="icon-pencil"></i>
+					<div class="form-group">
+						<g:link class="btn btn-default btn-sm" action="edit" id="${paymentInstance?.id}">
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
-						<g:link class="btn" action="updateClearanceDate"
+						<g:link class="btn btn-default btn-sm" action="updateClearanceDate"
 							id="${paymentInstance?.id}">
-							<i class="icon-pencil"></i>
 							<g:message code="default.button.updateClearanceDate.label"
 								default="Update Clearance Date" />
 						</g:link>
-						<button class="btn btn-danger" type="submit" name="_action_delete">
-							<i class="icon-trash icon-white"></i>
+						<button class="btn btn-sm btn-danger" type="submit" name="_action_delete">
 							<g:message code="default.button.delete.label" default="Delete" />
 						</button>
 					</div>
@@ -162,8 +159,8 @@
 			</div>
 		</div>
 		
-		<div class="row-fluid">
-			<div class="span12">
+		<div class="row">
+			<div class="col-md-12">
 	
 				<!--  -->
 				<richui:tabView id="tabView">

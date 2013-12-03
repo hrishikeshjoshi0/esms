@@ -14,14 +14,14 @@
 	   
 	   <h2>Quotes By Status</h2>
 	   		
-       <div class="row-fluid">
-       		<div class="span4">
+       <div class="row">
+       		<div class="col-md-4">
 				<div id="piechart"></div>	
        		</div>
-       		<div class="span4">
+       		<div class="col-md-4">
 				<div id="piechart"></div>	       		
        		</div>
-       		<div class="span4">
+       		<div class="col-md-4">
        			<div id="piechart"></div>
        		</div>
        </div>

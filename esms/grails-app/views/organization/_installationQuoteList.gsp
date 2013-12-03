@@ -1,13 +1,13 @@
 <%@ page import="com.esms.model.quote.Quote"%>
 <div class="pull-right">
 	<a href="<g:createLink controller="quote" action="create" params="[contractQuote:true,type:'INSTALLATION',organizationId:organizationInstance?.id]"/>" 
-		role="button" class="btn"> <i class="icon-plus"></i> New Installation Quote
+		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Installation Quote
 	</a>
 </div>
 
 
 <!-- Quotes -->
-<table class="table table-striped table-hover">
+<table class="table table-striped table-condensed table-bordered">
 	<thead>
 		<tr>
 
@@ -54,7 +54,7 @@
 				</td>
 
 				<td class="link"><g:link controller="quote" action="show" id="${quoteInstance.id}"
-						class="btn btn-small">Show &raquo;</g:link></td>
+						class="btn btn-default btn-sm">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
@@ -79,9 +79,9 @@
 		<g:hiddenField name="createdFromOrganizationDetailView" value="true" />
 		<div class="modal-body"></div>
 		<div class="modal-footer">
-			<div class="form-actions">
+			<div class="form-group">
 				<button type="submit" class="btn btn-primary">
-					<i class="icon-ok icon-white"></i>
+					
 					<g:message code="default.button.create.label" default="Create" />
 				</button>
 			</div>

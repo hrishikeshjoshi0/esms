@@ -47,8 +47,8 @@
 <g:hiddenField name="order.id" value="${params.orderId}"/>
 
 <!-- Row 1 -->
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'paymentNumber', 'error')} required">
 			<label for="paymentNumber" class="control-label"><g:message
@@ -64,7 +64,7 @@
 		</div>
 	</div>
 	
-	<div class="span6">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: paymentItemInstance, field: 'order', 'error')} required">
 			<label for="invoiceId" class="control-label">
@@ -90,8 +90,8 @@
 </div>
 
 <!-- 2nd Row -->
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'paymentMethod', 'error')} required">
 			<label for="paymentMethod" class="control-label"><g:message
@@ -109,7 +109,7 @@
 		</div>
 	</div>
 	
-	<div class="span6">
+	<div class="col-md-6">
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'totalAmount', 'error')} required">
 			<label for="totalAmount" class="control-label"><g:message
@@ -127,8 +127,8 @@
 </div>	
 		
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'chequeNumber', 'error')} ">
 			<label for="chequeNumber" class="control-label"><g:message
@@ -143,7 +143,7 @@
 		</div>
 	</div>
 	
-	<div class="span6">
+	<div class="col-md-6">
 		<div
 			class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'chequeIssueDate', 'error')} ">
 			<label for="branch" class="control-label"><g:message
@@ -158,8 +158,8 @@
 	</div>
 </div>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		<div
 			class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'bank', 'error')} ">
 			<label for="bank" class="control-label"><g:message
@@ -173,7 +173,7 @@
 		</div>
 	</div>
 	
-	<div class="span6">
+	<div class="col-md-6">
 		<div
 			class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'branch', 'error')} ">
 			<label for="branch" class="control-label"><g:message
@@ -188,11 +188,11 @@
 	</div>
 </div>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="col-md-6">
 		
 	</div>
-	<div class="span6">
+	<div class="col-md-6">
 		
 	</div>
 </div>	

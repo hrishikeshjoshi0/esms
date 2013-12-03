@@ -4,13 +4,13 @@
 <div class="pull-right">
 	<g:if test="${orderInstance?.status != 'INVOICED' && orderInstance?.status != 'PAID'}">
 		<a data-toggle="modal" href="#" data-target="#orderItemModal"
-			role="button" class="btn"> <i class="icon-plus"></i> New Item
+			role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Item
 		</a>
 	</g:if>
 </div>
 
 <!-- Quotes -->
-<table class="table table-striped table-hover">
+<table class="table table-striped table-condensed table-bordered">
 	<thead>
 		<tr>
 			<g:sortableColumn property="lineNumber"
@@ -93,18 +93,19 @@
 					<td></td>
 				</g:else>
 				<td>
-					<a href="#" class="btn open-AssignOrderItem" data-id="${orderItemInstance?.id}"
-						role="button" class="btn">
+					<a href="#" data-id="${orderItemInstance?.id}"
+						role="button" class="btn btn-default btn-sm">
 						<g:if test="${orderItemInstance?.relatedOrderNumber}">
-							Edit Assignment
+							Assignment
 						</g:if>
 						<g:else>
-							Create Assignment
+							Assignment
 						</g:else>
 					</a>
 				</td>
-				<td class="link"><g:link action="show" controller="orderItem"
-						id="${orderItemInstance.id}" class="btn btn-small">Show &raquo;</g:link>
+				<td class="link"><g:link action="show" 
+						controller="orderItem"
+						id="${orderItemInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
 				</td>
 			</tr>
 		</g:each>
@@ -128,9 +129,9 @@
 		<g:hiddenField name="order.id" value="${orderInstance?.id}" />
 		<div class="modal-body"></div>
 		<div class="modal-footer">
-			<div class="form-actions">
+			<div class="form-group">
 				<button type="submit" class="btn btn-primary create">
-					<i class="icon-ok icon-white"></i>
+					
 					<g:message code="default.button.create.label" default="Create" />
 				</button>
 			</div>
@@ -151,9 +152,9 @@
 		<g:hiddenField name="orderItemInstanceId" value=""/>
 		<div class="modal-body"></div>
 		<div class="modal-footer">
-			<div class="form-actions">
+			<div class="form-group">
 				<button type="submit" class="btn btn-primary create">
-					<i class="icon-ok icon-white"></i>
+					
 					<g:message code="default.button.create.label" default="Create" />
 				</button>
 			</div>

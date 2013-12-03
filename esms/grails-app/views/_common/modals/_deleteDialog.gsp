@@ -13,12 +13,12 @@ This is the standard dialog that initiates the delete action.
 	</div>
 	<div class="modal-footer">
 		<g:form>
-			<button class="btn" data-dismiss="modal" aria-hidden="true"><g:message code="default.button.cancel.label" default="Cancel"/></button>
-<%--		<g:link action="delete" id="${params.id}" class="btn btn-danger">--%>
+			<button class="btn btn-default btn-sm" data-dismiss="modal" aria-hidden="true"><g:message code="default.button.cancel.label" default="Cancel"/></button>
+<%--		<g:link action="delete" id="${params.id}" class="btn btn-sm btn-danger">--%>
 <%--			<g:message code="default.button.delete.label" default="Delete"/>--%>
 <%--		</g:link>--%>
 			<g:hiddenField name="id" value="${item ? item.id : params.id}" />
-			<span class="button"><g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}"/></span>
+			<span class="button"><g:actionSubmit class="btn btn-sm btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}"/></span>
 		</g:form>
 		
 	</div>

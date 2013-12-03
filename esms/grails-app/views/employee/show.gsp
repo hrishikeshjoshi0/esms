@@ -4,40 +4,40 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'employee.label', default: 'Employee')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<div class="page-header">
-				<h1>
+				<h3>
 					Employee #
 					${employeeInstance?.externalId}
 					|
 					${employeeInstance?.lastName},
 					${employeeInstance?.firstName}
-				</h1>
+				</h3>
 			</div>
 
 			<g:form>
 				<g:hiddenField name="id" value="${employeeInstance?.id}" />
-				<div class="form-actions">
-					<g:link class="btn" action="edit" id="${employeeInstance?.id}">
-						<i class="icon-pencil"></i>
+				<div class="form-group">
+					<g:link class="btn btn-default btn-sm" action="edit" id="${employeeInstance?.id}">
+						
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
 
-					<button class="btn btn-danger" type="submit" name="_action_delete">
-						<i class="icon-trash icon-white"></i>
+					<button class="btn btn-sm btn-danger" type="submit" name="_action_delete">
+						
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
 
-					<g:link class="btn" action="markAsTerminated"
+					<g:link class="btn btn-default btn-sm" action="markAsTerminated"
 						id="${employeeInstance?.id}">
-						<i class="icon-pencil"></i>
+						
 						<g:message code="default.button.markAsTerminated.label"
 							default="Mark as Terminated" />
 					</g:link>
@@ -129,7 +129,7 @@
 				</dd>
 			</dl>
 
-			<div class="span12">
+			<div class="col-md-12">
 
 				<!--  -->
 				<richui:tabView id="tabView">

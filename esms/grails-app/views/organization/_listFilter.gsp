@@ -10,8 +10,8 @@
 						forceSelection="false" typeAhead="true" shadow="true"
 						minQueryLength="2" /></td>
 				<td>
-					<button type="submit" class="btn">
-						<i class="icon-search"></i> Search
+					<button type="submit" class="btn btn-default btn-sm">
+						<i class="glyphicon glyphicon-search"></i> Search
 					</button>
 				</td>
 			</tr>

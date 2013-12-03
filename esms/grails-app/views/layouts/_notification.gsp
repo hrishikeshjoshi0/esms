@@ -2,8 +2,8 @@
 	<!-- Row 1 -->
 		<!-- 1/2 row width -->
 		<g:if test="${session['expiringContracts']}">
-		<div class="row-fluid">
-			<div class="span12">
+		<div class="row">
+			<div class="col-md-12">
 				<h3 class='style_switcher_header'>
 					Expiring Contracts
 				</h3>
@@ -55,14 +55,14 @@
 		</g:if>
 
 		<g:if test="${session['upcomingEvents']}">
-			<div class="row-fluid">
-			<div class="span12">
+			<div class="row">
+			<div class="col-md-12">
 				<h3 class='style_switcher_header'>
 					Upcoming Events
 				</h3>
 				
 				<div class="dashboard-widget notification">
-					<table class="table table-striped table-hover">
+					<table class="table table-striped table-condensed table-bordered">
 						<thead>
 							<tr>
 

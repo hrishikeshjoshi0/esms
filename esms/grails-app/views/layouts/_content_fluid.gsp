@@ -1,8 +1,8 @@
-<div id="Content" class="container-fluid">
+<div id="Content" class="container">
 
 	<!-- Main menu in one line (e.g., controller entry points -->
-	<div class="row-fluid">
-			<aside id="application-status" class="span3">
+	<div class="row">
+			<aside id="application-status" class="col-md-3">
 				<div class="sidebar-nav"
 					style="min-height: 480px; max-height: 100%; margin-top: 10px;border-right:1px solid #e3e3e3; ">
 					<div class="">
@@ -11,16 +11,16 @@
 					</div>
 				</div>
 			</aside>
-				<section id="main" class="span9">
+				<section id="main" class="col-md-9">
 				
-				<div class="row-fluid">
-					<div class="span12">
+				<div class="row">
+					<div class="col-md-12">
 						<g:render template="/_menu/submenubar" />
 					</div>
 				</div>
 					
-				<div class="row-fluid">
-					<div class="span12">
+				<div class="row">
+					<div class="col-md-12">
 						<!--Body content-->
 						<!-- Secondary menu in one line (e.g., actions for current controller) -->
 						<g:if test="${flash.message}">

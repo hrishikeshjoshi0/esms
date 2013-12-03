@@ -17,7 +17,7 @@
     
         <!-- Favicons and the like (avoid using transparent .png) -->
             <link rel="shortcut icon" href="favicon.ico" />
-            <link rel="apple-touch-icon-precomposed" href="icon.png" />
+            <link rel="apple-touch-glyphicon glyphicon-precomposed" href="icon.png" />
     
         <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
     
@@ -27,12 +27,12 @@
         <![endif]-->
     </head>
     <body>
-    	<div class="row-fluid">
-			<div class="span2 pull-left">
+    	<div class="row">
+			<div class="col-md-2 pull-left">
 				
 			</div>
 			
-			<div class="span8">
+			<div class="col-md-8">
 				<center>
 					<img src="${resource(dir: 'images', file: 'venus_crm_logo.png')}" alt="${meta(name:'app.name')}" />
 				</center>	
@@ -49,14 +49,14 @@
 						</g:if>	    
 						<div class="cnt_b">
 							<div class="formRow">
-								<div class="input-prepend">
-									<span class="add-on"><i class="icon-user"></i></span>
+								<div class="input-group">
+									<span class="input-group-addon"></span>
 										<input type="text" id="j_username" name="j_username" placeholder="Username" />
 								</div>
 							</div>
 							<div class="formRow">
-								<div class="input-prepend">
-									<span class="add-on"><i class="icon-lock"></i></span><input type="password" id="j_password" name="j_password" placeholder="Password"/>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span><input type="password" id="j_password" name="j_password" placeholder="Password"/>
 								</div>
 							</div>
 						</div>

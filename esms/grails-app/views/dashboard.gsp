@@ -6,8 +6,8 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row-fluid">
-			<div class="span5">
+		<div class="row">
+			<div class="col-md-5">
 				<h3 class="heading">
 					Visitors by Country <small>last week</small>
 				</h3>

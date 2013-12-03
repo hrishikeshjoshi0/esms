@@ -19,19 +19,19 @@
 				<g:form>
 					<g:hiddenField name="id" value="${productInstance?.id}" />
 						<%--<g:link class="btn-sm" action="edit" id="${productInstance?.id}">
-							<i class="icon-pencil"></i>
+							
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
 						--%>
 						<g:if test="${productInstance?.isVirtual == false && productInstance?.requiresInventory == null}">
 							<g:link class="btn btn-default btn-sm" action="create" controller="productInventory"
 								param="['product.id':productInstance?.id]">
-								<i class="icon-pencil"></i>
+								
 								Add Inventory
 							</g:link>
 						</g:if>
 						<button class="btn btn-sm btn-danger" type="submit" name="_action_delete">
-							<i class="icon-trash icon-white"></i>
+							
 							<g:message code="default.button.delete.label" default="Delete" />
 						</button>
 				</g:form>

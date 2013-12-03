@@ -15,10 +15,10 @@
 
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12 dashboard-widget">
+	<div class="row">
+		<div class="col-md-12 dashboard-widget">
 			<div class="dashboard-widget-header">
-				<h1>Upcoming Renewals And Tasks</h1>
+				<h3>Upcoming Renewals And Tasks</h3>
 			</div>
 
 			<richui:tabView id="tabView">
@@ -42,8 +42,8 @@
 
 	<hr class="dashboard-hr" />
 
-	<div class="row-fluid">
-		<div class="span12 dashboard-widget">
+	<div class="row">
+		<div class="col-md-12 dashboard-widget">
 			<div id="recentLeadsWidget" class="dashboard-widget">
 				<g:render template="/dashboard/recentLeads" />
 			</div>
@@ -52,8 +52,8 @@
 
 	<hr class="dashboard-hr" />
 	
-	<div class="row-fluid">
-		<div class="span12 dashboard-widget">
+	<div class="row">
+		<div class="col-md-12 dashboard-widget">
 			<div id="recentQuotesWidget" class="dashboard-widget">
 				<g:render template="/dashboard/recentQuotes" />
 			</div>
@@ -62,8 +62,8 @@
 	
 	<hr class="dashboard-hr" />
 
-	<div class="row-fluid">
-		<div class="span12 dashboard-widget">
+	<div class="row">
+		<div class="col-md-12 dashboard-widget">
 			<div id="recentCustomers" class="dashboard-widget">
 				<g:render template="/dashboard/recentCustomers" />
 			</div>
@@ -72,10 +72,10 @@
 
 	<hr class="dashboard-hr" />
 
-	<div class="row-fluid">
-		<div class="span12 dashboard-widget">
+	<div class="row">
+		<div class="col-md-12 dashboard-widget">
 			<div class="dashboard-widget-header">
-				<h1>Repair, Modernization & Installation Quotes & Orders</h1>
+				<h3>Repair, Modernization & Installation Quotes & Orders</h3>
 			</div>
 
 			<richui:tabView id="rmiQuotesAndOrdersTabView">
@@ -101,40 +101,40 @@
 
 	<hr class="dashboard-hr" />
 
-	<div class="row-fluid">
-		<div class="span12 dashboard-widget">
+	<div class="row">
+		<div class="col-md-12 dashboard-widget">
 			<g:render template="/dashboard/ordersPendingPayment" />
 		</div>
 	</div>
 	
 	<hr class="dashboard-hr" />
 	
-	<div class="row-fluid">
-		<div class="span12 dashboard-widget">
+	<div class="row">
+		<div class="col-md-12 dashboard-widget">
 			<g:render template="/dashboard/openPayments" />
 		</div>
 	</div>
 
 	<hr class="dashboard-hr" />
 
-	<div class="row-fluid">
-		<div class="span6 dashboard-widget">
+	<div class="row">
+		<div class="col-md-6 dashboard-widget">
 			<g:render template="/dashboard/upcomingEvents" />
 		</div>
 
-		<div class="span6 dashboard-widget">
+		<div class="col-md-6 dashboard-widget">
 			<g:render template="/dashboard/overdueEvents" />
 		</div>
 	</div>
 
 	<hr class="dashboard-hr" />
 
-	<div class="row-fluid">
-		<div class="span4 dashboard-widget">
+	<div class="row">
+		<div class="col-md-4 dashboard-widget">
 			<g:render template="/dashboard/recentDocuments" />
 		</div>
 
-		<div class="span8 dashboard-widget">
+		<div class="col-md-8 dashboard-widget">
 			<g:render template="/dashboard/recentPayments" />
 		</div>
 	</div>

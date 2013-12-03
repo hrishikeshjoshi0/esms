@@ -10,9 +10,9 @@
 		<g:hiddenField name="event.id" value="${eventInstance?.id}" />
 		<div class="modal-body"></div>
 		<div class="modal-footer">
-			<div class="form-actions">
+			<div class="form-group">
 				<button type="submit" class="btn btn-primary">
-					<i class="icon-ok icon-white"></i>
+					
 					<g:message code="default.button.save.label" default="Save" />
 				</button>
 			</div>

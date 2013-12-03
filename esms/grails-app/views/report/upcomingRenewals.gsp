@@ -3,16 +3,16 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="Upcoming Renewals" />
 <title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<div class="page-header">
-				<h1>Upcoming Renewals</h1>
+				<h3>Upcoming Renewals</h3>
 			</div>
 			
 			<filterpane:filterPane domain="com.esms.model.order.Order"
@@ -21,13 +21,7 @@
 						 showSortPanel="y" showTitle="y" showButtons="y"
 						 fullAssociationPathFieldNames="false" />
 
-			<div class="pagination">
-				<bootstrap:paginate params="${filterParams}"
-					total="${orderInstanceTotal}" />
-			</div>
-			<br />
-			
-			<table class="table table-striped table-hover">
+			<table class="table table-striped table-condensed table-bordered">
 				<thead>
 					<tr>
 						<th>
@@ -103,41 +97,39 @@
 									<g:if
 										test="${orderInstance?.renewalStage == 'RENEWAL_LETTER_SENT'}">
 										<span class="badge badge-warning"> <i
-											class="icon-tag icon-white"></i> Renewal Letter Sent
+											class="glyphicon glyphicon-tag glyphicon glyphicon-white"></i> Renewal Letter Sent
 										</span>
 									</g:if>
 									<g:elseif
 										test="${orderInstance?.renewalStage == 'RENEWAL_WON'}">
 										<span class="badge badge-success"> <i
-											class="icon-tag icon-white"></i> Renewal Won
+											class="glyphicon glyphicon-tag glyphicon glyphicon-white"></i> Renewal Won
 										</span>
 									</g:elseif>
 									<g:elseif
 										test="${orderInstance?.renewalStage == 'RENEWAL_LOST'}">
 										<span class="badge badge-warning"> <i
-											class="icon-tag icon-white"></i> Renewal Lost
+											class="glyphicon glyphicon-tag glyphicon glyphicon-white"></i> Renewal Lost
 										</span>
 									</g:elseif>
 									<g:else>
 										<span class="badge badge-info"> <i
-											class="icon-tag icon-white"></i> Tagged For Renewal
+											class="glyphicon glyphicon-tag glyphicon glyphicon-white"></i> Tagged For Renewal
 										</span>
 									</g:else>
 								</g:if></td>
 
 							<td class="link"><g:link action="show"
 									id="${orderInstance.id}" controller="order"
-									class="btn btn-small">Show &raquo;</g:link></td>
+									class="btn btn-default btn-sm">Show &raquo;</g:link></td>
 						</tr>
 					</g:each>
 				</tbody>
-				<tfoot>
-					<tr>
-						<th class="link" colspan="10"><g:link controller="report"
-								action="upcomingRenewals">Show All &raquo;</g:link></th>
-					</tr>
-				</tfoot>
 			</table>
+			<div class="pagination">
+				<bootstrap:paginate params="${filterParams}"
+					total="${orderInstanceTotal}" />
+			</div>
 		</div>
 	</div>
 </body>

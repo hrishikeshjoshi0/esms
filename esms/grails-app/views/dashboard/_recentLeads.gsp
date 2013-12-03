@@ -1,9 +1,9 @@
 <%@ page import="com.esms.model.party.*"%>
 
 <div class="dashboard-widget-header">
-	<h1>
+	<h3>
 		Follow-up these leads
-	</h1>
+	</h3>
 </div>
 
 
@@ -63,7 +63,7 @@
 				</td>
 				<td class="link"><g:link controller="lead" action="disqualifyLead"
 						id="${organization?.id}" class=" ">
-						<i class="icon-trash"></i>
+						<i class="glyphicon glyphicon-trash"></i>
 						Disqualify
 				</g:link></td>
 				<td class="link"><g:link controller="lead" action="show"

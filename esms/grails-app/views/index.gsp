@@ -7,16 +7,16 @@
 <body>
 	<div id="contentwrapper" class="">
 		<!-- Row 1 -->
-		<div class="row-fluid">
+		<div class="row">
 			
 			<!-- 1/2 row width -->
-			<div class="span6">
+			<div class="col-md-6">
 				<div class="dashboard-widget">
 					<g:render template="/dashboard/recentLeads" />
 				</div>
 			</div>
 
-			<div class="span6">
+			<div class="col-md-6">
 				<div class="heading clearfix">
 					<h3 class="pull-left">Recent Quotes</h3>
 					<span class="pull-right label label-important">5 Quotes</span>
@@ -98,8 +98,8 @@
 			</div>
 		</div>
 
-		<div class="row-fluid">
-			<div class="span6">
+		<div class="row">
+			<div class="col-md-6">
 				<div class="heading clearfix">
 					<h3 class="pull-left">Recent Customers</h3>
 					<span class="pull-right label label-important">5 Customers</span>
@@ -180,7 +180,7 @@
 				</table>
 			</div>
 
-			<div class="span6">
+			<div class="col-md-6">
 				<div class="heading clearfix">
 					<h3 class="pull-left">Recent Orders</h3>
 					<span class="pull-right label label-important">5 Orders</span>

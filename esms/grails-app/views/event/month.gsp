@@ -2,7 +2,7 @@
 <html>
 <head>
 	<resource:calendarMonthView />
-	<meta name="layout" content="bootstrap">
+	<meta name="layout" content="bootstrap3">
 	<title>Calendar</title>
 </head>
 <body>

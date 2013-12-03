@@ -1,6 +1,6 @@
 <%--<div class="pull-right">
 	<a data-toggle="modal" href="#" data-target="#phoneBookModal"
-		role="button" class="btn btn-sm"> <i class="icon-plus"></i> New
+		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New
 		Phone Book
 	</a>
 </div>
@@ -81,9 +81,9 @@
 		<g:hiddenField name="createdFromOrganizationDetailView" value="true" />
 		<div class="modal-body"></div>
 		<div class="modal-footer">
-			<div class="form-actions">
+			<div class="form-group">
 				<button type="submit" class="btn btn-primary">
-					<i class="icon-ok icon-white"></i>
+					
 					<g:message code="default.button.create.label" default="Create" />
 				</button>
 			</div>

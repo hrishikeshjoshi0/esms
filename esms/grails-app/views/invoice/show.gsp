@@ -2,16 +2,16 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'invoice.label', default: 'Invoice')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<div class="page-header">
-				<h1>
+				<h3>
 					INVOICE # |
 					${invoiceInstance?.invoiceNumber}
 					|
@@ -19,44 +19,44 @@
 						id="${invoiceInstance?.organization?.id}">
 						${invoiceInstance?.organization?.name}
 					</g:link>
-				</h1>
+				</h3>
 			</div>
 
 			<g:form>
 				<g:hiddenField name="id" value="${invoiceInstance?.id}" />
-				<div class="form-actions">
-					<g:link class="btn" action="edit" id="${invoiceInstance?.id}">
-						<i class="icon-pencil"></i>
+				<div class="form-group">
+					<g:link class="btn btn-default btn-sm" action="edit" id="${invoiceInstance?.id}">
+						
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					<%--<button class="btn btn-danger" type="submit" name="_action_delete">
-						<i class="icon-trash icon-white"></i>
+					<%--<button class="btn btn-sm btn-danger" type="submit" name="_action_delete">
+						
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
-					<g:link class="btn" action="create" controller="event" params="['party.id':invoiceInstance?.organization.id]">
-						<i class="icon-calendar"></i>
+					<g:link class="btn btn-default btn-sm" action="create" controller="event" params="['party.id':invoiceInstance?.organization.id]">
+						
 						<g:message code="default.button.createEvent.label" default="Create Event" />
 					</g:link>
 					--%>
 
-					<g:link class="btn" action="create" controller="payment"
+					<g:link class="btn btn-default btn-sm" action="create" controller="payment"
 						params="[invoiceId :invoiceInstance.id]">
-						<i class="icon-briefcase"></i>
+						
 						<g:message code="default.button.registerPayment.label"
 							default="Register Payment" />
 					</g:link>
 
 					<g:link controller="task" action="create" role="button"
-						class="btn btn-info"
+						class="btn btn-sm btn-info"
 						params="[relatedTo:'INVOICE',relatedToValue:invoiceInstance?.invoiceNumber,taskName:'Reminder For Invoice']">
-						<i class="icon-calendar icon-white"></i>
+						
 					 	Create Task
 					</g:link>
 				</div>
 			</g:form>
 
 			<%--<g:if test="${invoiceInstance?.status == 'PENDING_INVOICE' && invoiceInstance?.orderItems?.size() != 0}">
-			<div class="form-actions">
+			<div class="form-group">
 				<g:jasperReport jasper="GoldContractTemplate" format="PDF"
 							name="Print Agreement" delimiterAfter=" " delimiterBefore=" "
 								heightAttr="15px">
@@ -65,8 +65,8 @@
 			</div>
 			</g:if>
 			--%>
-			<div class="row-fluid">
-				<div class="span4">
+			<div class="row">
+				<div class="col-md-4">
 					<dl class="dl-horizontal">
 
 						<dt>
@@ -165,7 +165,7 @@
 						</g:if>
 					</dl>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<dl class="dl-horizontal">
 						<dt>
 							<g:message code="invoice.totalAmount.label"
@@ -236,8 +236,8 @@
 		</div>
 	</div>
 
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<richui:tabView id="tabView">
 				<richui:tabLabels>
 					<richui:tabLabel selected="true" title="Lines" />

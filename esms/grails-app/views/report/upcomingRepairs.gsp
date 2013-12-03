@@ -1,24 +1,19 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="Upcoming Repairs" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<div class="page-header">
-				<h1>Upcoming Repairs</h1>
+				<h3>Upcoming Repairs</h3>
 			</div>
 
-			<div class="pagination">
-				<bootstrap:paginate params="${filterParams}"
-					total="${eventInstanceTotal}" />
-			</div>
-			<br />
-			<table class="table table-striped table-hover">
+			<table class="table table-striped table-condensed table-bordered">
 				<thead>
 					<tr>
 						<g:sortableColumn property="startTime"
@@ -68,12 +63,16 @@
 							</td>
 
 							<td class="link"><g:link action="show" controller="event"
-									id="${eventInstance.id}" class="btn btn-small">Show &raquo;</g:link>
+									id="${eventInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>
 				</tbody>
 			</table>
+			<div class="pagination">
+				<bootstrap:paginate params="${filterParams}"
+					total="${eventInstanceTotal}" />
+			</div>
 		</div>
 	</div>
 </body>

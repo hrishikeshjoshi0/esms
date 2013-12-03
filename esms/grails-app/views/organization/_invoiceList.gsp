@@ -1,5 +1,5 @@
 <!-- Invoices -->
-<table class="table table-striped table-hover">
+<table class="table table-striped table-condensed table-bordered">
 	<thead>
 		<tr>
 			<g:sortableColumn property="invoiceNumber"
@@ -56,7 +56,7 @@
 				</td>
 
 				<td class="link"><g:link controller="invoice" action="show" id="${invoiceInstance.id}"
-						class="btn btn-small">Show &raquo;</g:link></td>
+						class="btn btn-default btn-sm">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>

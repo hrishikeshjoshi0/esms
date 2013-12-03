@@ -2,14 +2,14 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap">
+<meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'organization.label', default: 'Organization')}" />
 <title><g:message code="default.edit.label" args="[entityName]" /></title>
 </head>
 <body>
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<g:hasErrors bean="${organizationInstance}">
 				<bootstrap:alert class="alert-error">
 					<ul>
@@ -23,9 +23,9 @@
 			</g:hasErrors>
 
 			<div class="page-header">
-				<h1>
+				<h3>
 					<g:message code="default.edit.label" args="[entityName]" />
-				</h1>
+				</h3>
 			</div>
 
 			<fieldset>
@@ -35,14 +35,14 @@
 					<g:hiddenField name="version" value="${organizationInstance?.version}" />
 					<fieldset>
 						<g:render template="form"></g:render>
-						<div class="form-actions">
+						<div class="form-group">
 							<button type="submit" class="btn btn-primary">
-								<i class="icon-ok icon-white"></i>
+								
 								<g:message code="default.button.update.label" default="Update" />
 							</button>
-							<button type="submit" class="btn btn-danger"
+							<button type="submit" class="btn btn-sm btn-danger"
 								name="_action_delete" formnovalidate>
-								<i class="icon-trash icon-white"></i>
+								
 								<g:message code="default.button.delete.label" default="Delete" />
 							</button>
 						</div>

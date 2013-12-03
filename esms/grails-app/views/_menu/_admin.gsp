@@ -1,6 +1,6 @@
 <ul class="nav pull-right">
 	<li class="dropdown">
-		<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user icon-white"></i><g:message code="default.admin.label" default="Admin"/><b class="caret"></b></a>
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user glyphicon glyphicon-white"></i><g:message code="default.admin.label" default="Admin"/><b class="caret"></b></a>
 		<ul class="dropdown-menu">
 			<li class="">
 				<a tabindex="-1" href="#"><b>Technical Admin</b></a>

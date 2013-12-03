@@ -1,7 +1,7 @@
 <div class="page-header">
-	<h1>
+	<h3>
 		Mark As Sent
-	</h1>
+	</h3>
 </div>
 
 <div

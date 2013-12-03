@@ -1,5 +1,5 @@
 <!-- Quotes -->
-<table class="table table-striped table-hover">
+<table class="table table-striped table-condensed table-bordered">
 	<thead>
 		<tr>
 			<g:sortableColumn property="payment"
@@ -52,7 +52,7 @@
 				</td>
 				
 				<td class="link">
-					<g:link action="show" controller="payment" id="${paymentItemInstance.payment?.id}" class="btn btn-small">
+					<g:link action="show" controller="payment" id="${paymentItemInstance.payment?.id}" class="btn btn-default btn-sm">
 						Show &raquo;</g:link>
 				</td>
 			</tr>

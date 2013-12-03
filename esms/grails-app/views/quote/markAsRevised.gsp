@@ -1,7 +1,7 @@
 <div class="page-header">
-	<h1>
+	<h3>
 		Reason for Revision.
-	</h1>
+	</h3>
 </div>
 
 <div

@@ -1,11 +1,11 @@
 <header>
 	<div id="main-navbar" class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
-			<div class="container-fluid">
-				<div class="row-fluid">
-				<div class="span12">
-					<div class="row-fluid">
-						<div class="span12">
+			<div class="container">
+				<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-12">
 							<div class="pull-left">
 								<%--Left-side entries--%>
 								<ul class="nav nav-pills">
@@ -89,8 +89,8 @@
 						</div>
 					</div>
 
-					<div class="row-fluid">
-						<div class="span12">
+					<div class="row">
+						<div class="col-md-12">
 							<div class="pull-right" style="margin-left:0%;">
 								<ul class="nav user_menu">
 									<li><g:form style="height:32px;margin:0px;">
