@@ -29,20 +29,21 @@
 				</h3>
 			</div>
 
-			<fieldset>
-				<g:form class="form-horizontal" action="create"
-					>
+			<div class="well">
+				<g:form class="form-horizontal" action="create">
 					<fieldset>
 						<g:render template="form"></g:render>
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary">
-								
-								<g:message code="default.button.create.label" default="Create" />
-							</button>
+							<div class="col-lg-10 col-lg-offset-2">
+								<button type="submit" class="btn btn-sm btn-primary">
+									
+									<g:message code="default.button.create.label" default="Create" />
+								</button>
+							</div>
 						</div>
 					</fieldset>
 				</g:form>
-			</fieldset>
+			</div>
 		</div>
 	</div>
 </body>

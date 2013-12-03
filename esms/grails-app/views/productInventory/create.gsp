@@ -29,20 +29,7 @@
 				</h3>
 			</div>
 
-			<fieldset>
-				<g:form class="form-horizontal" action="create"
-					>
-					<fieldset>
-						<g:render template="form"></g:render>
-						<div class="form-group">
-							<button type="submit" class="btn btn-primary">
-								
-								<g:message code="default.button.create.label" default="Create" />
-							</button>
-						</div>
-					</fieldset>
-				</g:form>
-			</fieldset>
+			<bs3:form action="create"/>	
 		</div>
 	</div>
 </body>

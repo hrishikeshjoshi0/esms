@@ -30,10 +30,6 @@
 </head>
 
 <body>
-	<div id="spinner" style="display: none">
-		<img src="${resource(dir: 'img', file: 'ajax_loader.gif')}" alt="" />
-	</div>
-	
 	<div id="maincontainer">
 		
 		<!-- header start-->

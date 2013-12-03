@@ -24,9 +24,7 @@
 
 			<bs3:pageHeader pageHeaderLabel="${message(code: 'default.edit.label',args:[entityName])}" />
 
-			<bs3:form action="edit" />
-			
-			<fieldset>
+			<div class="well">
 				<g:form class="form-horizontal" action="edit"
 					id="${productInstance?.id}">
 					<g:hiddenField name="version" value="${productInstance?.version}" />
@@ -34,18 +32,18 @@
 						<g:render template="form"></g:render>
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary">
-								
 								<g:message code="default.button.update.label" default="Update" />
 							</button>
 							<button type="submit" class="btn btn-sm btn-danger"
 								name="_action_delete" formnovalidate>
-								
+
 								<g:message code="default.button.delete.label" default="Delete" />
 							</button>
 						</div>
 					</fieldset>
 				</g:form>
-			</fieldset>
+			</div>
+
 		</div>
 	</div>
 </body>

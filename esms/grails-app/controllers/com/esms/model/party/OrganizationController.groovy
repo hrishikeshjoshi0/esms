@@ -185,7 +185,7 @@ class OrganizationController {
 		def productName 
 		activeContract?.orderItems?.each {
 			def p = Product.findByProductNumber(it.productNumber)
-			if(p.productType == 'SERVICE') {
+			if(p?.productType == 'SERVICE') {
 				productName = p.productName
 			}
 		}

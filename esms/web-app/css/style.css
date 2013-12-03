@@ -270,7 +270,7 @@
 		.sdb_h_active a {background: url("../img/bullet_green.png") no-repeat 98% center}
 
 	/* login page */
-		 body.login_page {
+		/*  body.login_page {
 			background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #3a87ad),color-stop(1, #3a87ad));
 		}
         .login_page  {margin:40px 20px 20px;}
@@ -281,7 +281,7 @@
 		.login_page .btm_b {padding:12px 20px;border-top:1px solid #e7e7e7;background:#f7f7f7;-moz-border-radius-topleft: 0px;-moz-border-radius-topright: 0px;-moz-border-radius-bottomright: 6px;-moz-border-radius-bottomleft: 6px;-webkit-border-radius: 0px 0px 6px 6px;border-radius: 0px 0px 6px 6px}
 		.login_page .links_b {font-size:11px;text-align:center}
 		.login_page .link_reg {font-size:11px;padding:5px 0 0;display:block}
-		.alert-login {margin:10px 10px 0}
+		.alert-login {margin:10px 10px 0} */
 	   
 	/* error pages */
 		.error_page {background:#eee}

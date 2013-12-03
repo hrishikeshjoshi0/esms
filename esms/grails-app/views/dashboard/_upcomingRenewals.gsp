@@ -5,7 +5,7 @@
 	}
 </script>
 <div class="dashboard-widget-header">
-	<h3>
+	<h5>
 		Upcoming Renewals for 
 		<g:select name="upcomingRenewalMonthParam" from="${filteredMonthMap}"
 				optionKey="key" optionValue="value"
@@ -19,7 +19,7 @@
 				onchange="${remoteFunction(action: 'upcomingRenewals',onLoading:'updateDiv();',
                        update: [success: 'updateDiv'],method:'GET',onFailure:'alert(\'Error\');',
                        params: '\'upcomingRenewalMonthParam=\' + document.getElementById(\'upcomingRenewalMonthParam\').value + \'&upcomingRenewalYearParam=\' + this.value')}"/>                       
-	</h3>
+	</h5>
 </div>
 
 <table class="table table-striped table-condensed table-bordered">

@@ -13,10 +13,12 @@
 	
 	<div class="row">
 		<div class="col-md-12">
-			<fieldset>
-				<fileuploader:form upload="docs" successAction="createDocument" partyId="${params.partyId}" 
-						successController="docs" errorAction="index" errorController="docs" />
-			</fieldset>		
+			<div class="well">
+					<fieldset>
+						<fileuploader:form upload="docs" successAction="createDocument" partyId="${params.partyId}" 
+								successController="docs" errorAction="index" errorController="docs" />
+					</fieldset>
+			</div>					
 		</div>
 	</div>
 </body>

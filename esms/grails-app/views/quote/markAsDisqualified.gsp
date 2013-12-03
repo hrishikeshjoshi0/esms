@@ -9,7 +9,7 @@
 	<div class="controls">
 		<g:textArea name="disqualificationReason" value="${quoteInstance?.disqualificationReason}"
 			cols="40" rows="5" maxlength="1000" style="width:80%;" />
-		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'disqualificationReason', 'error')}
+		<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'notes', 'error')}
 		</span>
 	</div>
 </div>

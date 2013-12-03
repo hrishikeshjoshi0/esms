@@ -6,18 +6,13 @@
         <title>Login</title>
     
         <!-- Bootstrap framework -->
-            <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
-            <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.min.css" />
-        <!-- theme color-->
-            <link rel="stylesheet" href="css/blue.css" />
-        <!-- tooltip -->    
-			<link rel="stylesheet" href="lib/qtip2/jquery.qtip.min.css" />
-        <!-- main styles -->
-            <link rel="stylesheet" href="css/style.css" />
-    
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.min.css" />
+        <link rel="stylesheet" href="${resource(dir: 'bootstrap3', file: 'esms.css')}" media="screen">
+        
         <!-- Favicons and the like (avoid using transparent .png) -->
-            <link rel="shortcut icon" href="favicon.ico" />
-            <link rel="apple-touch-glyphicon glyphicon-precomposed" href="icon.png" />
+        <link rel="shortcut icon" href="favicon.ico" />
+        <link rel="apple-touch-glyphicon glyphicon-precomposed" href="icon.png" />
     
         <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
     
@@ -76,6 +71,8 @@
 		<script src="bootstrap/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function(){
+
+				$('#j_username').focus();
                 
 				//* boxes animation
 				form_wrapper = $('.login_box');

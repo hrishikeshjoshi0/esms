@@ -28,7 +28,7 @@
 	<script src="${resource(dir: 'bootstrap3/bootstrap/dist/js', file: 'bootstrap.min.js')}"></script>
 	<script src="${resource(dir: 'bootstrap3/assets/js', file: 'bootswatch.js')}"></script>
 	
-	<script src="${resource(dir: 'bootstrap3/assets/js', file: 'bsa.js')}"></script>
+	
 	<g:layoutHead />
 </head>
 
@@ -45,9 +45,9 @@
 
 		<!-- main content start-->
 		<div id="contentwrapperDashboard">
-			<div id="containerDashboard" style="margin:5px;padding:10px;margin-top: 40px;">
+			<div id="containerDashboard">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-10 col-md-offset-1">
 						<!--Body content-->
 						<!-- Secondary menu in one line (e.g., actions for current controller) -->
 						<g:if test="${flash.message}">

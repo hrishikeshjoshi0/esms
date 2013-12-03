@@ -105,7 +105,7 @@
 			--%>
 			
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-5">
 					<dl class="dl-horizontal" style="margin-left: -30px;">
 						<dt>
 							<g:message code="quote.sent.label" default="Sent" />
@@ -188,7 +188,7 @@
 						</g:if>
 					</dl>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-5">
 					<dl class="dl-horizontal" style="margin-left: -30px;">
 						<dt>
 							<g:message code="quote.quotedGrandTotal.label"

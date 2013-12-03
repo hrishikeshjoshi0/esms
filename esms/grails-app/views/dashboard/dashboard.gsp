@@ -5,13 +5,8 @@
 <html>
 <head>
 <meta name="layout" content="dashboardLayout">
-<g:set var="entityName"
-	value="${message(code: 'organization.label', default: 'Leads')}" />
 <resource:tabView />
-<resource:accordion />
 <title>Venus CRM</title>
-<style type="text/css">
-</style>
 
 </head>
 <body>
@@ -51,15 +46,15 @@
 	</div>
 
 	<hr class="dashboard-hr" />
-	
+
 	<div class="row">
 		<div class="col-md-12 dashboard-widget">
 			<div id="recentQuotesWidget" class="dashboard-widget">
 				<g:render template="/dashboard/recentQuotes" />
 			</div>
 		</div>
-	</div>	
-	
+	</div>
+
 	<hr class="dashboard-hr" />
 
 	<div class="row">
@@ -106,9 +101,9 @@
 			<g:render template="/dashboard/ordersPendingPayment" />
 		</div>
 	</div>
-	
+
 	<hr class="dashboard-hr" />
-	
+
 	<div class="row">
 		<div class="col-md-12 dashboard-widget">
 			<g:render template="/dashboard/openPayments" />

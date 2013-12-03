@@ -20,6 +20,7 @@
 	<resource:autoComplete skin="esmsAutocomplete" />
 	<resource:dateChooser />
 	<resource:tabView/>
+	<r:require module="chosen" />
 	<g:javascript library="application" />
 	<link rel="stylesheet" href="${resource(dir: 'bootstrap3', file: 'esms.css')}" media="screen">
 	
@@ -27,7 +28,7 @@
 	<script src="${resource(dir: 'bootstrap3/bootstrap/dist/js', file: 'bootstrap.min.js')}"></script>
 	<script src="${resource(dir: 'bootstrap3/assets/js', file: 'bootswatch.js')}"></script>
 	
-	<script src="${resource(dir: 'bootstrap3/assets/js', file: 'bsa.js')}"></script>
+	
 	<g:layoutHead />
 </head>
 <body>
@@ -37,7 +38,7 @@
 	<!-- Container -->
 	<div class="container">
 		<div class="row">
-			<div class="col-md-10">
+			<div class="col-md-9">
 				<div id="breadcrumb">
 					<g:render template="/_menu/breadcrumb"></g:render>
 				</div>
@@ -47,7 +48,7 @@
 				<g:pageProperty name="page.body" />
 			</div>
 			
-			<div class="col-md-2">
+			<div class="col-md-3">
 				<g:render template="/_menu/menubar3"></g:render>
 			</div>
 		</div>	
@@ -56,8 +57,8 @@
 		<footer>
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-12">
-						<small>Morya Solutions </small>
+					<div class="col-md-12">
+						Morya Solutions 
 					</div>
 				</div>
 			</div>

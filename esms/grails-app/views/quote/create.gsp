@@ -28,8 +28,8 @@
 					<g:message code="default.create.label" args="[entityName]" />
 				</h3>
 			</div>
-
-			<fieldset>
+			
+			<div class="well">
 				<g:form class="form-horizontal" action="create">
 					<fieldset>
 						<g:render template="form"></g:render>
@@ -124,7 +124,7 @@
 						</div>
 					</fieldset>
 				</g:form>
-			</fieldset>
+			</div>				
 		</div>
 	</div>
 </body>

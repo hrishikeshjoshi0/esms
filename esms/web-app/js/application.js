@@ -14,12 +14,8 @@ if (typeof jQuery !== 'undefined') {
        $.ajaxSetup ({  
            cache: false  
        });  
-       var ajax_load = "Loading";  
+       var ajax_load = "";  
        $("#new_tasks").html(ajax_load).load(loadUrl);  
-       
-       /*$('.modal').live('hidden', function(e) {
-    	    location.reload();
-    	});*/
        
        $(document).ready(function() {
 			var autocompleteQueryField = $('input[name="q"]');
