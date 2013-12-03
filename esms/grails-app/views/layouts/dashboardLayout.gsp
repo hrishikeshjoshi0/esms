@@ -23,12 +23,9 @@
 	<resource:tabView/>
 	<g:javascript library="application" />
 	<link rel="stylesheet" href="${resource(dir: 'bootstrap3', file: 'esms.css')}" media="screen">
-	
 	<script src="${resource(dir: 'bootstrap3/jquery', file: 'jquery.min.js')}"></script>
 	<script src="${resource(dir: 'bootstrap3/bootstrap/dist/js', file: 'bootstrap.min.js')}"></script>
 	<script src="${resource(dir: 'bootstrap3/assets/js', file: 'bootswatch.js')}"></script>
-	
-	
 	<g:layoutHead />
 </head>
 

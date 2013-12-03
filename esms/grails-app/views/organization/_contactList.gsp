@@ -1,7 +1,6 @@
 <div class="pull-right">
-	<a data-toggle="modal" href="#" data-target="#contactModal" role="button" class="btn btn-default btn-sm"> 
-		<i class="glyphicon glyphicon-plus"></i> New Contact
-	</a>
+	<modalbox:createLink controller="organization" action="createContact" id="${organizationInstance?.id}"
+		title="Create Contact" width="900">New Contact</modalbox:createLink>
 </div>
 
 <!-- Contacts -->

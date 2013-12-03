@@ -20,8 +20,7 @@
 	<resource:autoComplete skin="esmsAutocomplete" />
 	<resource:dateChooser />
 	<resource:tabView/>
-	<r:require module="chosen" />
-	<g:javascript library="application" />
+	
 	<link rel="stylesheet" href="${resource(dir: 'bootstrap3', file: 'esms.css')}" media="screen">
 	
 	<script src="${resource(dir: 'bootstrap3/jquery', file: 'jquery.min.js')}"></script>
@@ -67,7 +66,7 @@
 	<!-- Container Ends -->
 	
 	<g:javascript library="application" />
-	
+	<modalbox:modalIncludes />
 	<r:layoutResources disposition="defer"/>
 </body>
 </html>

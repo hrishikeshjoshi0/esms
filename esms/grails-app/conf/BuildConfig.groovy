@@ -73,5 +73,7 @@ grails.project.dependency.resolution = {
 		compile ":audit-logging:0.5.4"
 		
 		compile ":searchable:0.6.4"
+		
+		compile ":modalbox:0.4"
     }
 }
