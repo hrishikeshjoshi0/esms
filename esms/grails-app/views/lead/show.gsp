@@ -20,42 +20,77 @@
 				</h3>
 			</div>
 
-			<div class="table-responsive">				
-				<table class="table table-striped table-condensed table-bordered">
-					<tbody>
-						<tr>
-							<td><g:message code="organization.externalId.label" default="External Id" /></td>
+			<g:form>
+				<g:hiddenField name="id" value="${organizationInstance?.id}" />
+				<div class="form-actions">
+					<!-- TODO : HRISHI disabled temporarily -->
+					<g:link class="btn" action="edit" id="${organizationInstance?.id}">
+						<g:message code="default.button.edit.label" default="Edit" />
+					</g:link>
+					<button class="btn btn-danger" type="submit" name="_action_delete">
+						<g:message code="default.button.delete.label" default="Delete" />
+					</button>
+					<%--<a data-toggle="modal" href="#" data-target="#contactModal" role="button" class="btn"> 
+						<i class="icon-plus"></i> New Contact
+					</a>
+					<a data-toggle="modal" href="#" data-target="#addressModal" role="button" class="btn"> 
+						<i class="icon-plus"></i> New Address
+					</a>
+					<a data-toggle="modal" href="#" data-target="#phoneBookModal"
+						role="button" class="btn"> <i class="icon-plus"></i> New Phone Book
+					</a>
+					--%>
+					<g:if test="${organizationInstance.salesStatus == 'LEAD'}">
+						<g:link controller="organization" action="convertLeadToCustomer"
+							id="${organizationInstance?.id}" role="button" class="btn">
+							Convert Lead
+						</g:link>
 
-							<td><g:fieldValue bean="${organizationInstance}" field="externalId" /></td>
+						<button class="btn btn-danger" type="submit" name="_action_disqualifyLead">
+							Disqualify Lead
+						</button>
+					</g:if>
+				</div>
+			</g:form>
 
-							<td><g:message code="organization.assignedTo.label"
-									default="Assigned To" /></td>
-							
-							<td><g:fieldValue bean="${organizationInstance}" field="assignedTo" /></td>		
-						</tr>
+			<dl class="dl-horizontal" style="margin-left: -30px;">
+				<dt>
+					<g:message code="organization.externalId.label"
+						default="External Id" />
+				</dt>
 
-						<tr>
-							<td>
-								<g:message code="organization.salesStatus.label"
-									default="Sales Status" />
-							</td>
+				<dd>
+					<g:fieldValue bean="${organizationInstance}" field="externalId" />
+				</dd>
 
-							<td>
-								<g:fieldValue bean="${organizationInstance}" field="salesStatus" />
-							</td>
+				<dt>
+					<g:message code="organization.assignedTo.label"
+						default="Assigned To" />
+				</dt>
 
-							<td>
-								<g:message code="organization.reasonForChange.label"
-									default="Reason for Change" />
-							</td>
+				<dd>
+					<g:fieldValue bean="${organizationInstance}" field="assignedTo" />
+				</dd>
 
-							<td>
-								<g:fieldValue bean="${organizationInstance}" field="description" />
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+				<dt>
+					<g:message code="organization.salesStatus.label"
+						default="Sales Status" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${organizationInstance}" field="salesStatus" />
+				</dd>
+
+				<dt>
+					<g:message code="organization.reasonForChange.label"
+						default="Reason for Change" />
+				</dt>
+
+				<dd>
+					<g:fieldValue bean="${organizationInstance}" field="description" />
+				</dd>
+
+			</dl>
 		</div>
 	</div>
 

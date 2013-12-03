@@ -2,9 +2,10 @@
 <!doctype html>
 <html>
 <head>
-	<meta name="layout" content="bootstrap3">
-	<g:set var="entityName" value="${message(code: 'product.label', default: 'Product')}" />
-	<title><g:message code="default.show.label" args="[entityName]" /></title>
+<meta name="layout" content="bootstrap3">
+<g:set var="entityName"
+	value="${message(code: 'product.label', default: 'Product')}" />
+<title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
 	<div class="row">
@@ -15,31 +16,31 @@
 				</h2>
 			</div>
 
-			<div class="well">
-				<g:form>
-					<g:hiddenField name="id" value="${productInstance?.id}" />
-						<%--<g:link class="btn-sm" action="edit" id="${productInstance?.id}">
+			<g:form>
+				<g:hiddenField name="id" value="${productInstance?.id}" />
+				<%--<g:link class="btn-sm" action="edit" id="${productInstance?.id}">
 							
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
 						--%>
-						<g:if test="${productInstance?.isVirtual == false && productInstance?.requiresInventory == null}">
-							<g:link class="btn btn-default btn-sm" action="create" controller="productInventory"
-								param="['product.id':productInstance?.id]">
+				<g:if
+					test="${productInstance?.isVirtual == false && productInstance?.requiresInventory == null}">
+					<g:link class="btn btn-default btn-sm" action="create"
+						controller="productInventory"
+						param="['product.id':productInstance?.id]">
 								
 								Add Inventory
 							</g:link>
-						</g:if>
-						<button class="btn btn-sm btn-danger" type="submit" name="_action_delete">
-							
-							<g:message code="default.button.delete.label" default="Delete" />
-						</button>
-				</g:form>
-			</div>
-			
+				</g:if>
+				<button class="btn btn-sm btn-danger" type="submit"
+					name="_action_delete">
+
+					<g:message code="default.button.delete.label" default="Delete" />
+				</button>
+			</g:form>
+
 			<div class="table-responsive">
-				<table
-					class="table table-striped table-condensed table-bordered">
+				<table class="table table-striped table-condensed table-bordered">
 					<tbody>
 						<tr>
 							<td><g:message code="product.productName.label"
@@ -76,7 +77,7 @@
 							<td><g:formatDate
 									date="${productInstance?.salesDiscontinuationDate}" /></td>
 						</tr>
-						<tr>			
+						<tr>
 							<td><g:message code="product.requiresInventory.label"
 									default="Requires Inventory" /></td>
 
@@ -102,7 +103,7 @@
 						</tr>
 					</tbody>
 				</table>
-			</div>			
+			</div>
 		</div>
 	</div>
 
@@ -169,6 +170,6 @@
 			</div>
 			--%>
 		</div>
-	</div>	
+	</div>
 </body>
 </html>

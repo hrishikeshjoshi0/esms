@@ -44,7 +44,6 @@
 
 			<g:form>
 				<g:hiddenField name="id" value="${organizationInstance?.id}" />
-				<div class="well">
 
 					<!-- TODO : HRISHI Disabled temporarily -->
 					<%--<g:link class="btn btn-default btn-sm" action="edit" id="${organizationInstance?.id}">
@@ -69,7 +68,6 @@
 						
 						 	Create Task
 						</g:link>
-				</div>
 			</g:form>
 
 			<div class="row">
