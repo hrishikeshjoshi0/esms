@@ -1,6 +1,6 @@
 <div class="pull-right">
 	<a data-toggle="modal" href="#" data-target="#addressModal" role="button" class="btn btn-default btn-sm"> 
-		<i class="glyphicon glyphicon-plus"></i> New Address
+		 New Address
 	</a>
 </div>
 

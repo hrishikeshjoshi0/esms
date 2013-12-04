@@ -33,11 +33,11 @@
 				<g:form class="form-horizontal" action="markAsTerminated" id="${employeeInstance?.id}" method="POST">
 					<fieldset>
 						<div
-							class="control-group fieldcontain ${hasErrors(bean: employeeInstance, field: 'employmentEndDate', 'error')} required">
-							<label for="salary" class="control-label"><g:message
+							class="form-group fieldcontain ${hasErrors(bean: employeeInstance, field: 'employmentEndDate', 'error')} required">
+							<label for="salary" class="col-lg-2 control-label"><g:message
 									code="employee.employmentEndDate.label" default="Employment End Date" /><span
 								class="required-indicator">*</span></label>
-							<div class="controls">
+							<div class="col-lg-10">
 								<g:datePicker name="employmentEndDate" precision="day" value="${employeeInstance?.employmentEndDate}"/>
 								<span class="help-inline">
 									${hasErrors(bean: employeeInstance, field: 'employmentEndDate', 'error')}

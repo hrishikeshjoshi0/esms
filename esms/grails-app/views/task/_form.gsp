@@ -3,11 +3,11 @@
 <div class="row">
 	<div class="col-md-6">
 		<div
-			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'taskName', 'error')} required">
-			<label for="taskName" class="control-label"><g:message
+			class="form-group fieldcontain ${hasErrors(bean: taskInstance, field: 'taskName', 'error')} required">
+			<label for="taskName" class="col-lg-2 control-label"><g:message
 					code="task.taskName.label" default="Task Name" /><span
 				class="required-indicator">*</span></label>
-			<div class="controls">
+			<div class="col-lg-10">
 				<g:textField name="taskName" required=""
 					value="${taskInstance?.taskName}" />
 				<span class="help-inline"> ${hasErrors(bean: taskInstance, field: 'taskName', 'error')}
@@ -22,10 +22,10 @@
 <div class="row">
 	<div class="col-md-6">
 		<div
-			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'status', 'error')} ">
-			<label for="status" class="control-label"><g:message
+			class="form-group fieldcontain ${hasErrors(bean: taskInstance, field: 'status', 'error')} ">
+			<label for="status" class="col-lg-2 control-label"><g:message
 					code="task.status.label" default="Status" /></label>
-			<div class="controls">
+			<div class="col-lg-10">
 				<g:select name="status"
 					from="${taskInstance.constraints.status.inList}"
 					value="${taskInstance?.status}" valueMessagePrefix="task.status"
@@ -38,10 +38,10 @@
 
 	<div class="col-md-6">
 		<div
-			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'priority', 'error')} ">
-			<label for="priority" class="control-label"><g:message
+			class="form-group fieldcontain ${hasErrors(bean: taskInstance, field: 'priority', 'error')} ">
+			<label for="priority" class="col-lg-2 control-label"><g:message
 					code="task.priority.label" default="Priority" /></label>
-			<div class="controls">
+			<div class="col-lg-10">
 				<g:select name="priority"
 					from="${taskInstance.constraints.priority.inList}"
 					value="${taskInstance?.priority}"
@@ -56,10 +56,10 @@
 <div class="row">
 	<div class="col-md-6">
 		<div
-			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'assignedTo', 'error')} ">
-			<label for="assignedTo" class="control-label"><g:message
+			class="form-group fieldcontain ${hasErrors(bean: taskInstance, field: 'assignedTo', 'error')} ">
+			<label for="assignedTo" class="col-lg-2 control-label"><g:message
 					code="task.assignedTo.label" default="Assigned To" /></label>
-			<div class="controls">
+			<div class="col-lg-10">
 				<g:textField name="assignedTo" value="${taskInstance?.assignedTo}" />
 				<span class="help-inline"> ${hasErrors(bean: taskInstance, field: 'assignedTo', 'error')}
 				</span>
@@ -69,10 +69,10 @@
 
 	<div class="col-md-6">
 		<div
-			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'assignedToValue', 'error')} ">
-			<label for="assignedToValue" class="control-label"><g:message
+			class="form-group fieldcontain ${hasErrors(bean: taskInstance, field: 'assignedToValue', 'error')} ">
+			<label for="assignedToValue" class="col-lg-2 control-label"><g:message
 					code="task.assignedToValue.label" default="Assigned To Value" /></label>
-			<div class="controls">
+			<div class="col-lg-10">
 				<g:textField name="assignedToValue"
 					value="${taskInstance?.assignedToValue}" />
 				<span class="help-inline"> ${hasErrors(bean: taskInstance, field: 'assignedToValue', 'error')}
@@ -85,10 +85,10 @@
 <div class="row">
 	<div class="col-md-6">
 		<div
-			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'relatedTo', 'error')} ">
-			<label for="relatedTo" class="control-label"><g:message
+			class="form-group fieldcontain ${hasErrors(bean: taskInstance, field: 'relatedTo', 'error')} ">
+			<label for="relatedTo" class="col-lg-2 control-label"><g:message
 					code="task.relatedTo.label" default="Related To" /></label>
-			<div class="controls">
+			<div class="col-lg-10">
 				<g:select name="relatedTo"
 					from="${taskInstance.constraints.relatedTo.inList}"
 					value="${taskInstance?.relatedTo}"
@@ -101,10 +101,10 @@
 
 	<div class="col-md-6">
 		<div
-			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'relatedToValue', 'error')} ">
-			<label for="relatedToValue" class="control-label"><g:message
+			class="form-group fieldcontain ${hasErrors(bean: taskInstance, field: 'relatedToValue', 'error')} ">
+			<label for="relatedToValue" class="col-lg-2 control-label"><g:message
 					code="task.relatedToValue.label" default="Related To Value" /></label>
-			<div class="controls">
+			<div class="col-lg-10">
 				<g:textField name="relatedToValue"
 					value="${taskInstance?.relatedToValue}" />
 				<span class="help-inline"> ${hasErrors(bean: taskInstance, field: 'relatedToValue', 'error')}
@@ -117,10 +117,10 @@
 <div class="row">
 	<div class="col-md-6">
 		<div
-			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'dateTime', 'error')}">
-			<label for="dateTime" class="control-label"><g:message
+			class="form-group fieldcontain ${hasErrors(bean: taskInstance, field: 'dateTime', 'error')}">
+			<label for="dateTime" class="col-lg-2 control-label"><g:message
 					code="task.dateTime.label" default="Date Time" /></label>
-			<div class="controls">
+			<div class="col-lg-10">
 				<richui:dateChooser name="dateTime" value="${taskInstance?.dateTime}" />
 				<span class="help-inline"> ${hasErrors(bean: taskInstance, field: 'dateTime', 'error')}
 				</span>
@@ -130,10 +130,10 @@
 
 	<div class="col-md-6">
 		<div
-			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'dueDateTime', 'error')}">
-			<label for="dueDateTime" class="control-label"><g:message
+			class="form-group fieldcontain ${hasErrors(bean: taskInstance, field: 'dueDateTime', 'error')}">
+			<label for="dueDateTime" class="col-lg-2 control-label"><g:message
 					code="task.dueDateTime.label" default="Due Date Time" /></label>
-			<div class="controls">
+			<div class="col-lg-10">
 				<richui:dateChooser name="dueDateTime" value="${taskInstance?.dueDateTime}" />
 				<span class="help-inline"> ${hasErrors(bean: taskInstance, field: 'dueDateTime', 'error')}
 				</span>
@@ -145,10 +145,10 @@
 <div class="row">
 	<div class="col-md-6">
 		<div
-			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'notification', 'error')} ">
-			<label for="notification" class="control-label"><g:message
+			class="form-group fieldcontain ${hasErrors(bean: taskInstance, field: 'notification', 'error')} ">
+			<label for="notification" class="col-lg-2 control-label"><g:message
 					code="task.notification.label" default="Notification" /></label>
-			<div class="controls">
+			<div class="col-lg-10">
 				<g:checkBox name="notification"
 					value="${taskInstance?.notification}" />
 				<span class="help-inline"> ${hasErrors(bean: taskInstance, field: 'notification', 'error')}
@@ -169,8 +169,8 @@
 <div class="row">
 	<div class="col-md-12">
 		<div
-			class="control-group fieldcontain ${hasErrors(bean: taskInstance, field: 'taskDescription', 'error')} ">
-			<div class="controls">
+			class="form-group fieldcontain ${hasErrors(bean: taskInstance, field: 'taskDescription', 'error')} ">
+			<div class="col-lg-10">
 				<g:textArea name="taskDescription" rows="10" cols="100"
 					value="${taskInstance?.taskDescription}" />
 				<span class="help-inline"> ${hasErrors(bean: taskInstance, field: 'taskDescription', 'error')}

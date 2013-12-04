@@ -35,11 +35,11 @@ function fetchInfo(id) {
 </script>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'orderNumber', 'error')} required">
-	<label for="orderNumber" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'orderNumber', 'error')} required">
+	<label for="orderNumber" class="col-lg-2 control-label"><g:message
 			code="order.orderNumber.label" default="Order Number" /><span
 		class="required-indicator">*</span></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:textField name="orderNumber" required="" readOnly="readOnly"
 			value="${orderInstance?.orderNumber}" />
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'orderNumber', 'error')}
@@ -49,11 +49,11 @@ function fetchInfo(id) {
 
 <g:if test="${orderInstance?.referenceQuoteNumber}">
 <div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'referenceQuoteNumber', 'error')} required">
-	<label for="orderNumber" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'referenceQuoteNumber', 'error')} required">
+	<label for="orderNumber" class="col-lg-2 control-label"><g:message
 			code="order.referenceQuoteNumber.label"
 			default="Reference Quote Number" /><span class="required-indicator"> </span></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:textField name="referenceQuoteNumber" required=""
 			readOnly="readOnly" value="${orderInstance?.referenceQuoteNumber}" />
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'referenceQuoteNumber', 'error')}
@@ -63,11 +63,11 @@ function fetchInfo(id) {
 </g:if>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'organization', 'error')} required">
-	<label for="organization" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'organization', 'error')} required">
+	<label for="organization" class="col-lg-2 control-label"><g:message
 			code="order.organization.label" default="Organization" /><span
 		class="required-indicator">*</span></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:select name="organization.id" from="${Organization.list()}"
 			optionKey="id" optionValue="name" class="input-xxlarge"
 			onchange="fetchInfo(this.value);"
@@ -78,10 +78,10 @@ function fetchInfo(id) {
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'status', 'error')} ">
-	<label for="status" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'status', 'error')} ">
+	<label for="status" class="col-lg-2 control-label"><g:message
 			code="order.status.label" default="Status" /></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:select name="status" readonly="readOnly"
 			from="${orderInstance.constraints.status.inList}"
 			value="${orderInstance?.status}" valueMessagePrefix="order.status"
@@ -92,10 +92,10 @@ function fetchInfo(id) {
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'type', 'error')} ">
-	<label for="type" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'type', 'error')} ">
+	<label for="type" class="col-lg-2 control-label"><g:message
 			code="order.type.label" default="Type" /></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:select name="type" from="${orderInstance.constraints.type.inList}"
 			value="${orderInstance?.type}" valueMessagePrefix="order.type"
 			noSelection="['': '']" />
@@ -106,11 +106,11 @@ function fetchInfo(id) {
 
 <g:if test="${orderInstance?.type = 'SERVICE' }">
 	<div
-		class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'contractFromDate', 'error')} ">
-		<label for="contractFromDate" class="control-label"><g:message
+		class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'contractFromDate', 'error')} ">
+		<label for="contractFromDate" class="col-lg-2 control-label"><g:message
 				code="order.contractFromDate.label" default="From Date" /><span
 			class="required-indicator">*</span></label>
-		<div class="controls">
+		<div class="col-lg-10">
 			<richui:dateChooser name="contractFromDate" value="${orderInstance?.contractFromDate}" />
 			<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'contractFromDate', 'error')}
 			</span>
@@ -118,10 +118,10 @@ function fetchInfo(id) {
 	</div>
 
 	<div
-		class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'contractToDate', 'error')} ">
-		<label for="contractToDate" class="control-label"><g:message
+		class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'contractToDate', 'error')} ">
+		<label for="contractToDate" class="col-lg-2 control-label"><g:message
 				code="order.expiryDate.label" default="To Date" /></label>
-		<div class="controls">
+		<div class="col-lg-10">
 			<richui:dateChooser name="contractToDate" value="${orderInstance?.contractToDate}" />
 			<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'contractToDate', 'error')}
 			</span>
@@ -129,11 +129,11 @@ function fetchInfo(id) {
 	</div>
 </g:if>
 <%--<div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'issueDate', 'error')} required">
-	<label for="issueDate" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'issueDate', 'error')} required">
+	<label for="issueDate" class="col-lg-2 control-label"><g:message
 			code="order.issueDate.label" default="Issue Date" /><span
 		class="required-indicator">*</span></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:datePicker name="issueDate" precision="day"
 			value="${orderInstance?.issueDate}" />
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'issueDate', 'error')}
@@ -142,10 +142,10 @@ function fetchInfo(id) {
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'expiryDate', 'error')} ">
-	<label for="expiryDate" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'expiryDate', 'error')} ">
+	<label for="expiryDate" class="col-lg-2 control-label"><g:message
 			code="order.expiryDate.label" default="Expiry Date" /></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:datePicker name="expiryDate" precision="day"
 			value="${orderInstance?.expiryDate}" />
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'expiryDate', 'error')}
@@ -155,10 +155,10 @@ function fetchInfo(id) {
 --%>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'contactName', 'error')} ">
-	<label for="contactName" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'contactName', 'error')} ">
+	<label for="contactName" class="col-lg-2 control-label"><g:message
 			code="order.contactName.label" default="Contact Name" /></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:textField name="contactName" value="${orderInstance?.contactName}" />
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'contactName', 'error')}
 		</span>
@@ -166,10 +166,10 @@ function fetchInfo(id) {
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'relatedTo', 'error')} ">
-	<label for="type" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'relatedTo', 'error')} ">
+	<label for="type" class="col-lg-2 control-label"><g:message
 			code="order.relatedTo.label" default="Related To" /></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:select name="relatedTo"
 			from="${orderInstance.constraints.relatedTo.inList}"
 			value="${orderInstance?.relatedTo}"
@@ -180,10 +180,10 @@ function fetchInfo(id) {
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'relatedToValue', 'error')} ">
-	<label for="relatedToValue" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'relatedToValue', 'error')} ">
+	<label for="relatedToValue" class="col-lg-2 control-label"><g:message
 			code="order.relatedToValue.label" default="Value" /></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:textField name="relatedToValue"
 			value="${orderInstance?.relatedToValue}" />
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'relatedToValue', 'error')}
@@ -192,11 +192,11 @@ function fetchInfo(id) {
 </div>
 
 <%--<div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'totalAmount', 'error')} required">
-	<label for="totalAmount" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'totalAmount', 'error')} required">
+	<label for="totalAmount" class="col-lg-2 control-label"><g:message
 			code="order.totalAmount.label" default="Total Amount" /><span
 		class="required-indicator">*</span></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:field type="number" name="totalAmount" step="any" required=""
 			value="${orderInstance.totalAmount}" />
 		<span class="help-inline">
@@ -206,11 +206,11 @@ function fetchInfo(id) {
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'totalTax', 'error')} required">
-	<label for="totalTax" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'totalTax', 'error')} required">
+	<label for="totalTax" class="col-lg-2 control-label"><g:message
 			code="order.totalTax.label" default="Total Tax" /><span
 		class="required-indicator">*</span></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:field type="number" name="totalTax" step="any" required=""
 			value="${orderInstance.totalTax}" />
 		<span class="help-inline">
@@ -220,11 +220,11 @@ function fetchInfo(id) {
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'totalDiscount', 'error')} required">
-	<label for="totalDiscount" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'totalDiscount', 'error')} required">
+	<label for="totalDiscount" class="col-lg-2 control-label"><g:message
 			code="order.totalDiscount.label" default="Total Discount" /><span
 		class="required-indicator">*</span></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:field type="number" name="totalDiscount" step="any" required=""
 			value="${orderInstance.totalDiscount}" />
 		<span class="help-inline">
@@ -234,11 +234,11 @@ function fetchInfo(id) {
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'grandTotal', 'error')} required">
-	<label for="grandTotal" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'grandTotal', 'error')} required">
+	<label for="grandTotal" class="col-lg-2 control-label"><g:message
 			code="order.grandTotal.label" default="Grand Total" /><span
 		class="required-indicator">*</span></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:field type="number" name="grandTotal" step="any" required=""
 			value="${orderInstance.grandTotal}" />
 		<span class="help-inline">
@@ -249,10 +249,10 @@ function fetchInfo(id) {
 
 --%>
 <div
-	class="control-group fieldcontain ${hasErrors(bean: orderInstance, field: 'description', 'error')} ">
-	<label for="description" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'description', 'error')} ">
+	<label for="description" class="col-lg-2 control-label"><g:message
 			code="order.description.label" default="Description" /></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:textField name="description" value="${orderInstance?.description}" />
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'description', 'error')}
 		</span>

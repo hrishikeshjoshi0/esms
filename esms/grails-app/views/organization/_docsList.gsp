@@ -1,7 +1,7 @@
 <div class="pull-right">
 	<a
 		href="<g:createLink controller="docs" action="upload" params="['partyId':organizationInstance.id]" />"
-		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> Upload Document
+		role="button" class="btn btn-default btn-sm">  Upload Document
 	</a>
 </div>
 

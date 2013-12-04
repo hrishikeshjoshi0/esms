@@ -1,6 +1,6 @@
 <div class="pull-right">
 	<a data-toggle="modal" href="#" data-target="#phoneBookModal"
-		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Phone Book
+		role="button" class="btn btn-default btn-sm">  New Phone Book
 	</a>
 </div>
 

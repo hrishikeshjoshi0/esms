@@ -27,8 +27,8 @@
 					<g:message code="default.edit.label" args="[entityName]" />
 				</h3>
 			</div>
-
-			<fieldset>
+			
+			<div class="well">
 				<g:form class="form-horizontal" action="edit"
 					id="${contactInstance?.id}"
 					>
@@ -42,13 +42,12 @@
 							</button>
 							<button type="submit" class="btn btn-sm btn-danger"
 								name="_action_delete" formnovalidate>
-								
 								<g:message code="default.button.delete.label" default="Delete" />
 							</button>
 						</div>
 					</fieldset>
 				</g:form>
-			</fieldset>
+			</div>
 		</div>
 	</div>
 </body>

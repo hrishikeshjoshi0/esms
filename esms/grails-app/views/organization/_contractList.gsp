@@ -1,6 +1,6 @@
 <div class="pull-right">
 	<a href="<g:createLink controller="contract" action="create"/>"
-		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Contract
+		role="button" class="btn btn-default btn-sm">  New Contract
 	</a>
 </div>
 

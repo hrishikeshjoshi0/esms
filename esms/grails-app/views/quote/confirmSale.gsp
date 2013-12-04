@@ -5,9 +5,9 @@
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'quotedGrandTotal', 'error')} ">
-	<div class="controls">
-		<label for="quotedGrandTotal" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'quotedGrandTotal', 'error')} ">
+	<div class="col-lg-10">
+		<label for="quotedGrandTotal" class="col-lg-2 control-label"><g:message
 			code="quote.quotedGrandTotal.label" default="Quoted Grand Total" />
 		</label>
 		<g:field type="number" name="quotedGrandTotal" required="" value="${quoteInstance.quotedGrandTotal}" readonly="readonly"/>
@@ -17,9 +17,9 @@
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'negotiatedGrandTotal', 'error')} ">
-	<div class="controls">
-		<label for="quotedGrandTotal" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'negotiatedGrandTotal', 'error')} ">
+	<div class="col-lg-10">
+		<label for="quotedGrandTotal" class="col-lg-2 control-label"><g:message
 			code="quote.negotiatedGrandTotal.label" default="Negotiated Grand Total" />
 		<span
 			class="required-indicator">*</span></label>

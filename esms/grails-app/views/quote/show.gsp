@@ -38,10 +38,9 @@
 
 					<g:if
 						test="${quoteInstance?.sent == false && quoteInstance?.quoteItems?.size() != 0}">
-						<a data-toggle="modal" href="#" data-target="#markAsSent"
-							role="button" class="btn btn-default btn-sm"> Mark
-							as Sent
-						</a>
+						<modalbox:createLink class="btn btn-default btn-sm"
+							controller="quote" action="markAsSent" id="${quoteInstance?.id}"
+							title="Create Contact" width="900">Mark As Sent</modalbox:createLink>
 					</g:if>
 
 					<!-- State:Pending -->
@@ -49,8 +48,9 @@
 						test="${quoteInstance?.status == 'PENDING' && quoteInstance?.quoteItems?.size() != 0}">
 						<g:if
 							test="${quoteInstance?.type == 'CONTRACT' && quoteInstance?.quoteItems?.size() != 0}">
-							<a data-toggle="modal" href="#" data-target="#markAsAccepted"
-								role="button" class="btn btn-default btn-sm"> Mark as Accepted </a>
+							<modalbox:createLink class="btn btn-default btn-sm"
+								controller="quote" action="markAsAccepted" id="${quoteInstance?.id}"
+								title="Create Contact" width="900">Mark as Accepted</modalbox:createLink>	
 						</g:if>
 						<g:elseif test="${quoteInstance?.quoteItems?.size() != 0}">
 							<g:link action="markAsAccepted" controller="quote"
@@ -58,35 +58,35 @@
 								Mark as Accepted
 							</g:link>
 						</g:elseif>
-						<a data-toggle="modal" href="#" data-target="#markAsRevised"
-							role="button" class="btn btn-default btn-sm">  Mark
-							as Revised
-						</a>
-						<a data-toggle="modal" href="#" data-target="#markAsDeclinedModal"
-							role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-trash"></i> Mark as
-							Declined
-						</a>
+						<modalbox:createLink class="btn btn-default btn-sm"
+								controller="quote" action="markAsRevised" id="${quoteInstance?.id}"
+								title="Create Contact" width="900">Mark as Revised</modalbox:createLink>
+						
+						<modalbox:createLink class="btn btn-default btn-sm"
+								controller="quote" action="markAsDeclined" id="${quoteInstance?.id}"
+								title="Create Contact" width="900">Mark as Declined</modalbox:createLink>		
 					</g:if>
 					<g:elseif
 						test="${quoteInstance?.status == 'ACCEPT' 
 						&& (quoteInstance.type == 'CONTRACT' || quoteInstance.type == 'MODERNIZATION' || quoteInstance.type == 'INSTALLATION' || quoteInstance.type == 'REPAIR') 
 						&& quoteInstance?.quoteItems?.size() != 0}">
 						<!-- State:Accept -->
-						<a data-toggle="modal" href="#" data-target="#confirmSaleModal"
-							role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-wrench"></i>
+						<modalbox:createLink class="btn btn-default btn-sm"
+								controller="quote" action="confirmSale" id="${quoteInstance?.id}"
+								title="Create Contact" width="900">
 							Confirm Sale
-						</a>
+						</modalbox:createLink>
 					</g:elseif>
 					<g:elseif
 						test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'REPAIR' && quoteInstance?.quoteItems?.size() != 0}">
-						<a data-toggle="modal" href="#" data-target="#confirmSaleModal"
-							role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-wrench"></i>
+						<modalbox:createLink class="btn btn-default btn-sm"
+								controller="quote" action="confirmSale" id="${quoteInstance?.id}"
+								title="Create Contact" width="900">
 							Confirm Sale
-						</a>
+						</modalbox:createLink>
 					</g:elseif>
 					<g:link action="markAsDisqualified" controller="quote"
 								id="${quoteInstance?.id}" class="btn btn-sm btn-warning">
-						
 						Mark as Disqualified
 					</g:link>
 				</div>
@@ -264,10 +264,11 @@
 			</richui:tabView>
 		</div>
 	</div>
-	<g:render template="declinedReason"></g:render>
+	<%--<g:render template="declinedReason"></g:render>
 	<g:render template="revisedReason"></g:render>
 	<g:render template="saveRecepient"></g:render>
 	<g:render template="confirmSale"></g:render>
 	<g:render template="acceptQuote"></g:render>
-</body>
+	--%>
+ </body>
 </html>

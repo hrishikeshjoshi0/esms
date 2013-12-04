@@ -3,11 +3,11 @@
 <div class="row">
 	<div class="col-md-6">
 		<div
-			class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'loggedDate', 'error')} required">
-			<label for="loggedDate" class="control-label"><g:message
+			class="form-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'loggedDate', 'error')} required">
+			<label for="loggedDate" class="col-lg-2 control-label"><g:message
 					code="eventLog.loggedDate.label" default="Logged Date" /><span
 				class="required-indicator">*</span></label>
-			<div class="controls">
+			<div class="col-lg-10">
 				<richui:dateChooser name="loggedDate" value="${eventLogInstance?.loggedDate}"/>	
 				<span class="help-inline">
 					${hasErrors(bean: eventLogInstance, field: 'loggedDate', 'error')}
@@ -18,11 +18,11 @@
 	
 	<div class="col-md-6">
 		<div
-			class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'workDoneBy', 'error')} required">
-			<label for="workDoneBy" class="control-label"><g:message
+			class="form-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'workDoneBy', 'error')} required">
+			<label for="workDoneBy" class="col-lg-2 control-label"><g:message
 					code="eventLog.workDoneBy.label" default="Work Done By" /><span
 				class="required-indicator">*</span></label>
-			<div class="controls">
+			<div class="col-lg-10">
 				<g:textField name="workDoneBy" required=""
 					value="${eventLogInstance?.workDoneBy}" />
 				<span class="help-inline">
@@ -36,11 +36,11 @@
 <div class="row">
 	<div class="col-md-6">
 		<div
-			class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'reviewedBy', 'error')} required">
-			<label for="reviewedBy" class="control-label"><g:message
+			class="form-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'reviewedBy', 'error')} required">
+			<label for="reviewedBy" class="col-lg-2 control-label"><g:message
 					code="eventLog.reviewedBy.label" default="Reviewed By" /><span
 				class="required-indicator">*</span></label>
-			<div class="controls">
+			<div class="col-lg-10">
 				<g:textField name="reviewedBy" required=""
 					value="${eventLogInstance?.reviewedBy}" />
 				<span class="help-inline">
@@ -55,10 +55,10 @@
 	<g:if test="${eventInstance?.eventType == 'BREAKDOWN CALL'}">
 		<div class="col-md-6">
 			<div
-				class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'isProblemReported', 'error')} ">
-				<label for="isProblemReported" class="control-label"><g:message
+				class="form-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'isProblemReported', 'error')} ">
+				<label for="isProblemReported" class="col-lg-2 control-label"><g:message
 						code="eventLog.isProblemReported.label" default="Is Problem Repeated" /></label>
-				<div class="controls">
+				<div class="col-lg-10">
 					<g:checkBox name="isProblemReported"
 						value="${eventLogInstance?.isProblemReported}" />
 					<span class="help-inline">
@@ -73,10 +73,10 @@
 	<g:if test="${eventInstance?.eventType == 'MAINTENANCE VISIT'}">
 		<div class="col-md-6">
 			<div
-				class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'toBeReplaced', 'error')} ">
-				<label for="tobeReplaced" class="control-label"><g:message
+				class="form-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'toBeReplaced', 'error')} ">
+				<label for="tobeReplaced" class="col-lg-2 control-label"><g:message
 						code="eventLog.toBeReplaced.label" default="To Be Replaced" /></label>
-				<div class="controls">
+				<div class="col-lg-10">
 					<g:checkBox name="toBeReplaced"
 						value="${eventLogInstance?.toBeReplaced}" />
 					<span class="help-inline">
@@ -90,10 +90,10 @@
 
 <!--  Comments  -->
 <div
-	class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'comments', 'error')} ">
-	<label for="comments" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'comments', 'error')} ">
+	<label for="comments" class="col-lg-2 control-label"><g:message
 			code="eventLog.comments.label" default="Comments" /></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:textArea name="comments" cols="40" rows="5" maxlength="1000"
 			value="${eventLogInstance?.comments}" />
 		<span class="help-inline">
@@ -103,10 +103,10 @@
 </div>
 
 <div
-	class="control-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'urgency', 'error')} ">
-	<label for="urgency" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: eventLogInstance, field: 'urgency', 'error')} ">
+	<label for="urgency" class="col-lg-2 control-label"><g:message
 			code="eventLog.urgency.label" default="Urgency" /></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:select name="urgency"
 			from="${eventLogInstance.constraints.urgency.inList}"
 			value="${eventLogInstance?.urgency}"

@@ -34,11 +34,11 @@
 				<g:form class="form-horizontal" action="renewalLost" id="${orderInstance?.id}">
 					<fieldset>
 						<div
-							class="control-group fieldcontain required">
-							<label for="grandTotal" class="control-label"><g:message
+							class="form-group fieldcontain required">
+							<label for="grandTotal" class="col-lg-2 control-label"><g:message
 									code="order.renewalLostReason.label" default="Renewal Lost Reason" /><span
 								class="required-indicator">*</span></label>
-							<div class="controls">
+							<div class="col-lg-10">
 								<g:textArea name="renewalLostReason" value="${params.renewalLostReason}" />
 							</div>
 						</div>

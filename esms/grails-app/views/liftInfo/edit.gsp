@@ -27,28 +27,27 @@
 					<g:message code="default.edit.label" args="[entityName]" />
 				</h3>
 			</div>
-
-			<fieldset>
-				<g:form class="form-horizontal" action="edit"
-					id="${liftInfoInstance?.id}"
-					>
+			
+			<div class="well">
+				<g:form class="form-horizontal" action="edit"id="${liftInfoInstance?.id}">
 					<g:hiddenField name="version" value="${liftInfoInstance?.version}" />
+					<g:hiddenField name="organization.id" value="${liftInfoInstance?.organization?.id}" />
 					<fieldset>
 						<g:render template="form"></g:render>
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary">
-								
-								<g:message code="default.button.update.label" default="Update" />
-							</button>
-							<button type="submit" class="btn btn-sm btn-danger"
-								name="_action_delete" formnovalidate>
-								
-								<g:message code="default.button.delete.label" default="Delete" />
-							</button>
-						</div>
+							<div class="col-lg-10 col-lg-offset-2">
+								<button type="submit" class="btn btn-primary">
+									<g:message code="default.button.update.label" default="Update" />
+								</button>
+								<button type="submit" class="btn btn-sm btn-danger"
+									name="_action_delete" formnovalidate>
+									<g:message code="default.button.delete.label" default="Delete" />
+								</button>
+							</div>
+						</div>						
 					</fieldset>
 				</g:form>
-			</fieldset>
+			</div>
 		</div>
 	</div>
 </body>

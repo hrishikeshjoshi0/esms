@@ -1,6 +1,11 @@
+<div class="pull-right">
+	<modalbox:createLink controller="organization" action="createPhoneBook" params="['party.id':organizationInstance?.id]" 
+		title="Create Phone Entry" width="900">New Phone</modalbox:createLink>
+</div>
+
 <%--<div class="pull-right">
 	<a data-toggle="modal" href="#" data-target="#phoneBookModal"
-		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New
+		role="button" class="btn btn-default btn-sm">  New
 		Phone Book
 	</a>
 </div>
@@ -63,30 +68,4 @@
 		<bootstrap:paginate
 			total="${organizationInstance?.phoneBooks?.size()}" />
 	</div>
-</div>
-
-<!-- Modal -->
-<div id="phoneBookModal" class="modal hide fade" tabindex="-1"
-	role="dialog"
-	data-remote="<g:createLink controller="organization" action="createPhoneBook"/>"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true">×</button>
-		<h3 id="myModalLabel">New PhoneBook</h3>
-	</div>
-	<g:form controller="organization" action="createPhoneBook"
-		method="POST">
-		<g:hiddenField name="party.id" value="${organizationInstance?.id}" />
-		<g:hiddenField name="createdFromOrganizationDetailView" value="true" />
-		<div class="modal-body"></div>
-		<div class="modal-footer">
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary">
-					
-					<g:message code="default.button.create.label" default="Create" />
-				</button>
-			</div>
-		</div>
-	</g:form>
 </div>

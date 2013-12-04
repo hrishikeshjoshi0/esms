@@ -1,6 +1,6 @@
 <div class="pull-right">
 	<g:link role="button" class="btn btn-default btn-sm" controller="orderInventoryAssignment" action="create" params="['order.id':orderInstance.id]">
-		<i class="glyphicon glyphicon-plus"></i> New Item
+		 New Item
 	</g:link>
 </div>
 

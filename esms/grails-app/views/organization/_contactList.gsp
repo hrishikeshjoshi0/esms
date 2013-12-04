@@ -1,5 +1,5 @@
 <div class="pull-right">
-	<modalbox:createLink controller="organization" action="createContact" id="${organizationInstance?.id}"
+	<modalbox:createLink controller="organization" action="createContact" params="['organization.id':organizationInstance?.id]" 
 		title="Create Contact" width="900">New Contact</modalbox:createLink>
 </div>
 
@@ -60,31 +60,4 @@
 </table>
 <div class="pagination">
 	<bootstrap:paginate total="${organizationInstance?.contacts?.size()}" />
-</div>
-
-<!-- Add New Contact -->
-<!-- Modal -->
-<div id="contactModal" class="modal hide fade" tabindex="-1" role="dialog" 
-	data-remote="<g:createLink controller="organization" action="createContact"/>"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true">×</button>
-		<h3 id="myModalLabel">New Contact</h3>
-	</div>
-	<g:form controller="organization" action="createContact" method="POST">
-		<g:hiddenField name="organization.id" value="${organizationInstance?.id}" />
-		<g:hiddenField name="createdFromOrganizationDetailView" value="true" />
-		<div class="modal-body">
-			
-		</div>
-		<div class="modal-footer">
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary">
-					
-					<g:message code="default.button.create.label" default="Create" />
-				</button>
-			</div>
-		</div>
-	</g:form>
 </div>

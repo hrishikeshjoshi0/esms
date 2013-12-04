@@ -1,11 +1,8 @@
-<%--<div class="pull-right">
-	<a data-toggle="modal" data-target="#addressModal" role="button"
-		href="<g:createLink controller="lead" action="createAddress" params="['party.id':organizationInstance?.id]" />" 
-		class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New
-		Address
-	</a>
+<div class="pull-right">
+	<modalbox:createLink controller="organization" action="createAddress" params="['party.id':organizationInstance?.id]" 
+		title="Create Address" width="900">New Address</modalbox:createLink>
 </div>
---%>
+
 <div class="table-responsive">
 	<table class="table table-striped table-condensed table-bordered">
 		<thead>
@@ -102,29 +99,4 @@
 			</div>			
 		</div>
 	</div>
-</div>
-
-<div id="addressModal" class="modal" tabindex="-1" role="dialog" 
-	data-remote="<g:createLink controller="lead" action="createAddress"/>"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true">×</button>
-		<h3 id="myModalLabel">New Address</h3>
-	</div>
-	<g:form controller="organization" action="createAddress" method="POST">
-		<g:hiddenField name="party.id" value="${organizationInstance?.id}" />
-		<g:hiddenField name="createdFromOrganizationDetailView" value="true" />
-		<div class="modal-body">
-			
-		</div>
-		<div class="modal-footer">
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary">
-					
-					<g:message code="default.button.create.label" default="Create" />
-				</button>
-			</div>
-		</div>
-	</g:form>
 </div>

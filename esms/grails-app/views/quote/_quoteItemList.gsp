@@ -2,7 +2,7 @@
 <g:if test="${quoteInstance?.status != 'CONVERTED_TO_SERVICE_CONTRACT' && quoteInstance?.status != 'CONVERTED_TO_SALES_ORDER' }">
 <div class="pull-right">
 	<a data-toggle="modal" href="#" data-target="#quoteItemModal" role="button"
-		class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Item
+		class="btn btn-default btn-sm">  New Item
 	</a>
 </div>
 </g:if>

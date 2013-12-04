@@ -1,15 +1,16 @@
-<%--<div class="pull-right">
+<div class="pull-right">
 	<a
 		href="<g:createLink controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]"/>"
-		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New
+		role="button" class="btn btn-default btn-sm">  New
 		Contract Quote
 	</a> <a
 		href="<g:createLink controller="quote" action="create" params="[type:'REPAIR',organizationId:organizationInstance?.id]" />"
-		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New
+		role="button" class="btn btn-default btn-sm">  New
 		Repair Quote
 	</a>
 </div>
---%><!-- Quotes -->
+
+<!-- Quotes -->
 <div class="table-responsive">
 	<table class="table table-striped table-condensed table-bordered">
 		<thead>
@@ -67,29 +68,4 @@
 		<bootstrap:paginate
 			total="${organizationInstance.quotes?organizationInstance.quotes:0}" />
 	</div>
-</div>
-
-<!-- Modal -->
-<div id="quoteModal" class="modal hide fade" tabindex="-1" role="dialog"
-	data-remote="<g:createLink controller="organization" action="createQuote"/>"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true">×</button>
-		<h3 id="myModalLabel">New Quote</h3>
-	</div>
-	<g:form controller="organization" action="createQuote" method="POST">
-		<g:hiddenField name="organization.id"
-			value="${organizationInstance?.id}" />
-		<g:hiddenField name="createdFromOrganizationDetailView" value="true" />
-		<div class="modal-body"></div>
-		<div class="modal-footer">
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary">
-					
-					<g:message code="default.button.create.label" default="Create" />
-				</button>
-			</div>
-		</div>
-	</g:form>
 </div>

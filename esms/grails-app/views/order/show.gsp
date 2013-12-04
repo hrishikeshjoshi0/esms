@@ -129,7 +129,6 @@
 						<g:if test="${!orderInstance?.taggedForRenewal}">
 							<g:link class="btn btn-sm btn-info" action="tagForRenewal"
 								controller="order" id="${orderInstance.id}">
-								
 								Tag For Renewal
 							</g:link>
 						</g:if>
@@ -143,10 +142,11 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><g:if
 										test="${orderInstance?.renewalStage == 'TAGGED_FOR_RENEWAL'}">
-										<a data-toggle="modal" href="#" data-target="#markAsSent"
-											role="button" class="link">
+										<modalbox:createLink class="btn btn-default btn-sm"
+												controller="order" action="renewalLetterSent"
+												id="${orderInstance?.id}" title="Mark As Sent" width="900">
 											Renewal Letter Sent
-										</a>
+										</modalbox:createLink>										
 									</g:if></li>
 								<li><g:if
 										test="${orderInstance?.renewalStage == 'RENEWAL_LETTER_SENT'}">
@@ -460,7 +460,5 @@
 			</richui:tabView>
 		</div>
 	</div>
-
-	<g:render template="saveRecepient"></g:render>
 </body>
 </html>

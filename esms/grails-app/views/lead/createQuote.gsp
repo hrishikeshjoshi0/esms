@@ -1,1 +1,0 @@
-<g:render template="/quote/form"></g:render>

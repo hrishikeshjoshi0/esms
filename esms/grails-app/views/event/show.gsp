@@ -63,7 +63,7 @@
 						</g:link>
 					</g:elseif>
 					<a href="#" data-toggle="modal" data-target="#activityModal"
-						role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> Add Event
+						role="button" class="btn btn-default btn-sm">  Add Event
 						Log
 					</a>
 				</div>

@@ -47,11 +47,11 @@
 	<tr>
 		<td>
 			<div
-				class="control-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'lineNumber', 'error')} required">
-				<label for="lineNumber" class="control-label"><g:message
+				class="form-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'lineNumber', 'error')} required">
+				<label for="lineNumber" class="col-lg-2 control-label"><g:message
 						code="orderItem.lineNumber.label" default="Line Number" /><span
 					class="required-indicator">*</span></label>
-				<div class="controls">
+				<div class="col-lg-10">
 					<g:field type="number" name="lineNumber" required="" readonly="readonly"
 						value="${orderItemInstance.lineNumber}" />
 					<span class="help-inline">
@@ -64,8 +64,8 @@
 	<tr>
 		<td>
 			<div
-				class="control-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'productNumber', 'error')} ">
-					<label for="productNumber" class="control-label"><g:message
+				class="form-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'productNumber', 'error')} ">
+					<label for="productNumber" class="col-lg-2 control-label"><g:message
 						code="orderItem.productNumber.label" default="Product" /><span
 					class="required-indicator">*</span></label>
 				<g:select name="productNumber" from="${Product.list()}"
@@ -81,11 +81,11 @@
 	<tr>
 		<td>
 			<div
-				class="control-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'quantity', 'error')} required">
-				<label for="quantity" class="control-label"><g:message
+				class="form-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'quantity', 'error')} required">
+				<label for="quantity" class="col-lg-2 control-label"><g:message
 						code="orderItem.quantity.label" default="Quantity" /><span
 					class="required-indicator">*</span></label>
-				<div class="controls">
+				<div class="col-lg-10">
 					<g:field type="number" name="quantity" step="any" required="" class="calc"
 						value="${orderItemInstance.quantity}" />
 					<span class="help-inline">
@@ -98,11 +98,11 @@
 	<tr>
 		<td>
 			<div
-				class="control-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'unitPrice', 'error')} required">
-				<label for="unitPrice" class="control-label"><g:message
+				class="form-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'unitPrice', 'error')} required">
+				<label for="unitPrice" class="col-lg-2 control-label"><g:message
 						code="orderItem.unitPrice.label" default="Unit Price" /><span
 					class="required-indicator">*</span></label>
-				<div class="controls">
+				<div class="col-lg-10">
 					<g:field type="number" name="unitPrice" step="any" required="" class="calc"
 						value="${orderItemInstance.unitPrice}" />
 					<span class="help-inline">
@@ -113,11 +113,11 @@
 		</td>
 		<td>
 			<div
-				class="control-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'tax', 'error')} required">
-				<label for="tax" class="control-label"><g:message
+				class="form-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'tax', 'error')} required">
+				<label for="tax" class="col-lg-2 control-label"><g:message
 						code="orderItem.tax.label" default="Tax" /><span
 					class="required-indicator">*</span></label>
-				<div class="controls">
+				<div class="col-lg-10">
 					<g:field type="number" name="tax" step="any" required="" class="calc"
 						value="${orderItemInstance.tax}" />
 					<span class="help-inline">
@@ -128,11 +128,11 @@
 		</td>
 		<td>
 			<div
-				class="control-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'discount', 'error')} required">
-				<label for="discount" class="control-label"><g:message
+				class="form-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'discount', 'error')} required">
+				<label for="discount" class="col-lg-2 control-label"><g:message
 						code="orderItem.discount.label" default="Discount" /><span
 					class="required-indicator">*</span></label>
-				<div class="controls">
+				<div class="col-lg-10">
 					<g:field type="number" name="discount" step="any" required="" class="calc"
 						value="${orderItemInstance.discount}" />
 					<span class="help-inline">
@@ -143,11 +143,11 @@
 		</td>
 		<td>
 			<div
-				class="control-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'lineTotalAmount', 'error')} required">
-				<label for="lineTotalAmount" class="control-label"><g:message
+				class="form-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'lineTotalAmount', 'error')} required">
+				<label for="lineTotalAmount" class="col-lg-2 control-label"><g:message
 						code="orderItem.lineTotalAmount.label" default="Line Total Amount" /><span
 					class="required-indicator">*</span></label>
-				<div class="controls">
+				<div class="col-lg-10">
 					<g:field type="number" name="lineTotalAmount" step="any" required="" readOnly="readOnly" 
 						value="${orderItemInstance.lineTotalAmount}" />
 					<span class="help-inline">
@@ -159,11 +159,11 @@
 	</tr>
 </table>
 <%--<div
-	class="control-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'quote', 'error')} required">
-	<label for="quote" class="control-label"><g:message
+	class="form-group fieldcontain ${hasErrors(bean: orderItemInstance, field: 'quote', 'error')} required">
+	<label for="quote" class="col-lg-2 control-label"><g:message
 			code="orderItem.quote.label" default="Quote" /><span
 		class="required-indicator">*</span></label>
-	<div class="controls">
+	<div class="col-lg-10">
 		<g:select id="quote" name="quote.id"
 			from="${com.esms.model.quote.Quote.list()}" optionKey="id"
 			required="" value="${orderItemInstance?.quote?.id}"

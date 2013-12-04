@@ -259,8 +259,8 @@ class OrganizationController {
 	def createContact() {
 		switch (request.method) {
 		case 'GET':
-			[contactInstance: new Contact(params)]
-			break
+			render view: '/_common/modals/createContact', model: [contactInstance: new Contact(params)]
+			return
 		case 'POST':
 			def contactInstance = new Contact(params)
 			contactInstance.partyType = "CONTACT"
@@ -280,8 +280,9 @@ class OrganizationController {
 	def createAddress() {
 		switch (request.method) {
 		case 'GET':
-			[addressInstance: new Address(params)]
-			break
+			def addressInstance = new Address(params)
+			render view: '/_common/modals/createAddress', model: [addressInstance: addressInstance]
+			return
 		case 'POST':
 			def addressInstance = new Address(params)
 	        if (!addressInstance.save(flush: true)) {
@@ -297,8 +298,8 @@ class OrganizationController {
 	def createPhoneBook() {
 		switch (request.method) {
 		case 'GET':
-			[phoneBookInstance: new PhoneBook(params)]
-			break
+			render view: '/_common/modals/createPhoneBook', [phoneBookInstance: new PhoneBook(params)]
+			return
 		case 'POST':
 			def phoneBookInstance = new PhoneBook(params)
 			if (!phoneBookInstance.save(flush: true)) {

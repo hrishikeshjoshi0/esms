@@ -1,7 +1,7 @@
 <%@ page import="com.esms.model.quote.Quote"%>
 <div class="pull-right">
 	<a href="<g:createLink controller="quote" action="create" params="[contractQuote:true,type:'INSTALLATION',organizationId:organizationInstance?.id]"/>" 
-		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Installation Quote
+		role="button" class="btn btn-default btn-sm">  New Installation Quote
 	</a>
 </div>
 

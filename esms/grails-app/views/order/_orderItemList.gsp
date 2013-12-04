@@ -4,7 +4,7 @@
 <div class="pull-right">
 	<g:if test="${orderInstance?.status != 'INVOICED' && orderInstance?.status != 'PAID'}">
 		<a data-toggle="modal" href="#" data-target="#orderItemModal"
-			role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Item
+			role="button" class="btn btn-default btn-sm">  New Item
 		</a>
 	</g:if>
 </div>

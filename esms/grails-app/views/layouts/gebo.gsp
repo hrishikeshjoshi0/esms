@@ -782,19 +782,19 @@
 													<div class="formSep control-group input-group">
 														<input type="text" style="width:142px" name="Input" /><button type="button" class="btn btn-default btn-sm" name="clear" value="c" onclick="Calc.Input.value = ''"><i class="glyphicon glyphicon-remove"></i></button>
 													</div>
-													<div class="control-group">
+													<div class="form-group">
 														<input type="button" class="btn btn-large" name="seven" value="7" onclick="Calc.Input.value += '7'" />
 														<input type="button" class="btn btn-large" name="eight" value="8" onclick="Calc.Input.value += '8'" />
 														<input type="button" class="btn btn-large" name="nine" value="9" onclick="Calc.Input.value += '9'" />
 														<input type="button" class="btn btn-large" name="div" value="/" onclick="Calc.Input.value += ' / '">
 													</div>
-													<div class="control-group">
+													<div class="form-group">
 														<input type="button" class="btn btn-large" name="four" value="4" onclick="Calc.Input.value += '4'" />
 														<input type="button" class="btn btn-large" name="five" value="5" onclick="Calc.Input.value += '5'" />
 														<input type="button" class="btn btn-large" name="six" value="6" onclick="Calc.Input.value += '6'" />
 														<input type="button" class="btn btn-large" name="times" value="x" onclick="Calc.Input.value += ' * '" />
 													</div>
-													<div class="control-group">
+													<div class="form-group">
 														<input type="button" class="btn btn-large" name="one" value="1" onclick="Calc.Input.value += '1'" />
 														<input type="button" class="btn btn-large" name="two" value="2" onclick="Calc.Input.value += '2'" />
 														<input type="button" class="btn btn-large" name="three" value="3" onclick="Calc.Input.value += '3'" />

@@ -1,7 +1,7 @@
 <%@page import="com.esms.model.order.Order"%>
 <div class="pull-right">
 	<a href="<g:createLink controller="order" action="create" params="[type:'REPAIR']"/>"
-		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Order
+		role="button" class="btn btn-default btn-sm">  New Order
 	</a>
 </div>
 

@@ -45,7 +45,7 @@
 <div
 	class="fieldcontain ${hasErrors(bean: eventInstance, field: 'party', 'error')}">
 	
-	<label for="organization" class="control-label"><g:message
+	<label for="organization" class="col-lg-2 control-label"><g:message
 			code="quote.organization.label" default="Organization" /></label>
 	<br/>		
 	<g:select name="party.id" from="${Organization.list()}"

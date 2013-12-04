@@ -262,3 +262,15 @@ dd {
 	background: #008cba;
 	color: #fff;	
 }
+
+@media (min-width: 768px) {
+  .container {
+    width: 762px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1190px;
+  }
+}
