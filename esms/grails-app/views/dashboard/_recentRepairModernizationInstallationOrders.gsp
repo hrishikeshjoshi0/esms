@@ -87,14 +87,14 @@
 						No Event Created
 					</g:else>
 				</td>
-				<td class="link"><g:link controller="order" action="show" id="${order?.id}" class="btn btn-default btn-xs">Show &raquo;</g:link></td>
+				<td class="link"><g:link controller="order" action="show" id="${order?.id}" class="btn btn-default btn-sm">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
 	<tfoot>
 			<tr>
 				<th colspan="10" class="link">
-					<g:link controller="order" action="list" class="btn btn-default btn-xs">Show All &raquo;</g:link>
+					<g:link controller="order" action="list" class="btn btn-default btn-sm">Show All &raquo;</g:link>
 				</th>				
 			</tr>
 		</tfoot>

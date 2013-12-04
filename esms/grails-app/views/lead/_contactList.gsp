@@ -1,7 +1,7 @@
 <%--<div class="pull-right">
 	<a data-toggle="modal" data-target="#contactModal" role="button"
 		href="<g:createLink controller="lead" action="createContact" params="['party.id':organizationInstance?.id]" />" 
-		class="btn btn-default btn-xs"> <i class="glyphicon glyphicon-plus"></i> New
+		class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New
 		Contact
 	</a>
 </div>
@@ -69,7 +69,7 @@
 						</td>
 
 						<td class="link"><g:link action="show" controller="contact"
-								id="${contactInstance.id}" class="btn btn-default btn-xs">Show</g:link></td>
+								id="${contactInstance.id}" class="btn btn-default btn-sm">Show</g:link></td>
 					</tr>
 				</g:each>
 			</g:each>

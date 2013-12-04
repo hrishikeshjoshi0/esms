@@ -85,7 +85,7 @@
 			<g:form>
 				<g:hiddenField name="id" value="${partyGroupInstance?.id}" />
 				<div class="form-group">
-					<g:link class="btn btn-default btn-xs" action="edit" id="${partyGroupInstance?.id}">
+					<g:link class="btn btn-default btn-sm" action="edit" id="${partyGroupInstance?.id}">
 						
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>

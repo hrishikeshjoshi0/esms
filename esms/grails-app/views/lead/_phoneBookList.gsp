@@ -1,6 +1,6 @@
 <%--<div class="pull-right">
 	<a data-toggle="modal" href="#" data-target="#phoneBookModal"
-		role="button" class="btn btn-default btn-xs"> <i class="glyphicon glyphicon-plus"></i> New
+		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New
 		Phone Book
 	</a>
 </div>
@@ -53,7 +53,7 @@
 					</td>
 
 					<td class="link"><g:link action="show" controller="phoneBook"
-							id="${phoneBookInstance.id}" class="btn btn-default btn-xs">Show &raquo;</g:link>
+							id="${phoneBookInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
 					</td>
 				</tr>
 			</g:each>

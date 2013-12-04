@@ -36,6 +36,6 @@
 		</td>
 
 		<td class="link"><g:link action="show" id="${taskInstance.id}" 
-				controller="task" class="btn btn-default btn-xs">Show &raquo;</g:link></td>
+				controller="task" class="btn btn-default btn-sm">Show &raquo;</g:link></td>
 	</tr>
 </g:each>

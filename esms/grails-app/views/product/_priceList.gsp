@@ -1,7 +1,7 @@
 <div class="pull-right">
 	<a data-toggle="modal" data-target="#priceModal" role="button"
 		href="<g:createLink controller="product" action="createPrice" id="${productInstance?.id}" />" 
-		class="btn btn-default btn-xs"> <i class="glyphicon glyphicon-plus"></i> New
+		class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New
 		Price
 	</a>
 </div>

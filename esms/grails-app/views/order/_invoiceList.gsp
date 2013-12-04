@@ -56,7 +56,7 @@
 				</td>
 
 				<td class="link"><g:link controller="invoice" action="show" id="${invoiceInstance.id}"
-						class="btn btn-default btn-xs">Show &raquo;</g:link></td>
+						class="btn btn-default btn-sm">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>

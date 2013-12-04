@@ -1,7 +1,7 @@
 <%@ page import="com.esms.model.quote.Quote"%>
 <div class="pull-right">
 	<a href="<g:createLink controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]"/>" 
-		role="button" class="btn btn-default btn-xs"> <i class="glyphicon glyphicon-plus"></i> New Contract Quote
+		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Contract Quote
 	</a>
 </div>
 
@@ -54,7 +54,7 @@
 				</td>
 
 				<td class="link"><g:link controller="quote" action="show" id="${quoteInstance.id}"
-						class="btn btn-default btn-xs">Show &raquo;</g:link></td>
+						class="btn btn-default btn-sm">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>

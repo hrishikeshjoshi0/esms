@@ -113,7 +113,7 @@
 						</g:else>
 					</td>
 					
-					<td class="link"><g:link controller="invoice" action="show" class="btn btn-default btn-xs"
+					<td class="link"><g:link controller="invoice" action="show" class="btn btn-default btn-sm"
 							id="${invoiceInstance.id}">Show &raquo;</g:link></td>
 				</tr>
 			</g:each>
@@ -129,7 +129,7 @@
 	<tfoot>
 		<tr>
 			<th colspan="13" class="link">
-				<g:link class="btn btn-default btn-xs" controller="invoice" action="list">Show All &raquo;</g:link>
+				<g:link class="btn btn-default btn-sm" controller="invoice" action="list">Show All &raquo;</g:link>
 			</th>				
 		</tr>
 	</tfoot>

@@ -51,7 +51,7 @@
 					<td>${fieldValue(bean: phoneBookInstance, field: "otherPhone")}</td>
 							
 					<td class="link"><g:link action="show" controller="contact"
-							id="${contactInstance.id}" class="btn btn-default btn-xs">Show</g:link>
+							id="${contactInstance.id}" class="btn btn-default btn-sm">Show</g:link>
 					</td>
 				</tr>
 			</g:each>	

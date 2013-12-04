@@ -24,29 +24,29 @@
 				<g:hiddenField name="id" value="${organizationInstance?.id}" />
 				<div class="form-actions">
 					<!-- TODO : HRISHI disabled temporarily -->
-					<g:link class="btn btn-default btn-xs" action="edit" id="${organizationInstance?.id}">
+					<g:link class="btn btn-default btn-sm" action="edit" id="${organizationInstance?.id}">
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					<button class="btn btn-danger btn-xs" type="submit" name="_action_delete">
+					<button class="btn btn-danger btn-sm" type="submit" name="_action_delete">
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
-					<%--<a data-toggle="modal" href="#" data-target="#contactModal" role="button" class="btn btn-default btn-xs"> 
+					<%--<a data-toggle="modal" href="#" data-target="#contactModal" role="button" class="btn btn-default btn-sm"> 
 						<i class="icon-plus"></i> New Contact
 					</a>
-					<a data-toggle="modal" href="#" data-target="#addressModal" role="button" class="btn btn-default btn-xs"> 
+					<a data-toggle="modal" href="#" data-target="#addressModal" role="button" class="btn btn-default btn-sm"> 
 						<i class="icon-plus"></i> New Address
 					</a>
 					<a data-toggle="modal" href="#" data-target="#phoneBookModal"
-						role="button" class="btn btn-default btn-xs"> <i class="icon-plus"></i> New Phone Book
+						role="button" class="btn btn-default btn-sm"> <i class="icon-plus"></i> New Phone Book
 					</a>
 					--%>
 					<g:if test="${organizationInstance.salesStatus == 'LEAD'}">
 						<g:link controller="organization" action="convertLeadToCustomer"
-							id="${organizationInstance?.id}" role="button" class="btn btn-default btn-xs">
+							id="${organizationInstance?.id}" role="button" class="btn btn-default btn-sm">
 							Convert Lead
 						</g:link>
 
-						<button class="btn btn-danger btn-xs" type="submit" name="_action_disqualifyLead">
+						<button class="btn btn-danger btn-sm" type="submit" name="_action_disqualifyLead">
 							Disqualify Lead
 						</button>
 					</g:if>

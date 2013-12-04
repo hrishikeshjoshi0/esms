@@ -126,14 +126,14 @@
 				</td>
 
 				<td class="link"><g:link action="show" id="${orderInstance.id}" controller="order"
-						class="btn btn-default btn-xs">Show &raquo;</g:link></td>
+						class="btn btn-default btn-sm">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
 	<tfoot>
 		<tr>
 			<th class="link" colspan="11">
-				<g:link controller="report" action="upcomingRenewals" class="btn btn-default btn-xs">Show All &raquo;</g:link>
+				<g:link controller="report" action="upcomingRenewals" class="btn btn-default btn-sm">Show All &raquo;</g:link>
 			</th>				
 		</tr>
 	</tfoot>

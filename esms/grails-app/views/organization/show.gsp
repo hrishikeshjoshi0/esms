@@ -46,7 +46,7 @@
 				<g:hiddenField name="id" value="${organizationInstance?.id}" />
 
 					<!-- TODO : HRISHI Disabled temporarily -->
-					<%--<g:link class="btn btn-default btn-xs" action="edit" id="${organizationInstance?.id}">
+					<%--<g:link class="btn btn-default btn-sm" action="edit" id="${organizationInstance?.id}">
 							
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
@@ -58,7 +58,7 @@
 					</button>
 					<g:if test="${organizationInstance.salesStatus == 'LEAD'}">
 						<g:link controller="organization" action="convertLeadToCustomer"
-							id="${organizationInstance?.id}" role="button" class="btn btn-default btn-xs">
+							id="${organizationInstance?.id}" role="button" class="btn btn-default btn-sm">
 							 Convert Lead
 							</g:link>
 					</g:if>

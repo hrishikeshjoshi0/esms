@@ -38,7 +38,7 @@
 					${fieldValue(bean: productInstance, field: "inventory.outgoing")}
 				</td>
 				<td class="link"><g:link action="show"
-						id="${productInstance.id}" class="btn-xs">Show &raquo;</g:link></td>
+						id="${productInstance.id}" class="btn-sm">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</bs3:table>

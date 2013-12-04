@@ -71,7 +71,7 @@
 						${fieldValue(bean: paymentInstance, field: "chequeNumber")}
 					</td>
 
-					<td class="link"><g:link controller="payment" action="show" class="btn btn-default btn-xs"
+					<td class="link"><g:link controller="payment" action="show" class="btn btn-default btn-sm"
 							id="${paymentInstance.id}">Show &raquo;</g:link>
 					</td>
 				</tr>
@@ -81,7 +81,7 @@
 	<tfoot>
 		<tr>
 			<th colspan="8" class="link">
-				<g:link controller="payment" action="list" class="btn btn-default btn-xs">Show All &raquo;</g:link>
+				<g:link controller="payment" action="list" class="btn btn-default btn-sm">Show All &raquo;</g:link>
 			</th>				
 		</tr>
 	</tfoot>

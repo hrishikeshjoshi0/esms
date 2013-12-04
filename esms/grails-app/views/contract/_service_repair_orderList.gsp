@@ -1,7 +1,7 @@
 <%@page import="com.esms.model.order.Order"%>
 <div class="pull-right">
 	<a href="<g:createLink controller="order" action="create" params="[type:'SERVICE']"/>"
-		role="button" class="btn btn-default btn-xs"> <i class="glyphicon glyphicon-plus"></i> New Order
+		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Order
 	</a>
 </div>
 
@@ -39,7 +39,7 @@
 					${fieldValue(bean: orderInstance, field: "description")}
 				</td>
 				<td class="link"><g:link controller="order" action="show" id="${orderInstance.id}"
-						class="btn btn-default btn-xs">Show &raquo;</g:link></td>
+						class="btn btn-default btn-sm">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>

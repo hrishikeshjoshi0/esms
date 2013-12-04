@@ -47,7 +47,7 @@
 							${fieldValue(bean: eventInstance, field: "assignedTo")}
 						</td>
 
-						<td class="link"><g:link action="show" controller="event" class="btn btn-default btn-xs"
+						<td class="link"><g:link action="show" controller="event" class="btn btn-default btn-sm"
 								id="${eventInstance.id}">Show &raquo;</g:link></td>
 					</tr>
 				</g:each>
@@ -63,7 +63,7 @@
 		<tfoot>
 			<tr>
 				<th colspan="7" class="link">
-					<g:link class="btn btn-default btn-xs" controller="event" action="listView">Show All &raquo;</g:link>
+					<g:link class="btn btn-default btn-sm" controller="event" action="listView">Show All &raquo;</g:link>
 				</th>				
 			</tr>
 		</tfoot>
