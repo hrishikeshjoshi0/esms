@@ -27,10 +27,10 @@
 				<g:form>
 					<g:hiddenField name="id" value="${paymentInstance?.id}" />
 					<div class="form-group">
-						<g:link class="btn btn-default btn-sm" action="edit" id="${paymentInstance?.id}">
+						<g:link class="btn btn-default btn-xs" action="edit" id="${paymentInstance?.id}">
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
-						<g:link class="btn btn-default btn-sm" action="updateClearanceDate"
+						<g:link class="btn btn-default btn-xs" action="updateClearanceDate"
 							id="${paymentInstance?.id}">
 							<g:message code="default.button.updateClearanceDate.label"
 								default="Update Clearance Date" />

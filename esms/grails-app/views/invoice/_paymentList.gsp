@@ -52,7 +52,7 @@
 				</td>
 				
 				<td class="link">
-					<g:link action="show" controller="payment" id="${paymentItemInstance.payment?.id}" class="btn btn-default btn-sm">
+					<g:link action="show" controller="payment" id="${paymentItemInstance.payment?.id}" class="btn btn-default btn-xs">
 						Show &raquo;</g:link>
 				</td>
 			</tr>

@@ -26,7 +26,7 @@
 				<g:hiddenField name="id" value="${quoteInstance?.id}" />
 				<div class="form-group">
 					<%--<g:if test="${quoteInstance?.status != 'CONVERTED_TO_SERVICE_CONTRACT' && quoteInstance?.status != 'CONVERTED_TO_SALES_ORDER' }">
-						<g:link class="btn btn-default btn-sm" action="edit" id="${quoteInstance?.id}">
+						<g:link class="btn btn-default btn-xs" action="edit" id="${quoteInstance?.id}">
 							
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
@@ -39,7 +39,7 @@
 					<g:if
 						test="${quoteInstance?.sent == false && quoteInstance?.quoteItems?.size() != 0}">
 						<a data-toggle="modal" href="#" data-target="#markAsSent"
-							role="button" class="btn btn-default btn-sm"> Mark
+							role="button" class="btn btn-default btn-xs"> Mark
 							as Sent
 						</a>
 					</g:if>
@@ -50,20 +50,20 @@
 						<g:if
 							test="${quoteInstance?.type == 'CONTRACT' && quoteInstance?.quoteItems?.size() != 0}">
 							<a data-toggle="modal" href="#" data-target="#markAsAccepted"
-								role="button" class="btn btn-default btn-sm"> Mark as Accepted </a>
+								role="button" class="btn btn-default btn-xs"> Mark as Accepted </a>
 						</g:if>
 						<g:elseif test="${quoteInstance?.quoteItems?.size() != 0}">
 							<g:link action="markAsAccepted" controller="quote"
-								id="${quoteInstance?.id}" class="btn btn-default btn-sm">
+								id="${quoteInstance?.id}" class="btn btn-default btn-xs">
 								Mark as Accepted
 							</g:link>
 						</g:elseif>
 						<a data-toggle="modal" href="#" data-target="#markAsRevised"
-							role="button" class="btn btn-default btn-sm">  Mark
+							role="button" class="btn btn-default btn-xs">  Mark
 							as Revised
 						</a>
 						<a data-toggle="modal" href="#" data-target="#markAsDeclinedModal"
-							role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-trash"></i> Mark as
+							role="button" class="btn btn-default btn-xs"> <i class="glyphicon glyphicon-trash"></i> Mark as
 							Declined
 						</a>
 					</g:if>
@@ -73,14 +73,14 @@
 						&& quoteInstance?.quoteItems?.size() != 0}">
 						<!-- State:Accept -->
 						<a data-toggle="modal" href="#" data-target="#confirmSaleModal"
-							role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-wrench"></i>
+							role="button" class="btn btn-default btn-xs"> <i class="glyphicon glyphicon-wrench"></i>
 							Confirm Sale
 						</a>
 					</g:elseif>
 					<g:elseif
 						test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'REPAIR' && quoteInstance?.quoteItems?.size() != 0}">
 						<a data-toggle="modal" href="#" data-target="#confirmSaleModal"
-							role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-wrench"></i>
+							role="button" class="btn btn-default btn-xs"> <i class="glyphicon glyphicon-wrench"></i>
 							Confirm Sale
 						</a>
 					</g:elseif>

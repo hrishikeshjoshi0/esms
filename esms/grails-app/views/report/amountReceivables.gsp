@@ -84,7 +84,7 @@
 							</td>
 						
 							<td class="link">
-								<g:link action="show" controller="order" id="${orderInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+								<g:link action="show" controller="order" id="${orderInstance.id}" class="btn btn-default btn-xs">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>

@@ -1,5 +1,5 @@
 <div class="pull-right">
-	<g:link role="button" class="btn btn-default btn-sm" controller="orderInventoryAssignment" action="create" params="['order.id':orderInstance.id]">
+	<g:link role="button" class="btn btn-default btn-xs" controller="orderInventoryAssignment" action="create" params="['order.id':orderInstance.id]">
 		<i class="glyphicon glyphicon-plus"></i> New Item
 	</g:link>
 </div>
@@ -45,7 +45,7 @@
 						boolean="${orderInventoryAssignmentInstance.isPosted}" /></td>
 
 				<td class="link"><g:link action="show" controller="orderInventoryAssignment"
-						id="${orderInventoryAssignmentInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+						id="${orderInventoryAssignmentInstance.id}" class="btn btn-default btn-xs">Show &raquo;</g:link>
 				</td>
 			</tr>
 		</g:each>

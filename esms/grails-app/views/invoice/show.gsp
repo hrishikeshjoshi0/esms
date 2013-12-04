@@ -25,7 +25,7 @@
 			<g:form>
 				<g:hiddenField name="id" value="${invoiceInstance?.id}" />
 				<div class="form-group">
-					<g:link class="btn btn-default btn-sm" action="edit" id="${invoiceInstance?.id}">
+					<g:link class="btn btn-default btn-xs" action="edit" id="${invoiceInstance?.id}">
 						
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
@@ -33,13 +33,13 @@
 						
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
-					<g:link class="btn btn-default btn-sm" action="create" controller="event" params="['party.id':invoiceInstance?.organization.id]">
+					<g:link class="btn btn-default btn-xs" action="create" controller="event" params="['party.id':invoiceInstance?.organization.id]">
 						
 						<g:message code="default.button.createEvent.label" default="Create Event" />
 					</g:link>
 					--%>
 
-					<g:link class="btn btn-default btn-sm" action="create" controller="payment"
+					<g:link class="btn btn-default btn-xs" action="create" controller="payment"
 						params="[invoiceId :invoiceInstance.id]">
 						
 						<g:message code="default.button.registerPayment.label"

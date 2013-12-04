@@ -113,7 +113,7 @@
 						</g:else>
 					</td>
 					
-					<td class="link"><g:link controller="invoice" action="show"
+					<td class="link"><g:link controller="invoice" action="show" class="btn btn-default btn-xs"
 							id="${invoiceInstance.id}">Show &raquo;</g:link></td>
 				</tr>
 			</g:each>
@@ -121,7 +121,7 @@
 		<g:else>
 			<tr>
 				<th colspan="13">
-					<h4 style="color: red;">No Records Found !</h4>
+					<h5>No Records Found !</h5>
 				</th>
 			</tr>
 		</g:else>
@@ -129,7 +129,7 @@
 	<tfoot>
 		<tr>
 			<th colspan="13" class="link">
-				<g:link controller="invoice" action="list">Show All &raquo;</g:link>
+				<g:link class="btn btn-default btn-xs" controller="invoice" action="list">Show All &raquo;</g:link>
 			</th>				
 		</tr>
 	</tfoot>

@@ -4,7 +4,7 @@
 <div class="pull-right">
 	<g:if test="${orderInstance?.status != 'INVOICED' && orderInstance?.status != 'PAID'}">
 		<a data-toggle="modal" href="#" data-target="#orderItemModal"
-			role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Item
+			role="button" class="btn btn-default btn-xs"> <i class="glyphicon glyphicon-plus"></i> New Item
 		</a>
 	</g:if>
 </div>
@@ -94,7 +94,7 @@
 				</g:else>
 				<td>
 					<a href="#" data-id="${orderItemInstance?.id}"
-						role="button" class="btn btn-default btn-sm">
+						role="button" class="btn btn-default btn-xs">
 						<g:if test="${orderItemInstance?.relatedOrderNumber}">
 							Assignment
 						</g:if>
@@ -105,7 +105,7 @@
 				</td>
 				<td class="link"><g:link action="show" 
 						controller="orderItem"
-						id="${orderItemInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+						id="${orderItemInstance.id}" class="btn btn-default btn-xs">Show &raquo;</g:link>
 				</td>
 			</tr>
 		</g:each>

@@ -62,7 +62,7 @@
 			<g:form>
 				<g:hiddenField name="id" value="${phoneBookInstance?.id}" />
 				<div class="form-group">
-					<g:link class="btn btn-default btn-sm" action="edit" id="${phoneBookInstance?.id}">
+					<g:link class="btn btn-default btn-xs" action="edit" id="${phoneBookInstance?.id}">
 						
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>

@@ -1,7 +1,7 @@
 <g:if test="${paymentInstance?.balanceAmount > 0 }">
 <div class="pull-right">
 	<a data-toggle="modal" href="#" data-target="#paymentItemModel" role="button"
-		class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Line
+		class="btn btn-default btn-xs"> <i class="glyphicon glyphicon-plus"></i> New Line
 	</a>
 </div>
 </g:if>

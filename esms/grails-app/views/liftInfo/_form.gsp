@@ -1,32 +1,5 @@
 <%@ page import="com.esms.model.maintenance.LiftInfo"%>
 
-<script>
-	function toggleDriveFields(val) {
-		if(val == 'YES') {
-			$('.drive').show();	
-		} else {
-			$('.drive').hide();
-		}
-	}
-
-	$(document).ready(function() {
-
-		if($(this).val() == 'OTHER') {
-			$('.gateTypeOther').show();	
-		} else {
-			$('.gateTypeOther').hide();
-		}
-		
-		$('#gateType').change(function(){
-			if($(this).val() == 'OTHER') {
-				$('.gateTypeOther').show();	
-			} else {
-				$('.gateTypeOther').hide();
-			}
-		});
-	});
-</script>
-
 <div class="row">
 	<div class="col-md-6">
 		<div
@@ -132,7 +105,7 @@
 			<label for=gateTypeOther class="control-label"><g:message
 					code="liftInfo.gateTypeOther.label" default="Gate Type (Other)" /></label>
 			<div class="controls">
-				<g:textField name="gateTypeOther"
+				<g:textField name="gateTypeOther" class="${liftInfoInstance?.gateType == 'OTHER'? '' : 'hidden'}"
 					value="${liftInfoInstance?.gateTypeOther}" />
 				<span class="help-inline">
 					${hasErrors(bean: liftInfoInstance, field: 'gateTypeOther', 'error')}
@@ -404,15 +377,6 @@
 			</div>
 		</div>
 
-		<%--<div class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'organization', 'error')} required">
-				<label for="organization" class="control-label"><g:message code="liftInfo.organization.label" default="Organization" /><span class="required-indicator">*</span></label>
-				<div class="controls">
-					<g:select id="organization" name="organization.id" from="${com.esms.model.party.Organization.list()}" optionKey="id" required="" value="${liftInfoInstance?.organization?.id}" class="many-to-one"/>
-					<span class="help-inline">${hasErrors(bean: liftInfoInstance, field: 'organization', 'error')}</span>
-				</div>
-			</div>
-
-			--%>
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'servicePeriod', 'error')} ">
 			<label for="servicePeriod" class="control-label"><g:message
@@ -426,3 +390,29 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	function toggleDriveFields(val) {
+		if(val == 'YES') {
+			$('.drive').show();	
+		} else {
+			$('.drive').hide();
+		}
+	}
+
+	$(document).ready(function() {
+		/*if($('#gateType').val() == 'OTHER') {
+			$('.gateTypeOther').show();	
+		} else {
+			$('.gateTypeOther').hide();
+		}*/
+		
+		$('#gateType').change(function(){
+			if($(this).val() == 'OTHER') {
+				$('.gateTypeOther').show();	
+			} else {
+				$('.gateTypeOther').hide();
+			}
+		});
+	});
+</script>

@@ -25,7 +25,7 @@
 			<g:form>
 				<g:hiddenField name="id" value="${employeeInstance?.id}" />
 				<div class="form-group">
-					<g:link class="btn btn-default btn-sm" action="edit" id="${employeeInstance?.id}">
+					<g:link class="btn btn-default btn-xs" action="edit" id="${employeeInstance?.id}">
 						
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
@@ -35,7 +35,7 @@
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
 
-					<g:link class="btn btn-default btn-sm" action="markAsTerminated"
+					<g:link class="btn btn-default btn-xs" action="markAsTerminated"
 						id="${employeeInstance?.id}">
 						
 						<g:message code="default.button.markAsTerminated.label"

@@ -21,7 +21,7 @@
 			<g:form>
 				<g:hiddenField name="id" value="${liftInfoInstance?.id}" />
 				<div class="form-group">
-					<g:link class="btn btn-default btn-sm" action="edit" id="${liftInfoInstance?.id}">
+					<g:link class="btn btn-default btn-xs" action="edit" id="${liftInfoInstance?.id}">
 						
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>

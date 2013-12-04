@@ -66,14 +66,14 @@
 				<td>
 					${order.assignedTo}
 				</td>
-				<td class="link"><g:link controller="order" action="show" id="${order?.id}">Show &raquo;</g:link></td>
+				<td class="link"><g:link controller="order" action="show" id="${order?.id}" class="btn btn-default btn-xs">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
 	<tfoot>
 			<tr>
 				<th colspan="6" class="link">
-					<g:link controller="order" action="list">Show All &raquo;</g:link>
+					<g:link controller="order" action="list" class="btn btn-default btn-xs">Show All &raquo;</g:link>
 				</th>				
 			</tr>
 		</tfoot>

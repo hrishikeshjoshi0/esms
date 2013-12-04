@@ -234,7 +234,7 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <a href="javascript:void(0)" class="btn btn-default btn-sm">Go to mailbox</a>
+                        <a href="javascript:void(0)" class="btn btn-default btn-xs">Go to mailbox</a>
                     </div>
                 </div>
                 <div class="modal hide fade" id="myTasks">
@@ -287,7 +287,7 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <a href="javascript:void(0)" class="btn btn-default btn-sm">Go to task manager</a>
+                        <a href="javascript:void(0)" class="btn btn-default btn-xs">Go to task manager</a>
                     </div>
                 </div>
             </header>
@@ -675,7 +675,7 @@
 					
 							<div class="sidebar_inner">
 								<form action="index.php?uid=1&amp;page=search_page" class="input-group" method="post" >
-									<input autocomplete="off" name="query" class="search_query input-medium" size="16" type="text" placeholder="Search..." /><button type="submit" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-search"></i></button>
+									<input autocomplete="off" name="query" class="search_query input-medium" size="16" type="text" placeholder="Search..." /><button type="submit" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-search"></i></button>
 								</form>
 								<div id="side_accordion" class="accordion">
 									
@@ -780,7 +780,7 @@
 											<div class="accordion-inner">
 												<form name="Calc" id="calc">
 													<div class="formSep control-group input-group">
-														<input type="text" style="width:142px" name="Input" /><button type="button" class="btn btn-default btn-sm" name="clear" value="c" onclick="Calc.Input.value = ''"><i class="glyphicon glyphicon-remove"></i></button>
+														<input type="text" style="width:142px" name="Input" /><button type="button" class="btn btn-default btn-xs" name="clear" value="c" onclick="Calc.Input.value = ''"><i class="glyphicon glyphicon-remove"></i></button>
 													</div>
 													<div class="control-group">
 														<input type="button" class="btn btn-large" name="seven" value="7" onclick="Calc.Input.value += '7'" />

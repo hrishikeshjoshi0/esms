@@ -40,7 +40,7 @@
 			<g:form>
 				<g:hiddenField name="id" value="${eventInstance?.id}" />
 				<div class="form-group">
-					<g:link class="btn btn-default btn-sm" action="edit" id="${eventInstance?.id}">
+					<g:link class="btn btn-default btn-xs" action="edit" id="${eventInstance?.id}">
 						
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
@@ -49,21 +49,21 @@
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
 					<g:if test="${eventInstance?.eventType != 'REPAIR WORK' && eventInstance?.workDoneCertificate == null}">
-						<g:link class="btn btn-default btn-sm" action="attachWorkDoneCertificate"
+						<g:link class="btn btn-default btn-xs" action="attachWorkDoneCertificate"
 							id="${eventInstance?.id}">
 							
 							Attach Work Done Certificate
 						</g:link>
 					</g:if>
 					<g:elseif test="${eventInstance?.eventType != 'REPAIR WORK'}">
-						<g:link class="btn btn-default btn-sm" action="editWorkDoneCertificate"
+						<g:link class="btn btn-default btn-xs" action="editWorkDoneCertificate"
 							id="${eventInstance?.workDoneCertificate?.id}">
 							
 							Edit Work Done Certificate
 						</g:link>
 					</g:elseif>
 					<a href="#" data-toggle="modal" data-target="#activityModal"
-						role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> Add Event
+						role="button" class="btn btn-default btn-xs"> <i class="glyphicon glyphicon-plus"></i> Add Event
 						Log
 					</a>
 				</div>

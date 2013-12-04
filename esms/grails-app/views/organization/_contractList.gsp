@@ -1,6 +1,6 @@
 <div class="pull-right">
 	<a href="<g:createLink controller="contract" action="create"/>"
-		role="button" class="btn btn-default btn-sm"> <i class="glyphicon glyphicon-plus"></i> New Contract
+		role="button" class="btn btn-default btn-xs"> <i class="glyphicon glyphicon-plus"></i> New Contract
 	</a>
 </div>
 
@@ -54,7 +54,7 @@
 						boolean="${contractInstance.invoicingIsFixedPrice}" /></td>
 
 				<td class="link"><g:link action="show" controller="contract"
-						id="${contractInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+						id="${contractInstance.id}" class="btn btn-default btn-xs">Show &raquo;</g:link>
 				</td>
 			</tr>
 		</g:each>

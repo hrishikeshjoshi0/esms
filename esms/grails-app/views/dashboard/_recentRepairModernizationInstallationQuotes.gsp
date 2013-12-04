@@ -49,12 +49,11 @@
 				</td>
 
 				<td class="link"><g:link action="markAsDisqualified" controller="quote"	id="${quoteInstance?.id}" >
-						<i class="glyphicon glyphicon-trash"></i>
 						Disqualify
 					</g:link>
 				</td>
 
-				<td class="link"><g:link controller="quote" action="show" id="${quoteInstance.id}">Show &raquo;</g:link></td>
+				<td class="link"><g:link controller="quote" action="show" id="${quoteInstance.id}" class="btn btn-default btn-xs">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>

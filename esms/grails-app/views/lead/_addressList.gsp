@@ -60,7 +60,7 @@
 					</td>
 
 					<td class="link"><g:link action="show" controller="address"
-							id="${addressInstance.id}" class="btn btn-xs">Show &raquo;</g:link>
+							id="${addressInstance.id}" class="btn btn-default btn-xs">Show &raquo;</g:link>
 					</td>
 				</tr>
 			</g:each>

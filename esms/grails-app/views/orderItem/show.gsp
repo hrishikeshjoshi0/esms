@@ -23,7 +23,7 @@
 			<g:form>
 				<g:hiddenField name="id" value="${orderItemInstance?.id}" />
 				<div class="form-group">
-					<g:link class="btn btn-default btn-sm" action="edit" id="${orderItemInstance?.id}">
+					<g:link class="btn btn-default btn-xs" action="edit" id="${orderItemInstance?.id}">
 						
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>

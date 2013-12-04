@@ -21,7 +21,7 @@
 			<g:form>
 				<g:hiddenField name="id" value="${contractInstance?.id}" />
 				<div class="form-group">
-					<g:link class="btn btn-default btn-sm" action="edit" id="${contractInstance?.id}">
+					<g:link class="btn btn-default btn-xs" action="edit" id="${contractInstance?.id}">
 						
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
@@ -29,7 +29,7 @@
 						
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
-					<g:link class="btn btn-default btn-sm" controller="order" action="create"
+					<g:link class="btn btn-default btn-xs" controller="order" action="create"
 						params="[type:'SALES',relatedTo:'CONTRACT',relatedToValue:contractInstance.contractNumber,'organization.id':contractInstance.organization.id]">
 						
 						Create Sales Order

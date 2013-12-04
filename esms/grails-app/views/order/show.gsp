@@ -71,7 +71,7 @@
 			<g:form>
 				<g:hiddenField name="id" value="${orderInstance?.id}" />
 				<div class="form-group">
-					<g:link class="btn btn-default btn-sm" action="edit" id="${orderInstance?.id}">
+					<g:link class="btn btn-default btn-xs" action="edit" id="${orderInstance?.id}">
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
 					<button class="btn btn-sm btn-danger" type="submit" name="_action_delete">
@@ -82,7 +82,7 @@
 						test="${orderInstance?.orderItems?.size() != 0
 								&& orderInstance?.pendingInvoiceGrandTotal != null
 								&& orderInstance?.pendingInvoiceGrandTotal > 0.0}">
-						<g:link class="btn btn-default btn-sm" action="createInvoice"
+						<g:link class="btn btn-default btn-xs" action="createInvoice"
 							id="${orderInstance?.id}">
 							
 							<g:message code="default.button.createInvoice.label"
@@ -120,7 +120,7 @@
 					</g:if>
 					<!--  -->
 					
-					<g:link controller="task" action="create" role="button" class="btn btn-default btn-sm"
+					<g:link controller="task" action="create" role="button" class="btn btn-default btn-xs"
 						params="[relatedTo:'ORDER',relatedToValue:orderInstance?.orderNumber,taskName:'Reminder For Invoice']">
 					 	Create Task
 					</g:link>
@@ -172,7 +172,7 @@
 					</g:if>
 
 					<%--<g:if test="${orderInstance?.status == 'INVOICED'}">
-						<g:link class="btn btn-default btn-sm" action="create" controller="payment"
+						<g:link class="btn btn-default btn-xs" action="create" controller="payment"
 							params="[orderId :orderInstance.id]">
 							
 							<g:message code="default.button.registerPayment.label"

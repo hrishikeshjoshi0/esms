@@ -257,3 +257,8 @@ dt {
 dd {
   margin-left: 10.5px;
 }
+
+.yui-skin-sam .yui-navset .yui-nav .selected a, .yui-skin-sam .yui-navset .yui-nav .selected a:focus, .yui-skin-sam .yui-navset .yui-nav .selected a:hover {
+	background: #008cba;
+	color: #fff;	
+}

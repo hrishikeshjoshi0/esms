@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta name="layout" content="dashboardLayout">
-<resource:tabView />
 <title>Venus CRM</title>
 
 </head>

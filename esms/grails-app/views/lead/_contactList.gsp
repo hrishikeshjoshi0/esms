@@ -69,7 +69,7 @@
 						</td>
 
 						<td class="link"><g:link action="show" controller="contact"
-								id="${contactInstance.id}" class="btn btn-xs">Show</g:link></td>
+								id="${contactInstance.id}" class="btn btn-default btn-xs">Show</g:link></td>
 					</tr>
 				</g:each>
 			</g:each>

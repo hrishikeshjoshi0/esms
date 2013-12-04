@@ -1,7 +1,7 @@
 <g:set var="productInventoryInstance"
 	value="${productInstance.inventory}" />
 <div class="pull-right">
-	<g:link class="btn btn-default btn-sm" action="edit" controller="productInventory" 
+	<g:link class="btn btn-default btn-xs" action="edit" controller="productInventory" 
 			id="${productInventoryInstance?.id}">
 		
 		<g:message code="default.button.edit.label" default="Edit" />

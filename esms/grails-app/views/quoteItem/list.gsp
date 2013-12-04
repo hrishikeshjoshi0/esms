@@ -52,7 +52,7 @@
 							<td>${fieldValue(bean: quoteItemInstance, field: "discount")}</td>
 						
 							<td class="link">
-								<g:link action="show" id="${quoteItemInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+								<g:link action="show" id="${quoteItemInstance.id}" class="btn btn-default btn-xs">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>

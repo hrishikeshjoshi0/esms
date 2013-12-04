@@ -84,7 +84,7 @@
 									<td>${fieldValue(bean: paymentInstance, field: "branch")}</td>
 								
 									<td class="link">
-										<g:link action="show" id="${paymentInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+										<g:link action="show" id="${paymentInstance.id}" class="btn btn-default btn-xs">Show &raquo;</g:link>
 									</td>
 								</tr>
 						</g:each>

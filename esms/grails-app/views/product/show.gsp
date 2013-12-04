@@ -25,7 +25,7 @@
 						--%>
 				<g:if
 					test="${productInstance?.isVirtual == false && productInstance?.requiresInventory == null}">
-					<g:link class="btn btn-default btn-sm" action="create"
+					<g:link class="btn btn-default btn-xs" action="create"
 						controller="productInventory"
 						param="['product.id':productInstance?.id]">
 								

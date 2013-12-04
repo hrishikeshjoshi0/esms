@@ -1,20 +1,5 @@
 <%@ page import="com.esms.model.party.Organization"%>
 
-<script>
-	$('document').ready(function() {
-		$("#copyToBillingAddressLink").click(function() {
-			$('#billingAddress1').val($('#shippingAddress1').val());
-			$('#billingAddress2').val($('#shippingAddress2').val());
-			$('#billingBuildingName').val($('#shippingBuildingName').val());
-			$('#billingCity').val($('#shippingCity').val());
-			$('#billingState').val($('#shippingState').val());
-			$('#billingCountry').val($('#shippingCountry').val());
-			$('#billingPostalCode').val($('#shippingPostalCode').val());
-			return false;
-		});
-	});
-</script>
-
 <g:hiddenField name="salesStatus" value="LEAD"/>
 <div class="row">
 	<div class="col-md-12">
@@ -58,9 +43,9 @@
 </div>
 
 <div class="page-header">
-	<h3>
+	<h4>
 		Is One Time
-	</h3>
+	</h4>
 </div>
 
 <div
@@ -78,9 +63,9 @@
 <div class="row">
 	<div class="col-md-6">
 		<div class="page-header">
-			<h3>
+			<h4>
 				Primary Contact
-			</h3>
+			</h4>
 		</div>
 	<%--<div
 		class="control-group fieldcontain ${hasErrors(bean: contactInstance, field: 'salutation', 'error')} ">
@@ -151,9 +136,9 @@
 	<div class="col-md-6">
 		<!-- PhoneBook -->
 		<div class="page-header">
-			<h3>
+			<h4>
 				Phones, Emails etc.
-			</h3>
+			</h4>
 		</div>
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: phoneBookInstance, field: 'email', 'error')} ">
@@ -236,9 +221,9 @@
 <div class="row">
 	<div class="col-md-6">
 		<div class="page-header">
-			<h3>
+			<h4>
 				Secondary Contact
-			</h3>
+			</h4>
 		</div>
 		
 		<%--<div
@@ -311,9 +296,9 @@
 	<div class="col-md-6">
 		<!-- PhoneBook -->
 		<div class="page-header">
-			<h3>
+			<h4>
 				Phones, Emails etc.
-			</h3>
+			</h4>
 		</div>
 		<div
 			class="control-group fieldcontain ${hasErrors(bean: phoneBookInstance, field: 'email', 'error')} ">
@@ -394,35 +379,35 @@
 </div>
 	
 <div class="page-header">
-	<h3>
+	<h4>
 		Address
-	</h3>
+	</h4>
 </div>
 <div class="row">
 	<div class="col-md-6">
-		<h3>Site Address (<a id="copyToBillingAddressLink" href="#">Copy To Billing Address</a>)</h3>
+		<h4>Site Address (<small><a id="copyToBillingAddressLink" href="#">Copy To Billing Address</a></small>)</h4>
 		<g:render template="/address/shippingAddressForm"></g:render>
 	</div>
 	
 	<div class="col-md-6">
 		<div class="billingAddress">
-			<h3>Billing Address</h3>
+			<h4>Billing Address</h4>
 			<g:render template="/address/billingAddressForm"></g:render>
 		</div>	
 	</div>
 </div>
 
 <div class="page-header">
-	<h3>
+	<h4>
 		About the Lift
-	</h3>
+	</h4>
 </div>
 <g:render template="/liftInfo/form"></g:render>
 
 <div class="page-header">
-	<h3>
+	<h4>
 		Reason for Change
-	</h3>
+	</h4>
 </div>
 <div
 	class="control-group fieldcontain ${hasErrors(bean: organizationInstance, field: 'description', 'error')} ">
@@ -433,3 +418,18 @@
 		</span>
 	</div>
 </div>
+
+<script>
+	$('document').ready(function() {
+		$("#copyToBillingAddressLink").click(function() {
+			$('#billingAddress1').val($('#shippingAddress1').val());
+			$('#billingAddress2').val($('#shippingAddress2').val());
+			$('#billingBuildingName').val($('#shippingBuildingName').val());
+			$('#billingCity').val($('#shippingCity').val());
+			$('#billingState').val($('#shippingState').val());
+			$('#billingCountry').val($('#shippingCountry').val());
+			$('#billingPostalCode').val($('#shippingPostalCode').val());
+			return false;
+		});
+	});
+</script>
