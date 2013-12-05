@@ -1,10 +1,10 @@
 if (typeof jQuery !== 'undefined') {
 	(function($) {
-		$('#spinner').ajaxStart(function() {
+		/*$('#spinner').ajaxStart(function() {
 			$(this).fadeIn();
 		}).ajaxStop(function() {
 			$(this).fadeOut();
-		});
+		});*/
 		
 	   
 	   /*var p = $("select:not([name^='filter.'])");
@@ -19,8 +19,8 @@ if (typeof jQuery !== 'undefined') {
        $("#new_tasks").html(ajax_load).load(loadUrl);  
        
        $(document).ready(function() {
-			var autocompleteQueryField = $('input[name="q"]');
-			autocompleteQueryField.attr('placeholder','Search Customer...');
+			//var autocompleteQueryField = $('input[name="q"]');
+			//autocompleteQueryField.attr('placeholder','Search Customer...');
 			//resize();
 			
 			$("#new_tasks").html(ajax_load).load(loadUrl);  

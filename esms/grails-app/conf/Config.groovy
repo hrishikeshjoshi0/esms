@@ -102,7 +102,7 @@ log4j = {
 }
 
 grails.resources.modules = {
-	gebo {
+	/*gebo {
 		resource url:'/bootstrap/css/bootstrap.min.css'
 		resource url:'/bootstrap/css/bootstrap-responsive.min.css'
 		resource url:'/css/dark.css'
@@ -136,7 +136,7 @@ grails.resources.modules = {
 		resource url: "/lib/list_js/list.min.js"
 		resource url: "/lib/list_js/plugins/paging/list.paging.min.js"
 		//resource url: "/js/gebo_dashboard.js"
-	}
+	}*/
 	core {
 		resource url:'/js/jquery-1.7.1.min.js', disposition: 'head'
 		resource url: '/js/jquery-ui-1.8.18.custom.min.js'
@@ -170,7 +170,9 @@ grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptU
 grails.plugins.springsecurity.interceptUrlMap = [
 	'/login/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/static/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/**': ['ROLE_USER','ROLE_ADMIN']
+	'/**': ['ROLE_USER','ROLE_ADMIN'],
+	'/login/bootstrap/css/bootstrap.min.css': ['ROLE_USER','ROLE_ADMIN'],
+	'/login/bootstrap/css/bootstrap-responsive.min.css': ['ROLE_USER','ROLE_ADMIN']
 ]
 
 /**

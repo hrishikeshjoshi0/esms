@@ -93,12 +93,64 @@ class BS3TagLib {
 				</div>"""
 	}
 	
-	def modalLink = { attrs ->
-		out << """<a data-toggle="modal" data-target="#${attrs.targetId}" role="button"
-					href="${attrs.href}" class="btn btn-default btn-xs"> 
-					${attrs.label}
-				</a>"""
+	def modalLink = { attrs,body ->
+		def cls = attrs.class
+		def id = attrs.id
+		def title =  attrs.title
+		def href = attrs.href
 		
+		def modalDialog = id + "Dialog"
+		def modalLink = id + "ModalLink"
+		def modalHeader = id + "ModalHeader"
+		def modalBody = id + "ModalBody"
+		
+		out << """
+				<a id="${modalLink}" class="btn btn-default btn-xs ${cls}" 
+						href="${href}">${title}</a>
+				
+				<!-- Modal -->
+				<div id="${modalDialog}" class="modal fade" id="${id}" tabindex="-1" role="dialog" 
+					aria-labelledby="myModalLabel_${id}" aria-hidden="true">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				                 <h4 class="modal-title" id="myModalLabel_${id}">
+									${title}
+								 </h4>
+				            </div>
+				            <div id="${modalBody}" class="modal-body">
+								
+							</div>            
+				        </div>
+				        <!-- /.modal-content -->
+				    </div>
+				    <!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->"""
+		out << """
+				<script type="text/javascript">
+					\$('document').ready(function(){
+					    var link = \$('#${modalLink}');
+						\$("body").on('click',link, function(e) {
+							e.preventDefault();
+
+                            \$("#${modalBody}").load("${href}", function( response, status, xhr ) {
+								if ( status == "error" ) {
+								  var msg = "Sorry but there was an error:" + xhr.status + " " + xhr.statusText;
+								  alert(msg);
+								}
+							});
+
+							\$('#${modalDialog}').modal('show');
+						});
+
+						\$('#${modalBody}').on('hidden.bs.modal', function () {
+							\$('#${modalDialog}').modal('hide');
+						})
+					});
+				</script>
+				"""				
 	}
 	
 }

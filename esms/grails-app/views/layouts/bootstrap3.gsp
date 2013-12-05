@@ -67,7 +67,6 @@
 	<!-- Container Ends -->
 	
 	<g:javascript library="application" />
-	<modalbox:modalIncludes />
 	<r:layoutResources disposition="defer"/>
 </body>
 </html>

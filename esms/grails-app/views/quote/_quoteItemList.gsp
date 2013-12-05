@@ -1,8 +1,8 @@
 <%@ page import="com.esms.model.product.Product" %>
 <g:if test="${quoteInstance?.status != 'CONVERTED_TO_SERVICE_CONTRACT' && quoteInstance?.status != 'CONVERTED_TO_SALES_ORDER' }">
 	<div class="pull-right">
-		<modalbox:createLink controller="quote" action="createQuoteItem" params="['quote.id':quoteInstance?.id]" 
-			title="Create Quote Item" width="900">New Quote Item</modalbox:createLink>
+		<bs3:modalLink href="${createLink(controller:'quote',action:'createQuoteItem',params:['quote.id':quoteInstance?.id])}"
+			class="btn-primary" id="createQuoteItem" title="Create Quote Item"/>	
 	</div>
 </g:if>
 

@@ -8,7 +8,6 @@
         </title>
         
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans" />
-        <r:require modules="gebo"/>
         <r:layoutResources/>
     
 		<script>

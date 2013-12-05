@@ -373,4 +373,18 @@ class OrganizationController {
 			}
 		}
 	}
+	
+	def suggest() {
+		def organizations = Organization.findAllByNameLike("%${params.q}%")
+		
+		render(contentType:"text/json") {
+			results() {
+				organizations.each { organization ->
+					result(){
+						organization(name:organization.name,id:organization.id)						
+					}
+				}
+			}
+		}
+	}
 }

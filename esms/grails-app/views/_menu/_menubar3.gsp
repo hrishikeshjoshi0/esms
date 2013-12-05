@@ -6,12 +6,7 @@
 
 	<div class="row">
 		<div class="col-md-12">
-			<g:form>
-				<richui:autoComplete name="q"
-					action="${createLinkTo('dir': 'organization/search')}"
-					class="col-md-12" shadow="true" minQueryLength="1"
-					onItemSelect="document.location.href = '${createLinkTo(dir: 'organization/show')}/' + id;" />
-			</g:form>
+			<g:render template="/_common/suggest" />
 		</div>
 	</div>
 	

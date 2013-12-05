@@ -14,11 +14,8 @@
 	<![endif]-->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	
-	<r:require modules="scaffolding,jquery-ui" />
-	<r:require module="calendar" />
-	<r:require module="chosen" />
-	<r:require module="gebo" />
-	
+	<link rel="stylesheet" href="${resource(dir: 'bootstrap3', file: 'bootstrap.css')}" media="screen">
+	<link rel="stylesheet" href="${resource(dir: 'bootstrap3/assets/css', file: 'bootswatch.min.css')}" media="screen">
 	<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
 	<g:layoutHead />
 	<r:layoutResources />
@@ -28,15 +25,5 @@
 	<g:layoutBody />
 	<g:pageProperty name="page.body" />
 	
-	<script src="${resource(dir: 'js', file: 'jquery.min.js')}"></script>
-	<script src="${resource(dir: 'js', file: 'jquery.debouncedresize.min.js')}"></script>
-	<script src="${resource(dir: 'js', file: 'jquery.actual.min.js')}"></script>
-	<script src="${resource(dir: 'js', file: 'jquery.cookie.min.js')}"></script>
-	<script src="${resource(dir: 'bootstrap/js', file: 'bootstrap.min.js')}"></script>
-	<script src="${resource(dir: 'js', file: 'jquery.mediaTable.min.js')}"></script>
-	<script src="${resource(dir: 'js', file: 'chosen.jquery.min.js')}" type="text/javascript"></script>
-	<g:javascript library="application" />
-	<r:layoutResources />
-
 </body>
 </html>
