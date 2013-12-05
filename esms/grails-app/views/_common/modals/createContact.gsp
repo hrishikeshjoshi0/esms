@@ -5,7 +5,7 @@
 </div>
 
 <div class="well">
-	<g:form class="form-horizontal" action="create">
+	<g:form class="form-horizontal" action="createContact" controller="organization">
 		<fieldset>
 			<g:hiddenField name="organization.id" value="${contactInstance?.organization?.id}"/>
 			<g:render template="/contact/form"></g:render>

@@ -1,10 +1,9 @@
 <%@ page import="com.esms.model.product.Product" %>
 <g:if test="${quoteInstance?.status != 'CONVERTED_TO_SERVICE_CONTRACT' && quoteInstance?.status != 'CONVERTED_TO_SALES_ORDER' }">
-<div class="pull-right">
-	<a data-toggle="modal" href="#" data-target="#quoteItemModal" role="button"
-		class="btn btn-default btn-sm">  New Item
-	</a>
-</div>
+	<div class="pull-right">
+		<modalbox:createLink controller="quote" action="createQuoteItem" params="['quote.id':quoteInstance?.id]" 
+			title="Create Quote Item" width="900">New Quote Item</modalbox:createLink>
+	</div>
 </g:if>
 
 <!-- Quotes -->
@@ -85,28 +84,4 @@
 </table>
 <div class="pagination">
 	<bootstrap:paginate total="${quoteInstance.quoteItems?quoteInstance.quoteItems:0}" />
-</div>
-
-<!-- Modal -->
-<div id="quoteItemModal" class="modal hide fade" tabindex="-1" role="dialog" style="width:70%;top:40%;left:40%;"
-	data-remote="<g:createLink controller="quote" action="createQuoteItem" params="[quoteId:quoteInstance?.id]"/>"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true">×</button>
-		<h3 id="myModalLabel">New Quote Item</h3>
-	</div>
-	<g:form controller="quote" action="createQuoteItem" method="POST">
-		<g:hiddenField name="quote.id"
-			value="${quoteInstance?.id}" />
-		<div class="modal-body"></div>
-		<div class="modal-footer">
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary create">
-					
-					<g:message code="default.button.create.label" default="Create" />
-				</button>
-			</div>
-		</div>
-	</g:form>
 </div>

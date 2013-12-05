@@ -123,7 +123,8 @@
 		</script>
 	</div>
 
-	--%><script src="${resource(dir: 'js', file: 'jquery.min.js')}"></script>
+	--%>
+	<script src="${resource(dir: 'js', file: 'jquery.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'jquery.debouncedresize.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'jquery.actual.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'jquery.cookie.min.js')}"></script>

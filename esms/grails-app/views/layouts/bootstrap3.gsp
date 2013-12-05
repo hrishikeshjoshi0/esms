@@ -17,13 +17,14 @@
 	
 	<filterpane:includes/>
 	<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-	<resource:autoComplete skin="esmsAutocomplete" />
 	<resource:dateChooser />
 	<resource:tabView/>
 	
 	<link rel="stylesheet" href="${resource(dir: 'bootstrap3', file: 'esms.css')}" media="screen">
 	
-	<script src="${resource(dir: 'bootstrap3/jquery', file: 'jquery.min.js')}"></script>
+	<script src="${resource(dir: 'js', file: 'jquery-1.7.1.min.js')}"></script>
+	<script src="${resource(dir: 'js', file: 'jquery-ui-1.8.18.custom.min.js')}"></script>
+	
 	<script src="${resource(dir: 'bootstrap3/bootstrap/dist/js', file: 'bootstrap.min.js')}"></script>
 	<script src="${resource(dir: 'bootstrap3/assets/js', file: 'bootswatch.js')}"></script>
 	

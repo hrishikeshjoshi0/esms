@@ -518,7 +518,7 @@ class QuoteController {
 				def quoteItemInstance = new QuoteItem(params)
 
 				if (!quoteItemInstance.save(flush: true)) {
-					render view: 'create', model: [quoteItemInstance: quoteItemInstance]
+					redirect view: 'show', model: [quoteInstance: quoteItemInstance?.quote]
 					return
 				}
 
