@@ -34,10 +34,10 @@
 					<fieldset>
 						<div
 							class="form-group fieldcontain ${hasErrors(bean: employeeInstance, field: 'employmentEndDate', 'error')} required">
-							<label for="salary" class="col-lg-2 control-label"><g:message
+							<label for="salary" class="col-md-2 control-label"><g:message
 									code="employee.employmentEndDate.label" default="Employment End Date" /><span
 								class="required-indicator">*</span></label>
-							<div class="col-lg-10">
+							<div class="col-md-10">
 								<g:datePicker name="employmentEndDate" precision="day" value="${employeeInstance?.employmentEndDate}"/>
 								<span class="help-inline">
 									${hasErrors(bean: employeeInstance, field: 'employmentEndDate', 'error')}

@@ -127,20 +127,20 @@
 			<g:if test="${order}">
 				<div
 					class="form-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'organization', 'error')} required">
-					<label for="organization" class="col-lg-2 control-label"><g:message
+					<label for="organization" class="col-md-2 control-label"><g:message
 							code="invoice.organization.label" default="Organization" /><span
 					class="required-indicator">*</span></label>
-				<div class="col-lg-10">
+				<div class="col-md-10">
 					${invoiceInstance?.organization?.name}
 				</div>
 			</g:if>
 			<g:else>
 				<div
 					class="form-group fieldcontain required">
-					<label for="organization" class="col-lg-2 control-label"><g:message
+					<label for="organization" class="col-md-2 control-label"><g:message
 							code="invoice.order.label" default="Order" /><span
 					class="required-indicator">*</span></label>
-				<div class="col-lg-10">
+				<div class="col-md-10">
 					<g:select id="orderId" name="orderId" from="${openOrders}" optionKey="id" class="large"
 						optionValue="${{it.orderNumber + ' - ' + it.type + ' : ' + it.organization?.name + 
 							'(Open Amount :' + it.openGrandTotal + ')' }}"	/>
@@ -154,10 +154,10 @@
 		<g:if test="${order}">
 				<div
 					class="form-group fieldcontain">
-					<label class="col-lg-2 control-label"><g:message
+					<label class="col-md-2 control-label"><g:message
 							code="invoice.referenceOrderNumber.label" default="Order Number" /></label>
 				<g:hiddenField id="orderId" name="orderId" value="${order?.id}"/>
-				<div class="col-lg-10">
+				<div class="col-md-10">
 					${order?.orderNumber}
 				</div>	
 		</g:if>

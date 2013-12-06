@@ -45,21 +45,21 @@
 							method="post" id="login_form">
 							<fieldset>
 								<div class="form-group">
-									<div class="col-lg-12">
-										<input type="text" id="j_username" name="j_username" class="col-lg-12" autocomplete="off"
+									<div class="col-md-12">
+										<input type="text" id="j_username" name="j_username" class="col-md-12" autocomplete="off"
 											placeholder="Username" />
 									</div>
 								</div>
 
 								<div class="form-group">
-									<div class="col-lg-12">
-										<input type="password" id="j_password" name="j_password" class="col-lg-12"
+									<div class="col-md-12">
+										<input type="password" id="j_password" name="j_password" class="col-md-12"
 											placeholder="Password" />
 									</div>
 								</div>
 
 								<div class="form-group">
-									<div class="col-lg-10 col-lg-offset-2">
+									<div class="col-md-10 col-md-offset-2">
 										<button class="btn btn-primary pull-right" type="submit">Sign In</button>
 									</div>
 								</div>

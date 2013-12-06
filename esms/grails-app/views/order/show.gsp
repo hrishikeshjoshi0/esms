@@ -142,12 +142,10 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><g:if
 										test="${orderInstance?.renewalStage == 'TAGGED_FOR_RENEWAL'}">
-										<modalbox:createLink class="btn btn-default btn-sm"
-												controller="order" action="renewalLetterSent"
-												id="${orderInstance?.id}" title="Mark As Sent" width="900">
-											Renewal Letter Sent
-										</modalbox:createLink>										
-									</g:if></li>
+										<bs3:modalLink
+												href="${createLink(controller:'order',action:'renewalLetterSent',id:orderInstance?.id)}"
+												class="btn-primary" id="renewalLetterSent" title="Renewal Letter Sent" />
+										</g:if></li>
 								<li><g:if
 										test="${orderInstance?.renewalStage == 'RENEWAL_LETTER_SENT'}">
 										<li class="divider"></li>

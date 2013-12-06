@@ -23,10 +23,10 @@
 				<fieldset>
 					<div
 						class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'recepientContactName', 'error')} ">
-						<label for="recepientContactName" class="col-lg-2 control-label"><g:message
+						<label for="recepientContactName" class="col-md-2 control-label"><g:message
 								code="quote.recepientContactName.label"
 								default="Recepient Contact Name" /> </label>
-						<div class="col-lg-10">
+						<div class="col-md-10">
 							<g:textField name="recepientContactName"
 								value="${orderInstance?.recepientContactName}" class="input-xlarge" />
 							<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'recepientContactName', 'error')}
@@ -36,10 +36,10 @@
 					
 					<div
 						class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'recepientContactNumber', 'error')} ">
-						<label for="recepientContactNumber" class="col-lg-2 control-label"><g:message
+						<label for="recepientContactNumber" class="col-md-2 control-label"><g:message
 								code="quote.recepientContactNumber.label" default="Recepient Contact Number" />
 						</label>		
-						<div class="col-lg-10">
+						<div class="col-md-10">
 							<g:textField name="recepientContactNumber" value="${orderInstance?.recepientContactNumber}"
 								class="input-xlarge" />
 							<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'recepientContactNumber', 'error')}
@@ -50,10 +50,10 @@
 					
 					<div
 						class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'receivedDateTime', 'error')} " style="width:500px;">
-						<label for="receivedDateTime" class="col-lg-2 control-label"><g:message
+						<label for="receivedDateTime" class="col-md-2 control-label"><g:message
 								code="order.receivedDateTime.label" default="Received Date & Time (24 hr format)" />
 						</label>		
-						<div class="col-lg-10">
+						<div class="col-md-10">
 							<richui:dateChooser name="receivedDateTime" value="${orderInstance?.receivedDateTime}" time="true" hourClass="input-mini" minuteClass="input-mini"/>
 							<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'receivedDateTime', 'error')}
 							</span>
@@ -62,10 +62,10 @@
 					
 					<div
 						class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'handedOveryBy', 'error')} ">
-						<label for="handedOveryBy" class="col-lg-2 control-label"><g:message
+						<label for="handedOveryBy" class="col-md-2 control-label"><g:message
 								code="quote.handedOveryBy.label" default="Handed Overy By" />
 						</label>
-						<div class="col-lg-10">
+						<div class="col-md-10">
 							<g:textField name="handedOveryBy" value="${orderInstance?.handedOveryBy}"
 								class="input-xlarge" />
 							<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'handedOveryBy', 'error')}
@@ -74,7 +74,7 @@
 					</div>
 					
 					<div class="form-group">
-						<div class="col-lg-10 col-lg-offset-2">
+						<div class="col-md-10 col-md-offset-2">
 							<button type="submit" class="btn btn-sm btn-primary">
 								<g:message code="default.button.save.label"
 									default="Save" />

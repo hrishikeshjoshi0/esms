@@ -10,7 +10,7 @@
 			<g:hiddenField name="party.id" value="${phoneBookInstance?.party?.id}"/>
 			<g:render template="/phoneBook/form"></g:render>
 			<div class="form-group">
-				<div class="col-lg-10 col-lg-offset-2">
+				<div class="col-md-10 col-md-offset-2">
 					<button type="submit" class="btn btn-sm btn-primary">
 						<g:message code="default.button.create.label" default="Create" />
 					</button>

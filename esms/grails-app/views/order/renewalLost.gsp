@@ -35,10 +35,10 @@
 					<fieldset>
 						<div
 							class="form-group fieldcontain required">
-							<label for="grandTotal" class="col-lg-2 control-label"><g:message
+							<label for="grandTotal" class="col-md-2 control-label"><g:message
 									code="order.renewalLostReason.label" default="Renewal Lost Reason" /><span
 								class="required-indicator">*</span></label>
-							<div class="col-lg-10">
+							<div class="col-md-10">
 								<g:textArea name="renewalLostReason" value="${params.renewalLostReason}" />
 							</div>
 						</div>

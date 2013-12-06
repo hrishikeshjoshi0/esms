@@ -1,6 +1,6 @@
 <div class="pull-right">
-	<modalbox:createLink controller="organization" action="createAddress" params="['party.id':organizationInstance?.id]" 
-		title="Create Address" width="900">New Address</modalbox:createLink>
+	<bs3:modalLink href="${createLink(controller:'organization',action:'createAddress',params:['party.id':organizationInstance?.id])}"
+			class="btn-primary" id="createAddress" title="New Address"/>	
 </div>
 
 <div class="table-responsive">
@@ -86,7 +86,7 @@
 						</div>
 						<div class="modal-footer">
 							<div class="form-group">
-								<div class="col-lg-10 col-lg-offset-2">
+								<div class="col-md-10 col-md-offset-2">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 									<button type="submit" class="btn btn-sm btn-primary">
 										<g:message code="default.button.create.label" default="Create" />

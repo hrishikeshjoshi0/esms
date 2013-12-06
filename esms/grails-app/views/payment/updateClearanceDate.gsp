@@ -35,9 +35,9 @@
 					<fieldset>
 						<div
 							class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'clearanceDate', 'error')} ">
-							<label for="branch" class="col-lg-2 control-label"><g:message
+							<label for="branch" class="col-md-2 control-label"><g:message
 									code="payment.clearanceDate.label" default="Clearance Date" /></label>
-							<div class="col-lg-10">
+							<div class="col-md-10">
 								<g:datePicker precision="day" name="clearanceDate" value="${paymentInstance?.clearanceDate}" />
 								<span class="help-inline">
 									${hasErrors(bean: paymentInstance, field: 'clearanceDate', 'error')}

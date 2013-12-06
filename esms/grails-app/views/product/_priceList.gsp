@@ -1,6 +1,7 @@
 <div class="pull-right">
-	<modalbox:createLink controller="product" action="createPrice" id="${productInstance?.id}"
-		title="Create Price" width="900">New Price</modalbox:createLink>
+	<bs3:modalLink
+		href="${createLink(controller:'product',action:'createPrice',id:'productInstance?.id')}"
+		class="btn-primary" id="createContact" title="New Price" />	
 </div>
 
 <table

@@ -38,9 +38,9 @@
 
 					<g:if
 						test="${quoteInstance?.sent == false && quoteInstance?.quoteItems?.size() != 0}">
-						<modalbox:createLink class="btn btn-default btn-sm"
-							controller="quote" action="markAsSent" id="${quoteInstance?.id}"
-							title="Create Contact" width="900">Mark As Sent</modalbox:createLink>
+						<bs3:modalLink
+							href="${createLink(controller:'quote',action:'markAsSent',id:quoteInstance?.id)}"
+							class="btn-primary" id="markAsSent" title="Mark As Sent" />	
 					</g:if>
 
 					<!-- State:Pending -->
@@ -48,9 +48,9 @@
 						test="${quoteInstance?.status == 'PENDING' && quoteInstance?.quoteItems?.size() != 0}">
 						<g:if
 							test="${quoteInstance?.type == 'CONTRACT' && quoteInstance?.quoteItems?.size() != 0}">
-							<modalbox:createLink class="btn btn-default btn-sm"
-								controller="quote" action="markAsAccepted" id="${quoteInstance?.id}"
-								title="Create Contact" width="900">Mark as Accepted</modalbox:createLink>	
+							<bs3:modalLink
+								href="${createLink(controller:'quote',action:'markAsAccepted',id:quoteInstance?.id)}"
+								class="btn-primary" id="markAsAccepted" title="Mark As Accepted" />		
 						</g:if>
 						<g:elseif test="${quoteInstance?.quoteItems?.size() != 0}">
 							<g:link action="markAsAccepted" controller="quote"
@@ -58,32 +58,28 @@
 								Mark as Accepted
 							</g:link>
 						</g:elseif>
-						<modalbox:createLink class="btn btn-default btn-sm"
-								controller="quote" action="markAsRevised" id="${quoteInstance?.id}"
-								title="Create Contact" width="900">Mark as Revised</modalbox:createLink>
-						
-						<modalbox:createLink class="btn btn-default btn-sm"
-								controller="quote" action="markAsDeclined" id="${quoteInstance?.id}"
-								title="Create Contact" width="900">Mark as Declined</modalbox:createLink>		
+						<bs3:modalLink
+								href="${createLink(controller:'quote',action:'markAsRevised',id:quoteInstance?.id)}"
+								class="btn-primary" id="markAsRevised" title="Mark As Revised" />
+								
+						<bs3:modalLink
+								href="${createLink(controller:'quote',action:'markAsDeclined',id:quoteInstance?.id)}"
+								class="btn-primary" id="markAsDeclined" title="Mark As Declined" />
 					</g:if>
 					<g:elseif
 						test="${quoteInstance?.status == 'ACCEPT' 
 						&& (quoteInstance.type == 'CONTRACT' || quoteInstance.type == 'MODERNIZATION' || quoteInstance.type == 'INSTALLATION' || quoteInstance.type == 'REPAIR') 
 						&& quoteInstance?.quoteItems?.size() != 0}">
 						<!-- State:Accept -->
-						<modalbox:createLink class="btn btn-default btn-sm"
-								controller="quote" action="confirmSale" id="${quoteInstance?.id}"
-								title="Create Contact" width="900">
-							Confirm Sale
-						</modalbox:createLink>
+						<bs3:modalLink
+								href="${createLink(controller:'quote',action:'confirmSale',id:quoteInstance?.id)}"
+								class="btn-primary" id="confirmSale" title="Confirm Sale" />
 					</g:elseif>
 					<g:elseif
 						test="${quoteInstance?.status == 'ACCEPT' && quoteInstance.type == 'REPAIR' && quoteInstance?.quoteItems?.size() != 0}">
-						<modalbox:createLink class="btn btn-default btn-sm"
-								controller="quote" action="confirmSale" id="${quoteInstance?.id}"
-								title="Create Contact" width="900">
-							Confirm Sale
-						</modalbox:createLink>
+						<bs3:modalLink
+								href="${createLink(controller:'quote',action:'confirmSale',id:quoteInstance?.id)}"
+								class="btn-primary" id="confirmSale" title="Confirm Sale" />
 					</g:elseif>
 					<g:link action="markAsDisqualified" controller="quote"
 								id="${quoteInstance?.id}" class="btn btn-sm btn-warning">

@@ -109,10 +109,10 @@ class BS3TagLib {
 						href="${href}">${title}</a>
 				
 				<!-- Modal -->
-				<div id="${modalDialog}" class="modal fade" id="${id}" tabindex="-1" role="dialog" 
+				<div id="${modalDialog}" class="modal fade modal-wide" id="${id}" tabindex="-1" role="dialog" 
 					aria-labelledby="myModalLabel_${id}" aria-hidden="true">
 				    <div class="modal-dialog">
-				        <div class="modal-content">
+				        <div class="modal-content modal-wide">
 				            <div class="modal-header">
 				                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				                 <h4 class="modal-title" id="myModalLabel_${id}">
@@ -132,7 +132,7 @@ class BS3TagLib {
 				<script type="text/javascript">
 					\$('document').ready(function(){
 					    var link = \$('#${modalLink}');
-						\$("body").on('click',link, function(e) {
+						\$(link).click(function(e) {
 							e.preventDefault();
 
                             \$("#${modalBody}").load("${href}", function( response, status, xhr ) {
@@ -147,7 +147,14 @@ class BS3TagLib {
 
 						\$('#${modalBody}').on('hidden.bs.modal', function () {
 							\$('#${modalDialog}').modal('hide');
-						})
+						});
+
+
+                        //Wide Modal
+						\$('#${modalDialog}').on("show.bs.modal", function() {
+						  var height = \$(window).height() - 150;
+						  \$(this).find(".modal-body").css("max-height", height);
+						});
 					});
 				</script>
 				"""				

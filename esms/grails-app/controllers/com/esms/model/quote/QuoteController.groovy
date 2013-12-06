@@ -504,7 +504,7 @@ class QuoteController {
 	def createQuoteItem() {
 		switch (request.method) {
 			case 'GET':
-				def quote = Quote.get(params.quoteId)
+				def quote = Quote.get(params.'quote.id')
 
 				def c = QuoteItem.createCriteria()
 				def maxLineNumber = c.get {

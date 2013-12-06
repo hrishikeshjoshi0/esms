@@ -1,39 +1,36 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<g:hasErrors bean="${quoteItemInstance}">
-				<bootstrap:alert class="alert-error">
-					<ul>
-						<g:eachError bean="${quoteItemInstance}" var="error">
-							<li
-								<g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
-									error="${error}" /></li>
-						</g:eachError>
-					</ul>
-				</bootstrap:alert>
-			</g:hasErrors>
+<div class="col-md-12">
+	<g:hasErrors bean="${quoteItemInstance}">
+		<bootstrap:alert class="alert-error">
+			<ul>
+				<g:eachError bean="${quoteItemInstance}" var="error">
+					<li
+						<g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
+							error="${error}" /></li>
+				</g:eachError>
+			</ul>
+		</bootstrap:alert>
+	</g:hasErrors>
 
-			<div class="well">
-				<g:form class="form-horizontal" action="createQuoteItem"
-					controller="quote">
-					<fieldset>
-						<g:hiddenField name="quote.id"
-							value="${quoteItemInstance?.quote?.id}" />
-						<g:render template="/quoteItem/form"></g:render>
-						<div class="form-group">
-							<div class="col-lg-10 col-lg-offset-2">
-								<button type="submit" class="btn btn-sm btn-primary">
-									<g:message code="default.button.create.label" default="Create" />
-								</button>
-							</div>
-						</div>
-					</fieldset>
-				</g:form>
-			</div>
-		</div>
+	<div class="well">
+		<g:form class="form-horizontal" action="createQuoteItem"
+			controller="quote">
+			<fieldset>
+				<g:hiddenField name="quote.id"
+					value="${quoteItemInstance?.quote?.id}" />
+				<g:render template="/quoteItem/form"></g:render>
+				<div class="form-group">
+					<div class="col-md-10 col-md-offset-2">
+						<button type="submit" class="btn btn-sm btn-primary">
+							<g:message code="default.button.create.label" default="Create" />
+						</button>
+					</div>
+				</div>
+			</fieldset>
+		</g:form>
 	</div>
+</div>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 	$('document').ready(function(){
 		$('.calc').change(function(){
 			calculateLineTotalAmount();
@@ -74,4 +71,3 @@
 		}
 	}
 </script>
-</div>

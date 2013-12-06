@@ -1,15 +1,7 @@
 <div class="pull-right">
-	<modalbox:createLink controller="organization" action="createPhoneBook" params="['party.id':organizationInstance?.id]" 
-		title="Create Phone Entry" width="900">New Phone</modalbox:createLink>
+	<bs3:modalLink href="${createLink(controller:'quote',action:'createPhoneBook',params:['party.id':quoteInstance?.id])}"
+			class="btn-primary" id="createPhoneBook" title="New Phone"/>	
 </div>
-
-<%--<div class="pull-right">
-	<a data-toggle="modal" href="#" data-target="#phoneBookModal"
-		role="button" class="btn btn-default btn-sm">  New
-		Phone Book
-	</a>
-</div>
---%>
 <div class="table-responsive">
 	<table class="table table-striped table-condensed table-bordered">
 		<thead>

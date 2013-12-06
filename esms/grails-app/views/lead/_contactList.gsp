@@ -1,6 +1,6 @@
 <div class="pull-right">
-	<modalbox:createLink controller="organization" action="createContact" params="['organization.id':organizationInstance?.id]" 
-		title="Create Contact" width="900">New Contact</modalbox:createLink>
+	<bs3:modalLink href="${createLink(controller:'organization',action:'createContact',params:['organization.id':organizationInstance?.id])}"
+			class="btn-primary" id="createContact" title="New Contact"/>
 </div>
 
 <div class="table-responsive">

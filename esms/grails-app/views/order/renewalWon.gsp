@@ -35,30 +35,30 @@
 					<fieldset>
 						<div
 							class="form-group fieldcontain required">
-							<label for="renewedContractFromDate" class="col-lg-2 control-label"><g:message
+							<label for="renewedContractFromDate" class="col-md-2 control-label"><g:message
 									code="order.renewedContractFromDate.label" default="From Date" /><span
 								class="required-indicator">*</span></label>
-							<div class="col-lg-10">
+							<div class="col-md-10">
 								<richui:dateChooser name="renewedContractFromDate" value="${params.renewedContractFromDate}" />
 							</div>
 						</div>
 						
 						<div
 							class="form-group fieldcontain required">
-							<label for="renewedContractToDate" class="col-lg-2 control-label"><g:message
+							<label for="renewedContractToDate" class="col-md-2 control-label"><g:message
 									code="order.renewedContractToDate.label" default="To Date" /><span
 								class="required-indicator">*</span></label>
-							<div class="col-lg-10">
+							<div class="col-md-10">
 								<richui:dateChooser name="renewedContractToDate" value="${params.renewedContractToDate}" />
 							</div>
 						</div>
 						
 						<div
 							class="form-group fieldcontain">
-							<label for="selectedService" class="col-lg-2 control-label">
+							<label for="selectedService" class="col-md-2 control-label">
 								Select Service
 							</label>
-							<div class="col-lg-10">
+							<div class="col-md-10">
 								<g:select class="calc" name="selectedService"
 									from="${serviceListItemsMap}"
 									optionKey="key"
@@ -71,10 +71,10 @@
 						
 						<div
 							class="form-group fieldcontain required">
-							<label for="unitPrice" class="col-lg-2 control-label"><g:message
+							<label for="unitPrice" class="col-md-2 control-label"><g:message
 									code="order.productAmount.label" default="Unit Price" /><span
 								class="required-indicator">*</span></label>
-							<div class="col-lg-10">
+							<div class="col-md-10">
 								<g:field type="number" name="unitPrice" step="any" required="" class="calc"
 										value="${params.unitPrice}" />
 							</div>
@@ -82,10 +82,10 @@
 						
 						<div
 							class="form-group fieldcontain required">
-							<label for="tax" class="col-lg-2 control-label"><g:message
+							<label for="tax" class="col-md-2 control-label"><g:message
 									code="order.tax.label" default="Tax" /><span
 								class="required-indicator">*</span></label>
-							<div class="col-lg-10">
+							<div class="col-md-10">
 								<g:field type="number" name="tax" step="any" required="" class="calc"
 										value="${params.tax}" />
 							</div>
@@ -93,10 +93,10 @@
 						
 						<div
 							class="form-group fieldcontain required">
-							<label for="discount" class="col-lg-2 control-label"><g:message
+							<label for="discount" class="col-md-2 control-label"><g:message
 									code="order.discount.label" default="Discount" /><span
 								class="required-indicator">*</span></label>
-							<div class="col-lg-10">
+							<div class="col-md-10">
 								<g:field type="number" name="discount" step="any" required="" class="calc"
 										value="${params.discount}" />
 							</div>
@@ -104,10 +104,10 @@
 						
 						<div
 							class="form-group fieldcontain required">
-							<label for="grandTotal" class="col-lg-2 control-label"><g:message
+							<label for="grandTotal" class="col-md-2 control-label"><g:message
 									code="order.grandTotal.label" default="Grand Total" /><span
 								class="required-indicator">*</span></label>
-							<div class="col-lg-10">
+							<div class="col-md-10">
 								<g:field type="number" name="renewedGrandTotal" step="any" required="" readonly="readonly"
 										value="${params.renewedGrandTotal}" />
 							</div>
@@ -115,10 +115,10 @@
 						
 						<div
 							class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'description', 'error')} ">
-							<label for="description" class="col-lg-2 control-label"><g:message
+							<label for="description" class="col-md-2 control-label"><g:message
 									code="order.description.label" default="Description" /><span
 								class="required-indicator">*</span></label>
-							<div class="col-lg-10">
+							<div class="col-md-10">
 								<g:textArea name="description" value="${orderInstance?.description}"
 									cols="40" rows="5" maxlength="1000" style="width:80%;" />
 								<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'description', 'error')}

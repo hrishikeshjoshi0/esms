@@ -18,11 +18,11 @@
 		</div>
 
 		<div class="well">
-			<g:form class="form-horizontal" action="create">
+			<g:form class="form-horizontal" controller="quote" action="markAsAccepted" id="${quoteInstance?.id}">
 				<fieldset>
 					<div
 						class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'contractFromDate', 'error')} ">
-						<label for="contractFromDate" class="col-lg-2 control-label"><g:message
+						<label for="contractFromDate" class="col-md-2 control-label"><g:message
 								code="quote.contractFromDate.label" default="Contract Starts" />
 						</label>		
 							<div class="controls" style="width: 100%;">
@@ -36,7 +36,7 @@
 					<div
 						class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'contractToDate', 'error')} "
 						style="width: 500px;">
-						<label for="contractToDate" class="col-lg-2 control-label"><g:message
+						<label for="contractToDate" class="col-md-2 control-label"><g:message
 								code="quote.contractToDate.label" default="Contract Ends" />
 						</label>	
 							<div class="controls" style="width: 100%;">
@@ -48,9 +48,9 @@
 					</div>
 
 					<div class="form-group fieldcontain">
-						<label for="selectService" class="col-lg-2 control-label">
+						<label for="selectService" class="col-md-2 control-label">
 							Select Service </label>
-						<div class="col-lg-10">
+						<div class="col-md-10">
 							<g:select name="selectedService" from="${serviceQuoteListItems}"
 								optionKey="key" optionValue="value" noSelection="['': '']" />
 							<span class="help-inline"> </span>
@@ -58,7 +58,7 @@
 					</div>
 
 					<div class="form-group">
-						<div class="col-lg-10 col-lg-offset-2">
+						<div class="col-md-10 col-md-offset-2">
 							<button type="submit" class="btn btn-sm btn-primary">
 								<g:message code="default.button.save.label" default="Save" />
 							</button>

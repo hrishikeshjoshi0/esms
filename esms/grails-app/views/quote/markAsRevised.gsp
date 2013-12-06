@@ -20,11 +20,11 @@
 		</div>
 		
 		<div class="well">
-			<g:form class="form-horizontal" action="create">
+			<g:form class="form-horizontal" controller="quote" action="markAsRevised" id="${quoteInstance?.id}">
 				<fieldset>
 					<div
 						class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'revisedReason', 'error')} ">
-						<div class="col-lg-10">
+						<div class="col-md-10">
 							<g:textArea name="description"
 								value="${quoteInstance?.revisedReason}" cols="40" rows="5"
 								maxlength="1000" style="width:80%;" />
@@ -34,7 +34,7 @@
 					</div>
 
 					<div class="form-group">
-						<div class="col-lg-10 col-lg-offset-2">
+						<div class="col-md-10 col-md-offset-2">
 							<button type="submit" class="btn btn-sm btn-primary">
 								<g:message code="default.button.save.label" default="Save" />
 							</button>
