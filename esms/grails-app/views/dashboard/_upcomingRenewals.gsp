@@ -56,13 +56,11 @@
 			<th></th>
 			
 			<th></th>
-			
-			<th></th>
 		</tr>
 	</thead>
 	<tbody id="updateDiv">
 		<g:each in="${upcomingRenewals}" var="orderInstance">
-			<tr>
+			<tr class="${upcomingRenewals.isRenewed()?'sucess':''}">
 				<td>
 					${fieldValue(bean: orderInstance, field: "orderNumber")}
 				</td>
@@ -98,30 +96,7 @@
 				
 				<td>
 					<g:if test="${orderInstance?.taggedForRenewal == true}">
-						<g:if test="${orderInstance?.renewalStage == 'RENEWAL_LETTER_SENT'}">
-							<span class="badge badge-warning">
-								
-								Renewal Letter Sent
-							</span>
-						</g:if>
-						<g:elseif test="${orderInstance?.renewalStage == 'RENEWAL_WON'}">
-							<span class="badge badge-success">
-								
-								Renewal Won
-							</span>
-						</g:elseif>
-						<g:elseif test="${orderInstance?.renewalStage == 'RENEWAL_LOST'}">
-							<span class="badge badge-warning">
-								
-								Renewal Lost
-							</span>
-						</g:elseif>
-						<g:else>
-							<span class="badge badge-info">
-								
-								Tagged For Renewal
-							</span>
-						</g:else>				
+						${orderInstance?.getRenewalState()}			
 					</g:if>
 				</td>
 

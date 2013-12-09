@@ -118,13 +118,6 @@
 				</tr>
 			</g:each>
 		</g:if>
-		<g:else>
-			<tr>
-				<th colspan="13">
-					<h5>No Records Found !</h5>
-				</th>
-			</tr>
-		</g:else>
 	</tbody>
 	<tfoot>
 		<tr>

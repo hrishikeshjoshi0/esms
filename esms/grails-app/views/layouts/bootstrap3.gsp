@@ -2,9 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>
-		<g:layoutTitle default="${appName}"/> ${appName}		
-	</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,6 +28,12 @@
 	
 	<script src="${resource(dir: 'bootstrap3/bootstrap/dist/js', file: 'bootstrap.min.js')}"></script>
 	<script src="${resource(dir: 'bootstrap3/assets/js', file: 'bootswatch.js')}"></script>
+	
+	<script type="text/javascript" src="${resource(dir: 'js/ie', file: 'respond.min.js')}"></script>
+	
+	<title>
+		<g:layoutTitle default="${appName}"/> 	
+	</title>
 	
 	<g:layoutHead />
 </head>
@@ -57,15 +61,8 @@
 		</div>	
 		
 		<!-- Footer -->
-		<footer id="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						Morya Solutions 
-					</div>
-				</div>
-			</div>
-		</footer>
+		<g:render template="/layouts/footer"></g:render>	
+		
 	</div>
 	<!-- Container Ends -->
 	

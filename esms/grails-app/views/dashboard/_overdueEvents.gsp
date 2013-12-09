@@ -52,13 +52,6 @@
 					</tr>
 				</g:each>
 			</g:if>
-			<g:else>
-				<tr>
-					<th colspan="7">
-						<h5 style="color: red;">No Records Found !</h5>
-					</th>
-				</tr>
-			</g:else>
 		</tbody>
 		<tfoot>
 			<tr>

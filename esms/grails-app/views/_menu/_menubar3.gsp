@@ -5,13 +5,21 @@
 							&&	params.controller != 'dashboard'}">
 
 	<div id="quicklinks">
-		<div class="row">
+		<div>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        
+		<div class="row visible-md visible-lg">
 			<div class="col-md-12">
 				<g:render template="/_common/suggest" />
 			</div>
 		</div>
 		
-		<div class="row">
+		<div class="row visible-md visible-lg">
 			<div class="col-md-12">
 				<div class="page-header">
 					<h5>

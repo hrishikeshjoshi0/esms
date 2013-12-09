@@ -11,10 +11,10 @@
 <body>
 	<div class="row">
 		<div class="col-md-12">
-			<g:hasErrors bean="${productInstance}">
+			<g:hasErrors bean="${taskInstance}">
 				<bootstrap:alert class="alert-error">
 					<ul>
-						<g:eachError bean="${productInstance}" var="error">
+						<g:eachError bean="${taskInstance}" var="error">
 							<li
 								<g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
 									error="${error}" /></li>
@@ -23,9 +23,27 @@
 				</bootstrap:alert>
 			</g:hasErrors>
 
-			<bs3:pageHeader pageHeaderLabel="${message(code: 'default.create.label',args:[entityName])}" />
+			<div class="page-header">
+				<h3>
+					<g:message code="default.create.label" args="[entityName]" />
+				</h3>
+			</div>
 
-			<bs3:form action="create"/>		
+			<div class="well">
+				<g:form class="form-horizontal" action="create">
+					<fieldset>
+						<g:render template="form"></g:render>
+						<div class="form-group">
+							<div class="col-md-10 col-md-offset-2">
+								<button type="submit" class="btn btn-sm btn-primary">
+									
+									<g:message code="default.button.create.label" default="Create" />
+								</button>
+							</div>
+						</div>
+					</fieldset>
+				</g:form>
+			</div>	
 		</div>
 	</div>
 </body>

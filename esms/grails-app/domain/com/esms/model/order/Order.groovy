@@ -1,10 +1,11 @@
 package com.esms.model.order
 
 import com.esms.model.inventory.InventoryJournal
-import com.esms.model.invoice.Invoice;
+import com.esms.model.invoice.Invoice
 import com.esms.model.party.Organization
 import com.esms.model.payment.PaymentItem
 import com.esms.model.product.Product
+import com.esms.model.quote.Quote
 
 class Order {
 
@@ -118,4 +119,33 @@ class Order {
 		
 		amountReceivablesTotal?amountReceivablesTotal:0.0
 	}
+	
+	boolean isRenewed() {
+		if (relatedTo == 'ORDER' && relatedToValue) {
+			return true
+		}
+		return false
+	}
+	
+	def getRenewalState() {
+		def renewalQuote
+		if(renewalStage == 'TAGGED_FOR_RENEWAL') {
+			renewalQuote = Quote.findByRelatedToAndRelatedToValue('RENEWAL',orderNumber)
+		}
+		
+		if(!renewalQuote) {
+			"Renewal Process Initiated"
+		} else if(renewalQuote  && (renewalQuote?.status == 'PENDING' || renewalQuote?.status == 'ACCEPT')) {
+			if(renewalQuote?.status == 'PENDING' && !renewalQuote.sent) {
+				"Renewal Quote Is Not Sent."
+			} else if(renewalQuote?.status == 'PENDING' && renewalQuote.sent) {
+				"Renewal Quote Is Sent."
+			} else if(renewalQuote?.status == 'ACCEPT') {
+				"Renewal Quote Is Accepted."
+			}
+		} else if (renewalQuote && renewalQuote?.status == 'CONVERTED_TO_SERVICE_CONTRACT'){
+			relatedToValue
+		}
+	}
+	
 }

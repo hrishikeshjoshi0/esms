@@ -53,47 +53,7 @@
 						</g:if>
 					</g:if>
 				</h4>
-				<%--<h4>
-					<g:if test="${orderInstance?.type == 'SERVICE'}">
-						Contract Period :
-						<g:formatDate date="${orderInstance?.contractFromDate}" format="dd.MM.yyyy"/>
-						-
-						<g:formatDate date="${orderInstance?.contractToDate}" format="dd.MM.yyyy"/>
-					</g:if>
-					<g:if test="${orderInstance?.type == 'SERVICE'}">
-						|
-						Contract:
-						${contractName}
-					</g:if>
-					<g:elseif test="${orderInstance?.type == 'REPAIR'}">
-						|
-						REPAIR
-					</g:elseif>
-					<g:if test="${orderInstance?.type == 'SERVICE' && orderInstance?.taggedForRenewal == true}">
-						<g:if
-							test="${renewalQuote}">
-							<span class="badge badge-info">
-								Renewal Letter Sent
-							</span>
-						</g:if>
-						<g:elseif test="${orderInstance?.renewalStage == 'RENEWAL_WON'}">
-							<span class="badge badge-info"> 
-								Renewal Won
-							</span>
-						</g:elseif>
-						<g:elseif test="${orderInstance?.renewalStage == 'RENEWAL_LOST'}">
-							<span class="badge badge-info"> 
-								Renewal Lost
-							</span>
-						</g:elseif>
-						<g:else>
-							<span class="badge badge-info"> 
-								Tagged For Renewal
-							</span>
-						</g:else>
-					</g:if>
-				</h4>
-			--%></div>
+			</div>
 
 			<div class="well">
 				<g:form>

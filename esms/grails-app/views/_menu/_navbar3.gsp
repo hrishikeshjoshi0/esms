@@ -1,5 +1,12 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
+		<div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
 		<div class="navbar-collapse collapse" id="navbar-main">
 			<!-- Navigation Menus -->
 			<ul class="nav navbar-nav">
@@ -211,7 +218,8 @@
 				</li>
 				<li><g:link controller="event" action="listView"
 						class="link" title="New tasks">
-						<span class="badge" id="new_tasks"
+						<span  
+							id="new_tasks"
 							data-url="${createLink(controller : 'event',action: 'getLatestTaskCount')}">
 						</span>						
 						New Tasks

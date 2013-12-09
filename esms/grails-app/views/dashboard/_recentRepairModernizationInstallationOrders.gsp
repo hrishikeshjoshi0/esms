@@ -84,7 +84,7 @@
 						</g:link>
 					</g:if>
 					<g:else>
-						No Event Created
+						-
 					</g:else>
 				</td>
 				<td class="link"><g:link controller="order" action="show" id="${order?.id}" class="lnk ">Show &raquo;</g:link></td>

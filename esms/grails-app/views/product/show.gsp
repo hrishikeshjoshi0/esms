@@ -16,28 +16,31 @@
 				</h2>
 			</div>
 
-			<g:form>
-				<g:hiddenField name="id" value="${productInstance?.id}" />
-				<%--<g:link class="btn-sm" action="edit" id="${productInstance?.id}">
-							
+			<div class="well">
+				<g:form>
+					<g:hiddenField name="id" value="${productInstance?.id}" />
+					<%--<g:link class="btn-sm" action="edit" id="${productInstance?.id}">
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
-						--%>
-				<g:if
-					test="${productInstance?.isVirtual == false && productInstance?.requiresInventory == null}">
-					<g:link class="btn btn-default btn-sm" action="create"
-						controller="productInventory"
-						param="['product.id':productInstance?.id]">
-								
-								Add Inventory
-							</g:link>
-				</g:if>
-				<button class="btn btn-sm btn-default" type="submit"
-					name="_action_delete">
-
-					<g:message code="default.button.delete.label" default="Delete" />
-				</button>
-			</g:form>
+					--%>
+					<g:if
+						test="${productInstance?.isVirtual == false && productInstance?.requiresInventory == null}">
+						<g:link class="btn btn-default btn-sm" action="create"
+							controller="productInventory"
+							param="['product.id':productInstance?.id]">
+									Add Inventory
+						</g:link>
+					</g:if>
+					
+					<bs3:modalLink
+						href="${createLink(controller:'product',action:'createPrice',id:productInstance?.id)}"
+						class="btn-primary" id="createPrice" title="New Price" />
+					
+					<button class="btn btn-sm btn-default" type="submit" name="_action_delete">
+						<g:message code="default.button.delete.label" default="Delete" />
+					</button>
+				</g:form>
+			</div>
 
 			<div class="table-responsive">
 				<table class="table table-striped table-condensed table-bordered">

@@ -73,13 +73,6 @@
 				</g:each>
 			</g:each>
 		</g:if>
-		<g:else>
-			<tr>
-				<th colspan="7">
-					<h4 style="color: red;">No Records Found !</h4>
-				</th>
-			</tr>
-		</g:else>
 	</tbody>
 	<tfoot>
 		<tr>

@@ -1,9 +1,3 @@
-<div class="pull-right">
-	<bs3:modalLink
-		href="${createLink(controller:'product',action:'createPrice',id:'productInstance?.id')}"
-		class="btn-primary" id="createContact" title="New Price" />	
-</div>
-
 <table
 	class="table table-striped table-hover table-condensed table-bordered">
 	<thead>
