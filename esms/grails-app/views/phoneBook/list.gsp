@@ -52,13 +52,13 @@
 							<td>${fieldValue(bean: phoneBookInstance, field: "party")}</td>
 						
 							<td class="link">
-								<g:link action="show" id="${phoneBookInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+								<g:link action="show" id="${phoneBookInstance.id}" class="lnk">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>
 					</tbody>
 				</table>
-				<div class="pagination">
+				<div class="pgn">
 					<bootstrap:paginate total="${phoneBookInstanceTotal}" />
 				</div>
 			</div>

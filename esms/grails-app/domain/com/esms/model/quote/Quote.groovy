@@ -60,7 +60,7 @@ class Quote {
 		totalTax nullable:false
 		totalDiscount nullable:false
 		grandTotal nullable:false
-		relatedTo nullable:true,InList:['CONTRACT CUSTOMER','NON CONTRACT CUSTOMER']
+		relatedTo nullable:true,InList:['CONTRACT CUSTOMER','NON CONTRACT CUSTOMER','RENEWAL']
 		relatedToValue nullable:true,blank:true
 		
 		contractFromDate nullable:true,blank:true

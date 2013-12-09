@@ -32,7 +32,7 @@
 								Add Inventory
 							</g:link>
 				</g:if>
-				<button class="btn btn-sm btn-danger" type="submit"
+				<button class="btn btn-sm btn-default" type="submit"
 					name="_action_delete">
 
 					<g:message code="default.button.delete.label" default="Delete" />

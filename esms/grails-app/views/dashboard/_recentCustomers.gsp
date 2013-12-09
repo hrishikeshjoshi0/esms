@@ -1,7 +1,7 @@
 <%@page import="com.esms.model.product.Product"%>
 <%@ page import="com.esms.model.party.*"%>
 
-<div class="dashboard-widget-header">
+<div class="page-header">
 	<h3>Recent Service Contracts</h3>
 </div>
 
@@ -66,14 +66,14 @@
 				<td>
 					${order.assignedTo}
 				</td>
-				<td class="link"><g:link controller="order" action="show" id="${order?.id}" class="btn btn-default btn-sm">Show &raquo;</g:link></td>
+				<td class="link"><g:link controller="order" action="show" id="${order?.id}" class="lnk ">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
 	<tfoot>
 			<tr>
 				<th colspan="6" class="link">
-					<g:link controller="order" action="list" class="btn btn-default btn-sm">Show All &raquo;</g:link>
+					<g:link controller="order" action="list" class="lnk ">Show All &raquo;</g:link>
 				</th>				
 			</tr>
 		</tfoot>

@@ -165,4 +165,40 @@ class EmployeeController {
 			break
 		}
     }
+	
+	def createAddress() {
+		switch (request.method) {
+		case 'GET':
+			def addressInstance = new Address(params)
+			render view: '/_common/modals/createAddress', model: [addressInstance: addressInstance]
+			return
+		case 'POST':
+			def addressInstance = new Address(params)
+			if (!addressInstance.save(flush: true)) {
+				render view: 'create', model: [addressInstance: addressInstance]
+				return
+			}
+
+			flash.message = message(code: 'default.created.message', args: [message(code: 'contact.label', default: 'Contact'), addressInstance.id])
+			redirect controller: 'employee', action: 'show', id: addressInstance?.party?.id
+		}
+	}
+	
+	def createPhoneBook() {
+		switch (request.method) {
+		case 'GET':
+			render view: '/_common/modals/createPhoneBook', [phoneBookInstance: new PhoneBook(params)]
+			return
+		case 'POST':
+			def phoneBookInstance = new PhoneBook(params)
+			if (!phoneBookInstance.save(flush: true)) {
+				render view: 'create', model: [phoneBookInstance: phoneBookInstance]
+				return
+			}
+
+			flash.message = message(code: 'default.created.message', args: [message(code: 'phoneBook.label', default: 'PhoneBook'), phoneBookInstance.id])
+			redirect controller: 'employee', action: 'show', id: phoneBookInstance?.party?.id
+			break
+		}
+	}
 }

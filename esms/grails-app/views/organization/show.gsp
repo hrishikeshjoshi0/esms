@@ -1,74 +1,77 @@
-
-
 <%@ page import="com.esms.model.party.Organization"%>
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap3">
-<g:set var="entityName"
-	value="${message(code: 'organization.label', default: 'Organization')}" />
-<title><g:message code="default.show.label" args="[entityName]" /></title>
+	<meta name="layout" content="bootstrap3">
+	<g:set var="entityName"
+		value="${message(code: 'organization.label', default: 'Customer')}" />
+	<title>
+		Customer::${organizationInstance?.externalId}:${organizationInstance?.name}
+	</title>
 </head>
 <body>
-
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
 				<h3>
-					CUSTOMER #
-					${organizationInstance?.externalId}
-					|
-					${organizationInstance?.name}
+					Customer ${organizationInstance?.externalId}:${organizationInstance?.name}
+				</h3>
+				<h4>
 					<g:if test="${activeContract}">
+						<span class=" "> 
+						<g:if
+								test="${activeContract?.type == 'SERVICE'}">
+										Current Active Contract :
+										${contractName}
+							</g:if> <g:elseif test="${activeContract?.type == 'REPAIR'}">
+										Repair
+								</g:elseif> <g:elseif test="${activeContract?.type == 'MODERNIZATION'}">
+										Modernization
+								</g:elseif> <g:elseif test="${activeContract?.type == 'INSTALLATION'}">
+										Installation
+								</g:elseif>
+						</span>
 						<g:if test="${activeContract?.type == 'SERVICE'}">
-								|
-								CONTRACT PERIOD :
+								(Active From
 								<g:formatDate date="${activeContract?.contractFromDate}"
 								format="dd.MM.yyyy" />
-								-
+								To
 								<g:formatDate date="${activeContract?.contractToDate}"
-								format="dd.MM.yyyy" />
+								format="dd.MM.yyyy" />)
 						</g:if>
-						<g:if test="${activeContract?.type == 'SERVICE'}">
-								|
-								CONTRACT :
-								${contractName}
-						</g:if>
-						<g:elseif test="${activeContract?.type == 'REPAIR'}">
-								|
-								REPAIR
-							</g:elseif>
 					</g:if>
-				</h3>
+				</h4>
 			</div>
 
-			<g:form>
-				<g:hiddenField name="id" value="${organizationInstance?.id}" />
-
-					<!-- TODO : HRISHI Disabled temporarily -->
-					<%--<g:link class="btn btn-default btn-sm" action="edit" id="${organizationInstance?.id}">
-							
-							<g:message code="default.button.edit.label" default="Edit" />
-						</g:link>
-						--%>
-
-					<button class="btn btn-sm btn-danger" type="submit" name="_action_delete">
-						
-						<g:message code="default.button.delete.label" default="Delete" />
-					</button>
-					<g:if test="${organizationInstance.salesStatus == 'LEAD'}">
-						<g:link controller="organization" action="convertLeadToCustomer"
-							id="${organizationInstance?.id}" role="button" class="btn btn-default btn-sm">
-							 Convert Lead
+			<div class="well">
+				<g:form>
+					<g:hiddenField name="id" value="${organizationInstance?.id}" />
+						<!-- TODO : HRISHI Disabled temporarily -->
+						<%--
+							<g:link class="btn btn-default btn-sm" action="edit" id="${organizationInstance?.id}">
+								<g:message code="default.button.edit.label" default="Edit" />
 							</g:link>
-					</g:if>
-					<g:link controller="task" action="create" role="button"
-						class="btn btn-sm btn-info"
-						params="[relatedTo:'ORGANIZATION',relatedToValue:organizationInstance?.externalId,taskName:'']">
-						
-						 	Create Task
+						--%>
+						<a
+							href="<g:createLink controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]"/>"
+							role="button" class="btn btn-primary btn-sm">  New
+							Contract Quote
+						</a> <a
+							href="<g:createLink controller="quote" action="create" params="[type:'REPAIR',organizationId:organizationInstance?.id]" />"
+							role="button" class="btn btn-primary btn-sm">  New
+							Repair Quote
+						</a>
+						<g:link controller="task" action="create" role="button"
+							class="btn btn-sm btn-primary"
+							params="[relatedTo:'ORGANIZATION',relatedToValue:organizationInstance?.externalId,taskName:'']">
+							 	Create Task
 						</g:link>
-			</g:form>
+						
+						<button class="btn btn-sm btn-default" type="submit" name="_action_delete">
+							<g:message code="default.button.delete.label" default="Delete" />
+						</button>
+				</g:form>
+			</div>
 
 			<div class="row">
 				<div class="col-md-4">
@@ -134,8 +137,8 @@
 				</div>
 
 				<!-- Order Instance -->
-				<div class="col-md-4">
-					<g:if test="${activeContract}">
+				<g:if test="${activeContract}">
+					<div class="col-md-4">
 						<dl class="dl-horizontal">
 							<dt>
 								<g:message code="order.totalAmount.label" default="Total Amount" />
@@ -201,11 +204,16 @@
 									field="pendingInvoiceGrandTotal" />
 							</dd>
 						</dl>
-					</g:if>
-					<g:else>
-						<b>No Active Contract</b>
-					</g:else>
-				</div>
+					</div>
+				</g:if>
+				<g:else>
+					<div class="col-md-4">
+						<dl class="dl-horizontal">
+							<dt>No Ongoing Contract</dt>
+						</dl>
+					</div>
+
+				</g:else>
 
 				<div class="col-md-4">
 					<dl class="dl-horizontal">

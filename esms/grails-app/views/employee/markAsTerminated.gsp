@@ -5,8 +5,9 @@
 <meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'employee.label', default: 'Employee')}" />
-<title><g:message code="default.create.label"
-		args="[entityName]" /></title>
+<title>
+	Employee ${employeeInstance?.externalId} | ${employeeInstance?.lastName}, ${employeeInstance?.firstName}
+</title>
 </head>
 <body>
 	<div class="row">
@@ -25,24 +26,28 @@
 
 			<div class="page-header">
 				<h3>
-					Employee # ${employeeInstance?.externalId} | ${employeeInstance?.lastName}, ${employeeInstance?.firstName}
+					Employee ${employeeInstance?.externalId} | ${employeeInstance?.lastName}, ${employeeInstance?.firstName}
 				</h3>
 			</div>
 
 			<fieldset>
 				<g:form class="form-horizontal" action="markAsTerminated" id="${employeeInstance?.id}" method="POST">
 					<fieldset>
-						<div
-							class="form-group fieldcontain ${hasErrors(bean: employeeInstance, field: 'employmentEndDate', 'error')} required">
-							<label for="salary" class="col-md-2 control-label"><g:message
-									code="employee.employmentEndDate.label" default="Employment End Date" /><span
-								class="required-indicator">*</span></label>
-							<div class="col-md-10">
-								<g:datePicker name="employmentEndDate" precision="day" value="${employeeInstance?.employmentEndDate}"/>
-								<span class="help-inline">
-									${hasErrors(bean: employeeInstance, field: 'employmentEndDate', 'error')}
-								</span>
-							</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div
+									class="form-group fieldcontain ${hasErrors(bean: employeeInstance, field: 'employmentEndDate', 'error')} required">
+									<label for="salary" class="col-md-3 control-label"><g:message
+											code="employee.employmentEndDate.label" default="Employment End Date" /><span
+										class="required-indicator">*</span></label>
+									<div class="col-md-10">
+										<g:datePicker name="employmentEndDate" precision="day" value="${employeeInstance?.employmentEndDate}"/>
+										<span class="help-inline">
+											${hasErrors(bean: employeeInstance, field: 'employmentEndDate', 'error')}
+										</span>
+									</div>
+								</div>
+							</div>	 
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary">

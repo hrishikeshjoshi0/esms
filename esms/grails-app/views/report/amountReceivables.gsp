@@ -26,7 +26,7 @@
 				<table class="table table-striped table-condensed table-bordered">
 					<thead>
 						<tr>
-							<g:sortableColumn params="${filterParams}" property="orderNumber" title="${message(code: 'invoice.invoiceNumber.label', default: 'Invoice Number')}" />
+							<g:sortableColumn params="${filterParams}" property="referenceOrderNumber" title="${message(code: 'invoice.referenceOrderNumber.label', default: 'Order Number')}" />
 							
 							<g:sortableColumn params="${filterParams}" property="organization.name" title="${message(code: 'invoice.organization.name.label', default: 'Organization')}" />
 							
@@ -84,13 +84,13 @@
 							</td>
 						
 							<td class="link">
-								<g:link action="show" controller="order" id="${orderInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+								<g:link action="show" controller="order" id="${orderInstance.id}" class="lnk">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>
 					</tbody>
 				</table>
-				<div class="pagination">
+				<div class="pgn">
 					<bootstrap:paginate params="${filterParams}" total="${amountReceivablesTotal}" />
 				</div>
 			</div>

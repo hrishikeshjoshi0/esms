@@ -53,7 +53,7 @@
 					</g:link>
 				</td>
 
-				<td class="link"><g:link controller="quote" action="show" id="${quoteInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link></td>
+				<td class="link"><g:link controller="quote" action="show" id="${quoteInstance.id}" class="lnk ">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>

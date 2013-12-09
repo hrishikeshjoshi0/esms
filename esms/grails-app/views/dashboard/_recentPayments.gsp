@@ -1,6 +1,6 @@
 <%@ page import="com.esms.model.payment.Payment" %>
 
-<div class="dashboard-widget-header">
+<div class="page-header">
 	<h3>Recent Payments</h3>
 </div>
 
@@ -71,7 +71,7 @@
 						${fieldValue(bean: paymentInstance, field: "chequeNumber")}
 					</td>
 
-					<td class="link"><g:link controller="payment" action="show" class="btn btn-default btn-sm"
+					<td class="link"><g:link controller="payment" action="show" class="lnk "
 							id="${paymentInstance.id}">Show &raquo;</g:link>
 					</td>
 				</tr>
@@ -81,7 +81,7 @@
 	<tfoot>
 		<tr>
 			<th colspan="8" class="link">
-				<g:link controller="payment" action="list" class="btn btn-default btn-sm">Show All &raquo;</g:link>
+				<g:link controller="payment" action="list" class="lnk ">Show All &raquo;</g:link>
 			</th>				
 		</tr>
 	</tfoot>

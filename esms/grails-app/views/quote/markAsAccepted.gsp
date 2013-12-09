@@ -13,55 +13,62 @@
 			</bootstrap:alert>
 		</g:hasErrors>
 
-		<div class="page-header">
-			<h3>Mark As Accepted</h3>
-		</div>
-
 		<div class="well">
-			<g:form class="form-horizontal" controller="quote" action="markAsAccepted" id="${quoteInstance?.id}">
+			<g:form class="form-horizontal" controller="quote"
+				action="markAsAccepted" id="${quoteInstance?.id}">
 				<fieldset>
-					<div
-						class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'contractFromDate', 'error')} ">
-						<label for="contractFromDate" class="col-md-2 control-label"><g:message
-								code="quote.contractFromDate.label" default="Contract Starts" />
-						</label>		
-							<div class="controls" style="width: 100%;">
-								<richui:dateChooser name="contractFromDate"
-									value="${quoteInstance?.contractFromDate}" />
-								<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'contractFromDate', 'error')}
-								</span>
+					<div class="row">
+						<div class="col-md-6">
+							<div
+								class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'contractFromDate', 'error')} ">
+								<label for="contractFromDate"
+									class="col-md-3 control-label"><g:message
+										code="quote.contractFromDate.label"
+										default="Contract Starts" /> </label>
+								<div class="col-md-9">
+									<richui:dateChooser name="contractFromDate" class="form-control"
+										value="${quoteInstance?.contractFromDate}" />
+									<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'contractFromDate', 'error')}
+									</span>
+								</div>
 							</div>
-					</div>
-
-					<div
-						class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'contractToDate', 'error')} "
-						style="width: 500px;">
-						<label for="contractToDate" class="col-md-2 control-label"><g:message
-								code="quote.contractToDate.label" default="Contract Ends" />
-						</label>	
-							<div class="controls" style="width: 100%;">
-								<richui:dateChooser name="contractToDate"
-									value="${quoteInstance?.contractToDate}" />
-								<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'contractToDate', 'error')}
-								</span>
+							
+							<div
+								class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'contractToDate', 'error')} ">
+								<label for="contractToDate"
+									class="col-md-3 control-label"><g:message
+										code="quote.contractToDate.label"
+										default="Contract Ends" /> </label>
+								<div class="col-md-9">
+									<richui:dateChooser name="contractToDate" class="form-control"
+										value="${quoteInstance?.contractToDate}" />
+									<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'contractToDate', 'error')}
+									</span>
+								</div>
 							</div>
-					</div>
-
-					<div class="form-group fieldcontain">
-						<label for="selectService" class="col-md-2 control-label">
-							Select Service </label>
-						<div class="col-md-10">
-							<g:select name="selectedService" from="${serviceQuoteListItems}"
-								optionKey="key" optionValue="value" noSelection="['': '']" />
-							<span class="help-inline"> </span>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<div class="col-md-10 col-md-offset-2">
-							<button type="submit" class="btn btn-sm btn-primary">
-								<g:message code="default.button.save.label" default="Save" />
-							</button>
+							
+							<div
+								class="form-group fieldcontain">
+								<label for="selectedService"
+									class="col-md-3 control-label"><g:message
+										code="quote.selectService.label"
+										default="Select Service" /> </label>
+								<div class="col-md-9">
+									<g:select name="selectedService" class="form-control"
+										from="${serviceQuoteListItems}" optionKey="key"
+										optionValue="value" noSelection="['': '']" />
+									<span class="help-inline">
+									</span>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-md-10 col-md-offset-2">
+									<button type="submit" class="btn btn-sm btn-primary">
+										<g:message code="default.button.save.label" default="Save" />
+									</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</fieldset>

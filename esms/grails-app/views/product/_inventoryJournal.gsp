@@ -25,6 +25,6 @@
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate total="${productInstance?.inventory?.inventoryJournalEntries?.size()?productInstance?.inventory?.inventoryJournalEntries?.size():0}" />
 </div>

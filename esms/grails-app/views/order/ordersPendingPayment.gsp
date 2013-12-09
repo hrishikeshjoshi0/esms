@@ -33,13 +33,7 @@
 				<h3>Open Orders</h3>
 			</div>
 
-			<div class="pagination">
-				<bootstrap:paginate params="${filterParams}"
-					total="${orderInstanceTotal?orderInstanceTotal:ordersPendingPayments.size()}" />
-			</div>
-			<br />
-
-			<table class="table table-striped table-bordered mediaTable">
+			<table class="table table-striped table-condensed table-bordered">
 				<thead>
 					<tr>
 						<th>
@@ -95,11 +89,11 @@
 					</g:else>
 				</tbody>
 			</table>
-			<div class="pagination">
+			
+			<div class="pgn">
 				<bootstrap:paginate params="${filterParams}"
 					total="${orderInstanceTotal?orderInstanceTotal:ordersPendingPayments.size()}" />
 			</div>
-			<br />
 		</div>
 	</div>
 </body>

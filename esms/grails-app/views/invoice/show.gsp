@@ -1,3 +1,4 @@
+<%@ page import="com.esms.model.order.Order"%>
 <%@ page import="com.esms.model.invoice.Invoice"%>
 <!doctype html>
 <html>
@@ -5,16 +6,17 @@
 <meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'invoice.label', default: 'Invoice')}" />
-<title><g:message code="default.show.label" args="[entityName]" /></title>
+<title>
+	Invoice::${invoiceInstance?.invoiceNumber}:${invoiceInstance?.organization?.name}
+</title>
 </head>
 <body>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
 				<h3>
-					INVOICE # |
-					${invoiceInstance?.invoiceNumber}
-					|
+					Invoice ${invoiceInstance?.invoiceNumber}
+					:
 					<g:link controller="organization" action="show"
 						id="${invoiceInstance?.organization?.id}">
 						${invoiceInstance?.organization?.name}
@@ -24,47 +26,30 @@
 
 			<g:form>
 				<g:hiddenField name="id" value="${invoiceInstance?.id}" />
-				<div class="form-group">
-					<g:link class="btn btn-default btn-sm" action="edit" id="${invoiceInstance?.id}">
-						
-						<g:message code="default.button.edit.label" default="Edit" />
-					</g:link>
-					<%--<button class="btn btn-sm btn-danger" type="submit" name="_action_delete">
-						
-						<g:message code="default.button.delete.label" default="Delete" />
-					</button>
-					<g:link class="btn btn-default btn-sm" action="create" controller="event" params="['party.id':invoiceInstance?.organization.id]">
-						
-						<g:message code="default.button.createEvent.label" default="Create Event" />
-					</g:link>
-					--%>
-
-					<g:link class="btn btn-default btn-sm" action="create" controller="payment"
-						params="[invoiceId :invoiceInstance.id]">
-						
-						<g:message code="default.button.registerPayment.label"
-							default="Register Payment" />
-					</g:link>
+				<div class="well">
+					<g:if test="${invoiceInstance?.status != 'CLOSED'}">
+						<g:link class="btn btn-primary btn-sm" action="create" controller="payment"
+							params="[invoiceId :invoiceInstance.id]">
+							<g:message code="default.button.registerPayment.label"
+								default="Register Payment" />
+						</g:link>
+					</g:if>
+					
 
 					<g:link controller="task" action="create" role="button"
-						class="btn btn-sm btn-info"
+						class="btn btn-default btn-sm"
 						params="[relatedTo:'INVOICE',relatedToValue:invoiceInstance?.invoiceNumber,taskName:'Reminder For Invoice']">
-						
 					 	Create Task
 					</g:link>
+					
+					<g:if test="${invoiceInstance?.status != 'CLOSED'}">
+						<g:link class="btn btn-default btn-sm" action="edit" id="${invoiceInstance?.id}">
+							<g:message code="default.button.edit.label" default="Edit" />
+						</g:link>
+					</g:if>
 				</div>
 			</g:form>
 
-			<%--<g:if test="${invoiceInstance?.status == 'PENDING_INVOICE' && invoiceInstance?.orderItems?.size() != 0}">
-			<div class="form-group">
-				<g:jasperReport jasper="GoldContractTemplate" format="PDF"
-							name="Print Agreement" delimiterAfter=" " delimiterBefore=" "
-								heightAttr="15px">
-					<input type="hidden" name="order" value="${invoiceInstance.id}" />
-				</g:jasperReport>
-			</div>
-			</g:if>
-			--%>
 			<div class="row">
 				<div class="col-md-4">
 					<dl class="dl-horizontal">
@@ -84,7 +69,9 @@
 						</dt>
 
 						<dd>
-							<g:fieldValue bean="${invoiceInstance}" field="referenceOrderNumber" />
+							<g:link class="link" controller="order" action="show" id="${Order.findByOrderNumber(invoiceInstance?.referenceOrderNumber)?.id}">
+								<g:fieldValue bean="${invoiceInstance}" field="referenceOrderNumber" />
+							</g:link>
 						</dd>
 
 
@@ -185,25 +172,6 @@
 							<g:fieldValue bean="${invoiceInstance}" field="adjustment" />
 						</dd>
 
-						<%--<dt>
-							<g:message code="invoice.totalTax.label" default="Total Tax" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${invoiceInstance}" field="totalTax" />
-						</dd>
-
-
-						<dt>
-							<g:message code="invoice.totalDiscount.label"
-								default="Total Discount" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${invoiceInstance}" field="totalDiscount" />
-						</dd>
-						--%>
-						
 						<dt>
 							<g:message code="invoice.grandTotal.label" default="Grand Total" />
 						</dt>

@@ -45,12 +45,12 @@
 						boolean="${orderInventoryAssignmentInstance.isPosted}" /></td>
 
 				<td class="link"><g:link action="show" controller="orderInventoryAssignment"
-						id="${orderInventoryAssignmentInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+						id="${orderInventoryAssignmentInstance.id}" class="lnk">Show &raquo;</g:link>
 				</td>
 			</tr>
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate total="${orderInventoryAssignmentInstanceList?orderInventoryAssignmentInstanceList.size():0}" />
 </div>

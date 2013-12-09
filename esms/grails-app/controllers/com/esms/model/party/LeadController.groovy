@@ -4,7 +4,6 @@ import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
 import com.esms.model.maintenance.LiftInfo
-import com.esms.model.sales.Contract;
 
 class LeadController {
 	
@@ -201,24 +200,21 @@ class LeadController {
 	def createContact() {
 		switch (request.method) {
 		case 'GET':
-			def list = Contact.list();
-			int no = (list?list.size():0) + 1;
-			params.externalId = "CON" + String.format("%05d", no)
-			
-			[contactInstance: new Contact(params)]
-			break
+			render view: '/_common/modals/createContact', model: [contactInstance: new Contact(params)]
+			return
 		case 'POST':
 			def contactInstance = new Contact(params)
 			contactInstance.partyType = "CONTACT"
+			contactInstance.status = "ACTIVE"
 			
 			if (!contactInstance.save(flush: true)) {
 				flash.message = message(code: 'default.created.message', args: [message(code: 'contact.label', default: 'Contact'), contactInstance.id])
-				redirect controller : 'organization',action: 'list', model: [contactInstance: contactInstance]
+				render controller : 'organization',action: 'list', model: [contactInstance: contactInstance]
 				return
 			}
 
 			flash.message = message(code: 'default.created.message', args: [message(code: 'contact.label', default: 'Contact'), contactInstance.id])
-			redirect controller: 'lead', action: 'show', id: contactInstance?.organization?.id
+			redirect controller: 'organization', action: 'show', id: contactInstance?.organization?.id
 		}
 	}
 	
@@ -226,7 +222,8 @@ class LeadController {
 		switch (request.method) {
 		case 'GET':
 			[addressInstance: new Address(params)]
-			break
+			render view: '/_common/modals/createAddress', model: [addressInstance: addressInstance]
+			return
 		case 'POST':
 			def addressInstance = new Address(params)
 			if (!addressInstance.save(flush: true)) {
@@ -242,8 +239,8 @@ class LeadController {
 	def createPhoneBook() {
 		switch (request.method) {
 		case 'GET':
-			[phoneBookInstance: new PhoneBook(params)]
-			break
+			render view: '/_common/modals/createPhoneBook', [phoneBookInstance: new PhoneBook(params)]
+			return
 		case 'POST':
 			def phoneBookInstance = new PhoneBook(params)
 			if (!phoneBookInstance.save(flush: true)) {

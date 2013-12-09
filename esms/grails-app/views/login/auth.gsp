@@ -29,10 +29,6 @@
 
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
-					<div class="page-header">
-						<h3>Login</h3>
-					</div>
-
 					<g:if test='${flash.message}'>
 						<div class='has-errors'>
 							${flash.message}
@@ -44,6 +40,9 @@
 							action="${resource(file: 'j_spring_security_check')}"
 							method="post" id="login_form">
 							<fieldset>
+								<legend>
+									Please Login To Continue...
+								</legend>
 								<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" id="j_username" name="j_username" class="col-md-12" autocomplete="off"

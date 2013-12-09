@@ -3,6 +3,7 @@ package com.esms.model.quote
 import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
+import com.esms.model.order.Order
 import com.esms.model.party.Organization
 import com.esms.model.product.Product
 
@@ -60,8 +61,13 @@ class QuoteController {
 						}
 						
 						//
-						params.relatedTo = 'CONTRACT CUSTOMER'
-						params.relatedToValue = organization?.externalId
+						if(!params.relatedTo) {
+							params.relatedTo = 'CONTRACT CUSTOMER'
+						}
+						
+						if(!params.relatedToValue) {
+							params.relatedToValue = organization?.externalId
+						}
 						
 						if(!organization?.contacts?.isEmpty()) {
 							def contact = organization?.contacts.first()
@@ -91,6 +97,7 @@ class QuoteController {
 
 								quoteItemInstance.tax = 0.0
 								quoteItemInstance.discount = 0.0
+								quoteItemInstance.unitPrice = 0.0 
 
 								it?.prices?.each { price ->
 									quoteItemInstance.unitPrice = price.price
@@ -174,6 +181,15 @@ class QuoteController {
 				
 				quoteInstance.save(flush:true)
 				flash.message = "New Quote Created."
+				
+				if(quoteInstance.relatedTo == 'RENEWAL' && quoteInstance.relatedToValue) {
+					def parentOrder = Order.findByOrderNumber(quoteInstance.relatedToValue)
+					if(parentOrder) {
+						redirect controller:'order',action: 'show', id: parentOrder?.id
+						return
+					}
+				}
+				
 				redirect action: 'show', id: quoteInstance.id
 				break
 		}
@@ -393,12 +409,11 @@ class QuoteController {
 			quoteInstance.negotiatedGrandTotal = 0
 							
 			quoteInstance.save(flush:true)
-			//
 			
 			quoteInstance.notes = params.notes
 			quoteInstance.save(flush:true)
 		}
-
+		
 		flash.message = 'Sales Order created.'
 		redirect controller:'order', action: 'convertQuoteToOrder',params:[id : quoteInstance?.id]
 	}

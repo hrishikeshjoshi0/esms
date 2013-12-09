@@ -5,37 +5,38 @@
 <meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'quote.label', default: 'Quote')}" />
-<title><g:message code="default.show.label" args="[entityName]" /></title>
+<title>
+		Quote::${quoteInstance?.quoteNumber}:${quoteInstance?.organization?.name}
+	</title>
 </head>
 <body>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
 				<h3>
-					Quote :
-					${quoteInstance?.quoteName}
-					|
-					<g:link controller="organization" action="show"
-						id="${quoteInstance?.organization?.id}">
-						${quoteInstance?.organization?.name}
-					</g:link>
+					Quote:${quoteInstance?.quoteName}:
+						<g:link controller="organization" action="show" id="${quoteInstance?.organization?.id}">
+							${quoteInstance?.organization?.name}
+						</g:link>
 				</h3>
 			</div>
 
-			<g:form>
-				<g:hiddenField name="id" value="${quoteInstance?.id}" />
-				<div class="form-group">
-					<%--<g:if test="${quoteInstance?.status != 'CONVERTED_TO_SERVICE_CONTRACT' && quoteInstance?.status != 'CONVERTED_TO_SALES_ORDER' }">
+			<div class="well">
+				<%--<g:form>
+					<g:hiddenField name="id" value="${quoteInstance?.id}" />
+					<g:if test="${quoteInstance?.status != 'CONVERTED_TO_SERVICE_CONTRACT' && quoteInstance?.status != 'CONVERTED_TO_SALES_ORDER' }">
 						<g:link class="btn btn-default btn-sm" action="edit" id="${quoteInstance?.id}">
 							
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
 					</g:if>
-					--%>
-					<button class="btn btn-sm btn-danger" type="submit" name="_action_delete">
+					
+					<button class="btn btn-sm btn-default" type="submit"
+						name="_action_delete">
 						<g:message code="default.button.delete.label" default="Delete" />
 					</button>
-
+				</g:form>
+				--%>
 					<g:if
 						test="${quoteInstance?.sent == false && quoteInstance?.quoteItems?.size() != 0}">
 						<bs3:modalLink
@@ -82,11 +83,11 @@
 								class="btn-primary" id="confirmSale" title="Confirm Sale" />
 					</g:elseif>
 					<g:link action="markAsDisqualified" controller="quote"
-								id="${quoteInstance?.id}" class="btn btn-sm btn-warning">
+								id="${quoteInstance?.id}" class="btn btn-sm btn-default">
 						Mark as Disqualified
 					</g:link>
 				</div>
-			</g:form>
+			
 
 			<%--<g:if
 				test="${quoteInstance?.id && quoteInstance?.quoteItems?.size() != 0}">
@@ -170,6 +171,22 @@
 
 						<dd>
 							<g:fieldValue bean="${quoteInstance}" field="contactName" />
+						</dd>
+						
+						<dt>
+							<g:message code="quote.relatedTo.label" default="Related To" />
+						</dt>
+
+						<dd>
+							<g:fieldValue bean="${quoteInstance}" field="relatedTo" />
+						</dd>
+						
+						<dt>
+							<g:message code="quote.relatedToValue.label" default="Related To Value" />
+						</dt>
+
+						<dd>
+							<g:fieldValue bean="${quoteInstance}" field="relatedToValue" />
 						</dd>
 
 						<g:if test="${quoteInstance?.status == 'DECLINED'}">

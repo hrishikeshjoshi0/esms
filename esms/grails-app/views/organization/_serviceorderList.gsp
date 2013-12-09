@@ -74,11 +74,11 @@
 				</td>
 
 				<td class="link"><g:link action="show" controller="order" id="${orderInstance.id}"
-						class="btn btn-default btn-sm">Show &raquo;</g:link></td>
+						class="lnk">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate total="${serviceOrders?serviceOrders.size():0}" />
 </div>

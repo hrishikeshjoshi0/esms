@@ -35,7 +35,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${invoiceInstance?.invoiceLines}" var="invoiceLineInstance" status="index">
+		<g:each in="${invoiceInstance?.invoiceLines.sort{a,b -> a.lineNumber <=> b.lineNumber}}" var="invoiceLineInstance" status="index">
 			<tr>
 				<td>
 					${invoiceLineInstance.lineNumber}

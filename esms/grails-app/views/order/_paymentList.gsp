@@ -23,7 +23,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${orderInstance?.paymentItems}" var="paymentItemInstance">
+		<g:each in="${orderInstance?.paymentItems.sort{a,b -> a.paymentNumber <=> b.paymentNumber}}" var="paymentItemInstance">
 			<tr>
 				<td class="link">
 					<g:link action="show" controller="payment"
@@ -67,6 +67,6 @@
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate total="${orderInstance?.paymentItems?.size()}" />
 </div>

@@ -3,9 +3,8 @@
 
 <div class="pull-right">
 	<g:if test="${orderInstance?.status != 'INVOICED' && orderInstance?.status != 'PAID'}">
-		<a data-toggle="modal" href="#" data-target="#orderItemModal"
-			role="button" class="btn btn-default btn-sm">  New Item
-		</a>
+		<bs3:modalLink href="${createLink(controller:'order',action:'createOrderItem',params:['order.id':orderInstance?.id])}"
+			id="createOrderItem" title="Create Order Item"/>
 	</g:if>
 </div>
 
@@ -45,7 +44,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${orderInstance?.orderItems}" var="orderItemInstance">
+		<g:each in="${orderInstance?.orderItems?.sort{a,b -> a.lineNumber <=> b.lineNumber}}" var="orderItemInstance" status="stat">
 			<tr>
 				<td>
 					${fieldValue(bean: orderItemInstance, field: "lineNumber")}
@@ -93,95 +92,16 @@
 					<td></td>
 				</g:else>
 				<td>
-					<a href="#" data-id="${orderItemInstance?.id}"
-						role="button" class="btn btn-default btn-sm">
-						<g:if test="${orderItemInstance?.relatedOrderNumber}">
-							Assignment
-						</g:if>
-						<g:else>
-							Assignment
-						</g:else>
-					</a>
+					<bs3:modalLink href="${createLink(controller:'order',action:'assignOrderItem',params:['id':orderItemInstance?.id])}"
+							id="assignOrderItem${stat}" title="Assignment"/>
 				</td>
-				<td class="link"><g:link action="show" 
-						controller="orderItem"
-						id="${orderItemInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+				<td class="link">
+					<g:link action="show" controller="orderItem" id="${orderItemInstance.id}" class="lnk">Show &raquo;</g:link>
 				</td>
 			</tr>
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate total="${orderInstance?.orderItems?orderInstance?.orderItems.size():0}" />
 </div>
-
-<!-- Modal -->
-<div id="orderItemModal" class="modal hide fade" tabindex="-1" style="width:70%;top:50%;left:40%;"
-	role="dialog"
-	data-remote="<g:createLink controller="order" action="createOrderItem" params="[orderId:orderInstance?.id]"/>"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true">×</button>
-		<h3 id="myModalLabel">New Order Item</h3>
-	</div>
-	<g:form controller="order" action="createOrderItem" method="POST">
-		<g:hiddenField name="order.id" value="${orderInstance?.id}" />
-		<div class="modal-body"></div>
-		<div class="modal-footer">
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary create">
-					
-					<g:message code="default.button.create.label" default="Create" />
-				</button>
-			</div>
-		</div>
-	</g:form>
-</div>
-
-<div id="purchaseOrderModal" class="modal hide fade" tabindex="-1" style="width:70%;top:50%;left:40%;"
-	role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true">×</button>
-		<h3 id="myModalLabel">Assign Order Item</h3>
-	</div>
-	<g:form controller="order" action="assignOrderItem" method="POST">
-		<g:hiddenField name="order.id" value="${orderInstance?.id}" />
-		<g:hiddenField name="orderItemInstanceId" value=""/>
-		<div class="modal-body"></div>
-		<div class="modal-footer">
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary create">
-					
-					<g:message code="default.button.create.label" default="Create" />
-				</button>
-			</div>
-		</div>
-	</g:form>
-</div>
-
-<script>
-	$(document).on("click", ".open-AssignOrderItem", function () {
-	    var orderItemId = $(this).data('id');
-	    $("#orderItemInstanceId").attr('value',orderItemId);
-	    //alert($("#orderItemInstanceId").val());	    
-	   
-	    var url = "${createLink(controller:'order', action:'assignOrderItem')}" + "/" + orderItemId;
-		$.ajax({
-		    url:url,
-		    dataType: 'html',	
-		    success: function(data) {
-			    $('.modal-body').html(data);
-		    	$('#purchaseOrderModal').modal('show');
-		    },
-		    error: function(request, status, error) {
-		      alert(error)
-		    },
-		    complete: function() {
-		    }
-		});	
-	    
-	});
-</script>

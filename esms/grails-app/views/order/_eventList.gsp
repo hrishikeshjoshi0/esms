@@ -24,7 +24,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${events}" var="eventInstance">
+		<g:each in="${events.sort{a,b -> a.startTime <=> b.startTime}}" var="eventInstance">
 			<tr>
 			
 				<td>
@@ -52,11 +52,11 @@
 				</td>
 
 				<td class="link"><g:link controller="event" action="show"
-						id="${eventInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link></td>
+						id="${eventInstance.id}" class="lnk">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate total="${events?events.size():0}" />
 </div>

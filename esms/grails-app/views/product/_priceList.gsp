@@ -32,7 +32,7 @@
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate
 		total="${productInstanceInstance?.prices?.size()?productInstanceInstance?.prices?.size():0}" />
 </div>

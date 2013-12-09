@@ -1,6 +1,6 @@
 <div class="pull-right">
 	<a href="<g:createLink controller="contract" action="create"/>"
-		role="button" class="btn btn-default btn-sm">  New Contract
+		role="button"> New Contract
 	</a>
 </div>
 
@@ -54,12 +54,12 @@
 						boolean="${contractInstance.invoicingIsFixedPrice}" /></td>
 
 				<td class="link"><g:link action="show" controller="contract"
-						id="${contractInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+						id="${contractInstance.id}" class="lnk">Show &raquo;</g:link>
 				</td>
 			</tr>
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate total="${organizationInstance?.contracts?organizationInstance?.contracts.size():0}" />
 </div>

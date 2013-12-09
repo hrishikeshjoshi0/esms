@@ -1,7 +1,7 @@
 <div class="pull-right">
 	<bs3:modalLink
 		href="${createLink(controller:'organization',createAddress:'createAddress',params="['party.id':organizationInstance?.id]")}"
-		class="btn-primary" id="createAddress" title="Create Address" />
+		id="createAddress" title="Create Address" />
 </div>
 
 <!-- Contacts -->
@@ -59,12 +59,12 @@
 				</td>
 
 				<td class="link"><g:link action="show" controller="address"
-						id="${addressInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+						id="${addressInstance.id}" class="lnk">Show &raquo;</g:link>
 				</td>
 			</tr>
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate total="${organizationInstance?.addresses?.size()}" />
 </div>

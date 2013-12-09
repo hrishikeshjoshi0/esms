@@ -1,9 +1,3 @@
-<div class="page-header">
-	<h3>
-		Create Contact
-	</h3>
-</div>
-
 <div class="well">
 	<g:form class="form-horizontal" action="createContact" controller="organization">
 		<fieldset>

@@ -9,6 +9,7 @@ import com.esms.model.order.Order
 import com.esms.model.party.Organization
 import com.esms.model.payment.Payment
 import com.esms.model.quote.Quote
+import com.esms.taglib.calendar.CalendarTagLib;
 import com.lucastex.grails.fileuploader.UFile
 
 class DashboardController {
@@ -108,10 +109,9 @@ class DashboardController {
 		}
 		
 		def upcomingTasks = Task.withCriteria(sort: "dateTime", order: "asc") {
-			ne("status", 'COMPLETED')
 			and {
-				ge("dateTime", startDate)
-				le("dateTime", endDate)
+				ne("status", 'COMPLETED')
+				between('dateTime', startDate-1, endDate)
 			}
 			maxResults(params.max)
 		}
@@ -129,12 +129,20 @@ class DashboardController {
 		s.set Calendar.DATE, 1
 		s.set Calendar.MONTH, m
 		s.set Calendar.YEAR, y
+		s.set Calendar.HOUR, 0
+		s.set Calendar.MINUTE, 0
+		s.set Calendar.SECOND, 0
+		s.set Calendar.MILLISECOND, 0
 		def startDate = s.getTime()
 		
 		def e = Calendar.instance
 		e.set Calendar.DATE, 1
 		e.set Calendar.MONTH, (m+1)
 		e.set Calendar.YEAR, y
+		e.set Calendar.HOUR, 0
+		e.set Calendar.MINUTE, 0
+		e.set Calendar.SECOND, 0
+		e.set Calendar.MILLISECOND, 0
 		def endDate = e.getTime().minus(1)
 		
 		def upcomingRenewals = 	Order.withCriteria(sort: "contractToDate", order: "asc") {
@@ -159,19 +167,28 @@ class DashboardController {
 		s.set Calendar.DATE, 1
 		s.set Calendar.MONTH, m
 		s.set Calendar.YEAR, y
+		s.set Calendar.HOUR, 0
+		s.set Calendar.MINUTE, 0
+		s.set Calendar.SECOND, 0
+		s.set Calendar.MILLISECOND, 0
 		def startDate = s.getTime()
+		
 		
 		def e = Calendar.instance
 		e.set Calendar.DATE, 1
 		e.set Calendar.MONTH, (m+1)
 		e.set Calendar.YEAR, y
+		e.set Calendar.HOUR, 0
+		e.set Calendar.MINUTE, 0
+		e.set Calendar.SECOND, 0
+		e.set Calendar.MILLISECOND, 0
+		
 		def endDate = e.getTime().minus(1)
 		
 		def upcomingTasks = Task.withCriteria(sort: "dateTime", order: "asc") {
-			ne("status", 'COMPLETED')
 			and {
-				ge("dateTime", startDate)
-				le("dateTime", endDate)
+				ne("status", 'COMPLETED')
+				between('dateTime', startDate-1, endDate)
 			}
 		}
 		

@@ -51,11 +51,11 @@
 	<div class="col-md-6">
 		<div
 			class="form-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'paymentNumber', 'error')} required">
-			<label for="paymentNumber" class="col-md-2 control-label"><g:message
+			<label for="paymentNumber" class="col-md-3 control-label"><g:message
 					code="payment.paymentNumber.label" default="Payment Number" /><span
 				class="required-indicator">*</span></label>
-			<div class="col-md-10">
-				<g:textField name="paymentNumber" required="" readOnly="readOnly"
+			<div class="col-md-9">
+				<g:textField name="paymentNumber" required="" readOnly="readOnly" class="form-control"
 					value="${paymentInstance?.paymentNumber}" />
 				<span class="help-inline">
 					${hasErrors(bean: paymentInstance, field: 'paymentNumber', 'error')}
@@ -67,20 +67,18 @@
 	<div class="col-md-6">
 		<div
 			class="form-group fieldcontain ${hasErrors(bean: paymentItemInstance, field: 'order', 'error')} required">
-			<label for="invoiceId" class="col-md-2 control-label">
+			<label for="invoiceId" class="col-md-3 control-label">
 				Invoice
 			</label>
-			<div class="col-md-10">
+			<div class="col-md-9">
 				<g:if test="${invoice}">
 					<g:hiddenField id="invoiceId" name="invoiceId" value="${invoice.id}"/>
-					<b>
-						${invoice.invoiceNumber + ' - ' + ' : ' + invoice.organization?.name + '(Open Amount :' + invoice.openGrandTotal + ')' }
-					</b>
+					<g:textField name="invoiceNumber" required="" readOnly="readOnly" class="form-control"
+							value="${invoice.invoiceNumber + ' - ' + ' : ' + invoice.organization?.name + '(Open Amount :' + invoice.openGrandTotal + ')' }" />
 				</g:if>
 				<g:else>
-					<g:select id="invoiceId" name="invoiceId" from="${pendingInvoices}" optionKey="id" class="large"
-						optionValue="${{it.invoiceNumber + ' - ' + ' : ' + it.organization?.name + '(Open Amount :' + it.openGrandTotal + ')' }}" 
-						/>
+					<g:select id="invoiceId" name="invoiceId" from="${pendingInvoices}" optionKey="id" class="form-control"
+						optionValue="${{it.invoiceNumber + ' - ' + ' : ' + it.organization?.name + '(Open Amount :' + it.openGrandTotal + ')' }}"/>
 					<span class="help-inline"> ${hasErrors(bean: paymentItemInstance, field: 'order', 'error')}
 					</span>
 				</g:else>
@@ -94,11 +92,11 @@
 	<div class="col-md-6">
 		<div
 			class="form-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'paymentMethod', 'error')} required">
-			<label for="paymentMethod" class="col-md-2 control-label"><g:message
+			<label for="paymentMethod" class="col-md-3 control-label"><g:message
 					code="payment.paymentMethod.label" default="Payment Method" /><span
 				class="required-indicator">*</span></label>
-			<div class="col-md-10">
-				<g:select name="paymentMethod" onchange="onPaymentMethodChange(this.value);"
+			<div class="col-md-9">
+				<g:select name="paymentMethod" onchange="onPaymentMethodChange(this.value);" class="form-control"
 					from="${paymentInstance.constraints.paymentMethod.inList}"
 					value="${paymentInstance?.paymentMethod}"
 					valueMessagePrefix="payment.paymentMethod" noSelection="['': '']" />
@@ -112,11 +110,11 @@
 	<div class="col-md-6">
 		<div
 			class="form-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'totalAmount', 'error')} required">
-			<label for="totalAmount" class="col-md-2 control-label"><g:message
+			<label for="totalAmount" class="col-md-3 control-label"><g:message
 					code="payment.totalAmount.label" default="Total Amount" /><span
 				class="required-indicator">*</span></label>
-			<div class="col-md-10">
-				<g:textField name="totalAmount" required=""
+			<div class="col-md-9">
+				<g:textField name="totalAmount" required="" class="form-control"
 					value="${paymentInstance.totalAmount}" />
 				<span class="help-inline">
 					${hasErrors(bean: paymentInstance, field: 'totalAmount', 'error')}
@@ -130,11 +128,11 @@
 <div class="row">
 	<div class="col-md-6">
 		<div
-			class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'chequeNumber', 'error')} ">
-			<label for="chequeNumber" class="col-md-2 control-label"><g:message
+			class="chequeFields form-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'chequeNumber', 'error')} ">
+			<label for="chequeNumber" class="col-md-3 control-label"><g:message
 					code="payment.chequeNumber.label" default="Cheque Number" /></label>
-			<div class="col-md-10">
-				<g:textField name="chequeNumber" 
+			<div class="col-md-9">
+				<g:textField name="chequeNumber" class="form-control"
 					value="${paymentInstance?.chequeNumber}" />
 				<span class="help-inline">
 					${hasErrors(bean: paymentInstance, field: 'chequeNumber', 'error')}
@@ -145,11 +143,11 @@
 	
 	<div class="col-md-6">
 		<div
-			class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'chequeIssueDate', 'error')} ">
-			<label for="branch" class="col-md-2 control-label"><g:message
+			class="chequeFields form-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'chequeIssueDate', 'error')} ">
+			<label for="branch" class="col-md-3 control-label"><g:message
 					code="payment.chequeIssueDate.label" default="Cheque Issue Date" /></label>
-			<div class="col-md-10">
-				<richui:dateChooser name="chequeIssueDate" value="${paymentInstance?.chequeIssueDate}" />
+			<div class="col-md-9">
+				<richui:dateChooser class="form-control" name="chequeIssueDate" value="${paymentInstance?.chequeIssueDate}" />
 				<span class="help-inline">
 					${hasErrors(bean: paymentInstance, field: 'chequeIssueDate', 'error')}
 				</span>
@@ -161,11 +159,11 @@
 <div class="row">
 	<div class="col-md-6">
 		<div
-			class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'bank', 'error')} ">
-			<label for="bank" class="col-md-2 control-label"><g:message
+			class="chequeFields form-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'bank', 'error')} ">
+			<label for="bank" class="col-md-3 control-label"><g:message
 					code="payment.bank.label" default="Bank" /></label>
-			<div class="col-md-10">
-				<g:textField name="bank" value="${paymentInstance?.bank}" />
+			<div class="col-md-9">
+				<g:textField class="form-control" name="bank" value="${paymentInstance?.bank}" />
 				<span class="help-inline">
 					${hasErrors(bean: paymentInstance, field: 'bank', 'error')}
 				</span>
@@ -175,11 +173,11 @@
 	
 	<div class="col-md-6">
 		<div
-			class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'branch', 'error')} ">
-			<label for="branch" class="col-md-2 control-label"><g:message
+			class="chequeFields form-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'branch', 'error')} ">
+			<label for="branch" class="col-md-3 control-label"><g:message
 					code="payment.branch.label" default="Branch" /></label>
-			<div class="col-md-10">
-				<g:textField name="branch" value="${paymentInstance?.branch}" />
+			<div class="col-md-9">
+				<g:textField class="form-control" name="branch" value="${paymentInstance?.branch}" />
 				<span class="help-inline">
 					${hasErrors(bean: paymentInstance, field: 'branch', 'error')}
 				</span>
@@ -188,21 +186,11 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-md-6">
-		
-	</div>
-	<div class="col-md-6">
-		
-	</div>
-</div>	
-
-
 <%--<div
 	class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'clearanceDate', 'error')} ">
-	<label for="branch" class="col-md-2 control-label"><g:message
+	<label for="branch" class="col-md-3 control-label"><g:message
 			code="payment.clearanceDate.label" default="Clearance Date" /></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<bootstrap:jqDatePicker name="clearanceDate" value="${paymentInstance?.clearanceDate}"  />
 		<span class="help-inline">
 			${hasErrors(bean: paymentInstance, field: 'clearanceDate', 'error')}
@@ -213,10 +201,10 @@
 
 <%--<div
 	class="form-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'balanceAmount', 'error')} required">
-	<label for="balanceAmount" class="col-md-2 control-label"><g:message
+	<label for="balanceAmount" class="col-md-3 control-label"><g:message
 			code="payment.balanceAmount.label" default="Balance Amount" /><span
 		class="required-indicator">*</span></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:textField name="balanceAmount" required="" readOnly="readOnly"
 			value="${paymentInstance.balanceAmount}" />
 		<span class="help-inline">
@@ -227,10 +215,10 @@
 
 <div
 	class="form-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'matchedAmount', 'error')} required">
-	<label for="matchedAmount" class="col-md-2 control-label"><g:message
+	<label for="matchedAmount" class="col-md-3 control-label"><g:message
 			code="payment.matchedAmount.label" default="Matched Amount" /><span
 		class="required-indicator">*</span></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:textField name="matchedAmount" required="" readOnly="readOnly"
 			value="${paymentInstance.matchedAmount}" />
 		<span class="help-inline">

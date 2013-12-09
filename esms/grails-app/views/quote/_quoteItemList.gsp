@@ -2,7 +2,7 @@
 <g:if test="${quoteInstance?.status != 'CONVERTED_TO_SERVICE_CONTRACT' && quoteInstance?.status != 'CONVERTED_TO_SALES_ORDER' }">
 	<div class="pull-right">
 		<bs3:modalLink href="${createLink(controller:'quote',action:'createQuoteItem',params:['quote.id':quoteInstance?.id])}"
-			class="btn-primary" id="createQuoteItem" title="Create Quote Item"/>	
+			id="createQuoteItem" title="Create Quote Item"/>	
 	</div>
 </g:if>
 
@@ -76,12 +76,12 @@
 				</td>
 				
 				<td class="link"><g:link action="show" controller="quoteItem"
-						id="${quoteItemInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+						id="${quoteItemInstance.id}" class="lnk">Show &raquo;</g:link>
 				</td>
 			</tr>
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate total="${quoteInstance.quoteItems?quoteInstance.quoteItems:0}" />
 </div>

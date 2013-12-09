@@ -1,4 +1,4 @@
-<div class="dashboard-widget-header">
+<div class="page-header">
 	<h3>Upcoming Events</h3>
 </div>
 
@@ -44,7 +44,7 @@
 						${fieldValue(bean: eventInstance, field: "assignedTo")}
 					</td>
 
-					<td class="link"><g:link action="show" controller="event" class="btn btn-default btn-sm"
+					<td class="link"><g:link action="show" controller="event" class="lnk "
 							id="${eventInstance.id}">Show &raquo;</g:link>
 					</td>
 				</tr>
@@ -61,12 +61,12 @@
 	<tfoot>
 		<tr>
 			<th class="link" colspan="7">
-				<g:link controller="event" action="listView" class="btn btn-default btn-sm">Show All &raquo;</g:link>
+				<g:link controller="event" action="listView" class="lnk ">Show All &raquo;</g:link>
 			</th>				
 		</tr>
 	</tfoot>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate params="${filterParams}"
 		total="${upcomingEvents?.size()}" />
 </div>

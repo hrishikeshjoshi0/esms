@@ -7,16 +7,18 @@
 <meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'payment.label', default: 'Payment')}" />
-<title><g:message code="default.show.label" args="[entityName]" /></title>
+<title>
+	Payment::${invoiceInstance?.invoiceNumber}:${paymentInstance?.organization?.name}
+</title>
 </head>
 <body>
 	<div class="row">
 			<div class="col-md-12">
 				<div class="page-header">
 					<h3>
-						Payment# :
+						Payment
 						${paymentInstance?.paymentNumber}
-						|
+						:
 						<g:link controller="organization" action="show"
 							id="${paymentInstance?.organization?.id}">
 							${paymentInstance?.organization?.name}
@@ -27,15 +29,15 @@
 				<g:form>
 					<g:hiddenField name="id" value="${paymentInstance?.id}" />
 					<div class="form-group">
-						<g:link class="btn btn-default btn-sm" action="edit" id="${paymentInstance?.id}">
-							<g:message code="default.button.edit.label" default="Edit" />
-						</g:link>
-						<g:link class="btn btn-default btn-sm" action="updateClearanceDate"
+						<g:link class="btn btn-primary btn-sm" action="updateClearanceDate"
 							id="${paymentInstance?.id}">
 							<g:message code="default.button.updateClearanceDate.label"
 								default="Update Clearance Date" />
 						</g:link>
-						<button class="btn btn-sm btn-danger" type="submit" name="_action_delete">
+						<g:link class="btn btn-default btn-sm" action="edit" id="${paymentInstance?.id}">
+							<g:message code="default.button.edit.label" default="Edit" />
+						</g:link>
+						<button class="btn btn-sm btn-default" type="submit" name="_action_delete">
 							<g:message code="default.button.delete.label" default="Delete" />
 						</button>
 					</div>

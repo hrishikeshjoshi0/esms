@@ -36,13 +36,13 @@
 							<td>${fieldValue(bean: eventInstance, field: "location")}</td>
 						
 							<td class="link">
-								<g:link action="show" id="${eventInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+								<g:link action="show" id="${eventInstance.id}" class="lnk">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>
 					</tbody>
 				</table>
-				<div class="pagination">
+				<div class="pgn">
 					<bootstrap:paginate params="${filterParams}" total="${eventInstanceList.size()}" />
 				</div>
 			</div>

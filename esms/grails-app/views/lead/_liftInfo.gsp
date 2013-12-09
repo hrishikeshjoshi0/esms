@@ -1,13 +1,13 @@
 <div class="pull-right">
 	<g:if test="${organizationInstance?.liftInfo}">
 		<a href="<g:createLink controller="liftInfo" action="edit" id="${organizationInstance?.liftInfo?.id}" />"
-			role="button" class="btn btn-default btn-sm"> 
+			role="button" class="btn btn-sm btn-default"> 
 			Edit Lift Information
 		</a>
 	</g:if>
 	<g:else>
 		<a href="<g:createLink controller="liftInfo" action="create" params="['organization.id':organizationInstance.id]" />"
-			role="button" class="btn btn-default btn-sm"> 
+			role="button" class="btn btn-sm btn-default"> 
 			Add Lift Information
 		</a>
 	</g:else>

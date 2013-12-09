@@ -124,42 +124,50 @@
 
 <div class="row">
 	<div class="col-md-6">
-			<g:if test="${order}">
-				<div
-					class="form-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'organization', 'error')} required">
-					<label for="organization" class="col-md-2 control-label"><g:message
-							code="invoice.organization.label" default="Organization" /><span
+		<g:if test="${order}">
+			<div
+				class="form-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'organization', 'error')} required">
+				<label for="organization" class="col-md-3 control-label"><g:message
+						code="invoice.organization.label" default="Organization" /><span
 					class="required-indicator">*</span></label>
-				<div class="col-md-10">
-					${invoiceInstance?.organization?.name}
+				<div class="col-md-9">
+					<g:textField name="organizationName" value="${invoiceInstance?.organization?.name}" readonly="readonly"/>
+					<span class="help-inline"> ${hasErrors(bean: organizationInstance, field: 'externalId', 'error')}
+					</span>
 				</div>
-			</g:if>
-			<g:else>
-				<div
-					class="form-group fieldcontain required">
-					<label for="organization" class="col-md-2 control-label"><g:message
-							code="invoice.order.label" default="Order" /><span
+			</div>
+		</g:if>
+		<g:else>
+			<div
+				class="form-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'organization', 'error')} required">
+				<label for="organization" class="col-md-3 control-label"><g:message
+						code="invoice.order.label" default="Order" /><span
 					class="required-indicator">*</span></label>
-				<div class="col-md-10">
-					<g:select id="orderId" name="orderId" from="${openOrders}" optionKey="id" class="large"
+				<div class="col-md-9">
+					<g:select id="orderId" name="orderId" from="${openOrders}"
+						optionKey="id" class="form-control"
 						optionValue="${{it.orderNumber + ' - ' + it.type + ' : ' + it.organization?.name + 
-							'(Open Amount :' + it.openGrandTotal + ')' }}"	/>
+							'(Open Amount :' + it.openGrandTotal + ')' }}" />
 					<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'order', 'error')}
 					</span>
-				</div>				
-			</g:else>
-		</div>
+				</div>
+			</div>
+		</g:else>
 	</div>
+
 	<div class="col-md-6">
 		<g:if test="${order}">
-				<div
-					class="form-group fieldcontain">
-					<label class="col-md-2 control-label"><g:message
-							code="invoice.referenceOrderNumber.label" default="Order Number" /></label>
-				<g:hiddenField id="orderId" name="orderId" value="${order?.id}"/>
-				<div class="col-md-10">
-					${order?.orderNumber}
-				</div>	
+			<div
+				class="form-group fieldcontain ${hasErrors(bean: invoiceInstance, field: 'referenceOrderNumber', 'error')} required">
+				<label class="col-md-3 control-label"><g:message
+						code="invoice.referenceOrderNumber.label" default="Order Number" /></label>
+				<div class="col-md-9">
+					<g:hiddenField id="orderId" name="orderId" value="${order?.id}" />
+					<g:textField name="orderNumber" value="${order?.orderNumber}" readonly="readonly"/>
+					<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'order', 'error')}
+					</span>
+				</div>
+			</div>
 		</g:if>
 	</div>
 </div>

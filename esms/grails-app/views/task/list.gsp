@@ -17,7 +17,7 @@
 					<g:message code="default.list.label" args="[entityName]" />
 				</h3>
 			</div>
-
+			
 			<table class="table table-striped table-condensed table-bordered">
 				<thead>
 					<tr>
@@ -92,13 +92,13 @@
 							</td>
 
 							<td class="link"><g:link action="show"
-									id="${taskInstance.id}" controller="task" class="btn btn-default btn-sm">Show &raquo;</g:link></td>
+									id="${taskInstance.id}" controller="task" class="lnk">Show &raquo;</g:link></td>
 						</tr>
 					</g:each>
 				</tbody>
 			</table>
 			
-			<div class="pagination">
+			<div class="pgn">
 				<bootstrap:paginate total="${taskInstanceTotal}" />
 			</div>
 		</div>

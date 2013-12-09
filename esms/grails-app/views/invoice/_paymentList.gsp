@@ -16,10 +16,12 @@
 				
 			<g:sortableColumn property="amount"
 				title="${message(code: 'paymentItem.amount.label', default: 'Amount')}" />
+			
+			<th></th>	
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${invoiceInstance?.paymentItems}" var="paymentItemInstance">
+		<g:each in="${invoiceInstance?.paymentItems.sort{a,b -> a.paymentNumber <=> b.paymentNumber}}" var="paymentItemInstance">
 			<tr>
 				<td class="link">
 					${paymentItemInstance.payment?.paymentNumber}
@@ -52,13 +54,13 @@
 				</td>
 				
 				<td class="link">
-					<g:link action="show" controller="payment" id="${paymentItemInstance.payment?.id}" class="btn btn-default btn-sm">
+					<g:link action="show" controller="payment" id="${paymentItemInstance.payment?.id}" class="lnk">
 						Show &raquo;</g:link>
 				</td>
 			</tr>
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate total="${invoiceInstance?.paymentItems?.size()}" />
 </div>

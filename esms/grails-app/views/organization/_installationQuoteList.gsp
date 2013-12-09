@@ -54,37 +54,11 @@
 				</td>
 
 				<td class="link"><g:link controller="quote" action="show" id="${quoteInstance.id}"
-						class="btn btn-default btn-sm">Show &raquo;</g:link></td>
+						class="lnk">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate total="${organizationInstance.quotes?organizationInstance.quotes:0}" />
-</div>
-
-<!-- Modal -->
-<div id="quoteModal" class="modal hide fade" tabindex="-1"
-	role="dialog"
-	data-remote="<g:createLink controller="organization" action="createQuote"/>"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true">×</button>
-		<h3 id="myModalLabel">New Quote</h3>
-	</div>
-	<g:form controller="organization" action="createQuote"
-		method="POST">
-		<g:hiddenField name="organization.id" value="${organizationInstance?.id}" />
-		<g:hiddenField name="createdFromOrganizationDetailView" value="true" />
-		<div class="modal-body"></div>
-		<div class="modal-footer">
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary">
-					
-					<g:message code="default.button.create.label" default="Create" />
-				</button>
-			</div>
-		</div>
-	</g:form>
 </div>

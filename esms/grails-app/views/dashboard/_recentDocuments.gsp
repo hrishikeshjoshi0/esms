@@ -1,6 +1,6 @@
 <%@ page import="com.lucastex.grails.fileuploader.UFile"%>
 
-<div class="dashboard-widget-header">
+<div class="page-header">
 	<h3>Recent Uploaded Documents</h3>
 </div>
 

@@ -97,6 +97,7 @@ class OrderController {
 	}
 
 	def convertQuoteToOrder() {
+		
 		def list = Order.list();
 		int no = (list?list.size():0) + 1;
 		String orderNumber = "ORD" + String.format("%05d", no)
@@ -111,10 +112,25 @@ class OrderController {
 		order.orderNumber = orderNumber
 		order.contactName = quote.contactName
 		order.status = "PENDING_INVOICE"
+		
+		//Renewal Process
+		if(quote.relatedTo == 'RENEWAL' && quote.relatedToValue) {
+			def p = Order.findByOrderNumber(quote.relatedToValue)
+			p.relatedTo = "ORDER"
+			p.relatedToValue = quote.relatedToValue
+			p.save(flush:true)
+		}
+		
 		if(quote.type == 'CONTRACT') {
-			quote.status = "CONVERTED_TO_SERVICE_CONTRACT	"
+			quote.status = "CONVERTED_TO_SERVICE_CONTRACT"
 			order.type = "SERVICE"
-			order.relatedTo = "CONTRACT"
+			
+			if(quote.relatedTo == 'RENEWAL' && quote.relatedToValue) {
+				order.relatedTo = "ORDER"
+				order.relatedToValue = quote.relatedToValue
+			} else {
+				order.relatedTo = "CONTRACT"
+			}
 
 			order.contractFromDate = quote.contractFromDate
 			order.contractToDate = quote.contractToDate
@@ -174,6 +190,7 @@ class OrderController {
 		order.notes = quote.notes
 		order.invoicedGrandTotal = 0.0
 		order.pendingInvoiceGrandTotal = order.grandTotal
+		
 		order.save(flush:true)
 		
 		flash.message = 'Order Created from Quote: ' + quote.quoteName
@@ -229,7 +246,7 @@ class OrderController {
 			
 			orderInstance?.orderItems?.each {
 				def p = Product.findByProductNumber(it.productNumber)
-				if(p.productType == 'SERVICE') {
+				if(p.productType == 'SERVICE' && p.serviceContract) {
 					productName = p.productName
 				}
 			}
@@ -238,7 +255,12 @@ class OrderController {
 			
 			def events = Event.findAllByRelatedToValue(orderInstance?.orderNumber)
 			
-			[orderInstance: orderInstance,contractName:productName,invoices:invoices,events:events]
+			def renewalQuote
+			if(orderInstance?.renewalStage == 'TAGGED_FOR_RENEWAL') {
+				renewalQuote = Quote.findByRelatedToAndRelatedToValue('RENEWAL',orderInstance?.orderNumber)
+			}
+			
+			[orderInstance: orderInstance,contractName:productName,invoices:invoices,events:events,renewalQuote:renewalQuote]
 		}
 		
 	}
@@ -339,16 +361,17 @@ class OrderController {
 					String orderNumber = "PO" + String.format("%05d", no)
 					params.purchaseOrderNumber = orderNumber
 							
-					def order = PurchaseOrder.get(params.orderId)
+					/*def order = PurchaseOrder.get(params.orderId)
 					def c = PurchaseOrderItem.createCriteria()
 					def maxLineNumber = c.get {
 						eq("purchaseOrder", order)
 						projections { max ("lineNumber") }
 					}
-					params.lineNumber = maxLineNumber?maxLineNumber:0 + 1
+					params.lineNumber = maxLineNumber?maxLineNumber:0 + 1*/
+					params.lineNumber = 1
 					purchaseOrderInstance = new PurchaseOrder(params)
 				}
-				[purchaseOrderInstance: purchaseOrderInstance]
+				[purchaseOrderInstance: purchaseOrderInstance,orderItem:orderItem]
 				break
 			case 'POST':
 				def purchaseOrderInstance
@@ -359,12 +382,13 @@ class OrderController {
 					purchaseOrderInstance = new PurchaseOrder(params)
 				}
 
+				def orderItem = OrderItem.get(params.orderItemId?.toInteger())
+				
 				if (!purchaseOrderInstance.save(flush: true)) {
-					render view: 'show', model: [purchaseOrderItemInstance: purchaseOrderInstance]
+					render view: 'show', model: [orderInstance:OrderItem.get(orderItem)?.order]
 					return
 				}
 
-				def orderItem = OrderItem.get(params.orderItemInstanceId.toInteger())
 				orderItem.relatedOrderNumber = purchaseOrderInstance?.purchaseOrderNumber
 
 				def unitPrice = new BigDecimal("0.0")

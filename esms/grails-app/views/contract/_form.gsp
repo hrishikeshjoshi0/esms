@@ -7,7 +7,7 @@
 	<label for="contractNumber" class="col-md-2 control-label"><g:message
 			code="contract.contractNumber.label" default="Contract Number" /><span
 		class="required-indicator">*</span></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:textField name="contractNumber" required=""
 			value="${contractInstance?.contractNumber}" />
 		<span class="help-inline"> ${hasErrors(bean: contractInstance, field: 'contractNumber', 'error')}
@@ -20,7 +20,7 @@
 	<label for="organization.id" class="col-md-2 control-label"><g:message
 			code="quote.organization.id.label" default="Organization" /><span
 		class="required-indicator">*</span></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:select name="organization.id" value="${contractInstance?.organization?.id}" from="${Organization.list()}"
 			optionKey="id" optionValue="name"/>
 		<span class="help-inline"> ${hasErrors(bean: contractInstance, field: 'organization', 'error')}
@@ -32,7 +32,7 @@
 	class="form-group fieldcontain ${hasErrors(bean: contractInstance, field: 'status', 'error')} ">
 	<label for="status" class="col-md-2 control-label"><g:message
 			code="contract.status.label" default="Status" /></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:select name="status"
 			from="${contractInstance.constraints.status.inList}"
 			value="${contractInstance?.status}"
@@ -47,7 +47,7 @@
 	<label for="fromDate" class="col-md-2 control-label"><g:message
 			code="contract.fromDate.label" default="From Date" /><span
 		class="required-indicator">*</span></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:datePicker name="fromDate" value="${contractInstance?.fromDate}" precision="day"/>
 		<%--<bootstrap:jqDatePicker name="fromDate"
 			value="${contractInstance?.fromDate}" />
@@ -62,7 +62,7 @@
 	<label for="toDate" class="col-md-2 control-label"><g:message
 			code="contract.toDate.label" default="To Date" /><span
 		class="required-indicator">*</span></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:datePicker name="toDate" value="${contractInstance?.toDate}" precision="day"/>
 		<%--<bootstrap:jqDatePicker name="toDate"
 			value="${contractInstance?.toDate}" />
@@ -77,7 +77,7 @@
 	<label for="invoicingIsFixedPrice" class="col-md-2 control-label"><g:message
 			code="contract.invoicingIsFixedPrice.label"
 			default="Invoicing Is Fixed Price" /></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:checkBox name="invoicingIsFixedPrice"
 			value="${contractInstance?.invoicingIsFixedPrice}" />
 		<span class="help-inline"> ${hasErrors(bean: contractInstance, field: 'invoicingIsFixedPrice', 'error')}
@@ -90,7 +90,7 @@
 	<label for="invoicingIsTimesheets" class="col-md-2 control-label"><g:message
 			code="contract.invoicingIsTimesheets.label"
 			default="Invoicing Is Timesheets" /></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:checkBox name="invoicingIsTimesheets"
 			value="${contractInstance?.invoicingIsTimesheets}" />
 		<span class="help-inline"> ${hasErrors(bean: contractInstance, field: 'invoicingIsTimesheets', 'error')}
@@ -103,7 +103,7 @@
 	<label for="invoicingIsExpenses" class="col-md-2 control-label"><g:message
 			code="contract.invoicingIsExpenses.label"
 			default="Invoicing Is Expenses" /></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:checkBox name="invoicingIsExpenses"
 			value="${contractInstance?.invoicingIsExpenses}" />
 		<span class="help-inline"> ${hasErrors(bean: contractInstance, field: 'invoicingIsExpenses', 'error')}
@@ -115,7 +115,7 @@
 	class="form-group fieldcontain ${hasErrors(bean: contractInstance, field: 'assignedTo', 'error')} ">
 	<label for="assignedTo" class="col-md-2 control-label"><g:message
 			code="contract.assignedTo.label" default="Assigned To" /></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:textField name="assignedTo" value="${contractInstance?.assignedTo}" />
 		<span class="help-inline"> ${hasErrors(bean: contractInstance, field: 'assignedTo', 'error')}
 		</span>
@@ -126,7 +126,7 @@
 	class="form-group fieldcontain ${hasErrors(bean: contractInstance, field: 'status', 'error')} ">
 	<label for="status" class="col-md-2 control-label"><g:message
 			code="contract.status.label" default="Status" /></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:select name="status"
 			from="${contractInstance.constraints.status.inList}"
 			value="${contractInstance?.status}"
@@ -140,7 +140,7 @@
 	class="form-group fieldcontain ${hasErrors(bean: contractInstance, field: 'relatedTo', 'error')} ">
 	<label for="relatedTo" class="col-md-2 control-label"><g:message
 			code="contract.relatedTo.label" default="Related To" /></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:select name="relatedTo"
 			from="${contractInstance.constraints.relatedTo.inList}"
 			value="${contractInstance?.relatedTo}"
@@ -154,7 +154,7 @@
 	class="form-group fieldcontain ${hasErrors(bean: contractInstance, field: 'relatedToValue', 'error')} ">
 	<label for="relatedToValue" class="col-md-2 control-label"><g:message
 			code="contract.relatedToValue.label" default="Related To Value" /></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:textField name="relatedToValue" value="${contractInstance?.relatedToValue}" />
 		<span class="help-inline"> ${hasErrors(bean: contractInstance, field: 'relatedToValue', 'error')}
 		</span>
@@ -165,7 +165,7 @@
 	class="form-group fieldcontain ${hasErrors(bean: contractInstance, field: 'description', 'error')} ">
 	<label for="description" class="col-md-2 control-label"><g:message
 			code="contract.description.label" default="Description" /></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:textArea name="description" rows="5" cols="10"
 			value="${contractInstance?.description}" />
 		<span class="help-inline"> ${hasErrors(bean: contractInstance, field: 'description', 'error')}
@@ -178,7 +178,7 @@
 	<label for="termsAndConditions" class="col-md-2 control-label"><g:message
 			code="contract.termsAndConditions.label"
 			default="Terms And Conditions" /></label>
-	<div class="col-md-10">
+	<div class="col-md-9">
 		<g:textArea name="termsAndConditions" rows="5" cols="10"
 			value="${contractInstance?.termsAndConditions}" />
 		<span class="help-inline"> ${hasErrors(bean: contractInstance, field: 'termsAndConditions', 'error')}

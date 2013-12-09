@@ -1,7 +1,7 @@
 <div class="pull-right">
-	<a data-toggle="modal" href="#" data-target="#addressModal" role="button" class="btn btn-default btn-sm"> 
-		 New Address
-	</a>
+	<bs3:modalLink id="createAddress"
+		href="${createLink(controller:'employee',action:'createAddress',params:['party.id':employeeInstance?.id])}"
+		title="Add Address" />
 </div>
 
 
@@ -60,37 +60,12 @@
 				</td>
 
 				<td class="link"><g:link action="show" controller="address"
-						id="${addressInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+						id="${addressInstance.id}" class="lnk">Show &raquo;</g:link>
 				</td>
 			</tr>
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate total="${employeeInstance?.addresses?.size()}" />
-</div>
-
-<!-- Modal -->
-<div id="addressModal" class="modal hide fade" tabindex="-1" role="dialog" 
-	data-remote="<g:createLink controller="organization" action="createAddress"/>"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true">×</button>
-		<h3 id="myModalLabel">New Address</h3>
-	</div>
-	<g:form controller="organization" action="createAddress" method="POST">
-		<g:hiddenField name="party.id" value="${employeeInstance?.id}" />
-		<div class="modal-body">
-			
-		</div>
-		<div class="modal-footer">
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary">
-					
-					<g:message code="default.button.create.label" default="Create" />
-				</button>
-			</div>
-		</div>
-	</g:form>
 </div>

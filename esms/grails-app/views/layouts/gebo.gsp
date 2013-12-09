@@ -657,7 +657,7 @@
 									<small class="s_color sl_email">yveso@example2.com</small>
 								</li>
 							</ul>
-							<div class="pagination"><ul class="paging bottomPaging"></ul></div>
+							<div class="pgn"><ul class="paging bottomPaging"></ul></div>
                         </div>
                     </div>
                         

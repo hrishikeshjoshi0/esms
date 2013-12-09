@@ -27,7 +27,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${invoices}" var="invoiceInstance">
+		<g:each in="${invoices.sort{a,b -> a.invoiceNumber <=> b.invoiceNumber}}" var="invoiceInstance">
 			<tr>
 				<td>
 					${fieldValue(bean: invoiceInstance, field: "invoiceNumber")}
@@ -56,12 +56,12 @@
 				</td>
 
 				<td class="link"><g:link controller="invoice" action="show" id="${invoiceInstance.id}"
-						class="btn btn-default btn-sm">Show &raquo;</g:link></td>
+						class="lnk">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate params="${filterParams}"
 		total="${invoices?.size()}" />
 </div>

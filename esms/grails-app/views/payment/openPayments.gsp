@@ -33,7 +33,7 @@
 				<h3>Open Payments</h3>
 			</div>
 
-			<div class="pagination">
+			<div class="pgn">
 				<filterpane:paginate
 					total="${paymentInstanceTotal?paymentInstanceTotal:openPayments.size()}"
 					domainBean="com.esms.model.payment.Payment" />
@@ -121,7 +121,7 @@
 					</tr>
 				</tfoot>
 			</table>
-			<div class="pagination">
+			<div class="pgn">
 				<filterpane:paginate
 					total="${paymentInstanceTotal?paymentInstanceTotal:openPayments.size()}"
 					domainBean="com.esms.model.payment.Payment" />

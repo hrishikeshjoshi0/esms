@@ -1,7 +1,7 @@
 <div class="pull-right">
 	<bs3:modalLink
 		href="${createLink(controller:'organization',action:'createContact',params="['organization.id':organizationInstance?.id]")}"
-		class="btn-primary" id="createContact" title="New Contact" />	
+		id="createContact" title="New Contact" />	
 </div>
 
 <!-- Contacts -->
@@ -52,13 +52,13 @@
 					<td>${fieldValue(bean: phoneBookInstance, field: "otherPhone")}</td>
 							
 					<td class="link"><g:link action="show" controller="contact"
-							id="${contactInstance.id}" class="btn btn-default btn-sm">Show</g:link>
+							id="${contactInstance.id}" class="lnk ">Show</g:link>
 					</td>
 				</tr>
 			</g:each>	
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate total="${organizationInstance?.contacts?.size()}" />
 </div>

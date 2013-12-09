@@ -52,13 +52,13 @@
 							<td>${fieldValue(bean: addressInstance, field: "country")}</td>
 						
 							<td class="link">
-								<g:link action="show" id="${addressInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+								<g:link action="show" id="${addressInstance.id}" class="lnk">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>
 					</tbody>
 				</table>
-				<div class="pagination">
+				<div class="pgn">
 					<bootstrap:paginate total="${addressInstanceTotal}" />
 				</div>
 			</div>

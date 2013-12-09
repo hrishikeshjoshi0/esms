@@ -12,7 +12,7 @@
 <body>
 	<div class="row">
 		<div class="col-md-12">
-			<bs3:pageHeader pageHeaderLabel="${message(code: 'default.list.label',args:[entityName])}" />
+			<bs3:pageHeader pageHeaderLabel="${message(code: 'default.list.label',args:['Leads'])}" />
 
 			<filterpane:filterPane domain="com.esms.model.party.Organization"
 				filterProperties="${['name', 'salesStatus','assignedTo']}"
@@ -84,13 +84,13 @@
 									${fieldValue(bean: organization, field: "liftInfo.numberOfLifts")}
 								</td>
 								<td class="link"><g:link action="show"
-										id="${organization?.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+										id="${organization?.id}" class="lnk ">Show &raquo;</g:link>
 								</td>
 							</tr>
 						</g:each>
 					</tbody>
 				</table>
-				<div class="pagination">
+				<div class="pgn">
 					<bootstrap:paginate total="${organizationInstanceTotal}"
 						params="${filterParams}" />
 				</div>

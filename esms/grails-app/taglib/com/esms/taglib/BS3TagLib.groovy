@@ -105,7 +105,7 @@ class BS3TagLib {
 		def modalBody = id + "ModalBody"
 		
 		out << """
-				<a id="${modalLink}" class="btn btn-default btn-xs ${cls}" 
+				<a id="${modalLink}" class="btn btn-default btn-sm ${cls}" 
 						href="${href}">${title}</a>
 				
 				<!-- Modal -->

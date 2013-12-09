@@ -84,7 +84,7 @@
 				</tbody>
 			</table>
 			
-			<div class="pagination">
+			<div class="pgn">
 				<bootstrap:paginate total="${eventLogInstanceTotal}" />
 			</div>
 		</div>

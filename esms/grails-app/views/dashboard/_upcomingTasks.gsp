@@ -6,7 +6,7 @@
 		$('#upcomingTasks').html('Loading...');
 	}
 </script>
-<div class="dashboard-widget-header">
+<div class="page-header">
 	<h5>
 		Upcoming Tasks for
 		<g:select name="upcomingRenewalMonthParam1" from="${filteredMonthMap}"
@@ -101,18 +101,18 @@
 				</td>
 
 				<td class="link"><g:link action="show" id="${taskInstance.id}"
-						controller="task" class="btn btn-default btn-sm">Show &raquo;</g:link></td>
+						controller="task" class="lnk ">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
 	<tfoot>
 		<tr>
 			<th class="link" colspan="10">
-				<g:link controller="task" action="list" class="btn btn-default btn-sm">Show All &raquo;</g:link>
+				<g:link controller="task" action="list" class="lnk ">Show All &raquo;</g:link>
 			</th>				
 		</tr>
 	</tfoot>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate total="${upcomingTasks?upcomingTasks.size():0}" />
 </div>

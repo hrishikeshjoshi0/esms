@@ -56,12 +56,12 @@
 				</td>
 
 				<td class="link"><g:link controller="order" action="show" id="${orderInstance.id}"
-						class="btn btn-default btn-sm">Show &raquo;</g:link></td>
+						class="lnk">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate params="${filterParams}"
 		total="${orderInstanceTotal?orderInstanceTotal:organizationInstance?.orders?.size()}" />
 </div>

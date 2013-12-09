@@ -1,6 +1,6 @@
 <%@ page import="com.esms.model.payment.Payment" %>
 
-<div class="dashboard-widget-header">
+<div class="page-header">
 	<h3>
 		Uncleared Cheques 
 	</h3>
@@ -67,7 +67,7 @@
 						</td>
 	
 						<td class="link"><g:link controller="payment" action="show" 
-								id="${paymentInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+								id="${paymentInstance.id}" class="lnk ">Show &raquo;</g:link>
 						</td>
 					</tr>
 				</g:each>
@@ -84,7 +84,7 @@
 	<tfoot>
 		<tr>
 			<th colspan="7" class="link">
-				<g:link controller="payment" action="openPayments" class="btn btn-default btn-sm">Show All &raquo;</g:link>
+				<g:link controller="payment" action="openPayments" class="lnk ">Show All &raquo;</g:link>
 			</th>				
 		</tr>
 	</tfoot>

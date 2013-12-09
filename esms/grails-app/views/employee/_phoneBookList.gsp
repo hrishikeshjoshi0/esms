@@ -1,7 +1,6 @@
 <div class="pull-right">
-	<a data-toggle="modal" href="#" data-target="#phoneBookModal"
-		role="button" class="btn btn-default btn-sm">  New Phone Book
-	</a>
+	<bs3:modalLink href="${createLink(controller:'employee',action:'createPhoneBook',params:['party.id':employeeInstance?.id])}"
+			id="createPhoneBook" title="New Phone"/>
 </div>
 
 
@@ -52,37 +51,12 @@
 				</td>
 
 				<td class="link"><g:link action="show" controller="phoneBook"
-						id="${phoneBookInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+						id="${phoneBookInstance.id}" class="lnk">Show &raquo;</g:link>
 				</td>
 			</tr>
 		</g:each>
 	</tbody>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate total="${employeeInstance?.phoneBooks?.size()}" />
-</div>
-
-<!-- Modal -->
-<div id="phoneBookModal" class="modal hide fade" tabindex="-1"
-	role="dialog"
-	data-remote="<g:createLink controller="organization" action="createPhoneBook"/>"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true">×</button>
-		<h3 id="myModalLabel">New PhoneBook</h3>
-	</div>
-	<g:form controller="organization" action="createPhoneBook" method="POST">
-		<g:hiddenField name="party.id" value="${employeeInstance?.id}" />
-		<g:hiddenField name="createdFromOrganizationDetailView" value="true" />
-		<div class="modal-body"></div>
-		<div class="modal-footer">
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary">
-					
-					<g:message code="default.button.create.label" default="Create" />
-				</button>
-			</div>
-		</div>
-	</g:form>
 </div>

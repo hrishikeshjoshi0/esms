@@ -2,7 +2,7 @@
 
 <div
 	class="form-group fieldcontain ${hasErrors(bean: productInstance, field: 'productNumber', 'error')} required">
-	<label for="productNumber" class="col-md-2 control-label"><g:message
+	<label for="productNumber" class="col-md-3 control-label"><g:message
 			code="product.productNumber.label" default="Product Number" /><span
 		class="required-indicator">*</span></label>
 	<div class="col-md-6">
@@ -16,7 +16,7 @@
 
 <div
 	class="form-group fieldcontain ${hasErrors(bean: productInstance, field: 'productName', 'error')} required">
-	<label for="productName" class="col-md-2 control-label"><g:message
+	<label for="productName" class="col-md-3 control-label"><g:message
 			code="product.productName.label" default="Product Name" /><span
 		class="required-indicator">*</span></label>
 	<div class="col-md-6">
@@ -29,7 +29,7 @@
 
 <div
 	class="form-group fieldcontain ${hasErrors(bean: productInstance, field: 'productType', 'error')} ">
-	<label for="productType" class="col-md-2 control-label"><g:message
+	<label for="productType" class="col-md-3 control-label"><g:message
 			code="product.productType.label" default="Product Type" /></label>
 	<div class="col-md-6">
 		<g:select name="productType" class="form-control"
@@ -43,7 +43,7 @@
 
 <div
 	class="form-group fieldcontain ${hasErrors(bean: productInstance, field: 'introductionDate', 'error')} ">
-	<label for="introductionDate" class="col-md-2 control-label"><g:message
+	<label for="introductionDate" class="col-md-3 control-label"><g:message
 			code="product.introductionDate.label" default="Introduction Date" /></label>
 	<div class="col-md-6">
 		<richui:dateChooser name="introductionDate" class="form-control"
@@ -55,7 +55,7 @@
 
 <div
 	class="form-group fieldcontain ${hasErrors(bean: productInstance, field: 'manufacturer', 'error')} ">
-	<label for="manufacturer" class="col-md-2 control-label"><g:message
+	<label for="manufacturer" class="col-md-3 control-label"><g:message
 			code="product.manufacturer.label" default="Manufacturer" /></label>
 	<div class="col-md-6">
 		<g:textField name="manufacturer" class="form-control"
@@ -67,7 +67,7 @@
 
 <div
 	class="form-group fieldcontain ${hasErrors(bean: productInstance, field: 'serviceContract', 'error')} ">
-	<label for="serviceContract" class="col-md-2 control-label"><g:message
+	<label for="serviceContract" class="col-md-3 control-label"><g:message
 			code="product.serviceContract.label" default="Is Service Contract?" /></label>
 	<div class="col-md-6">
 		<g:checkBox name="serviceContract" 
@@ -79,7 +79,7 @@
 
 <div
 	class="form-group fieldcontain ${hasErrors(bean: productInstance, field: 'requiresInventory', 'error')} ">
-	<label for="requiresInventory" class="col-md-2 control-label"><g:message
+	<label for="requiresInventory" class="col-md-3 control-label"><g:message
 			code="product.requiresInventory.label" default="Requires Inventory" /></label>
 	<div class="col-md-6">
 		<g:checkBox name="requiresInventory" 
@@ -91,7 +91,7 @@
 
 <div
 	class="form-group fieldcontain ${hasErrors(bean: productInstance, field: 'taxable', 'error')} ">
-	<label for="taxable" class="col-md-2 control-label"><g:message
+	<label for="taxable" class="col-md-3 control-label"><g:message
 			code="product.taxable.label" default="Taxable" /></label>
 	<div class="col-md-6">
 		<g:checkBox name="taxable" value="${productInstance?.taxable}"/>
@@ -102,7 +102,7 @@
 
 <div
 	class="form-group fieldcontain ${hasErrors(bean: productInstance, field: 'isVirtual', 'error')} ">
-	<label for="isVirtual" class="col-md-2 control-label"><g:message
+	<label for="isVirtual" class="col-md-3 control-label"><g:message
 			code="product.isVirtual.label" default="Is Virtual" /></label>
 	<div class="col-md-6">
 		<g:checkBox name="isVirtual" value="${productInstance?.isVirtual}" />
@@ -113,7 +113,7 @@
 
 <div
 	class="form-group fieldcontain ${hasErrors(bean: productInstance, field: 'comments', 'error')} ">
-	<label for="isVirtual" class="col-md-2 control-label"><g:message
+	<label for="isVirtual" class="col-md-3 control-label"><g:message
 			code="product.comments.label" default="Comments" /></label>
 	<div class="col-md-6">
 		<g:textArea name="comments" cols="40" rows="5" maxlength="1000" class="form-control"

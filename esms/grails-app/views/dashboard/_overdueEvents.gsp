@@ -1,6 +1,6 @@
 <%@ page import="com.esms.model.calendar.Event"%>
 <div class="col-md-12">
-	<div class="dashboard-widget-header">
+	<div class="page-header">
 		<h3>Overdue Events</h3>
 	</div>
 
@@ -47,7 +47,7 @@
 							${fieldValue(bean: eventInstance, field: "assignedTo")}
 						</td>
 
-						<td class="link"><g:link action="show" controller="event" class="btn btn-default btn-sm"
+						<td class="link"><g:link action="show" controller="event" class="lnk "
 								id="${eventInstance.id}">Show &raquo;</g:link></td>
 					</tr>
 				</g:each>
@@ -63,12 +63,12 @@
 		<tfoot>
 			<tr>
 				<th colspan="7" class="link">
-					<g:link class="btn btn-default btn-sm" controller="event" action="listView">Show All &raquo;</g:link>
+					<g:link class="lnk " controller="event" action="listView">Show All &raquo;</g:link>
 				</th>				
 			</tr>
 		</tfoot>
 	</table>
-	<div class="pagination">
+	<div class="pgn">
 		<bootstrap:paginate params="${filterParams}"
 			total="${overdueEvents?.size()}" />
 	</div>

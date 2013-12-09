@@ -11,7 +11,7 @@
 <body>
 	<div class="row">
 		<div class="col-md-12 dashboard-widget">
-			<div class="dashboard-widget-header">
+			<div class="page-header">
 				<h3>Upcoming Renewals And Tasks</h3>
 			</div>
 
@@ -34,7 +34,7 @@
 		</div>
 	</div>
 
-	<hr class="dashboard-hr" />
+	
 
 	<div class="row">
 		<div class="col-md-12 dashboard-widget">
@@ -44,7 +44,7 @@
 		</div>
 	</div>
 
-	<hr class="dashboard-hr" />
+	
 
 	<div class="row">
 		<div class="col-md-12 dashboard-widget">
@@ -54,7 +54,7 @@
 		</div>
 	</div>
 
-	<hr class="dashboard-hr" />
+	
 
 	<div class="row">
 		<div class="col-md-12 dashboard-widget">
@@ -64,11 +64,11 @@
 		</div>
 	</div>
 
-	<hr class="dashboard-hr" />
+	
 
 	<div class="row">
 		<div class="col-md-12 dashboard-widget">
-			<div class="dashboard-widget-header">
+			<div class="page-header">
 				<h3>Repair, Modernization & Installation Quotes & Orders</h3>
 			</div>
 
@@ -93,7 +93,7 @@
 		</div>
 	</div>
 
-	<hr class="dashboard-hr" />
+	
 
 	<div class="row">
 		<div class="col-md-12 dashboard-widget">
@@ -101,7 +101,7 @@
 		</div>
 	</div>
 
-	<hr class="dashboard-hr" />
+	
 
 	<div class="row">
 		<div class="col-md-12 dashboard-widget">
@@ -109,7 +109,7 @@
 		</div>
 	</div>
 
-	<hr class="dashboard-hr" />
+	
 
 	<div class="row">
 		<div class="col-md-6 dashboard-widget">
@@ -121,7 +121,7 @@
 		</div>
 	</div>
 
-	<hr class="dashboard-hr" />
+	
 
 	<div class="row">
 		<div class="col-md-4 dashboard-widget">

@@ -2,10 +2,11 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap3">
-<g:set var="entityName"
-	value="${message(code: 'organization.label', default: 'Organization')}" />
-<title><g:message code="default.show.label" args="[entityName]" /></title>
+	<meta name="layout" content="bootstrap3">
+	<g:set var="entityName" value="${message(code: 'lead.label', default: 'Lead')}" />
+	<title>
+		Lead::${organizationInstance?.externalId}:${organizationInstance?.name}
+	</title>
 </head>
 <body>
 
@@ -13,47 +14,66 @@
 		<div class="col-md-12">
 			<div class="page-header">
 				<h3>
-					LEAD #
-					${organizationInstance?.externalId}
-					|
-					${organizationInstance?.name}
+					Lead ${organizationInstance?.externalId}:${organizationInstance?.name}
 				</h3>
 			</div>
 
-			<g:form>
-				<g:hiddenField name="id" value="${organizationInstance?.id}" />
-				<div class="form-actions">
-					<!-- TODO : HRISHI disabled temporarily -->
-					<g:link class="btn btn-default btn-sm" action="edit" id="${organizationInstance?.id}">
-						<g:message code="default.button.edit.label" default="Edit" />
-					</g:link>
-					<button class="btn btn-danger btn-sm" type="submit" name="_action_delete">
-						<g:message code="default.button.delete.label" default="Delete" />
-					</button>
-					<%--<a data-toggle="modal" href="#" data-target="#contactModal" role="button" class="btn btn-default btn-sm"> 
-						<i class="icon-plus"></i> New Contact
-					</a>
-					<a data-toggle="modal" href="#" data-target="#addressModal" role="button" class="btn btn-default btn-sm"> 
-						<i class="icon-plus"></i> New Address
-					</a>
-					<a data-toggle="modal" href="#" data-target="#phoneBookModal"
-						role="button" class="btn btn-default btn-sm"> <i class="icon-plus"></i> New Phone Book
-					</a>
-					--%>
-					<g:if test="${organizationInstance.salesStatus == 'LEAD'}">
-						<g:link controller="organization" action="convertLeadToCustomer"
-							id="${organizationInstance?.id}" role="button" class="btn btn-default btn-sm">
-							Convert Lead
+
+			<div class="well">
+				<g:form>
+					<g:hiddenField name="id" value="${organizationInstance?.id}" />
+					<div class="form-actions">
+						<a
+							href="<g:createLink controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]"/>"
+							role="button" class="btn btn-primary btn-sm">  New
+							Contract Quote
+						</a> <a
+							href="<g:createLink controller="quote" action="create" params="[type:'REPAIR',organizationId:organizationInstance?.id]" />"
+							role="button" class="btn btn-primary btn-sm">  New
+							Repair Quote
+						</a>
+						
+						<g:if test="${organizationInstance.salesStatus == 'LEAD'}">
+							<g:link class="btn btn-default btn-sm" controller="organization"
+								action="convertLeadToCustomer" id="${organizationInstance?.id}"
+								role="button">
+								Convert Lead
+							</g:link>
+
+							<button class="btn btn-default btn-sm" type="submit"
+								name="_action_disqualifyLead">Disqualify Lead</button>
+						</g:if>
+						
+						<!-- TODO : HRISHI disabled temporarily -->
+						<g:link class="btn btn-default btn-sm" action="edit"
+							id="${organizationInstance?.id}">
+							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
-
-						<button class="btn btn-danger btn-sm" type="submit" name="_action_disqualifyLead">
-							Disqualify Lead
+						
+						<button class="btn btn-default btn-sm" type="submit"
+							name="_action_delete">
+							<g:message code="default.button.delete.label" default="Delete" />
 						</button>
-					</g:if>
-				</div>
-			</g:form>
+						
+						<%--
+							<a data-toggle="modal" href="#" data-target="#contactModal" role="button" class="lnk "> 
+							<i class="icon-plus"></i> New Contact
+						</a>
+						
+						<a data-toggle="modal" href="#" data-target="#addressModal" role="button" class="lnk "> 
+							<i class="icon-plus"></i> New Address
+						</a>
+						
+						<a data-toggle="modal" href="#" data-target="#phoneBookModal"
+							role="button" class="lnk "> <i class="icon-plus"></i> New Phone Book
+						</a>
+						--%>
+					</div>
+				</g:form>
+			</div>
 
-			<dl class="dl-horizontal" style="margin-left: -30px;">
+
+			<dl class="dl-horizontal">
 				<dt>
 					<g:message code="organization.externalId.label"
 						default="External Id" />

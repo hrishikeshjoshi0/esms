@@ -19,8 +19,8 @@ if (typeof jQuery !== 'undefined') {
        $("#new_tasks").html(ajax_load).load(loadUrl);  
        
        $(document).ready(function() {
-			//var autocompleteQueryField = $('input[name="q"]');
-			//autocompleteQueryField.attr('placeholder','Search Customer...');
+			var autocompleteQueryField = $('input[name="q"]');
+			autocompleteQueryField.attr('placeholder','Search Customer...');
 			//resize();
 			
 			$("#new_tasks").html(ajax_load).load(loadUrl);  
@@ -35,6 +35,17 @@ if (typeof jQuery !== 'undefined') {
     		var h = parseInt($('#main-navbar').css("height"));
     	    $('body').css('padding-top', h-h/2-3);        
     	});
+    	
+    	//
+    	$('#quicklinks').affix({
+    		offset: {
+    		   top: 240, 
+    		   bottom: 
+    			   function () {
+    		     return (this.bottom = $('#footer').outerHeight(true))
+    		   }
+    		}
+    	 });
 
 	})(jQuery);
 }

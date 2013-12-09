@@ -15,14 +15,14 @@
 	</g:link>
 </g:if>
 <g:if test="${orderInstance?.type == 'SERVICE' }">
-	<g:link class="btn btn-sm btn-warning" action="create" controller="event"
+	<g:link class="btn btn-sm btn-default" action="create" controller="event"
 		params="['party.id':orderInstance?.organization.id,relatedTo:'ORDER',relatedToValue:orderInstance?.orderNumber,eventType:'BREAKDOWN CALL',assignedTo:orderInstance?.assignedTo]">
 		
 		<g:message code="default.button.createBreakdownEvent.label"
 			default="Create Breakdown Event" />
 	</g:link>
 	
-	<g:link class="btn btn-sm btn-warning" action="create" controller="event"
+	<g:link class="btn btn-sm btn-default" action="create" controller="event"
 		params="['party.id':orderInstance?.organization.id,relatedTo:'ORDER',relatedToValue:orderInstance?.orderNumber,eventType:'MAINTENANCE VISIT',assignedTo:orderInstance?.assignedTo]">
 		
 		<g:message code="default.button.createMaintenanceEvent.label"

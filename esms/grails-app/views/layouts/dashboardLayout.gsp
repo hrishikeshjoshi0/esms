@@ -30,42 +30,35 @@
 </head>
 
 <body>
-	<div id="spinner" style="display: none">
-		<img src="${resource(dir: 'img', file: 'ajax_loader.gif')}" alt="" />
-	</div>
+	<body>
+	<!-- NavBar -->
+	<g:render template="/_menu/navbar3"></g:render>
 
-	<div id="maincontainerDashboard" class="clearfix" style="">
-
-		<!-- header start-->
-		<g:render template="/_menu/navbar3"></g:render>
-		<!-- header end-->
-
-		<!-- main content start-->
-		<div id="contentwrapperDashboard">
-			<div id="containerDashboard">
+	<!-- Container -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Body -->		
+				<g:layoutBody />
+				<g:pageProperty name="page.body" />
+			</div>
+		</div>	
+		
+		<!-- Footer -->
+		<footer>
+			<div class="container">
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<!--Body content-->
-						<!-- Secondary menu in one line (e.g., actions for current controller) -->
-						<g:if test="${flash.message}">
-							<div style="margin: 5px;">
-								<bootstrap:alert class="alert-info">
-									${flash.message}
-								</bootstrap:alert>
-							</div>
-						</g:if>
-						
-						<div id="body_content">
-							<g:layoutBody />
-							<g:pageProperty name="page.body" />
-						</div>
+					<div class="col-md-12">
+						Morya Solutions 
 					</div>
 				</div>
 			</div>
-		</div>
+		</footer>
 	</div>
-
+	<!-- Container Ends -->
+	
 	<g:javascript library="application" />
 	<r:layoutResources disposition="defer"/>
+
 </body>
 </html>

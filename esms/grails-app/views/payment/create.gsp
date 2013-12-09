@@ -5,8 +5,9 @@
 <meta name="layout" content="bootstrap3">
 <g:set var="entityName"
 	value="${message(code: 'payment.label', default: 'Payment')}" />
-<title><g:message code="default.create.label"
-		args="[entityName]" /></title>
+<title>
+	Register Payment : ${paymentInstance?.paymentNumber}
+</title>
 </head>
 <body>
 	<div class="row">
@@ -25,7 +26,7 @@
 
 			<div class="page-header">
 				<h3>
-					Register Payment # ${paymentInstance?.paymentNumber}
+					Register Payment : ${paymentInstance?.paymentNumber}
 					|
 					<g:link controller="organization" action="show"
 									id="${paymentInstance?.organization?.id}">

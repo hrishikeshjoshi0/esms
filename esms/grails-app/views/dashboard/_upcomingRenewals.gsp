@@ -4,7 +4,7 @@
 		$('#updateDiv').html('Loading...');
 	}
 </script>
-<div class="dashboard-widget-header">
+<div class="page-header">
 	<h5>
 		Upcoming Renewals for 
 		<g:select name="upcomingRenewalMonthParam" from="${filteredMonthMap}"
@@ -126,19 +126,19 @@
 				</td>
 
 				<td class="link"><g:link action="show" id="${orderInstance.id}" controller="order"
-						class="btn btn-default btn-sm">Show &raquo;</g:link></td>
+						class="lnk ">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
 	<tfoot>
 		<tr>
 			<th class="link" colspan="11">
-				<g:link controller="report" action="upcomingRenewals" class="btn btn-default btn-sm">Show All &raquo;</g:link>
+				<g:link controller="report" action="upcomingRenewals" class="lnk ">Show All &raquo;</g:link>
 			</th>				
 		</tr>
 	</tfoot>
 </table>
-<div class="pagination">
+<div class="pgn">
 	<bootstrap:paginate params="${filterParams}"
 		total="${upcomingRenewals?.size()}" />
 </div>

@@ -9,7 +9,6 @@
 <table class="table table-striped table-condensed table-bordered">
 	<thead>
 		<tr>
-
 			<g:sortableColumn property="lineNumber"
 				title="${message(code: 'paymentItem.lineNumber.label', default: 'Line Number')}" />
 
@@ -26,7 +25,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${paymentInstance.paymentItems}" var="paymentItemInstance">
+		<g:each in="${paymentInstance.paymentItems.sort{a,b -> a.lineNumber <=> b.lineNumber}}" var="paymentItemInstance">
 			<tr>
 
 				<td>

@@ -57,13 +57,13 @@
 								</g:if>
 							</td>
 							<td class="link"><g:link action="show"
-									id="${contactInstance.id}" class="btn btn-default btn-sm">Show &raquo;</g:link>
+									id="${contactInstance.id}" class="lnk">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
+			<div class="pgn">
 				<bootstrap:paginate total="${contactInstanceTotal}" />
 			</div>
 		</div>

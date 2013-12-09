@@ -1,7 +1,7 @@
 <%@ page import="com.esms.model.order.*"%>
 <%@page import="com.esms.model.calendar.Event"%>
 
-<div class="dashboard-widget-header">
+<div class="page-header">
 	<h3>Invoices Pending Payments</h3>
 </div>
 
@@ -113,7 +113,7 @@
 						</g:else>
 					</td>
 					
-					<td class="link"><g:link controller="invoice" action="show" class="btn btn-default btn-sm"
+					<td class="link"><g:link controller="invoice" action="show" class="lnk "
 							id="${invoiceInstance.id}">Show &raquo;</g:link></td>
 				</tr>
 			</g:each>
@@ -129,7 +129,7 @@
 	<tfoot>
 		<tr>
 			<th colspan="13" class="link">
-				<g:link class="btn btn-default btn-sm" controller="invoice" action="list">Show All &raquo;</g:link>
+				<g:link class="lnk " controller="invoice" action="list">Show All &raquo;</g:link>
 			</th>				
 		</tr>
 	</tfoot>

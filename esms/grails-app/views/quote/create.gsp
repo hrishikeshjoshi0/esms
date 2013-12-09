@@ -25,7 +25,7 @@
 
 			<div class="page-header">
 				<h3>
-					<g:message code="default.create.label" args="[entityName]" />
+					Create ${quoteInstance?.type?.toLowerCase()?.capitalize()} Quote
 				</h3>
 			</div>
 			
@@ -34,93 +34,110 @@
 					<fieldset>
 						<g:render template="form"></g:render>
 						
+						<div class="page-header">
+							<h5>
+								Quote Line Items
+							</h5>
+						</div>
+						
 						<!-- Quote Items -->
 						<g:if test="${params.contractQuote}">
-							<g:hiddenField name="quoteLinesTotal" value="${quoteLinesTotal}" />
-							
-							<table class="table table-striped table-condensed table-bordered">
-								<thead>
-									<tr>
-										<g:sortableColumn property="lineNumber"
-											title="${message(code: 'quoteItem.lineNumber.label', default: 'Line Number')}" />
-							
-										<g:sortableColumn property="productNumber"
-											title="${message(code: 'quoteItem.productNumber.label', default: 'Product')}" />
-											
-										<g:sortableColumn property="quantity"
-											title="${message(code: 'quoteItem.quantity.label', default: 'Quantity')}" />
-							
-										<g:sortableColumn property="unitPrice"
-											title="${message(code: 'quoteItem.unitPrice.label', default: 'Unit Price')}" />
-							
-										<g:sortableColumn property="tax"
-											title="${message(code: 'quoteItem.tax.label', default: 'Tax')}" />
-							
-										<g:sortableColumn property="discount"
-											title="${message(code: 'quoteItem.discount.label', default: 'Discount')}" />
-										
-										<g:sortableColumn property="lineTotalAmount"
-											title="${message(code: 'quoteItem.lineTotalAmount.label', default: 'Line Total Amount')}" />
-							
-										<th></th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody>
-									<g:each in="${quoteInstance.quoteItems}" var="quoteItemInstance" status="index">
+							<div class="table-responsive">
+								<g:hiddenField name="quoteLinesTotal" value="${quoteLinesTotal}" />
+								<table
+									class="table table-striped table-condensed table-bordered">
+									<thead>
 										<tr>
-											
-											<td>
-												<g:textField readonly="readonly" name="quoteItem[${index}].lineNumber" 
-													value="${quoteItemInstance.lineNumber}" size="3" class="input-mini "/>
-											</td>
-											
-											<td>
-												<g:textField id="productNumber${index}" data-index="${index}" readonly="readonly" name="quoteItem[${index}].productNumber"
-													value="${quoteItemInstance.productNumber}" size="3" class="input-mini calc"/><br/>
-												<g:set var="product" value="${Product.findByProductNumber(quoteItemInstance.productNumber)}"/>
-												${product.productName}
-											</td>
-							
-											<td>
-												<g:textField id="quantity${index}" data-index="${index}" readonly="readonly" name="quoteItem[${index}].quantity" 
-													value="${quoteItemInstance.quantity}" size="3" class="input-mini calc"/>
-											</td>
-							
-											<td>
-												<g:textField id="unitPrice${index}" data-index="${index}" name="quoteItem[${index}].unitPrice" 
-													value="${quoteItemInstance.unitPrice}" size="3" class="input-mini calc"/>
-											</td>
-							
-											<td>
-												<g:textField id="tax${index}" data-index="${index}" name="quoteItem[${index}].tax"  
-													value="${quoteItemInstance.tax}" size="3" class="input-mini calc"/>
-											</td>
-											
-											<td>
-												<g:textField id="discount${index}" data-index="${index}" name="quoteItem[${index}].discount" 
-													value="${quoteItemInstance.discount}" size="3" class="input-mini calc"/>
-											</td>
-							
-											<td>
-												<g:textField id="lineTotalAmount${index}" readonly="readonly"  name="quoteItem[${index}].lineTotalAmount"
-													value="${quoteItemInstance.lineTotalAmount}" size="3" class="input-mini "/>
-											</td>
+											<g:sortableColumn property="lineNumber"
+												title="${message(code: 'quoteItem.lineNumber.label', default: 'Line Number')}" />
+
+											<g:sortableColumn property="productNumber"
+												title="${message(code: 'quoteItem.productNumber.label', default: 'Product')}" />
+
+											<g:sortableColumn property="quantity"
+												title="${message(code: 'quoteItem.quantity.label', default: 'Quantity')}" />
+
+											<g:sortableColumn property="unitPrice"
+												title="${message(code: 'quoteItem.unitPrice.label', default: 'Unit Price')}" />
+
+											<g:sortableColumn property="tax"
+												title="${message(code: 'quoteItem.tax.label', default: 'Tax')}" />
+
+											<g:sortableColumn property="discount"
+												title="${message(code: 'quoteItem.discount.label', default: 'Discount')}" />
+
+											<g:sortableColumn property="lineTotalAmount"
+												title="${message(code: 'quoteItem.lineTotalAmount.label', default: 'Line Total Amount')}" />
+
 										</tr>
-									</g:each>
-								</tbody>
-							</table>
+									</thead>
+									<tbody>
+										<g:each in="${quoteInstance.quoteItems?.sort{a,b -> a.lineNumber <=> b.lineNumber}}"
+											var="quoteItemInstance" status="index">
+											<tr>
+												<td><g:textField readonly="readonly"
+														name="quoteItem[${index}].lineNumber"
+														value="${quoteItemInstance.lineNumber}" size="3"
+														class="col-md-12" /></td>
+
+												<td>
+													<g:hiddenField name="quoteItem[${index}].productNumber" value="${quoteItemInstance.productNumber}"/>
+													<%--<g:textField id="productNumber${index}"
+														data-index="${index}" readonly="readonly"
+														name="quoteItem[${index}].productNumber"
+														value="${quoteItemInstance.productNumber}" size="3"
+														class="input-sm col-md-12 calc" /><br /> <g:set var="product"
+														value="${Product.findByProductNumber(quoteItemInstance.productNumber)}" />
+													--%>
+													${Product.findByProductNumber(quoteItemInstance.productNumber)?.productName}
+												</td>
+
+												<td>
+													<g:field type="number" step="any" id="quantity${index}"
+														data-index="${index}" readonly="readonly"
+														name="quoteItem[${index}].quantity"
+														value="${quoteItemInstance.quantity}"
+														class="input-sm col-md-12 calc" />
+												</td>
+
+												<td><g:field type="number" step="any" id="unitPrice${index}"
+														data-index="${index}" name="quoteItem[${index}].unitPrice"
+														value="${quoteItemInstance.unitPrice}" size="3"
+														class="input-sm col-md-12 calc" /></td>
+
+												<td><g:field type="number" step="any" id="tax${index}" data-index="${index}"
+														name="quoteItem[${index}].tax"
+														value="${quoteItemInstance.tax}" size="3"
+														class="input-sm col-md-12 calc" /></td>
+
+												<td><g:field type="number" step="any" id="discount${index}"
+														data-index="${index}" name="quoteItem[${index}].discount"
+														value="${quoteItemInstance.discount}" size="3"
+														class="input-sm col-md-12 calc" /></td>
+
+												<td><g:field type="number" step="any" id="lineTotalAmount${index}"
+														readonly="readonly"
+														name="quoteItem[${index}].lineTotalAmount"
+														value="${quoteItemInstance.lineTotalAmount}" size="3"
+														class="input-sm col-md-12" /></td>
+											</tr>
+										</g:each>
+									</tbody>
+								</table>
+							</div>
 						</g:if>
+
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary">
-								
-								<g:if test="${params.contractQuote}">
+							<div class="col-md-10">
+								<button type="submit" class="btn btn-primary">
+									<g:if test="${params.contractQuote}">
 									Save
 								</g:if>
-								<g:else>
+									<g:else>
 									Save And Add Lines
 								</g:else>
-							</button>
+								</button>
+							</div>
 						</div>
 					</fieldset>
 				</g:form>

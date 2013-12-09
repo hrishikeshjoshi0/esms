@@ -34,11 +34,11 @@
 					<g:hiddenField name="version" value="${paymentInstance?.version}" />
 					<fieldset>
 						<div
-							class="chequeFields control-group fieldcontain ${hasErrors(bean: paymentInstance, field: 'clearanceDate', 'error')} ">
-							<label for="branch" class="col-md-2 control-label"><g:message
+							class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'handedOveryBy', 'error')} ">
+							<label for="branch" class="col-md-3 control-label"><g:message
 									code="payment.clearanceDate.label" default="Clearance Date" /></label>
-							<div class="col-md-10">
-								<g:datePicker precision="day" name="clearanceDate" value="${paymentInstance?.clearanceDate}" />
+							<div class="col-md-9">
+								<g:datePicker precision="day" class="form-control" name="clearanceDate" value="${paymentInstance?.clearanceDate}" />
 								<span class="help-inline">
 									${hasErrors(bean: paymentInstance, field: 'clearanceDate', 'error')}
 								</span>
@@ -46,15 +46,11 @@
 						</div>
 
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary">
-								
-								<g:message code="default.button.update.label" default="Update" />
-							</button>
-							<button type="submit" class="btn btn-sm btn-danger"
-								name="_action_delete" formnovalidate>
-								
-								<g:message code="default.button.delete.label" default="Delete" />
-							</button>
+							<div class="col-md-10 col-md-offset-2">
+								<button type="submit" class="btn btn-sm btn-primary">
+									<g:message code="default.button.save.label" default="Save" />
+								</button>
+							</div>
 						</div>
 					</fieldset>
 				</g:form>
