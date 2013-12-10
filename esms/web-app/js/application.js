@@ -7,23 +7,33 @@ if (typeof jQuery !== 'undefined') {
 		});*/
 		
 	   
-	   /*var p = $("select:not([name^='filter.'])");
-	   $(p).chosen();
-	   */
-		
-       var loadUrl = $('#new_tasks').attr('data-url');
-       $.ajaxSetup ({  
-           cache: false  
-       });  
-       var ajax_load = "";  
-       $("#new_tasks").html(ajax_load).load(loadUrl);  
-       
        $(document).ready(function() {
 			var autocompleteQueryField = $('input[name="q"]');
 			autocompleteQueryField.attr('placeholder','Search Customer...');
 			//resize();
+			$("#new_tasks").html(ajax_load).load(loadUrl);
 			
-			$("#new_tasks").html(ajax_load).load(loadUrl);  
+			var p = $("select:not([name^='filter.'])");
+			$(p).chosen();
+				
+		    var loadUrl = $('#new_tasks').attr('data-url');
+		    $.ajaxSetup ({  
+		       cache: true
+		    });
+		    
+		    var ajax_load = "";  
+		    $("#new_tasks").html(ajax_load).load(loadUrl);
+		    
+		    //
+	    	$('#quicklinks').affix({
+	    		offset: {
+	    		   top: 240, 
+	    		   bottom: 
+	    			   function () {
+	    		     return (this.bottom = $('#footer').outerHeight(true))
+	    		   }
+	    		}
+	        });
 	   });
        
        $(window).resize(function () { 
@@ -35,18 +45,6 @@ if (typeof jQuery !== 'undefined') {
     		var h = parseInt($('#main-navbar').css("height"));
     	    $('body').css('padding-top', h-h/2-3);        
     	});
-    	
-    	//
-    	$('#quicklinks').affix({
-    		offset: {
-    		   top: 240, 
-    		   bottom: 
-    			   function () {
-    		     return (this.bottom = $('#footer').outerHeight(true))
-    		   }
-    		}
-    	 });
-
 	})(jQuery);
 }
 

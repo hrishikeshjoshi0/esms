@@ -5,7 +5,9 @@ import com.esms.model.security.SecUserSecRole
 class BootStrap {
 	
 	def springSecurityService
-
+	
+	def excelImportService
+	
     def init = { servletContext ->
 		
 		def userRole = SecRole.findByAuthority('ROLE_USER') ?: new SecRole(authority: 'ROLE_USER').save(failOnError: true)
@@ -27,6 +29,9 @@ class BootStrap {
 		if (!adminUser.authorities.contains(adminRole)) {
 			SecUserSecRole.create adminUser, adminRole
 		}
+		
+		StudentImportXLS importer = new StudentImportXLS("test/data/Example.xls")
+		println importer.getStudents() 
     }
 	
     def destroy = {

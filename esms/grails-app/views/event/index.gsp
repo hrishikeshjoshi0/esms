@@ -1,18 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
-<meta name="layout" content="bootstrap3">
-<title>Calendar</title>
-<resource:calendarMonthView />
+	<meta name="layout" content="bootstrap3">
+	<title>Calendar</title>
 </head>
 <body>
 
 	<div id="calendar" style=""></div>
 
 	<script>
-  	$(document).ready(function() {
-  		$('#calendar').fullCalendar('render');
-  	});
+	  	$(document).ready(function() {
+	  		//$('#calendar').fullCalendar('render');
+	  	});
   </script>
 </body>
 </html>

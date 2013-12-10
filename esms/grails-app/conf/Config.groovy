@@ -102,6 +102,11 @@ log4j = {
 }
 
 grails.resources.modules = {
+	  chosen {
+		resource url: '/js/chosen.jquery.min.js'
+		resource url: '/css/chosen.css'
+	  }
+	  
 	/*gebo {
 		resource url:'/bootstrap/css/bootstrap.min.css'
 		resource url:'/bootstrap/css/bootstrap-responsive.min.css'
@@ -136,7 +141,7 @@ grails.resources.modules = {
 		resource url: "/lib/list_js/list.min.js"
 		resource url: "/lib/list_js/plugins/paging/list.paging.min.js"
 		//resource url: "/js/gebo_dashboard.js"
-	}*/
+	}
 	core {
 		resource url:'/js/jquery-1.7.1.min.js', disposition: 'head'
 		resource url: '/js/jquery-ui-1.8.18.custom.min.js'
@@ -160,6 +165,7 @@ grails.resources.modules = {
 		resource url: '/js/chosen.jquery.min.js'
 		resource url: '/css/chosen.css'
 	}
+	*/
 }
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.esms.model.security.SecUser'

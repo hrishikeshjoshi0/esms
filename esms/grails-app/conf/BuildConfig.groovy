@@ -31,13 +31,15 @@ grails.project.dependency.resolution = {
         mavenRepo "http://download.java.net/maven/2/"
         mavenRepo "http://repository.jboss.com/maven2/"
 		
+		//
+		mavenRepo "http://repo.grails.org/grails/libs-releases/"
+		mavenRepo "http://m2repo.spockframework.org/ext/"		
     }
+	
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
-
         runtime 'mysql:mysql-connector-java:5.1.20'
 		compile 'joda-time:joda-time:1.6.2'
-		
     }
 
     plugins {
@@ -57,11 +59,11 @@ grails.project.dependency.resolution = {
 
         compile ':cache:1.0.0'
 		
-		runtime ":twitter-bootstrap:2.1.1"
-		runtime ":fields:1.3"
+		//runtime ":twitter-bootstrap:2.1.1"
+		//runtime ":fields:1.3"
 		runtime ":cache-headers:1.1.5"
 		
-		compile ":jquery-ui:1.8.24"
+		//compile ":jquery-ui:1.8.24"
 		
 		compile ":filterpane:2.0.1.1"
 		//compile ":filterpane:2.2.5"
@@ -74,6 +76,8 @@ grails.project.dependency.resolution = {
 		
 		compile ":searchable:0.6.4"
 		
-		compile ":modalbox:0.4"
+		//compile ":modalbox:0.4"
+		
+		compile ":excel-import:1.0.0"		
     }
 }
