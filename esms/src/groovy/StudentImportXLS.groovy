@@ -19,7 +19,7 @@ class StudentImportXLS extends AbstractExcelImporter {
 	}
 	
 	def getStudents(){
-	  def studentList = ExcelImportService.getService().convertFromCellMapToMapWithValues(workbook, CONFIG_BOOK_COLUMN_MAP)
+	  def studentList = ExcelImportService.getService().columns(workbook, CONFIG_BOOK_COLUMN_MAP)
 	  return studentList
 	}
 }

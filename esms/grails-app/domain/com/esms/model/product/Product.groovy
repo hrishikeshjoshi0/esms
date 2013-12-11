@@ -6,7 +6,7 @@ class Product {
 	
 	String productType
 	String manufacturer
-	Date introductionDate
+	Date introductionDate = new Date()
 	Date supportDiscontinuationDate
 	Date salesDiscontinuationDate
 	String productName

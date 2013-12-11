@@ -211,6 +211,12 @@ fileuploader {
 		allowedExtensions = ["doc", "docx", "pdf", "rtf"]
 		path = "/tmp/docs/"
 	}
+	
+	importer {
+		maxSize = 1000 * 1024 * 4 //4 mbytes
+		allowedExtensions = ["xls"]
+		path = "/tmp/docs/"
+	}
 }
 
 

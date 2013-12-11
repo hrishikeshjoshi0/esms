@@ -1,19 +1,16 @@
 <html>
     <head>
-        <title>Grails File-Uploader Docs Demo</title>
-		<meta name="layout" content="bootstrap" />
+        <title>
+        	Documents
+        </title>
+		<meta name="layout" content="bootstrap3" />
     </head>
     <body>
-        <h3 style="margin-left:20px;">Grails File-Uploader Plugin Docs Demo</h3>
-        <p style="margin-left:20px;width:80%">
-			<fileuploader:form 	upload="docs" 
+        <fileuploader:form 	upload="docs" 
 								successAction="index"
 								successController="docs"
 								errorAction="index"
 								errorController="docs"/>
-        </p>
-		<br /><br />
-		<h3 style="margin-left:20px;">Uploaded docs</h3>
         <p style="margin-left:20px;width:80%">
 			<g:each var="f" in="${files}">
 				<table>

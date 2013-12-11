@@ -1,3 +1,4 @@
+import com.esms.importer.ProductExcelImporter;
 import com.esms.model.security.SecRole
 import com.esms.model.security.SecUser
 import com.esms.model.security.SecUserSecRole
@@ -7,6 +8,8 @@ class BootStrap {
 	def springSecurityService
 	
 	def excelImportService
+	
+	def dataImportService
 	
     def init = { servletContext ->
 		
@@ -30,8 +33,9 @@ class BootStrap {
 			SecUserSecRole.create adminUser, adminRole
 		}
 		
-		StudentImportXLS importer = new StudentImportXLS("test/data/Example.xls")
-		println importer.getStudents() 
+		//ProductExcelImporter importer = new ProductExcelImporter("importer/BootstrapData.xls")
+		//println importer.getProducts()
+		dataImportService.importProductData(new FileInputStream("importer/BootstrapData.xls"))
     }
 	
     def destroy = {

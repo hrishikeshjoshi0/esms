@@ -7,6 +7,10 @@ class ProductController {
 	static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
 	
 	def filterPaneService
+	
+	def productService
+	
+	def utilService
 
 	def index() {
 		redirect action: 'list', params: params
@@ -26,15 +30,14 @@ class ProductController {
 	def create() {
 		switch (request.method) {
 		case 'GET':
-			def list = Product.list();
-			int no = (list?list.size():0) + 1;
-			String productNumber = "PROD" + String.format("%05d", no)
-			params.productNumber = productNumber
-			[productInstance: new Product(params)]
+			def productInstance = productService.createNewProduct(params)
+			[productInstance: productInstance]
 			break
 		case 'POST':
 			def productInstance = new Product(params)
-			if (!productInstance.save(flush: true)) {
+			productService.saveOrUpdateProduct(productInstance)
+		
+			if (!productInstance.errors) {
 				render view: 'create', model: [productInstance: productInstance]
 				return
 			}

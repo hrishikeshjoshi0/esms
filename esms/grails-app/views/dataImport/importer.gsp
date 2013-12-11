@@ -1,4 +1,3 @@
-<%@ page import="com.esms.model.party.Party"%>
 <html>
 <head>
 <title>Upload Document</title>
@@ -16,9 +15,7 @@
 		<div class="col-md-12">
 			<div class="well">
 				<fieldset>
-					<fileuploader:form upload="docs" successAction="createDocument"
-						partyId="${params.partyId}" successController="docs"
-						errorAction="index" errorController="docs" />
+					<fileuploader:form upload="importer" successAction="importData" successController="dataImport" />
 				</fieldset>
 			</div>
 		</div>
