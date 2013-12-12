@@ -15,6 +15,7 @@ class BootStrap {
 		
 		def userRole = SecRole.findByAuthority('ROLE_USER') ?: new SecRole(authority: 'ROLE_USER').save(failOnError: true)
 		def adminRole = SecRole.findByAuthority('ROLE_ADMIN') ?: new SecRole(authority: 'ROLE_ADMIN').save(failOnError: true)
+		def configLocation = "importer/BootstrapData.xls"
 		
 		def userUser = SecUser.findByUsername('test.user') ?: new SecUser(
 			username: 'test.user',
@@ -33,9 +34,8 @@ class BootStrap {
 			SecUserSecRole.create adminUser, adminRole
 		}
 		
-		//ProductExcelImporter importer = new ProductExcelImporter("importer/BootstrapData.xls")
-		//println importer.getProducts()
-		dataImportService.importProductData(new FileInputStream("importer/BootstrapData.xls"))
+		//dataImportService.importProductData(new FileInputStream("importer/BootstrapData.xls"))
+		dataImportService.importCustomerData(new FileInputStream(configLocation))
     }
 	
     def destroy = {

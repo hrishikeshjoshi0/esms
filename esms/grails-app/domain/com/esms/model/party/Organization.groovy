@@ -16,6 +16,8 @@ class Organization extends Party {
 	String salesStatus
 	String assignedTo = 'SYSTEM'
 	boolean isOneTimeCustomer = false
+	//TODO:Can be moved to a different module called PartyGroup
+	String groupName
 	
 	static hasMany = [contacts : Contact,quotes : Quote,orders : Order,contracts : Contract,purchaseOrders : PurchaseOrder,payments:Payment,invoices:Invoice]
 	

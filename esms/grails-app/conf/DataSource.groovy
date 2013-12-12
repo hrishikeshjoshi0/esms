@@ -105,7 +105,7 @@ environments {
 		
 		grails.paypal.server = "https://www.paypal.com/cgi-bin/webscr"
 		grails.paypal.email = "example@business.com"
-		grails.serverURL = "http://moryasolutions.com/esms"
+		grails.serverURL = ""
     }
 	
 	production_silelevators {

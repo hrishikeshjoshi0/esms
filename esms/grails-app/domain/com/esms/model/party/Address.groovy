@@ -18,11 +18,20 @@ class Address {
 	
 	String addressType;
 	
+	String area;
+	
+	String route;
+	
+	String landmark;
+	
 	static belongsTo = [party : Party]
 
     static constraints = {
 		address1 blank:false
 		addressType inList:['SHIPPING','BILLING','RESIDENTIAL','CARE-OFF']
+		area nullable:true,blank:true
+		route nullable:true,blank:true
+		landmark nullable:true,blank:true
     }
 	
 	static mapping = {

@@ -25,8 +25,6 @@ class ProductService {
 		def product = new Product()
 		product.properties = params
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
 		return product
 	}
 }
