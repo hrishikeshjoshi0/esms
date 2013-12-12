@@ -30,6 +30,7 @@ class Organization extends Party {
 		purchaseOrders nullable:true
 		payments nullable:true
 		invoices nullable:true
+		groupName nullable:true,blank:true
 	}
 	
 	def convertLead() {

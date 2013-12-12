@@ -6,28 +6,55 @@ import org.grails.plugins.excelimport.ExpectedPropertyType
 
 class OrganizationExcelImporter extends AbstractExcelImporter {
 	
-	static Map CONFIG_BOOK_COLUMN_MAP = [
+	static propertyConfigurationMap = [
+			name:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
+			designation:([expectedType: ExpectedPropertyType.StringType, defaultValue:0]),
+			firstName:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			lastName:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			email:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			mobilePhone:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			officePhone:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			landmark:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			address1:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			address2:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			buildingName:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			groupName:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			city:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			state:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			country:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			area:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			route:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			postalCode:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			contractCost:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			contractType:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			contractFromDate:[expectedType: ExpectedPropertyType.DateType, defaultValue:null],
+			contractToDate:[expectedType: ExpectedPropertyType.DateType, defaultValue:null],
+			expiryDate:[expectedType: ExpectedPropertyType.DateType, defaultValue:null],
+			pendingAmount:[expectedType: ExpectedPropertyType.StringType, defaultValue:null]
+	 ]
+	
+	static CONFIG_BOOK_COLUMN_MAP = [
 			sheet:'Customer',
 			startRow: 2	,
 			columnMap:  [
 					'A':'name',
-					'B':'contact.designation',
-					'C':'contact.firstName',
-					'D':'contact.lastName',
-					'E':'phoneBook.email',
-					'F':'phoneBook.mobilePhone',
-					'G':'phoneBook.officePhone',
-					'H':'address.landmark',
-					'I':'address.address1',
-					'J':'address.adderss2',
-					'K':'address.buildingName',
+					'B':'designation',
+					'C':'firstName',
+					'D':'lastName',
+					'E':'email',
+					'F':'mobilePhone',
+					'G':'officePhone',
+					'H':'landmark',
+					'I':'address1',
+					'J':'address2',
+					'K':'buildingName',
 					'L':'groupName',
-					'M':'address.city',
-					'N':'address.state',
-					'O':'address.country',
-					'P':'address.area',
-					'Q':'address.route',
-					'R':'address.postalCode',
+					'M':'city',
+					'N':'state',
+					'O':'country',
+					'P':'area',
+					'Q':'route',
+					'R':'postalCode',
 					'S':'contractCost',
 					'T':'contractType',
 					'U':'contractFromDate',
@@ -46,7 +73,7 @@ class OrganizationExcelImporter extends AbstractExcelImporter {
 	}
 	
 	def getOrganizations(){
-	  def organizationsList = ExcelImportService.getService().columns(workbook, CONFIG_BOOK_COLUMN_MAP)
+	  def organizationsList = ExcelImportService.getService().columns(workbook, CONFIG_BOOK_COLUMN_MAP,null,propertyConfigurationMap)
 	  return organizationsList
 	}
 }

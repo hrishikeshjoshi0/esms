@@ -80,7 +80,7 @@
 				<g:fieldValue bean="${liftInfoInstance}" field="gateType" />
 			</dd>
 			
-			<g:if test="${liftInfoInstance.gateType == 'OTHER'}">
+			<g:if test="${liftInfoInstance?.gateType == 'OTHER'}">
 				<dt>
 					<g:message code="liftInfo.gateTypeOther.label" default="Gate Type (Other)" />
 				</dt>
@@ -116,7 +116,7 @@
 				<g:fieldValue bean="${liftInfoInstance}" field="drive" />
 			</dd>
 
-			<g:if test="${liftInfoInstance.drive == 'YES'}">
+			<g:if test="${liftInfoInstance?.drive == 'YES'}">
 				<dt>
 				<g:message code="liftInfo.driveCapacity.label"
 					default="Drive Capacity" />

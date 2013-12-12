@@ -34,7 +34,7 @@ class BootStrap {
 			SecUserSecRole.create adminUser, adminRole
 		}
 		
-		//dataImportService.importProductData(new FileInputStream("importer/BootstrapData.xls"))
+		dataImportService.importProductData(new FileInputStream(configLocation))
 		dataImportService.importCustomerData(new FileInputStream(configLocation))
     }
 	

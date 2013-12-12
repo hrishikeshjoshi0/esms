@@ -1,19 +1,23 @@
 package com.esms.service.importer
 
+import grails.converters.JSON;
+
 import java.text.SimpleDateFormat
 
 import com.esms.importer.OrganizationExcelImporter
 import com.esms.importer.ProductExcelImporter
-import com.esms.model.party.Organization
+import com.esms.model.party.Address
+import com.esms.model.party.Contact
+import com.esms.model.party.PhoneBook
 import com.esms.model.product.ProductPrice
-import com.esms.service.account.AccountService;
-import com.esms.util.UtilService;
 
 class DataImportService {
 	
 	def productService
 	
 	def accountService
+	
+	def utilService
 
     def importProductData(InputStream is) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -46,7 +50,6 @@ class DataImportService {
 			def productPrice = new ProductPrice(prodParams)
 			productPrice.product = product
 			
-			
 			product.addToPrices(productPrice)
 			
 			productService.saveOrUpdateProduct(product)
@@ -60,7 +63,7 @@ class DataImportService {
 		def organizations = importer.getOrganizations()
 		organizations?.each { Map params ->
 			
-			if(params.contractFromDate) {
+			/*if(params.contractFromDate) {
 				def fromDate = params.contractFromDate.toString()
 				params.contractFromDate = sdf.parse(fromDate)
 			}
@@ -73,12 +76,28 @@ class DataImportService {
 			if(params.expiryDate) {
 				def expiryDate = params.expiryDate.toString()
 				params.expiryDate = sdf.parse(expiryDate)
-			}
+			}*/
 			
-			def organization = new Organization(params)
-			organization.externalId = accountService.createNewAccount(params)
+			params.designation = params.designation?.toUpperCase() 
 			
-			println organization
+			def organization = accountService.createNewAccount(params)
+			
+			def address = new Address(params)
+			address.addressType = 'SHIPPING'
+			address.postalCode = ''
+			
+			organization.addToAddresses(address)
+			
+			def contact = accountService.createNewContact(params)
+			
+			def phoneBook = new PhoneBook(params)
+			
+			
+			contact.addToPhoneBooks(phoneBook)
+			
+			organization.addToContacts(contact)
+			
+			accountService.saveOrUpdateAccount(organization)
 		}
 	}
 }

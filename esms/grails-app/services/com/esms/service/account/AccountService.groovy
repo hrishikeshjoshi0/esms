@@ -18,23 +18,33 @@ class AccountService {
 		def organization = new Organization()
 		organization.properties = params
 		
+		if(!organization.description) {
+			organization.description = ""
+		}
+		
+		organization.salesStatus = "CUSTOMER"
+		organization.partyType = "ORGANIZATION"
+		
 		return organization
 	}
 	
-    def saveOrUpdateAccount(Organization organization,Address... addresses, Contact... contacts,LiftInfo liftInfo) {
-		contacts?.each { contactInstance ->
-			contactInstance.organization = organization
-			contactInstance.description = ''
+	def Contact createNewContact(params) {
+		def contact = new Contact(params)
+		contact.properties = params
+		contact.externalId = utilService.newContactNumber()
+		
+		if(!contact.description) {
+			contact.description = ""
 		}
 		
-		addresses?.each { addressInstance ->
-			addressInstance.party = organization
-		}
+		contact.partyType = "CONTACT"
 		
-		liftInfo.organization = organization
-		
+		return contact
+	}
+	
+    def saveOrUpdateAccount(Organization organization) {
 		if(!organization.validate()) {
-			return
+			return organization
 		}
 		
 		organization.save(flush:true)

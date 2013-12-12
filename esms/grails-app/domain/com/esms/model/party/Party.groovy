@@ -13,7 +13,7 @@ class Party {
 	
     static constraints = {
 		externalId blank:false
-		description maxSize: 1000,blank : true,null:true
+		description maxSize: 1000,blank : true,nullable:true
 		partyType inList: ["CONTACT","ORGANIZATION","EMPLOYEE"]
     }
 	
