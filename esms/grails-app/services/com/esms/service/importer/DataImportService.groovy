@@ -105,14 +105,13 @@ class DataImportService {
 			
 			if(organization.errors && !organization.errors?.errorCount != 0) {
 				insertedSize++
-				
 				//Create Service Contract
 				accountService.createNewServiceContract(organization,params.contractType, params.contractFromDate, params.contractToDate, params.contractCost?.toBigDecimal())
-				
 			} else {
 				println organization.errors
 			}
 			
+			println '----------'
 			println 'Inserted ' + insertedSize + ' rows out of ' + totalSize + '.'
 		}
 	}
