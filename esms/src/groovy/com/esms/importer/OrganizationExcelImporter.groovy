@@ -30,12 +30,12 @@ class OrganizationExcelImporter extends AbstractExcelImporter {
 			contractFromDate:[expectedType: ExpectedPropertyType.DateType, defaultValue:null],
 			contractToDate:[expectedType: ExpectedPropertyType.DateType, defaultValue:null],
 			expiryDate:[expectedType: ExpectedPropertyType.DateType, defaultValue:null],
-			pendingAmount:[expectedType: ExpectedPropertyType.StringType, defaultValue:null]
+			pendingAmount:[expectedType: ExpectedPropertyType.StringType, defaultValue:0]
 	 ]
 	
 	static CONFIG_BOOK_COLUMN_MAP = [
 			sheet:'Customer',
-			startRow: 2	,
+			startRow: 1	,
 			columnMap:  [
 					'A':'name',
 					'B':'designation',

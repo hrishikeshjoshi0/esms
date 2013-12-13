@@ -12,7 +12,7 @@ class Contact extends Party {
 
     static constraints = {
 		salutation nullable:true,blank:true
-		firstName blank:false
+		firstName nullable:true,blank:true
 		lastName nullable:true,blank:true
 		middleName nullable:true,blank:true
 		designation nullable:true,blank:true

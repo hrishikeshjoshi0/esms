@@ -5,9 +5,16 @@ import org.grails.plugins.excelimport.ExpectedPropertyType
 
 class ProductExcelImporter extends AbstractExcelImporter {
 	
-	static Map propertyConfigurationMap = [
-			fromDate:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
-			toDate:([expectedType: ExpectedPropertyType.StringType, defaultValue:null])
+	static propertyConfigurationMap = [
+			productName:([expectedType: ExpectedPropertyType.StringType, defaultValue:null]),
+			productType:([expectedType: ExpectedPropertyType.StringType, defaultValue:0]),
+			requiresInventory:[expectedType: ExpectedPropertyType.StringType, defaultValue:"0"],
+			introductionDate:[expectedType: ExpectedPropertyType.DateType, defaultValue:null],
+			manufacturer:[expectedType: ExpectedPropertyType.StringType, defaultValue:null],
+			fromDate:[expectedType: ExpectedPropertyType.DateType, defaultValue:null],
+			toDate:[expectedType: ExpectedPropertyType.DateType, defaultValue:null],
+			price:[expectedType: ExpectedPropertyType.DoubleType, defaultValue:0.0],
+			uom:[expectedType: ExpectedPropertyType.StringType, defaultValue:"EACH"]
 	 ]
 	
 	static Map CONFIG_BOOK_COLUMN_MAP = [

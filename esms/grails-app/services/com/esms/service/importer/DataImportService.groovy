@@ -61,9 +61,13 @@ class DataImportService {
 		
 		OrganizationExcelImporter importer = new OrganizationExcelImporter(is)
 		def organizations = importer.getOrganizations()
+		
+		int totalSize = organizations?.size()
+		int insertedSize = 0
+		
 		organizations?.each { Map params ->
 			
-			/*if(params.contractFromDate) {
+			if(params.contractFromDate) {
 				def fromDate = params.contractFromDate.toString()
 				params.contractFromDate = sdf.parse(fromDate)
 			}
@@ -76,7 +80,7 @@ class DataImportService {
 			if(params.expiryDate) {
 				def expiryDate = params.expiryDate.toString()
 				params.expiryDate = sdf.parse(expiryDate)
-			}*/
+			}
 			
 			params.designation = params.designation?.toUpperCase() 
 			
@@ -93,11 +97,23 @@ class DataImportService {
 			def phoneBook = new PhoneBook(params)
 			
 			
-			contact.addToPhoneBooks(phoneBook)
+			contact.addToPhoneBooks(	phoneBook)
 			
 			organization.addToContacts(contact)
 			
-			accountService.saveOrUpdateAccount(organization)
+			organization = accountService.saveOrUpdateAccount(organization)
+			
+			if(organization.errors && !organization.errors?.errorCount != 0) {
+				insertedSize++
+				
+				//Create Service Contract
+				accountService.createNewServiceContract(organization,params.contractType, params.contractFromDate, params.contractToDate, params.contractCost?.toBigDecimal())
+				
+			} else {
+				println organization.errors
+			}
+			
+			println 'Inserted ' + insertedSize + ' rows out of ' + totalSize + '.'
 		}
 	}
 }

@@ -48,14 +48,14 @@
 								title="${message(code: 'address.city.label', default: 'City')}" />
 							<g:sortableColumn params="${filterParams}"
 								property="liftInfo.numberOfLifts"
-								title="${message(code: 'liftInfo.numberOfLifts.label', default: 'No. Of Lists')}" />
+								title="${message(code: 'liftInfo.numberOfLifts.label', default: 'No. Of Lifts')}" />
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						<g:each in="${organizationInstanceList}" var="organization">
 							<g:set var="addressInstance"
-								value="${Address.findByAddressTypeAndParty('BILLING',organization) }" />
+								value="${Address.findByAddressTypeAndParty('SHIPPING',organization) }" />
 							<tr>
 								<td>
 									${fieldValue(bean: organization, field: "externalId")}

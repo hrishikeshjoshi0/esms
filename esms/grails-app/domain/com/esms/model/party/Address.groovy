@@ -28,6 +28,7 @@ class Address {
 
     static constraints = {
 		address1 blank:false
+		address2 nullable:true,blank:true
 		addressType inList:['SHIPPING','BILLING','RESIDENTIAL','CARE-OFF']
 		area nullable:true,blank:true
 		route nullable:true,blank:true

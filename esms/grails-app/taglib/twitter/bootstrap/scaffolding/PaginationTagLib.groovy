@@ -113,7 +113,6 @@ class PaginationTagLib {
 		}
 		
 		writer << '</ul>'
-		writer << '</center>'
 	}
 
 }

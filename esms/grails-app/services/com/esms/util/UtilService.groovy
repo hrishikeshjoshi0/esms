@@ -1,12 +1,13 @@
 package com.esms.util
 
+import com.esms.model.order.Order;
 import com.esms.model.party.Contact;
 import com.esms.model.party.Organization;
 import com.esms.model.product.Product
 
 class UtilService {
 	
-	def prefixMap = ["Product":"PROD","Organization":"ACC","Contact":"CON"]
+	def prefixMap = ["Product":"PROD","Organization":"ACC","Contact":"CON","Order":"ORD"]
 	
 	def String newProductNumber() {
 		def count = Product.count();
@@ -29,4 +30,10 @@ class UtilService {
 		return externalId
 	}
 	
+	def String newOrderNumber() {
+		def count = Order.count();
+		int no = (count?count:0) + 1;
+		String orderNumber = prefixMap."Order" + String.format("%05d", no)
+		return orderNumber
+	}
 }

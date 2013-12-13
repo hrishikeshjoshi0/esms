@@ -222,6 +222,6 @@ fileuploader {
 
 esms {
 	settings {
-		max = "10"
+		max = "15"
 	}
 }
