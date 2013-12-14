@@ -32,7 +32,7 @@
 								</g:elseif>
 						</span>
 						<g:if test="${activeContract?.type == 'SERVICE'}">
-								(Active From
+								(From
 								<g:formatDate date="${activeContract?.contractFromDate}"
 								format="dd.MM.yyyy" />
 								To

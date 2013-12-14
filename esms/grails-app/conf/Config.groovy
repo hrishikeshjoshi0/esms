@@ -166,6 +166,26 @@ grails.resources.modules = {
 		resource url: '/css/chosen.css'
 	}
 	*/
+	  
+	core {
+	  resource url:'/js/jquery-1.7.1.min.js', disposition: 'head'
+	  resource url: '/js/jquery-ui-1.8.18.custom.min.js'
+	  resource url: '/js/jquery-ui-timepicker-addon.js'
+	  resource url: '/js/jquery.qtip.min.js'
+	}
+   
+	fullCalendar {
+	  dependsOn 'core'
+	  resource url:'/js/fullcalendar.min.js'
+	  resource url:'/css/fullcalendar.css'
+	}
+	  
+	calendar {
+	  dependsOn 'fullCalendar'
+	  resource url: '/js/calendar.js'
+	  resource url: '/js/bootstrapx-clickover.js'
+	  resource url: '/css/calendar.css'
+	}
 }
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.esms.model.security.SecUser'
@@ -222,6 +242,13 @@ fileuploader {
 
 esms {
 	settings {
-		max = "15"
+		max = "10"
 	}
+}
+
+importer {
+	configLocation = "importer/BootstrapData.xls"
+	
+	product = true
+	organization = true
 }

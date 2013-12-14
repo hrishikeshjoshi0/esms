@@ -165,10 +165,32 @@ class EventController {
     }
 
     def create = {
-        def eventInstance = new Event()
-        eventInstance.properties = params
-
-        [eventInstance: eventInstance]
+		switch (request.method) {
+			case 'GET':
+				 def eventInstance = new Event()
+ 		         eventInstance.properties = params
+		
+		         [eventInstance: eventInstance]
+				 break
+			case 'POST':
+				 def eventInstance = new Event(params)
+		
+				eventInstance.activityLog = 'Init'
+		        if (eventInstance.save(flush: true)) {
+		            flash.message = "Event Created."
+					def order
+					if(eventInstance?.relatedTo == 'ORDER' && eventInstance?.relatedToValue) {
+						order = Order.findByOrderNumber(eventInstance?.relatedToValue)
+						redirect(controller:"order",action: "show",id:order?.id)
+						return
+					}
+		            redirect(action: "show", id: eventInstance.id)
+		        }
+		        else {
+					flash.message = "Error Encountered."
+		            render(view: "create", model: [eventInstance: eventInstance])
+		        }
+			}
     }
 	
     def show = {
@@ -207,6 +229,7 @@ class EventController {
             redirect(action: "show", id: eventInstance.id)
         }
         else {
+			flash.message = "Error Encountered."
             render(view: "create", model: [eventInstance: eventInstance])
         }
 
@@ -276,7 +299,7 @@ class EventController {
 		switch (request.method) {
 		case 'GET':
         	def eventInstance = Event.get(params.id)
-			[eventInstance:eventInstance,eventLogInstance:new EventLog()]
+			[eventInstance:eventInstance,eventLogInstance:new EventLog(params)]
 			break
 		case 'POST':
 			def eventLogInstance = new EventLog(params)

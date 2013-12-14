@@ -2,12 +2,9 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap3">
-<g:set var="entityName"
-	value="${message(code: 'event.label', default: 'Event')}" />
-<title><g:message code="default.create.label"
-		args="[entityName]" /></title>
- <r:require module="calendar" />		
+	<meta name="layout" content="bootstrap3">
+	<g:set var="entityName" value="${message(code: 'event.label', default: 'Event')}" />
+	<title><g:message code="default.create.label" args="[entityName]" /></title>
 </head>
 <body>
 	<div class="row">
@@ -37,7 +34,6 @@
 						<div class="form-group">
 							<div class="col-md-10 col-md-offset-2">
 								<button type="submit" class="btn btn-sm btn-primary">
-									
 									<g:message code="default.button.create.label" default="Create" />
 								</button>
 							</div>

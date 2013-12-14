@@ -79,7 +79,7 @@
 					</td>
 					
 					<td>
-						<g:field id="amountInvoiced${index}" data-index="${index}" name="invoice[${index}].amountInvoiced" value="${invoiceLineInstance.amountInvoiced}" size="3" class="col-md-12 input-sm calc"
+						<g:field id="amountInvoiced${index}" data-index="${index}" name="invoice[${index}].amountInvoiced" value="${invoiceLineInstance.amountInvoiced}" size="3" class="col-md-12 input-sm calc amountInvoiced"
 							type="number" step="any" required="true"/>
 					</td>
 	

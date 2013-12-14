@@ -96,7 +96,7 @@ class Order {
 	static mapping = {
 		tablePerHierarchy false
 		
-		table 'Order_Hdr'
+		table 'order_hdr'
 	}
 	
 	def fetchServiceOrderItems() {

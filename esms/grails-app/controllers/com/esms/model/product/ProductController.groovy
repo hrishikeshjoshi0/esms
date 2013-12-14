@@ -126,8 +126,9 @@ class ProductController {
 		switch (request.method) {
 		case 'GET':
 			def productInstance = Product.get(params.id)
-			params.fromDate = new Date()
+			def s = new Date()
 			params.toDate = new Date() + 365
+			
 			[productPriceInstance: new ProductPrice(params),productInstance:productInstance]
 			break
 		case 'POST':
@@ -153,7 +154,7 @@ class ProductController {
 				return
 			}
 
-			flash.message = message(code: 'default.created.message', args: [message(code: 'productPrice.label', default: 'ProductPrice'), productPriceInstance.id])
+			flash.message = "Created New Price."
 			redirect controller: "product", action: 'show', id: productPriceInstance?.product?.id
 			break
 		}

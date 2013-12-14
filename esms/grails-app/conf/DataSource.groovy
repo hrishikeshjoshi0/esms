@@ -86,7 +86,7 @@ environments {
         }*/
 		
 		dataSource {
-			dbCreate = "update"
+			dbCreate = ""
 			url = "jdbc:mysql://localhost:3306/esms?useUnicode=yes&characterEncoding=UTF-8"
 			username = "root"
 			password = "Eclipse@123"

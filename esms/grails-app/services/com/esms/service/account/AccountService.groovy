@@ -106,10 +106,12 @@ class AccountService {
 		order.invoicedGrandTotal = 0.0
 		order.pendingInvoiceGrandTotal = order.grandTotal
 		
+		if(!order.validate()) {
+			return order
+		}
+		
 		order.save(flush:true)
 		
-		if(order.errors) {
-			println order.errors 
-		}
+		return order
 	}
 }

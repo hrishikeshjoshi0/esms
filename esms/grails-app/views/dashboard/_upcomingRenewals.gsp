@@ -60,7 +60,7 @@
 	</thead>
 	<tbody id="updateDiv">
 		<g:each in="${upcomingRenewals}" var="orderInstance">
-			<tr class="${upcomingRenewals.isRenewed()?'sucess':''}">
+			<tr class="${orderInstance?.isRenewed()?'sucess':''}">
 				<td>
 					${fieldValue(bean: orderInstance, field: "orderNumber")}
 				</td>
@@ -78,28 +78,25 @@
 
 				<td><g:formatDate date="${orderInstance.contractToDate}" /></td>
 
-				<td>
-					${orderInstance?.grandTotal}
+				<td><g:formatNumber type="number" number="${orderInstance?.grandTotal}" /></td>
+
+				<td><g:formatNumber type="number" number="${orderInstance?.invoicedGrandTotal}" />
 				</td>
-							
+		
+				<td><g:formatNumber type="number"
+						number="${orderInstance?.getReceivedAmount()}" /></td>
+		
 				<td>
-					${orderInstance?.invoicedGrandTotal}
+					<g:formatNumber type="number"
+						number="${orderInstance?.pendingInvoiceGrandTotal}" />
 				</td>
-							
-				<td>
-					${orderInstance?.getReceivedAmount()}
-				</td>
-							
-				<td>
-					${fieldValue(bean : orderInstance, field : "pendingInvoiceGrandTotal") }
-				</td>
-				
+		
 				<td>
 					<g:if test="${orderInstance?.taggedForRenewal == true}">
-						${orderInstance?.getRenewalState()}			
+								${orderInstance?.getRenewalState()}			
 					</g:if>
 				</td>
-
+				
 				<td class="link"><g:link action="show" id="${orderInstance.id}" controller="order"
 						class="lnk ">Show &raquo;</g:link></td>
 			</tr>
@@ -107,7 +104,7 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<th class="link" colspan="11">
+			<th class="link" colspan="12">
 				<g:link controller="report" action="upcomingRenewals" class="lnk ">Show All &raquo;</g:link>
 			</th>				
 		</tr>

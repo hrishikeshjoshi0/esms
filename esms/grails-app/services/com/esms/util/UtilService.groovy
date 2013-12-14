@@ -1,5 +1,6 @@
 package com.esms.util
 
+import com.esms.model.invoice.Invoice;
 import com.esms.model.order.Order;
 import com.esms.model.party.Contact;
 import com.esms.model.party.Organization;
@@ -7,7 +8,7 @@ import com.esms.model.product.Product
 
 class UtilService {
 	
-	def prefixMap = ["Product":"PROD","Organization":"ACC","Contact":"CON","Order":"ORD"]
+	def prefixMap = ["Product":"PROD","Organization":"ACC","Contact":"CON","Order":"ORD","Invoice":"INV"]
 	
 	def String newProductNumber() {
 		def count = Product.count();
@@ -35,5 +36,12 @@ class UtilService {
 		int no = (count?count:0) + 1;
 		String orderNumber = prefixMap."Order" + String.format("%05d", no)
 		return orderNumber
+	}
+	
+	def String newInvoiceNumber() {
+		def count = Invoice.count();
+		int no = (count?count:0) + 1;
+		String invoiceNumber = prefixMap."Invoice" + String.format("%05d", no)
+		return invoiceNumber
 	}
 }

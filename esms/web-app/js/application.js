@@ -11,10 +11,9 @@ if (typeof jQuery !== 'undefined') {
 			var autocompleteQueryField = $('input[name="q"]');
 			autocompleteQueryField.attr('placeholder','Search Customer...');
 			//resize();
-			$("#new_tasks").html(ajax_load).load(loadUrl);
-			
-			var p = $("select:not([name^='filter.'])");
-			$(p).chosen();
+
+			//var p = $("select:not([name^='filter.'])");
+			//$(p).chosen();
 				
 		    var loadUrl = $('#new_tasks').attr('data-url');
 		    $.ajaxSetup ({  

@@ -222,7 +222,7 @@
 							id="new_tasks"
 							data-url="${createLink(controller : 'event',action: 'getLatestTaskCount')}">
 						</span>						
-						New Tasks
+						New Events
 					</g:link></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> Welcome, <sec:username /> <b

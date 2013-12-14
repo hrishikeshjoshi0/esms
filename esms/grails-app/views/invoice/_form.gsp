@@ -11,6 +11,10 @@
 			$('.calc').change(function(){
 				updateInvoiceTotals($(this));
 			});
+
+			/*$('#formTemplate').on('change', '.amountInvoiced', function(){
+				updateInvoiceTotals($(this));
+			});*/
 	
 			$('#adjustment').change(function(){
 				var grandTotal = parseFloat($('#totalAmount').val()) - parseFloat($('#adjustment').val());
@@ -53,29 +57,52 @@
 			var tax = $('#' + 'tax' + idx).val();
 			var discount = $('#' + 'discount' + idx).val();
 			var percentageInvoiced = $('#' + 'percentageInvoiced' + idx).val();
-	
-			var lineTotal = (parseFloat(unitPrice) * parseFloat(quantity) + parseFloat(tax) - parseFloat(discount));
-			var lineAmountInvoiced = (parseFloat(lineTotal) * parseFloat(percentageInvoiced)/100);
 
-			//
-			$("#" + "lineTotalAmount" + idx).val(lineTotal);
-			$("#" + "amountInvoiced" + idx).val(lineAmountInvoiced);
-			
-			var invoiceLinesTotal= $("#invoiceLinesTotal").val()
-			var totalAmt = 0.0;
-			var adjustment = 0.0;
-			var grandTotalAmt = 0.0;
+			//if the field is total, change other records.
+			if($(elem).hasClass( "amountInvoiced" )) {
+				var lineAmountInvoiced = $(elem).val(); 
+				var lineTotal = (parseFloat(unitPrice) * parseFloat(quantity) + parseFloat(tax) - parseFloat(discount));
 
-			for(var i=0; i < invoiceLinesTotal; i++) {
-				totalAmt += parseFloat($("#" + "amountInvoiced" + i).val());
+				var percentageInvoiced = 	(parseFloat(lineAmountInvoiced)/parseFloat(lineTotal))*100.00;
+				$("#" + "percentageInvoiced" + idx).val(percentageInvoiced);
+				
+				var invoiceLinesTotal= $("#invoiceLinesTotal").val()
+				var totalAmt = 0.0;
+				var adjustment = 0.0;
+				var grandTotalAmt = 0.0;
+
+				for(var i=0; i < invoiceLinesTotal; i++) {
+					totalAmt += parseFloat($("#" + "amountInvoiced" + i).val());
+				}
+
+				$('#totalAmount').val(totalAmt);
+				var grandTotal = parseFloat($('#totalAmount').val()) - parseFloat($('#adjustment').val());
+				$("#grandTotal").val(grandTotal);
+				
+			} else {
+				var lineTotal = (parseFloat(unitPrice) * parseFloat(quantity) + parseFloat(tax) - parseFloat(discount));
+				var lineAmountInvoiced = (parseFloat(lineTotal) * parseFloat(percentageInvoiced)/100);
+
+				//
+				$("#" + "lineTotalAmount" + idx).val(lineTotal);
+				$("#" + "amountInvoiced" + idx).val(lineAmountInvoiced);
+				
+				var invoiceLinesTotal= $("#invoiceLinesTotal").val()
+				var totalAmt = 0.0;
+				var adjustment = 0.0;
+				var grandTotalAmt = 0.0;
+
+				for(var i=0; i < invoiceLinesTotal; i++) {
+					totalAmt += parseFloat($("#" + "amountInvoiced" + i).val());
+				}
+				//alert(totalAmt);
+
+				$('#totalAmount').val(totalAmt);
+				//$('#totalTax').val(tax);
+				//$('#totalDiscount').val(discount);
+				var grandTotal = parseFloat($('#totalAmount').val()) - parseFloat($('#adjustment').val());
+				$("#grandTotal").val(grandTotal);
 			}
-			//alert(totalAmt);
-
-			$('#totalAmount').val(totalAmt);
-			//$('#totalTax').val(tax);
-			//$('#totalDiscount').val(discount);
-			var grandTotal = parseFloat($('#totalAmount').val()) - parseFloat($('#adjustment').val());
-			$("#grandTotal").val(grandTotal);
 		}
 
 		function fetchOrderInfo(id) {

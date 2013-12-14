@@ -1,11 +1,5 @@
-<div class="page-header">
-	<h3>
-		Create New Price
-	</h3>
-</div>
-
 <div class="well">
-	<g:form class="form-horizontal" action="create">
+	<g:form class="form-horizontal" action="createPrice" controller="product">
 		<fieldset>
 			<g:hiddenField name="product.id" value="${productInstance?.id}" />
 			<g:render template="/productPrice/form"></g:render>

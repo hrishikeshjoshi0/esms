@@ -42,21 +42,25 @@
 <g:set var="entityName"
 	value="${message(code: 'event.label', default: 'Event')}" />
 
-<div
-	class="fieldcontain ${hasErrors(bean: eventInstance, field: 'party', 'error')}">
-	
-	<label for="organization" class="col-md-3 control-label"><g:message
-			code="quote.organization.label" default="Organization" /></label>
-	<br/>		
-	<g:select name="party.id" from="${Organization.list()}"
-			optionKey="id" optionValue="name" class="input-xxlarge"
-			value="${eventInstance?.party?.id}" />
-</div>
+<div class="row">
+	<div class="col-md-6">
+		<div
+			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'party', 'error')}">
+			<label for="organization" class="col-md-3 control-label"><g:message
+					code="quote.organization.label" default="Organization" /></label>
+			<div class="col-md-9">
+				<g:select name="party.id" from="${Organization.list()}"
+						optionKey="id" optionValue="name" class="form-control"
+						value="${eventInstance?.party?.id}" />
+			</div>		
+		</div>
+	</div>
+</div>	
 
 <hr/>
 
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-6">
 			<div class="maintenanceVisitFields page-header">
 				<h3>Maintenance Visit Information</h3>
 			</div>
@@ -75,116 +79,140 @@
 	<div class="col-md-6">
 		<div
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'eventType', 'error')}">
-			<label for="eventType"><g:message code="event.eventType.label"
+			<label class="col-md-3 control-label" for="eventType"><g:message code="event.eventType.label"
 					default="Event Type" /></label>
-			<g:select name="eventType" onchange="onEventTypeChange(this.value);"
-				from="${eventInstance.constraints.eventType.inList}"
-				value="${eventInstance?.eventType}"
-				valueMessagePrefix="event.eventType" noSelection="['': '']" />
+			<div class="col-md-9">
+				<g:select name="eventType" onchange="onEventTypeChange(this.value);" class="form-control"
+					from="${eventInstance.constraints.eventType.inList}"
+					value="${eventInstance?.eventType}"
+					valueMessagePrefix="event.eventType" noSelection="['': '']" />
+			</div>		
 		</div>
 		
 		<div
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'assignedTo', 'error')}">
-			<label for="assignedTo"><g:message code="event.assignedTo.label"
+			<label class="col-md-3 control-label" for="assignedTo"><g:message code="event.assignedTo.label"
 					default="Assigned To" /></label>
-			<g:textField name="assignedTo" value="${eventInstance?.assignedTo}" />
+			<div class="col-md-9">
+				<g:textField name="assignedTo" value="${eventInstance?.assignedTo}" class="form-control"/>
+			</div>
 		</div>
 		
 		<div
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'title', 'error')}">
-			<label for="title"><g:message code="event.title.label"
+			<label class="col-md-3 control-label" for="title"><g:message code="event.title.label"
 					default="Title" /></label>
-			<g:textField name="title" value="${eventInstance?.title}" style="width:400px;"/>
+			<div class="col-md-9">
+				<g:textField name="title" value="${eventInstance?.title}" class="form-control"/>
+			</div>		
 		</div>
 		
 		<!-- Maintenance Visit Fields -->
 		<div
 			class="maintenanceVisitFields fieldcontain ${hasErrors(bean: eventInstance, field: 'maintenanceVisitTechnician', 'error')}">
-			<label for="maintenanceVisitTechnician"><g:message
+			<label class="col-md-3 control-label" for="maintenanceVisitTechnician"><g:message
 					code="event.maintenanceVisitTechnician.label" default="Technician" /></label>
-			<g:textField name="maintenanceVisitTechnician"
-				value="${eventInstance?.maintenanceVisitTechnician}" />
+			<div class="col-md-9">
+				<g:textField name="maintenanceVisitTechnician" class="form-control"
+					value="${eventInstance?.maintenanceVisitTechnician}" />
+			</div>
 		</div>
 
 		<div
 			class="maintenanceVisitFields fieldcontain ${hasErrors(bean: eventInstance, field: 'maintenanceVisitTechnicianNotes', 'error')}">
-			<label for="maintenanceVisitTechnicianNotes"><g:message
+			<label class="col-md-3 control-label" for="maintenanceVisitTechnicianNotes"><g:message
 					code="event.maintenanceVisitTechnicianNotes.label" default="Notes" /></label>
-			<g:textArea name="maintenanceVisitTechnicianNotes"
-				value="${eventInstance?.maintenanceVisitTechnicianNotes}" rows="10"
-				cols="100" />
+			<div class="col-md-9">
+				<g:textArea name="maintenanceVisitTechnicianNotes" class="form-control"
+					value="${eventInstance?.maintenanceVisitTechnicianNotes}" rows="10"
+					cols="100" />
+			</div>	
 		</div>
 
 		<div
 			class="maintenanceVisitFields fieldcontain ${hasErrors(bean: eventInstance, field: 'maintenanceVisitSignedOffBy', 'error')}">
-			<label for="maintenanceVisitSignedOffBy"><g:message
+			<label class="col-md-3 control-label" for="maintenanceVisitSignedOffBy"><g:message
 					code="event.maintenanceVisitSignedOffBy.label"
 					default="Signed Off By" /></label>
-			<g:textField name="maintenanceVisitSignedOffBy"
-				value="${eventInstance?.maintenanceVisitSignedOffBy}" />
+			<div class="col-md-9">
+				<g:textField name="maintenanceVisitSignedOffBy" class="form-control"
+					value="${eventInstance?.maintenanceVisitSignedOffBy}" />
+			</div>
 		</div>
 
 		<div
 			class="maintenanceVisitFields fieldcontain ${hasErrors(bean: eventInstance, field: 'maintenanceVisitIsRequiresRepair', 'error')}">
 
-			<label for="maintenanceVisitIsRequiresRepair"><g:message
+			<label class="col-md-3 control-label" for="maintenanceVisitIsRequiresRepair"><g:message
 					code="event.maintenanceVisitIsRequiresRepair.label"
 					default="Repeat" /></label>
-			<g:checkBox name="maintenanceVisitIsRequiresRepair"
-				value="${eventInstance.maintenanceVisitIsRequiresRepair}" />
+			<div class="col-md-9 checkbox"> 
+				<g:checkBox name="maintenanceVisitIsRequiresRepair"
+					value="${eventInstance.maintenanceVisitIsRequiresRepair}" />
+			</div>
 		</div>
 		<!-- Maintenance Visit Fields -->
 
 		<!-- Meeting -->
 		<div
 			class="meetingFields fieldcontain ${hasErrors(bean: eventInstance, field: 'location', 'error')}">
-			<label for="location"><g:message
+			<label class="col-md-3 control-label" for="location"><g:message
 					code="event.location.label"
 					default="Location" /></label>
-			<g:textField name="location"
-				value="${eventInstance?.location}" />
+			<div class="col-md-9">
+				<g:textField name="location" class="form-control"
+					value="${eventInstance?.location}" />
+			</div>
 		</div>
 		
 		<div
 			class="meetingFields fieldcontain ${hasErrors(bean: eventInstance, field: 'meetingNotes', 'error')}">
-			<label for="meetingNotes"><g:message
+			<label  class="col-md-3 control-label"for="meetingNotes"><g:message
 					code="event.meetingNotes.label" default="Notes" /></label>
-			<g:textArea name="meetingNotes"
-				value="${eventInstance?.meetingNotes}" rows="10" cols="100" />
+			<div class="col-md-9">
+				<g:textArea name="meetingNotes" class="form-control"
+					value="${eventInstance?.meetingNotes}" rows="10" cols="100" />
+			</div>
 		</div>
 		<!-- Meeting -->
 
 		<!-- Breakdown Visit Fields -->
 		<div
 			class="breakdownVisitFields fieldcontain ${hasErrors(bean: eventInstance, field: 'breakdownVisitTechnician', 'error')}">
-			<label for="breakdownVisitTechnician"><g:message
+			<label class="col-md-3 control-label" for="breakdownVisitTechnician"><g:message
 					code="event.breakdownVisitTechnician.label" default="Technician" /></label>
-			<g:textField name="breakdownVisitTechnician"
-				value="${eventInstance?.breakdownVisitTechnician}" />
+			<div class="col-md-9">
+				<g:textField name="breakdownVisitTechnician" class="form-control"
+					value="${eventInstance?.breakdownVisitTechnician}" />
+			</div>
 		</div>
 
 		<div
 			class="breakdownVisitFields fieldcontain ${hasErrors(bean: eventInstance, field: 'breakdownVisitTechnicianNotes', 'error')}">
-			<label for="breakdownVisitTechnicianNotes"><g:message
+			<label class="col-md-3 control-label" for="breakdownVisitTechnicianNotes"><g:message
 					code="event.breakdownVisitTechnicianNotes.label" default="Notes/Parts Replaced." /></label>
-			<g:textArea name="breakdownVisitTechnicianNotes"
-				value="${eventInstance?.breakdownVisitTechnicianNotes}" rows="10"
-				cols="100" />
+			<div class="col-md-9">
+				<g:textArea name="breakdownVisitTechnicianNotes" class="form-control"
+					value="${eventInstance?.breakdownVisitTechnicianNotes}" rows="10"
+					cols="100" />
+			</div>
 		</div>
 
 		<div
 			class="breakdownVisitFields fieldcontain ${hasErrors(bean: eventInstance, field: 'breakdownVisitSignedOffBy', 'error')}">
-			<label for="breakdownVisitSignedOffBy"><g:message
+			<label class="col-md-3 control-label"for="breakdownVisitSignedOffBy"><g:message
 					code="event.breakdownVisitSignedOffBy.label"
 					default="Signed Off By" /></label>
-			<g:textField name="breakdownVisitSignedOffBy"
-				value="${eventInstance?.breakdownVisitSignedOffBy}" />
+			<div class="col-md-9">
+				<g:textField name="breakdownVisitSignedOffBy" class="form-control"
+					value="${eventInstance?.breakdownVisitSignedOffBy}" />
+			</div>
 		</div>
 		<!-- Breakdown Visit Fields -->
 
 		<%--<div
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'description', 'error')}">
-			<label for="description"><g:message
+			<label class="col-md-3 control-label"for="description"><g:message
 					code="event.description.label" default="Description" /></label>
 			<g:textArea name="description" value="${eventInstance?.description}"
 				rows="10" cols="100" />
@@ -195,45 +223,52 @@
 	<div class="col-md-6">
 		<div
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'status', 'error')}">
-			<label for="status"><g:message code="event.status.label"
+			<label class="col-md-3 control-label"for="status"><g:message code="event.status.label"
 					default="Status" /></label>
-			<g:select name="status"
-				from="${eventInstance.constraints.status.inList}"
-				value="${eventInstance?.status}" valueMessagePrefix="event.status"
-				noSelection="['': '']" />
+			<div class="col-md-9">
+				<g:select name="status" class="form-control"
+					from="${eventInstance.constraints.status.inList}"
+					value="${eventInstance?.status}" valueMessagePrefix="event.status"
+					noSelection="['': '']" />
+			</div>
 		</div>
 
 		<div
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'priority', 'error')}">
-			<label for="priority"><g:message code="event.priority.label"
+			<label class="col-md-3 control-label"for="priority"><g:message code="event.priority.label"
 					default="Priority" /></label>
-			<g:select name="priority"
-				from="${eventInstance.constraints.priority.inList}"
-				value="${eventInstance?.priority}"
-				valueMessagePrefix="event.priority" noSelection="['': '']" />
+			<div class="col-md-9">
+				<g:select name="priority" class="form-control"
+					from="${eventInstance.constraints.priority.inList}"
+					value="${eventInstance?.priority}"
+					valueMessagePrefix="event.priority" noSelection="['': '']" />
+			</div>
 		</div>
 
 		<div
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'relatedTo', 'error')}">
-			<label for="relatedTo"><g:message
+			<label class="col-md-3 control-label"for="relatedTo"><g:message
 					code="event.relatedTo.label" default="Related To" /></label>
-			
-			<g:select name="relatedTo"
-				from="${eventInstance.constraints.relatedTo.inList}"
-				value="${eventInstance?.relatedTo}"
-				valueMessagePrefix="event.relatedTo" noSelection="['': '']" />
+			<div class="col-md-9">
+				<g:select name="relatedTo" class="form-control"
+					from="${eventInstance.constraints.relatedTo.inList}"
+					value="${eventInstance?.relatedTo}"
+					valueMessagePrefix="event.relatedTo" noSelection="['': '']" />
+				<g:textField name="relatedToValue" class="form-control" value="${eventInstance?.relatedToValue}" />
+			</div>
 				
-			<g:textField name="relatedToValue" value="${eventInstance?.relatedToValue}" />
 			<!-- Add a link here. Link the order or the organization from here. -->
 		</div>
 
 		<div
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'startTime', 'error')}">
-			<label for="startTime"><g:message
+			<label class="col-md-3 control-label"for="startTime"><g:message
 					code="event.startTime.label" default="Start Time" /></label>
-			<richui:dateChooser name="startTime"
-				value="${eventInstance?.startTime}" time="true"
-				hourClass="input-mini" minuteClass="input-mini" />
+			<div class="col-md-9">
+				<richui:dateChooser name="startTime" class="form-control"
+					value="${eventInstance?.startTime}" time="true"
+					hourClass="input-xs" minuteClass="input-xs" />
+			</div>
 			<%--
 				<g:datePicker name="startTime" value="${eventInstance?.startTime}" />
 				
@@ -246,10 +281,12 @@
 
 		<div
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'endTime', 'error')}">
-			<label for="endTime"><g:message code="event.endTime.label"
+			<label class="col-md-3 control-label"for="endTime"><g:message code="event.endTime.label"
 					default="End Time" /></label>
-			<richui:dateChooser name="endTime" value="${eventInstance?.endTime}" 
-				time="true" hourClass="input-mini" minuteClass="input-mini" />		
+			<div class="col-md-9">
+				<richui:dateChooser class="form-control" name="endTime" value="${eventInstance?.endTime}" 
+					time="true" hourClass="input-xs" minuteClass="input-xs" />		
+			</div>
 			<%--
 			<g:datePicker name="endTime" value="${eventInstance?.endTime}" />
 			<g:textField name="endTime"
@@ -261,7 +298,7 @@
 		<%--<div
 			class="fieldcontain ${hasErrors(bean: eventInstance, field: 'isRecurring', 'error')}">
 		
-			<label for="isRecurring"><g:message
+			<label class="col-md-3 control-label"for="isRecurring"><g:message
 					code="event.isRecurring.label" default="Repeat" /></label>
 			<g:checkBox name="isRecurring" value="${eventInstance.isRecurring}" />
 			<span id="recurDescription"></span> <a id="editRecurringLink"
@@ -299,18 +336,18 @@
 					<input id="recurEndOption1" name="recurEndOption" type="radio"
 						group="recurEndOption"
 						${(!eventInstance.recurCount && !eventInstance.recurUntil) ? 'checked="checked"' : ''}
-						value="never" /> <label for="recurEndOption1">Never</label><br />
+						value="never" /> <label class="col-md-3 control-label"for="recurEndOption1">Never</label><br />
 		
 					<input id="recurEndOption2" name="recurEndOption" type="radio"
 						group="recurEndOption"
 						${(eventInstance.recurCount) ? 'checked="checked"' : ''}
-						value="occurrences" /> <label for="recurEndOption2">After <g:textField
+						value="occurrences" /> <label class="col-md-3 control-label"for="recurEndOption2">After <g:textField
 							name="recurCount" size="3" value="${eventInstance?.recurCount}" />
 						occurrences
 					</label><br /> <input id="recurEndOption3" name="recurEndOption"
 						type="radio" group="recurEndOption"
 						${(!eventInstance.recurCount && eventInstance.recurUntil) ? 'checked="checked"' : ''}
-						value="endDate" /> <label for="recurEndOption3">On <g:textField
+						value="endDate" /> <label class="col-md-3 control-label"for="recurEndOption3">On <g:textField
 							name="recurUntil" size="8"
 							value="${formatDate(date: (eventInstance?.recurCount ? null : eventInstance?.recurUntil), format: 'MM/dd/yyyy hh:mm a')}" /></label>
 				</div>

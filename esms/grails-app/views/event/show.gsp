@@ -12,62 +12,63 @@
 		<div class="col-md-12">
 			<div class="page-header">
 				<h3>
-					EVENT 
-					|
+					Event: 
 					${eventInstance?.title}
 					|
 					<g:link controller="organization" action="show"
 						id="${eventInstance?.party?.id}">
 						${eventInstance?.party?.name}
 					</g:link>
-					|
+				</h3>
+				<h4>
+					From
 					<g:formatDate date="${eventInstance?.startTime}" format="dd.MM.yyyy HH:mm:ss" />
-						-
+					-
+					To
 					<g:formatDate date="${eventInstance?.endTime}" format="dd.MM.yyyy HH:mm:ss" />
 					|
 					${eventInstance?.eventType}
 					|
 					${eventInstance?.status}
+					<%--
 					|
 					ASSIGNED TO : 
 					${eventInstance?.assignedTo}
 					|
 					PRIORITY : 
 					${eventInstance?.priority}
-				</h3>
+					--%>
+				</h4>
 			</div>
 
-			<g:form>
-				<g:hiddenField name="id" value="${eventInstance?.id}" />
-				<div class="form-group">
-					<g:link class="btn btn-default btn-sm" action="edit" id="${eventInstance?.id}">
-						
-						<g:message code="default.button.edit.label" default="Edit" />
-					</g:link>
-					<button class="btn btn-sm btn-default" type="submit" name="_action_delete">
-						
-						<g:message code="default.button.delete.label" default="Delete" />
-					</button>
-					<g:if test="${eventInstance?.eventType != 'REPAIR WORK' && eventInstance?.workDoneCertificate == null}">
-						<g:link class="btn btn-default btn-sm" action="attachWorkDoneCertificate"
-							id="${eventInstance?.id}">
-							
-							Attach Work Done Certificate
+			<div class="well">
+				<g:form>
+					<g:hiddenField name="id" value="${eventInstance?.id}" />
+					<div class="form-group">
+						<g:link class="btn btn-default btn-sm" action="edit" id="${eventInstance?.id}">
+							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
-					</g:if>
-					<g:elseif test="${eventInstance?.eventType != 'REPAIR WORK'}">
-						<g:link class="btn btn-default btn-sm" action="editWorkDoneCertificate"
-							id="${eventInstance?.workDoneCertificate?.id}">
-							
-							Edit Work Done Certificate
-						</g:link>
-					</g:elseif>
-					<a href="#" data-toggle="modal" data-target="#activityModal"
-						role="button" class="btn btn-default btn-sm">  Add Event
-						Log
-					</a>
-				</div>
-			</g:form>
+						<button class="btn btn-sm btn-default" type="submit" name="_action_delete">
+							<g:message code="default.button.delete.label" default="Delete" />
+						</button>
+						<g:if test="${eventInstance?.eventType != 'REPAIR WORK' && eventInstance?.workDoneCertificate == null}">
+							<g:link class="btn btn-primary btn-sm" action="attachWorkDoneCertificate"
+								id="${eventInstance?.id}">
+								Attach Work Done Certificate
+							</g:link>
+						</g:if>
+						<g:elseif test="${eventInstance?.eventType != 'REPAIR WORK'}">
+							<g:link class="btn btn-primary btn-sm" action="editWorkDoneCertificate"
+								id="${eventInstance?.workDoneCertificate?.id}">
+								Edit Work Done Certificate
+							</g:link>
+						</g:elseif>
+						<bs3:modalLink
+							href="${createLink(controller:'event',action:'createEventLog',id:eventInstance?.id)}"
+							id="createEventLog" title="Create Event Log" />
+					</div>
+				</g:form>
+			</div>
 
 			<div class="row">
 				<div class="col-md-6">
@@ -87,6 +88,22 @@
 		
 						<dd>
 							<g:fieldValue bean="${eventInstance}" field="location" />
+						</dd>
+						
+						<dt>
+							<g:message code="event.assignedTo.label" default="Assigned To" />
+						</dt>
+		
+						<dd>
+							<g:fieldValue bean="${eventInstance}" field="assignedTo" />
+						</dd>
+						
+						<dt>
+							<g:message code="event.priority.label" default="Priority" />
+						</dt>
+		
+						<dd>
+							<g:fieldValue bean="${eventInstance}" field="priority" />
 						</dd>
 		
 		

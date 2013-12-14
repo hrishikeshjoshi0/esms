@@ -21,13 +21,14 @@
 	<resource:autoComplete skin="esmsAutocomplete" />
 	<resource:tabView/>
 	
-	<link rel="stylesheet" href="${resource(dir: 'bootstrap3', file: 'esms.css')}" media="screen">
+	
 	
 	<script src="${resource(dir: 'js', file: 'jquery-1.7.1.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'jquery-ui-1.8.18.custom.min.js')}"></script>
 	
 	<script src="${resource(dir: 'bootstrap3/bootstrap/dist/js', file: 'bootstrap.min.js')}"></script>
 	<script src="${resource(dir: 'bootstrap3/assets/js', file: 'bootswatch.js')}"></script>
+	<script src="${resource(dir: 'js', file: 'chosen.jquery.min.js')}"></script>
 	
 	<script type="text/javascript" src="${resource(dir: 'js/ie', file: 'respond.min.js')}"></script>
 	
@@ -50,6 +51,12 @@
 				</div>
 				--%>
 				
+				<g:if test="${flash.message}">
+					<bootstrap:alert class="alert-info">
+						${flash.message}
+					</bootstrap:alert>
+				</g:if>
+				
 				<!-- Body -->		
 				<g:layoutBody />
 				<g:pageProperty name="page.body" />
@@ -67,6 +74,7 @@
 	<!-- Container Ends -->
 	
 	<g:javascript library="application" />
+	<link rel="stylesheet" href="${resource(dir: 'bootstrap3', file: 'esms.css')}" media="screen">
 	<r:layoutResources disposition="defer"/>
 </body>
 </html>

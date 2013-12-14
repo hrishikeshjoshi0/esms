@@ -10,12 +10,15 @@ import com.esms.model.party.Address
 import com.esms.model.party.Contact
 import com.esms.model.party.PhoneBook
 import com.esms.model.product.ProductPrice
+import com.esms.service.invoice.InvoiceService;
 
 class DataImportService {
 	
 	def productService
 	
 	def accountService
+	
+	def invoiceService
 	
 	def utilService
 
@@ -24,6 +27,9 @@ class DataImportService {
 		
 		ProductExcelImporter importer = new ProductExcelImporter(is)
 		def products = importer.getProducts()
+		
+		def totalSize = products?.size()
+		
 		products?.each { Map prodParams ->
 			
 			if(prodParams.introductionDate) {
@@ -54,6 +60,9 @@ class DataImportService {
 			
 			productService.saveOrUpdateProduct(product)
 		}
+		
+		println '----------'
+		println 'Products Inserted :' + totalSize + '.'
     }
 	
 	def importCustomerData(InputStream is) {
@@ -106,13 +115,28 @@ class DataImportService {
 			if(organization.errors && !organization.errors?.errorCount != 0) {
 				insertedSize++
 				//Create Service Contract
-				accountService.createNewServiceContract(organization,params.contractType, params.contractFromDate, params.contractToDate, params.contractCost?.toBigDecimal())
+				def order = accountService.createNewServiceContract(organization,params.contractType, params.contractFromDate, params.contractToDate, params.contractCost?.toBigDecimal())
+				
+				/*if(!order?.errors || order?.errors.empty) {
+					//If there is no pending amount, create an invoice and a payment.
+					
+					if(params.expiryDate && (params.pendingAmount && params.pendingAmount >= 0)) {
+						def invoicedAmount = order.pendingInvoiceGrandTotal - params.pendingAmount 
+						def invoice = invoiceService.invoiceServiceContract(order,invoicedAmount,params.expiryDate)
+					} else {
+						def invoice = invoiceService.invoiceServiceContract(order,order.pendingInvoiceGrandTotal,null)
+					}
+				}*/
+				
 			} else {
 				println organization.errors
 			}
 			
-			println '----------'
-			println 'Inserted ' + insertedSize + ' rows out of ' + totalSize + '.'
+			//println '----------'
+			//println 'Inserted ' + insertedSize + ' rows out of ' + totalSize + '.'
 		}
+		
+		println '----------'
+		println 'Organizations Inserted :' + totalSize + '.'
 	}
 }
