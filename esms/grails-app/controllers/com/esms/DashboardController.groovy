@@ -31,7 +31,7 @@ class DashboardController {
 			order("id", "desc")
 			maxResults(params.max)
 		}
-		def recentQuotes = Quote.findAllByStatusInList(['DRAFT','PENDING','REVISE','ACCEPT'],params)
+		def recentMaintenanceQuotes = Quote.findAllByStatusInListAndTypeInList(['DRAFT','PENDING','REVISE','ACCEPT'],['CONTRACT'],params)
 		def upcomingEvents = Event.findAllByStartTimeGreaterThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],params)
 		def overdueEvents = Event.findAllByStartTimeLessThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],params)
 		def recentCustomers = Organization.findAllBySalesStatus('CUSTOMER',params)
@@ -97,7 +97,7 @@ class DashboardController {
 		e.set Calendar.YEAR, y
 		def endDate = e.getTime().minus(1)
 		
-		def upcomingRenewals = Order.withCriteria(sort: "contractToDate", order: "asc") {
+		def upcomingRenewals = Order.withCriteria() {
 			and {
 				eq("type", 'SERVICE')
 				ge("contractToDate", startDate)
@@ -106,21 +106,24 @@ class DashboardController {
 				ne("renewalStage",'RENEWAL_LOST')
 			}
 			maxResults(params.max)
+			order("contractToDate", "asc")
 		}
 		
-		def upcomingTasks = Task.withCriteria(sort: "dateTime", order: "asc") {
+		def upcomingTasks = Task.withCriteria() {
 			and {
 				ne("status", 'COMPLETED')
 				between('dateTime', startDate-1, endDate)
 			}
 			maxResults(params.max)
+			order("dateTime", "asc")
 		}
 		
-		def model = [recentLeads : recentLeads,recentCustomers:recentCustomers,recentQuotes:recentQuotes,recentOrders:recentOrders,recentDocuments:recentDocuments,recentPayments:recentPayments,upcomingEvents:upcomingEvents,overdueEvents:overdueEvents,ordersPendingPayments:ordersPendingPayments,openPayments:openPayments,upcomingRenewals : upcomingRenewals,openInvoices:openInvoices,filteredMonthMap:monthMap,years:years,upcomingTasks:upcomingTasks,recentRepairsModernizationAndInstallationQuotes:recentRepairsModernizationAndInstallationQuotes,recentRepairsModernizationAndInstallationOrders:recentRepairsModernizationAndInstallationOrders]
+		def model = [recentLeads : recentLeads,recentCustomers:recentCustomers,recentMaintenanceQuotes:recentMaintenanceQuotes,recentOrders:recentOrders,recentDocuments:recentDocuments,recentPayments:recentPayments,upcomingEvents:upcomingEvents,overdueEvents:overdueEvents,ordersPendingPayments:ordersPendingPayments,openPayments:openPayments,upcomingRenewals : upcomingRenewals,openInvoices:openInvoices,filteredMonthMap:monthMap,years:years,upcomingTasks:upcomingTasks,recentRepairsModernizationAndInstallationQuotes:recentRepairsModernizationAndInstallationQuotes,recentRepairsModernizationAndInstallationOrders:recentRepairsModernizationAndInstallationOrders]
 		render (view:"/dashboard/dashboard",model:model)		
 	}
 	
 	def upcomingRenewals() { 
+		params.max = 5
 		int y = params.upcomingRenewalYearParam.toInteger()
 		int m = params.upcomingRenewalMonthParam.toInteger()
 		int d = 1
@@ -145,7 +148,7 @@ class DashboardController {
 		e.set Calendar.MILLISECOND, 0
 		def endDate = e.getTime().minus(1)
 		
-		def upcomingRenewals = 	Order.withCriteria(sort: "contractToDate", order: "asc") {
+		def upcomingRenewals = 	Order.withCriteria() {
 			and {
 				eq("type", 'SERVICE')
 				ge("contractToDate", startDate)
@@ -153,12 +156,16 @@ class DashboardController {
 				ne("renewalStage",'RENEWAL_WON')
 				ne("renewalStage",'RENEWAL_LOST')
 			}
+			maxResults(params.max)
+			order("contractToDate", "asc")
 		}
 		
 		render (template:"/dashboard/upcomingRenewalsTemplate",model:[upcomingRenewals:upcomingRenewals])	
 	}
 	
 	def upcomingTasks() {
+		params.max = 5
+		
 		int y = params.upcomingRenewalYearParam.toInteger()
 		int m = params.upcomingRenewalMonthParam.toInteger()
 		int d = 1
@@ -185,11 +192,13 @@ class DashboardController {
 		
 		def endDate = e.getTime().minus(1)
 		
-		def upcomingTasks = Task.withCriteria(sort: "dateTime", order: "asc") {
+		def upcomingTasks = Task.withCriteria() {
 			and {
 				ne("status", 'COMPLETED')
 				between('dateTime', startDate-1, endDate)
 			}
+			maxResults(params.max)
+			order("dateTime", "asc")
 		}
 		
 		render (template:"/dashboard/upcomingTasksTemplate",model:[upcomingTasks:upcomingTasks])

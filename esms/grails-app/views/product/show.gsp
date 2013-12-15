@@ -42,75 +42,102 @@
 				</g:form>
 			</div>
 
-			<div class="table-responsive">
-				<table class="table table-striped table-condensed table-bordered">
-					<tbody>
-						<tr>
-							<td><g:message code="product.productName.label"
-									default="Product Name" /></td>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<dl class="dl-horizontal">
 
-							<td><g:fieldValue bean="${productInstance}"
-									field="productName" /></td>
-							<td><g:message code="product.productType.label"
-									default="Product Type" /></td>
+						<dt>
+							<g:message code="product.productName.label"
+								default="Product Name" />
+						</dt>
 
-							<td><g:fieldValue bean="${productInstance}"
-									field="productType" /></td>
-						</tr>
-						<tr>
-							<td><g:message code="product.manufacturer.label"
-									default="Manufacturer" /></td>
+						<dd>
+							<g:fieldValue bean="${productInstance}" field="productName" />
+						</dd>
 
-							<td><g:fieldValue bean="${productInstance}"
-									field="manufacturer" /></td>
-							<td><g:message code="product.introductionDate.label"
-									default="Introduction Date" /></td>
 
-							<td><g:formatDate
-									date="${productInstance?.introductionDate}" /></td>
-						</tr>
-						<tr>
-							<td><g:message
-									code="product.supportDiscontinuationDate.label"
-									default="Support Discontinuation Date" /></td>
-							<td><g:formatDate
-									date="${productInstance?.supportDiscontinuationDate}" /></td>
-							<td><g:message code="product.salesDiscontinuationDate.label"
-									default="Sales Discontinuation Date" /></td>
-							<td><g:formatDate
-									date="${productInstance?.salesDiscontinuationDate}" /></td>
-						</tr>
-						<tr>
-							<td><g:message code="product.requiresInventory.label"
-									default="Requires Inventory" /></td>
+						<dt>
+							<g:message code="product.productType.label"
+								default="Product Type" />
+						</dt>
 
-							<td><g:formatBoolean
-									boolean="${productInstance?.requiresInventory}" /></td>
-							<td><g:message code="product.taxable.label"
-									default="Taxable" /></td>
+						<dd>
+							<g:fieldValue bean="${productInstance}" field="productType" />
+						</dd>
 
-							<td><g:formatBoolean boolean="${productInstance?.taxable}" />
-							</td>
-						</tr>
-						<tr>
-							<td><g:message code="product.isVirtual.label"
-									default="Is Virtual" /></td>
 
-							<td><g:formatBoolean boolean="${productInstance?.isVirtual}" />
-							</td>
-							<td><g:message code="product.serviceContract.label"
-									default="Is Service Contract?" /></td>
+						<dt>
+							<g:message code="product.manufacturer.label"
+								default="Manufacturer" />
+						</dt>
 
-							<td><g:formatBoolean
-									boolean="${productInstance?.serviceContract}" /></td>
-						</tr>
-					</tbody>
-				</table>
+						<dd>
+							<g:fieldValue bean="${productInstance}" field="manufacturer" />
+						</dd>
+
+
+						<dt>
+							<g:message code="product.introductionDate.label"
+								default="Introduction Date" />
+						</dt>
+
+						<dd>
+							<g:formatDate date="${productInstance?.introductionDate}" />
+						</dd>
+
+
+						<dt>
+							<g:message code="product.supportDiscontinuationDate.label"
+								default="Support Discontinuation Date" />
+						</dt>
+
+						<dd>
+							<g:formatDate
+								date="${productInstance?.supportDiscontinuationDate}" />
+						</dd>
+
+
+						<dt>
+							<g:message code="product.salesDiscontinuationDate.label"
+								default="Sales Discontinuation Date" />
+						</dt>
+
+						<dd>
+							<g:formatDate date="${productInstance?.salesDiscontinuationDate}" />
+						</dd>
+
+
+						<dt>
+							<g:message code="product.requiresInventory.label"
+								default="Requires Inventory" />
+						</dt>
+
+						<dd>
+							<g:formatBoolean boolean="${productInstance?.requiresInventory}" />
+						</dd>
+
+
+						<dt>
+							<g:message code="product.taxable.label" default="Taxable" />
+						</dt>
+
+						<dd>
+							<g:formatBoolean boolean="${productInstance?.taxable}" />
+						</dd>
+
+
+						<dt>
+							<g:message code="product.isVirtual.label" default="Is Virtual" />
+						</dt>
+
+						<dd>
+							<g:formatBoolean boolean="${productInstance?.isVirtual}" />
+						</dd>
+					</dl>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="row">
 		<div class="col-md-12">
 			<richui:tabView id="tabView">
 				<richui:tabLabels>

@@ -18,7 +18,6 @@
 				</h3>
 			</div>
 
-
 			<div class="well">
 				<g:form>
 					<g:hiddenField name="id" value="${organizationInstance?.id}" />
@@ -73,48 +72,50 @@
 			</div>
 
 
-			<dl class="dl-horizontal">
-				<dt>
-					<g:message code="organization.externalId.label"
-						default="External Id" />
-				</dt>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<dl class="dl-horizontal">
+						<dt>
+							<g:message code="organization.externalId.label"
+								default="External Id" />
+						</dt>
 
-				<dd>
-					<g:fieldValue bean="${organizationInstance}" field="externalId" />
-				</dd>
+						<dd>
+							<g:fieldValue bean="${organizationInstance}" field="externalId" />
+						</dd>
 
-				<dt>
-					<g:message code="organization.assignedTo.label"
-						default="Assigned To" />
-				</dt>
+						<dt>
+							<g:message code="organization.assignedTo.label"
+								default="Assigned To" />
+						</dt>
 
-				<dd>
-					<g:fieldValue bean="${organizationInstance}" field="assignedTo" />
-				</dd>
+						<dd>
+							<g:fieldValue bean="${organizationInstance}" field="assignedTo" />
+						</dd>
 
-				<dt>
-					<g:message code="organization.salesStatus.label"
-						default="Sales Status" />
-				</dt>
+						<dt>
+							<g:message code="organization.salesStatus.label"
+								default="Sales Status" />
+						</dt>
 
-				<dd>
-					<g:fieldValue bean="${organizationInstance}" field="salesStatus" />
-				</dd>
+						<dd>
+							<g:fieldValue bean="${organizationInstance}" field="salesStatus" />
+						</dd>
 
-				<dt>
-					<g:message code="organization.reasonForChange.label"
-						default="Reason for Change" />
-				</dt>
+						<dt>
+							<g:message code="organization.reasonForChange.label"
+								default="Reason for Change" />
+						</dt>
 
-				<dd>
-					<g:fieldValue bean="${organizationInstance}" field="description" />
-				</dd>
+						<dd>
+							<g:fieldValue bean="${organizationInstance}" field="description" />
+						</dd>
 
-			</dl>
+					</dl>
+				</div>
+			</div>
 		</div>
-	</div>
 
-	<div class="row">
 		<div class="col-md-12">
 			<richui:tabView id="tabView">
 				<richui:tabLabels>

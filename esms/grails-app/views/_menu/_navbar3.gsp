@@ -60,27 +60,6 @@
 					</ul>
 				</li>
 				
-				<%--<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						Templates <b class="caret"></b>
-						<i class="icon-angle-down"></i>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Free Templates</a></li>
-						<li><a href="#">Premium Templates</a></li>
-						<li class="dropdown-submenu">
-							<a tabindex="-1" href="#">
-								WordPress Themes 
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Free WordPress Themes</a></li>
-								<li><a href="#">Premium WordPress Themes</a></li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-				--%>
-				
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						Sales <b class="caret"></b>
@@ -161,11 +140,6 @@
 						HR
 					</g:link>
 				</li>
-				<li>
-					<g:link controller="report">
-						Report
-					</g:link>
-				</li>
 				
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -210,7 +184,18 @@
 				</li>
 			</ul>
 			
+			<g:if test="${params.controller == 'dashboard' }">
+				<g:form>
+					<richui:autoComplete name="q"
+							action="${createLinkTo('dir': 'organization/search')}"
+							class="col-md-2 col-md-offset-1" shadow="true" minQueryLength="1" style="margin-top:5px;"
+							onItemSelect="document.location.href = '${createLinkTo(dir: 'organization/show')}/' + id;" />
+				</g:form>
+			</g:if>
+			
 			<ul class="nav navbar-nav navbar-right">
+				<li>
+				</li>
 				<li>
 					<div id="spinner" style="display: none">
 						<img src="${resource(dir: 'img', file: 'ajax_loader.gif')}" alt="" />

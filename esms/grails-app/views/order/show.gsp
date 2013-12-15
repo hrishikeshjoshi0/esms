@@ -171,256 +171,233 @@
 				</g:form>
 			</div>
 
-			<div class="row">
-				<div class="col-md-4">
-					<dl class="dl-horizontal">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="col-md-4">
+						<dl class="dl-horizontal">
 
-						<dt>
-							<g:message code="order.orderNumber.label" default="Order Number" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${orderInstance}" field="orderNumber" />
-						</dd>
-
-
-						<dt>
-							<g:message code="order.status.label" default="Status" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${orderInstance}" field="status" />
-						</dd>
-
-
-						<dt>
-							<g:message code="order.type.label" default="Type" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${orderInstance}" field="type" />
-						</dd>
-						
-						<dt>
-							<g:message code="order.relatedTo.label" default="Related To" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${orderInstance}" field="relatedTo" />
-						</dd>
-						
-						<dt>
-							<g:message code="order.relatedToValue.label" default="Related To Value" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${orderInstance}" field="relatedToValue" />
-						</dd>
-
-
-						<dt>
-							<g:message code="order.description.label" default="Description" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${orderInstance}" field="description" />
-						</dd>
-
-
-						<dt>
-							<g:message code="order.issueDate.label" default="Issue Date" />
-						</dt>
-
-						<dd>
-							<g:formatDate date="${orderInstance?.issueDate}" />
-						</dd>
-
-
-						<dt>
-							<g:message code="order.expiryDate.label" default="Expiry Date" />
-						</dt>
-
-						<dd>
-							<g:formatDate date="${orderInstance?.expiryDate}" />
-						</dd>
-
-
-						<dt>
-							<g:message code="order.contactName.label" default="Contact Name" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${orderInstance}" field="contactName" />
-						</dd>
-
-						<g:if test="${orderInstance.type == 'SERVICE' }">
 							<dt>
-								<g:message code="order.contractFromDate.label"
-									default="Contract Starts" />
+								<g:message code="order.orderNumber.label" default="Order Number" />
 							</dt>
 
 							<dd>
-								<g:formatDate date="${orderInstance.contractFromDate}"
-									format="dd-MM-yyyy" />
+								<g:fieldValue bean="${orderInstance}" field="orderNumber" />
+							</dd>
+
+
+							<dt>
+								<g:message code="order.status.label" default="Status" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${orderInstance}" field="status" />
+							</dd>
+
+
+							<dt>
+								<g:message code="order.type.label" default="Type" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${orderInstance}" field="type" />
 							</dd>
 
 							<dt>
-								<g:message code="order.contractToDate.label"
-									default="Contract Ends" />
+								<g:message code="order.relatedTo.label" default="Related To" />
 							</dt>
 
 							<dd>
-								<g:formatDate date="${orderInstance.contractToDate}"
-									format="dd-MM-yyyy" />
-							</dd>
-						</g:if>
-					</dl>
-				</div>
-				<div class="col-md-4">
-					<dl class="dl-horizontal">
-						<dt>
-							<g:message code="order.totalAmount.label" default="Total Amount" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${orderInstance}" field="totalAmount" />
-						</dd>
-
-
-						<dt>
-							<g:message code="order.totalTax.label" default="Total Tax" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${orderInstance}" field="totalTax" />
-						</dd>
-
-
-						<dt>
-							<g:message code="order.totalDiscount.label"
-								default="Total Discount" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${orderInstance}" field="totalDiscount" />
-						</dd>
-						
-						<dt>
-							<g:message code="order.adjustment.label"
-								default="Adjustment" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${orderInstance}" field="adjustment" />
-						</dd>
-
-
-						<dt>
-							<g:message code="order.grandTotal.label" default="Grand Total" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${orderInstance}" field="grandTotal" />
-						</dd>
-						
-						<!-- Invoiced -->
-						<dt>
-							<g:message code="order.invoicedGrandTotal.label" default="Invoiced Amount" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${orderInstance}" field="invoicedGrandTotal" />
-						</dd>
-						
-						<dt>
-							<g:message code="order.pendingInvoiceGrandTotal.label" default="Pending Invoice Amount" />
-						</dt>
-
-						<dd>
-							<g:fieldValue bean="${orderInstance}" field="pendingInvoiceGrandTotal" />
-						</dd>
-						<!--  -->
-					</dl>
-				</div>
-				<div class="col-md-4">
-					<dl class="dl-horizontal">
-						<g:if
-							test="${renewalQuote && renewalQuote?.status != 'CONVERTED_TO_SERVICE_CONTRACT'}">
-							<dt>
-								Renewal Quote
-							</dt>
-
-							<dd>
-								<g:link controller="quote" action="show" id="${renewalQuote?.id}">
-									${renewalQuote?.quoteNumber}
-								</g:link>
-							</dd>
-
-							<%--
-							<dt>
-								<g:message code="order.recepientContactName.label"
-									default="Recipient Contact Name" />
-							</dt>
-
-							<dd>
-								<g:fieldValue bean="${orderInstance}"
-									field="recepientContactName" />
+								<g:fieldValue bean="${orderInstance}" field="relatedTo" />
 							</dd>
 
 							<dt>
-								<g:message code="order.recepientContactNumber.label"
-									default="Recipient Contact Name" />
+								<g:message code="order.relatedToValue.label"
+									default="Related To Value" />
 							</dt>
 
 							<dd>
-								<g:fieldValue bean="${orderInstance}"
-									field="recepientContactNumber" />
+								<g:fieldValue bean="${orderInstance}" field="relatedToValue" />
 							</dd>
 
+
 							<dt>
-								<g:message code="order.receivedDateTime.label"
-									default="Recipient Contact Name" />
+								<g:message code="order.description.label" default="Description" />
 							</dt>
 
 							<dd>
-								<g:fieldValue bean="${orderInstance}" field="receivedDateTime" />
+								<g:fieldValue bean="${orderInstance}" field="description" />
 							</dd>
 
+
 							<dt>
-								<g:message code="order.handedOveryBy.label"
-									default="Recipient Contact Name" />
+								<g:message code="order.issueDate.label" default="Issue Date" />
 							</dt>
 
 							<dd>
-								<g:fieldValue bean="${orderInstance}" field="handedOveryBy" />
+								<g:formatDate date="${orderInstance?.issueDate}" />
+							</dd>
+
+
+							<dt>
+								<g:message code="order.expiryDate.label" default="Expiry Date" />
+							</dt>
+
+							<dd>
+								<g:formatDate date="${orderInstance?.expiryDate}" />
+							</dd>
+
+
+							<dt>
+								<g:message code="order.contactName.label" default="Contact Name" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${orderInstance}" field="contactName" />
+							</dd>
+
+							<g:if test="${orderInstance.type == 'SERVICE' }">
+								<dt>
+									<g:message code="order.contractFromDate.label"
+										default="Contract Starts" />
+								</dt>
+
+								<dd>
+									<g:formatDate date="${orderInstance.contractFromDate}"
+										format="dd-MM-yyyy" />
+								</dd>
+
+								<dt>
+									<g:message code="order.contractToDate.label"
+										default="Contract Ends" />
+								</dt>
+
+								<dd>
+									<g:formatDate date="${orderInstance.contractToDate}"
+										format="dd-MM-yyyy" />
+								</dd>
+							</g:if>
+						</dl>
+					</div>
+					<div class="col-md-4">
+						<dl class="dl-horizontal">
+							<dt>
+								<g:message code="order.totalAmount.label" default="Total Amount" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${orderInstance}" field="totalAmount" />
+							</dd>
+
+
+							<dt>
+								<g:message code="order.totalTax.label" default="Total Tax" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${orderInstance}" field="totalTax" />
+							</dd>
+
+
+							<%--<dt>
+								<g:message code="order.totalDiscount.label"
+									default="Total Discount" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${orderInstance}" field="totalDiscount" />
 							</dd>
 							--%>
-						</g:if>
-						<g:elseif
-							test="${renewalQuote && renewalQuote?.status == 'LOST'}">
+							
 							<dt>
-								<g:message code="order.renewalStage.label"
-									default="Renewal Stage" />
-							</dt>
-
-							<dd>Renewal Lost</dd>
-						</g:elseif>
-						<g:elseif test="${renewalQuote && renewalQuote?.status == 'CONVERTED_TO_SERVICE_CONTRACT'}">
-							<dt>
-								Renewed Order
+								<g:message code="order.adjustment.label" default="Adjustment" />
 							</dt>
 
 							<dd>
-								${Order.findByReferenceQuoteNumber(renewalQuote?.quoteNumber)?.orderNumber}
+								<g:fieldValue bean="${orderInstance}" field="adjustment" />
 							</dd>
-					</g:elseif>
-					</dl>
+
+
+							<dt>
+								<g:message code="order.grandTotal.label" default="Grand Total" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${orderInstance}" field="grandTotal" />
+							</dd>
+
+							<!-- Invoiced -->
+							<dt>
+								<g:message code="order.invoicedGrandTotal.label"
+									default="Invoiced Amount" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${orderInstance}" field="invoicedGrandTotal" />
+							</dd>
+
+							<dt>
+								<g:message code="order.pendingInvoiceGrandTotal.label"
+									default="Pending Invoice Amount" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${orderInstance}"
+									field="pendingInvoiceGrandTotal" />
+							</dd>
+							<!--  -->
+						</dl>
+					</div>
+					<div class="col-md-4">
+						<dl class="dl-horizontal">
+							<g:if test="${orderInstance?.taggedForRenewal && orderInstance?.renewalStage}">
+								<dt>Renewal Stage</dt>
+
+								<dd>
+									${orderInstance?.renewalStage}
+								</dd>
+							</g:if>
+							<g:if
+								test="${renewalQuote && renewalQuote?.status != 'CONVERTED_TO_SERVICE_CONTRACT'}">
+								<dt>Renewal Quote</dt>
+
+								<dd>
+									<g:link controller="quote" action="show"
+										id="${renewalQuote?.id}">
+										${renewalQuote?.quoteNumber}
+									</g:link>
+								</dd>
+								
+								<g:if test="${renewalQuote && renewalQuote?.status == 'ACCEPT'}">
+									<dt>Quoted Price</dt>
+	
+									<dd>
+										${renewalQuote?.grandTotal}
+									</dd>
+								</g:if>
+							</g:if>
+							<g:elseif
+								test="${renewalQuote && (renewalQuote?.status == 'DECLINE' || renewalQuote && renewalQuote?.status == 'DISQUALIFIED')}">
+								<dt>
+									<g:message code="order.renewalStage.label"
+										default="Renewal Stage" />
+								</dt>
+
+								<dd>Renewal Lost</dd>
+							</g:elseif>
+							<g:elseif
+								test="${orderInstance?.renewalStage == 'RENEWAL_WON'}">
+								<dt>Renewed Order</dt>
+
+								<dd>
+									${Order.findByReferenceQuoteNumber(renewalQuote?.quoteNumber)?.orderNumber}
+								</dd>
+							</g:elseif>
+						</dl>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="row">
 		<div class="col-md-12">
 			<richui:tabView id="tabView">
 				<richui:tabLabels>

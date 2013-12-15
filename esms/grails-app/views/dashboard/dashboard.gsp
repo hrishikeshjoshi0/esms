@@ -49,7 +49,7 @@
 	<div class="row">
 		<div class="col-md-12 dashboard-widget">
 			<div id="recentQuotesWidget" class="dashboard-widget">
-				<g:render template="/dashboard/recentQuotes" />
+				<g:render template="/dashboard/recentMaintenanceQuotes" />
 			</div>
 		</div>
 	</div>

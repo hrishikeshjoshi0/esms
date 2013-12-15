@@ -97,7 +97,6 @@ class OrderController {
 	}
 
 	def convertQuoteToOrder() {
-		
 		def list = Order.list();
 		int no = (list?list.size():0) + 1;
 		String orderNumber = "ORD" + String.format("%05d", no)
@@ -118,6 +117,7 @@ class OrderController {
 			def p = Order.findByOrderNumber(quote.relatedToValue)
 			p.relatedTo = "ORDER"
 			p.relatedToValue = quote.relatedToValue
+			p.renewalStage = 'RENEWAL_WON'
 			p.save(flush:true)
 		}
 		
@@ -256,7 +256,7 @@ class OrderController {
 			def events = Event.findAllByRelatedToValue(orderInstance?.orderNumber)
 			
 			def renewalQuote
-			if(orderInstance?.renewalStage == 'TAGGED_FOR_RENEWAL') {
+			if(orderInstance?.renewalStage == 'TAGGED_FOR_RENEWAL' || orderInstance?.renewalStage == 'RENEWAL_WON' || orderInstance?.renewalStage == 'RENEWAL_LOST') {
 				renewalQuote = Quote.findByRelatedToAndRelatedToValue('RENEWAL',orderInstance?.orderNumber)
 			}
 			

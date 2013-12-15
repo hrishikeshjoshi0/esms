@@ -8,7 +8,7 @@
 					code="workDoneCertificate.date.label" default="Date" /><span
 				class="required-indicator">*</span></label>
 			<div class="col-md-9">
-				<g:datePicker name="date" precision="day" value="${workDoneCertificateInstance?.date}" />
+				<g:datePicker name="date" precision="day" value="${workDoneCertificateInstance?.date}" class="form-control" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'date', 'error')}
 				</span>
 			</div>
@@ -20,7 +20,7 @@
 					code="workDoneCertificate.customerName.label"
 					default="Customer Name" /><span class="required-indicator">*</span></label>
 			<div class="col-md-9">
-				<g:textField name="customerName" required=""
+				<g:textField name="customerName" required="" class="form-control"
 					value="${workDoneCertificateInstance?.customerName}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'customerName', 'error')}
 				</span>
@@ -32,7 +32,7 @@
 			<label for="contract" class="col-md-3 control-label"><g:message
 					code="workDoneCertificate.contract.label" default="Contract" /></label>
 			<div class="col-md-9">
-				<g:textField name="contract"
+				<g:textField name="contract" class="form-control"
 					value="${workDoneCertificateInstance?.contract}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'contract', 'error')}
 				</span>
@@ -45,7 +45,7 @@
 					code="workDoneCertificate.machineNumber.label"
 					default="Machine Number" /></label>
 			<div class="col-md-9">
-				<g:textField name="machineNumber"
+				<g:textField name="machineNumber" class="form-control"
 					value="${workDoneCertificateInstance?.machineNumber}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'machineNumber', 'error')}
 				</span>
@@ -57,7 +57,7 @@
 			<label for="routeNumber" class="col-md-3 control-label"><g:message
 					code="workDoneCertificate.routeNumber.label" default="Route Number" /></label>
 			<div class="col-md-9">
-				<g:textField name="routeNumber"
+				<g:textField name="routeNumber" class="form-control"
 					value="${workDoneCertificateInstance?.routeNumber}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'routeNumber', 'error')}
 				</span>
@@ -69,7 +69,7 @@
 			<label for="location" class="col-md-3 control-label"><g:message
 					code="workDoneCertificate.location.label" default="Location" /></label>
 			<div class="col-md-9">
-				<g:textField name="location"
+				<g:textField name="location" class="form-control"
 					value="${workDoneCertificateInstance?.location}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'location', 'error')}
 				</span>
@@ -82,7 +82,7 @@
 					code="workDoneCertificate.routineService.label"
 					default="Routine Service" /></label>
 			<div class="col-md-9">
-				<g:checkBox name="routineService"
+				<g:checkBox name="routineService" 
 					value="${workDoneCertificateInstance?.routineService}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'routineService', 'error')}
 				</span>
@@ -133,7 +133,7 @@
 			<label for="arrivalTime" class="col-md-3 control-label"><g:message
 					code="workDoneCertificate.arrivalTime.label" default="Arrival Time" /></label>
 			<div class="col-md-9">
-				<g:datePicker precision="minute" name="arrivalTime"
+				<g:datePicker precision="minute" name="arrivalTime" class="form-control"
 					value="${workDoneCertificateInstance?.arrivalTime}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'arrivalTime', 'error')}
 				</span>
@@ -158,7 +158,7 @@
 					code="workDoneCertificate.repairsWorkCompleted.label"
 					default="Repairs Work Completed" /></label>
 			<div class="col-md-9">
-				<g:datePicker precision="day" name="repairsWorkCompleted"
+				<g:datePicker precision="day" name="repairsWorkCompleted" class="form-control"
 					value="${workDoneCertificateInstance?.repairsWorkCompleted}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'repairsWorkCompleted', 'error')}
 				</span>
@@ -184,7 +184,7 @@
 					code="workDoneCertificate.ind_T_S_OrderExecutionWorkStarted.label"
 					default="Ind TSO rder Execution Work Started" /></label>
 			<div class="col-md-9">
-				<g:datePicker precision="day" name="ind_T_S_OrderExecutionWorkStarted"
+				<g:datePicker precision="day" name="ind_T_S_OrderExecutionWorkStarted" class="form-control"
 					value="${workDoneCertificateInstance?.ind_T_S_OrderExecutionWorkStarted}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'ind_T_S_OrderExecutionWorkStarted', 'error')}
 				</span>
@@ -198,7 +198,7 @@
 					code="workDoneCertificate.ind_T_S_OrderExecutionWorkCompleted.label"
 					default="Ind TSO rder Execution Work Completed" /></label>
 			<div class="col-md-9">
-				<g:datePicker precision="day" name="ind_T_S_OrderExecutionWorkCompleted"
+				<g:datePicker precision="day" name="ind_T_S_OrderExecutionWorkCompleted" class="form-control"
 					value="${workDoneCertificateInstance?.ind_T_S_OrderExecutionWorkCompleted}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'ind_T_S_OrderExecutionWorkCompleted', 'error')}
 				</span>
@@ -346,11 +346,8 @@
 		</div>
 	</div>
 </div>
-
-<hr />
-
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-6">
 		<div
 			class="form-group fieldcontain ${hasErrors(bean: workDoneCertificateInstance, field: 'majorRepairs_Adjustment_ExtraExamination', 'error')} ">
 			<label for="majorRepairs_Adjustment_ExtraExamination"
@@ -358,7 +355,7 @@
 					code="workDoneCertificate.majorRepairs_Adjustment_ExtraExamination.label"
 					default="Major Repairs Adjustment Extra Examination" /></label>
 			<div class="col-md-9">
-				<g:textArea rows="10" cols="5" name="majorRepairs_Adjustment_ExtraExamination"
+				<g:textArea rows="10" cols="5" name="majorRepairs_Adjustment_ExtraExamination" class="form-control"
 					value="${workDoneCertificateInstance?.majorRepairs_Adjustment_ExtraExamination}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'majorRepairs_Adjustment_ExtraExamination', 'error')}
 				</span>
@@ -371,7 +368,7 @@
 					code="workDoneCertificate.examinerName.label"
 					default="Examiner Name" /></label>
 			<div class="col-md-9">
-				<g:textField name="examinerName"
+				<g:textField name="examinerName" class="form-control"
 					value="${workDoneCertificateInstance?.examinerName}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'examinerName', 'error')}
 				</span>
@@ -384,7 +381,7 @@
 					code="workDoneCertificate.customerSignedOffBy.label"
 					default="Customer Signed Off By" /></label>
 			<div class="col-md-9">
-				<g:textField name="customerSignedOffBy"
+				<g:textField name="customerSignedOffBy" class="form-control"
 					value="${workDoneCertificateInstance?.customerSignedOffBy}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'customerSignedOffBy', 'error')}
 				</span>
@@ -397,7 +394,7 @@
 					code="workDoneCertificate.customerRemark.label"
 					default="Customer Remark" /></label>
 			<div class="col-md-9">
-				<g:textField name="customerRemark"
+				<g:textField name="customerRemark" class="form-control"
 					value="${workDoneCertificateInstance?.customerRemark}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'customerRemark', 'error')}
 				</span>

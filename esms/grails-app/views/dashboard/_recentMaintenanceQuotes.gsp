@@ -37,7 +37,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${recentQuotes}" var="quoteInstance">
+		<g:each in="${recentMaintenanceQuotes}" var="quoteInstance">
 			<tr>
 				<td><g:link controller="organization" action="show"
 						id="${quoteInstance?.organization?.id}">

@@ -332,6 +332,11 @@ class QuoteController {
 				quoteInstance.status = 'DECLINE'
 				quoteInstance.declinedReason = params.declinedReason
 				quoteInstance.save(flush:true)
+				
+				if(quoteInstance?.relatedTo == 'RENEWAL' &&  quoteInstance?.relatedToValue) {
+					def p = Order.findByOrderNumber(quoteInstance.relatedToValue)
+					p.renewalStage = 'RENEWAL_LOST'
+				}
 
 				flash.message = 'Marked as Declined'
 				redirect action: 'show', id: quoteInstance.id
@@ -631,8 +636,13 @@ class QuoteController {
 			case 'POST' :
 				def quoteInstance = Quote.get(params.id)
 				quoteInstance.status = 'DISQUALIFIED'
-				quoteInstance.markAsDisqualified = params.markAsDisqualified
+				quoteInstance.disqualificationReason = params.disqualificationReason
 				quoteInstance.save(flush:true)
+				
+				if(quoteInstance?.relatedTo == 'RENEWAL' &&  quoteInstance?.relatedToValue) {
+					def p = Order.findByOrderNumber(quoteInstance.relatedToValue)
+					p.renewalStage = 'RENEWAL_LOST'
+				}
 
 				flash.message = 'Marked as Disqualified.'
 				redirect action: 'show', id: quoteInstance.id

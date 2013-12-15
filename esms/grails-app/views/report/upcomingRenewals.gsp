@@ -44,19 +44,15 @@
 							${message(code: 'order.contractToDate.label', default: 'To Date')}
 						</th>
 
-						<th>
-							${message(code: 'order.grandTotal.label', default: 'Grand Total')}
-						</th>
+						<th>Total Amount</th>
+							
+						<th>Invoiced Amount</th>
+									
+						<th>Received Amount</th>
+									
+						<th>Pending Invoice Amount</th>
 
-						<th>
-							${message(code: 'order.receviedGrandTotal.label', default: 'Received Amount')}
-						</th>
-
-						<th>
-							${message(code: 'order.openGrandTotal.label', default: 'Open Amount')}
-						</th>
-
-						<th></th>
+						<th>Renewal Process</th>
 
 						<th></th>
 					</tr>
@@ -85,12 +81,15 @@
 								${fieldValue(bean : orderInstance, field : "grandTotal") }
 							</td>
 
-							<td>
-								${fieldValue(bean : orderInstance, field : "receviedGrandTotal") }
+							<td><g:formatNumber type="number" number="${orderInstance?.invoicedGrandTotal}" />
 							</td>
-
+					
+							<td><g:formatNumber type="number"
+									number="${orderInstance?.getReceivedAmount()}" /></td>
+					
 							<td>
-								${fieldValue(bean : orderInstance, field : "openGrandTotal") }
+								<g:formatNumber type="number"
+									number="${orderInstance?.pendingInvoiceGrandTotal}" />
 							</td>
 
 							<td><g:if test="${orderInstance?.taggedForRenewal == true}">
@@ -117,7 +116,11 @@
 											class="glyphicon glyphicon-tag glyphicon glyphicon-white"></i> Tagged For Renewal
 										</span>
 									</g:else>
-								</g:if></td>
+								</g:if>
+								<g:else>
+									Not Started
+								</g:else>
+							</td>
 
 							<td class="link"><g:link action="show"
 									id="${orderInstance.id}" controller="order"

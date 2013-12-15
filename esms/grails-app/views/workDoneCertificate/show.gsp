@@ -18,20 +18,20 @@
 				</h3>
 			</div>
 
-			<g:form>
-				<g:hiddenField name="id" value="${workDoneCertificateInstance?.id}" />
-				<div class="form-group">
-					<g:link class="btn btn-default btn-sm" action="edit"
-						id="${workDoneCertificateInstance?.id}">
-						
-						<g:message code="default.button.edit.label" default="Edit" />
-					</g:link>
-					<button class="btn btn-sm btn-default" type="submit" name="_action_delete">
-						
-						<g:message code="default.button.delete.label" default="Delete" />
-					</button>
-				</div>
-			</g:form>
+			<div class="well">
+				<g:form>
+					<g:hiddenField name="id" value="${workDoneCertificateInstance?.id}" />
+						<g:link class="btn btn-default btn-sm" action="edit"
+							id="${workDoneCertificateInstance?.id}">
+							
+							<g:message code="default.button.edit.label" default="Edit" />
+						</g:link>
+						<button class="btn btn-sm btn-default" type="submit" name="_action_delete">
+							
+							<g:message code="default.button.delete.label" default="Delete" />
+						</button>
+				</g:form>
+			</div>
 
 			<dl class="dl-horizontal">
 

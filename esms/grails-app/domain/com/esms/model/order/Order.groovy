@@ -81,7 +81,7 @@ class Order {
 		termsAndConditions nullable:true,blank:true,length:255
 		
 		taggedForRenewal nullable:true
-		renewalStage InList:['NOT_MARKED_FOR_RENEWAL','TAGGED_FOR_RENEWAL','RENEWAL_LETTER_SENT','RENEWAL_WON','RENEWAL_LOST','RENEWAL_WON']
+		renewalStage InList:['NOT_MARKED_FOR_RENEWAL','TAGGED_FOR_RENEWAL','RENEWAL_LETTER_SENT','RENEWAL_WON','RENEWAL_LOST']
 		renewalLostReason nullable:true,blank:true,length:255
 		
 		recepientContactName nullable:true,blank:true

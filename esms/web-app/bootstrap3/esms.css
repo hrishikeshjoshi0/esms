@@ -247,9 +247,14 @@ dt, dd {
 }
 dt {
   font-weight: bold;
+  text-align: left;
 }
 dd {
   margin-left: 10.5px;
+}
+
+.dl-horizontal dt {
+	text-align: left;
 }
 
 .yui-skin-sam .yui-navset .yui-nav .selected a, .yui-skin-sam .yui-navset .yui-nav .selected a:focus, .yui-skin-sam .yui-navset .yui-nav .selected a:hover {
@@ -344,3 +349,17 @@ dd {
 .pgn {
 	border-top: 1px solid #dddddd;
 }
+
+a.list-group-item {
+	text-decoration: underline;
+}
+
+
+a.list-group-item:hover,a.list-group-item:focus {
+	text-decoration: underline;
+}
+
+.panel {
+	-webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+} 

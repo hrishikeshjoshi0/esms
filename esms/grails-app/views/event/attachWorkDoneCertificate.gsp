@@ -28,21 +28,22 @@
 					<g:message code="default.create.label" args="[entityName]" />
 				</h3>
 			</div>
-
-			<fieldset>
+			
+			<div class="well">
 				<g:form class="form-horizontal" action="attachWorkDoneCertificate">
 					<fieldset>
 						<g:hiddenField name="event.id" value="${params.id}"/>
 						<g:render template="/workDoneCertificate/form"/>
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary">
-								
-								<g:message code="default.button.create.label" default="Create" />
-							</button>
+							<div class="col-md-10 col-md-offset-2">
+								<button type="submit" class="btn btn-sm btn-primary">
+									<g:message code="default.button.create.label" default="Create" />
+								</button>
+							</div>
 						</div>
 					</fieldset>
 				</g:form>
-			</fieldset>
+			</div>
 		</div>
 	</div>
 </body>

@@ -24,7 +24,7 @@ class LeadController {
 		def organizations = Organization.findAllBySalesStatusAndIsOneTimeCustomer('LEAD',false,params)
 		def organizationInstanceTotal = Organization.countBySalesStatusAndIsOneTimeCustomer('LEAD',false,params)
 		
-		[organizationInstanceList: organizations, organizationInstanceTotal: Organization.count()]
+		[organizationInstanceList: organizations, organizationInstanceTotal: organizationInstanceTotal]
 	}
 
 	def filter = {

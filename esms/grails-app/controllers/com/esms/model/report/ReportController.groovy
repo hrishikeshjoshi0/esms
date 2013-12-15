@@ -153,6 +153,7 @@ class ReportController {
 			}
 			firstResult(params.offset?.toInteger())
 			maxResults(params.max?.toInteger())
+			order("contractToDate", "asc")
 		}
 		
 		def c1 = Order.createCriteria()

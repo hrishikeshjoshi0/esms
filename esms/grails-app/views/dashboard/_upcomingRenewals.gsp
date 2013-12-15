@@ -53,7 +53,7 @@
 						
 			<th>Pending Invoice Amount</th>
 
-			<th></th>
+			<th>Renewal Process</th>
 			
 			<th></th>
 		</tr>

@@ -70,60 +70,62 @@
 				</g:form>
 			</div>
 
-			<div class="row">
-				<div class="col-md-6">
-					<dl class="dl-horizontal">
-						<dt>
-							<g:message code="event.title.label" default="Title" />
-						</dt>
-		
-						<dd>
-							<g:fieldValue bean="${eventInstance}" field="title" />
-						</dd>
-		
-		
-						<dt>
-							<g:message code="event.location.label" default="Location" />
-						</dt>
-		
-						<dd>
-							<g:fieldValue bean="${eventInstance}" field="location" />
-						</dd>
-						
-						<dt>
-							<g:message code="event.assignedTo.label" default="Assigned To" />
-						</dt>
-		
-						<dd>
-							<g:fieldValue bean="${eventInstance}" field="assignedTo" />
-						</dd>
-						
-						<dt>
-							<g:message code="event.priority.label" default="Priority" />
-						</dt>
-		
-						<dd>
-							<g:fieldValue bean="${eventInstance}" field="priority" />
-						</dd>
-		
-		
-						<dt>
-							<g:message code="event.startTime.label" default="Start Time" />
-						</dt>
-		
-						<dd>
-							<g:formatDate date="${eventInstance?.startTime}" type="datetime" />
-						</dd>
-		
-						<dt>
-							<g:message code="event.endTime.label" default="End Time" />
-						</dt>
-		
-						<dd>
-							<g:formatDate date="${eventInstance?.endTime}" type="datetime" />
-						</dd>
-		
-						<%--<g:if test="${eventInstance?.isRecurring}">
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="col-md-6">
+						<dl class="dl-horizontal">
+							<dt>
+								<g:message code="event.title.label" default="Title" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="title" />
+							</dd>
+
+
+							<dt>
+								<g:message code="event.location.label" default="Location" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="location" />
+							</dd>
+
+							<dt>
+								<g:message code="event.assignedTo.label" default="Assigned To" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="assignedTo" />
+							</dd>
+
+							<dt>
+								<g:message code="event.priority.label" default="Priority" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="priority" />
+							</dd>
+
+
+							<dt>
+								<g:message code="event.startTime.label" default="Start Time" />
+							</dt>
+
+							<dd>
+								<g:formatDate date="${eventInstance?.startTime}" type="datetime" />
+							</dd>
+
+							<dt>
+								<g:message code="event.endTime.label" default="End Time" />
+							</dt>
+
+							<dd>
+								<g:formatDate date="${eventInstance?.endTime}" type="datetime" />
+							</dd>
+
+							<%--<g:if test="${eventInstance?.isRecurring}">
 							<dt>
 								<g:message code="event.isRecurring.label" default="Is Recurring" />
 							</dt>
@@ -198,94 +200,103 @@
 							</g:link>
 						</dd>
 						--%>
-						<dt>
-							<g:message code="event.description.label" default="Description" />
-						</dt>
-		
-						<dd>
-							<g:fieldValue bean="${eventInstance}" field="description" />
-						</dd>
-					</dl>
-				</div>
-				
-				<div class="col-md-6">
-					<dl class="dl-horizontal">
-						<g:if test="${eventInstance?.eventType == 'MAINTENANCE VISIT' }">
 							<dt>
-								<g:message code="event.eventType.label" default="Type" />
+								<g:message code="event.description.label" default="Description" />
 							</dt>
-							
-							<dd>
-								<g:fieldValue bean="${eventInstance}" field="eventType" />
-							</dd>
-							
-							<dt>
-								<g:message code="event.maintenanceVisitTechnician.label" default="Technician" />
-							</dt>
-							
-							<dd>
-								<g:fieldValue bean="${eventInstance}" field="maintenanceVisitTechnician" />
-							</dd>
-							
-							<dt>
-								<g:message code="event.maintenanceVisitTechnicianNotes.label" default="Notes" />
-							</dt>
-							
-							<dd>
-								<g:fieldValue bean="${eventInstance}" field="maintenanceVisitTechnicianNotes" />
-							</dd>
-						</g:if>
-						
-						<g:if test="${eventInstance?.eventType == 'BREAKDOWN CALL' }">
-							<dt>
-								<g:message code="event.eventType.label" default="Type" />
-							</dt>
-							
-							<dd>
-								<g:fieldValue bean="${eventInstance}" field="eventType" />
-							</dd>
-							
-							<dt>
-								<g:message code="event.breakdownVisitTechnician.label" default="Technician" />
-							</dt>
-							
-							<dd>
-								<g:fieldValue bean="${eventInstance}" field="breakdownVisitTechnician" />
-							</dd>
-							
-							<dt>
-								<g:message code="event.breakdownVisitTechnicianNotes.label" default="Notes" />
-							</dt>
-							
-							<dd>
-								<g:fieldValue bean="${eventInstance}" field="breakdownVisitTechnicianNotes" />
-							</dd>
-							
-							<dt>
-								<g:message code="event.breakdownVisitSignedOffBy.label" default="Signed Off By" />
-							</dt>
-							
-							<dd>
-								<g:fieldValue bean="${eventInstance}" field="breakdownVisitSignedOffBy" />
-							</dd>
-						</g:if>
-						
-						<g:if test="${eventInstance?.eventType == 'MEETING' }">
-							<dt>
-								<g:message code="event.meetingNotes.label" default="Type" />
-							</dt>
-							
-							<dd>
-								<g:fieldValue bean="${eventInstance}" field="meetingNotes" />
-							</dd>
-						</g:if>
-					</dl>	
-				</div>
-			</div>	
-		</div>
-	</div>
 
-	<div class="row">
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="description" />
+							</dd>
+						</dl>
+					</div>
+
+					<div class="col-md-6">
+						<dl class="dl-horizontal">
+							<g:if test="${eventInstance?.eventType == 'MAINTENANCE VISIT' }">
+								<dt>
+									<g:message code="event.eventType.label" default="Type" />
+								</dt>
+
+								<dd>
+									<g:fieldValue bean="${eventInstance}" field="eventType" />
+								</dd>
+
+								<dt>
+									<g:message code="event.maintenanceVisitTechnician.label"
+										default="Technician" />
+								</dt>
+
+								<dd>
+									<g:fieldValue bean="${eventInstance}"
+										field="maintenanceVisitTechnician" />
+								</dd>
+
+								<dt>
+									<g:message code="event.maintenanceVisitTechnicianNotes.label"
+										default="Notes" />
+								</dt>
+
+								<dd>
+									<g:fieldValue bean="${eventInstance}"
+										field="maintenanceVisitTechnicianNotes" />
+								</dd>
+							</g:if>
+
+							<g:if test="${eventInstance?.eventType == 'BREAKDOWN CALL' }">
+								<dt>
+									<g:message code="event.eventType.label" default="Type" />
+								</dt>
+
+								<dd>
+									<g:fieldValue bean="${eventInstance}" field="eventType" />
+								</dd>
+
+								<dt>
+									<g:message code="event.breakdownVisitTechnician.label"
+										default="Technician" />
+								</dt>
+
+								<dd>
+									<g:fieldValue bean="${eventInstance}"
+										field="breakdownVisitTechnician" />
+								</dd>
+
+								<dt>
+									<g:message code="event.breakdownVisitTechnicianNotes.label"
+										default="Notes" />
+								</dt>
+
+								<dd>
+									<g:fieldValue bean="${eventInstance}"
+										field="breakdownVisitTechnicianNotes" />
+								</dd>
+
+								<dt>
+									<g:message code="event.breakdownVisitSignedOffBy.label"
+										default="Signed Off By" />
+								</dt>
+
+								<dd>
+									<g:fieldValue bean="${eventInstance}"
+										field="breakdownVisitSignedOffBy" />
+								</dd>
+							</g:if>
+
+							<g:if test="${eventInstance?.eventType == 'MEETING' }">
+								<dt>
+									<g:message code="event.meetingNotes.label" default="Type" />
+								</dt>
+
+								<dd>
+									<g:fieldValue bean="${eventInstance}" field="meetingNotes" />
+								</dd>
+							</g:if>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+	
 		<div class="col-md-12">
 			<richui:tabView id="tabView">
 				<richui:tabLabels>
@@ -707,29 +718,6 @@
 				</richui:tabContents>
 			</richui:tabView>
 		</div>
-	</div>
-
-	<div id="activityModal" class="modal hide fade" tabindex="-1"
-		role="dialog"
-		data-remote="<g:createLink controller="event" action="createEventLog" id="${eventInstance?.id}" />"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">×</button>
-			<h3 id="myModalLabel">New Event Log</h3>
-		</div>
-		<g:form controller="event" action="createEventLog" method="POST">
-			<g:hiddenField name="event.id" value="${eventInstance?.id}" />
-			<div class="modal-body"></div>
-			<div class="modal-footer">
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary">
-						
-						<g:message code="default.button.create.label" default="Save" />
-					</button>
-				</div>
-			</div>
-		</g:form>
 	</div>
 </body>
 </html>

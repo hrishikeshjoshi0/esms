@@ -16,12 +16,13 @@
 		<div class="col-md-12">
 			<div class="page-header">
 				<h3>
-					Employee #
+					Employee:
 					${employeeInstance?.externalId}
-					|
+				</h3>
+				<h4>
 					${employeeInstance?.lastName},
 					${employeeInstance?.firstName}
-				</h3>
+				</h4>
 			</div>
 
 			<div class="well">
@@ -49,8 +50,9 @@
 				</g:form>
 			</div>
 
-			<div class="row">
-				<div class="col-md-12">
+
+			<div class="panel panel-default">
+				<div class="panel-body">
 					<dl class="dl-horizontal">
 						<dt>
 							<g:message code="employee.firstName.label" default="First Name" />
@@ -128,33 +130,33 @@
 					</dl>
 				</div>
 			</div>
-
-			<div class="row">
-				<div class="col-md-12">
-					<richui:tabView id="tabView">
-						<richui:tabLabels>
-							<richui:tabLabel selected="true" title="Addresses" />
-							<richui:tabLabel title="Phones" />
-							<richui:tabLabel title="Benefits" />
-						</richui:tabLabels>
-
-						<richui:tabContents>
-							<richui:tabContent>
-								<g:render template="addressList" />
-							</richui:tabContent>
-
-							<richui:tabContent>
-								<g:render template="phoneBookList" />
-							</richui:tabContent>
-
-							<richui:tabContent>
-								<g:render template="benefits" />
-							</richui:tabContent>
-						</richui:tabContents>
-					</richui:tabView>
-				</div>
-			</div>
 		</div>
+
+
+		<div class="col-md-12">
+			<richui:tabView id="tabView">
+				<richui:tabLabels>
+					<richui:tabLabel selected="true" title="Addresses" />
+					<richui:tabLabel title="Phones" />
+					<richui:tabLabel title="Benefits" />
+				</richui:tabLabels>
+
+				<richui:tabContents>
+					<richui:tabContent>
+						<g:render template="addressList" />
+					</richui:tabContent>
+
+					<richui:tabContent>
+						<g:render template="phoneBookList" />
+					</richui:tabContent>
+
+					<richui:tabContent>
+						<g:render template="benefits" />
+					</richui:tabContent>
+				</richui:tabContents>
+			</richui:tabView>
+		</div>
+
 	</div>
 </body>
 </html>

@@ -161,7 +161,7 @@
 			<label for="relatedTo" class="col-md-3 control-label"><g:message
 					code="contract.relatedTo.label" default="Related To" /></label>
 			<div class="col-md-9">
-				<g:select name="relatedTo" class="form-control"
+				<g:select name="relatedTo" class="form-control" 
 					from="${quoteInstance.constraints.relatedTo.inList}"
 					value="${quoteInstance?.relatedTo}"
 					valueMessagePrefix="contract.relatedTo" noSelection="['': '']" />

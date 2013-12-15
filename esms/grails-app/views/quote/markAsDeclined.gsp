@@ -13,21 +13,18 @@
 			</bootstrap:alert>
 		</g:hasErrors>
 
-		<div class="page-header">
-			<h3>
-				Reason for Decline.
-			</h3>
-		</div>
-
 		<div class="well">
 			<g:form class="form-horizontal" controller="quote" action="markAsDeclined" id="${quoteInstance?.id}">
 				<fieldset>
 					<div
 						class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'declinedReason', 'error')} ">
-						<div class="col-md-10">
+						<label for="contractFromDate" class="col-md-3 control-label"><g:message
+								code="quote.declinedReason.label" default="Declined Reason" />
+						</label>
+						<div class="col-md-9">
 							<g:textArea name="description"
 								value="${quoteInstance?.declinedReason}" cols="40" rows="5"
-								maxlength="1000" style="width:80%;" />
+								maxlength="1000"/>
 							<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'declinedReason', 'error')}
 							</span>
 						</div>
