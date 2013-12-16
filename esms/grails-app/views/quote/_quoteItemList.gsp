@@ -3,6 +3,9 @@
 	<div class="pull-right">
 		<bs3:modalLink href="${createLink(controller:'quote',action:'createQuoteItem',params:['quote.id':quoteInstance?.id])}"
 			id="createQuoteItem" title="Create Quote Item"/>	
+		<g:if test="${quoteInstance?.sent == false && quoteInstance?.quoteItems?.size() != 0}">
+			
+		</g:if>	
 	</div>
 </g:if>
 

@@ -23,21 +23,6 @@
 			</div>
 
 			<div class="well">
-				<%--<g:form>
-					<g:hiddenField name="id" value="${quoteInstance?.id}" />
-					<g:if test="${quoteInstance?.status != 'CONVERTED_TO_SERVICE_CONTRACT' && quoteInstance?.status != 'CONVERTED_TO_SALES_ORDER' }">
-						<g:link class="btn btn-default btn-sm" action="edit" id="${quoteInstance?.id}">
-							
-							<g:message code="default.button.edit.label" default="Edit" />
-						</g:link>
-					</g:if>
-					
-					<button class="btn btn-sm btn-default" type="submit"
-						name="_action_delete">
-						<g:message code="default.button.delete.label" default="Delete" />
-					</button>
-				</g:form>
-				--%>
 				<g:if
 					test="${quoteInstance?.sent == false && quoteInstance?.quoteItems?.size() != 0}">
 					<bs3:modalLink
@@ -60,13 +45,11 @@
 								Mark as Accepted
 							</g:link>
 					</g:elseif>
+					<%--
+					HJ: Disabling this feature for Pilot Release.
 					<bs3:modalLink
 						href="${createLink(controller:'quote',action:'markAsRevised',id:quoteInstance?.id)}"
 						class="btn-primary" id="markAsRevised" title="Mark As Revised" />
-
-					<%--<bs3:modalLink
-						href="${createLink(controller:'quote',action:'markAsDeclined',id:quoteInstance?.id)}"
-						class="btn-primary" id="markAsDeclined" title="Mark As Declined" />
 					--%>
 				</g:if>
 				<g:elseif
@@ -90,25 +73,13 @@
 				</g:link>
 				
 				<g:if
-					test="${quoteInstance?.status != 'DECLINE'}">
+					test="${quoteInstance?.status != 'DECLINE' && quoteInstance?.status != 'PENDING'}">
 					<bs3:modalLink
 							href="${createLink(controller:'quote',action:'markAsDeclined',id:quoteInstance?.id)}"
 							id="markAsDeclined" title="Mark As Declined" />
 				</g:if>	
 			</div>
 
-
-			<%--<g:if
-				test="${quoteInstance?.id && quoteInstance?.quoteItems?.size() != 0}">
-				<div class="form-group">
-					<g:jasperReport jasper="QuotationLetter" format="PDF"
-						name="Print Quotation" delimiterAfter=" " delimiterBefore=" "
-						heightAttr="15px">
-						<input type="hidden" name="quote" value="${quoteInstance.id}" />
-					</g:jasperReport>
-				</div>
-			</g:if>
-			--%>
 
 			<div class="panel panel-default">
 				<div class="panel-body">
