@@ -41,7 +41,7 @@
 				</td>
 				<td>
 					<g:if test="${order?.orderItems?.size() != 0}">
-						${Product.findByProductNumber(order?.orderItems?.first().productNumber)?.productName}
+						${order?.getActiveServiceContract()}
 					</g:if>
 					<g:else>
 						-

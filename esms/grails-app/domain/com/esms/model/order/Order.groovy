@@ -148,4 +148,15 @@ class Order {
 		}
 	}
 	
+	def getActiveServiceContract() {
+		def productName
+		orderItems?.each {
+			def p = Product.findByProductNumber(it.productNumber)
+			if(p.productType == 'SERVICE' && p.serviceContract) {
+				productName = p.productName
+				return productName
+			}
+		}
+	}
+	
 }

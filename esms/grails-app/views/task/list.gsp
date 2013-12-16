@@ -1,6 +1,6 @@
 <%@ page import="com.esms.model.calendar.Task"%>
 <%@page import="com.esms.model.party.Organization"%>
-<%@ page import="com.esms.model.order.Order" %>
+<%@ page import="com.esms.model.order.Order"%>
 <!doctype html>
 <html>
 <head>
@@ -17,8 +17,8 @@
 					<g:message code="default.list.label" args="[entityName]" />
 				</h3>
 			</div>
-			
-			<table class="table table-striped table-condensed table-bordered">
+
+			<table class="table table-striped table-bordered mediaTable">
 				<thead>
 					<tr>
 
@@ -27,15 +27,19 @@
 						</th>
 
 						<th>
+							${message(code: 'task.relatedToValue.label', default: 'Order Number')}
+						</th>
+
+						<th>
+							${message(code: 'task.organization.label', default: 'Building Name')}
+						</th>
+
+						<th>
 							${message(code: 'task.dateTime.label', default: 'Date')}
 						</th>
 
 						<th>
 							${message(code: 'task.dueDateTime.label', default: 'Due Date')}
-						</th>
-
-						<th>
-							${message(code: 'task.relatedToValue.label', default: 'Organization')}
 						</th>
 
 						<th>
@@ -55,10 +59,20 @@
 				</thead>
 				<tbody id="upcomingTasks">
 					<g:each in="${taskInstanceList}" var="taskInstance">
+						<g:set var="order"
+							value="${Order.findByOrderNumber(taskInstance.relatedToValue)}" />
 						<tr>
 
 							<td>
 								${fieldValue(bean: taskInstance, field: "taskName")}
+							</td>
+
+							<td>
+								${order?.orderNumber}
+							</td>
+
+							<td>
+								${order?.organization?.name}
 							</td>
 
 							<td>
@@ -67,16 +81,6 @@
 
 							<td>
 								${fieldValue(bean: taskInstance, field: "dueDateTime")}
-							</td>
-
-							<td>
-								<%
-									def o
-									if(taskInstance.relatedToValue?.startsWith('ORG')) {
-										o = Organization.findByExternalId(taskInstance.relatedToValue)
-										println o?.name
-									}
-								 %>
 							</td>
 
 							<td>
@@ -92,12 +96,12 @@
 							</td>
 
 							<td class="link"><g:link action="show"
-									id="${taskInstance.id}" controller="task" class="lnk">Show &raquo;</g:link></td>
+									id="${taskInstance.id}" controller="task" class="lnk ">Show &raquo;</g:link></td>
 						</tr>
 					</g:each>
 				</tbody>
 			</table>
-			
+
 			<div class="pgn">
 				<bootstrap:paginate total="${taskInstanceTotal}" />
 			</div>

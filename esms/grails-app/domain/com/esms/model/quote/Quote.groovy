@@ -101,4 +101,8 @@ class Quote {
 		quoteItems
 	}
 	
+	def areLinesAdded() {
+		return !quoteItems?.empty
+	}
+	
 }

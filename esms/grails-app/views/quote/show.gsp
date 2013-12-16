@@ -21,6 +21,14 @@
 					</g:link>
 				</h3>
 			</div>
+			
+			<g:if test="${!quoteInstance?.areLinesAdded()}">
+				<div>
+					<bootstrap:alert class="${alert-warning}">
+						Warning! Your quotation is empty, please add lines to start this sales process for this quotation. 
+					</bootstrap:alert>	
+				</div>
+			</g:if>
 
 			<div class="well">
 				<g:if

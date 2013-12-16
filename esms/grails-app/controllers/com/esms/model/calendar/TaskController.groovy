@@ -13,7 +13,16 @@ class TaskController {
     }
 
     def list() {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+       if(!params.offset) {
+			params.offset= 0
+		} 
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
+		params.sort="dateTime"
+		params."order"="asc"
+		
         [taskInstanceList: Task.list(params), taskInstanceTotal: Task.count()]
     }
 
