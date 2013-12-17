@@ -41,7 +41,7 @@
 				</td>
 				<td>
 					<g:if test="${order?.orderItems?.size() != 0}">
-						${order?.getActiveServiceContract()}
+						${order?.organization?.activeServiceContract()}
 					</g:if>
 					<g:else>
 						-

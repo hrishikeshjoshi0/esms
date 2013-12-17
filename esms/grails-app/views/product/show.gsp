@@ -133,6 +133,14 @@
 						<dd>
 							<g:formatBoolean boolean="${productInstance?.isVirtual}" />
 						</dd>
+						
+						<dt>
+							<g:message code="product.serviceContract.label" default="Is Service Contract" />
+						</dt>
+
+						<dd>
+							<g:formatBoolean boolean="${productInstance?.serviceContract}" />
+						</dd>
 					</dl>
 				</div>
 			</div>

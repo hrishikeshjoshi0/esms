@@ -54,6 +54,6 @@ class PurchaseOrder {
 	static mapping = {
 		tablePerHierarchy false
 		
-		table 'Purchase_Order_Hdr'
+		table 'purchase_order_hdr'
 	}
 }

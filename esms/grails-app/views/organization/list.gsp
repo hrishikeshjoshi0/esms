@@ -29,8 +29,9 @@
 								title="${message(code: 'organization.externalId.label', default: 'External Id')}" />
 							<g:sortableColumn params="${filterParams}" property="name"
 								title="${message(code: 'organization.name.label', default: 'Name')}" />
-							<g:sortableColumn params="${filterParams}" property="assignedTo"
-								title="${message(code: 'organization.assignedTo.label', default: 'Assigned To')}" />
+							<th>
+								Active Contract
+							</th>
 							<g:sortableColumn params="${filterParams}"
 								property="addresses.addressType"
 								title="${message(code: 'address.addressType.label', default: 'Address Type')}" />
@@ -67,7 +68,7 @@
 									${fieldValue(bean: organization, field: "assignedTo")}
 								</td>
 								<td>
-									${addressInstance?.addressType}
+									${organization?.activeServiceContract()}
 								</td>
 								<td>
 									${addressInstance?.buildingName}

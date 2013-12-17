@@ -2,10 +2,7 @@
 <g:if test="${quoteInstance?.status != 'CONVERTED_TO_SERVICE_CONTRACT' && quoteInstance?.status != 'CONVERTED_TO_SALES_ORDER' }">
 	<div class="pull-right">
 		<bs3:modalLink href="${createLink(controller:'quote',action:'createQuoteItem',params:['quote.id':quoteInstance?.id])}"
-			id="createQuoteItem" title="Create Quote Item"/>	
-		<g:if test="${quoteInstance?.sent == false && quoteInstance?.quoteItems?.size() != 0}">
-			
-		</g:if>	
+			id="createQuoteItem" title="Add Lines"/>	
 	</div>
 </g:if>
 

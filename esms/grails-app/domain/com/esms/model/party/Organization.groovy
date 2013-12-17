@@ -1,10 +1,11 @@
 package com.esms.model.party
 
-import com.esms.model.invoice.Invoice;
+import com.esms.model.invoice.Invoice
 import com.esms.model.maintenance.LiftInfo
 import com.esms.model.order.Order
 import com.esms.model.order.PurchaseOrder
-import com.esms.model.payment.Payment;
+import com.esms.model.payment.Payment
+import com.esms.model.product.Product
 import com.esms.model.quote.Quote
 import com.esms.model.sales.Contract
 
@@ -39,19 +40,31 @@ class Organization extends Party {
 		}
 	}
 	
-	def activeServiceContract() {
-		def c = Order.createCriteria()
-		def orders = c.list() {
+	def String activeServiceContract() {
+		Date today = new Date()
+		def activeContracts = Order.withCriteria(sort: "contractToDate", order: "asc") {
 			and {
-				'in'('type', ['SERVICE'])
-				and {
-					ge("contractToDate", new Date())
-				}
+				eq("type", 'SERVICE')
+				eq("organization", this)
+				ge("contractToDate", today)
+				le("contractFromDate", today)
+			}
+			maxResults(1)
+		}
+		
+		def activeContract
+		if(activeContracts?.size() > 0) {
+			activeContract = activeContracts?.first()
+		}
+		
+		def productName
+		activeContract?.orderItems?.each {
+			def p = Product.findByProductNumber(it.productNumber)
+			if(p?.productType == 'SERVICE' && p?.serviceContract) {
+				productName = p.productName
 			}
 		}
 		
-		orders?.each {
-			return it
-		}
+		return productName
 	}
 }
