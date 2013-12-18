@@ -131,7 +131,7 @@ class InvoiceController {
     }
 
     def show() {
-        def invoiceInstance = Invoice.get(params.id)
+        def invoiceInstance = Invoice.get(params.id?.toLong())
 		if(request.xhr) {
 			render invoiceInstance as JSON
 		} else {

@@ -631,6 +631,8 @@ class QuoteController {
 				if(quoteInstance?.relatedTo == 'RENEWAL' &&  quoteInstance?.relatedToValue) {
 					def p = Order.findByOrderNumber(quoteInstance.relatedToValue)
 					p.renewalStage = 'RENEWAL_LOST'
+					p?.organization?.salesStatus = 'LOST_IN_RENEWAL'
+					p?.organization?.save(flush:true)
 				}
 
 				flash.message = 'Marked as Disqualified.'

@@ -75,13 +75,16 @@
 						href="${createLink(controller:'quote',action:'confirmSale',id:quoteInstance?.id)}"
 						class="btn-primary" id="confirmSale" title="Confirm Sale" />
 				</g:elseif>
-				<g:link action="markAsDisqualified" controller="quote"
-					id="${quoteInstance?.id}" class="btn btn-sm btn-default">
-						Mark as Disqualified
-				</g:link>
 				
 				<g:if
-					test="${quoteInstance?.status != 'DECLINE' && quoteInstance?.status != 'PENDING'}">
+					test="${quoteInstance?.status != 'DISQUALIFIED'}">
+					<bs3:modalLink
+							href="${createLink(controller:'quote',action:'markAsDisqualified',id:quoteInstance?.id)}"
+							id="markAsDisqualified" title="Mark as Disqualified" />
+				</g:if>	
+				
+				<g:if
+					test="${quoteInstance?.status != 'DECLINE' && quoteInstance?.status != 'PENDING' && quoteInstance?.status != 'DISQUALIFIED'}">
 					<bs3:modalLink
 							href="${createLink(controller:'quote',action:'markAsDeclined',id:quoteInstance?.id)}"
 							id="markAsDeclined" title="Mark As Declined" />

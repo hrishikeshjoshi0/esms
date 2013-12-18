@@ -132,7 +132,6 @@
 											<g:link action="create" controller="quote"
 												params="[contractQuote:true,type:'CONTRACT',organizationId:orderInstance?.organization?.id,
 												quoteName : 'Renewal Quote For Order Number:' + orderInstance?.orderNumber,
-												salesChannel:'RENEWAL',
 												relatedTo:'RENEWAL',relatedToValue:orderInstance?.orderNumber]">
 												Create Renewal Quote
 											</g:link>	

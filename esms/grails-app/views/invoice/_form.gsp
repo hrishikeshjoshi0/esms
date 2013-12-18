@@ -173,7 +173,7 @@
 				<div class="col-md-9">
 					<g:select id="orderId" name="orderId" from="${openOrders}"
 						optionKey="id" class="form-control"
-						optionValue="${{it.orderNumber + ' - ' + it.type + ' : ' + it.organization?.name + 
+						optionValue="${{it.organization?.name + ':' + it.orderNumber + ' - ' + it.type + ' : ' +  
 							'(Open Amount :' + it.openGrandTotal + ')' }}" />
 					<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'order', 'error')}
 					</span>

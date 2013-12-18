@@ -4,8 +4,7 @@
 <html>
 <head>
 <meta name="layout" content="bootstrap3">
-<g:set var="entityName"
-	value="Upcoming Renewals" />
+<g:set var="entityName" value="Upcoming Renewals" />
 <title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 <body>
@@ -14,12 +13,12 @@
 			<div class="page-header">
 				<h3>Upcoming Renewals</h3>
 			</div>
-			
+
 			<filterpane:filterPane domain="com.esms.model.order.Order"
-						filterProperties="${['orderNumber', 'status','type','contactName']}"
-						titleKey="default.filterPane.header" dialog="y" visible="n"
-						 showSortPanel="y" showTitle="y" showButtons="y"
-						 fullAssociationPathFieldNames="false" />
+				filterProperties="${['orderNumber', 'status','type','contactName']}"
+				titleKey="default.filterPane.header" dialog="y" visible="n"
+				showSortPanel="y" showTitle="y" showButtons="y"
+				fullAssociationPathFieldNames="false" />
 
 			<table class="table table-striped table-condensed table-bordered">
 				<thead>
@@ -45,11 +44,11 @@
 						</th>
 
 						<th>Total Amount</th>
-							
+
 						<th>Invoiced Amount</th>
-									
+
 						<th>Received Amount</th>
-									
+
 						<th>Pending Invoice Amount</th>
 
 						<th>Renewal Process</th>
@@ -57,7 +56,7 @@
 						<th></th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="updateDiv">
 					<g:each in="${upcomingRenewals}" var="orderInstance">
 						<tr>
 							<td>
@@ -77,54 +76,24 @@
 
 							<td><g:formatDate date="${orderInstance.contractToDate}" /></td>
 
-							<td>
-								${fieldValue(bean : orderInstance, field : "grandTotal") }
-							</td>
+							<td><g:formatNumber type="number"
+									number="${orderInstance?.grandTotal}" /></td>
 
-							<td><g:formatNumber type="number" number="${orderInstance?.invoicedGrandTotal}" />
-							</td>
-					
+							<td><g:formatNumber type="number"
+									number="${orderInstance?.invoicedGrandTotal}" /></td>
+
 							<td><g:formatNumber type="number"
 									number="${orderInstance?.getReceivedAmount()}" /></td>
-					
-							<td>
-								<g:formatNumber type="number"
-									number="${orderInstance?.pendingInvoiceGrandTotal}" />
-							</td>
+
+							<td><g:formatNumber type="number"
+									number="${orderInstance?.pendingInvoiceGrandTotal}" /></td>
 
 							<td><g:if test="${orderInstance?.taggedForRenewal == true}">
-									<g:if
-										test="${orderInstance?.renewalStage == 'RENEWAL_LETTER_SENT'}">
-										<span class="badge badge-warning"> <i
-											class="glyphicon glyphicon-tag glyphicon glyphicon-white"></i> Renewal Letter Sent
-										</span>
-									</g:if>
-									<g:elseif
-										test="${orderInstance?.renewalStage == 'RENEWAL_WON'}">
-										<span class="badge badge-success"> <i
-											class="glyphicon glyphicon-tag glyphicon glyphicon-white"></i> Renewal Won
-										</span>
-									</g:elseif>
-									<g:elseif
-										test="${orderInstance?.renewalStage == 'RENEWAL_LOST'}">
-										<span class="badge badge-warning"> <i
-											class="glyphicon glyphicon-tag glyphicon glyphicon-white"></i> Renewal Lost
-										</span>
-									</g:elseif>
-									<g:else>
-										<span class="badge badge-info"> <i
-											class="glyphicon glyphicon-tag glyphicon glyphicon-white"></i> Tagged For Renewal
-										</span>
-									</g:else>
-								</g:if>
-								<g:else>
-									Not Started
-								</g:else>
-							</td>
+									${orderInstance?.getRenewalState()}
+								</g:if></td>
 
 							<td class="link"><g:link action="show"
-									id="${orderInstance.id}" controller="order"
-									class="lnk">Show &raquo;</g:link></td>
+									id="${orderInstance.id}" controller="order" class="lnk ">Show &raquo;</g:link></td>
 						</tr>
 					</g:each>
 				</tbody>

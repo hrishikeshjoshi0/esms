@@ -60,7 +60,7 @@
 	</thead>
 	<tbody id="updateDiv">
 		<g:each in="${upcomingRenewals}" var="orderInstance">
-			<tr class="${orderInstance?.isRenewed()?'sucess':''}">
+			<tr>
 				<td>
 					${fieldValue(bean: orderInstance, field: "orderNumber")}
 				</td>
