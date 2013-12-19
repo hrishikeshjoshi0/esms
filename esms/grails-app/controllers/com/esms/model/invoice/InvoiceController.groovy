@@ -1,7 +1,8 @@
 package com.esms.model.invoice
 
-import grails.converters.JSON;
+import grails.converters.JSON
 
+import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
 import com.esms.model.calendar.Task
@@ -11,6 +12,8 @@ class InvoiceController {
 
     static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
 
+	def filterPaneService
+	
     def index() {
         redirect action: 'list', params: params
     }
@@ -19,6 +22,18 @@ class InvoiceController {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [invoiceInstanceList: Invoice.list(params), invoiceInstanceTotal: Invoice.count()]
     }
+	
+	def filter = {
+		if(!params.offset) {
+			params.offset= 0
+		}
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
+		render( view:'list', model:[ invoiceInstanceList: filterPaneService.filter( params, Invoice),
+			invoiceInstanceTotal: filterPaneService.count( params, Invoice), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
+	}
 
     def create() {
 		switch (request.method) {

@@ -11,9 +11,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h3>
-					<g:message code="default.list.label" args="[entityName]" />
-				</h3>
+				<h3>Overdue Events</h3>
 			</div>
 
 			<table class="table table-striped table-bordered mediaTable">
@@ -34,17 +32,13 @@
 						<th>
 							${message(code: 'event.assignedTo.label', default: 'Assigned To')}
 						</th>
-						
-						<th>
-							${message(code: 'event.status.label', default: 'Status')}
-						</th>
 
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<g:if test="${eventInstanceList != null && eventInstanceList.size() != 0}">
-						<g:each in="${eventInstanceList}" var="eventInstance">
+					<g:if test="${overdueEvents != null && overdueEvents.size() != 0}">
+						<g:each in="${overdueEvents}" var="eventInstance">
 							<tr>
 
 								<td>
@@ -62,10 +56,6 @@
 								<td>
 									${fieldValue(bean: eventInstance, field: "assignedTo")}
 								</td>
-								
-								<td>
-									${fieldValue(bean: eventInstance, field: "status")}
-								</td>
 
 								<td class="link"><g:link action="show" controller="event"
 										class="lnk " id="${eventInstance.id}">Show &raquo;</g:link></td>
@@ -76,7 +66,7 @@
 			</table>
 			<div class="pgn">
 				<bootstrap:paginate params="${filterParams}"
-					total="${eventInstanceListTotal}" />
+					total="${overdueEventsCount}" />
 			</div>
 		</div>
 	</div>

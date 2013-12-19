@@ -2,26 +2,29 @@
 <table class="table table-striped table-condensed table-bordered">
 	<thead>
 		<tr>
-			<g:sortableColumn property="orderNumber"
+			<g:sortableColumn params="${filterParams}" property="orderNumber"
 				title="${message(code: 'order.orderNumber.label', default: 'Order Number')}" />
 
-			<g:sortableColumn property="status"
+			<g:sortableColumn params="${filterParams}"
+				property="organization.name"
+				title="${message(code: 'quote.organization.name.label', default: 'Organization')}" />
+
+			<g:sortableColumn params="${filterParams}" property="status"
 				title="${message(code: 'order.status.label', default: 'Status')}" />
 
-			<g:sortableColumn property="type"
+			<g:sortableColumn params="${filterParams}" property="type"
 				title="${message(code: 'order.type.label', default: 'Type')}" />
 
-			<g:sortableColumn property="issueDate"
+			<g:sortableColumn params="${filterParams}" property="issueDate"
 				title="${message(code: 'order.issueDate.label', default: 'Issue Date')}" />
 
-			<g:sortableColumn property="grandTotal"
-				title="${message(code: 'order.grandTotal.label', default: 'Grand Total')}" />
+			<th>Total Amount</th>
 
-			<g:sortableColumn property="invoicedGrandTotal"
-				title="${message(code: 'order.invoicedGrandTotal.label', default: 'Invoiced Grand Total')}" />
+			<th>Invoiced Amount</th>
 
-			<g:sortableColumn property="pendingInvoiceGrandTotal"
-				title="${message(code: 'order.pendingInvoiceGrandTotal.label', default: 'Pending Invoice Amount')}" />
+			<th>Received Amount</th>
+
+			<th>Pending Invoice Amount</th>
 
 			<th></th>
 		</tr>
@@ -32,6 +35,11 @@
 				<td>
 					${fieldValue(bean: orderInstance, field: "orderNumber")}
 				</td>
+
+				<td><g:link controller="organization" action="show"
+						id="${orderInstance?.organization?.id}">
+						${fieldValue(bean: orderInstance, field: "organization.name")}
+					</g:link></td>
 
 				<td>
 					${fieldValue(bean: orderInstance, field: "status")}
@@ -48,14 +56,18 @@
 				</td>
 
 				<td>
-					${fieldValue(bean : orderInstance, field : "invoicedGrandTotal") }
+					${orderInstance?.invoicedGrandTotal}
+				</td>
+
+				<td>
+					${orderInstance?.getReceivedAmount()}
 				</td>
 
 				<td>
 					${fieldValue(bean : orderInstance, field : "pendingInvoiceGrandTotal") }
 				</td>
 
-				<td class="link"><g:link controller="order" action="show" id="${orderInstance.id}"
+				<td class="link"><g:link action="show" id="${orderInstance.id}"
 						class="lnk">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>

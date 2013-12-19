@@ -21,7 +21,25 @@ class EmployeeController {
 			params.max= grailsApplication.config.esms.settings.max?.toInteger()
 		}
 		
-        [employeeInstanceList: Employee.list(params), employeeInstanceTotal: Employee.count()]
+		def c = Employee.createCriteria()
+		def results = c.list {
+			and {
+				isNull("employmentEndDate")
+			}
+			maxResults(params.max)
+		}
+		
+		def c1 = Employee.createCriteria()
+		def cnt = c1.get {
+			and {
+				isNull("employmentEndDate")
+			}
+		    projections {
+		        countDistinct "id"
+		    }
+		}
+		
+        [employeeInstanceList: results, employeeInstanceTotal: cnt]
     }
 	
 	def filter = {

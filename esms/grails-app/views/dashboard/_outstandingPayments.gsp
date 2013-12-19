@@ -2,7 +2,7 @@
 <%@page import="com.esms.model.calendar.Event"%>
 
 <div class="page-header">
-	<h3>Invoices Pending Payments</h3>
+	<h3>Outstanding Payments</h3>
 </div>
 
 <table class="table table-striped table-bordered mediaTable">
@@ -35,7 +35,9 @@
 			<th>
 				${message(code: 'invoice.referenceOrderNumber.label', default: 'Order Number')}
 			</th>
-			
+			<th>
+				Title
+			</th>
 			<th>
 				Assigned To
 			</th>
@@ -89,9 +91,11 @@
 					<td>
 						${fieldValue(bean: invoiceInstance, field: "referenceOrderNumber")}
 					</td>
-					
 					<td>
-						${order?.assignedTo}
+						${eventInstance?.title}
+					</td>
+					<td>
+						${invoiceInstance?.assignedTo}
 					</td>
 					<td>
 						${eventInstance?.startTime}
@@ -121,7 +125,7 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<th colspan="13" class="link">
+			<th colspan="14" class="link">
 				<g:link class="lnk " controller="invoice" action="list">Show All &raquo;</g:link>
 			</th>				
 		</tr>

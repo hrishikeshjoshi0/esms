@@ -99,8 +99,20 @@ class EventController {
 	}
 	
 	def listView = {
+		if(!params.offset) {
+			params.offset= 0
+		}
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
+		params.sort = "startTime"
+		params.'order' = "asc"
+		
 		def listView = Event.list(params)
-		[eventInstanceList : listView,eventInstanceTotal:listView.size()]
+		def listViewCount = Event.count()
+		
+		[eventInstanceList : listView,eventInstanceListTotal:listViewCount]
 	}
 
     def list = {
@@ -399,4 +411,37 @@ class EventController {
 		}
 		render events?events.size():0
 	}
+	
+	def upcomingEvents = {
+		if(!params.offset) {
+			params.offset= 0
+		}
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
+		params.sort = "startTime"
+		params.'order' = "asc"
+		def upcomingEvents = Event.findAllByStartTimeGreaterThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],params)
+		def upcomingEventsCount = Event.countByStartTimeGreaterThanAndStatusInList(new Date(),['PLANNED','NOT HELD'])
+		
+		[upcomingEvents:upcomingEvents,upcomingEventsCount:upcomingEventsCount]
+	}
+	
+	def overdueEvents = {
+		params.sort = "startTime"
+		params.'order' = "asc"
+		
+		if(!params.offset) {
+			params.offset= 0
+		}
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
+		def overdueEvents = Event.findAllByStartTimeLessThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],params)
+		def overdueEventsCount = Event.countByStartTimeLessThanAndStatusInList(new Date(),['PLANNED','NOT HELD'])
+		[overdueEvents:overdueEvents,overdueEventsCount:overdueEventsCount]
+	}
+	
 }

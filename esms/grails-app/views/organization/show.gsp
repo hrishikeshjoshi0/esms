@@ -52,10 +52,12 @@
 								<g:message code="default.button.edit.label" default="Edit" />
 							</g:link>
 						--%>
-					<a
-						href="<g:createLink controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]"/>"
-						role="button" class="btn btn-primary btn-sm"> New Contract
-						Quote </a>
+					<g:if test="${!organizationInstance?.isOneTimeCustomer}">
+						<a
+							href="<g:createLink controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]"/>"
+							role="button" class="btn btn-primary btn-sm"> New Contract
+							Quote </a>
+					</g:if>	
 					<a
 						href="<g:createLink controller="quote" action="create" params="[type:'REPAIR',organizationId:organizationInstance?.id]" />"
 						role="button" class="btn btn-primary btn-sm"> New Repair Quote
@@ -104,6 +106,15 @@
 
 							<dd>
 								<g:fieldValue bean="${organizationInstance}" field="salesStatus" />
+							</dd>
+							
+							<dt>
+								<g:message code="organization.isOneTimeCustomer.label"
+									default="Is One Time Customer" />
+							</dt>
+	
+							<dd>
+								<g:formatBoolean boolean="${organizationInstance?.isOneTimeCustomer}" true="Yes" false="No"/>
 							</dd>
 
 							<dt>
@@ -210,12 +221,13 @@
 						</div>
 					</g:if>
 					<g:else>
-						<div class="col-md-4">
-							<dl class="dl-horizontal">
-								<dt>No Ongoing Contract</dt>
-							</dl>
-						</div>
-
+						<g:if test="${!organizationInstance?.isOneTimeCustomer}">
+							<div class="col-md-4">
+								<dl class="dl-horizontal">
+									<dt>No Ongoing Contract</dt>
+								</dl>
+							</div>
+						</g:if>
 					</g:else>
 
 					<div class="col-md-4">

@@ -25,7 +25,7 @@
 			<g:if test="${!quoteInstance?.areLinesAdded()}">
 				<div>
 					<bootstrap:alert class="${'alert-warning'}">
-						Warning! This quotation looks empty, please add lines to start the sales process. 
+						Warning! This quotation looks empty, please add lines to it to start the sales process. 
 					</bootstrap:alert>	
 				</div>
 			</g:if>

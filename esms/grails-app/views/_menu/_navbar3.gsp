@@ -129,12 +129,26 @@
 					</ul>
 				</li>
 				
-				<li>
-					<g:link controller="event">
-						Calendar
-					</g:link>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Calendar <b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<g:link class="lnk " controller="event" action="index">View Calendar</g:link>
+						</li>
+						<li>
+							<g:link class="lnk " controller="event" action="listView">All Events</g:link>
+						</li>
+						<li>
+							<g:link class="lnk " controller="event" action="overdueEvents">Overdue Events</g:link>
+						</li>
+						<li>
+							<g:link class="lnk " controller="event" action="upcomingEvents">Upcoming Events</g:link>
+						</li>
+					</ul>
 				</li>
-				
+
 				<li>
 					<g:link controller="employee">
 						HR

@@ -54,7 +54,7 @@
 	<tfoot>
 		<tr>
 			<th class="link" colspan="7">
-				<g:link controller="event" action="listView" class="lnk ">Show All &raquo;</g:link>
+				<g:link controller="event" action="upcomingEvents" class="lnk ">Show All &raquo;</g:link>
 			</th>				
 		</tr>
 	</tfoot>

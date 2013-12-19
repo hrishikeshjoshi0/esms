@@ -20,15 +20,14 @@
 				Assigned To
 			</th>
 			<th>
-				Starts
-			</th>
-			<th>
-				Ends
+				Title
 			</th>
 			<th>
 				Status
 			</th>
-			<th></th>
+			<th>
+				Event
+			</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -69,10 +68,7 @@
 					${order?.assignedTo}
 				</td>
 				<td>
-					${eventInstance?.startTime}
-				</td>
-				<td>
-					${eventInstance?.endTime}
+					${eventInstance?.title}
 				</td>
 				<td>
 					${eventInstance?.status}
@@ -93,7 +89,7 @@
 	</tbody>
 	<tfoot>
 			<tr>
-				<th colspan="10" class="link">
+				<th colspan="11" class="link">
 					<g:link controller="order" action="list" class="lnk ">Show All &raquo;</g:link>
 				</th>				
 			</tr>

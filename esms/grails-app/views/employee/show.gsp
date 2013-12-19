@@ -39,13 +39,14 @@
 							name="_action_delete">
 							<g:message code="default.button.delete.label" default="Delete" />
 						</button>
-
-						<g:link class="btn btn-default btn-sm" action="markAsTerminated"
-							id="${employeeInstance?.id}">
-
-							<g:message code="default.button.markAsTerminated.label"
-								default="Mark as Terminated" />
-						</g:link>
+						
+						<g:if test="${employeeInstance?.employmentEndDate == null }">
+							<g:link class="btn btn-default btn-sm" action="markAsTerminated"
+								id="${employeeInstance?.id}">
+								<g:message code="default.button.markAsTerminated.label"
+									default="Mark as Terminated" />
+							</g:link>
+						</g:if>
 					</div>
 				</g:form>
 			</div>

@@ -126,6 +126,11 @@
 								default="Is Problem Repeated" />
 						</g:link>
 					</g:if>
+					<g:if test="${params.controller == 'event'}">
+						<g:link class="list-group-item ${ params.action == "listView" ? 'active' : '' }" controller="event" action="listView">All Events</g:link>
+						<g:link class="list-group-item ${ params.action == "upcomingEvents" ? 'active' : '' }" controller="event" action="upcomingEvents">Upcoming Events</g:link>
+						<g:link class="list-group-item ${ params.action == "overdueEvents" ? 'active' : '' }" controller="event" action="overdueEvents">Overdue Events</g:link>
+					</g:if>
 				</div>
 				
 				<g:if test="${params.action == 'list' || params.action == 'filter' }">
@@ -164,9 +169,9 @@
 								removeImgFile="skin/database_delete.png"
 								fullAssociationPathFieldNames="no" />
 						</g:elseif>
-						<g:elseif test="${params.controller == 'employee'}">
+						<g:elseif test="${params.controller == 'invoice'}">
 							<filterpane:currentCriteria
-								domainBean="com.esms.model.party.Employee" removeImgDir="images"
+								domainBean="com.esms.model.invoice.Invoice" removeImgDir="images"
 								removeImgFile="skin/database_delete.png"
 								fullAssociationPathFieldNames="no" />
 						</g:elseif>

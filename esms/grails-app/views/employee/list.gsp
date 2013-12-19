@@ -32,29 +32,29 @@
 						<g:sortableColumn params="${filterParams}" property="lastName"
 							title="${message(code: 'employee.lastName.label', default: 'Last Name')}" />
 
-						<g:sortableColumn params="${filterParams}" property="middleName"
-							title="${message(code: 'employee.middleName.label', default: 'Middle Name')}" />
+						<th>Mobile Number</th>
 
-						<g:sortableColumn params="${filterParams}" property="previousExperience"
-							title="${message(code: 'employee.previousExperience.label', default: 'Previous Experience')}" />
+						<th>Home Number</th>
 
-						<g:sortableColumn params="${filterParams}" property="salary"
-							title="${message(code: 'employee.salary.label', default: 'Salary')}" />
-
-						<g:sortableColumn params="${filterParams}" property="benefits"
-							title="${message(code: 'employee.benefits.label', default: 'Benefits')}" />
-							
-						<g:sortableColumn params="${filterParams}" property="employmentStartDate"
-							title="${message(code: 'employee.employmentStartDate.label', default: 'Employment Start Date')}" />
-							
-						<g:sortableColumn params="${filterParams}" property="employmentEndDate"
-							title="${message(code: 'employee.employmentEndDate.label', default: 'Employment End Date')}" />		
+						<g:sortableColumn params="${filterParams}"
+							property="addresses.address1"
+							title="${message(code: 'address.address1.label', default: 'Address1')}" />
+						<g:sortableColumn params="${filterParams}"
+							property="addresses.address2"
+							title="${message(code: 'address.address2.label', default: 'Address2')}" />
+						<g:sortableColumn params="${filterParams}"
+							property="addresses.city"
+							title="${message(code: 'address.city.label', default: 'City')}" />
+						
+						<g:sortableColumn params="${filterParams}" property="skillLevel"
+							title="${message(code: 'employee.skillLevel.label', default: 'Skill Level')}" />	
 
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<g:each in="${employeeInstanceList}" var="employeeInstance">
+						<g:set var="addressInstance" value="${employeeInstance?.addresses?.first()}" />
 						<tr>
 
 							<td>
@@ -64,29 +64,27 @@
 							<td>
 								${fieldValue(bean: employeeInstance, field: "lastName")}
 							</td>
-
+							
 							<td>
-								${fieldValue(bean: employeeInstance, field: "middleName")}
-							</td>
-
-							<td>
-								${fieldValue(bean: employeeInstance, field: "previousExperience")}
-							</td>
-
-							<td>
-								${fieldValue(bean: employeeInstance, field: "salary")}
-							</td>
-
-							<td>
-								${fieldValue(bean: employeeInstance, field: "benefits")}
-							</td>
-
-							<td>
-								${fieldValue(bean: employeeInstance, field: "employmentStartDate")}
+								${employeeInstance?.phoneBooks?.first()?.mobilePhone}
 							</td>
 							
 							<td>
-								${fieldValue(bean: employeeInstance, field: "employmentEndDate")}
+								${employeeInstance?.phoneBooks?.first()?.homePhone}
+							</td>
+
+							<td>
+								${addressInstance?.address1}
+							</td>
+							<td>
+								${addressInstance?.address2}
+							</td>
+							<td>
+								${addressInstance?.city}
+							</td>
+							
+							<td>
+								${fieldValue(bean: employeeInstance, field: "skillLevel")}
 							</td>
 
 							<td class="link"><g:link action="show"

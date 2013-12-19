@@ -29,7 +29,7 @@
 			</div>
 			
 			<div class="well">
-				<g:form class="form-horizontal" action="edit"
+				<g:form class="form-horizontal" action="update"
 					id="${eventInstance?.id}">
 					<g:hiddenField name="version" value="${eventInstance?.version}" />
 					<fieldset>
