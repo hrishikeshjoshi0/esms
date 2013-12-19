@@ -160,6 +160,27 @@ class ProductController {
 		}
 	}
 	
+	def editPrice() {
+		switch (request.method) {
+		case 'GET':
+			def productPriceInstance = ProductPrice.get(params.id)
+			[productPriceInstance: productPriceInstance]
+			break
+		case 'POST':
+			def productPriceInstance = ProductPrice.get(params.id)
+	        productPriceInstance.properties = params
+
+	        if (!productPriceInstance.save(flush: true)) {
+	            render view: 'edit', model: [productPriceInstance: productPriceInstance]
+	            return
+	        }
+
+			flash.message = "Updated Price."
+			redirect controller: "product", action: 'show', id: productPriceInstance?.product?.id
+			break
+		}
+	}
+	
 	def searchAJAX = {
 		def products = Product.findAllByProductNameLike("%${params.query}%")
 

@@ -51,27 +51,59 @@
 							<g:link class="btn btn-default btn-sm" action="edit" id="${organizationInstance?.id}">
 								<g:message code="default.button.edit.label" default="Edit" />
 							</g:link>
-						--%>
-					<g:if test="${!organizationInstance?.isOneTimeCustomer}">
-						<a
-							href="<g:createLink controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]"/>"
-							role="button" class="btn btn-primary btn-sm"> New Contract
-							Quote </a>
-					</g:if>	
-					<a
-						href="<g:createLink controller="quote" action="create" params="[type:'REPAIR',organizationId:organizationInstance?.id]" />"
-						role="button" class="btn btn-primary btn-sm"> New Repair Quote
-					</a>
+							
+							<button class="btn btn-sm btn-default" type="submit"
+								name="_action_delete">
+								<g:message code="default.button.delete.label" default="Delete" />
+							</button>
+					--%>
+					
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
+						    Create Quote <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<g:if test="${!organizationInstance?.isOneTimeCustomer}">
+								<li>
+									<a href="<g:createLink controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]"/>"> 
+										New Contract Quote 
+									</a>
+								</li>
+							</g:if>
+							<li>
+								<a href="<g:createLink controller="quote" action="create" params="[type:'REPAIR',organizationId:organizationInstance?.id]" />"> 
+									New Repair Quote
+								</a>
+							</li>
+							<li>
+								<a href="<g:createLink controller="quote" action="create" params="[type:'MODERNIZATION',organizationId:organizationInstance?.id]" />"> 
+									New Modernization Quote
+								</a>
+							</li>
+							<li>
+								<a href="<g:createLink controller="quote" action="create" params="[type:'INSTALLATION',organizationId:organizationInstance?.id]" />"> 
+									New Installation Quote
+								</a>
+							</li>						
+						</ul>
+					</div>
+
 					<g:link controller="task" action="create" role="button"
 						class="btn btn-sm btn-primary"
 						params="[relatedTo:'ORGANIZATION',relatedToValue:organizationInstance?.externalId,taskName:'']">
 							 	Create Task
-						</g:link>
-
-					<button class="btn btn-sm btn-default" type="submit"
-						name="_action_delete">
-						<g:message code="default.button.delete.label" default="Delete" />
-					</button>
+					</g:link>
+					
+					<g:link controller="organization" action="create" role="button"
+						class="btn btn-sm btn-primary"
+						params="[relatedTo:'ORGANIZATION',relatedToValue:organizationInstance?.externalId,taskName:'']">
+							 Lost Customer
+					</g:link>
+					
+					<bs3:modalLink id="lostCustomer"
+						href="${createLink(controller:'organization',action:'lostCustomer',params:['id':organizationInstance?.id])}"
+						title="Mark As Lost" />
+					
 				</g:form>
 			</div>
 

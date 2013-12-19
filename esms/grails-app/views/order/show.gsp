@@ -420,6 +420,11 @@
 					</richui:tabContent>
 					
 					<richui:tabContent>
+						<div class="pull-right">
+							<bs3:modalLink
+								href="${createLink(controller:'order',action:'editNotes',params="['id':orderInstance?.id]")}"
+								id="editNotes" title="Edit" />
+						</div>
 						<g:fieldValue bean="${orderInstance}" field="notes" />
 					</richui:tabContent>
 				</richui:tabContents>

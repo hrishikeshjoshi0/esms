@@ -1,6 +1,6 @@
 <div class="pull-right">
 	<bs3:modalLink
-		href="${createLink(controller:'organization',createAddress:'createAddress',params="['party.id':organizationInstance?.id]")}"
+		href="${createLink(controller:'organization',action:'createAddress',params="['party.id':organizationInstance?.id]")}"
 		id="createAddress" title="Create Address" />
 </div>
 

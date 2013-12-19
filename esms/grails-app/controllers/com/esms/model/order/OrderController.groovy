@@ -137,14 +137,14 @@ class OrderController {
 			order.invoicingIsFixedPrice = quote.invoicingIsFixedPrice
 			order.invoicingIsTimesheets = quote.invoicingIsTimesheets
 			order.invoicingIsExpenses = quote.invoicingIsExpenses
-			order.assignedTo = quote.assignedTo
-			order.termsAndConditions = quote.termsAndConditions
-
 		} else {
 			order.type = quote.type
 			order.relatedTo = "CONTRACT"
 			quote.status = "CONVERTED_TO_SALES_ORDER"
 		}
+		
+		order.assignedTo = quote.assignedTo
+		order.termsAndConditions = quote.termsAndConditions
 
 		//Invoiced And Pending Invoiced Grand Total
 		order.organization = quote.organization
@@ -681,6 +681,21 @@ class OrderController {
 				organization.save(flush:true)
 				
 				flash.message = 'Renewal Lost !. Organization ' + organization.name + ' marked as lost in renewal.'
+				redirect action: 'show', id: orderInstance.id
+				break
+		}
+	}
+	
+	def editNotes() {
+		switch (request.method) {
+			case 'GET':
+				def orderInstance = Order.get(params.id)
+				[orderInstance: orderInstance]
+				break
+			case 'POST':
+				def orderInstance = Order.get(params.id)
+				orderInstance.notes = params.notes
+				orderInstance.save(flush: true)				
 				redirect action: 'show', id: orderInstance.id
 				break
 		}

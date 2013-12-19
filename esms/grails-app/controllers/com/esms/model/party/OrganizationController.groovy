@@ -387,4 +387,24 @@ class OrganizationController {
 			}
 		}
 	}
+	
+	def lostCustomer() {
+		switch (request.method) {
+		case 'GET':
+			def organizationInsance = Organization.get(params.id)
+			[organizationInsance: organizationInsance]
+			return
+		case 'POST':
+			def organizationInstance = Organization.get(params.id)
+	        organizationInstance.properties = params
+			organizationInstance.salesStatus = 'LOST'
+
+	        if (!organizationInstance.save(flush: true)) {
+	            redirect controller: 'organization', action: 'show', id: organizationInstance?.id
+	            return
+	        }
+			
+			redirect controller: 'organization', action: 'show', id: organizationInstance?.id
+		}
+	}
 }

@@ -19,6 +19,7 @@ class Organization extends Party {
 	boolean isOneTimeCustomer = false
 	//TODO:Can be moved to a different module called PartyGroup
 	String groupName
+	String lostReason
 	
 	static hasMany = [contacts : Contact,quotes : Quote,orders : Order,contracts : Contract,purchaseOrders : PurchaseOrder,payments:Payment,invoices:Invoice]
 	
@@ -26,12 +27,13 @@ class Organization extends Party {
 	
 	static constraints = {
 		name blank:true
-		salesStatus inList: ["LEAD", "CUSTOMER","DISQUALIFIED","LOST_IN_RENEWAL"]
+		salesStatus inList: ["LEAD", "CUSTOMER","DISQUALIFIED","LOST_IN_RENEWAL","LOST"]
 		liftInfo nullable:true
 		purchaseOrders nullable:true
 		payments nullable:true
 		invoices nullable:true
 		groupName nullable:true,blank:true
+		lostReason nullable:true,blank:true
 	}
 	
 	def convertLead() {

@@ -67,7 +67,8 @@
 					${fieldValue(bean : orderInstance, field : "pendingInvoiceGrandTotal") }
 				</td>
 
-				<td class="link"><g:link action="show" id="${orderInstance.id}"
+				<td class="link">
+					<g:link controller="order" action="show" id="${orderInstance.id}"
 						class="lnk">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
