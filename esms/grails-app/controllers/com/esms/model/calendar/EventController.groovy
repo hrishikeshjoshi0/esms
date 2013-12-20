@@ -365,30 +365,44 @@ class EventController {
 	def attachWorkDoneCertificate = {
 		switch (request.method) {
 			case 'GET':
-				def party = Event.get(params.id)?.party
-				if(party?.partyType == "ORGANIZATION") {
-					params.customerName = party?.name
-					
-					if(party?.addresses) {
-						params.location = it?.buildingName
+				def event = Event.get(params.id)
+				def workDoneCertificateInstance
+				if(event?.workDoneCertificate) {
+					workDoneCertificateInstance = event?.workDoneCertificate
+				} else {
+					def party = event?.party
+					if(party?.partyType == "ORGANIZATION") {
+						params.customerName = party?.name
+							
+						if(party?.addresses) {
+							params.location = it?.buildingName
+						}
+					} else if(party?.partyType == "CONTACT") {
+						params.customerName = party?.firstName + " " + party?.lastName
+										
+						party?.addresses?.each {
+							params.location = it?.buildingName
+						}
 					}
-				} else if(party?.partyType == "CONTACT") {
-					params.customerName = party?.firstName + " " + party?.lastName
-					
-					party?.addresses?.each {
-						params.location = it?.buildingName
-					}
+					workDoneCertificateInstance = new WorkDoneCertificate(params)
 				}
-				[workDoneCertificateInstance: new WorkDoneCertificate(params)]
+				[workDoneCertificateInstance: workDoneCertificateInstance]
 				break
 			case 'POST':
-				def workDoneCertificateInstance = new WorkDoneCertificate(params)
+				def event = Event.get(params.'event.id')
+				def workDoneCertificateInstance
+				if(event?.workDoneCertificate) {
+					workDoneCertificateInstance = event?.workDoneCertificate
+					workDoneCertificateInstance.properties = params 
+				} else {
+					workDoneCertificateInstance = new WorkDoneCertificate(params)
+				}
+				
 				if (!workDoneCertificateInstance.save(flush: true)) {
-					render view: 'create', model: [workDoneCertificateInstance: workDoneCertificateInstance]
+					render view: 'attachWorkDoneCertificate', model: [workDoneCertificateInstance: workDoneCertificateInstance]
 					return
 				}
 	
-				workDoneCertificateInstance.save(flush:true)
 				flash.message = "Work Done Certificate Attached."
 				redirect(action: "show", id: workDoneCertificateInstance.event.id)
 				break

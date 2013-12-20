@@ -14,6 +14,8 @@ class InvoiceController {
 
 	def filterPaneService
 	
+	def utilService
+	
     def index() {
         redirect action: 'list', params: params
     }
@@ -47,7 +49,7 @@ class InvoiceController {
 			} else {
 				def list = Invoice.list();
 				int no = (list?list.size():0) + 1;
-				params.invoiceNumber = "INV" + String.format("%05d", no)
+				params.invoiceNumber = "-Auto Gen-"
 				invoiceInstance = new Invoice(params)
 				openOrders = Order.withCriteria() {
 					gt("openGrandTotal",0.0)
@@ -57,6 +59,7 @@ class InvoiceController {
 			break
 		case 'POST':
 	        def invoiceInstance = new Invoice(params)
+			invoiceInstance.invoiceNumber = utilService.newInvoiceNumber()
 	        if (!invoiceInstance.save(flush: true)) {
 	            render view: 'create', model: [invoiceInstance: invoiceInstance]
 	            return

@@ -42,11 +42,11 @@ class QuoteController {
 	def create() {
 		switch (request.method) {
 			case 'GET':
-				def list = Quote.list();
+				/*def list = Quote.list();
 				int no = (list?list.size():0) + 1;
-				String quoteNumber = "QUO" + String.format("%05d", no)
+				String quoteNumber = "QUO" + String.format("%05d", no)*/
 
-				params.quoteNumber = quoteNumber
+				params.quoteNumber = '-Auto Gen-'
 				params.status = 'PENDING'
 				
 				if(params.organizationId) {
@@ -136,6 +136,12 @@ class QuoteController {
 				[quoteInstance: quote,quoteLinesTotal:quote?.quoteItems?.size()]
 				break
 			case 'POST':
+				def list = Quote.list();
+				int no = (list?list.size():0) + 1;
+				String quoteNumber = "QUO" + String.format("%05d", no)
+	
+				params.quoteNumber = quoteNumber
+				
 				def quoteInstance = new Quote(params)
 
 				if (!quoteInstance.save(flush: true)) {
@@ -351,8 +357,8 @@ class QuoteController {
 
 	def convertToSalesOrder = {
 		def quoteInstance = Quote.get(params.id)
-
 		quoteInstance.negotiatedGrandTotal = params.negotiatedGrandTotal?.toBigDecimal()
+		quoteInstance.notes = params.notes
 		
 		def diff = quoteInstance.quotedGrandTotal - quoteInstance.negotiatedGrandTotal
 		
@@ -403,10 +409,6 @@ class QuoteController {
 			//Initialize the Quoted and the Negotiated Total to the Grand Total.
 			quoteInstance.quotedGrandTotal = lineTotalAmount
 			quoteInstance.negotiatedGrandTotal = 0
-							
-			quoteInstance.save(flush:true)
-			
-			quoteInstance.notes = params.notes
 			quoteInstance.save(flush:true)
 		}
 		

@@ -44,10 +44,10 @@
 			</div>
 
 			<div class="well">
-				<g:form>
+				<%--<g:form>
 					<g:hiddenField name="id" value="${organizationInstance?.id}" />
 					<!-- TODO : HRISHI Disabled temporarily -->
-					<%--
+					
 							<g:link class="btn btn-default btn-sm" action="edit" id="${organizationInstance?.id}">
 								<g:message code="default.button.edit.label" default="Edit" />
 							</g:link>
@@ -56,8 +56,14 @@
 								name="_action_delete">
 								<g:message code="default.button.delete.label" default="Delete" />
 							</button>
-					--%>
 					
+					</g:form>
+					--%>
+					<%--<g:link class="btn btn-default btn-sm" action="edit" controller="organization"
+						id="${organizationInstance?.id}">
+						<g:message code="default.button.edit.label" default="Edit" />
+					</g:link>
+					--%>
 					<div class="btn-group">
 						<button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
 						    Create Quote <span class="caret"></span>
@@ -94,17 +100,12 @@
 							 	Create Task
 					</g:link>
 					
-					<g:link controller="organization" action="create" role="button"
-						class="btn btn-sm btn-primary"
-						params="[relatedTo:'ORGANIZATION',relatedToValue:organizationInstance?.externalId,taskName:'']">
-							 Lost Customer
-					</g:link>
-					
-					<bs3:modalLink id="lostCustomer"
-						href="${createLink(controller:'organization',action:'lostCustomer',params:['id':organizationInstance?.id])}"
-						title="Mark As Lost" />
-					
-				</g:form>
+					<g:if test="${organizationInstance?.salesStatus != 'LOST' }">
+						<bs3:modalLink id="lostCustomer"
+							href="${createLink(controller:'organization',action:'lostCustomer',params:['id':organizationInstance?.id])}"
+							title="Mark As Lost" />
+					</g:if>
+				
 			</div>
 
 
@@ -359,6 +360,9 @@
 					<richui:tabLabel title="Invoices" />
 					<richui:tabLabel title="Payments" />
 					<richui:tabLabel title="Documents" />
+					<g:if test="${organizationInstance?.salesStatus == 'LOST' }">
+						<richui:tabLabel title="Lost Reason" />
+					</g:if>
 				</richui:tabLabels>
 
 				<richui:tabContents>
@@ -409,6 +413,12 @@
 					<richui:tabContent>
 						<g:render template="docsList" />
 					</richui:tabContent>
+					
+					<g:if test="${organizationInstance?.salesStatus == 'LOST' }">
+						<richui:tabContent>
+							${organizationInstance?.lostReason}
+						</richui:tabContent>
+					</g:if>
 				</richui:tabContents>
 			</richui:tabView>
 		</div>

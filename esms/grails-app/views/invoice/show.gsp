@@ -98,6 +98,14 @@
 							<dd>
 								<g:fieldValue bean="${invoiceInstance}" field="type" />
 							</dd>
+							
+							<dt>
+								<g:message code="invoice.assignedTo.label" default="Assigned To" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${invoiceInstance}" field="assignedTo" />
+							</dd>
 
 
 							<dt>

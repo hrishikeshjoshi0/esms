@@ -8,7 +8,7 @@
 					code="workDoneCertificate.date.label" default="Date" /><span
 				class="required-indicator">*</span></label>
 			<div class="col-md-9">
-				<g:datePicker name="date" precision="day" value="${workDoneCertificateInstance?.date}" class="form-control" />
+				<richui:dateChooser name="date" value="${workDoneCertificateInstance?.date}" class="form-control"/>
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'date', 'error')}
 				</span>
 			</div>
@@ -133,8 +133,9 @@
 			<label for="arrivalTime" class="col-md-3 control-label"><g:message
 					code="workDoneCertificate.arrivalTime.label" default="Arrival Time" /></label>
 			<div class="col-md-9">
-				<g:datePicker precision="minute" name="arrivalTime" class="form-control"
-					value="${workDoneCertificateInstance?.arrivalTime}" />
+				<richui:dateChooser name="arrivalTime"
+					value="${workDoneCertificateInstance?.arrivalTime}" time="true"
+					class="col-md-6" hourClass="col-md-2" minuteClass="col-md-2" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'arrivalTime', 'error')}
 				</span>
 			</div>
@@ -158,8 +159,8 @@
 					code="workDoneCertificate.repairsWorkCompleted.label"
 					default="Repairs Work Completed" /></label>
 			<div class="col-md-9">
-				<g:datePicker precision="day" name="repairsWorkCompleted" class="form-control"
-					value="${workDoneCertificateInstance?.repairsWorkCompleted}" />
+				<richui:dateChooser name="repairsWorkCompleted" class="form-control"
+						value="${workDoneCertificateInstance?.repairsWorkCompleted}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'repairsWorkCompleted', 'error')}
 				</span>
 			</div>
@@ -184,8 +185,8 @@
 					code="workDoneCertificate.ind_T_S_OrderExecutionWorkStarted.label"
 					default="Ind TSO rder Execution Work Started" /></label>
 			<div class="col-md-9">
-				<g:datePicker precision="day" name="ind_T_S_OrderExecutionWorkStarted" class="form-control"
-					value="${workDoneCertificateInstance?.ind_T_S_OrderExecutionWorkStarted}" />
+				<richui:dateChooser name="ind_T_S_OrderExecutionWorkStarted" class="form-control"
+						value="${workDoneCertificateInstance?.ind_T_S_OrderExecutionWorkStarted}" />
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'ind_T_S_OrderExecutionWorkStarted', 'error')}
 				</span>
 			</div>
@@ -198,8 +199,7 @@
 					code="workDoneCertificate.ind_T_S_OrderExecutionWorkCompleted.label"
 					default="Ind TSO rder Execution Work Completed" /></label>
 			<div class="col-md-9">
-				<g:datePicker precision="day" name="ind_T_S_OrderExecutionWorkCompleted" class="form-control"
-					value="${workDoneCertificateInstance?.ind_T_S_OrderExecutionWorkCompleted}" />
+				<richui:dateChooser name="ind_T_S_OrderExecutionWorkCompleted" value="${workDoneCertificateInstance?.ind_T_S_OrderExecutionWorkCompleted}" class="form-control"/>
 				<span class="help-inline"> ${hasErrors(bean: workDoneCertificateInstance, field: 'ind_T_S_OrderExecutionWorkCompleted', 'error')}
 				</span>
 			</div>

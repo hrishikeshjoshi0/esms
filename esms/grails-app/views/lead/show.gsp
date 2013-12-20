@@ -19,21 +19,51 @@
 			</div>
 
 			<div class="well">
-				<g:form>
+					<%--<g:form>
+					<!-- TODO : HRISHI disabled temporarily -->
+							<g:link class="btn btn-default btn-sm" action="edit"
+								id="${organizationInstance?.id}">
+								<g:message code="default.button.edit.label" default="Edit" />
+							</g:link>
+							
+							<button class="btn btn-default btn-sm" type="submit"
+								name="_action_delete">
+								<g:message code="default.button.delete.label" default="Delete" />
+							</button>
+							
+							
+					</g:form>
+					--%>
 					<g:hiddenField name="id" value="${organizationInstance?.id}" />
-					<div class="form-actions">
-						<g:if test="${!organizationInstance?.isOneTimeCustomer}">
-							<a
-								href="<g:createLink controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]"/>"
-								role="button" class="btn btn-primary btn-sm"> New Contract
-							Quote 
-							</a>
-						</g:if> 
-						<a
-							href="<g:createLink controller="quote" action="create" params="[type:'REPAIR',organizationId:organizationInstance?.id]" />"
-							role="button" class="btn btn-primary btn-sm">  New
-							Repair Quote
-						</a>
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
+							    Create Quote <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<g:if test="${!organizationInstance?.isOneTimeCustomer}">
+									<li>
+										<a href="<g:createLink controller="quote" action="create" params="[contractQuote:true,type:'CONTRACT',organizationId:organizationInstance?.id]"/>"> 
+											New Contract Quote 
+										</a>
+									</li>
+								</g:if>
+								<li>
+									<a href="<g:createLink controller="quote" action="create" params="[type:'REPAIR',organizationId:organizationInstance?.id]" />"> 
+										New Repair Quote
+									</a>
+								</li>
+								<li>
+									<a href="<g:createLink controller="quote" action="create" params="[type:'MODERNIZATION',organizationId:organizationInstance?.id]" />"> 
+										New Modernization Quote
+									</a>
+								</li>
+								<li>
+									<a href="<g:createLink controller="quote" action="create" params="[type:'INSTALLATION',organizationId:organizationInstance?.id]" />"> 
+										New Installation Quote
+									</a>
+								</li>						
+							</ul>
+						</div>
 						
 						<g:if test="${organizationInstance.salesStatus == 'LEAD'}">
 							<g:link class="btn btn-default btn-sm" controller="organization"
@@ -46,18 +76,16 @@
 								name="_action_disqualifyLead">Disqualify Lead</button>
 						</g:if>
 						
-						<!-- TODO : HRISHI disabled temporarily -->
-						<g:link class="btn btn-default btn-sm" action="edit"
+						<g:link class="btn btn-default btn-sm" action="edit" controller="lead"
 							id="${organizationInstance?.id}">
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
 						
-						<button class="btn btn-default btn-sm" type="submit"
-							name="_action_delete">
-							<g:message code="default.button.delete.label" default="Delete" />
-						</button>
-					</div>
-				</g:form>
+						<g:if test="${organizationInstance?.salesStatus != 'LOST' }">
+							<bs3:modalLink id="lostLead"
+								href="${createLink(controller:'lead',action:'lostLead',id:organizationInstance?.id)}"
+								title="Mark As Lost" />
+						</g:if>
 			</div>
 
 
@@ -122,6 +150,9 @@
 					<richui:tabLabel title="Addresses" />
 					<richui:tabLabel title="Quotes" />
 					<richui:tabLabel title="Events" />
+					<g:if test="${organizationInstance?.salesStatus == 'LOST' }">
+						<richui:tabLabel title="Lost Reason" />
+					</g:if>
 				</richui:tabLabels>
 
 				<richui:tabContents>
@@ -144,6 +175,12 @@
 					<richui:tabContent>
 						<g:render template="eventList" />
 					</richui:tabContent>
+					
+					<g:if test="${organizationInstance?.salesStatus == 'LOST' }">
+						<richui:tabContent>
+							${organizationInstance?.lostReason}
+						</richui:tabContent>
+					</g:if>
 				</richui:tabContents>
 			</richui:tabView>
 		</div>

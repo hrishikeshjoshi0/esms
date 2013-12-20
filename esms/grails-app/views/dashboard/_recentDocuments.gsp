@@ -41,7 +41,7 @@
 	<tfoot>
 		<tr>
 			<th colspan="4" class="link"><g:link controller="docs"
-					action="list" class="lnk ">Show All &raquo;</g:link></th>
+					action="index" class="lnk ">Show All &raquo;</g:link></th>
 		</tr>
 	</tfoot>
 </table>

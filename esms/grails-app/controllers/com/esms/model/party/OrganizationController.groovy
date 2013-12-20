@@ -15,6 +15,8 @@ class OrganizationController {
     static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
 	
 	def filterPaneService
+	
+	def utilService
 
     def index() {
         redirect action: 'list', params: params
@@ -79,15 +81,17 @@ class OrganizationController {
     def create() {
 		switch (request.method) {
 		case 'GET':
-			def list = Party.list();
+			/*def list = Party.list();
 			int no = (list?list.size():0) + 1;
-			String externalId = "ORG" + String.format("%05d", no)
-			params.externalId = externalId
+			String externalId = "ORG" + String.format("%05d", no)*/
+			params.externalId = '-Auto Gen-'
 			[organizationInstance: new Organization(params),contactInstance : new Contact(),addressInstance:new Address(),phoneBookInstance:new PhoneBook(),liftInfoInstance: new LiftInfo()]
 			break
 		case 'POST':
 			def organizationInstance = new Organization(params)
 			organizationInstance.partyType = "ORGANIZATION"
+			
+			organizationInstance.externalId = utilService.newOrganizationNumber()
 			
 			if (!organizationInstance.save(flush: true)) {
 				render view: 'create', model: [organizationInstance: organizationInstance]
@@ -97,9 +101,7 @@ class OrganizationController {
 			def contactInstance = new Contact()
 			contactInstance = bindData(contactInstance, params, "primary") 
 			
-			def list = Party.list();
-			int no = (list?list.size():0) + 1;
-			contactInstance.externalId = "CONT" + String.format("%05d", no)
+			contactInstance.externalId = utilService.newContactNumber()
 			contactInstance.partyType = 'CONTACT'
 			
 			contactInstance.organization = organizationInstance
@@ -114,9 +116,7 @@ class OrganizationController {
 			def secondaryContactInstance = new Contact()
 			secondaryContactInstance = bindData(secondaryContactInstance, params, "secondary")
 			
-			list = Party.list();
-			no = (list?list.size():0) + 1;
-			secondaryContactInstance.externalId = "CONT" + String.format("%05d", no)
+			secondaryContactInstance.externalId = utilService.newContactNumber()
 			secondaryContactInstance.partyType = 'CONTACT'
 			
 			secondaryContactInstance.organization = organizationInstance
@@ -393,16 +393,16 @@ class OrganizationController {
 		case 'GET':
 			def organizationInsance = Organization.get(params.id)
 			[organizationInsance: organizationInsance]
-			return
+			break
 		case 'POST':
 			def organizationInstance = Organization.get(params.id)
-	        organizationInstance.properties = params
+			organizationInstance.lostReason = params.lostReason
 			organizationInstance.salesStatus = 'LOST'
 
-	        if (!organizationInstance.save(flush: true)) {
-	            redirect controller: 'organization', action: 'show', id: organizationInstance?.id
-	            return
-	        }
+			if (!organizationInstance.save(flush: true)) {
+				redirect controller: 'organization', action: 'show', id: organizationInstance?.id
+				return
+			}
 			
 			redirect controller: 'organization', action: 'show', id: organizationInstance?.id
 		}

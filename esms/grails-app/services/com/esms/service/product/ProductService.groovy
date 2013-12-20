@@ -20,7 +20,7 @@ class ProductService {
     }
 	
 	def Product createNewProduct(params) {
-		params.productNumber = utilService.newProductNumber()
+		params.productNumber = '-Auto Gen-'
 		
 		def product = new Product()
 		product.properties = params

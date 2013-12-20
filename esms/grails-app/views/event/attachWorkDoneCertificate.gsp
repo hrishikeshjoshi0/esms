@@ -32,7 +32,7 @@
 			<div class="well">
 				<g:form class="form-horizontal" action="attachWorkDoneCertificate">
 					<fieldset>
-						<g:hiddenField name="event.id" value="${params.id}"/>
+						<g:hiddenField name="event.id" value="${workDoneCertificateInstance?.event?.id}"/>
 						<g:render template="/workDoneCertificate/form"/>
 						<div class="form-group">
 							<div class="col-md-10 col-md-offset-2">

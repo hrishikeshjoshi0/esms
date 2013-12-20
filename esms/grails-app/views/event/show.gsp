@@ -58,8 +58,8 @@
 							</g:link>
 						</g:if>
 						<g:elseif test="${eventInstance?.eventType != 'REPAIR WORK'}">
-							<g:link class="btn btn-primary btn-sm" action="editWorkDoneCertificate"
-								id="${eventInstance?.workDoneCertificate?.id}">
+							<g:link class="btn btn-primary btn-sm" action="attachWorkDoneCertificate"
+								id="${eventInstance?.id}">
 								Edit Work Done Certificate
 							</g:link>
 						</g:elseif>

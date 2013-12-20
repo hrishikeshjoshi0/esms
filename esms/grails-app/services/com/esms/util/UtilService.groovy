@@ -8,7 +8,7 @@ import com.esms.model.product.Product
 
 class UtilService {
 	
-	def prefixMap = ["Product":"PROD","Organization":"ACC","Contact":"CON","Order":"ORD","Invoice":"INV"]
+	def prefixMap = ["Product":"PROD","Organization":"ACC","Contact":"CON","Order":"ORD","Invoice":"INV","PurchaseOrder":"PO"]
 	
 	def String newProductNumber() {
 		def count = Product.count();
@@ -35,6 +35,13 @@ class UtilService {
 		def count = Order.count();
 		int no = (count?count:0) + 1;
 		String orderNumber = prefixMap."Order" + String.format("%05d", no)
+		return orderNumber
+	}
+	
+	def String newPurchaseOrderNumber() {
+		def count = Order.count();
+		int no = (count?count:0) + 1;
+		String orderNumber = prefixMap."PurchaseOrder" + String.format("%05d", no)
 		return orderNumber
 	}
 	

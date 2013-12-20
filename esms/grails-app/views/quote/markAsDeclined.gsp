@@ -14,7 +14,8 @@
 		</g:hasErrors>
 
 		<div class="well">
-			<g:form class="form-horizontal" controller="quote" action="markAsDeclined" id="${quoteInstance?.id}">
+			<g:form class="form-horizontal" controller="quote" action="markAsDeclined">
+				<g:hiddenField name="id" value="${quoteInstance?.id}"/>
 				<fieldset>
 					<div
 						class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'declinedReason', 'error')} ">

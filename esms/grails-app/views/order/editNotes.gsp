@@ -6,15 +6,17 @@
 				action="editNotes">
 				<g:hiddenField name="id" value="${orderInstance?.id}" />
 				<fieldset>
-					<div
-						class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'notes', 'error')} ">
-						<label for="notes" class="col-md-3 control-label"><g:message
-								code="order.notes.label" default="Notes" /> </label>
-						<div class="col-md-9">
-							<g:textArea name="notes" class="form-control"
-								value="${orderInstance.notes}" />
-							<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'notes', 'error')}
-							</span>
+					<div class="col-md-6">
+						<div
+							class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'notes', 'error')} ">
+							<label for="notes" class="col-md-3 control-label"><g:message
+									code="order.notes.label" default="Notes" /> </label>
+							<div class="col-md-9">
+								<g:textArea name="notes" class="form-control"
+									value="${orderInstance.notes}" />
+								<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'notes', 'error')}
+								</span>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">

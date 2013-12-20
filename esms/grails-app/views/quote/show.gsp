@@ -164,6 +164,13 @@
 							<dd>
 								<g:fieldValue bean="${quoteInstance}" field="contactName" />
 							</dd>
+							
+							<dt>
+								<g:message code="quote.assignedTo.label" default="Assigned To" />
+							</dt>
+							<dd>
+								<g:fieldValue bean="${quoteInstance}" field="assignedTo" />
+							</dd>
 
 							<dt>
 								<g:message code="quote.relatedTo.label" default="Related To" />

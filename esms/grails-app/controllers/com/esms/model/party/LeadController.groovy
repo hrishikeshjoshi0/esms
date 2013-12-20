@@ -254,4 +254,24 @@ class LeadController {
 		}
 	}
 	
+	def lostLead() {
+		switch (request.method) {
+		case 'GET':
+			def organizationInsance = Organization.get(params.id)
+			[organizationInsance: organizationInsance]
+			break
+		case 'POST':
+			def organizationInstance = Organization.get(params.id)
+			organizationInstance.lostReason = params.lostReason
+			organizationInstance.salesStatus = 'LOST'
+
+			if (!organizationInstance.save(flush: true)) {
+				redirect controller: 'lead', action: 'show', id: organizationInstance?.id
+				return
+			}
+			
+			redirect controller: 'lead', action: 'show', id: organizationInstance?.id
+		}
+	}
+	
 }

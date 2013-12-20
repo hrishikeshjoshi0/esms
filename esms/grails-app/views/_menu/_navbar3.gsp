@@ -88,6 +88,18 @@
 										Create Repair Quote
 									</g:link>
 								</li>
+								<li>
+									<g:link action="create" controller="quote"
+										params="[contractQuote:true,type:'INSTALLATION']">
+										Create Installation Quote
+									</g:link>
+								</li>
+								<li>
+									<g:link action="create" controller="quote"
+										params="[type:'MODERNIZATION']">
+										Create Modernization Quote
+									</g:link>
+								</li>
 							</ul>
 						</li>
 						<li class="dropdown-submenu">

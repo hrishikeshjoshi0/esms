@@ -200,6 +200,17 @@
 							<dd>
 								<g:fieldValue bean="${orderInstance}" field="type" />
 							</dd>
+							
+							<dd>
+								<g:fieldValue bean="${orderInstance}" field="contactName" />
+							</dd>
+							
+							<dt>
+								<g:message code="order.assignedTo.label" default="Assigned To" />
+							</dt>
+							<dd>
+								<g:fieldValue bean="${orderInstance}" field="assignedTo" />
+							</dd>
 
 							<dt>
 								<g:message code="order.relatedTo.label" default="Related To" />
@@ -422,7 +433,7 @@
 					<richui:tabContent>
 						<div class="pull-right">
 							<bs3:modalLink
-								href="${createLink(controller:'order',action:'editNotes',params="['id':orderInstance?.id]")}"
+								href="${createLink(controller:'order',action:'editNotes',id:orderInstance?.id)}"
 								id="editNotes" title="Edit" />
 						</div>
 						<g:fieldValue bean="${orderInstance}" field="notes" />

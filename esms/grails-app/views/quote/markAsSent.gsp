@@ -15,8 +15,9 @@
 
 		<div class="well">
 			<g:form class="form-horizontal" controller="quote"
-				action="markAsSent" id="${quoteInstance?.id}">
+				action="markAsSent">
 				<fieldset>
+					<g:hiddenField name="id" value="${quoteInstance?.id}"/>
 					<div class="row">
 						<div class="col-md-6">
 							<div

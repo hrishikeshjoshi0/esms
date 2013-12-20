@@ -18,6 +18,8 @@ class OrderController {
 	static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
 
 	def filterPaneService
+	
+	def utilService
 
 	def index() {
 		redirect action: 'list', params: params
@@ -40,6 +42,7 @@ class OrderController {
 			])
 			firstResult(params.offset?.toInteger())
 			maxResults(params.max?.toInteger())
+			order("orderNumber", "desc")
 		}
 		
 		def c1 = Order.createCriteria()
@@ -97,9 +100,7 @@ class OrderController {
 	}
 
 	def convertQuoteToOrder() {
-		def list = Order.list();
-		int no = (list?list.size():0) + 1;
-		String orderNumber = "ORD" + String.format("%05d", no)
+		String orderNumber = utilService.newOrderNumber()
 
 		def quote = Quote.get(params.id)
 
@@ -200,10 +201,7 @@ class OrderController {
 	def create() {
 		switch (request.method) {
 			case 'GET':
-				def list = Order.list();
-				int no = (list?list.size():0) + 1;
-				String orderNumber = "ORD" + String.format("%05d", no)
-				params.orderNumber = orderNumber
+				params.orderNumber = '-Auto Gen-'
 
 				def order = new Order(params)
 
@@ -217,6 +215,8 @@ class OrderController {
 				break
 			case 'POST':
 				def orderInstance = new Order(params)
+				orderInstance.orderNumber = utilService.newOrderNumber()
+				
 				if (!orderInstance.save(flush: true)) {
 					render view: 'create', model: [orderInstance: orderInstance]
 					return
@@ -356,18 +356,7 @@ class OrderController {
 				if(orderItem?.relatedOrderNumber) {
 					purchaseOrderInstance =	PurchaseOrder.findByPurchaseOrderNumber(orderItem.relatedOrderNumber)					 
 				} else {
-					def list = PurchaseOrder.list();
-					int no = (list?list.size():0) + 1;
-					String orderNumber = "PO" + String.format("%05d", no)
-					params.purchaseOrderNumber = orderNumber
-							
-					/*def order = PurchaseOrder.get(params.orderId)
-					def c = PurchaseOrderItem.createCriteria()
-					def maxLineNumber = c.get {
-						eq("purchaseOrder", order)
-						projections { max ("lineNumber") }
-					}
-					params.lineNumber = maxLineNumber?maxLineNumber:0 + 1*/
+					params.purchaseOrderNumber = "-Auto Gen-"
 					params.lineNumber = 1
 					purchaseOrderInstance = new PurchaseOrder(params)
 				}
@@ -379,6 +368,7 @@ class OrderController {
 					purchaseOrderInstance = PurchaseOrder.get(params.purchaseOrderId)
 					purchaseOrderInstance.properties = params
 				} else {
+					purchaseOrderInstance.purchaseOrderNumber = utilService.newPurchaseOrderNumber()
 					purchaseOrderInstance = new PurchaseOrder(params)
 				}
 
@@ -478,9 +468,7 @@ class OrderController {
 
 		//Create Invoice -- Start
 		def invoice = new Invoice()
-		def list = Invoice.list();
-		int no = (list?list.size():0) + 1;
-		String invoiceNumber = "INV" + String.format("%05d", no)
+		String invoiceNumber = '-Auto Gen-'
 
 		invoice.invoiceNumber = invoiceNumber
 		invoice.contactName = order.contactName
