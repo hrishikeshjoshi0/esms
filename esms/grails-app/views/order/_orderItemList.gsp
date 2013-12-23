@@ -30,22 +30,14 @@
 				title="${message(code: 'orderItem.percentageInvoiced.label', default: 'Invoiced Amount (%)')}" />
 			<g:sortableColumn property="amountInvoiced"
 				title="${message(code: 'orderItem.amountInvoiced.label', default: 'Invoiced Amount')}" />
-			<th>
-				Assigned To (Vendor)
-			</th>
-			<th>
-				Status
-			</th>
-			<th>
-				Work Completed
-			</th>		
-			<th></th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		<g:each in="${orderInstance?.orderItems?.sort{a,b -> a.lineNumber <=> b.lineNumber}}" var="orderItemInstance" status="stat">
 			<g:set var="product" value="${Product.findByProductNumber(orderItemInstance.productNumber)}"/>
+			<g:set var="eventInstance"
+				value="${Event.findByRelatedToAndRelatedToValue('ORDER',order?.orderNumber) }" />
 			<tr>
 				<td>
 					${fieldValue(bean: orderItemInstance, field: "lineNumber")}
@@ -74,29 +66,6 @@
 				</td>
 				<td>
 					${fieldValue(bean: orderItemInstance, field: "amountInvoiced")}
-				</td>
-				<g:if test="${orderItemInstance.relatedOrderNumber}">
-					<g:set var="purchaseOrder" value="${PurchaseOrder.findByPurchaseOrderNumber(orderItemInstance.relatedOrderNumber)}"/>
-					<td>
-						${purchaseOrder?.vendorName}
-					</td>
-					<td>
-						${purchaseOrder?.status}
-					</td>
-					<td>
-						${purchaseOrder?.workCompleted}	%					
-					</td>
-				</g:if>
-				<g:else>
-					<td></td>
-					<td></td>
-					<td></td>
-				</g:else>
-				<td>
-					<g:if test="${product?.productName != 'DISCOUNT' }">
-						<bs3:modalLink href="${createLink(controller:'order',action:'assignOrderItem',params:['id':orderItemInstance?.id])}"
-								id="assignOrderItem${stat}" title="Assignment"/>
-					</g:if>
 				</td>
 				<td class="link">
 					<g:link action="show" controller="orderItem" id="${orderItemInstance.id}" class="lnk">Show &raquo;</g:link>

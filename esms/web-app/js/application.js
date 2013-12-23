@@ -57,6 +57,6 @@ if (typeof jQuery !== 'undefined') {
 }
 
 function configureDropdowns() {
-	var p = $("select:not([name^='filter.'])");
+	var p = $("select.filter-dropdown");
 	$(p).chosen();
 }

@@ -31,7 +31,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<g:each in="${organizationInstance?.events}" var="eventInstance">
+			<g:each in="${organizationInstance?.events?.sort{a,b -> b.startTime <=> a.startTime}}" var="eventInstance">
 				<tr>
 
 					<td>

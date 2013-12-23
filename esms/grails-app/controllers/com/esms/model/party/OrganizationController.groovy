@@ -358,7 +358,12 @@ class OrganizationController {
 	}
 	
 	def search() {
-		def organizations = Organization.findAllByNameLike("${params.query}%")
+		def organizations = Organization.withCriteria(sort: "name", order: "asc") {
+			and {
+				eq("type", 'LEAD')
+				ilike("name", "${params.query}%")
+			}
+		}
 
 		//Create XML response
 		render(contentType: "text/xml") {

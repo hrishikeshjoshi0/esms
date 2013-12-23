@@ -172,7 +172,7 @@
 					class="required-indicator">*</span></label>
 				<div class="col-md-9">
 					<g:select id="orderId" name="orderId" from="${openOrders}"
-						optionKey="id" class="form-control"
+						optionKey="id" class="form-control filter-dropdown"
 						optionValue="${{it.organization?.name + ':' + it.orderNumber + ' - ' + it.type + ' : ' +  
 							'(Open Amount :' + it.openGrandTotal + ')' }}" />
 					<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'order', 'error')}

@@ -460,7 +460,7 @@ class EventController {
 		}
 		
 		params.sort = "startTime"
-		params.'order' = "asc"
+		params.'order' = "desc"
 		def upcomingEvents = Event.findAllByStartTimeGreaterThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],params)
 		def upcomingEventsCount = Event.countByStartTimeGreaterThanAndStatusInList(new Date(),['PLANNED','NOT HELD'])
 		
@@ -469,7 +469,7 @@ class EventController {
 	
 	def overdueEvents = {
 		params.sort = "startTime"
-		params.'order' = "asc"
+		params.'order' = "desc"
 		
 		if(!params.offset) {
 			params.offset= 0

@@ -28,7 +28,7 @@
 		</thead>
 		<tbody>
 			<g:if test="${overdueEvents != null && overdueEvents.size() != 0}">
-				<g:each in="${overdueEvents}" var="eventInstance">
+				<g:each in="${overdueEvents?.sort{a,b -> a.startTime <=> b.startTime}}" var="eventInstance">
 					<tr>
 
 						<td>

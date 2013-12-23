@@ -71,7 +71,7 @@
 					</g:link></td>
 
 				<td>
-					${fieldValue(bean: orderInstance, field: "type")}
+					${orderInstance?.organization?.activeContract()}
 				</td>
 
 				<td><g:formatDate date="${orderInstance.contractFromDate}" /></td>

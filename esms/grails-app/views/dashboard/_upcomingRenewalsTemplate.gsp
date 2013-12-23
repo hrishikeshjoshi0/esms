@@ -10,7 +10,7 @@
 			</g:link></td>
 
 		<td>
-			${fieldValue(bean: orderInstance, field: "type")}
+			${orderInstance?.organization?.activeContract()}
 		</td>
 
 		<td><g:formatDate date="${orderInstance.contractFromDate}" /></td>
@@ -30,10 +30,10 @@
 				number="${orderInstance?.pendingInvoiceGrandTotal}" /></td>
 
 		<td>
-					<g:if test="${orderInstance?.taggedForRenewal == true}">
-								${orderInstance?.getRenewalState()}			
-					</g:if>
-				</td>
+			<g:if test="${orderInstance?.taggedForRenewal == true}">
+				${orderInstance?.getRenewalState()}			
+			</g:if>
+		</td>
 
 		<td class="link"><g:link action="show" id="${orderInstance.id}"
 				controller="order" class="lnk ">Show &raquo;</g:link></td>
