@@ -11,7 +11,7 @@
 	<div class="row-fluid">
 		<div class="span12">
 			<g:hasErrors bean="\${${propertyName}}">
-				<bootstrap:alert class="alert-error">
+				<bootstrap:alert class="alert-danger">
 					<ul>
 						<g:eachError bean="\${${propertyName}}" var="error">
 							<li

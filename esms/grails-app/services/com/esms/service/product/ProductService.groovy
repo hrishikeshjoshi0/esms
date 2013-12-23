@@ -15,6 +15,7 @@ class ProductService {
 			return product 
 		}
 		
+		product.productNumber = utilService.newProductNumber()
 		product.save(flush: true)
 		return product
     }

@@ -364,34 +364,34 @@ class OrderController {
 				break
 			case 'POST':
 				def purchaseOrderInstance
-				if(params.purchaseOrderId) {
-					purchaseOrderInstance = PurchaseOrder.get(params.purchaseOrderId)
+				if(params.orderItemId) {
+					def orderItem = OrderItem.get(params.orderItemId?.toInteger())
+					
+					if(orderItem?.relatedOrderNumber) {
+						purchaseOrderInstance =	PurchaseOrder.findByPurchaseOrderNumber(orderItem.relatedOrderNumber)
+					} else {
+						purchaseOrderInstance = new PurchaseOrder()
+						purchaseOrderInstance.purchaseOrderNumber = utilService.newPurchaseOrderNumber()
+					}
 					purchaseOrderInstance.properties = params
-				} else {
-					purchaseOrderInstance.purchaseOrderNumber = utilService.newPurchaseOrderNumber()
-					purchaseOrderInstance = new PurchaseOrder(params)
+					
+					if (!purchaseOrderInstance.save(flush: true)) {
+						render view: 'show', model: [orderInstance:OrderItem.get(orderItem)?.order]
+						return
+					}
+					
+					orderItem.relatedOrderNumber = purchaseOrderInstance?.purchaseOrderNumber
+					
+					def unitPrice = new BigDecimal("0.0")
+					def tax = new BigDecimal("0.0")
+					def discount = new BigDecimal("0.0")
+					def lineTotalAmount = new BigDecimal("0.0")
+					BigDecimal totalDiscount = new BigDecimal("0.0")
+					BigDecimal grandTotal = new BigDecimal("0.0")
+					purchaseOrderInstance.save(flush:true)
+					redirect action: 'show', id: orderItem?.order?.id
 				}
-
-				def orderItem = OrderItem.get(params.orderItemId?.toInteger())
 				
-				if (!purchaseOrderInstance.save(flush: true)) {
-					render view: 'show', model: [orderInstance:OrderItem.get(orderItem)?.order]
-					return
-				}
-
-				orderItem.relatedOrderNumber = purchaseOrderInstance?.purchaseOrderNumber
-
-				def unitPrice = new BigDecimal("0.0")
-				def tax = new BigDecimal("0.0")
-				def discount = new BigDecimal("0.0")
-				def lineTotalAmount = new BigDecimal("0.0")
-				BigDecimal totalDiscount = new BigDecimal("0.0")
-				BigDecimal grandTotal = new BigDecimal("0.0")
-
-				purchaseOrderInstance.save(flush:true)
-
-				redirect action: 'show', id: orderItem?.order?.id
-
 				break
 		}
 	}

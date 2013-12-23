@@ -42,20 +42,52 @@
 <g:set var="entityName"
 	value="${message(code: 'event.label', default: 'Event')}" />
 
-<div class="row">
-	<div class="col-md-6">
-		<div
-			class="form-group fieldcontain ${hasErrors(bean: eventInstance, field: 'party', 'error')}">
-			<label for="organization" class="col-md-3 control-label"><g:message
-					code="quote.organization.label" default="Organization" /></label>
-			<div class="col-md-9">
-				<g:select name="party.id" from="${Organization.list()}"
-						optionKey="id" optionValue="name" class="form-control"
-						value="${eventInstance?.party?.id}" />
-			</div>		
+<g:if test="${params.isAssociatedEvent}">
+	<!-- These fields are shown for adding associated events -->
+	<div class="row">
+		<div class="col-md-6">
+			<div
+				class="form-group fieldcontain ${hasErrors(bean: eventInstance, field: 'party', 'error')}">
+				<label for="organization" class="col-md-3 control-label">
+					<g:message code="quote.organization.label" default="Source Event" />
+				</label>
+				<div class="col-md-9">
+					<g:hiddenField name="sourceEvent.id" value="${eventInstance?.sourceEvent?.id}"/>
+					${eventInstance?.sourceEvent?.title}
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-6">
+			<div
+				class="form-group fieldcontain ${hasErrors(bean: eventInstance, field: 'party', 'error')}">
+				<label for="organization" class="col-md-3 control-label"><g:message
+						code="quote.organization.label" default="Organization" /></label>
+				<div class="col-md-9">
+					<g:hiddenField name="party.id" value="${eventInstance?.sourceEvent?.party?.id}"/>
+					${eventInstance?.sourceEvent?.party?.name}
+				</div>
+			</div>
 		</div>
 	</div>
-</div>	
+</g:if>
+<g:else>
+	<!-- These fields are shown for adding normal events -->
+	<div class="row">
+		<div class="col-md-6">
+			<div
+				class="form-group fieldcontain ${hasErrors(bean: eventInstance, field: 'party', 'error')}">
+				<label for="organization" class="col-md-3 control-label"><g:message
+						code="quote.organization.label" default="Organization" /></label>
+				<div class="col-md-9">
+					<g:select name="party.id" from="${Organization.list()}"
+							optionKey="id" optionValue="name" class="form-control"
+							value="${eventInstance?.party?.id}" />
+				</div>		
+			</div>
+		</div>
+	</div>	
+</g:else>
 
 <hr/>
 

@@ -4,6 +4,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder
 
 class SecUserSecRole implements Serializable {
 
+	private static final long serialVersionUID = 1
+
 	SecUser secUser
 	SecRole secRole
 
@@ -24,30 +26,36 @@ class SecUserSecRole implements Serializable {
 	}
 
 	static SecUserSecRole get(long secUserId, long secRoleId) {
-		find 'from SecUserSecRole where secUser.id=:secUserId and secRole.id=:secRoleId',
-			[secUserId: secUserId, secRoleId: secRoleId]
+		SecUserSecRole.where {
+			secUser == SecUser.load(secUserId) &&
+			secRole == SecRole.load(secRoleId)
+		}.get()
 	}
 
 	static SecUserSecRole create(SecUser secUser, SecRole secRole, boolean flush = false) {
 		new SecUserSecRole(secUser: secUser, secRole: secRole).save(flush: flush, insert: true)
 	}
 
-	static boolean remove(SecUser secUser, SecRole secRole, boolean flush = false) {
-		SecUserSecRole instance = SecUserSecRole.findBySecUserAndSecRole(secUser, secRole)
-		if (!instance) {
-			return false
-		}
+	static boolean remove(SecUser u, SecRole r, boolean flush = false) {
 
-		instance.delete(flush: flush)
-		true
+		int rowCount = SecUserSecRole.where {
+			secUser == SecUser.load(u.id) &&
+			secRole == SecRole.load(r.id)
+		}.deleteAll()
+
+		rowCount > 0
 	}
 
-	static void removeAll(SecUser secUser) {
-		executeUpdate 'DELETE FROM SecUserSecRole WHERE secUser=:secUser', [secUser: secUser]
+	static void removeAll(SecUser u) {
+		SecUserSecRole.where {
+			secUser == SecUser.load(u.id)
+		}.deleteAll()
 	}
 
-	static void removeAll(SecRole secRole) {
-		executeUpdate 'DELETE FROM SecUserSecRole WHERE secRole=:secRole', [secRole: secRole]
+	static void removeAll(SecRole r) {
+		SecUserSecRole.where {
+			secRole == SecRole.load(r.id)
+		}.deleteAll()
 	}
 
 	static mapping = {

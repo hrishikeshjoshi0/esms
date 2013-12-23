@@ -142,6 +142,9 @@ class BS3TagLib {
 								}
 							});
 
+							var p = \$("select:not([name^='filter.'])");
+	                        \$(p).chosen();	
+
 							\$('#${modalDialog}').modal('show');
 						});
 

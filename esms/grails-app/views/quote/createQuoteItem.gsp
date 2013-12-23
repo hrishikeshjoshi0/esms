@@ -1,6 +1,6 @@
 <div class="col-md-12">
 	<g:hasErrors bean="${quoteItemInstance}">
-		<bootstrap:alert class="alert-error">
+		<bootstrap:alert class="alert-danger">
 			<ul>
 				<g:eachError bean="${quoteItemInstance}" var="error">
 					<li
@@ -36,7 +36,8 @@
 			calculateLineTotalAmount();
 		});
 
-
+		configureDropdowns();
+		
 		$(".create").attr("disabled", "disabled");
 	});
 

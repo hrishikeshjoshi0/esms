@@ -12,7 +12,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<g:hasErrors bean="${addressInstance}">
-				<bootstrap:alert class="alert-error">
+				<bootstrap:alert class="alert-danger">
 					<ul>
 						<g:eachError bean="${addressInstance}" var="error">
 							<li

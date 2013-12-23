@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<g:hasErrors bean="${orderInstance}">
-			<bootstrap:alert class="alert-error">
+			<bootstrap:alert class="alert-danger">
 				<ul>
 					<g:eachError bean="${orderInstance}" var="error">
 						<li
@@ -19,7 +19,6 @@
 				<fieldset>
 					<div class="row">
 						<div class="col-md-6">
-							<g:hiddenField name="purchaseOrderId" value="${purchaseOrderInstance?.id}"/>
 							<g:hiddenField name="orderItemId" value="${orderItem?.id}"/>
 							<div
 								class="form-group fieldcontain ${hasErrors(bean: purchaseOrderInstance, field: 'purchaseOrderNumber', 'error')} required">
@@ -81,10 +80,23 @@
 								<label for="workCompleted" class="col-md-3 control-label"><g:message
 										code="purchaseOrder.workCompleted.label" default="Work Completed" /></label>
 								<div class="col-md-9">
-									<g:field type="number" name="workCompleted" class="form-control"
+									<g:field type="number" name="workCompleted" class="form-control" min="0" max="100"
 										value="${purchaseOrderInstance?.workCompleted}" />
 									<span class="help-inline">
 										${hasErrors(bean: purchaseOrderInstance, field: 'workCompleted', 'error')}
+									</span>
+								</div>
+							</div>
+							
+							<div
+								class="form-group fieldcontain ${hasErrors(bean: purchaseOrderInstance, field: 'description', 'error')} ">
+								<label for="description" class="col-md-3 control-label"><g:message
+										code="purchaseOrder.description.label" default="Description" /></label>
+								<div class="col-md-9">
+									<g:textArea name="workCompleted" class="form-control"
+										value="${purchaseOrderInstance?.description}" />
+									<span class="help-inline">
+										${hasErrors(bean: purchaseOrderInstance, field: 'description', 'error')}
 									</span>
 								</div>
 							</div>

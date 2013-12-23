@@ -60,66 +60,69 @@
 		<g:if
 			test="${openInvoices != null && openInvoices.size() != 0}">
 				<g:each in="${openInvoices}" var="invoiceInstance">
-				<g:set var="eventInstance" value="${Event.findByRelatedToAndRelatedToValue('ORDER',invoiceInstance?.referenceOrderNumber) }" />	
-				<tr>
-					<td>
-						${fieldValue(bean: invoiceInstance, field: "invoiceNumber")}
-					</td>
-
-					<td><g:link controller="organization" action="show"
-							id="${invoiceInstance?.organization?.id}">
-							${fieldValue(bean: invoiceInstance, field: "organization.name")}
-						</g:link>
-					</td>
-
-					<td>
-						${fieldValue(bean : invoiceInstance, field : "grandTotal") }
-					</td>
-					
-					<td>
-						${fieldValue(bean : invoiceInstance, field : "openGrandTotal") }
-					</td>
-					
-					<td>
-						${fieldValue(bean : invoiceInstance, field : "receviedGrandTotal") }
-					</td>
-					
-					<td>
-						${fieldValue(bean: invoiceInstance, field: "type")}
-					</td>
-					
-					<td>
-						${fieldValue(bean: invoiceInstance, field: "referenceOrderNumber")}
-					</td>
-					<td>
-						${eventInstance?.title}
-					</td>
-					<td>
-						${invoiceInstance?.assignedTo}
-					</td>
-					<td>
-						${eventInstance?.startTime}
-					</td>
-					<td>
-						${eventInstance?.endTime}
-					</td>
-					<td>
-						${eventInstance?.status}
-					</td>
-					<td class="link">
-						<g:if test="${eventInstance}">
-							<g:link controller="event" action="show" id="${eventInstance?.id}">
-								Show Event &raquo;
+				<g:set var="eventInstance" value="${Event.findByRelatedToAndRelatedToValue('ORDER',invoiceInstance?.referenceOrderNumber) }" />
+				<g:if test="${eventInstance?.status != 'CLOSED'}">
+					<tr>
+						<td>
+							${fieldValue(bean: invoiceInstance, field: "invoiceNumber")}
+						</td>
+	
+						<td><g:link controller="organization" action="show"
+								id="${invoiceInstance?.organization?.id}">
+								${fieldValue(bean: invoiceInstance, field: "organization.name")}
 							</g:link>
-						</g:if>
-						<g:else>
-							No Event Created
-						</g:else>
-					</td>
+						</td>
+	
+						<td>
+							${fieldValue(bean : invoiceInstance, field : "grandTotal") }
+						</td>
+						
+						<td>
+							${fieldValue(bean : invoiceInstance, field : "openGrandTotal") }
+						</td>
+						
+						<td>
+							${fieldValue(bean : invoiceInstance, field : "receviedGrandTotal") }
+						</td>
+						
+						<td>
+							${fieldValue(bean: invoiceInstance, field: "type")}
+						</td>
+						
+						<td>
+							${fieldValue(bean: invoiceInstance, field: "referenceOrderNumber")}
+						</td>
+						<td>
+							${eventInstance?.title}
+						</td>
+						<td>
+							${invoiceInstance?.assignedTo}
+						</td>
+						<td>
+							${eventInstance?.startTime}
+						</td>
+						<td>
+							${eventInstance?.endTime}
+						</td>
+						<td>
+							${eventInstance?.status}
+						</td>
+						<td class="link">
+							<g:if test="${eventInstance}">
+								<g:link controller="event" action="show" id="${eventInstance?.id}">
+									Show Event &raquo;
+								</g:link>
+							</g:if>
+							<g:else>
+								-
+							</g:else>
+						</td>
+						
+						<td class="link"><g:link controller="invoice" action="show" class="lnk "
+								id="${invoiceInstance.id}">Show &raquo;</g:link></td>
+					</tr>
 					
-					<td class="link"><g:link controller="invoice" action="show" class="lnk "
-							id="${invoiceInstance.id}">Show &raquo;</g:link></td>
-				</tr>
+				</g:if>	
 			</g:each>
 		</g:if>
 	</tbody>

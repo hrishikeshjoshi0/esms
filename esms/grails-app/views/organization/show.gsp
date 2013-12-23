@@ -93,6 +93,9 @@
 							</li>						
 						</ul>
 					</div>
+					
+					<!-- Btn Group Create Event -->
+					<g:render template="/_common/buttons/createEventButtonGroup" model="[order:activeContract]"></g:render>
 
 					<g:link controller="task" action="create" role="button"
 						class="btn btn-sm btn-primary"

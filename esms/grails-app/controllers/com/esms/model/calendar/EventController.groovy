@@ -181,14 +181,14 @@ class EventController {
 			case 'GET':
 				 def eventInstance = new Event()
  		         eventInstance.properties = params
-		
+				  
 		         [eventInstance: eventInstance]
 				 break
 			case 'POST':
 				 def eventInstance = new Event(params)
 		
-				eventInstance.activityLog = 'Init'
-		        if (eventInstance.save(flush: true)) {
+				 eventInstance.activityLog = 'Init'
+		         if (eventInstance.save(flush: true)) {
 		            flash.message = "Event Created."
 					def order
 					if(eventInstance?.relatedTo == 'ORDER' && eventInstance?.relatedToValue) {
@@ -196,12 +196,25 @@ class EventController {
 						redirect(controller:"order",action: "show",id:order?.id)
 						return
 					}
+					
+					if(eventInstance?.relatedTo == 'EVENT' && eventInstance?.relatedToValue) {
+						redirect(controller:"event",action: "show",id:eventInstance?.sourceEvent?.id)
+						return
+					}
+					
+					if(eventInstance.status == 'CLOSED') {
+						eventInstance.closeSourceEventIfRequired()
+						eventInstance.closeAssociatedEventsIfRequired()
+					}
+					
 		            redirect(action: "show", id: eventInstance.id)
-		        }
-		        else {
-					flash.message = "Error Encountered."
+					//println "Redirecting to " + request.getHeader('referer')
+					//redirect(uri: request.getHeader('referer') )
+		         }
+		         else {
+				 	flash.message = "Error Encountered."
 		            render(view: "create", model: [eventInstance: eventInstance])
-		        }
+		         }
 			}
     }
 	
@@ -239,6 +252,9 @@ class EventController {
 				return
 			}
             redirect(action: "show", id: eventInstance.id)
+			
+			//println "Redirecting to " + request.getHeader('referer')
+			//redirect(uri: request.getHeader('referer') )
         }
         else {
 			flash.message = "Error Encountered."
@@ -275,6 +291,14 @@ class EventController {
 				redirect(controller:"order",action: "show",id:order?.id)
 				return
 			}
+			
+			if(eventInstance.status == 'CLOSED') {
+				eventInstance.closeSourceEventIfRequired()
+				eventInstance.closeAssociatedEventsIfRequired()
+			}
+			
+			//println "Redirecting to " + request.getHeader('referer')
+			//redirect(uri: request.getHeader('referer') )
             redirect(action: "index")
         }
         if (result.error == 'not.found') {
@@ -385,6 +409,7 @@ class EventController {
 						}
 					}
 					workDoneCertificateInstance = new WorkDoneCertificate(params)
+					workDoneCertificateInstance.event = event
 				}
 				[workDoneCertificateInstance: workDoneCertificateInstance]
 				break
@@ -456,6 +481,11 @@ class EventController {
 		def overdueEvents = Event.findAllByStartTimeLessThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],params)
 		def overdueEventsCount = Event.countByStartTimeLessThanAndStatusInList(new Date(),['PLANNED','NOT HELD'])
 		[overdueEvents:overdueEvents,overdueEventsCount:overdueEventsCount]
+	}
+	
+	def associatedEvents = {
+		def event = Event.get(params.id)
+		[eventInstance:event] 
 	}
 	
 }

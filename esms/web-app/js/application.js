@@ -6,14 +6,17 @@ if (typeof jQuery !== 'undefined') {
 			$(this).fadeOut();
 		});*/
 		
+	   $(document).ajaxSuccess(function() {
+		   console.log('Ajax Success');
+		   configureDropdowns();
+	   });
+		
 	   
        $(document).ready(function() {
 			var autocompleteQueryField = $('input[name="q"]');
 			autocompleteQueryField.attr('placeholder','Search Customer...');
-			//resize();
 
-			var p = $("select:not([name^='filter.'])");
-			$(p).chosen();
+			configureDropdowns();
 				
 		    var loadUrl = $('#new_tasks').attr('data-url');
 		    $.ajaxSetup ({  
@@ -33,6 +36,12 @@ if (typeof jQuery !== 'undefined') {
 	    		   }
 	    		}
 	        });
+	    	
+	    	$('.dashboardTable').expandable();
+	    	
+	    	/*$('.yui-content').slimScroll({
+	    	     
+	    	});*/
 	   });
        
        $(window).resize(function () { 
@@ -47,40 +56,7 @@ if (typeof jQuery !== 'undefined') {
 	})(jQuery);
 }
 
-function resize() {
-	//Resize
-	var  dheight = $('body').height(),
-    cbody = $('.bs-docs-sidenav').height(),
-    wheight = $(window).height(),
-    cheight = wheight - dheight + cbody;
-    
-    if (wheight > dheight){
-        $('.bs-docs-sidenav').height(cheight);
-    }
-    
-    $(window).resize(function(){
-        wheight = $(window).height();
-        noscroll();
-        changepush();
-    });
-
-    function noscroll(){
-       if (wheight > dheight) {
-            $('body').addClass('noscroll');
-       }
-
-        else if (wheight <= dheight) {
-            $('body').removeClass('noscroll');
-        }
-        
-        else {}
-
-    }
-
-    function changepush(){
-       if (wheight > dheight) {
-               $('.bs-docs-sidenav').height(wheight-dheight+cbody);
-       }
-        
-    }
+function configureDropdowns() {
+	var p = $("select:not([name^='filter.'])");
+	$(p).chosen();
 }

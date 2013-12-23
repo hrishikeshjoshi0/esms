@@ -34,7 +34,7 @@
 			</th>
 
 			<th>
-				${message(code: 'order.type.label', default: 'Type')}
+				${message(code: 'order.type.label', default: 'Contract Type')}
 			</th>
 
 			<th>

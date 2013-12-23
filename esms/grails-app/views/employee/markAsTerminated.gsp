@@ -14,7 +14,7 @@
 		<div class="col-md-12">
 			<div class="col-md-12">
 				<g:hasErrors bean="${employeeInstance}">
-					<bootstrap:alert class="alert-error">
+					<bootstrap:alert class="alert-danger">
 						<ul>
 							<g:eachError bean="${employeeInstance}" var="error">
 								<li

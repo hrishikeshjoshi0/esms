@@ -151,8 +151,34 @@ class Event {
         }
         
     }
-    
-
+	
+	def closeSourceEventIfRequired() {
+		def sourceEvent = this.sourceEvent
+		if(sourceEvent) {
+			def anyNotClosed = sourceEvent?.associatedEvents()?.any{ it.status != 'CLOSED'}
+			if(!anyNotClosed) {
+				sourceEvent.status = 'CLOSED'
+				sourceEvent.save(flush:true)
+			}
+		}
+	}
+	
+	def closeAssociatedEventsIfRequired() {
+		def associatedEvents = this.associatedEvents()
+		associatedEvents?.each {
+			if(it.status != 'CLOSED') {
+				it.status = 'CLOSED'
+				it.save(flush:true)
+			}
+		}
+	}
+	
+	def associatedEvents(){
+		def associatedEvents = Event.withCriteria {
+			eq('sourceEvent.id', this.id)
+		}
+		associatedEvents
+	}
 }
 
 

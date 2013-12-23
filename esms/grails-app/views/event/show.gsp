@@ -30,14 +30,6 @@
 					${eventInstance?.eventType}
 					|
 					${eventInstance?.status}
-					<%--
-					|
-					ASSIGNED TO : 
-					${eventInstance?.assignedTo}
-					|
-					PRIORITY : 
-					${eventInstance?.priority}
-					--%>
 				</h4>
 			</div>
 
@@ -66,6 +58,8 @@
 						<bs3:modalLink
 							href="${createLink(controller:'event',action:'createEventLog',id:eventInstance?.id)}"
 							id="createEventLog" title="Create Event Log" />
+						
+						<g:render template="/_common/buttons/createAssociatedEventButtonGroup" model="[sourceEvent:eventInstance]"></g:render>
 					</div>
 				</g:form>
 			</div>
@@ -75,12 +69,32 @@
 				<div class="panel-body">
 					<div class="col-md-6">
 						<dl class="dl-horizontal">
+							<g:if test="${eventInstance?.sourceEvent}">
+								<dt>
+									<g:message code="event.sourceEvent.label" default="Source Event" />
+								</dt>
+	
+								<dd>
+									<g:link controller="event" action="show" id="${eventInstance?.sourceEvent?.id}">
+										${eventInstance?.sourceEvent?.title}
+									</g:link>
+								</dd>
+							</g:if>
+							
 							<dt>
 								<g:message code="event.title.label" default="Title" />
 							</dt>
 
 							<dd>
 								<g:fieldValue bean="${eventInstance}" field="title" />
+							</dd>
+							
+							<dt>
+								<g:message code="event.eventType.label" default="Event Type" />
+							</dt>
+
+							<dd>
+								<g:fieldValue bean="${eventInstance}" field="eventType" />
 							</dd>
 
 
@@ -125,81 +139,6 @@
 								<g:formatDate date="${eventInstance?.endTime}" type="datetime" />
 							</dd>
 
-							<%--<g:if test="${eventInstance?.isRecurring}">
-							<dt>
-								<g:message code="event.isRecurring.label" default="Is Recurring" />
-							</dt>
-		
-							<dd>
-								<g:formatBoolean boolean="${eventInstance?.isRecurring}" />
-							</dd>
-		
-							<dt>
-								<g:message code="event.recurType.label" default="Recur Type" />
-							</dt>
-		
-							<dd>
-								<g:fieldValue bean="${eventInstance}" field="recurType" />
-							</dd>
-		
-		
-							<dt>
-								<g:message code="event.recurInterval.label"
-									default="Recur Interval" />
-							</dt>
-		
-							<dd>
-								<g:fieldValue bean="${eventInstance}" field="recurInterval" />
-							</dd>
-		
-		
-							<dt>
-								<g:message code="event.recurUntil.label" default="Recur Until" />
-							</dt>
-		
-							<dd>
-								<g:formatDate date="${eventInstance?.recurUntil}" />
-							</dd>
-		
-		
-							<dt>
-								<g:message code="event.recurCount.label" default="Recur Count" />
-							</dt>
-		
-							<dd>
-								<g:fieldValue bean="${eventInstance}" field="recurCount" />
-							</dd>
-		
-		
-							<dt>
-								<g:message code="event.excludeDays.label" default="Exclude Days" />
-							</dt>
-		
-							<dd>
-								<g:fieldValue bean="${eventInstance}" field="excludeDays" />
-							</dd>
-		
-							<dt>
-								<g:message code="event.recurDaysOfWeek.label"
-									default="Recur Days Of Week" />
-							</dt>
-		
-							<dd>
-								<g:fieldValue bean="${eventInstance}" field="recurDaysOfWeek" />
-							</dd>
-						</g:if>
-		
-						<dt>
-							<g:message code="event.sourceEvent.label" default="Source Event" />
-						</dt>
-		
-						<dd>
-							<g:link controller="event" action="show"
-								id="${eventInstance?.sourceEvent?.id}">
-								${eventInstance?.sourceEvent?.title}
-							</g:link>
-						</dd>
-						--%>
 							<dt>
 								<g:message code="event.description.label" default="Description" />
 							</dt>
@@ -303,7 +242,8 @@
 					<richui:tabLabel selected="true" title="Activity Log" />
 					<g:if test="${eventInstance?.eventType != 'REPAIR WORK'}">
 						<richui:tabLabel title="Work Done Certificate" />
-					</g:if>	
+					</g:if>
+					<richui:tabLabel title="Associated Events" />	
 				</richui:tabLabels>
 	
 				<richui:tabContents>
@@ -379,7 +319,7 @@
 										</dt>
 		
 										<dd>
-											<g:fieldValue bean="${workDoneCertificateInstance}"
+											<g:fieldValue bean="${eventInstance?.workDoneCertificate}"
 												field="customerName" />
 										</dd>
 		
@@ -390,7 +330,7 @@
 										</dt>
 		
 										<dd>
-											<g:fieldValue bean="${workDoneCertificateInstance}"
+											<g:fieldValue bean="${eventInstance?.workDoneCertificate}"
 												field="contract" />
 										</dd>
 		
@@ -401,7 +341,7 @@
 										</dt>
 		
 										<dd>
-											<g:fieldValue bean="${workDoneCertificateInstance}"
+											<g:fieldValue bean="${eventInstance?.workDoneCertificate}"
 												field="machineNumber" />
 										</dd>
 		
@@ -412,7 +352,7 @@
 										</dt>
 		
 										<dd>
-											<g:fieldValue bean="${workDoneCertificateInstance}"
+											<g:fieldValue bean="${eventInstance?.workDoneCertificate}"
 												field="routeNumber" />
 										</dd>
 		
@@ -423,7 +363,7 @@
 										</dt>
 		
 										<dd>
-											<g:fieldValue bean="${workDoneCertificateInstance}"
+											<g:fieldValue bean="${eventInstance?.workDoneCertificate}"
 												field="location" />
 										</dd>
 		
@@ -550,7 +490,7 @@
 										</dt>
 		
 										<dd>
-											<g:fieldValue bean="${workDoneCertificateInstance}"
+											<g:fieldValue bean="${eventInstance?.workDoneCertificate}"
 												field="majorRepairs_Adjustment_ExtraExamination" />
 										</dd>
 		
@@ -561,7 +501,7 @@
 										</dt>
 		
 										<dd>
-											<g:fieldValue bean="${workDoneCertificateInstance}"
+											<g:fieldValue bean="${eventInstance?.workDoneCertificate}"
 												field="examinerName" />
 										</dd>
 		
@@ -572,7 +512,7 @@
 										</dt>
 		
 										<dd>
-											<g:fieldValue bean="${workDoneCertificateInstance}"
+											<g:fieldValue bean="${eventInstance?.workDoneCertificate}"
 												field="customerSignedOffBy" />
 										</dd>
 		
@@ -583,7 +523,7 @@
 										</dt>
 		
 										<dd>
-											<g:fieldValue bean="${workDoneCertificateInstance}"
+											<g:fieldValue bean="${eventInstance?.workDoneCertificate}"
 												field="customerRemark" />
 										</dd>
 									</dl>
@@ -715,6 +655,10 @@
 							</div>
 						</richui:tabContent>
 					</g:if>
+					
+					<richui:tabContent>
+						<g:render template="/event/associatedEvents"></g:render>	
+					</richui:tabContent>
 				</richui:tabContents>
 			</richui:tabView>
 		</div>

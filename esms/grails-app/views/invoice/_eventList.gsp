@@ -26,7 +26,7 @@
 				title="${message(code: 'event.assignedTo.label', default: 'Assigned To')}" />
 				
 			<g:sortableColumn property="description"
-				title="${message(code: 'event.description.label', default: 'Description')}" />	
+				title="${message(code: 'event.status.label', default: 'Status')}" />	
 
 			<th></th>
 		</tr>
@@ -56,7 +56,7 @@
 				</td>
 
 				<td>
-					${fieldValue(bean: eventInstance, field: "description")}
+					${fieldValue(bean: eventInstance, field: "status")}
 				</td>
 
 				<td class="link"><g:link controller="event" action="show"

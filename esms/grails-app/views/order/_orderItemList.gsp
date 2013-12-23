@@ -45,13 +45,14 @@
 	</thead>
 	<tbody>
 		<g:each in="${orderInstance?.orderItems?.sort{a,b -> a.lineNumber <=> b.lineNumber}}" var="orderItemInstance" status="stat">
+			<g:set var="product" value="${Product.findByProductNumber(orderItemInstance.productNumber)}"/>
 			<tr>
 				<td>
 					${fieldValue(bean: orderItemInstance, field: "lineNumber")}
 				</td>
 				<td>
 					${fieldValue(bean: orderItemInstance, field: "productNumber")} <br/>
-					${Product.findByProductNumber(orderItemInstance.productNumber)?.productName}
+					${product?.productName}
 				</td>
 				<td>
 					${fieldValue(bean: orderItemInstance, field: "quantity")}
@@ -92,8 +93,10 @@
 					<td></td>
 				</g:else>
 				<td>
-					<bs3:modalLink href="${createLink(controller:'order',action:'assignOrderItem',params:['id':orderItemInstance?.id])}"
-							id="assignOrderItem${stat}" title="Assignment"/>
+					<g:if test="${product?.productName != 'DISCOUNT' }">
+						<bs3:modalLink href="${createLink(controller:'order',action:'assignOrderItem',params:['id':orderItemInstance?.id])}"
+								id="assignOrderItem${stat}" title="Assignment"/>
+					</g:if>
 				</td>
 				<td class="link">
 					<g:link action="show" controller="orderItem" id="${orderItemInstance.id}" class="lnk">Show &raquo;</g:link>

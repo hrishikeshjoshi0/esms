@@ -12,7 +12,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<g:hasErrors bean="${productPriceInstance}">
-				<bootstrap:alert class="alert-error">
+				<bootstrap:alert class="alert-danger">
 					<ul>
 						<g:eachError bean="${productPriceInstance}" var="error">
 							<li

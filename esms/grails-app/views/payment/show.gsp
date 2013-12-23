@@ -104,7 +104,7 @@
 							</dt>
 
 							<dd>
-								<g:fieldValue bean="${paymentInstance}" field="clearanceDate" />
+								<g:formatDate date="${paymentInstance?.clearanceDate}"  />
 							</dd>
 						</g:if>
 						<g:else>
@@ -122,7 +122,7 @@
 						</dt>
 
 						<dd>
-							<g:fieldValue bean="${paymentInstance}" field="chequeIssueDate" />
+							<g:formatDate date="${paymentInstance?.chequeIssueDate}"  />
 						</dd>
 
 						<dt>

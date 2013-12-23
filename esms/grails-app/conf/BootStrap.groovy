@@ -1,4 +1,3 @@
-import com.esms.importer.ProductExcelImporter;
 import com.esms.model.security.SecRole
 import com.esms.model.security.SecUser
 import com.esms.model.security.SecUserSecRole
@@ -16,7 +15,6 @@ class BootStrap {
 	def grailsApplication
 	
     def init = { servletContext ->
-		
 		def userRole = SecRole.findByAuthority('ROLE_USER') ?: new SecRole(authority: 'ROLE_USER').save(failOnError: true)
 		def adminRole = SecRole.findByAuthority('ROLE_ADMIN') ?: new SecRole(authority: 'ROLE_ADMIN').save(failOnError: true)
 

@@ -11,7 +11,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<g:hasErrors bean="${orderItemInstance}">
-				<bootstrap:alert class="alert-error">
+				<bootstrap:alert class="alert-danger">
 					<ul>
 						<g:eachError bean="${orderItemInstance}" var="error">
 							<li

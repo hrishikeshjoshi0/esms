@@ -11,7 +11,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<g:hasErrors bean="${paymentInstance}">
-				<bootstrap:alert class="alert-error">
+				<bootstrap:alert class="alert-danger">
 					<ul>
 						<g:eachError bean="${paymentInstance}" var="error">
 							<li
@@ -33,15 +33,17 @@
 					id="${paymentInstance?.id}">
 					<g:hiddenField name="version" value="${paymentInstance?.version}" />
 					<fieldset>
-						<div
-							class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'handedOveryBy', 'error')} ">
-							<label for="branch" class="col-md-3 control-label"><g:message
-									code="payment.clearanceDate.label" default="Clearance Date" /></label>
-							<div class="col-md-9">
-								<g:datePicker precision="day" class="form-control" name="clearanceDate" value="${paymentInstance?.clearanceDate}" />
-								<span class="help-inline">
-									${hasErrors(bean: paymentInstance, field: 'clearanceDate', 'error')}
-								</span>
+						<div class="col-md-6">
+							<div
+								class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'handedOveryBy', 'error')} ">
+								<label for="branch" class="col-md-3 control-label"><g:message
+										code="payment.clearanceDate.label" default="Clearance Date" /></label>
+								<div class="col-md-9">
+									<richui:dateChooser class="form-control" name="clearanceDate" value="${paymentInstance?.clearanceDate}" />
+									<span class="help-inline">
+										${hasErrors(bean: paymentInstance, field: 'clearanceDate', 'error')}
+									</span>
+								</div>
 							</div>
 						</div>
 

@@ -1,7 +1,7 @@
 <%@page import="com.esms.model.calendar.Event"%>
 <%@ page import="com.esms.model.party.*"%>
 
-<table class="table table-striped table-bordered mediaTable">
+<table class="table table-striped table-bordered mediaTable dashboardTable">
 	<thead>
 		<tr>
 			<th>
@@ -29,6 +29,7 @@
 				Event
 			</th>
 			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -38,7 +39,7 @@
 			<g:set var="addressInstance"
 				value="${Address.findByAddressTypeAndParty('BILLING',organization) }" />
 			<g:set var="eventInstance"
-				value="${Event.findByRelatedToAndRelatedToValue('ORDER',order?.orderNumber) }" />	
+				value="${Event.findByRelatedToAndRelatedToValue('ORDER',order?.orderNumber) }" />
 			<tr>
 				<td>
 					<g:link controller="organization" action="show" id="${organization?.id}">
@@ -84,6 +85,13 @@
 					</g:else>
 				</td>
 				<td class="link"><g:link controller="order" action="show" id="${order?.id}" class="lnk ">Show &raquo;</g:link></td>
+				<td>
+					<g:if test="${eventInstance}">
+						<a class="expandRow" href="${createLink(controller:'event',action:'associatedEvents',id:eventInstance?.id)}">
+							+
+						</a>
+					</g:if>
+				</td>
 			</tr>
 		</g:each>
 	</tbody>

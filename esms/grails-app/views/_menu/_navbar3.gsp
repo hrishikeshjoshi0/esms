@@ -211,7 +211,7 @@
 			</ul>
 			
 			<g:if test="${params.controller == 'dashboard' }">
-				<g:form>
+				<g:form class="visible-md visible-lg">
 					<richui:autoComplete name="q"
 							action="${createLinkTo('dir': 'organization/search')}"
 							class="col-md-2 col-md-offset-1" shadow="true" minQueryLength="1" style="margin-top:5px;"
@@ -220,14 +220,7 @@
 			</g:if>
 			
 			<ul class="nav navbar-nav navbar-right">
-				<li>
-				</li>
-				<li>
-					<div id="spinner" style="display: none">
-						<img src="${resource(dir: 'img', file: 'ajax_loader.gif')}" alt="" />
-					</div>
-				</li>
-				<li><g:link controller="event" action="listView"
+				<li class="visible-md visible-lg"><g:link controller="event" action="listView"
 						class="link" title="New tasks">
 						<span  
 							id="new_tasks"
@@ -240,12 +233,20 @@
 						class="caret"></b>
 				</a>
 
-					<ul class="dropdown-menu">
+				<ul class="dropdown-menu">
 						<li><g:link controller="logout">
-							 Sign Out</g:link></li>
-					</ul></li>
+							 Sign out</g:link></li>
+				</ul></li>
+				
 			</ul>
 
 		</div>
 	</div>
 </div>
+
+<!-- Spinner Div -->
+<div id="spinner" style="display: none">
+	<img src="${resource(dir: 'images', file: 'spinner.gif')}"
+		alt="Loading..." />
+</div>
+<!-- Spinner Div Ends -->
