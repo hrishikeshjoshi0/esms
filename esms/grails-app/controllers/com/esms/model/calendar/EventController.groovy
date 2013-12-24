@@ -107,7 +107,7 @@ class EventController {
 		}
 		
 		params.sort = "startTime"
-		params.'order' = "asc"
+		params.'order' = "desc"
 		
 		def listView = Event.list(params)
 		def listViewCount = Event.count()
@@ -286,20 +286,21 @@ class EventController {
         if (!result.error) {
              flash.message = "Event Updated."
 			def order
+			
+			if(eventInstance.status == 'CLOSED') {
+				eventInstance.closeSourceEventIfRequired()
+				eventInstance.closeAssociatedEventsIfRequired()
+				redirect(controller:"event",action: "listView")
+				return
+			}
+			
 			if(eventInstance?.relatedTo == 'ORDER' && eventInstance?.relatedToValue) {
 				order = Order.findByOrderNumber(eventInstance?.relatedToValue)
 				redirect(controller:"order",action: "show",id:order?.id)
 				return
 			}
 			
-			if(eventInstance.status == 'CLOSED') {
-				eventInstance.closeSourceEventIfRequired()
-				eventInstance.closeAssociatedEventsIfRequired()
-			}
-			
-			//println "Redirecting to " + request.getHeader('referer')
-			//redirect(uri: request.getHeader('referer') )
-            redirect(action: "index")
+            redirect(controller:"event",action: "listView")
         }
         if (result.error == 'not.found') {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'event.label', default: 'Event'), params.id])}"

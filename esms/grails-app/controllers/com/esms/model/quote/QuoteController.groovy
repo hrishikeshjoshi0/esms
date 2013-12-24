@@ -66,7 +66,7 @@ class QuoteController {
 						//
 						if(organization?.isOneTimeCustomer) {
 							params.relatedTo = 'NON CONTRACT CUSTOMER'
-						} else {
+						} else if(params.relatedTo != 'RENEWAL'){
 							params.relatedTo = 'CONTRACT CUSTOMER'
 						}
 						

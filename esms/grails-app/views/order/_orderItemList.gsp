@@ -1,3 +1,4 @@
+<%@page import="com.esms.model.calendar.Event"%>
 <%@ page import="com.esms.model.order.PurchaseOrder"%>
 <%@ page import="com.esms.model.product.Product"%>
 
@@ -9,7 +10,7 @@
 </div>
 
 <!-- Quotes -->
-<table class="table table-striped table-condensed table-bordered">
+<table class="table table-striped table-condensed table-bordered ">
 	<thead>
 		<tr>
 			<g:sortableColumn property="lineNumber"
@@ -37,7 +38,7 @@
 		<g:each in="${orderInstance?.orderItems?.sort{a,b -> a.lineNumber <=> b.lineNumber}}" var="orderItemInstance" status="stat">
 			<g:set var="product" value="${Product.findByProductNumber(orderItemInstance.productNumber)}"/>
 			<g:set var="eventInstance"
-				value="${Event.findByRelatedToAndRelatedToValue('ORDER',order?.orderNumber) }" />
+				value="${Event.findByRelatedToAndRelatedToValue('ORDER',orderInstance?.orderNumber) }" />
 			<tr>
 				<td>
 					${fieldValue(bean: orderItemInstance, field: "lineNumber")}

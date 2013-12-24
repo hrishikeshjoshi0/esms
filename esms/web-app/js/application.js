@@ -37,7 +37,7 @@ if (typeof jQuery !== 'undefined') {
 	    		}
 	        });
 	    	
-	    	$('.dashboardTable').expandable();
+	    	$('.expandableTable').expandable();
 	    	
 	    	/*$('.yui-content').slimScroll({
 	    	     
@@ -57,6 +57,6 @@ if (typeof jQuery !== 'undefined') {
 }
 
 function configureDropdowns() {
-	var p = $("select.filter-dropdown");
+	var p = $("select:not([name^='filter.'])");
 	$(p).chosen();
 }

@@ -7,7 +7,7 @@
 
 
 <!-- Quotes -->
-<table class="table table-striped table-condensed table-bordered">
+<table class="table table-striped table-condensed table-bordered expandableTable">
 	<thead>
 		<tr>
 			<g:sortableColumn property="eventType"

@@ -5,13 +5,21 @@
 			<th>
 				${message(code: 'event.sourceEvent.label', default: 'Source Event')}
 			</th>
+			
+			<th>
+				${message(code: 'event.title.label', default: 'Title')}
+			</th>
 
 			<th>
 				${message(code: 'event.eventType.label', default: 'Event Type')}
 			</th>
 
 			<th>
-				${message(code: 'event.startTime.label', default: 'Time')}
+				${message(code: 'event.startTime.label', default: 'Start Time')}
+			</th>
+			
+			<th>
+				${message(code: 'event.endTime.label', default: 'End Time')}
 			</th>
 
 			<th>
@@ -36,6 +44,10 @@
 								${associatedEvent?.sourceEvent?.title}
 						</g:link>
 					</td>
+					
+					<td>
+						${fieldValue(bean: associatedEvent, field: "title")}
+					</td>
 
 					<td>
 						${fieldValue(bean: associatedEvent, field: "eventType")}
@@ -43,6 +55,10 @@
 
 					<td>
 						${fieldValue(bean: associatedEvent, field: "startTime")}
+					</td>
+					
+					<td>
+						${fieldValue(bean: associatedEvent, field: "endTime")}
 					</td>
 
 					<td>

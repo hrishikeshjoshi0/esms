@@ -21,7 +21,7 @@
 			</th>
 			
 			<th>
-				${message(code: 'invoice.openGrandTotal.label', default: 'Pending Amount')}
+				${message(code: 'invoice.openGrandTotal.label', default: 'Outstanding Amount')}
 			</th>
 			
 			<th>

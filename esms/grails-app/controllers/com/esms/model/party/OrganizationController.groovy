@@ -360,7 +360,7 @@ class OrganizationController {
 	def search() {
 		def organizations = Organization.withCriteria(sort: "name", order: "asc") {
 			and {
-				eq("type", 'LEAD')
+				ne("salesStatus", 'LEAD')
 				ilike("name", "${params.query}%")
 			}
 		}

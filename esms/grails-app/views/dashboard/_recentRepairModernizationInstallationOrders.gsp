@@ -1,7 +1,7 @@
 <%@page import="com.esms.model.calendar.Event"%>
 <%@ page import="com.esms.model.party.*"%>
 
-<table class="table table-striped table-bordered mediaTable dashboardTable">
+<table class="table table-striped table-bordered mediaTable expandableTable">
 	<thead>
 		<tr>
 			<th>

@@ -2,6 +2,7 @@ package com.esms.model.report
 
 import com.esms.model.calendar.Event
 import com.esms.model.calendar.EventLog
+import com.esms.model.invoice.Invoice;
 import com.esms.model.order.Order
 
 class ReportController {
@@ -181,15 +182,15 @@ class ReportController {
 			params.max= grailsApplication.config.esms.settings.max?.toInteger()
 		}
 		
-		def amountReceivables = Order.withCriteria() {
-			gt("pendingInvoiceGrandTotal", new BigDecimal("0.0"))
+		def amountReceivables = Invoice.withCriteria() {
+			ne("status", "CLOSED")
 			"in"("type",['SALES','REPAIR','MODERNIZATION','INSTALLATION'])
 			firstResult(params.offset?.toInteger())
 			maxResults(params.max?.toInteger())
 		}
 		
-		def amountReceivablesTotal = Order.createCriteria().get {
-			gt("pendingInvoiceGrandTotal", new BigDecimal("0.0"))
+		def amountReceivablesTotal = Invoice.createCriteria().get {
+			ne("status", "CLOSED")
 			"in"("type",['SALES','REPAIR','MODERNIZATION','INSTALLATION'])
 			projections {
 				countDistinct "id"

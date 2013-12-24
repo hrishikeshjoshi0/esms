@@ -7,7 +7,7 @@
 
 
 <!-- Quotes -->
-<table class="table table-striped table-condensed table-bordered">
+<table class="table table-striped table-condensed table-bordered expandableTable">
 	<thead>
 		<tr>
 			<g:sortableColumn property="eventType"
@@ -29,10 +29,12 @@
 				title="${message(code: 'event.status.label', default: 'Status')}" />	
 
 			<th></th>
+			
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${organizationInstance?.events?.sort{a,b -> b.startTime <=> a.startTime}}" var="eventInstance">
+		<g:each in="${organizationInstance?.events?.findAll{it.sourceEvent == null}?.sort{a,b -> b.startTime <=> a.startTime}}" var="eventInstance">
 			<tr>
 			
 				<td>
@@ -61,6 +63,12 @@
 
 				<td class="link"><g:link controller="event" action="show"
 						id="${eventInstance.id}" class="lnk">Show &raquo;</g:link></td>
+				
+				<td>
+					<a class="expandRow" href="${createLink(controller:'event',action:'associatedEvents',id:eventInstance?.id)}">
+						+
+					</a>
+				</td>		
 			</tr>
 		</g:each>
 	</tbody>

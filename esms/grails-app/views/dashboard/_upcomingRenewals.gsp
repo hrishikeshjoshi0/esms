@@ -71,7 +71,7 @@
 					</g:link></td>
 
 				<td>
-					${orderInstance?.organization?.activeContract()}
+					${orderInstance?.organization?.activeServiceContract()}
 				</td>
 
 				<td><g:formatDate date="${orderInstance.contractFromDate}" /></td>
