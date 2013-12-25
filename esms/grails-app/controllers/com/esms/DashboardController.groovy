@@ -33,8 +33,26 @@ class DashboardController {
 		}
 		
 		def recentMaintenanceQuotes = Quote.findAllByStatusInListAndTypeInListAndRelatedToInList(['DRAFT','PENDING','REVISE','ACCEPT'],['CONTRACT'],['CONTRACT CUSTOMER','NON CONTRACT CUSTOMER','RENEWAL'],params)
-		def upcomingEvents = Event.findAllByStartTimeGreaterThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],params)
-		def overdueEvents = Event.findAllByStartTimeLessThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],params)
+		
+		def upcomingEvents = Event.withCriteria() {
+			and {
+				gt('startTime',new Date())
+				'in'('status',['PLANNED','NOT HELD'])
+				order("startTime", "desc")
+				maxResults(params.max)
+			}
+		}
+		
+		def overdueEvents = Event.withCriteria() {
+			and {
+				lt('startTime',new Date())
+				'in'('status',['PLANNED','NOT HELD'])
+				order("startTime", "desc")
+				maxResults(params.max)
+			}
+		}
+		
+		
 		def recentCustomers = Organization.findAllBySalesStatus('CUSTOMER',params)
 		
 		def dt = new Date()

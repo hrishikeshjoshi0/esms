@@ -182,15 +182,15 @@ class ReportController {
 			params.max= grailsApplication.config.esms.settings.max?.toInteger()
 		}
 		
-		def amountReceivables = Invoice.withCriteria() {
-			ne("status", "CLOSED")
+		def amountReceivables = Order.withCriteria() {
+			gt("pendingInvoiceGrandTotal", new BigDecimal("0.0"))
 			"in"("type",['SALES','REPAIR','MODERNIZATION','INSTALLATION'])
 			firstResult(params.offset?.toInteger())
 			maxResults(params.max?.toInteger())
 		}
 		
-		def amountReceivablesTotal = Invoice.createCriteria().get {
-			ne("status", "CLOSED")
+		def amountReceivablesTotal = Order.createCriteria().get {
+			gt("pendingInvoiceGrandTotal", new BigDecimal("0.0"))
 			"in"("type",['SALES','REPAIR','MODERNIZATION','INSTALLATION'])
 			projections {
 				countDistinct "id"

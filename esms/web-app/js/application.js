@@ -7,7 +7,6 @@ if (typeof jQuery !== 'undefined') {
 		});*/
 		
 	   $(document).ajaxSuccess(function() {
-		   console.log('Ajax Success');
 		   configureDropdowns();
 	   });
 		
@@ -40,8 +39,8 @@ if (typeof jQuery !== 'undefined') {
 	    	$('.expandableTable').expandable();
 	    	
 	    	/*$('.yui-content').slimScroll({
-	    	     
 	    	});*/
+	    	
 	   });
        
        $(window).resize(function () { 
@@ -54,6 +53,17 @@ if (typeof jQuery !== 'undefined') {
     	    $('body').css('padding-top', h-h/2-3);        
     	});
 	})(jQuery);
+}
+
+function openModalBox() {
+	var loadingDiv = $('#spinner').clone();
+	loadingDiv.attr('style','text-align:center');
+	
+	$.ajax({
+	  url: $(link).attr('href'),
+	}).done(function(data) {
+ 	  $('#expandedRow').html(data);
+	});
 }
 
 function configureDropdowns() {

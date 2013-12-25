@@ -96,7 +96,7 @@
 							${eventInstance?.title}
 						</td>
 						<td>
-							${invoiceInstance?.assignedTo}
+							${eventInstance?.assignedTo}
 						</td>
 						<td>
 							${eventInstance?.startTime}

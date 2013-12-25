@@ -224,8 +224,9 @@
 			
 			<ul class="nav navbar-nav navbar-right">
 				<li class="visible-md visible-lg">
-					<bs3:modalLink class="btn-primary" id="ad" href="${createLink(controller:'task',action:'administrationTaskListModal')}" title="Admin Tasks">
-					</bs3:modalLink>
+					<g:remoteLink controller="task" action="administrationTaskListModal" id="1" update="openModalBox">
+    					View Admin Tasks		
+    				</g:remoteLink>
 				</li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> Welcome, <sec:username /> <b

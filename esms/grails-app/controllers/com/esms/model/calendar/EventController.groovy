@@ -479,8 +479,8 @@ class EventController {
 			params.max= grailsApplication.config.esms.settings.max?.toInteger()
 		}
 		
-		def overdueEvents = Event.findAllByStartTimeLessThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],params)
-		def overdueEventsCount = Event.countByStartTimeLessThanAndStatusInList(new Date(),['PLANNED','NOT HELD'])
+		def overdueEvents = Event.findAllByEndTimeLessThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],params)
+		def overdueEventsCount = Event.countByEndTimeLessThanAndStatusInList(new Date(),['PLANNED','NOT HELD'])
 		[overdueEvents:overdueEvents,overdueEventsCount:overdueEventsCount]
 	}
 	
