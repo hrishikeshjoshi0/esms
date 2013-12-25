@@ -108,7 +108,7 @@
 	<tfoot>
 		<tr>
 			<th class="link" colspan="10">
-				<g:link controller="task" action="list" class="lnk ">Show All &raquo;</g:link>
+				<g:link controller="task" action="list" params="[relatedTo:'ORDER']" class="lnk ">Show All &raquo;</g:link>
 			</th>				
 		</tr>
 	</tfoot>

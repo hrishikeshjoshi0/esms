@@ -25,6 +25,29 @@ class TaskController {
 		
         [taskInstanceList: Task.list(params), taskInstanceTotal: Task.count()]
     }
+	
+	def administrationTaskListModal() {
+		if(!params.offset) {
+			 params.offset= 0
+		 }
+		 if(!params.max) {
+			 params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		 }
+		 
+		 def taskInstanceList = Task.withCriteria() {
+			 and {
+				 eq('relatedTo','ADMINISTRATION')
+				 ne("status", 'COMPLETED')
+			 }
+			 maxResults(params.max)
+			 order("dateTime", "asc")
+		 }
+		 
+		 params.sort="dateTime"
+		 params."order"="asc"
+		 
+		 [taskInstanceList: taskInstanceList, taskInstanceTotal: Task.count()]
+	 }
 
     def create() {
 		switch (request.method) {

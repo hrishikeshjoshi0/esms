@@ -16,7 +16,18 @@
 		</div>
 	</div>
 
-	<div class="col-md-6"></div>
+	<div class="col-md-6">
+		<div
+			class="checkbox fieldcontain ${hasErrors(bean: taskInstance, field: 'notification', 'error')} ">
+			<label for="notification" class="col-md-3 control-label">
+				<g:checkBox name="notification" 
+					value="${taskInstance?.notification}" />
+				<g:message code="task.notification.label" default="Notification" />
+			</label>
+			<span class="help-inline"> ${hasErrors(bean: taskInstance, field: 'notification', 'error')}
+				</span>
+		</div>
+	</div>
 </div>
 
 <div class="row">
@@ -145,27 +156,9 @@
 <div class="row">
 	<div class="col-md-6">
 		<div
-			class="form-group fieldcontain ${hasErrors(bean: taskInstance, field: 'notification', 'error')} ">
-			<label for="notification" class="col-md-3 control-label"><g:message
-					code="task.notification.label" default="Notification" /></label>
-			<div class="checkbox">
-				<g:checkBox name="notification" 
-					value="${taskInstance?.notification}" />
-				<span class="help-inline"> ${hasErrors(bean: taskInstance, field: 'notification', 'error')}
-				</span>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-6"></div>
-</div>
-
-<div class="row">
-	<div class="col-md-12">
-		<div
 			class="form-group fieldcontain ${hasErrors(bean: organizationInstance, field: 'taskDescription', 'error')}">
 			<label for="taskDescription" class="col-md-3 control-label"><g:message
-					code="taskInstance.taskDescription.label" default="taskDescription" /></label>
+					code="taskInstance.taskDescription.label" default="Description" /></label>
 			<div class="col-md-9">
 				<g:textArea name="taskDescription" rows="10" cols="100" class="form-control"
 					value="${taskInstance?.taskDescription}" />

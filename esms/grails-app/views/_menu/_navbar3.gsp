@@ -158,6 +158,9 @@
 						<li>
 							<g:link class="lnk " controller="event" action="upcomingEvents">Upcoming Events</g:link>
 						</li>
+						<li>
+							<g:link class="lnk " controller="task" action="list">Tasks</g:link>
+						</li>
 					</ul>
 				</li>
 
@@ -220,14 +223,10 @@
 			</g:if>
 			
 			<ul class="nav navbar-nav navbar-right">
-				<li class="visible-md visible-lg"><g:link controller="event" action="listView"
-						class="link" title="New tasks">
-						<span  
-							id="new_tasks"
-							data-url="${createLink(controller : 'event',action: 'getLatestTaskCount')}">
-						</span>						
-						New Events
-					</g:link></li>
+				<li class="visible-md visible-lg">
+					<bs3:modalLink class="btn-primary" id="ad" href="${createLink(controller:'task',action:'administrationTaskListModal')}" title="Admin Tasks">
+					</bs3:modalLink>
+				</li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> Welcome, <sec:username /> <b
 						class="caret"></b>

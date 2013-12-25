@@ -130,6 +130,8 @@
 						<g:link class="list-group-item ${ params.action == "listView" ? 'active' : '' }" controller="event" action="listView">All Events</g:link>
 						<g:link class="list-group-item ${ params.action == "upcomingEvents" ? 'active' : '' }" controller="event" action="upcomingEvents">Upcoming Events</g:link>
 						<g:link class="list-group-item ${ params.action == "overdueEvents" ? 'active' : '' }" controller="event" action="overdueEvents">Overdue Events</g:link>
+						<%--<g:link class="list-group-item ${ params.action == "create" && params.controller=="task" ? 'active' : '' }" controller="task" action="create" params="[relatedTo:'ADMINISTRATION']">Create Task</g:link>
+						--%>
 					</g:if>
 				</div>
 				

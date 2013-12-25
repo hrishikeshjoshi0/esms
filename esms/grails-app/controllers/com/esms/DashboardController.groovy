@@ -112,6 +112,7 @@ class DashboardController {
 		
 		def upcomingTasks = Task.withCriteria() {
 			and {
+				eq('relatedTo','ORDER')
 				ne("status", 'COMPLETED')
 				between('dateTime', startDate-1, endDate)
 			}
@@ -195,6 +196,7 @@ class DashboardController {
 		
 		def upcomingTasks = Task.withCriteria() {
 			and {
+				eq('relatedTo','ORDER')
 				ne("status", 'COMPLETED')
 				between('dateTime', startDate-1, endDate)
 			}

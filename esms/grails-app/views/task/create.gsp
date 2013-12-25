@@ -4,7 +4,7 @@
 <head>
 <meta name="layout" content="bootstrap3">
 <g:set var="entityName"
-	value="${message(code: 'task.label', default: 'Task')}" />
+	value="${message(code: 'task.label', default: 'Tasks')}" />
 <title><g:message code="default.create.label"
 		args="[entityName]" /></title>
 </head>

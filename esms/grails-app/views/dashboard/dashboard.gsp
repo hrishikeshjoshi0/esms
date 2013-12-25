@@ -12,7 +12,8 @@
 	<div class="row">
 		<div class="col-md-12 dashboard-widget">
 			<div class="page-header">
-				<h3>Upcoming Renewals And Tasks</h3>
+				<h3>Upcoming Renewals And Tasks
+				</h3>
 			</div>
 
 			<richui:tabView id="tabView">
