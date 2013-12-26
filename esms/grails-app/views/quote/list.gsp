@@ -26,18 +26,28 @@
 						<tr>
 							<g:sortableColumn params="${filterParams}" property="quoteNumber" title="${message(code: 'quote.quoteNumber.label', default: 'Quote Number')}" />
 							
-							<g:sortableColumn params="${filterParams}" property="quoteName" title="${message(code: 'quote.quoteName.label', default: 'Quote Name')}" />
-							
 							<g:sortableColumn params="${filterParams}" property="organization.name" title="${message(code: 'quote.organization.name.label', default: 'Organization')}" />
 						
-							<g:sortableColumn params="${filterParams}" property="status" title="${message(code: 'quote.status.label', default: 'Status')}" />
-						
 							<g:sortableColumn params="${filterParams}" property="type" title="${message(code: 'quote.type.label', default: 'Type')}" />
+							
+							<th>
+								Contact Person
+							</th>
+							
+							<th>
+								Contact Number
+							</th>
+							
+							<g:sortableColumn params="${filterParams}" property="assignedTo" title="${message(code: 'quote.assignedTo.label', default: 'Assigned To')}" />
+							
+							<g:sortableColumn params="${filterParams}" property="status" title="${message(code: 'quote.status.label', default: 'Status')}" />
 						
 							<g:sortableColumn params="${filterParams}" property="salesChannel" title="${message(code: 'quote.salesChannel.label', default: 'Sales Channel')}" />
 						
 							<g:sortableColumn params="${filterParams}" property="description" title="${message(code: 'quote.description.label', default: 'Description')}" />
 						
+							<th></th>
+							
 							<th></th>
 						</tr>
 					</thead>
@@ -46,25 +56,52 @@
 						<tr>
 							<td>${fieldValue(bean: quoteInstance, field: "quoteNumber")}</td>
 							
-							<td>${fieldValue(bean: quoteInstance, field: "quoteName")}</td>
-							
-							<td>
-								<g:link controller="organization" action="show" id="${quoteInstance?.organization?.id}">
+							<td><g:link controller="organization" action="show"
+									id="${quoteInstance?.organization?.id}">
 									${fieldValue(bean: quoteInstance, field: "organization.name")}
 								</g:link>
 							</td>
-						
-							<td>${fieldValue(bean: quoteInstance, field: "status")}</td>
-						
-							<td>${fieldValue(bean: quoteInstance, field: "type")}</td>
-						
-							<td>${fieldValue(bean: quoteInstance, field: "salesChannel")}</td>
-						
-							<td>${fieldValue(bean: quoteInstance, field: "description")}</td>
-						
-							<td class="link">
-								<g:link action="show" id="${quoteInstance.id}" class="lnk">Show &raquo;</g:link>
+							
+							<td>
+								${fieldValue(bean: quoteInstance, field: "type")}
 							</td>
+							
+							<td>
+								<%
+									if(!quoteInstance?.organization?.contacts?.isEmpty()) {
+										def contact = quoteInstance?.organization?.contacts.first()
+										println contact?.firstName
+									}
+								 %>
+							</td>
+							
+							<td>
+								<%
+									if(!organization?.contacts?.isEmpty()) {
+										def contact = organization?.contacts?.first()
+										println contact?.phoneBooks?.first()?.mobilePhone
+									}
+								 %>
+							</td>
+			
+							<td>
+								${fieldValue(bean: quoteInstance, field: "assignedTo")}
+							</td>
+							
+							<td>
+								${fieldValue(bean: quoteInstance, field: "status")}
+							</td>
+							
+							<td>${fieldValue(bean: quoteInstance, field: "salesChannel")}</td>
+									
+							<td>${fieldValue(bean: quoteInstance, field: "description")}</td>
+							
+							<td class="link"><g:link action="markAsDisqualified" controller="quote"	id="${quoteInstance?.id}" >
+									Disqualify
+								</g:link>
+							</td>
+			
+							<td class="link"><g:link controller="quote" action="show" id="${quoteInstance.id}" class="lnk ">Show &raquo;</g:link></td>
 						</tr>
 					</g:each>
 					</tbody>

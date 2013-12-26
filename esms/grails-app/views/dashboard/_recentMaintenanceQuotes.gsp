@@ -9,6 +9,10 @@
 <table class="table table-striped table-bordered mediaTable">
 	<thead>
 		<tr>
+			<th>
+				${message(code: 'quote.quoteNumber.label', default: 'Quote Number')}
+			</th>
+			
 			<th>${message(code: 'quote.organization.name.label', default: 'Organization')} </th>
 
 			<th>
@@ -29,7 +33,16 @@
 
 			<th>
 				${message(code: 'quote.status.label', default: 'Status')}
-			</th>	
+			</th>
+			
+			<th>
+				${message(code: 'quote.salesChannel.label', default: 'Sales Channel')}
+			</th>
+			
+			<th>
+				${message(code: 'quote.description.label', default: 'Description')}	
+			</th>
+						
 				
 			<th>Disqualify</th>	
 
@@ -39,6 +52,8 @@
 	<tbody>
 		<g:each in="${recentMaintenanceQuotes}" var="quoteInstance">
 			<tr>
+				<td>${fieldValue(bean: quoteInstance, field: "quoteNumber")}</td>
+				
 				<td><g:link controller="organization" action="show"
 						id="${quoteInstance?.organization?.id}">
 						${fieldValue(bean: quoteInstance, field: "organization.name")}
@@ -75,6 +90,10 @@
 					${fieldValue(bean: quoteInstance, field: "status")}
 				</td>
 				
+				<td>${fieldValue(bean: quoteInstance, field: "salesChannel")}</td>
+						
+				<td>${fieldValue(bean: quoteInstance, field: "description")}</td>
+				
 				<td class="link"><g:link action="markAsDisqualified" controller="quote"	id="${quoteInstance?.id}" >
 						Disqualify
 					</g:link>
@@ -86,7 +105,7 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<th colspan="8" class="link">
+			<th colspan="11" class="link">
 				<g:link controller="quote" action="list">Show All &raquo;</g:link>
 			</th>				
 		</tr>

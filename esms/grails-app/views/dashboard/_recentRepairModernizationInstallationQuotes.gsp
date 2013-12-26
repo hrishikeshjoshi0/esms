@@ -3,22 +3,41 @@
 <table class="table table-striped table-bordered table-compact mediaTable">
 	<thead>
 		<tr>
-
-			<g:sortableColumn property="quoteName"
-				title="${message(code: 'quote.quoteName.label', default: 'Quote Name')}" />
-
-			<g:sortableColumn property="organization.name"
-				title="${message(code: 'quote.organization.name.label', default: 'Organization')}" />
-
-			<g:sortableColumn property="status"
-				title="${message(code: 'quote.status.label', default: 'Status')}" />
-
-			<g:sortableColumn property="type"
-				title="${message(code: 'quote.type.label', default: 'Type')}" />
+			<th>
+				${message(code: 'quote.quoteNumber.label', default: 'Quote Number')}
+			</th>
 			
-			<g:sortableColumn property="assignedTo"
-				title="${message(code: 'quote.assignedTo.label', default: 'Assigned To')}" />	
+			<th>${message(code: 'quote.organization.name.label', default: 'Organization')} </th>
 
+			<th>
+				${message(code: 'quote.type.label', default: 'Type of Enquiry')}
+			</th>	
+				
+			<th>
+				Contact Person
+			</th>
+			
+			<th>
+				Contact Number
+			</th>
+			
+			<th>
+				${message(code: 'quote.assignedTo.label', default: 'Assigned To')}
+			</th>		
+
+			<th>
+				${message(code: 'quote.status.label', default: 'Status')}
+			</th>
+			
+			<th>
+				${message(code: 'quote.salesChannel.label', default: 'Sales Channel')}
+			</th>
+			
+			<th>
+				${message(code: 'quote.description.label', default: 'Description')}	
+			</th>
+						
+				
 			<th>Disqualify</th>	
 
 			<th></th>
@@ -27,27 +46,48 @@
 	<tbody>
 		<g:each in="${recentRepairsModernizationAndInstallationQuotes}" var="quoteInstance">
 			<tr>
-				<td>
-					${fieldValue(bean: quoteInstance, field: "quoteName")}
-				</td>
-
+				<td>${fieldValue(bean: quoteInstance, field: "quoteNumber")}</td>
+				
 				<td><g:link controller="organization" action="show"
 						id="${quoteInstance?.organization?.id}">
 						${fieldValue(bean: quoteInstance, field: "organization.name")}
-					</g:link></td>
-
-				<td>
-					${fieldValue(bean: quoteInstance, field: "status")}
+					</g:link>
 				</td>
-
+				
 				<td>
 					${fieldValue(bean: quoteInstance, field: "type")}
 				</td>
 				
 				<td>
-					${fieldValue(bean: quoteInstance, field: "assignedTo")}
+					<%
+						if(!quoteInstance?.organization?.contacts?.isEmpty()) {
+							def contact = quoteInstance?.organization?.contacts.first()
+							println contact?.firstName
+						}
+					 %>
+				</td>
+				
+				<td>
+					<%
+						if(!organization?.contacts?.isEmpty()) {
+							def contact = organization?.contacts?.first()
+							println contact?.phoneBooks?.first()?.mobilePhone
+						}
+					 %>
 				</td>
 
+				<td>
+					${fieldValue(bean: quoteInstance, field: "assignedTo")}
+				</td>
+				
+				<td>
+					${fieldValue(bean: quoteInstance, field: "status")}
+				</td>
+				
+				<td>${fieldValue(bean: quoteInstance, field: "salesChannel")}</td>
+						
+				<td>${fieldValue(bean: quoteInstance, field: "description")}</td>
+				
 				<td class="link"><g:link action="markAsDisqualified" controller="quote"	id="${quoteInstance?.id}" >
 						Disqualify
 					</g:link>
@@ -59,7 +99,7 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<th colspan="7" class="link">
+			<th colspan="11" class="link">
 				<g:link controller="quote" action="list">Show All &raquo;</g:link>
 			</th>				
 		</tr>

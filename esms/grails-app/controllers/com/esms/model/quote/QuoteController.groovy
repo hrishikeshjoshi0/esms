@@ -12,6 +12,8 @@ class QuoteController {
 	static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: ['GET', 'POST']]
 
 	def filterPaneService
+	
+	def accountService
 
 	def index() {
 		redirect action: 'list', params: params

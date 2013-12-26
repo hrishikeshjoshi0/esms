@@ -22,6 +22,8 @@ class InvoiceController {
 
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		params.sort = 'status'
+		params.'order' = "desc"
         [invoiceInstanceList: Invoice.list(params), invoiceInstanceTotal: Invoice.count()]
     }
 	

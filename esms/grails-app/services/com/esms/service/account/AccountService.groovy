@@ -114,4 +114,25 @@ class AccountService {
 		
 		return order
 	}
+	
+	def getActiveServiceContract(Organization organization) {
+		Date today = new Date()
+		def activeContracts = Order.withCriteria() {
+			and {
+				eq("type", 'SERVICE')
+				eq("organization", organization)
+				ge("contractToDate", today)
+				le("contractFromDate", today)
+			}
+			order("contractToDate", "asc")
+			maxResults(1)
+		}
+		
+		def activeContract
+		if(activeContracts?.size() > 0) {
+			activeContract = activeContracts?.first()
+		}
+		
+		return activeContract
+	}
 }
