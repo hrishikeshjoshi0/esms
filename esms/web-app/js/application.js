@@ -55,15 +55,26 @@ if (typeof jQuery !== 'undefined') {
 	})(jQuery);
 }
 
-function openModalBox() {
+function onLoading(elem) {
 	var loadingDiv = $('#spinner').clone();
 	loadingDiv.attr('style','text-align:center');
+	$(elem).html(loadingDiv);
+}
+
+function openModalBox(data,title) {
+	var modalTemplate = $('#modalTemplate').clone();
+	$(modalTemplate).find('.modal-title').html(title);
 	
-	$.ajax({
-	  url: $(link).attr('href'),
-	}).done(function(data) {
- 	  $('#expandedRow').html(data);
+	onLoading($(modalTemplate).find('.modal-body'));
+	
+	$(modalTemplate).find('.modal-body').html(data);
+	
+	$(modalTemplate).on("show.bs.modal", function() {
+		var height = $(window).height() - 150;
+		$(this).find(".modal-body").css("max-height", height);
 	});
+	
+	modalTemplate.modal('show');
 }
 
 function configureDropdowns() {

@@ -76,7 +76,7 @@
 				</td>
 				
 				<td class="link"><g:link action="markAsDisqualified" controller="quote"	id="${quoteInstance?.id}" >
-						<i class="glyphicon glyphicon-trash"></i>Disqualify
+						Disqualify
 					</g:link>
 				</td>
 

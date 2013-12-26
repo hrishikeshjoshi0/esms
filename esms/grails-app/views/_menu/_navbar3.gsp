@@ -224,7 +224,7 @@
 			
 			<ul class="nav navbar-nav navbar-right">
 				<li class="visible-md visible-lg">
-					<g:remoteLink controller="task" action="administrationTaskListModal" id="1" update="openModalBox">
+					<g:remoteLink controller="task" action="administrationTaskListModal" id="1" onSuccess="openModalBox(data,'View Admin Tasks')">
     					View Admin Tasks		
     				</g:remoteLink>
 				</li>

@@ -35,6 +35,7 @@
 				Assigned To (Vendor)
 			</th>
 			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>

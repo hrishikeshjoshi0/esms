@@ -1,16 +1,31 @@
 package com.esms.model.calendar
 
-import grails.converters.JSON;
-
+import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
+
+import com.esms.model.order.Order
 
 class TaskController {
 
     static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
 
+	def filterPaneService
+	
     def index() {
         redirect action: 'list', params: params
     }
+	
+	def filter = {
+		if(!params.offset) {
+			params.offset= 0
+		}
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
+		render( view:'list', model:[ taskInstanceList: filterPaneService.filter( params, Task),
+			taskInstanceTotal: filterPaneService.count( params, Task), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
+	}
 
     def list() {
        if(!params.offset) {
@@ -23,7 +38,17 @@ class TaskController {
 		params.sort="dateTime"
 		params."order"="asc"
 		
-        [taskInstanceList: Task.list(params), taskInstanceTotal: Task.count()]
+		def taskInstanceList
+		def taskInstanceTotal
+		if(params.relatedTo) {
+			taskInstanceList = Task.findAllByRelatedTo(params.relatedTo,params)
+			taskInstanceTotal = Task.countByRelatedTo(params.relatedTo)
+		} else {
+			taskInstanceList = Task.list(params)
+			taskInstanceTotal = Task.count()
+		}
+		
+        [taskInstanceList: taskInstanceList, taskInstanceTotal:taskInstanceTotal]
     }
 	
 	def administrationTaskListModal() {

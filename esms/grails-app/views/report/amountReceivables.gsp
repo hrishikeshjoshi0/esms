@@ -1,3 +1,4 @@
+<%@page import="com.esms.model.quote.Quote"%>
 <%@page import="com.esms.model.invoice.Invoice"%>
 <%@page import="com.esms.model.calendar.Event"%>
 <%@ page import="com.esms.model.order.Order" %>
@@ -50,6 +51,7 @@
 					<tbody>
 					<g:each in="${amountReceivables}" var="orderInstance">
 						<g:set var="eventInstance" value="${Event.findByRelatedToAndRelatedToValue('ORDER',orderInstance?.orderNumber) }" />
+						<g:set var="quoteInstance" value="${Quote.findByQuoteNumber(orderInstance?.referenceQuoteNumber) }" />
 						<tr>
 							<td>${fieldValue(bean: orderInstance, field: "orderNumber")}</td>
 							
@@ -60,7 +62,7 @@
 							</td>
 							
 							<td>
-								${eventInstance?.title}
+								${quoteInstance?.quoteName}
 							</td>
 						
 							<td>${fieldValue(bean: orderInstance, field: "type")}</td>

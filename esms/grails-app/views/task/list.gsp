@@ -17,6 +17,12 @@
 					<g:message code="default.list.label" args="[entityName]" />
 				</h3>
 			</div>
+			
+			<filterpane:filterPane domain="com.esms.model.calendar.Task"
+						filterProperties="${['taskName', 'relatedTo','relatedToValue','dateTime','dueDateTime','status','priority','assignedToValue']}"
+						titleKey="default.filterPane.header" dialog="yes" visible="n"
+										showSortPanel="y" showTitle="y" showButtons="y"
+										fullAssociationPathFieldNames="false" />
 
 			<table class="table table-striped table-bordered mediaTable">
 				<thead>
@@ -25,9 +31,13 @@
 						<th>
 							${message(code: 'task.taskName.label', default: 'Task Name')}
 						</th>
+						
+						<th>
+							${message(code: 'task.relatedTo.label', default: 'Related To')}
+						</th>
 
 						<th>
-							${message(code: 'task.relatedToValue.label', default: 'Order Number')}
+							${message(code: 'task.relatedToValue.label', default: 'Related To Value')}
 						</th>
 
 						<th>
@@ -60,15 +70,19 @@
 				<tbody id="upcomingTasks">
 					<g:each in="${taskInstanceList}" var="taskInstance">
 						<g:set var="order"
-							value="${Order.findByOrderNumber(taskInstance.relatedToValue)}" />
+								value="${Order.findByOrderNumber(taskInstance.relatedToValue?taskInstance.relatedToValue:'')}" />
 						<tr>
 
 							<td>
 								${fieldValue(bean: taskInstance, field: "taskName")}
 							</td>
+							
+							<td>
+								${taskInstance.relatedTo}
+							</td>
 
 							<td>
-								${order?.orderNumber}
+								${taskInstance.relatedToValue}
 							</td>
 
 							<td>

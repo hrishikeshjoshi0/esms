@@ -190,6 +190,13 @@
 								removeImgFile="skin/database_delete.png"
 								fullAssociationPathFieldNames="no" />
 						</g:elseif>
+						<g:elseif
+							test="${params.controller == 'task'}">
+							<filterpane:currentCriteria
+								domainBean="com.esms.model.calendar.Task" removeImgDir="images"
+								removeImgFile="skin/database_delete.png"
+								fullAssociationPathFieldNames="no" />
+						</g:elseif>
 					</g:if>
 				</div>
 				

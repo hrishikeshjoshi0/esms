@@ -38,18 +38,18 @@ class DashboardController {
 			and {
 				gt('startTime',new Date())
 				'in'('status',['PLANNED','NOT HELD'])
-				order("startTime", "desc")
-				maxResults(params.max)
 			}
+			order("startTime", "desc")
+			maxResults(params.max)
 		}
 		
 		def overdueEvents = Event.withCriteria() {
 			and {
 				lt('startTime',new Date())
 				'in'('status',['PLANNED','NOT HELD'])
-				order("startTime", "desc")
-				maxResults(params.max)
 			}
+			order("startTime", "desc")
+			maxResults(params.max)
 		}
 		
 		

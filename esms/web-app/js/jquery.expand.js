@@ -22,19 +22,20 @@
         	console.log(cols);
         	
         	var loadingDiv = $('#spinner').clone();
+        	var id = "expandedRow" + Math.random();
         	
         	if(link.hasClass("expanded")) {
-        		var detailRow = $('<tr><td id="expandedRow" colspan="' + cols + '"></td></tr>');
+        		var detailRow = $('<tr><td id="' + id + '" colspan="' + cols + '"></td></tr>');
         		$(curRow).after(detailRow);
         		
         		loadingDiv.attr('style','text-align:center');
         		
-        		$('#expandedRow').html(loadingDiv);
+        		$(id).html(loadingDiv);
         		
         		$.ajax({
 	      		  url: $(link).attr('href'),
 	      		}).done(function(data) {
-	      			$('#expandedRow').html(data);
+	      			$(id).html(data);
 	      		});
         		
         	} else {

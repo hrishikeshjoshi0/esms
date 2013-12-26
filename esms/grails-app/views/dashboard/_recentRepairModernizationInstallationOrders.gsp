@@ -66,7 +66,7 @@
 					 %>
 				</td>
 				<td>
-					${eventInstance?.assignedTo}
+					${order?.assignedTo}
 				</td>
 				<td>
 					${eventInstance?.title}
