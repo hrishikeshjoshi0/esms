@@ -22,7 +22,10 @@ class PaymentController {
 		} 
 		if(!params.max) {
 			params.max= grailsApplication.config.esms.settings.max?.toInteger()
-		}		
+		}
+		
+		params.sort = 'paymentNumber'
+		params.'order' = 'desc'
 		
 		def paymentInstanceTotal = Payment.count()
 		def paymentInstanceList = Payment.list(params)

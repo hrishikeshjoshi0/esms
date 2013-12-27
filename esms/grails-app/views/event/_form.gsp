@@ -132,7 +132,7 @@
 		</div>
 		
 		<div
-			class="form-group fieldcontain ${hasErrors(bean: eventInstance, field: 'title', 'error')}">
+			class="form-group fieldcontain ${hasErrors(bean: eventInstance, field: 'title', 'error')} required">
 			<label class="col-md-3 control-label" for="title"><g:message code="event.title.label"
 					default="Title" /></label>
 			<div class="col-md-9">
@@ -289,7 +289,7 @@
 			<label class="col-md-3 control-label"for="startTime"><g:message
 					code="event.startTime.label" default="Start Time" /></label>
 			<div class="col-md-9">
-				<richui:dateChooser name="startTime" class="col-md-6"
+				<richui:dateChooser name="startTime" class="col-md-6 required"
 					value="${eventInstance?.startTime}" time="true" 
 					hourClass="col-md-2" minuteClass="col-md-2" />
 			</div>
@@ -301,7 +301,7 @@
 			<label class="col-md-3 control-label"for="endTime"><g:message code="event.endTime.label"
 					default="End Time" /></label>
 			<div class="col-md-9">
-				<richui:dateChooser class="col-md-6" name="endTime" value="${eventInstance?.endTime}" 
+				<richui:dateChooser class="col-md-6 required" name="endTime" value="${eventInstance?.endTime}" 
 					time="true" hourClass="col-md-2" minuteClass="col-md-2" />		
 			</div>
 		</div>

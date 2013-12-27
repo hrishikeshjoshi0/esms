@@ -369,14 +369,15 @@ class OrderController {
 					
 					if(orderItem?.relatedOrderNumber) {
 						purchaseOrderInstance =	PurchaseOrder.findByPurchaseOrderNumber(orderItem.relatedOrderNumber)
+						purchaseOrderInstance.properties = params
 					} else {
 						purchaseOrderInstance = new PurchaseOrder()
+						purchaseOrderInstance.properties = params
 						purchaseOrderInstance.purchaseOrderNumber = utilService.newPurchaseOrderNumber()
 					}
-					purchaseOrderInstance.properties = params
 					
 					if (!purchaseOrderInstance.save(flush: true)) {
-						render view: 'show', model: [orderInstance:OrderItem.get(orderItem)?.order]
+						render view: 'show', model: [orderInstance:orderItem?.order]
 						return
 					}
 					
@@ -446,7 +447,7 @@ class OrderController {
 				order.save(flush:true)
 
 				flash.message = message(code: 'default.created.message', args: [
-					message(code: 'quoteItem.label', default: 'QuoteItem'),
+					message(code: 'orderItem.label', default: 'Order Item'),
 					orderItemInstance.id
 				])
 				redirect action: 'show', id: orderItemInstance.order.id

@@ -14,7 +14,7 @@
 		</g:hasErrors>
 
 		<div class="well">
-			<g:form class="form-horizontal" controller="orderItem"
+			<g:form class="form-horizontal" controller="order"
 				action="createOrderItem">
 				<g:hiddenField name="order.id" value="${orderItemInstance?.order?.id}" />
 				<fieldset>

@@ -2,6 +2,7 @@ package com.esms.util
 
 import com.esms.model.invoice.Invoice;
 import com.esms.model.order.Order;
+import com.esms.model.order.PurchaseOrder;
 import com.esms.model.party.Contact;
 import com.esms.model.party.Organization;
 import com.esms.model.product.Product
@@ -39,7 +40,7 @@ class UtilService {
 	}
 	
 	def String newPurchaseOrderNumber() {
-		def count = Order.count();
+		def count = PurchaseOrder.count();
 		int no = (count?count:0) + 1;
 		String orderNumber = prefixMap."PurchaseOrder" + String.format("%05d", no)
 		return orderNumber

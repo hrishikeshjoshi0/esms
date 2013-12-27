@@ -10,69 +10,89 @@
 	<thead>
 		<tr>
 			<th>
-				${message(code: 'organization.name.label', default: 'Name')}
+				${message(code: 'order.orderNumber.label', default: 'Order Number')}
 			</th>
+
 			<th>
-				Type of Contract
-			</th>	
-			<th>
-				Contact Person
-			</th>	
-			<th>
-				Contact Number
+				${message(code: 'quote.organization.name.label', default: 'Organization')}
 			</th>
+
 			<th>
-				Assigned To
-			</th>	
+				${message(code: 'order.type.label', default: 'Contract Type')}
+			</th>
+
+			<th>
+				${message(code: 'order.contractFromDate.label', default: 'From Date')}
+			</th>
+
+			<th>
+				${message(code: 'order.contractToDate.label', default: 'To Date')}
+			</th>
+
+			<th>Total Amount</th>
+							
+			<th>Invoiced Amount</th>
+						
+			<th>Received Amount</th>
+						
+			<th>Pending Invoice Amount</th>
+
+			<th>Renewal Process</th>
+			
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${recentOrders}" var="order">
+		<g:each in="${recentOrders}" var="orderInstance">
 			<g:set var="organization"
-				value="${order.organization}" />
+				value="${orderInstance.organization}" />
 			<g:set var="addressInstance"
 				value="${Address.findByAddressTypeAndParty('BILLING',organization) }" />
 			<tr>
 				<td>
-					<g:link controller="organization" action="show" id="${organization?.id}">
-						${fieldValue(bean: organization, field: "name")}
-					</g:link>
+					${fieldValue(bean: orderInstance, field: "orderNumber")}
 				</td>
+
+				<td><g:link controller="organization" action="show"
+						id="${orderInstance?.organization?.id}">
+						${fieldValue(bean: orderInstance, field: "organization.name")}
+					</g:link></td>
+
 				<td>
-					<g:if test="${order?.orderItems?.size() != 0}">
-						${order?.organization?.activeServiceContract()}
+					${orderInstance?.organization?.activeServiceContract()}
+				</td>
+
+				<td><g:formatDate date="${orderInstance.contractFromDate}" /></td>
+
+				<td><g:formatDate date="${orderInstance.contractToDate}" /></td>
+
+				<td><g:formatNumber type="number" number="${orderInstance?.grandTotal}" /></td>
+
+				<td><g:formatNumber type="number" number="${orderInstance?.invoicedGrandTotal}" />
+				</td>
+		
+				<td><g:formatNumber type="number"
+						number="${orderInstance?.getReceivedAmount()}" /></td>
+		
+				<td>
+					<g:formatNumber type="number"
+						number="${orderInstance?.pendingInvoiceGrandTotal}" />
+				</td>
+		
+				<td>
+					<g:if test="${orderInstance?.taggedForRenewal == true}">
+								${orderInstance?.getRenewalState()}			
 					</g:if>
-					<g:else>
-						-
-					</g:else>
 				</td>
-				<td>
-					<%
-						if(!organization?.contacts?.isEmpty()) {
-							def contact = organization?.contacts.first()
-							println contact?.firstName
-						}
-					 %>
-				</td>
-				<td>
-					<%
-						if(!organization?.contacts?.isEmpty()) {
-							def contact = organization?.contacts.first()
-							println contact?.phoneBooks?.first()?.mobilePhone
-						}
-					 %>
-				</td>
-				<td>
-					${order.assignedTo}
-				</td>
-				<td class="link"><g:link controller="order" action="show" id="${order?.id}" class="lnk ">Show &raquo;</g:link></td>
+				
+				<td class="link"><g:link action="show" id="${orderInstance.id}" controller="order"
+						class="lnk ">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
 	<tfoot>
 			<tr>
-				<th colspan="6" class="link">
+				<th colspan="12" class="link">
 					<g:link controller="order" action="list" class="lnk ">Show All &raquo;</g:link>
 				</th>				
 			</tr>

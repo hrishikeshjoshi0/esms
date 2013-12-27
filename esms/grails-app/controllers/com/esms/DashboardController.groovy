@@ -39,7 +39,7 @@ class DashboardController {
 				gt('startTime',new Date())
 				'in'('status',['PLANNED','NOT HELD'])
 			}
-			order("startTime", "desc")
+			order("startTime", "asc")
 			maxResults(params.max)
 		}
 		
@@ -48,7 +48,7 @@ class DashboardController {
 				lt('startTime',new Date())
 				'in'('status',['PLANNED','NOT HELD'])
 			}
-			order("startTime", "desc")
+			order("startTime", "asc")
 			maxResults(params.max)
 		}
 		

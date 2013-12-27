@@ -34,7 +34,7 @@
 								</div>
 							</div>
 							
-							<div
+							<%--<div
 								class="form-group fieldcontain ${hasErrors(bean: purchaseOrderInstance, field: 'status', 'error')} ">
 								<label for="status" class="col-md-3 control-label"><g:message
 										code="purchaseOrder.status.label" default="Status" /></label>
@@ -48,6 +48,7 @@
 									</span>
 								</div>
 							</div>
+							--%>
 							
 							<div
 								class="form-group fieldcontain ${hasErrors(bean: purchaseOrderInstance, field: 'vendorName', 'error')} ">
@@ -62,7 +63,7 @@
 								</div>
 							</div>
 							
-							<div
+							<%--<div
 								class="form-group fieldcontain ${hasErrors(bean: purchaseOrderInstance, field: 'contactName', 'error')} ">
 								<label for="contactName" class="col-md-3 control-label"><g:message
 										code="purchaseOrder.contactName.label" default="Contact Name" /></label>
@@ -100,6 +101,7 @@
 									</span>
 								</div>
 							</div>
+							--%>
 						</div>
 					</div>
 					

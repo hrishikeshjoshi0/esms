@@ -26,7 +26,7 @@
 	</thead>
 	<tbody>
 		<g:if test="${upcomingEvents != null && upcomingEvents.size() != 0}">
-			<g:each in="${upcomingEvents?.sort{a,b -> b.startTime <=> a.startTime}}" var="eventInstance">
+			<g:each in="${upcomingEvents?.sort{a,b -> a.startTime <=> b.startTime}}" var="eventInstance">
 				<tr>
 					<td>
 						${eventInstance.party?.name}

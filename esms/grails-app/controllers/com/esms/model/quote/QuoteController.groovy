@@ -253,7 +253,14 @@ class QuoteController {
 					
 					def fromCal = Calendar.instance
 					
-					def endCal = Calendar.instance
+					def serviceContract = accountService.getActiveServiceContract(quoteInstance?.organization)
+					if(serviceContract) {
+						if(serviceContract.contractToDate) {
+							fromCal = serviceContract.contractToDate.next()?.toCalendar()
+						}
+					}
+					
+					def endCal = fromCal.clone()
 					int d = endCal.get(Calendar.DATE)
 					int y = endCal.get(Calendar.YEAR)
 					endCal.set Calendar.DATE, d
@@ -263,7 +270,7 @@ class QuoteController {
 					quoteInstance.contractFromDate = fromCal.getTime()
 					quoteInstance.contractToDate = newEndDate
 					
-					def model = [quoteInstance:quoteInstance,serviceQuoteListItems:serviceQuoteListItems]
+					def model = [quoteInstance:quoteInstance,serviceQuoteListItems:serviceQuoteListItems,serviceContract:serviceContract]
 					render(view:"/quote/markAsAccepted",model:model)
 					return
 				} else {
@@ -278,6 +285,32 @@ class QuoteController {
 				if(quoteInstance.type == 'CONTRACT') {
 					quoteInstance.contractFromDate = params.contractFromDate
 					quoteInstance.contractToDate = params.contractToDate
+					
+					if(quoteInstance.contractFromDate.compareTo(quoteInstance.contractToDate) > 0) {
+						flash.isDanger = true
+						flash.message = 'Contract end date should be greater than the start date.'
+						redirect action: 'show', id: quoteInstance.id
+						break
+					}
+					
+					def serviceContract = accountService.getActiveServiceContract(quoteInstance?.organization)
+					if(serviceContract) {
+						if(serviceContract.contractToDate) {
+							if(quoteInstance.contractFromDate.compareTo(serviceContract.contractToDate) <= 0) {
+								flash.isDanger = true
+								flash.message = 'The new contract cannot overlap with an existing contract.'
+								redirect action: 'show', id: quoteInstance.id
+								break
+							}
+						}
+					}
+					
+					if(params.selectedService == null || params.selectedService.size() == 0) {
+						flash.isDanger = true
+						flash.message = 'Please select atleast one contract.'
+						redirect action: 'show', id: quoteInstance.id
+						break
+					}
 					
 					def selectedService = params.selectedService
 				

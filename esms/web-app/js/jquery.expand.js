@@ -19,23 +19,23 @@
                 cols += parseInt(cspan, 10); 
             });
         	
-        	console.log(cols);
-        	
         	var loadingDiv = $('#spinner').clone();
-        	var id = "expandedRow" + Math.random();
+        	loadingDiv.attr('style','text-align:center');
+        	
+        	var numRand = Math.floor(Math.random()*101)
+        	var id = "expandedRow"+numRand;
         	
         	if(link.hasClass("expanded")) {
         		var detailRow = $('<tr><td id="' + id + '" colspan="' + cols + '"></td></tr>');
         		$(curRow).after(detailRow);
         		
-        		loadingDiv.attr('style','text-align:center');
-        		
-        		$(id).html(loadingDiv);
+        		var div = $('#' + id);
+        		div.html(loadingDiv);
         		
         		$.ajax({
 	      		  url: $(link).attr('href'),
 	      		}).done(function(data) {
-	      			$(id).html(data);
+	      			div.html(data);
 	      		});
         		
         	} else {

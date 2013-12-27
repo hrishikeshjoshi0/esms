@@ -101,7 +101,7 @@
 					code="task.relatedTo.label" default="Related To" /></label>
 			<div class="col-md-9">
 				<g:select name="relatedTo" class="form-control"
-					from="${taskInstance.constraints.relatedTo.inList}"
+					from="${taskInstance.constraints.relatedTo.inList?.sort()}"
 					value="${taskInstance?.relatedTo}"
 					valueMessagePrefix="task.relatedTo" noSelection="['': '']" />
 				<span class="help-inline"> ${hasErrors(bean: taskInstance, field: 'relatedTo', 'error')}

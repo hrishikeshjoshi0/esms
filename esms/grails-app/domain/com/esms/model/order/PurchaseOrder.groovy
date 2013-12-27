@@ -6,7 +6,7 @@ import com.esms.model.party.Organization
 class PurchaseOrder {
 	
 	String purchaseOrderNumber
-	String status
+	String status='NOT_STARTED'
 	String type
 	String description
 	Date issueDate = new Date()
@@ -26,7 +26,7 @@ class PurchaseOrder {
 	BigDecimal openGrandTotal = new BigDecimal("0.0")
 	BigDecimal paidGrandTotal = new BigDecimal("0.0")
 	
-	BigDecimal workCompleted
+	BigDecimal workCompleted = new BigDecimal("0.0")
 	 
 	static hasMany = [purchaseOrderItems:PurchaseOrderItem,inventoryJournalEntries : InventoryJournal]
 	

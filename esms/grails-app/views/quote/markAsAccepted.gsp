@@ -13,6 +13,15 @@
 			</bootstrap:alert>
 		</g:hasErrors>
 
+		<g:if test="${serviceContract}">
+			<div>
+				<bootstrap:alert class="${'alert-warning'}">
+					There is an ongoing service contract till <g:formatDate date="${serviceContract?.contractToDate}"/>. <br/>
+					The new contract will start from the given start date.  
+				</bootstrap:alert>
+			</div>
+		</g:if>
+
 		<div class="well">
 			<g:form class="form-horizontal" controller="quote"
 				action="markAsAccepted" id="${quoteInstance?.id}">
@@ -26,8 +35,8 @@
 										code="quote.contractFromDate.label"
 										default="Contract Starts" /> </label>
 								<div class="col-md-9">
-									<richui:dateChooser name="contractFromDate" class="form-control"
-										value="${quoteInstance?.contractFromDate}" />
+									<richui:dateChooser name="contractFromDate" class="form-control" 
+												value="${quoteInstance?.contractFromDate}" />	
 									<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'contractFromDate', 'error')}
 									</span>
 								</div>

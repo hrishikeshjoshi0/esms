@@ -107,7 +107,7 @@ class EventController {
 		}
 		
 		params.sort = "startTime"
-		params.'order' = "desc"
+		params.'order' = "asc"
 		
 		def listView = Event.list(params)
 		def listViewCount = Event.count()
@@ -186,6 +186,13 @@ class EventController {
 				 break
 			case 'POST':
 				 def eventInstance = new Event(params)
+				 
+				 if(eventInstance.startTime.compareTo(eventInstance.endTime) > 0) {
+					 flash.isDanger = true
+					 flash.message = 'End date/time should be greater than the start date/time.'
+		             render(view: "create", model: [eventInstance: eventInstance])
+					 return
+				 }
 		
 				 eventInstance.activityLog = 'Init'
 		         if (eventInstance.save(flush: true)) {
@@ -461,7 +468,7 @@ class EventController {
 		}
 		
 		params.sort = "startTime"
-		params.'order' = "desc"
+		params.'order' = "asc"
 		def upcomingEvents = Event.findAllByStartTimeGreaterThanAndStatusInList(new Date(),['PLANNED','NOT HELD'],params)
 		def upcomingEventsCount = Event.countByStartTimeGreaterThanAndStatusInList(new Date(),['PLANNED','NOT HELD'])
 		
@@ -470,7 +477,7 @@ class EventController {
 	
 	def overdueEvents = {
 		params.sort = "startTime"
-		params.'order' = "desc"
+		params.'order' = "asc"
 		
 		if(!params.offset) {
 			params.offset= 0
