@@ -75,7 +75,7 @@
 					
 					<!-- List All Xxx -->
 					<g:if
-						test="${params.controller != 'event' && params.controller != 'report'}">
+						test="${params.controller != 'event' && params.controller != 'report' && params.controller != 'user' && params.controller != 'role'}">
 						<g:link
 							class="list-group-item ${ params.action == "list" ? 'active' : '' }"
 							action="list">

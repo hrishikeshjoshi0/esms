@@ -88,20 +88,21 @@
 									</span>
 								</div>
 							</div>
+							--%>
 							
 							<div
 								class="form-group fieldcontain ${hasErrors(bean: purchaseOrderInstance, field: 'description', 'error')} ">
 								<label for="description" class="col-md-3 control-label"><g:message
 										code="purchaseOrder.description.label" default="Description" /></label>
 								<div class="col-md-9">
-									<g:textArea name="workCompleted" class="form-control"
+									<g:textArea name="description" class="form-control"
 										value="${purchaseOrderInstance?.description}" />
 									<span class="help-inline">
 										${hasErrors(bean: purchaseOrderInstance, field: 'description', 'error')}
 									</span>
 								</div>
 							</div>
-							--%>
+							
 						</div>
 					</div>
 					

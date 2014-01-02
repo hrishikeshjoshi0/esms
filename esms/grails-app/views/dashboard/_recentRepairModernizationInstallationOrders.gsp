@@ -17,6 +17,13 @@
 				Contact Number
 			</th>
 			<th>
+				${message(code: 'event.startTime.label', default: 'Start Time')}
+			</th>
+			
+			<th>
+				${message(code: 'event.endTime.label', default: 'End Time')}
+			</th>
+			<th>
 				Assigned To
 			</th>
 			<th>
@@ -33,7 +40,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${recentRepairsModernizationAndInstallationOrders}" var="order">
+		<g:each in="${recentRepairsModernizationAndInstallationOrders?.sort{a,b -> a.orderNumber <=> b.orderNumber}}" var="order">
 			<g:set var="organization"
 				value="${order.organization}" />
 			<g:set var="addressInstance"
@@ -64,6 +71,12 @@
 							println contact?.phoneBooks?.first()?.mobilePhone
 						}
 					 %>
+				</td>
+				<td>
+					<g:formatDate date="${eventInstance?.startTime}"/>
+				</td>
+				<td>
+					<g:formatDate date="${eventInstance?.endTime}"/>
 				</td>
 				<td>
 					${order?.assignedTo}

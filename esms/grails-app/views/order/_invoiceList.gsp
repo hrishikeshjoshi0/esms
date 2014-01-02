@@ -27,7 +27,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${invoices.sort{a,b -> a.invoiceNumber <=> b.invoiceNumber}}" var="invoiceInstance">
+		<g:each in="${invoices?.sort{a,b -> a.invoiceNumber <=> b.invoiceNumber}}" var="invoiceInstance">
 			<tr>
 				<td>
 					${fieldValue(bean: invoiceInstance, field: "invoiceNumber")}
@@ -61,7 +61,3 @@
 		</g:each>
 	</tbody>
 </table>
-<div class="pgn">
-	<bootstrap:paginate params="${filterParams}"
-		total="${invoices?.size()}" />
-</div>

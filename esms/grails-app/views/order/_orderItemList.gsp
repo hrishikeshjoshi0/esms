@@ -34,6 +34,9 @@
 			<th>
 				Assigned To (Vendor)
 			</th>
+			<th>
+				Description
+			</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -81,6 +84,9 @@
 				<g:else>
 					<td></td>
 				</g:else>
+				<td>
+					${purchaseOrder?.description}
+				</td>
 				<td>
 					<g:if test="${product?.productName != 'DISCOUNT' }">
 						<bs3:modalLink href="${createLink(controller:'order',action:'assignOrderItem',params:['id':orderItemInstance?.id])}"

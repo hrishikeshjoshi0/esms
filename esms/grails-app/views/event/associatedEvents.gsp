@@ -52,13 +52,13 @@
 					<td>
 						${fieldValue(bean: associatedEvent, field: "eventType")}
 					</td>
-
+					
 					<td>
-						${fieldValue(bean: associatedEvent, field: "startTime")}
+						<g:formatDate date="${associatedEvent?.startTime}"/>
 					</td>
 					
 					<td>
-						${fieldValue(bean: associatedEvent, field: "endTime")}
+						<g:formatDate date="${associatedEvent?.endTime}"/>
 					</td>
 
 					<td>

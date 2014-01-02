@@ -134,6 +134,7 @@ grails.plugin.springsecurity.securityConfigType = SecurityConfigType.InterceptUr
 grails.plugin.springsecurity.interceptUrlMap = [
 	'/login/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/static/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/register/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
 	'/**': ['ROLE_USER','ROLE_ADMIN'],
 	'/login/bootstrap/css/bootstrap.min.css': ['ROLE_USER','ROLE_ADMIN'],
 	'/login/bootstrap/css/bootstrap-responsive.min.css': ['ROLE_USER','ROLE_ADMIN']
@@ -198,6 +199,7 @@ grails.plugin.springsecurity.authority.className = 'com.esms.model.security.SecR
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
 	'/index':                         ['permitAll'],
+	'/register/**':                   ['permitAll'],
 	'/index.gsp':                     ['permitAll'],
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],

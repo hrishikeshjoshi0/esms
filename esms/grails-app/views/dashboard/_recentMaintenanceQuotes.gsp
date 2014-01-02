@@ -50,7 +50,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${recentMaintenanceQuotes}" var="quoteInstance">
+		<g:each in="${recentMaintenanceQuotes?.sort{a,b -> a.quoteNumber <=> b.quoteNumber}}" var="quoteInstance">
 			<tr>
 				<td>${fieldValue(bean: quoteInstance, field: "quoteNumber")}</td>
 				

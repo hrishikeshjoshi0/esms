@@ -23,11 +23,6 @@ class ReportController {
 		def events = EventLog.withCriteria(sort: "startTime", order: "desc") {
 			and {
 				eq('toBeReplaced',true)
-				event {
-					and {
-						ne("status", 'CLOSED')
-					}
-				}
 			}
 			
 			firstResult(params.offset?.toInteger())
@@ -38,11 +33,6 @@ class ReportController {
 		def eventLogInstanceTotal = c1.get {
 			and {
 				eq('toBeReplaced',true)
-				event {
-					and {
-						ne("status", 'CLOSED')
-					}
-				}
 			}
 			projections {
 				countDistinct "id"
@@ -67,11 +57,6 @@ class ReportController {
 		def events = EventLog.withCriteria(sort: "startTime", order: "desc") {
 			and {
 				eq('isProblemReported',true)
-				event {
-					and {
-						ne("status", 'CLOSED')
-					}
-				}
 			}
 			
 			firstResult(params.offset?.toInteger())
@@ -82,11 +67,6 @@ class ReportController {
 		def eventInstanceTotal = c1.get {
 			and {
 				eq('isProblemReported',true)
-				event {
-					and {
-						ne("status", 'CLOSED')
-					}
-				}
 			}
 			projections {
 				countDistinct "id"

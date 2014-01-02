@@ -16,6 +16,30 @@
 				<h3>
 					Customer
 					${organizationInstance?.externalId}:${organizationInstance?.name}
+					
+					<small>
+						<g:if test="${organizationInstance?.salesStatus == 'LOST' 
+								|| organizationInstance?.salesStatus == 'LOST_IN_RENEWAL'}">
+							<span class="label label-danger">
+								${organizationInstance?.salesStatus}
+							</span>
+						</g:if>
+						<g:elseif test="${organizationInstance?.salesStatus == 'DISQUALIFIED'}">
+							<span class="label label-warning">
+								${organizationInstance?.salesStatus}
+							</span>
+						</g:elseif>
+						<g:elseif test="${organizationInstance?.salesStatus == 'LEAD'}">
+							<span class="label label-primary">
+								${organizationInstance?.salesStatus}
+							</span>
+						</g:elseif>	
+						<g:elseif test="${organizationInstance?.salesStatus == 'CUSTOMER'}">
+							<span class="label label-success">
+								${organizationInstance?.salesStatus}
+							</span>
+						</g:elseif>						
+					</small>
 				</h3>
 				<h4>
 					<g:if test="${activeContract}">
@@ -39,6 +63,11 @@
 								<g:formatDate date="${activeContract?.contractToDate}"
 								format="dd.MM.yyyy" />)
 						</g:if>
+					</g:if>
+					<g:if test="${!activeContract && !organizationInstance?.isOneTimeCustomer}">
+						<span class="label label-danger">
+							No ongoing contract
+						</span>
 					</g:if>
 				</h4>
 			</div>

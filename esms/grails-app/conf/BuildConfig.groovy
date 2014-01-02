@@ -33,7 +33,10 @@ grails.project.dependency.resolution = {
 		
 		//
 		mavenRepo "http://repo.grails.org/grails/libs-releases/"
-		mavenRepo "http://m2repo.spockframework.org/ext/"		
+		mavenRepo "http://m2repo.spockframework.org/ext/"
+		
+		mavenRepo "http://download.java.net/maven/2/"
+		mavenRepo "http://repo.spring.io/milestone/"
     }
 	
     dependencies {
@@ -79,6 +82,9 @@ grails.project.dependency.resolution = {
 		
 		//compile ":modalbox:0.4"
 		
-		compile ":excel-import:1.0.0"		
+		compile ":excel-import:1.0.0"
+		
+		compile ":jquery-ui:1.10.3"
+		compile ":spring-security-ui:1.0-RC1"
     }
 }

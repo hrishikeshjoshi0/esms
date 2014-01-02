@@ -1,5 +1,9 @@
 <%@ page
 	import="org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes"%>
+<%@ page
+	import="org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes"%>
+<%@ page import="org.codehaus.groovy.grails.plugins.PluginManagerHolder"%>
+<%@ page import="grails.plugin.springsecurity.SpringSecurityUtils"%>	
 <!DOCTYPE html>
 <html lang="en">
 <head>

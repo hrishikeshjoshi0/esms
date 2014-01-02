@@ -270,14 +270,14 @@ dd {
 @media (min-width: 768px) {
   .container {
     /* width: 762px; */
-    width: 90%;
+    width: 95%;
   }
 }
 
 @media (min-width: 1200px) {
   .container {
-    width: 1190px;
-    /* width: 90%; */
+    /* width: 1190px; */
+    width: 95%;
   }
 }
 

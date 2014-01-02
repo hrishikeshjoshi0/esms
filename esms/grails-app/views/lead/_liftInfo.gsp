@@ -69,7 +69,7 @@
 			<td><g:message code="liftInfo.gateType.label"
 					default="Gate Type" /></td>
 
-			<g:if test="${liftInfoInstance.gateType == 'OTHER'}">
+			<g:if test="${liftInfoInstance?.gateType == 'OTHER'}">
 				<td><g:message code="liftInfo.gateTypeOther.label"
 						default="Gate Type (Other)" /></td>
 
@@ -94,7 +94,7 @@
 					field="retiringCamType" /></td>
 		</tr>
 
-		<g:if test="${liftInfoInstance.drive == 'YES'}">
+		<g:if test="${liftInfoInstance?.drive == 'YES'}">
 			<tr>
 				<td><g:message code="liftInfo.driveCapacity.label"
 						default="Drive Capacity" /></td>

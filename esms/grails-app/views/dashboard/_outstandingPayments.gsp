@@ -59,7 +59,7 @@
 	<tbody>
 		<g:if
 			test="${openInvoices != null && openInvoices.size() != 0}">
-				<g:each in="${openInvoices}" var="invoiceInstance">
+				<g:each in="${openInvoices?.sort{a,b -> a.invoiceNumber <=> b.invoiceNumber}}" var="invoiceInstance">
 				<g:set var="eventInstance" value="${Event.findByRelatedToAndRelatedToValue('ORDER',invoiceInstance?.referenceOrderNumber) }" />
 				<g:if test="${eventInstance?.status != 'CLOSED'}">
 					<tr>
@@ -96,14 +96,19 @@
 							${eventInstance?.title}
 						</td>
 						<td>
-							${eventInstance?.assignedTo}
+							<g:if test="${invoiceInstance?.referenceOrderNumber}">
+								${Order.findByOrderNumber(invoiceInstance?.referenceOrderNumber)?.assignedTo}
+							</g:if>
 						</td>
+						
 						<td>
-							${eventInstance?.startTime}
+							<g:formatDate date="${eventInstance?.startTime}"/>
 						</td>
+						
 						<td>
-							${eventInstance?.endTime}
+							<g:formatDate date="${eventInstance?.endTime}"/>
 						</td>
+						
 						<td>
 							${eventInstance?.status}
 						</td>

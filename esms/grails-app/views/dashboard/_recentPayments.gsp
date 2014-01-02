@@ -39,7 +39,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${recentPayments}" var="paymentInstance">
+		<g:each in="${recentPayments.sort{a,b -> a.paymentNumber <=> b.paymentNumber}}" var="paymentInstance">
 			<g:each in="${paymentInstance?.paymentItems}"
 				var="paymentItemInstance">
 				<tr>

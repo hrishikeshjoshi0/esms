@@ -43,7 +43,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${recentOrders}" var="orderInstance">
+		<g:each in="${recentOrders?.sort{a,b -> a.orderNumber <=> b.orderNumber}}" var="orderInstance">
 			<g:set var="organization"
 				value="${orderInstance.organization}" />
 			<g:set var="addressInstance"

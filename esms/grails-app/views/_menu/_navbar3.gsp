@@ -8,6 +8,7 @@
           </button>
         </div>
 		<div class="navbar-collapse collapse" id="navbar-main">
+			<sec:ifLoggedIn>
 			<!-- Navigation Menus -->
 			<ul class="nav navbar-nav">
 				<li>
@@ -213,6 +214,7 @@
 				</li>
 			</ul>
 			
+			
 			<g:if test="${params.controller == 'dashboard' }">
 				<g:form class="visible-md visible-lg">
 					<richui:autoComplete name="q"
@@ -223,22 +225,63 @@
 			</g:if>
 			
 			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">
+						<span class="glyphicon glyphicon-user"></span><%-- 
+						Welcome, <sec:username /> 
+						--%><b class="caret"></b>
+				</a>
+
+				<ul class="dropdown-menu">
+						<sec:ifAllGranted roles="ROLE_ADMIN">
+							<!-- User Management -->
+							<li class="dropdown-submenu">
+								<a tabindex="-1" href="#">
+									Users
+									<i class="icon-angle-down"></i>
+								</a>
+								<ul class="dropdown-menu">
+									<li><g:link controller="user" action='search'>
+											Search User
+										</g:link></li>
+									<li><g:link controller="user" action='create'>
+													Create User
+												</g:link></li>
+								</ul>
+							</li>
+							
+							<%--<li class="dropdown-submenu">
+								<a tabindex="-1" href="#">
+									Roles
+									<i class="icon-angle-down"></i>
+								</a>
+								<ul class="dropdown-menu">
+									<li><g:link controller="role" action='search'>
+													Search Role
+												</g:link></li>
+									<li><g:link controller="role" action='create'>
+													Create Role
+												</g:link></li>
+								</ul>
+							</li>
+							--%>
+							<li class="divider"></li>			
+						</sec:ifAllGranted>
+						<li>
+							<g:link controller="logout">
+							 Sign out</g:link>
+						</li>
+					</ul>
+				</li>
+				
 				<li class="visible-md visible-lg">
 					<g:remoteLink controller="task" action="administrationTaskListModal" id="1" onSuccess="openModalBox(data,'View Admin Tasks')">
     					View Admin Tasks		
     				</g:remoteLink>
 				</li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> Welcome, <sec:username /> <b
-						class="caret"></b>
-				</a>
-
-				<ul class="dropdown-menu">
-						<li><g:link controller="logout">
-							 Sign out</g:link></li>
-				</ul></li>
-				
 			</ul>
+			
+			</sec:ifLoggedIn>
 
 		</div>
 	</div>
