@@ -7,6 +7,8 @@ import com.esms.model.order.Order
 
 class ReportController {
 	
+	def monthMap = [0:"January",1:"February",2:"March",3:"April",4:"May",5:"June",6:"July",7:"August",8:"September",9:"October",10:"November",11:"December"]
+	
 	def index() {
 		redirect(action:"amountReceivables")
 	}
@@ -20,13 +22,14 @@ class ReportController {
 			params.max= grailsApplication.config.esms.settings.max?.toInteger()
 		}
 		
-		def events = EventLog.withCriteria(sort: "startTime", order: "desc") {
+		def events = EventLog.withCriteria() {
 			and {
 				eq('toBeReplaced',true)
 			}
 			
 			firstResult(params.offset?.toInteger())
 			maxResults(params.max?.toInteger())
+			order("loggedDate", "asc")
 		}
 		
 		def c1 = EventLog.createCriteria()
@@ -54,13 +57,14 @@ class ReportController {
 		//def events = EventLog.findAllByIsProblemReported(true,params)
 		def eventLogInstanceTotal = EventLog.countByIsProblemReported(true)
 		
-		def events = EventLog.withCriteria(sort: "startTime", order: "desc") {
+		def events = EventLog.withCriteria() {
 			and {
 				eq('isProblemReported',true)
 			}
 			
 			firstResult(params.offset?.toInteger())
 			maxResults(params.max?.toInteger())
+			order("loggedDate", "asc")
 		}
 		
 		def c1 = EventLog.createCriteria()
@@ -114,43 +118,123 @@ class ReportController {
 	}
 	
 	def upcomingRenewals() {
-		if(!params.offset) {
-			params.offset= 0
-		}
+		def years = []
+		def model
 		
-		if(!params.max) {
-			params.max= grailsApplication.config.esms.settings.max?.toInteger()
-		}
-		
-		def now = new Date()
-		def endDate = now.plus(30)
-		
-		def upcomingRenewals = Order.withCriteria(sort: "contractToDate", order: "asc") {
-			and {
-				eq("type", 'SERVICE')
-				le("contractToDate", endDate)
-				ne("renewalStage",'RENEWAL_WON')
-				ne("renewalStage",'RENEWAL_LOST')
+		if(request.xhr) {
+			int y = params.upcomingRenewalYearParam.toInteger()
+			int m = params.upcomingRenewalMonthParam.toInteger()
+			int d = 1
+			
+			def s = Calendar.instance
+			s.set Calendar.DATE, 1
+			s.set Calendar.MONTH, m
+			s.set Calendar.YEAR, y
+			s.set Calendar.HOUR, 0
+			s.set Calendar.MINUTE, 0
+			s.set Calendar.SECOND, 0
+			s.set Calendar.MILLISECOND, 0
+			def startDate = s.getTime()
+			
+			def e = Calendar.instance
+			e.set Calendar.DATE, 1
+			e.set Calendar.MONTH, (m+1)
+			e.set Calendar.YEAR, y
+			e.set Calendar.HOUR, 0
+			e.set Calendar.MINUTE, 0
+			e.set Calendar.SECOND, 0
+			e.set Calendar.MILLISECOND, 0
+			def endDate = e.getTime().minus(1)
+			
+			def upcomingRenewals = 	Order.withCriteria() {
+				and {
+					eq("type", 'SERVICE')
+					ge("contractToDate", startDate)
+					le("contractToDate", endDate)
+					ne("renewalStage",'RENEWAL_WON')
+					ne("renewalStage",'RENEWAL_LOST')
+				}
+				order("contractToDate", "asc")
 			}
-			firstResult(params.offset?.toInteger())
-			maxResults(params.max?.toInteger())
-			order("contractToDate", "asc")
+			
+			render (template:"/dashboard/upcomingRenewalsTemplate",model:[upcomingRenewals:upcomingRenewals])			
+		} else {
+			if(!params.offset) {
+				params.offset= 0
+			}
+			
+			if(!params.max) {
+				params.max= grailsApplication.config.esms.settings.max?.toInteger()
+			}
+			
+			def nowCal = Calendar.instance
+			Date nowDate = nowCal.time
+				
+			int y = nowCal.get(Calendar.YEAR)
+			int m = nowDate[Calendar.MONTH]
+			int d = nowDate[Calendar.DATE]
+			
+			for(int i=0; i <= 100; i++) {
+				years.add(y+i)
+			}
+									
+			params.upcomingRenewalMonthParam = m
+			params.upcomingRenewalYearParam = y
+						
+			if(!params.upcomingRenewalMonthParam) {
+				params.upcomingRenewalMonthParam = m
+			}
+			
+			if(!params.upcomingRenewalYearParam) {
+				params.upcomingRenewalYearParam = y
+			}
+			
+			
+			nowCal.set Calendar.DATE, 1
+			nowCal.set Calendar.MONTH, (m+1)
+			
+			def s = Calendar.instance
+			s.set Calendar.DATE, 1
+			s.set Calendar.MONTH, m
+			s.set Calendar.YEAR, y
+			def startDate = s.getTime()
+			
+			def e = Calendar.instance
+			e.set Calendar.DATE, 1
+			e.set Calendar.MONTH, (m+1)
+			e.set Calendar.YEAR, y
+			def endDate = e.getTime().minus(1)
+			
+			def upcomingRenewals = 	Order.withCriteria() {
+				and {
+					eq("type", 'SERVICE')
+					ge("contractToDate", startDate)
+					le("contractToDate", endDate)
+					ne("renewalStage",'RENEWAL_WON')
+					ne("renewalStage",'RENEWAL_LOST')
+				}
+				maxResults(params.max)
+				order("contractToDate", "asc")
+			}
+			
+			def upcomingRenewalsTotal = Order.createCriteria().get {
+				and {
+					eq("type", 'SERVICE')
+					ge("contractToDate", startDate)
+					le("contractToDate", endDate)
+					ne("renewalStage",'RENEWAL_WON')
+					ne("renewalStage",'RENEWAL_LOST')
+				}
+				projections {
+					countDistinct "id"
+				}
+			}
+			
+			model = [upcomingRenewals:upcomingRenewals,filteredMonthMap:monthMap,years:years,upcomingRenewalsTotal:upcomingRenewalsTotal]
 		}
 		
-		def c1 = Order.createCriteria()
-		def orderInstanceTotal = c1.get {
-			and {
-				eq("type", 'SERVICE')
-				le("contractToDate", endDate)
-				ne("renewalStage",'RENEWAL_WON')
-				ne("renewalStage",'RENEWAL_LOST')
-			}
-			projections {
-				countDistinct "id"
-			}
-		}
 		
-		[upcomingRenewals : upcomingRenewals,orderInstanceTotal:orderInstanceTotal]
+		model
 	}
 	
 	def amountReceivables() {

@@ -361,7 +361,7 @@ class OrganizationController {
 		def organizations = Organization.withCriteria(sort: "name", order: "asc") {
 			and {
 				ne("salesStatus", 'LEAD')
-				ilike("name", "${params.query}%")
+				ilike("name", "%${params.query}%")
 			}
 		}
 

@@ -1,6 +1,7 @@
-<%@ page import="com.esms.model.order.Order" %>
+<%@ page import="com.esms.model.order.Order"%>
 <g:each in="${upcomingTasks}" var="taskInstance">
-	<g:set var="order" value="${Order.findByOrderNumber(taskInstance.relatedToValue)}"/>
+	<g:set var="order"
+		value="${Order.findByOrderNumber(taskInstance.relatedToValue)}" />
 	<tr>
 
 		<td>
@@ -15,9 +16,7 @@
 			${order?.organization?.name}
 		</td>
 
-		<td>
-			${fieldValue(bean: taskInstance, field: "dateTime")}
-		</td>
+		<td><g:formatDate date="${order?.contractToDate}" /></td>
 
 		<td>
 			${fieldValue(bean: taskInstance, field: "dueDateTime")}
@@ -35,7 +34,7 @@
 			${fieldValue(bean: taskInstance, field: "assignedToValue")}
 		</td>
 
-		<td class="link"><g:link action="show" id="${taskInstance.id}" 
+		<td class="link"><g:link action="show" id="${taskInstance.id}"
 				controller="task" class="lnk ">Show &raquo;</g:link></td>
 	</tr>
 </g:each>

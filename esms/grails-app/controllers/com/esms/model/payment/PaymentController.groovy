@@ -243,7 +243,8 @@ class PaymentController {
 	
 	def openPayments() { 
 		def openPayments = Payment.findAllByPaymentMethodAndClearanceDateIsNull("CHEQUE",params)
-		[openPayments:openPayments]
+		def openPaymentsTotal = Payment.countByPaymentMethodAndClearanceDateIsNull("CHEQUE",params)
+		[openPayments:openPayments,openPaymentsTotal:openPaymentsTotal]
 	}
 	
 	def updateClearanceDate() {

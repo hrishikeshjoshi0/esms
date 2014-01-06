@@ -50,8 +50,10 @@
 	src="${resource(dir: 'bootstrap3/assets/js', file: 'bootswatch.js')}"></script>
 <script src="${resource(dir: 'js', file: 'chosen.jquery.min.js')}"></script>
 <script src="${resource(dir: 'js', file: 'jquery.expand.js')}"></script>
+<script src="${resource(dir: 'js', file: 'jquery.growl.js')}"></script>
 <script type="text/javascript"
 	src="${resource(dir: 'js/ie', file: 'respond.min.js')}"></script>
+	
 
 <title><g:layoutTitle default="${appName}" /></title>
 

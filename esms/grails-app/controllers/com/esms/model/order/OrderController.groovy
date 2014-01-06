@@ -382,6 +382,7 @@ class OrderController {
 					}
 					
 					orderItem.relatedOrderNumber = purchaseOrderInstance?.purchaseOrderNumber
+					orderItem.save(flush:true)
 					
 					def unitPrice = new BigDecimal("0.0")
 					def tax = new BigDecimal("0.0")
@@ -689,6 +690,18 @@ class OrderController {
 				break
 		}
 	}
-
+	
+	def archive() {
+		if(request.xhr) {
+			def orderInstance = Order.get(params.id)
+			if(!orderInstance.archived) {
+				orderInstance.archived = true
+			} else {
+				orderInstance.archived = false
+			}
+			orderInstance.save(flush: true)
+			render "Archived."
+		}
+	}
 }
 

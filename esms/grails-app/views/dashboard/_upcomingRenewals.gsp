@@ -5,7 +5,7 @@
 	}
 </script>
 <div class="page-header">
-	<h5>
+	<h4>
 		Upcoming Renewals for 
 		<g:select name="upcomingRenewalMonthParam" from="${filteredMonthMap}"
 				optionKey="key" optionValue="value"
@@ -19,7 +19,7 @@
 				onchange="${remoteFunction(action: 'upcomingRenewals',onLoading:'updateDiv();',
                        update: [success: 'updateDiv'],method:'GET',onFailure:'alert(\'Error\');',
                        params: '\'upcomingRenewalMonthParam=\' + document.getElementById(\'upcomingRenewalMonthParam\').value + \'&upcomingRenewalYearParam=\' + this.value')}"/>                       
-	</h5>
+	</h4>
 </div>
 
 <table class="table table-striped table-condensed table-bordered">
@@ -97,8 +97,20 @@
 					</g:if>
 				</td>
 				
-				<td class="link"><g:link action="show" id="${orderInstance.id}" controller="order"
-						class="lnk ">Show &raquo;</g:link></td>
+				<td class="link">
+					<div class="btn-group">
+						<g:link action="show" id="${orderInstance.id}" controller="order"
+								class="lnk ">Show</g:link>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span></a>			
+						<ul class="dropdown-menu pull-right">
+							<li>
+								<g:link controller="order" action="archive" id="${orderInstance.id}"
+									class="lnk archiveLink">Archive</g:link>
+							</li>
+						</ul>
+					</div>	
+				</td>
 			</tr>
 		</g:each>
 	</tbody>

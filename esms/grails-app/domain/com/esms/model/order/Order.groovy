@@ -51,6 +51,7 @@ class Order {
 	BigDecimal invoicedGrandTotal = new BigDecimal("0.0")
 	
 	String notes
+	boolean archived=false
 	
 	static hasMany = [orderItems : OrderItem,inventoryJournalEntries : InventoryJournal,paymentItems : PaymentItem]
 	
@@ -91,6 +92,8 @@ class Order {
 		
 		adjustment nullable:true,blank:true
 		notes nullable:true,blank:true,length:1000
+		
+		archived nullable:true,blank:true
     }
 	
 	static mapping = {

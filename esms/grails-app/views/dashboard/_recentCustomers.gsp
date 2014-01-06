@@ -85,15 +85,27 @@
 					</g:if>
 				</td>
 				
-				<td class="link"><g:link action="show" id="${orderInstance.id}" controller="order"
-						class="lnk ">Show &raquo;</g:link></td>
+				<td class="link">
+					<div class="btn-group">
+						<g:link action="show" id="${orderInstance.id}" controller="order"
+								class="lnk ">Show</g:link>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span></a>			
+						<ul class="dropdown-menu pull-right">
+							<li>
+								<g:link controller="order" action="archive" id="${orderInstance.id}"
+									class="lnk archiveLink">Archive</g:link>
+							</li>
+						</ul>
+					</div>
+				</td>
 			</tr>
 		</g:each>
 	</tbody>
 	<tfoot>
 			<tr>
 				<th colspan="12" class="link">
-					<g:link controller="order" action="list" class="lnk ">Show All &raquo;</g:link>
+					<g:link controller="order" action="list" class="lnk ">Show All Orders &raquo;</g:link>
 				</th>				
 			</tr>
 		</tfoot>

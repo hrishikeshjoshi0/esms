@@ -17,7 +17,7 @@
 				</div>
 				
 				<filterpane:filterPane domain="com.esms.model.order.Order"
-		                filterProperties="${['orderNumber', 'status','type','contactName']}"
+		                filterProperties="${['orderNumber', 'status','type','contactName','archived']}"
 						 titleKey="default.filterPane.header" dialog="y" visible="n"
 										showSortPanel="y" showTitle="y" showButtons="y"
 										fullAssociationPathFieldNames="false" />
@@ -80,7 +80,21 @@
 							</td>
 							
 							<td class="link">
-								<g:link action="show" id="${orderInstance.id}" class="lnk">Show &raquo;</g:link>
+								<div class="btn-group">
+									<g:link action="show" id="${orderInstance.id}" controller="order"
+											class="lnk ">Show</g:link>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										<span class="caret"></span></a>			
+									<ul class="dropdown-menu pull-right">
+										<li>
+											<g:link controller="order" action="archive" 
+												id="${orderInstance.id}"
+												class="lnk archiveLink">
+												${orderInstance?.archived?"Undo Archive":"Archive"}
+											</g:link>
+										</li>
+									</ul>
+								</div>
 							</td>
 						</tr>
 					</g:each>

@@ -1,6 +1,4 @@
 <%@ page import="com.esms.model.payment.Payment"%>
-
-<%@ page import="com.esms.model.payment.Payment"%>
 <!doctype html>
 <html>
 <head>
@@ -12,38 +10,23 @@
 <body>
 	<div class="row">
 		<div class="col-md-12">
-			<filterpane:currentCriteria domainBean="com.esms.model.quote.Quote"
-				removeImgDir="images" removeImgFile="skin/database_delete.png"
-				fullAssociationPathFieldNames="no" />
-
-			<div class="slidingDiv">
-				<div class="page-header">
-					<h3>Search</h3>
-				</div>
-				<fieldset>
-					<filterpane:filterPane domain="com.esms.model.quote.Quote"
-						filterProperties="${['quoteNumber', 'quoteName','status','organization.name']}"
-						titleKey="default.filterPane.header" dialog="false" visible="y"
-						showSortPanel="n" showTitle="n"
-						fullAssociationPathFieldNames="false" />
-				</fieldset>
-			</div>
-
 			<div class="page-header">
-				<h3>Open Payments</h3>
+				<h3>
+					Uncleared Cheques 
+				</h3>
 			</div>
 
-			<div class="pgn">
-				<filterpane:paginate
-					total="${paymentInstanceTotal?paymentInstanceTotal:openPayments.size()}"
-					domainBean="com.esms.model.payment.Payment" />
-			</div>
-			<br />
-
+			<filterpane:filterPane domain="com.esms.model.payment.Payment"
+				filterProperties="${['paymentNumber', 'bank','branch','totalAmount','chequeIssueDate','clearanceDate','organization.name']}"
+				titleKey="default.filterPane.header" dialog="y" visible="n"
+				showSortPanel="y" showTitle="y" showButtons="y"
+				fullAssociationPathFieldNames="false" />
 
 			<table class="table table-striped table-bordered mediaTable">
 				<thead>
 					<tr>
+						<th>Building Name</th>
+
 						<th>
 							${message(code: 'payment.paymentNumber.label', default: 'Payment Number')}
 						</th>
@@ -51,8 +34,6 @@
 						<th>
 							${message(code: 'paymentItem.orderNumber.label', default: 'Order Number')}
 						</th>
-
-						<th>Customer</th>
 
 						<th>
 							${message(code: 'paymentItem.amount.label', default: 'Amount')}
@@ -76,15 +57,15 @@
 								var="paymentItemInstance">
 								<tr>
 									<td>
+										${paymentItemInstance?.invoice?.organization?.name}
+									</td>
+
+									<td>
 										${fieldValue(bean: paymentInstance, field: "paymentNumber")}
 									</td>
 
 									<td>
-										${paymentItemInstance?.order?.orderNumber}
-									</td>
-
-									<td>
-										${paymentItemInstance?.order?.organization?.name}
+										${paymentItemInstance?.invoice?.referenceOrderNumber}
 									</td>
 
 									<td>
@@ -100,31 +81,17 @@
 									</td>
 
 									<td class="link"><g:link controller="payment"
-											action="show" id="${paymentInstance.id}" class="">Show &raquo;</g:link>
+											action="show" id="${paymentInstance.id}" class="lnk ">Show &raquo;</g:link>
 									</td>
 								</tr>
 							</g:each>
 						</g:each>
 					</g:if>
-					<g:else>
-						<tr>
-							<th colspan="5">
-								<h4 style="color: red;">No Records Found !</h4>
-							</th>
-						</tr>
-					</g:else>
 				</tbody>
-				<tfoot>
-					<tr>
-						<th class="link"><g:link controller="payment"
-								action="openPayments">Show All &raquo;</g:link></th>
-					</tr>
-				</tfoot>
 			</table>
 			<div class="pgn">
-				<filterpane:paginate
-					total="${paymentInstanceTotal?paymentInstanceTotal:openPayments.size()}"
-					domainBean="com.esms.model.payment.Payment" />
+				<bootstrap:paginate params="${filterParams}"
+					total="${openPaymentsTotal}" />
 			</div>
 		</div>
 	</div>

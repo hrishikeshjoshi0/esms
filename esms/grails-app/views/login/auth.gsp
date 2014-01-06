@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -122,7 +122,6 @@
 							
 							<div class="tab-pane fade" id="about">
 								<div class="panel panel-default">
-									<div class="panel panel-default">
 										<div class="panel-body">
 											<div class="row">
 												<div class="col-md-4">
@@ -130,7 +129,6 @@
 												</div>
 											</div>
 										</div>
-									</div>	
 								</div>
 							</div>
 						</div>

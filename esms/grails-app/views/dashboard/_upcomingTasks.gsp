@@ -7,7 +7,7 @@
 	}
 </script>
 <div class="page-header">
-	<h5>
+	<h4>
 		Upcoming Tasks for
 		<g:select name="upcomingRenewalMonthParam1" from="${filteredMonthMap}"
 			optionKey="key" optionValue="value"
@@ -21,7 +21,7 @@
 			onchange="${remoteFunction(action: 'upcomingTasks',onLoading:'updateTasks();',
                        update: [success: 'upcomingTasks'],method:'GET',onFailure:'alert(\'Error\');',
                        params: '\'upcomingRenewalMonthParam=\' + document.getElementById(\'upcomingRenewalMonthParam1\').value + \'&upcomingRenewalYearParam=\' + this.value')}" />
-	</h5>
+	</h4>
 </div>
 
 <table class="table table-striped table-bordered mediaTable">
@@ -41,7 +41,7 @@
 			</th>
 
 			<th>
-				${message(code: 'task.dateTime.label', default: 'Date')}
+				${message(code: 'task.dateTime.label', default: 'Contract End Date')}
 			</th>
 
 			<th>
@@ -81,7 +81,7 @@
 				</td>
 
 				<td>
-					${fieldValue(bean: taskInstance, field: "dateTime")}
+					<g:formatDate date="${order?.contractToDate}"/>
 				</td>
 
 				<td>

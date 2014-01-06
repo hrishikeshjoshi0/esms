@@ -4,7 +4,9 @@ import grails.plugin.springsecurity.authentication.dao.NullSaltSource
 import grails.plugin.springsecurity.ui.RegisterCommand
 import grails.plugin.springsecurity.ui.RegistrationCode
 
+import com.esms.model.security.SecRole;
 import com.esms.model.security.SecUser
+import com.esms.model.security.SecUserSecRole;
 
 class RegisterController extends grails.plugin.springsecurity.ui.RegisterController {
 
@@ -38,7 +40,10 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
 		 subject conf.ui.register.emailSubject
 		 html body.toString()
 		 }*/
-
-		chain controller:'login',action: 'auth', model:[registered:true,registeredMessage:'Registration process initiated! Your account would be enabled by the System Administrator.']
+		
+		def userRole = SecRole.findByAuthority('ROLE_USER')
+		SecUserSecRole.create user, userRole
+		
+		chain controller:'login',action: 'auth', model:[registered:true,registeredMessage:'Registration process initiated! A system administrator can enable your account.']
 	}
 }

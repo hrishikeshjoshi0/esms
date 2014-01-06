@@ -38,6 +38,8 @@ if (typeof jQuery !== 'undefined') {
 	    	
 	    	$('.expandableTable').expandable();
 	    	
+	    	$('.archiveLink').asyncArchive();
+	    	
 	    	/*$('.yui-content').slimScroll({
 	    	});*/
 	    	
@@ -81,3 +83,35 @@ function configureDropdowns() {
 	var p = $("select:not([name^='filter.'])");
 	$(p).chosen();
 }
+
+(function($){
+    $.fn.asyncArchive = function() {
+        var element = this;
+
+        $(this).click(function(e) {
+        	e.preventDefault();
+        	
+        	var link = $(this);
+        	
+        	var curRow = link.closest('tr');
+        	curRow.toggleClass("hidden");
+        	
+        	
+        	$.ajax({
+	      	    url: $(link).attr('href'),
+	      	}).done(function(data) {
+	      		$.growl({ title: "Archived!", message: "Process completed." });
+	      		window.location.reload();
+	      	});
+        	
+        	return false;
+        });
+    }    
+})(jQuery); 
+
+/**
+ *  $.growl({ title: "Growl", message: "The kitten is awake!" });
+  $.growl.error({ message: "The kitten is attacking!" });
+  $.growl.notice({ message: "The kitten is cute!" });
+  $.growl.warning({ message: "The kitten is ugly!" });
+ */

@@ -225,53 +225,53 @@
 			</g:if>
 			
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">
-						<span class="glyphicon glyphicon-user"></span><%-- 
-						Welcome, <sec:username /> 
-						--%><b class="caret"></b>
-				</a>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">
+							<span class="glyphicon glyphicon-user"></span>
+							<%-- Welcome, <sec:username /> --%><b class="caret"></b>
+					</a>
 
-				<ul class="dropdown-menu">
-						<sec:ifAllGranted roles="ROLE_ADMIN">
-							<!-- User Management -->
-							<li class="dropdown-submenu">
-								<a tabindex="-1" href="#">
-									Users
-									<i class="icon-angle-down"></i>
-								</a>
-								<ul class="dropdown-menu">
-									<li><g:link controller="user" action='search'>
-											Search User
-										</g:link></li>
-									<li><g:link controller="user" action='create'>
-													Create User
-												</g:link></li>
-								</ul>
+					<ul class="dropdown-menu">
+							<sec:ifAllGranted roles="ROLE_ADMIN">
+								<!-- User Management -->
+								<li class="dropdown-submenu">
+									<a tabindex="-1" href="#">
+										Users
+										<i class="icon-angle-down"></i>
+									</a>
+									<ul class="dropdown-menu">
+										<li><g:link controller="user" action='search'>
+												Search User
+											</g:link></li>
+										<li><g:link controller="user" action='create'>
+														Create User
+													</g:link></li>
+									</ul>
+								</li>
+								
+								<%--<li class="dropdown-submenu">
+									<a tabindex="-1" href="#">
+										Roles
+										<i class="icon-angle-down"></i>
+									</a>
+									<ul class="dropdown-menu">
+										<li><g:link controller="role" action='search'>
+														Search Role
+													</g:link></li>
+										<li><g:link controller="role" action='create'>
+														Create Role
+													</g:link></li>
+									</ul>
+								</li>
+								--%>
+								<li class="divider"></li>			
+							</sec:ifAllGranted>
+							<li>
+								<g:link controller="logout">
+								 Sign out</g:link>
 							</li>
-							
-							<%--<li class="dropdown-submenu">
-								<a tabindex="-1" href="#">
-									Roles
-									<i class="icon-angle-down"></i>
-								</a>
-								<ul class="dropdown-menu">
-									<li><g:link controller="role" action='search'>
-													Search Role
-												</g:link></li>
-									<li><g:link controller="role" action='create'>
-													Create Role
-												</g:link></li>
-								</ul>
-							</li>
-							--%>
-							<li class="divider"></li>			
-						</sec:ifAllGranted>
-						<li>
-							<g:link controller="logout">
-							 Sign out</g:link>
-						</li>
-					</ul>
+						</ul>
 				</li>
 				
 				<li class="visible-md visible-lg">
@@ -294,6 +294,7 @@
 </div>
 <!-- Spinner Div Ends -->
 
+
 <!-- Modal Div -->
 <div id="modalTemplate" class="modal fade">
 	<div class="modal-dialog" style="width:90%;">
@@ -303,7 +304,8 @@
 					aria-hidden="true">&times;</button>
 				<h4 class="modal-title"></h4>
 			</div>
-			<div class="modal-body"></div>
+			<div class="modal-body">
+			</div>
 		</div>
 		<!-- /.modal-content -->
 	</div>

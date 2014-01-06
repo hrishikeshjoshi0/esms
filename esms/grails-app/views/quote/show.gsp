@@ -137,6 +137,27 @@
 									${quoteInstance?.handedOveryBy}
 								</dd>
 							</g:if>
+							
+							<g:if
+								test="${quoteInstance?.status == 'ACCEPT' 
+									&& (quoteInstance.type == 'CONTRACT') 
+									&& quoteInstance?.quoteItems?.size() != 0}">
+								<dt>
+									<g:message code="quote.contractFromDate.label"
+										default="Contract From Date" />
+								</dt>
+								<dd>
+									<g:formatDate date="${quoteInstance?.contractFromDate}"/>
+								</dd>
+								
+								<dt>
+									<g:message code="quote.contractToDate.label"
+										default="Contract To Date" />
+								</dt>
+								<dd>
+									<g:formatDate date="${quoteInstance?.contractToDate}"/>
+								</dd>	
+							</g:if>		
 
 							<dt>
 								<g:message code="quote.status.label" default="Status" />

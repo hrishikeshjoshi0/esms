@@ -42,8 +42,9 @@ class Quote {
 	BigDecimal negotiatedGrandTotal = new BigDecimal("0.0")
 	String notes
 	String disqualificationReason
-	
 	BigDecimal adjustment = new BigDecimal("0.0")
+	
+	boolean archived=false
 	
 	static hasMany = [quoteItems : QuoteItem]
 	
@@ -85,6 +86,7 @@ class Quote {
 		disqualificationReason nullable:true,blank:true,length:1000
 		
 		adjustment nullable:true,blank:true
+		archived nullable:true,blank:true
     }
 	
 	static mapping = {

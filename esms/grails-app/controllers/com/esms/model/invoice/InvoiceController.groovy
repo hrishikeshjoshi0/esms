@@ -54,7 +54,7 @@ class InvoiceController {
 				params.invoiceNumber = "-Auto Gen-"
 				invoiceInstance = new Invoice(params)
 				openOrders = Order.withCriteria() {
-					gt("openGrandTotal",0.0)
+					gt("pendingInvoiceGrandTotal",0.0)
 				}
 			}
         	[invoiceInstance: invoiceInstance,order:order,openOrders:openOrders]
@@ -258,7 +258,7 @@ class InvoiceController {
 		}
 		def order = Order.get(params.id)
 		order.status = "INVOICED"
-		order.openGrandTotal = order.grandTotal
+		//order.openGrandTotal = order.grandTotal
 		order.receviedGrandTotal = new BigDecimal("0.0")
 		if(!order.adjustment) {
 			order.adjustment = new BigDecimal("0.0")

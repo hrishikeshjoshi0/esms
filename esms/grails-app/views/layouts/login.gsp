@@ -28,7 +28,8 @@
 	
 	<script src="${resource(dir: 'bootstrap3/bootstrap/dist/js', file: 'bootstrap.min.js')}"></script>
 	<script src="${resource(dir: 'bootstrap3/assets/js', file: 'bootswatch.js')}"></script>
-
+	<script src="${resource(dir: 'js', file: 'jquery.growl.js')}"></script>
+	
 	<!-- Favicons and the like (avoid using transparent .png) -->
 	<link rel="shortcut icon" href="favicon.ico" />
 	<link rel="apple-touch-glyphicon glyphicon-precomposed" href="icon.png" />

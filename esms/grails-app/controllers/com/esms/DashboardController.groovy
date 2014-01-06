@@ -60,6 +60,7 @@ class DashboardController {
 			and {
 				eq("type", 'SERVICE')
 				ge("contractToDate", dt)
+				ne("archived",true)
 			}
 			order("id", "desc")
 			maxResults(params.max)
@@ -74,8 +75,8 @@ class DashboardController {
 		def recentRepairsModernizationAndInstallationQuotes = Quote.findAllByStatusInListAndTypeInList(
 			['DRAFT','PENDING','REVISE','ACCEPT'],['REPAIR','MODERNIZATION','INSTALLATION'],[max: params.max, sort: "id", order: "desc", offset: 0])
 		
-		def recentRepairsModernizationAndInstallationOrders = Order.findAllByStatusInListAndTypeInList(
-			['PENDING_INVOICE','CONFIRM_SALE','DELIVERY_PENDING','DELIVERED','INVOICED'],['REPAIR','MODERNIZATION','INSTALLATION'],[max: params.max, sort: "id", order: "desc", offset: 0])
+		def recentRepairsModernizationAndInstallationOrders = Order.findAllByStatusInListAndTypeInListAndArchivedNotEqual(
+			['PENDING_INVOICE','CONFIRM_SALE','DELIVERY_PENDING','DELIVERED','INVOICED'],['REPAIR','MODERNIZATION','INSTALLATION'],true,[max: params.max, sort: "id", order: "desc", offset: 0])
 		
 		def nowCal = Calendar.instance
 		Date nowDate = nowCal.time
@@ -97,7 +98,7 @@ class DashboardController {
 		
 		
 		def years = []
-		for(int i=0; i <= 100; i++) {
+		for(int i=-10; i <= 100; i++) {
 			years.add(y+i)
 		}
 		
@@ -123,6 +124,7 @@ class DashboardController {
 				le("contractToDate", endDate)
 				ne("renewalStage",'RENEWAL_WON')
 				ne("renewalStage",'RENEWAL_LOST')
+				ne("archived",true)
 			}
 			maxResults(params.max)
 			order("contractToDate", "asc")

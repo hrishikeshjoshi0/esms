@@ -174,7 +174,7 @@
 					<g:select id="orderId" name="orderId" from="${openOrders}"
 						optionKey="id" class="form-control filter-dropdown"
 						optionValue="${{it.organization?.name + ':' + it.orderNumber + ' - ' + it.type + ' : ' +  
-							'(Open Amount :' + it.openGrandTotal + ')' }}" />
+							'(Open Amount :' + it.pendingInvoiceGrandTotal + ')' }}" />
 					<span class="help-inline"> ${hasErrors(bean: invoiceInstance, field: 'order', 'error')}
 					</span>
 				</div>

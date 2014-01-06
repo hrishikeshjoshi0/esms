@@ -97,7 +97,20 @@
 						-
 					</g:else>
 				</td>
-				<td class="link"><g:link controller="order" action="show" id="${order?.id}" class="lnk ">Show &raquo;</g:link></td>
+				<td class="link">
+					<div class="btn-group">
+						<g:link action="show" id="${order.id}" controller="order"
+								class="lnk ">Show</g:link>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span></a>			
+						<ul class="dropdown-menu pull-right">
+							<li>
+								<g:link controller="order" action="archive" id="${order.id}"
+									class="lnk archiveLink">Archive</g:link>
+							</li>
+						</ul>
+					</div>
+				</td>
 				<td>
 					<g:if test="${eventInstance}">
 						<a class="expandRow" href="${createLink(controller:'event',action:'associatedEvents',id:eventInstance?.id)}">
@@ -110,8 +123,8 @@
 	</tbody>
 	<tfoot>
 			<tr>
-				<th colspan="11" class="link">
-					<g:link controller="order" action="list" class="lnk ">Show All &raquo;</g:link>
+				<th colspan="12" class="link">
+					<g:link controller="order" action="list" class="lnk ">Show All Orders &raquo;</g:link>
 				</th>				
 			</tr>
 		</tfoot>
