@@ -1,4 +1,5 @@
-
+<%@page import="com.esms.model.order.Order"%>
+<%@ page import="com.esms.model.calendar.Event"%>
 <%@ page import="com.esms.model.invoice.Invoice"%>
 <!doctype html>
 <html>
@@ -69,8 +70,10 @@
 						<g:each
 							in="${invoiceInstanceList?.sort{a,b -> a.invoiceNumber <=> b.invoiceNumber}}"
 							var="invoiceInstance">
-							<g:set var="eventInstance"
-								value="${Event.findByRelatedToAndRelatedToValue('ORDER',invoiceInstance?.referenceOrderNumber) }" />
+							<g:if test="${invoiceInstance?.referenceOrderNumber}">
+								<g:set var="eventInstance"
+									value="${Event.findByRelatedToAndRelatedToValue('ORDER',invoiceInstance?.referenceOrderNumber) }" />
+							</g:if>
 							<g:if test="${eventInstance?.status != 'CLOSED'}">
 								<tr>
 									<td>
@@ -104,10 +107,11 @@
 									<td>
 										${eventInstance?.title}
 									</td>
-									<td><g:if test="${invoiceInstance?.referenceOrderNumber}">
+									<td>
+										<g:if test="${invoiceInstance?.referenceOrderNumber}">
 											${Order.findByOrderNumber(invoiceInstance?.referenceOrderNumber)?.assignedTo}
-										</g:if></td>
-
+										</g:if>
+									</td>
 									<td><g:formatDate date="${eventInstance?.startTime}" /></td>
 
 									<td><g:formatDate date="${eventInstance?.endTime}" /></td>
