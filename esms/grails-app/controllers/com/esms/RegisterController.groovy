@@ -12,7 +12,9 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
 
 	def register(RegisterCommand command) {
 		if (command.hasErrors()) {
-			redirect controller:'login',action: 'auth', model: [command: command,registered:false,errorMessage:message(code: 'spring.security.ui.register.miscError'),error:true]
+			flash.error = command.errors
+			flash.chainedParams = params
+			chain controller:'login',action: 'auth', model:[command: command,registered:false,errorMessage:message(code: 'spring.security.ui.register.miscError'),error:true]
 			return
 		}
 

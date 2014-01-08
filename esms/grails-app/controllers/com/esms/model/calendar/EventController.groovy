@@ -187,11 +187,21 @@ class EventController {
 			case 'POST':
 				 def eventInstance = new Event(params)
 				 
-				 if(eventInstance.startTime.compareTo(eventInstance.endTime) > 0) {
+				 if(eventInstance.hasErrors()) {
+					 flash.isDanger = true
+					 render(view: "create", model: [eventInstance: eventInstance])
+					 return
+				 }
+				 
+				 if(eventInstance.startTime && eventInstance.endTime && eventInstance.startTime.compareTo(eventInstance.endTime) > 0) {
 					 flash.isDanger = true
 					 flash.message = 'End date/time should be greater than the start date/time.'
 		             render(view: "create", model: [eventInstance: eventInstance])
 					 return
+				 }
+				 
+				 if(eventInstance.title == null || eventInstance.title.size() == 0) {
+					 eventInstance.title='-'
 				 }
 		
 				 eventInstance.activityLog = 'Init'

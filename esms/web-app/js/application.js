@@ -6,6 +6,9 @@ if (typeof jQuery !== 'undefined') {
 			$(this).fadeOut();
 		});*/
 		
+	   //HJ	
+	   //alert = function(mesg) {console.trace(mesg)}	 
+		
 	   $(document).ajaxSuccess(function() {
 		   configureDropdowns();
 	   });
@@ -42,6 +45,20 @@ if (typeof jQuery !== 'undefined') {
 	    	
 	    	/*$('.yui-content').slimScroll({
 	    	});*/
+	    	
+	    	// Set up a global AJAX error handler to handle the 401
+			// unauthorized responses. If a 401 status code comes back,
+			// the user is no longer logged-into the system and can not
+			// use it properly.
+	    	//HJ
+			/*$.ajaxSetup({
+				statusCode : {
+					401 : function() {
+						// Redirec the to the login page.
+						location.href = "./login";
+					}
+				}
+			});*/
 	    	
 	   });
        

@@ -10,16 +10,21 @@
 		<div class="row">
 			<div class="col-md-5 col-md-offset-3">
 				<div class="well">
-					<g:if test='${flash.message || (error!= null && error == true)}'>
+					<g:if test='${flash.message || (error!= null && error == true && command?.hasErrors()==false)}'>
 						<bootstrap:alert class="alert-danger">
-							<ul>
-								<li>
-									${flash.message}
-								</li>
-							</ul>
+							${flash.message}
+							<g:hasErrors bean="${command}">
+									<ul>
+										<g:eachError bean="${command}" var="error">
+											<li
+												<g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>>
+												<g:message error="${error}" />
+											</li>
+										</g:eachError>
+									</ul>
+							</g:hasErrors>
 						</bootstrap:alert>
 					</g:if>
-					
 					<g:if test='${registered == true}'>
 						<bootstrap:alert class="alert-success">
 							<ul>
@@ -77,6 +82,24 @@
 							<div class="tab-pane fade" id="register">
 								<div class="panel panel-default">
 									<div class="panel-body">
+										<g:if test="${!registered}">
+											<div>
+												<bootstrap:alert class="alert-info">
+													 <p>The password should match the below conditions:</p>
+													 <ul>
+														<li>
+															It should not be the same as the username.
+														</li>
+														<li>
+															It should be between 8-64 characters.
+														</li>
+														<li>
+															It should be a combination of uppercase and lowercase characters,numbers and special characters among "!@#$%^&".
+														</li>
+													</ul>
+												</bootstrap:alert>	
+											</div>
+										</g:if>
 										<form class="form-horizontal"
 											action="${createLink(controller:'register',action:'register')}"
 											method="post">
@@ -137,5 +160,12 @@
 			</div>
 		</div>
 	</div>
+	<g:if test='${flash.message || (error!= null && error == true && command?.hasErrors()==false)}'>
+		<script>
+			$(document).ready(function() {
+				$('#myTab a[href="#register"]').tab('show'); // Select tab by name
+			});
+		</script>
+	</g:if>
 </body>
 </html>
