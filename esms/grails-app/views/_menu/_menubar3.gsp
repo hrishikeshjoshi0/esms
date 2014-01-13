@@ -13,12 +13,12 @@
           </button>
         </div>
         
-		<div class="row visible-md visible-lg">
+		<%--<div class="row visible-md visible-lg">
 			<div class="col-md-12">
 				<g:render template="/_common/suggest" />
 			</div>
 		</div>
-		
+		--%>
 		<div class="row visible-md visible-lg">
 			<div class="col-md-12">
 				<div class="page-header">

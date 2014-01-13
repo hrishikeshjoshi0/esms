@@ -69,7 +69,7 @@ function fetchInfo(id) {
 		class="required-indicator">*</span></label>
 	<div class="col-md-9">
 		<g:select name="organization.id" from="${Organization.list()}" class="form-control"
-			optionKey="id" optionValue="name" 
+			optionKey="id" optionValue="name" readonly="${params?.action == 'edit'?'readonly':''}"
 			onchange="fetchInfo(this.value);"
 			value="${quoteInstance?.organization?.id}" />
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'organization', 'error')}

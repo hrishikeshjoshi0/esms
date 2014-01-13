@@ -72,8 +72,10 @@
 								Convert Lead
 							</g:link>
 
-							<button class="btn btn-default btn-sm" type="submit"
-								name="_action_disqualifyLead">Disqualify Lead</button>
+							<g:link class="btn btn-default btn-sm" action="disqualifyLead" controller="lead"
+								id="${organizationInstance?.id}">
+								Disqualify Lead
+							</g:link>	
 						</g:if>
 						
 						<g:link class="btn btn-default btn-sm" action="edit" controller="lead"

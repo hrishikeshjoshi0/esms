@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="layout" content="dashboardLayout" />
-<title>Venus CRM</title>
+<title>DexCRM</title>
 </head>
 <body>
 	<div id="contentwrapper" class="">

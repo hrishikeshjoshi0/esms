@@ -46,11 +46,15 @@
 
 <body>
 	<body>
-	<!-- NavBar -->
-	<g:render template="/_menu/navbar3"></g:render>
-
 	<!-- Container -->
 	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- NavBar -->
+				<g:render template="/_menu/navbar3"></g:render>
+			</div>
+		</div>
+		
 		<div class="row">
 			<div class="col-md-12">
 				<!-- Body -->		

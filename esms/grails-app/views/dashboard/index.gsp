@@ -6,7 +6,7 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<meta name="layout" content="dashboardLayout" />
-	<title>Venus CRM</title>
+	<title>DexCRM</title>
 	<style>
 		.row {
 			margin: 2px;

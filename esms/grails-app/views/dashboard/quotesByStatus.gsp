@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta name="layout" content="bootstrap" />
-<title>Venus CRM</title>
+<title>DexCRM</title>
 <gvisualization:apiImport />
 </head>
 <body>

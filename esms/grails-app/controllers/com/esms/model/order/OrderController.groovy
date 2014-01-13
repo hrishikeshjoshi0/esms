@@ -302,7 +302,7 @@ class OrderController {
 						return
 					}
 				}
-
+				
 				orderInstance.properties = params
 
 				if (!orderInstance.save(flush: true)) {

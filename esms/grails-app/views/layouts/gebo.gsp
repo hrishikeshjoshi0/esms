@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>
-        	Venus CRM
+        	DexCRM
         </title>
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans" />
         <r:layoutResources/>

@@ -1,5 +1,13 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
+	<div class="row topbar">
+		<div class="col-md-2">
+			<a href="http://www.dexbiz.com/products/dexcrm">
+				<img alt="DexBiz" src="${resource(dir: 'images', file: 'LogoCrmSm_Blue.png')}" />
+			</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
 		<div class="navbar-header">
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
@@ -215,63 +223,61 @@
 			</ul>
 			
 			
-			<g:if test="${params.controller == 'dashboard' }">
-				<g:form class="visible-md visible-lg">
+			<g:form class="visible-md visible-lg">
 					<richui:autoComplete name="q"
 							action="${createLinkTo('dir': 'organization/search')}"
 							class="col-md-2 col-md-offset-1" shadow="true" minQueryLength="1" style="margin-top:5px;"
 							onItemSelect="document.location.href = '${createLinkTo(dir: 'organization/show')}/' + id;" />
-				</g:form>
-			</g:if>
+			</g:form>
 			
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">
-							<span class="glyphicon glyphicon-user"></span>
-							<%-- Welcome, <sec:username /> --%><b class="caret"></b>
-					</a>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">
+						<span class="glyphicon glyphicon-user"></span><%-- 
+						Welcome, <sec:username /> 
+						--%><b class="caret"></b>
+				</a>
 
-					<ul class="dropdown-menu">
-							<sec:ifAllGranted roles="ROLE_ADMIN">
-								<!-- User Management -->
-								<li class="dropdown-submenu">
-									<a tabindex="-1" href="#">
-										Users
-										<i class="icon-angle-down"></i>
-									</a>
-									<ul class="dropdown-menu">
-										<li><g:link controller="user" action='search'>
-												Search User
-											</g:link></li>
-										<li><g:link controller="user" action='create'>
-														Create User
-													</g:link></li>
-									</ul>
-								</li>
-								
-								<%--<li class="dropdown-submenu">
-									<a tabindex="-1" href="#">
-										Roles
-										<i class="icon-angle-down"></i>
-									</a>
-									<ul class="dropdown-menu">
-										<li><g:link controller="role" action='search'>
-														Search Role
-													</g:link></li>
-										<li><g:link controller="role" action='create'>
-														Create Role
-													</g:link></li>
-									</ul>
-								</li>
-								--%>
-								<li class="divider"></li>			
-							</sec:ifAllGranted>
-							<li>
-								<g:link controller="logout">
-								 Sign out</g:link>
+				<ul class="dropdown-menu">
+						<sec:ifAllGranted roles="ROLE_ADMIN">
+							<!-- User Management -->
+							<li class="dropdown-submenu">
+								<a tabindex="-1" href="#">
+									Users
+									<i class="icon-angle-down"></i>
+								</a>
+								<ul class="dropdown-menu">
+									<li><g:link controller="user" action='search'>
+											Search User
+										</g:link></li>
+									<li><g:link controller="user" action='create'>
+													Create User
+												</g:link></li>
+								</ul>
 							</li>
-						</ul>
+							
+							<%--<li class="dropdown-submenu">
+								<a tabindex="-1" href="#">
+									Roles
+									<i class="icon-angle-down"></i>
+								</a>
+								<ul class="dropdown-menu">
+									<li><g:link controller="role" action='search'>
+													Search Role
+												</g:link></li>
+									<li><g:link controller="role" action='create'>
+													Create Role
+												</g:link></li>
+								</ul>
+							</li>
+							--%>
+							<li class="divider"></li>			
+						</sec:ifAllGranted>
+						<li>
+							<g:link controller="logout">
+							 Sign out</g:link>
+						</li>
+					</ul>
 				</li>
 				
 				<li class="visible-md visible-lg">
@@ -280,9 +286,8 @@
     				</g:remoteLink>
 				</li>
 			</ul>
-			
 			</sec:ifLoggedIn>
-
+		</div>
 		</div>
 	</div>
 </div>
@@ -294,7 +299,6 @@
 </div>
 <!-- Spinner Div Ends -->
 
-
 <!-- Modal Div -->
 <div id="modalTemplate" class="modal fade">
 	<div class="modal-dialog" style="width:90%;">
@@ -304,8 +308,7 @@
 					aria-hidden="true">&times;</button>
 				<h4 class="modal-title"></h4>
 			</div>
-			<div class="modal-body">
-			</div>
+			<div class="modal-body"></div>
 		</div>
 		<!-- /.modal-content -->
 	</div>

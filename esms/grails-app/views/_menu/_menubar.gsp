@@ -180,7 +180,7 @@
 			<li class="divider"></li>
 		</g:if>
 
-		<li>Venus CRM - <g:meta name="app.version" />
+		<li>DexCRM - <g:meta name="app.version" />
 		</li>
 	</ul>
 </g:if>

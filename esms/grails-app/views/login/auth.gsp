@@ -8,8 +8,14 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-5 col-md-offset-3">
+			<div class="col-md-4 col-md-offset-4">
 				<div class="well">
+					<center>
+						<a href="http://www.dexbiz.com/products/dexcrm">
+							<img alt="DexBiz" src="${resource(dir: 'images', file: 'LogoCrmSm_Blue.png')}" />
+						</a>
+					</center>
+					<hr/>
 					<g:if test='${flash.message || (error!= null && error == true && command?.hasErrors()==false)}'>
 						<bootstrap:alert class="alert-danger">
 							${flash.message}

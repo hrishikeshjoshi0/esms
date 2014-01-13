@@ -56,8 +56,4 @@
 			</g:each>
 		</tbody>
 	</table>
-	<div class="pgn">
-		<bootstrap:paginate
-			total="${organizationInstance?.phoneBooks?.size()}" />
-	</div>
 </div>
