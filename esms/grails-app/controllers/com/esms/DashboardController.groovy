@@ -145,7 +145,7 @@ class DashboardController {
 	}
 	
 	def upcomingRenewals() { 
-		params.max = 5
+		params.max = 10
 		int y = params.upcomingRenewalYearParam.toInteger()
 		int m = params.upcomingRenewalMonthParam.toInteger()
 		int d = 1
@@ -186,7 +186,7 @@ class DashboardController {
 	}
 	
 	def upcomingTasks() {
-		params.max = 5
+		params.max = 10
 		
 		int y = params.upcomingRenewalYearParam.toInteger()
 		int m = params.upcomingRenewalMonthParam.toInteger()

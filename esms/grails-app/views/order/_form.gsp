@@ -68,10 +68,16 @@ function fetchInfo(id) {
 			code="order.organization.label" default="Organization" /><span
 		class="required-indicator">*</span></label>
 	<div class="col-md-9">
-		<g:select name="organization.id" from="${Organization.list()}" class="form-control"
-			optionKey="id" optionValue="name" readonly="${params?.action == 'edit'?'readonly':''}"
-			onchange="fetchInfo(this.value);"
-			value="${quoteInstance?.organization?.id}" />
+		<g:if test="${params?.action == 'edit'}">
+			<g:hiddenField name="organization.id" value="${quoteInstance?.organization?.id}"/>
+			<g:textField name="organizationName" value="${quoteInstance?.organization?.name}" readonly="readonly"/>
+		</g:if>
+		<g:else>
+			<g:select name="organization.id" from="${Organization.list()}" class="form-control"
+				optionKey="id" optionValue="name" 
+				onchange="fetchInfo(this.value);"
+				value="${quoteInstance?.organization?.id}" />
+		</g:else>
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'organization', 'error')}
 		</span>
 	</div>
