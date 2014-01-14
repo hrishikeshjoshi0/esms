@@ -35,11 +35,11 @@
 
 								<g:message code="default.button.update.label" default="Update" />
 							</button>
-							<button type="submit" class="btn btn-sm btn-default"
+							<%--<button type="submit" class="btn btn-sm btn-default"
 								name="_action_delete" formnovalidate>
 								<g:message code="default.button.delete.label" default="Delete" />
 							</button>
-						</div>
+						--%></div>
 					</fieldset>
 				</g:form>
 			</div>

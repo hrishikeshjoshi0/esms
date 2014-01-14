@@ -26,7 +26,8 @@ class EmployeeController {
 			and {
 				isNull("employmentEndDate")
 			}
-			maxResults(params.max)
+			firstResult(params.offset?.toInteger())
+			maxResults(params.max?.toInteger())
 		}
 		
 		def c1 = Employee.createCriteria()
