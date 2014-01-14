@@ -1,6 +1,19 @@
 <%@ page import="com.esms.model.party.Address"%>
 
 <div
+	class="form-group fieldcontain ${hasErrors(bean: addressInstance, field: 'organization', 'error')} ">
+	<label for="organization" class="col-md-3 control-label"><g:message
+			code="address.organization.label" default="Organization" /></label>
+	<div class="col-md-9">
+		<g:textField name="organization" required="" readOnly="readOnly"
+			class="form-control" value="${addressInstance?.party?.name}" />
+		<span class="help-inline">
+			${hasErrors(bean: addressInstance, field: 'addressType', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
 	class="form-group fieldcontain ${hasErrors(bean: addressInstance, field: 'addressType', 'error')} ">
 	<label for="addressType" class="col-md-3 control-label"><g:message
 			code="address.addressType.label" default="Address Type" /></label>

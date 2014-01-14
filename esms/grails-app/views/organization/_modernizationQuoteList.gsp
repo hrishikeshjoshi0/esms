@@ -59,9 +59,6 @@
 		</g:each>
 	</tbody>
 </table>
-<div class="pgn">
-	<bootstrap:paginate total="${organizationInstance.quotes?organizationInstance.quotes:0}" />
-</div>
 
 <!-- Modal -->
 <div id="quoteModal" class="modal hide fade" tabindex="-1"

@@ -46,9 +46,6 @@
 		</g:each>
 	</tbody>
 </table>
-<div class="pgn">
-	<bootstrap:paginate total="${organizationInstance?.addresses?.size()}" />
-</div>
 
 <!-- Modal -->
 <div id="docsModal" class="modal hide fade" tabindex="-1" role="dialog" 

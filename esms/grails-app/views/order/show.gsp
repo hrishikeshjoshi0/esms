@@ -131,10 +131,11 @@
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
 
-						<button class="btn btn-sm btn-default" type="submit"
+						<%--<button class="btn btn-sm btn-default" type="submit"
 							name="_action_delete">
 							<g:message code="default.button.delete.label" default="Delete" />
 						</button>
+						--%>
 					</g:if>
 				</g:form>
 			</div>

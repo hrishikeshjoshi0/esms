@@ -60,6 +60,3 @@
 		</g:each>
 	</tbody>
 </table>
-<div class="pgn">
-	<bootstrap:paginate total="${organizationInstance?.contracts?organizationInstance?.contracts.size():0}" />
-</div>

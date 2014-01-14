@@ -69,14 +69,14 @@ function fetchInfo(id) {
 		class="required-indicator">*</span></label>
 	<div class="col-md-9">
 		<g:if test="${params?.action == 'edit'}">
-			<g:hiddenField name="organization.id" value="${quoteInstance?.organization?.id}"/>
-			<g:textField name="organizationName" value="${quoteInstance?.organization?.name}" readonly="readonly"/>
+			<g:hiddenField name="organization.id" value="${orderInstance?.organization?.id}"/>
+			<g:textField name="organizationName" value="${orderInstance?.organization?.name}" readonly="readonly"/>
 		</g:if>
 		<g:else>
 			<g:select name="organization.id" from="${Organization.list()}" class="form-control"
 				optionKey="id" optionValue="name" 
 				onchange="fetchInfo(this.value);"
-				value="${quoteInstance?.organization?.id}" />
+				value="${orderInstance?.organization?.id}" />
 		</g:else>
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'organization', 'error')}
 		</span>
@@ -88,10 +88,15 @@ function fetchInfo(id) {
 	<label for="status" class="col-md-3 control-label"><g:message
 			code="order.status.label" default="Status" /></label>
 	<div class="col-md-9">
-		<g:select name="status" readonly="readOnly" class="form-control"
-			from="${orderInstance.constraints.status.inList}"
-			value="${orderInstance?.status}" valueMessagePrefix="order.status"
-			noSelection="['': '']" />
+		<g:if test="${params?.action == 'edit'}">
+			<g:textField name="statusName" value="${orderInstance?.status}" readonly="readonly"/>
+		</g:if>
+		<g:else>
+			<g:select name="status" readonly="readOnly" class="form-control"
+				from="${orderInstance.constraints.status.inList}"
+				value="${orderInstance?.status}" valueMessagePrefix="order.status"
+				noSelection="['': '']" />
+		</g:else>
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'status', 'error')}
 		</span>
 	</div>
@@ -102,9 +107,14 @@ function fetchInfo(id) {
 	<label for="type" class="col-md-3 control-label"><g:message
 			code="order.type.label" default="Type" /></label>
 	<div class="col-md-9">
-		<g:select name="type" from="${orderInstance.constraints.type.inList}" class="form-control"
-			value="${orderInstance?.type}" valueMessagePrefix="order.type"
-			noSelection="['': '']" />
+		<g:if test="${params?.action == 'edit'}">
+			<g:textField name="typeName" value="${orderInstance?.type}" readonly="readonly"/>
+		</g:if>
+		<g:else>
+			<g:select name="type" from="${orderInstance.constraints.type.inList}" class="form-control"
+				value="${orderInstance?.type}" valueMessagePrefix="order.type"
+				noSelection="['': '']" />
+		</g:else>
 		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'type', 'error')}
 		</span>
 	</div>

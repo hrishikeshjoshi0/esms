@@ -55,19 +55,27 @@
 
 						<dd>
 							<g:if test="${addressInstance?.party?.partyType == 'CONTACT' }">
-								<g:link controller="party" action="show"
+								<g:link controller="contact" action="show"
 									id="${addressInstance?.party?.id}">
 									${addressInstance?.party?.firstName} ${addressInstance?.party?.lastName}
 								</g:link>							
 							</g:if>
 							<g:if test="${addressInstance?.party?.partyType == 'ORGANIZATION' }">
-								<g:link controller="party" action="show"
-									id="${addressInstance?.party?.id}">
-									${addressInstance?.party?.name}
-								</g:link>
+								<g:if test="${addressInstance?.party?.salesStatus == 'LEAD'}">
+									<g:link controller="lead" action="show"
+										id="${addressInstance?.party?.id}">
+										${addressInstance?.party?.name}
+									</g:link>
+								</g:if>
+								<g:else>
+									<g:link controller="organization" action="show"
+										id="${addressInstance?.party?.id}">
+										${addressInstance?.party?.name}
+									</g:link>
+								</g:else>
 							</g:if>
 							<g:if test="${addressInstance?.party?.partyType == 'EMPLOYEE' }">
-								<g:link controller="party" action="show"
+								<g:link controller="employee" action="show"
 									id="${addressInstance?.party?.id}">
 									${addressInstance?.party?.firstName} ${addressInstance?.party?.lastName}
 								</g:link>

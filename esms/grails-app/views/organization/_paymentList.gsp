@@ -74,6 +74,3 @@
 		</g:each>
 	</tbody>
 </table>
-<div class="pgn">
-	<bootstrap:paginate total="${organizationInstance?.payments?.size()}" />
-</div>

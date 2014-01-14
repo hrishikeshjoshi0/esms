@@ -79,6 +79,3 @@
 		</g:each>
 	</tbody>
 </table>
-<div class="pgn">
-	<bootstrap:paginate total="${serviceOrders?serviceOrders.size():0}" />
-</div>

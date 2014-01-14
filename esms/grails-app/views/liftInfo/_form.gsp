@@ -23,11 +23,29 @@
 				$('.gateTypeOther').hide();
 			}
 		});
+
+		if($('#gateType').val() == 'YES') {
+			$('.drive').show();	
+		} else {
+			$('.drive').hide();
+		}
 	});
 </script>
 
 <div class="row">
 	<div class="col-md-6">
+		<div
+			class="form-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'liftMake', 'error')} ">
+			<label for="organizationName" class="col-md-3 control-label"><g:message
+					code="liftInfo.organizationName.label" default="Organization" /></label>
+			<div class="col-md-9">
+				<g:textField name="organizationName"
+					value="${liftInfoInstance?.organization?.name}" readonly="readonly" />
+				<span class="help-inline"> ${hasErrors(bean: liftInfoInstance, field: 'organization', 'error')}
+				</span>
+			</div>
+		</div>
+		
 		<div
 			class="form-group fieldcontain ${hasErrors(bean: liftInfoInstance, field: 'liftMake', 'error')} ">
 			<label for="liftMake" class="col-md-3 control-label"><g:message

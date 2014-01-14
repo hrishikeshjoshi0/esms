@@ -61,7 +61,3 @@
 		</g:each>
 	</tbody>
 </table>
-<div class="pgn">
-	<bootstrap:paginate params="${filterParams}"
-		total="${invoiceInstanceTotal?invoiceInstanceTotal:organizationInstance?.invoices?.size()}" />
-</div>
