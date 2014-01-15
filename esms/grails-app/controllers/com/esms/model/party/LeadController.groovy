@@ -8,6 +8,10 @@ import com.esms.model.maintenance.LiftInfo
 class LeadController {
 	
 	def filterPaneService
+	
+	def accountService
+	
+	def utilService
 
     def index() {
         redirect action: 'list', params: params
@@ -42,13 +46,11 @@ class LeadController {
 	def create() {
 		switch (request.method) {
 		case 'GET':
-			def list = Organization.list();
-			int no = (list?list.size():0) + 1;
-			String externalId = "ORG" + String.format("%05d", no)
-			params.externalId = externalId
+			params.externalId = '-Auto Gen-'
 			[organizationInstance: new Organization(params),contactInstance : new Contact(),addressInstance:new Address(),phoneBookInstance:new PhoneBook(),liftInfoInstance: new LiftInfo()]
 			break
 		case 'POST':
+			params.externalId = utilService.newOrganizationNumber()
 			def organizationInstance = new Organization(params)
 			organizationInstance.partyType = "ORGANIZATION"
 			
@@ -166,12 +168,40 @@ class LeadController {
 			break
 		}
 	}
-
+	
 	def delete() {
 		def organizationInstance = Organization.get(params.id)
 		if (!organizationInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'organization.label', default: 'Organization'), params.id])
 			redirect action: 'list'
+			return
+		}
+		
+		boolean error = false;
+		def messages = new ArrayList<String>()
+		
+		if (!organizationInstance) {
+			error = true;
+			messages.add("Record Not Found.")
+		}
+		
+		if(!organizationInstance?.quotes?.empty) {
+			error = true;
+			messages.add('There are other records referencing this record.')
+		}
+		
+		if(error) {
+			render(contentType: "text/json") {
+				applicationreply {
+					level: "warning"
+					messages : {
+						for (m in messages) {
+							message(errorlevel: 'warning' , errormessage : m)
+						}
+					}
+				}
+			}
+			
 			return
 		}
 

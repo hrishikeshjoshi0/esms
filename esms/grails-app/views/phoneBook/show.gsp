@@ -14,7 +14,7 @@
 		<div class="col-md-12">
 			<div class="page-header">
 				<h3>
-					<g:message code="default.show.label" args="[entityName]" />
+					Phone Book
 				</h3>
 			</div>
 			
@@ -22,11 +22,9 @@
 				<g:form>
 					<g:hiddenField name="id" value="${phoneBookInstance?.id}" />
 						<g:link class="btn btn-default btn-sm" action="edit" id="${phoneBookInstance?.id}">
-							
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
 						<button class="btn btn-sm btn-default" type="submit" name="_action_delete">
-							
 							<g:message code="default.button.delete.label" default="Delete" />
 						</button>
 				</g:form>
@@ -35,15 +33,39 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<dl class="dl-horizontal">
-
 						<dt>
-							<g:message code="phoneBook.email.label" default="Email" />
+							<g:message code="phoneBook.party.label" default="Party" />
 						</dt>
 
 						<dd>
-							<g:fieldValue bean="${phoneBookInstance}" field="email" />
+							<g:if test="${phoneBookInstance?.party?.partyType == 'CONTACT'}">
+								<g:link controller="contact" action="show"
+									id="${phoneBookInstance?.party?.id}">
+									${phoneBookInstance?.party?.firstName} ${phoneBookInstance?.party?.lastName}
+								</g:link>
+							</g:if>
+							<g:if test="${phoneBookInstance?.party?.partyType == 'ORGANIZATION'}">
+								<g:if test="${phoneBookInstance?.party?.salesStatus == 'LEAD'}">
+									<g:link controller="organization" action="lead"
+										id="${phoneBookInstance?.party?.id}">
+										${phoneBookInstance?.party?.name}
+									</g:link>
+								</g:if>
+								<g:else>
+									<g:link controller="organization" action="show"
+										id="${phoneBookInstance?.party?.party?.id}">
+										${phoneBookInstance?.party?.name}
+									</g:link>
+								</g:else>
+							</g:if>
+							
+							<g:if test="${phoneBookInstance?.party?.partyType == 'EMPLOYEE'}">
+								<g:link controller="employee" action="show"
+									id="${phoneBookInstance?.party?.id}">
+									${phoneBookInstance?.party?.firstName} ${phoneBookInstance?.party?.lastName}
+								</g:link>
+							</g:if>
 						</dd>
-
 
 						<dt>
 							<g:message code="phoneBook.homePhone.label" default="Home Phone" />
@@ -82,17 +104,13 @@
 						<dd>
 							<g:fieldValue bean="${phoneBookInstance}" field="otherPhone" />
 						</dd>
-
-
+						
 						<dt>
-							<g:message code="phoneBook.party.label" default="Party" />
+							<g:message code="phoneBook.email.label" default="Email" />
 						</dt>
 
 						<dd>
-							<g:link controller="party" action="show"
-								id="${phoneBookInstance?.party?.id}">
-								${phoneBookInstance?.party?.encodeAsHTML()}
-							</g:link>
+							<g:fieldValue bean="${phoneBookInstance}" field="email" />
 						</dd>
 
 

@@ -1,5 +1,5 @@
 <div class="pull-right">
-	<bs3:modalLink href="${createLink(controller:'employee',action:'createPhoneBook',params:['party.id':employeeInstance?.id])}"
+	<bs3:modalLink href="${createLink(controller:'contact',action:'createPhoneBook',params:['party.id':contactInstance?.id])}"
 			id="createPhoneBook" title="New Phone"/>
 </div>
 
@@ -27,7 +27,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<g:each in="${employeeInstance?.phoneBooks}" var="phoneBookInstance">
+		<g:each in="${contactInstance?.phoneBooks}" var="phoneBookInstance">
 			<tr>
 
 				<td>

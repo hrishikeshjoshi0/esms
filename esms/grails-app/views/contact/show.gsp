@@ -16,7 +16,7 @@
 				<h3>
 					Contact :
 					${contactInstance?.externalId}
-					|
+					:
 					${contactInstance?.firstName} ${contactInstance?.lastName}
 				</h3>
 			</div>
@@ -84,11 +84,20 @@
 						</dt>
 
 						<dd>
-							<g:link
-								controller="${contactInstance?.organization?.partyType?.toLowerCase()}"
-								action="show" id="${contactInstance?.organization?.id}">
-								${contactInstance?.organization?.name}
-							</g:link>
+							<g:if test="${phoneBookInstance?.party?.partyType == 'ORGANIZATION'}">
+								<g:if test="${phoneBookInstance?.party?.salesStatus == 'LEAD'}">
+									<g:link controller="lead" action="lead"
+										id="${phoneBookInstance?.party?.id}">
+										${phoneBookInstance?.party?.name}
+									</g:link>
+								</g:if>
+								<g:else>
+									<g:link controller="organization" action="show"
+										id="${phoneBookInstance?.party?.party?.id}">
+										${phoneBookInstance?.party?.name}
+									</g:link>
+								</g:else>
+							</g:if>
 						</dd>
 
 
@@ -102,6 +111,20 @@
 
 					</dl>
 				</div>
+			</div>
+
+			<div class="col-md-12">
+				<richui:tabView id="tabView">
+					<richui:tabLabels>
+						<richui:tabLabel selected="true" title="Phone Book" />
+					</richui:tabLabels>
+
+					<richui:tabContents>
+						<richui:tabContent>
+							<g:render template="phoneBookList" />
+						</richui:tabContent>
+					</richui:tabContents>
+				</richui:tabView>
 			</div>
 		</div>
 	</div>

@@ -83,6 +83,11 @@
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
 						
+						<g:link class="btn btn-default btn-sm deleteBtn" action="delete" controller="lead"
+							id="${organizationInstance?.id}">
+							<g:message code="default.button.delete.label" default="Delete" />
+						</g:link>
+						
 						<g:if test="${organizationInstance?.salesStatus != 'LOST' }">
 							<bs3:modalLink id="lostLead"
 								href="${createLink(controller:'lead',action:'lostLead',id:organizationInstance?.id)}"

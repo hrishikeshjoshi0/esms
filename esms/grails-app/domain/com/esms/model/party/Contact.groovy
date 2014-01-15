@@ -8,7 +8,7 @@ class Contact extends Party {
 	String middleName;
 	String lastName;
 
-	static belongsTo = [organization : Party]
+	static belongsTo = [organization : Organization]
 
     static constraints = {
 		salutation nullable:true,blank:true

@@ -113,4 +113,22 @@ class ContactController {
             redirect action: 'show', id: params.id
         }
     }
+	
+	def createPhoneBook() {
+		switch (request.method) {
+		case 'GET':
+			render view: '/_common/modals/createPhoneBook', [phoneBookInstance: new PhoneBook(params)]
+			return
+		case 'POST':
+			def phoneBookInstance = new PhoneBook(params)
+			if (!phoneBookInstance.save(flush: true)) {
+				render view: 'create', model: [phoneBookInstance: phoneBookInstance]
+				return
+			}
+
+			flash.message = message(code: 'default.created.message', args: [message(code: 'phoneBook.label', default: 'PhoneBook'), phoneBookInstance.id])
+			redirect controller: 'contact', action: 'show', id: phoneBookInstance?.party?.id
+			break
+		}
+	}
 }
