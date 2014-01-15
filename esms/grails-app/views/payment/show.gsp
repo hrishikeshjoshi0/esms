@@ -35,12 +35,13 @@
 								<g:message code="default.button.updateClearanceDate.label"
 									default="Update Clearance Date" />
 							</g:link>
-							<g:link class="btn btn-default btn-sm" action="edit" id="${paymentInstance?.id}">
+							<%--<g:link class="btn btn-default btn-sm" action="edit" id="${paymentInstance?.id}">
 								<g:message code="default.button.edit.label" default="Edit" />
 							</g:link>
 							<button class="btn btn-sm btn-default" type="submit" name="_action_delete">
 								<g:message code="default.button.delete.label" default="Delete" />
 							</button>
+							--%>
 						</div>
 					</g:form>
 				</div>

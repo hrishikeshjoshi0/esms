@@ -44,12 +44,13 @@
 					 	Create Task
 					</g:link>
 
-					<g:if test="${invoiceInstance?.status != 'CLOSED'}">
+					<%--<g:if test="${invoiceInstance?.status != 'CLOSED'}">
 						<g:link class="btn btn-default btn-sm" action="edit"
 							id="${invoiceInstance?.id}">
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
 					</g:if>
+					--%>
 				</div>
 			</g:form>
 
