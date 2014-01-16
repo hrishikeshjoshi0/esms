@@ -17,12 +17,7 @@
 			</div>
 
 			<div class="well">
-				<g:form>
 					<g:hiddenField name="id" value="${productInstance?.id}" />
-					<%--<g:link class="btn-sm" action="edit" id="${productInstance?.id}">
-							<g:message code="default.button.edit.label" default="Edit" />
-						</g:link>
-					--%>
 					<g:if
 						test="${productInstance?.isVirtual == false && productInstance?.requiresInventory == null}">
 						<g:link class="btn btn-default btn-sm" action="create"
@@ -35,11 +30,14 @@
 					<bs3:modalLink
 						href="${createLink(controller:'product',action:'createPrice',id:productInstance?.id)}"
 						class="btn-primary" id="createPrice" title="New Price" />
+						
+					<g:link class="btn btn-default btn-sm" action="edit" id="${productInstance?.id}">
+							<g:message code="default.button.edit.label" default="Edit" />
+					</g:link>
 					
-					<button class="btn btn-sm btn-default" type="submit" name="_action_delete">
-						<g:message code="default.button.delete.label" default="Delete" />
-					</button>
-				</g:form>
+					<g:link class="btn btn-default btn-sm" action="delete" id="${productInstance?.id}">
+							<g:message code="default.button.delete.label" default="Delete" />
+					</g:link>
 			</div>
 
 			<div class="panel panel-default">

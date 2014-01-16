@@ -5,7 +5,7 @@
 			code="contact.externalId.label" default="External Id" /><span
 		class="required-indicator">*</span></label>
 	<div class="col-md-9">
-		<g:textField name="externalId" required=""
+		<g:textField name="externalId" required="" readonly="readonly"
 			value="${contactInstance?.externalId}" />
 		<span class="help-inline">
 			${hasErrors(bean: contactInstance, field: 'externalId', 'error')}

@@ -1,7 +1,6 @@
 <div class="pull-right">
-	<bs3:modalLink
-		href="${createLink(controller:'organization',action:'createContact',params="['organization.id':organizationInstance?.id]")}"
-		id="createContact" title="New Contact" />	
+	<bs3:modalLink href="${createLink(controller:'organization',action:'createContact',params:['organization.id':organizationInstance?.id])}"
+			id="createContact" title="New Contact"/>		
 </div>
 
 <!-- Contacts -->
@@ -26,7 +25,9 @@
 	</thead>
 	<tbody>
 		<g:each in="${organizationInstance?.contacts}" var="contactInstance">
-			<g:each in="${contactInstance?.phoneBooks}" var="phoneBookInstance">
+				<g:if test="${!contactInstance?.phoneBooks?.empty}">
+					<g:set value="${contactInstance?.phoneBooks?.find{true}}" var="phoneBookInstance" />
+				</g:if>
 				<tr>
 					<td>
 						${fieldValue(bean: contactInstance, field: "externalId")}
@@ -55,7 +56,6 @@
 							id="${contactInstance.id}" class="lnk ">Show</g:link>
 					</td>
 				</tr>
-			</g:each>	
 		</g:each>
 	</tbody>
 </table>

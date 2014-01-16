@@ -524,31 +524,57 @@ class QuoteController {
 
 	def delete() {
 		def quoteInstance = Quote.get(params.id)
+		boolean error = false;
+		def messages = []
+		
 		if (!quoteInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [
-				message(code: 'quote.label', default: 'Quote'),
-				params.id
-			])
-			redirect action: 'list'
+			error = true;
+			messages.add("Record Not Found.")
+		}
+		
+		def organization = quoteInstance?.organization
+		
+		if(quoteInstance?.status == 'CONVERTED_TO_SERVICE_CONTRACT' || quoteInstance?.status == 'CONVERTED_TO_SALES_ORDER') {
+			error = true;
+			messages << "The quotation is converted to a Service Order or Sales Order.This record cannot be deleted."
+		}
+		
+		if(quoteInstance.relatedTo == 'RENEWAL' && quoteInstance.relatedToValue) {
+			def parentOrder = Order.findByOrderNumber(quoteInstance.relatedToValue)
+			if(parentOrder) {
+				error = true;
+				messages << "The quotation is used as a Renewal Quote for the Order " + parentOrder?.orderNumber +". Please remove the associations to delete this quote."
+			}
+		}
+		
+		if(error) {
+			render(contentType: "text/json") {
+				[
+					error : true,
+					level: "warning",
+					messages : messages
+				]
+			}
 			return
 		}
 
 		try {
 			quoteInstance.delete(flush: true)
-
-
-			flash.message = message(code: 'default.deleted.message', args: [
-				message(code: 'quote.label', default: 'Quote'),
-				params.id
-			])
-			redirect action: 'list'
-		}
-		catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [
-				message(code: 'quote.label', default: 'Quote'),
-				params.id
-			])
-			redirect action: 'show', id: params.id
+			messages << message(code: 'default.deleted.message', args: [message(code: 'quote.label', default: 'Quote'), params.id])
+			render(contentType: "text/json") {[
+					error : false,
+					level: "success",
+					messages : messages,
+					nextUrl : g.createLink(controller:'organization',action: 'show',id:organization?.id)
+			]}
+		} catch (DataIntegrityViolationException e) {
+			messages << message(code: 'default.not.deleted.message', args: [message(code: 'quote.label', default: 'Quote'), params.id])
+			render(contentType: "text/json") {[
+				error : false,
+				level: "error",
+				messages : messages,
+				nextUrl : g.createLink(controller:'organization',action: 'show',id:organization?.id)
+			]}
 		}
 	}
 
@@ -563,7 +589,10 @@ class QuoteController {
 					projections { max ("lineNumber") }
 				}
 				params.lineNumber = (maxLineNumber?maxLineNumber:0) + 1
-				[quoteItemInstance: new QuoteItem(params)]
+				
+				def serviceContacts = Product.findAllByProductTypeAndServiceContract("SERVICE",true)
+				def nonServiceContacts = Product.findAllByProductTypeNotEqualAndServiceContractNotEqual('SERVICE',true)
+				[quoteInstance:quote,quoteItemInstance: new QuoteItem(params),serviceContacts:serviceContacts,nonServiceContacts:nonServiceContacts]
 				break
 			case 'POST':
 				def quoteItemInstance = new QuoteItem(params)

@@ -1,6 +1,6 @@
 <div class="pull-right">
-	<bs3:modalLink href="${createLink(controller:'quote',action:'createPhoneBook',params:['party.id':quoteInstance?.id])}"
-			class="btn-primary" id="createPhoneBook" title="New Phone"/>	
+	<bs3:modalLink href="${createLink(controller:'lead',action:'createPhoneBook',params:['party.id':organizationInstance?.id])}"
+			id="createPhoneBook" title="New Phone"/>			
 </div>
 <div class="table-responsive">
 	<table class="table table-striped table-condensed table-bordered">

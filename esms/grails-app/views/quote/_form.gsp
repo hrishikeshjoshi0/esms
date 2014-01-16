@@ -59,10 +59,17 @@
 					code="quote.organization.label" default="Organization" /><span
 				class="required-indicator">*</span></label>
 			<div class="col-md-9">
-				<g:select name="organization.id" from="${Organization.list()}"
-					optionKey="id" optionValue="name" class="form-control"
-					onchange="fetchInfo(this.value);"
-					value="${quoteInstance?.organization?.id}" />
+				<g:if test="${params?.action == 'edit'}">
+					<g:hiddenField name="organization.id" value="${quoteInstance?.organization?.id}"/>
+					<g:textField name="organizationName" value="${quoteInstance?.organization?.name}" readonly="readonly"/>
+				</g:if>
+				<g:else>
+					<g:select name="organization.id" from="${Organization.list()}"
+						optionKey="id" optionValue="name" class="form-control"
+						onchange="fetchInfo(this.value);"
+						value="${quoteInstance?.organization?.id}" />
+				</g:else>
+				
 				<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'organization', 'has-error')}
 				</span>
 			</div>

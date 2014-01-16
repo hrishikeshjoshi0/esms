@@ -1,6 +1,6 @@
 <div class="pull-right">
 	<bs3:modalLink href="${createLink(controller:'lead',action:'createContact',params:['organization.id':organizationInstance?.id])}"
-			id="createContact" title="New Contact"/>
+			id="createContact" title="New Contact"/>		
 </div>
 
 <div class="table-responsive">
@@ -30,8 +30,8 @@
 		</thead>
 		<tbody>
 			<g:each in="${organizationInstance?.contacts}" var="contactInstance">
-				<g:each in="${contactInstance?.phoneBooks}" var="phoneBookInstance">
-					<tr>
+				<g:set value="${contactInstance?.phoneBooks?.first()}" var="phoneBookInstance" />
+				<tr>
 						<td>
 							${fieldValue(bean: contactInstance, field: "externalId")}
 						</td>
@@ -68,7 +68,6 @@
 						<td class="link"><g:link action="show" controller="contact"
 								id="${contactInstance.id}" class="lnk ">Show &raquo;</g:link></td>
 					</tr>
-				</g:each>
 			</g:each>
 		</tbody>
 	</table>

@@ -34,6 +34,8 @@ class Organization extends Party {
 		invoices nullable:true
 		groupName nullable:true,blank:true
 		lostReason nullable:true,blank:true
+		
+		contacts cascade: 'all-delete-orphan'
 	}
 	
 	def convertLead() {

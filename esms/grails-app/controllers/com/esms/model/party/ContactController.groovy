@@ -117,7 +117,7 @@ class ContactController {
 	def createPhoneBook() {
 		switch (request.method) {
 		case 'GET':
-			render view: '/_common/modals/createPhoneBook', [phoneBookInstance: new PhoneBook(params)]
+			render view: '/_common/modals/createPhoneBook',model:[phoneBookInstance: new PhoneBook(params)]
 			return
 		case 'POST':
 			def phoneBookInstance = new PhoneBook(params)

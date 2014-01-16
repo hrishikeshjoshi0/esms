@@ -130,6 +130,11 @@
 							id="${orderInstance?.id}">
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
+						
+						<g:link class="btn btn-default btn-sm deleteBtn" action="delete"
+							id="${orderInstance?.id}">
+							<g:message code="default.button.delete.label" default="Delete" />
+						</g:link>
 						<%--
 						<button class="btn btn-sm btn-default" type="submit"
 							name="_action_delete">

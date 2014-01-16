@@ -30,7 +30,7 @@
 		<g:if test="${quoteInstance?.type == 'CONTRACT' }">
 			<g:select name="productNumber"
 				onChange="fetchUnitPriceForProduct(this.value);"
-				from="${Product.findAllByProductTypeAndServiceContract("SERVICE",true)}"
+				from="${serviceContacts}"
 				required="" optionKey="productNumber" optionValue="productName"
 				value="${quoteItemInstance?.productNumber}"
 				noSelection="${['null':'Select Product..']}" />
@@ -38,7 +38,7 @@
 		<g:else>
 			<g:select name="productNumber"
 				onChange="fetchUnitPriceForProduct(this.value);"
-				from="${Product.findAllByProductTypeNotEqualAndServiceContractNotEqual('SERVICE',true)}" required=""
+				from="${nonServiceContacts}" required=""
 				optionKey="productNumber" optionValue="productName"
 				value="${quoteItemInstance?.productNumber}"
 				noSelection="${['null':'Select Product..']}" />

@@ -208,14 +208,19 @@ class LeadController {
 			render(contentType: "text/json") {
 				[
 					error : false,
-					level: "warning",
+					level: "success",
 					messages : messages,
-					nextUrl : g.createLink(controller:'lead',action: 'list')
+					nextUrl : g.createLink(controller:'dashboard')
 				]
 			}
 		} catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'organization.label', default: 'Organization'), params.id])
-			redirect action: 'show', id: params.id
+			messages << message(code: 'default.not.deleted.message', args: [message(code: 'organization.label', default: 'Organization'), params.id])
+			render(contentType: "text/json") {[
+				error : false,
+				level: "error",
+				messages : messages,
+				nextUrl : g.createLink(action: 'show',id:params.id)
+			]}
 		}
 	}
 	
@@ -234,12 +239,17 @@ class LeadController {
 	def createContact() {
 		switch (request.method) {
 		case 'GET':
+			params.externalId = '- AutoGen -'
 			render view: '/_common/modals/createContact', model: [contactInstance: new Contact(params)]
 			return
 		case 'POST':
 			def contactInstance = new Contact(params)
 			contactInstance.partyType = "CONTACT"
-			contactInstance.status = "ACTIVE"
+			contactInstance.externalId = utilService.newContactNumber()
+			
+			if(!contactInstance.description) {
+				contactInstance.description = ""
+			}
 			
 			if (!contactInstance.save(flush: true)) {
 				flash.message = message(code: 'default.created.message', args: [message(code: 'contact.label', default: 'Contact'), contactInstance.id])
@@ -255,8 +265,7 @@ class LeadController {
 	def createAddress() {
 		switch (request.method) {
 		case 'GET':
-			[addressInstance: new Address(params)]
-			render view: '/_common/modals/createAddress', model: [addressInstance: addressInstance]
+			render view: '/_common/modals/createAddress', model: [addressInstance: new Address(params)]
 			return
 		case 'POST':
 			def addressInstance = new Address(params)

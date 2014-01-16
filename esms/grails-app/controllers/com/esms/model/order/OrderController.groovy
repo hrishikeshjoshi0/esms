@@ -15,7 +15,7 @@ import com.esms.model.quote.Quote
 
 class OrderController {
 
-	static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
+	static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: ['GET', 'POST']]
 
 	def filterPaneService
 	
@@ -321,29 +321,54 @@ class OrderController {
 
 	def delete() {
 		def orderInstance = Order.get(params.id)
+		def organization = orderInstance?.organization
+		
+		boolean error = false;
+		def messages = []
+		
 		if (!orderInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [
-				message(code: 'order.label', default: 'Order'),
-				params.id
-			])
-			redirect action: 'list'
+			error = true;
+			messages.add("Record Not Found.")
+		}
+		
+		if(orderInstance?.status != 'PENDING_INVOICE') {
+			error = true;
+			messages.add("The order is either invoiced or paid. It can be deleted only if it is in state PENDING_INVOICE. This record cannot be deleted.")
+		}
+		
+		if(error) {
+			render(contentType: "text/json") {
+				[
+					error : true,
+					level: "warning",
+					messages : messages
+				]
+			}
 			return
 		}
 
 		try {
+			if(orderInstance.referenceQuoteNumber) {
+				def quote = Quote.findByQuoteNumber(orderInstance.referenceQuoteNumber)
+				quote.status = 'PENDING'
+				quote.save()
+			}
 			orderInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [
-				message(code: 'order.label', default: 'Order'),
-				params.id
-			])
-			redirect action: 'list'
-		}
-		catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [
-				message(code: 'order.label', default: 'Order'),
-				params.id
-			])
-			redirect action: 'show', id: params.id
+			messages << message(code: 'default.deleted.message', args: [message(code: 'order.label', default: 'Order'), params.id])
+			render(contentType: "text/json") {[
+					error : false,
+					level: "success",
+					messages : messages,
+					nextUrl : g.createLink(controller:'organization',action: 'show',id:organization?.id)
+			]}
+		} catch (DataIntegrityViolationException e) {
+			messages << message(code: 'default.not.deleted.message', args: [message(code: 'order.label', default: 'Order'), params.id])
+			render(contentType: "text/json") {[
+				error : false,
+				level: "error",
+				messages : messages,
+				nextUrl : g.createLink(controller:'organization',action: 'show',id:organization?.id)
+			]}
 		}
 	}
 
