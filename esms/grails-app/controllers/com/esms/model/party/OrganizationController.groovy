@@ -195,66 +195,112 @@ class OrganizationController {
 
     def edit() {
 		switch (request.method) {
-		case 'GET':
-	        def organizationInstance = Organization.get(params.id)
-	        if (!organizationInstance) {
-	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'organization.label', default: 'Organization'), params.id])
-	            redirect action: 'list'
-	            return
-	        }
-
-	        [organizationInstance: organizationInstance]
-			break
-		case 'POST':
-	        def organizationInstance = Organization.get(params.id)
-	        if (!organizationInstance) {
-	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'organization.label', default: 'Organization'), params.id])
-	            redirect action: 'list'
-	            return
-	        }
-
-	        if (params.version) {
-	            def version = params.version.toLong()
-	            if (organizationInstance.version > version) {
-	                organizationInstance.errors.rejectValue('version', 'default.optimistic.locking.failure',
-	                          [message(code: 'organization.label', default: 'Organization')] as Object[],
-	                          "Another user has updated this Organization while you were editing")
-	                render view: 'edit', model: [organizationInstance: organizationInstance]
-	                return
-	            }
-	        }
-
-	        organizationInstance.properties = params
-
-	        if (!organizationInstance.save(flush: true)) {
-	            render view: 'edit', model: [organizationInstance: organizationInstance]
-	            return
-	        }
-
-			flash.message = message(code: 'default.updated.message', args: [message(code: 'organization.label', default: 'Organization'), organizationInstance.id])
-	        redirect action: 'show', id: organizationInstance.id
-			break
-		}
-    }
+			case 'GET':
+				def organizationInstance = Organization.get(params.id)
+				if (!organizationInstance) {
+					flash.message = message(code: 'default.not.found.message', args: [message(code: 'organization.label', default: 'Organization'), params.id])
+					redirect action: 'list'
+					return
+				}
+				
+				[organizationInstance: organizationInstance,contactInstance : new Contact(),addressInstance:new Address(),phoneBookInstance:new PhoneBook(),liftInfoInstance: new LiftInfo()]
+				break
+			case 'POST':
+				def organizationInstance = Organization.get(params.id)
+				if (!organizationInstance) {
+					flash.message = message(code: 'default.not.found.message', args: [message(code: 'organization.label', default: 'Organization'), params.id])
+					redirect action: 'list'
+					return
+				}
+	
+				if (params.version) {
+					def version = params.version.toLong()
+					if (organizationInstance.version > version) {
+						organizationInstance.errors.rejectValue('version', 'default.optimistic.locking.failure',
+								  [message(code: 'organization.label', default: 'Organization')] as Object[],
+								  "Another user has updated this Organization while you were editing")
+						render view: 'edit', model: [organizationInstance: organizationInstance]
+						return
+					}
+				}
+	
+				organizationInstance.properties = params
+	
+				if (!organizationInstance.save(flush: true)) {
+					render view: 'edit', model: [organizationInstance: organizationInstance]
+					return
+				}
+	
+				flash.message = message(code: 'default.updated.message', args: [message(code: 'organization.label', default: 'Organization'), organizationInstance.id])
+				redirect action: 'show', id: organizationInstance.id
+				break
+			}
+	}
 
     def delete() {
-        def organizationInstance = Organization.get(params.id)
-        if (!organizationInstance) {
+		def organizationInstance = Organization.get(params.id)
+		if (!organizationInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'organization.label', default: 'Organization'), params.id])
-            redirect action: 'list'
-            return
-        }
+			redirect action: 'list'
+			return
+		}
+		
+		boolean error = false;
+		def messages = []
+		
+		if (!organizationInstance) {
+			error = true;
+			messages.add("Record Not Found.")
+		}
+		
+		if(!organizationInstance?.quotes?.empty || !organizationInstance?.orders?.empty || !organizationInstance?.payments?.empty || !organizationInstance?.invoices?.empty) {
+			error = true;
+		}
+		
+		if(!organizationInstance?.quotes?.empty) {
+			messages.add("There are other Quote records referencing this record. This record cannot be deleted at the moment.")
+		}
+		
+		if(!organizationInstance?.orders?.empty) {
+			messages.add("There are other Order records referencing this record. This record cannot be deleted at the moment.")
+		}
+		
+		if(!organizationInstance?.invoices?.empty) {
+			messages.add("There are other Invoice records referencing this record. This record cannot be deleted at the moment.")
+		}
+		
+		if(!organizationInstance?.payments?.empty) {
+			messages.add("There are other Payment records referencing this record. This record cannot be deleted at the moment.")
+		}
+		
+		if(error) {
+			render(contentType: "text/json") {
+				[
+					error : true,
+					level: "warning",
+					messages : messages
+				]
+			}
+			
+			return
+		}
 
-        try {
-            organizationInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'organization.label', default: 'Organization'), params.id])
-            redirect action: 'list'
-        }
-        catch (DataIntegrityViolationException e) {
+		try {
+			organizationInstance.delete(flush: true)
+			messages << message(code: 'default.deleted.message', args: [message(code: 'organization.label', default: 'Organization'), params.id])
+			render(contentType: "text/json") {
+				[
+					error : false,
+					level: "warning",
+					messages : messages,
+					nextUrl : g.createLink(controller:'organization',action: 'list')
+				]
+			}
+		} catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'organization.label', default: 'Organization'), params.id])
-            redirect action: 'show', id: params.id
-        }
-    }
+			redirect action: 'show', id: params.id
+		}
+	}
 	
 	def createContact() {
 		switch (request.method) {

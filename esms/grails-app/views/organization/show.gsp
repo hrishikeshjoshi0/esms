@@ -138,6 +138,15 @@
 							title="Mark As Lost" />
 					</g:if>
 				
+					<g:link class="btn btn-default btn-sm" action="edit" controller="organization"
+						id="${organizationInstance?.id}">
+						<g:message code="default.button.edit.label" default="Edit" />
+					</g:link>
+					
+					<g:link class="btn btn-default btn-sm deleteBtn" action="delete" controller="organization"
+						id="${organizationInstance?.id}">
+						<g:message code="default.button.delete.label" default="Delete" />
+					</g:link>
 			</div>
 
 

@@ -178,7 +178,7 @@ class LeadController {
 		}
 		
 		boolean error = false;
-		def messages = new ArrayList<String>()
+		def messages = []
 		
 		if (!organizationInstance) {
 			error = true;
@@ -187,19 +187,16 @@ class LeadController {
 		
 		if(!organizationInstance?.quotes?.empty) {
 			error = true;
-			messages.add('There are other records referencing this record.')
+			messages.add("There are other records referencing this record. This record cannot be deleted at the moment.")
 		}
 		
 		if(error) {
 			render(contentType: "text/json") {
-				applicationreply {
-					level: "warning"
-					messages : {
-						for (m in messages) {
-							message(errorlevel: 'warning' , errormessage : m)
-						}
-					}
-				}
+				[
+					error : true,
+					level: "warning",
+					messages : messages
+				]
 			}
 			
 			return
@@ -207,8 +204,15 @@ class LeadController {
 
 		try {
 			organizationInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'organization.label', default: 'Organization'), params.id])
-			redirect action: 'list'
+			messages << message(code: 'default.deleted.message', args: [message(code: 'organization.label', default: 'Organization'), params.id])
+			render(contentType: "text/json") {
+				[
+					error : false,
+					level: "warning",
+					messages : messages,
+					nextUrl : g.createLink(controller:'lead',action: 'list')
+				]
+			}
 		} catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'organization.label', default: 'Organization'), params.id])
 			redirect action: 'show', id: params.id

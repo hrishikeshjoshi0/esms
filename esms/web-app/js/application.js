@@ -126,22 +126,23 @@ function configureDropdowns() {
         	e.preventDefault();
         	var link = $(this);
         	
-        	$.growl({ message: "In Progress..." });
+        	$.growl({title:'',message: "In Progress..." });
         	
         	$.ajax({
 	      	    url: $(link).attr('href'),
 		      	dataType: "json"
 	      	}).done(function(data) {
-	      		alert(data);
-	      		$.each(data.products, function(i,product){
-	                content = '<p>' + product.product_title + '</p>';
-	                content += '<p>' + product.product_short_description + '</p>';
-	                content += '<img src="' + product.product_thumbnail_src + '"/>';
-	                content += '<br/>';
-	                $(content).appendTo("#product_list");
-	            });
-	      		//$.growl({ title: "Archived!", message: "Process completed." });
-	      		//window.location.reload();
+	      		var content = "";
+	      		$.each(data.messages, function(i,message){
+	      			content += '<p>' + message + '</p>';
+	      			content += '<br/>';
+	      		});
+	      		if(data.error) {
+	      			$.growl.error({ title: "Error!", message: content });
+	      		} else {
+	      			$.growl({ title: "Deleted!", message: content });
+	      			window.location.href = data.nextUrl
+	      		}
 	      	});
         	
         	return false;

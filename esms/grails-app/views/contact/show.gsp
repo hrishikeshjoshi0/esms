@@ -84,20 +84,19 @@
 						</dt>
 
 						<dd>
-							<g:if test="${phoneBookInstance?.party?.partyType == 'ORGANIZATION'}">
-								<g:if test="${phoneBookInstance?.party?.salesStatus == 'LEAD'}">
-									<g:link controller="lead" action="lead"
-										id="${phoneBookInstance?.party?.id}">
-										${phoneBookInstance?.party?.name}
-									</g:link>
-								</g:if>
-								<g:else>
-									<g:link controller="organization" action="show"
-										id="${phoneBookInstance?.party?.party?.id}">
-										${phoneBookInstance?.party?.name}
-									</g:link>
-								</g:else>
+							<g:if
+								test="${contactInstance?.organization?.salesStatus == 'LEAD'}">
+								<g:link controller="lead" action="show"
+									id="${contactInstance?.organization?.id}">
+									${contactInstance?.organization?.name}
+								</g:link>
 							</g:if>
+							<g:else>
+								<g:link controller="organization" action="show"
+									id="${contactInstance?.organization?.id}">
+									${contactInstance?.organization?.name}
+								</g:link>
+							</g:else>
 						</dd>
 
 
