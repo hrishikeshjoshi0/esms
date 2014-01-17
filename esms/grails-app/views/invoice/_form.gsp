@@ -132,6 +132,9 @@
 		}
 
 		function fillInvoiceForm(id) {
+			if(id == null) {
+				return;
+			}
 			var url = "${createLink(controller:'invoice', action:'fillInvoiceForm')}" + "/" + id;
 
 			$('#formTemplate').html('');

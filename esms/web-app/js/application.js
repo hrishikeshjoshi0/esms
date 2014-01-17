@@ -98,7 +98,7 @@ function configureDropdowns() {
     	$.growl({ title: "", message: "In Progress..." });
     	var loadingDiv = $('#spinner').clone();
     	loadingDiv.attr('style','text-align:center');
-    	$(elem).html(loadingDiv);
+    	$(this).html(loadingDiv);
     }    
 })(jQuery);
 
