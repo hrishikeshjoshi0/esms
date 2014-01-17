@@ -14,7 +14,8 @@
 		<div class="col-md-12">
 			<div class="page-header">
 				<h3>
-					Quote:${quoteInstance?.quoteName}:
+					Quote:${quoteInstance?.quoteName}
+					${quoteInstance?.quoteNumber} :
 					<g:link controller="organization" action="show"
 						id="${quoteInstance?.organization?.id}">
 						${quoteInstance?.organization?.name}

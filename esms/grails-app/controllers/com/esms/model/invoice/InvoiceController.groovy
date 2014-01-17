@@ -5,12 +5,13 @@ import grails.converters.JSON
 import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
+import com.esms.model.calendar.Event;
 import com.esms.model.calendar.Task
 import com.esms.model.order.Order
 
 class InvoiceController {
 
-    static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
+    static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: ['GET','POST']]
 
 	def filterPaneService
 	
@@ -69,7 +70,11 @@ class InvoiceController {
 			
 			int invoiceLinesTotal = params.invoiceLinesTotal?params.invoiceLinesTotal.toInteger():0
 			
-			invoiceInstance.invoiceLines = []
+			if(!invoiceInstance.invoiceLines) {
+				invoiceInstance.invoiceLines = []
+			} else {
+				invoiceInstance.invoiceLines.clear()
+			}
 			
 			def invoiceLine
 			for(int i = 0; i < invoiceLinesTotal;i++) {
@@ -174,8 +179,9 @@ class InvoiceController {
 	            redirect action: 'list'
 	            return
 	        }
-
-	        [invoiceInstance: invoiceInstance]
+			def order = Order.findByOrderNumber(invoiceInstance?.referenceOrderNumber)
+			
+	        [invoiceInstance: invoiceInstance,order:order]
 			break
 		case 'POST':
 	        def invoiceInstance = Invoice.get(params.id)
@@ -210,22 +216,72 @@ class InvoiceController {
     }
 
     def delete() {
-        def invoiceInstance = Invoice.get(params.id)
-        if (!invoiceInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'invoice.label', default: 'Invoice'), params.id])
-            redirect action: 'list'
-            return
-        }
+		def invoiceInstance = Invoice.get(params.id)
+		def organization = invoiceInstance?.organization
+		
+		boolean error = false;
+		def messages = []
+		
+		if (!invoiceInstance) {
+			error = true;
+			messages << "Record Not Found."
+		}
+		
+		if(invoiceInstance?.status != 'PENDING_INVOICE') {
+			error = true;
+			messages << "The order is either invoiced or paid. It can be deleted only if it is in state PENDING_INVOICE. This record cannot be deleted."
+		}
+		
+		if(Event.findByRelatedToAndRelatedToValue('INVOICE',invoiceInstance?.invoiceNumber)) {
+			error = true;
+			messages << "There are other event records referencing this record."
+		}
+		
+		if(Task.findByTaskName(invoiceInstance.invoiceNumber)) {
+			error = true;
+			messages << "There are other task records referencing this record."
+		}
+		
+		if(error) {
+			render(contentType: "text/json") {
+				[
+					error : true,
+					level: "warning",
+					messages : messages
+				]
+			}
+			return
+		}
 
-        try {
-            invoiceInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'invoice.label', default: 'Invoice'), params.id])
-            redirect action: 'list'
-        }
-        catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'invoice.label', default: 'Invoice'), params.id])
-            redirect action: 'show', id: params.id
-        }
+		try {
+			
+			if(invoiceInstance.referenceOrderNumber) {
+				def order = Order.findByOrderNumber(invoiceInstance.referenceOrderNumber)
+				
+				def invoices = Invoice.findAllByReferenceOrderNumber(invoiceInstance.referenceOrderNumber)
+				if(invoices && !invoices.empty && invoices.size() == 1) {
+					order?.status = 'PENDING_INVOICE'
+					order?.save()
+				}				
+			}
+			invoiceInstance.delete(flush: true)
+			
+			messages << message(code: 'default.deleted.message', args: [message(code: 'invoice.label', default: 'Invoice'), params.id])
+			render(contentType: "text/json") {[
+					error : false,
+					level: "success",
+					messages : messages,
+					nextUrl : g.createLink(controller:'organization',action: 'show',id:organization?.id)
+			]}
+		} catch (DataIntegrityViolationException e) {
+			messages << message(code: 'default.not.deleted.message', args: [message(code: 'invoice.label', default: 'Invoice'), params.id])
+			render(contentType: "text/json") {[
+				error : false,
+				level: "error",
+				messages : messages,
+				nextUrl : g.createLink(controller:'organization',action: 'show',id:organization?.id)
+			]}
+		}
     }
 
 	def addInvoiceLine() {

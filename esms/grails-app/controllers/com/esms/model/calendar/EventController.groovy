@@ -336,17 +336,41 @@ class EventController {
         Date occurrenceStart = new Instant(params.long('occurrenceStart')).toDate()
 
         def result = eventService.deleteEvent(eventInstance, occurrenceStart, deleteType)
-
+		
+		boolean error = false;
+		def messages = []
+		
         if (!result.error) {
-            redirect(action: "index")
+            messages << message(code: 'default.deleted.message', args: [message(code: 'event.label', default: 'Event'), params.id])
+			render(contentType: "text/json") {
+				[
+					error : false,
+					level: "success",
+					messages : messages,
+					nextUrl : g.createLink(controller:'event',action:'listView')
+				]
+			}
         }
+		
         if (result.error == 'not.found') {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'event.label', default: 'Event'), params.id])}"
-            redirect(action: "index")
+			error = true;
+			messages << "${message(code: 'default.not.found.message', args: [message(code: 'event.label', default: 'Event'), params.id])}"
         }
         else if (result.error == 'has.errors') {
-            redirect(action: "index")
+            error = true;
+			messages << "Error encountered while deleting the event."
         }
+		
+		if(error) {
+			render(contentType: "text/json") {
+				[
+					error : true,
+					level: "warning",
+					messages : messages
+				]
+			}
+			return
+		}
     }
 	
 	def createEventLog = {

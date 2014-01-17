@@ -1,4 +1,5 @@
 <%@ page import="com.esms.model.order.Order"%>
+<%@ page import="com.esms.model.quote.Quote"%>
 
 <!doctype html>
 <html>
@@ -126,22 +127,17 @@
 							  </ul>
 							</div>
 						</g:elseif>
-						<g:link class="btn btn-default btn-sm" action="edit"
-							id="${orderInstance?.id}">
-							<g:message code="default.button.edit.label" default="Edit" />
-						</g:link>
-						
-						<g:link class="btn btn-default btn-sm deleteBtn" action="delete"
-							id="${orderInstance?.id}">
-							<g:message code="default.button.delete.label" default="Delete" />
-						</g:link>
-						<%--
-						<button class="btn btn-sm btn-default" type="submit"
-							name="_action_delete">
-							<g:message code="default.button.delete.label" default="Delete" />
-						</button>
-						--%>
 					</g:if>
+					
+					<g:link class="btn btn-default btn-sm" action="edit"
+						id="${orderInstance?.id}">
+						<g:message code="default.button.edit.label" default="Edit" />
+					</g:link>
+						
+					<g:link class="btn btn-default btn-sm deleteBtn" action="delete"
+						id="${orderInstance?.id}">
+						<g:message code="default.button.delete.label" default="Delete" />
+					</g:link>
 				</g:form>
 			</div>
 
@@ -156,6 +152,19 @@
 
 							<dd>
 								<g:fieldValue bean="${orderInstance}" field="orderNumber" />
+							</dd>
+							
+							<dt>
+								<g:message code="invoice.referenceQuoteNumber.label"
+									default="Reference Quote Number" />
+							</dt>
+
+							<dd>
+								<g:link class="link" controller="quote" action="show"
+									id="${Quote.findByQuoteNumber(orderInstance?.referenceQuoteNumber)?.id}">
+									<g:fieldValue bean="${orderInstance}"
+										field="referenceQuoteNumber" />
+								</g:link>
 							</dd>
 
 

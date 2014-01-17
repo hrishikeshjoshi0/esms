@@ -336,6 +336,11 @@ class OrderController {
 			messages.add("The order is either invoiced or paid. It can be deleted only if it is in state PENDING_INVOICE. This record cannot be deleted.")
 		}
 		
+		if(Event.findByRelatedToAndRelatedToValue('ORDER',orderInstance?.orderNumber)) {
+			error = true;
+			messages << "There are other event records referencing this record."
+		}
+		
 		if(error) {
 			render(contentType: "text/json") {
 				[

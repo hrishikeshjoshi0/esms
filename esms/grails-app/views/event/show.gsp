@@ -37,12 +37,6 @@
 				<g:form>
 					<g:hiddenField name="id" value="${eventInstance?.id}" />
 					<div class="form-group">
-						<g:link class="btn btn-default btn-sm" action="edit" id="${eventInstance?.id}">
-							<g:message code="default.button.edit.label" default="Edit" />
-						</g:link>
-						<button class="btn btn-sm btn-default" type="submit" name="_action_delete">
-							<g:message code="default.button.delete.label" default="Delete" />
-						</button>
 						<g:if test="${eventInstance?.eventType != 'REPAIR WORK' && eventInstance?.workDoneCertificate == null}">
 							<g:link class="btn btn-primary btn-sm" action="attachWorkDoneCertificate"
 								id="${eventInstance?.id}">
@@ -60,6 +54,14 @@
 							id="createEventLog" title="Create Event Log" />
 						
 						<g:render template="/_common/buttons/createAssociatedEventButtonGroup" model="[sourceEvent:eventInstance]"></g:render>
+						
+						<g:link class="btn btn-default btn-sm" action="edit" id="${eventInstance?.id}">
+							<g:message code="default.button.edit.label" default="Edit" />
+						</g:link>
+						
+						<g:link class="btn btn-default btn-sm deleteBtn" action="delete" id="${eventInstance?.id}">
+							<g:message code="default.button.delete.label" default="Delete" />
+						</g:link>
 					</div>
 				</g:form>
 			</div>
