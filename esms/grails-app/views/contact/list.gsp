@@ -22,23 +22,36 @@
 					<tr>
 						<g:sortableColumn property="externalId"
 							title="${message(code: 'contact.externalId.label', default: 'External Id')}" />
+						<g:sortableColumn property="designation"
+							title="${message(code: 'contact.designation.label', default: 'Designation')}" />
 						<g:sortableColumn property="firstName"
 							title="${message(code: 'contact.firstName.label', default: 'First Name')}" />
 						<g:sortableColumn property="lastName"
 							title="${message(code: 'contact.lastName.label', default: 'Last Name')}" />
-						<g:sortableColumn property="organization.name"
-							title="${message(code: 'contact.organization.name.label', default: 'Organization Name')}" />
-						<th>
-							Email
-						</th>		
+						<g:sortableColumn property="phoneBook.email"
+							title="${message(code: 'phoneBook.email.label', default: 'Email')}" />
+						<g:sortableColumn property="phoneBook.homePhone"
+							title="${message(code: 'phoneBook.homePhone.label', default: 'Home Phone')}" />
+						<g:sortableColumn property="phoneBook.mobilePhone"
+							title="${message(code: 'phoneBook.mobilePhone.label', default: 'Mobile Phone')}" />
+						<g:sortableColumn property="phoneBook.officePhone"
+							title="${message(code: 'phoneBook.officePhone.label', default: 'Office Phone')}" />
+						<g:sortableColumn property="phoneBook.otherPhone"
+							title="${message(code: 'phoneBook.otherPhone.label', default: 'Other Phone')}" />
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<g:each in="${contactInstanceList}" var="contactInstance">
+					<g:each in="${organizationInstance?.contacts}"
+						var="contactInstance">
+						<g:set value="${contactInstance?.phoneBooks?.first()}"
+							var="phoneBookInstance" />
 						<tr>
 							<td>
 								${fieldValue(bean: contactInstance, field: "externalId")}
+							</td>
+							<td>
+								${fieldValue(bean: contactInstance, field: "designation")}
 							</td>
 							<td>
 								${fieldValue(bean: contactInstance, field: "firstName")}
@@ -46,19 +59,29 @@
 							<td>
 								${fieldValue(bean: contactInstance, field: "lastName")}
 							</td>
+
 							<td>
-								<g:link controller="organization" action="show" id="${contactInstance?.organization?.id}">
-									${fieldValue(bean: contactInstance, field: "organization.name")}
-								</g:link>
+								${fieldValue(bean: phoneBookInstance, field: "email")}
 							</td>
+
 							<td>
-								<g:if test="${contactInstance.phoneBooks?.size() != 0}">
-									${contactInstance.phoneBooks(0)?.email}
-								</g:if>
+								${fieldValue(bean: phoneBookInstance, field: "homePhone")}
 							</td>
-							<td class="link"><g:link action="show"
-									id="${contactInstance.id}" class="lnk">Show &raquo;</g:link>
+
+							<td>
+								${fieldValue(bean: phoneBookInstance, field: "mobilePhone")}
 							</td>
+
+							<td>
+								${fieldValue(bean: phoneBookInstance, field: "officePhone")}
+							</td>
+
+							<td>
+								${fieldValue(bean: phoneBookInstance, field: "otherPhone")}
+							</td>
+
+							<td class="link"><g:link action="show" controller="contact"
+									id="${contactInstance.id}" class="lnk ">Show &raquo;</g:link></td>
 						</tr>
 					</g:each>
 				</tbody>
