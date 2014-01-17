@@ -34,14 +34,14 @@
 					<fieldset>
 						<g:render template="form"></g:render>
 						
-						<div class="page-header">
-							<h5>
-								Quote Line Items
-							</h5>
-						</div>
-						
 						<!-- Quote Items -->
 						<g:if test="${params.contractQuote}">
+							<div class="page-header">
+								<h5>
+									Quote Line Items
+								</h5>
+							</div>
+							
 							<div class="table-responsive">
 								<g:hiddenField name="quoteLinesTotal" value="${quoteLinesTotal}" />
 								<table

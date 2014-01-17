@@ -13,7 +13,7 @@
 			<script>
 				function updateDiv() {
 					$('#updateDiv').html('');
-					$('#updateDiv').html('Loading...');
+					$('#updateDiv').showSpinner();
 				}
 			</script>
 			<div class="page-header">
@@ -23,13 +23,13 @@
 							optionKey="key" optionValue="value"
 							value="${params.upcomingRenewalMonthParam}"
 							onchange="${remoteFunction(action: 'upcomingRenewals',onLoading:'updateDiv();',
-			                       update: [success: 'updateDiv'],method:'GET',onFailure:'alert(\'Error\');',
+			                       update: [success: 'updateDiv'],method:'GET',onFailure:'$.growl.error({ title: "Error!", message: "There was some technical error." });',
 			                       params: '\'upcomingRenewalMonthParam=\' + this.value + \'&upcomingRenewalYearParam=\' + document.getElementById(\'upcomingRenewalYearParam\').value')}"/>
 									
 					<g:select name="upcomingRenewalYearParam" from="${years}" 
 							value="${params.upcomingRenewalYearParam}"
 							onchange="${remoteFunction(action: 'upcomingRenewals',onLoading:'updateDiv();',
-			                       update: [success: 'updateDiv'],method:'GET',onFailure:'alert(\'Error\');',
+			                       update: [success: 'updateDiv'],method:'GET',onFailure:'$.growl.error({ title: "Error!", message: "There was some technical error." });',
 			                       params: '\'upcomingRenewalMonthParam=\' + document.getElementById(\'upcomingRenewalMonthParam\').value + \'&upcomingRenewalYearParam=\' + this.value')}"/>                       
 				</h3>
 			</div>

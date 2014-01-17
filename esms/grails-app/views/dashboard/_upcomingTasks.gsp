@@ -2,8 +2,9 @@
 <%@ page import="com.esms.model.order.Order" %>
 <script>
 	function updateTasks() {
-		$('#upcomingTasks').html('');
-		$('#upcomingTasks').html('Loading...');
+		$('#updateDiv').html('');
+		$('#updateDiv').showSpinner();
+		
 	}
 </script>
 <div class="page-header">
@@ -13,13 +14,13 @@
 			optionKey="key" optionValue="value"
 			value="${params.upcomingRenewalMonthParam}"
 			onchange="${remoteFunction(action: 'upcomingTasks',onLoading:'updateTasks();',
-                       update: [success: 'upcomingTasks'],method:'GET',onFailure:'alert(\'Error\');',
+                       update: [success: 'upcomingTasks'],method:'GET',onFailure:'$.growl.error({ title: "Error!", message: "There was some technical error." });',
                        params: '\'upcomingRenewalMonthParam=\' + this.value + \'&upcomingRenewalYearParam=\' + document.getElementById(\'upcomingRenewalYearParam1\').value')}" />
 
 		<g:select name="upcomingRenewalYearParam1" from="${years}"
 			value="${params.upcomingRenewalYearParam}"
 			onchange="${remoteFunction(action: 'upcomingTasks',onLoading:'updateTasks();',
-                       update: [success: 'upcomingTasks'],method:'GET',onFailure:'alert(\'Error\');',
+                       update: [success: 'upcomingTasks'],method:'GET',onFailure:'$.growl.error({ title: "Error!", message: "There was some technical error." });',
                        params: '\'upcomingRenewalMonthParam=\' + document.getElementById(\'upcomingRenewalMonthParam1\').value + \'&upcomingRenewalYearParam=\' + this.value')}" />
 	</h4>
 </div>

@@ -19,18 +19,15 @@
 			</div>
 
 			<div class="well">
-				<g:form>
-					<g:hiddenField name="id" value="${taskInstance?.id}" />
-					<g:link class="btn btn-default btn-sm" action="edit"
+					<g:link class="btn btn-default btn-sm" action="edit" id="${taskInstance?.id}"
 						id="${taskInstance?.id}">
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
 
-					<button class="btn btn-sm btn-default" type="submit"
-						name="_action_delete">
+					<g:link class="btn btn-default btn-sm deleteBtn" action="delete" id="${taskInstance?.id}"
+						id="${taskInstance?.id}">
 						<g:message code="default.button.delete.label" default="Delete" />
-					</button>
-				</g:form>
+					</g:link>
 			</div>
 
 			<div class="panel panel-default">
@@ -138,7 +135,6 @@
 						<dd>
 							<g:formatBoolean boolean="${taskInstance?.notification}" />
 						</dd>
-
 
 					</dl>
 				</div>

@@ -4,7 +4,7 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class PhoneBookController {
 
-    static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
+    static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: ['GET', 'POST']]
 
     def index() {
         redirect action: 'list', params: params
@@ -90,20 +90,44 @@ class PhoneBookController {
 
     def delete() {
         def phoneBookInstance = PhoneBook.get(params.id)
-        if (!phoneBookInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'phoneBook.label', default: 'PhoneBook'), params.id])
-            redirect action: 'list'
-            return
-        }
-
+		
+		boolean error = false;
+		def messages = []
+		
+		if (!phoneBookInstance) {
+			error = true;
+			messages << message(code: 'default.not.found.message', args: [message(code: 'phoneBook.label', default: 'PhoneBook'), params.id])
+		}
+		
+		if(error) {
+			render(contentType: "text/json") {
+				[
+					error : true,
+					level: "warning",
+					messages : messages
+				]
+			}
+			return
+		}
+		
         try {
             phoneBookInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'phoneBook.label', default: 'PhoneBook'), params.id])
-            redirect action: 'list'
+			messages << message(code: 'default.deleted.message', args: [message(code: 'phoneBook.label', default: 'PhoneBook'), params.id])
+			render(contentType: "text/json") {[
+					error : false,
+					level: "success",
+					messages : messages,
+					nextUrl : g.createLink(controller:'phoneBook',action: 'list')
+			]}
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'phoneBook.label', default: 'PhoneBook'), params.id])
-            redirect action: 'show', id: params.id
+			messages << message(code: 'default.not.deleted.message', args: [message(code: 'phoneBook.label', default: 'PhoneBook'), params.id])
+			render(contentType: "text/json") {[
+				error : false,
+				level: "error",
+				messages : messages,
+				nextUrl : g.createLink(controller:'phoneBook',action: 'show',id:params.id)
+			]}
         }
     }
 }

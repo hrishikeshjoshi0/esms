@@ -7,7 +7,7 @@ import com.esms.model.order.Order
 
 class TaskController {
 
-    static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
+    static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: ['GET', 'POST']]
 
 	def filterPaneService
 	
@@ -149,20 +149,49 @@ class TaskController {
 
     def delete() {
         def taskInstance = Task.get(params.id)
-        if (!taskInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'task.label', default: 'Task'), params.id])
-            redirect action: 'list'
-            return
-        }
+		
+		boolean error = false;
+		def messages = []
+		
+		if (!taskInstance) {
+			error = true;
+			messages << message(code: 'default.not.found.message', args: [message(code: 'task.label', default: 'Task'), params.id])
+		}
+		
+		if(taskInstance.relatedTo && taskInstance.relatedToValue) {
+			error = true;
+			messages << "The task is related to " + taskInstance.relatedTo + " with value " + taskInstance.relatedToValue +". Please remove the associations to delete this task."
+		}
+		
+		if(error) {
+			render(contentType: "text/json") {
+				[
+					error : true,
+					level: "warning",
+					messages : messages
+				]
+			}
+			return
+		}
 
         try {
             taskInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'task.label', default: 'Task'), params.id])
-            redirect action: 'list'
+			messages << message(code: 'default.deleted.message', args: [message(code: 'task.label', default: 'Task'), params.id])
+			render(contentType: "text/json") {[
+					error : false,
+					level: "success",
+					messages : messages,
+					nextUrl : g.createLink(controller:'task',action: 'list')
+			]}
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'task.label', default: 'Task'), params.id])
-            redirect action: 'show', id: params.id
+			messages << message(code: 'default.not.deleted.message', args: [message(code: 'task.label', default: 'Task'), params.id])
+			render(contentType: "text/json") {[
+				error : false,
+				level: "error",
+				messages : messages,
+				nextUrl : g.createLink(controller:'task',action: 'show',id:params.id)
+			]}
         }
     }
 }

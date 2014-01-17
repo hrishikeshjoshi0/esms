@@ -94,25 +94,31 @@ function configureDropdowns() {
 }
 
 (function($){
+    $.fn.showSpinner = function() {
+    	$.growl({ title: "", message: "In Progress..." });
+    	var loadingDiv = $('#spinner').clone();
+    	loadingDiv.attr('style','text-align:center');
+    	$(elem).html(loadingDiv);
+    }    
+})(jQuery);
+
+(function($){
     $.fn.asyncArchive = function() {
         var element = this;
-
         $(this).click(function(e) {
         	e.preventDefault();
-        	
         	var link = $(this);
         	
         	var curRow = link.closest('tr');
         	curRow.toggleClass("hidden");
         	
-        	
         	$.ajax({
 	      	    url: $(link).attr('href'),
+	      	    cache: false
 	      	}).done(function(data) {
 	      		$.growl({ title: "Archived!", message: "Process completed." });
 	      		window.location.reload();
 	      	});
-        	
         	return false;
         });
     }    
@@ -130,7 +136,8 @@ function configureDropdowns() {
         	
         	$.ajax({
 	      	    url: $(link).attr('href'),
-		      	dataType: "json"
+		      	dataType: "json",
+		      	cache: false
 	      	}).done(function(data) {
 	      		var content = "";
 	      		$.each(data.messages, function(i,message){

@@ -38,12 +38,13 @@
 			var url = "${createLink(controller:'invoice', action:'addInvoiceLine')}" + "/" + id;
 			$.ajax({
 			    url:url,
+			    cache:false,
 			    dataType: 'html',	
 			    success: function(data) {
 			    	$('#invoiceLines').html(data);
 			    },
 			    error: function(request, status, error) {
-			      alert(error)
+			    	$.growl.error({ title: "Error!", message: "There was some technical error." });
 			    },
 			    complete: function() {
 			    }
@@ -123,7 +124,7 @@
 					addLineItem(id); 
 			    },
 			    error: function(request, status, error) {
-			      alert(error)
+			    	$.growl.error({ title: "Error!", message: "There was some technical error." });
 			    },
 			    complete: function() {
 			    }
@@ -132,7 +133,10 @@
 
 		function fillInvoiceForm(id) {
 			var url = "${createLink(controller:'invoice', action:'fillInvoiceForm')}" + "/" + id;
-			$('#formTemplate').html("<center>Loading...</center>");
+
+			$('#formTemplate').html('');
+			$('#formTemplate').showSpinner();
+			
 			$.ajax({
 			    url:url,
 			    dataType: 'html',	
@@ -140,7 +144,7 @@
 			    	$('#formTemplate').html(data); 
 			    },
 			    error: function(request, status, error) {
-			      alert(error)
+			    	$.growl.error({ title: "Error!", message: "There was some technical error." });
 			    },
 			    complete: function() {
 			    }

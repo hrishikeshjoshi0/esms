@@ -4,7 +4,7 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class ContactController {
 
-    static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
+    static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: ['GET', 'POST']]
 
     def index() {
         redirect action: 'list', params: params
@@ -97,21 +97,43 @@ class ContactController {
 
     def delete() {
         def contactInstance = Contact.get(params.id)
-        if (!contactInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'contact.label', default: 'Contact'), params.id])
-            redirect action: 'list'
-            return
-        }
-
-        try {
-            contactInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'contact.label', default: 'Contact'), params.id])
-            redirect action: 'list'
-        }
-        catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'contact.label', default: 'Contact'), params.id])
-            redirect action: 'show', id: params.id
-        }
+		boolean error = false;
+		def messages = []
+		
+		if (!contactInstance) {
+			error = true;
+			messages << message(code: 'default.not.found.message', args: [message(code: 'contact.label', default: 'Contact'), params.id])
+		}
+		
+		if(error) {
+			render(contentType: "text/json") {
+				[
+					error : true,
+					level: "warning",
+					messages : messages
+				]
+			}
+			return
+		}
+		
+		try {
+			contactInstance.delete(flush: true)
+			messages << message(code: 'default.deleted.message', args: [message(code: 'contact.label', default: 'Contact'), params.id])
+			render(contentType: "text/json") {[
+					error : false,
+					level: "success",
+					messages : messages,
+					nextUrl : g.createLink(controller:'contact',action: 'list')
+			]}
+		} catch (DataIntegrityViolationException e) {
+			messages << message(code: 'default.not.deleted.message', args: [message(code: 'contact.label', default: 'Contact'), params.id])
+			render(contentType: "text/json") {[
+				error : false,
+				level: "error",
+				messages : messages,
+				nextUrl : g.createLink(controller:'contact',action: 'show',id:params.id)
+			]}
+		}
     }
 	
 	def createPhoneBook() {

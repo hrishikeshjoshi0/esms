@@ -19,21 +19,16 @@
 			</div>
 			
 			<div class="well">
-				<g:form>
-					<g:hiddenField name="id" value="${addressInstance?.id}" />
-					<div class="form-group">
-						<g:link class="btn btn-default btn-sm" action="edit"
-							id="${addressInstance?.id}">
-
-							<g:message code="default.button.edit.label" default="Edit" />
-						</g:link>
-						<button class="btn btn-sm btn-default" type="submit"
-							name="_action_delete">
-
-							<g:message code="default.button.delete.label" default="Delete" />
-						</button>
-					</div>
-				</g:form>
+				<div class="form-group">
+					<g:link class="btn btn-default btn-sm" action="edit"
+						id="${addressInstance?.id}">
+						<g:message code="default.button.edit.label" default="Edit" />
+					</g:link>
+					<g:link class="btn btn-default btn-sm deleteBtn" action="delete"
+						id="${addressInstance?.id}">
+						<g:message code="default.button.delete.label" default="Delete" />
+					</g:link>
+				</div>
 			</div>
 
 			<div class="panel panel-default">
