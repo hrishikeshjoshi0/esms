@@ -4,7 +4,7 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class ProductController {
 
-	static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
+	static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: ['GET', 'POST']]
 	
 	def filterPaneService
 	
@@ -17,12 +17,22 @@ class ProductController {
 	}
 	
 	def list() {
-		params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		if(!params.offset) {
+			params.offset= 0
+		}
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
 		[productInstanceList: Product.list(params), productInstanceTotal: Product.count()]
 	}
 
 	def filter = {
-		if(!params.max) params.max = 10
+		if(!params.offset) {
+			params.offset= 0
+		}
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
 		render( view:'list', model:[ productInstanceList: filterPaneService.filter( params, Product),
 			productInstanceCount: filterPaneService.count( params, Product), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
 	}
