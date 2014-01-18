@@ -44,7 +44,7 @@
 							</g:if>
 							<g:if test="${phoneBookInstance?.party?.partyType == 'ORGANIZATION'}">
 								<g:if test="${phoneBookInstance?.party?.salesStatus == 'LEAD'}">
-									<g:link controller="organization" action="lead"
+									<g:link controller="lead" action="show"
 										id="${phoneBookInstance?.party?.id}">
 										${phoneBookInstance?.party?.name}
 									</g:link>

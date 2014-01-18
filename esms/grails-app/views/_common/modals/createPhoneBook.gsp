@@ -1,11 +1,5 @@
-<div class="page-header">
-	<h3>
-		Create Phone
-	</h3>
-</div>
-
 <div class="well">
-	<g:form class="form-horizontal" action="createPhoneBook" controller="organization">
+	<g:form class="form-horizontal" action="createPhoneBook" controller="${params.controller}">
 		<fieldset>
 			<g:hiddenField name="party.id" value="${phoneBookInstance?.party?.id}"/>
 			<g:render template="/phoneBook/form"></g:render>

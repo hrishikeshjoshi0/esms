@@ -116,6 +116,14 @@ class ContactController {
 			return
 		}
 		
+		def controller = ''
+		def organization = contactInstance.organization
+		if(organization?.salesStatus == 'LEAD') {
+			controller = 'lead'
+		} else {
+			controller = 'organization'
+		}
+		
 		try {
 			contactInstance.delete(flush: true)
 			messages << message(code: 'default.deleted.message', args: [message(code: 'contact.label', default: 'Contact'), params.id])
@@ -123,7 +131,7 @@ class ContactController {
 					error : false,
 					level: "success",
 					messages : messages,
-					nextUrl : g.createLink(controller:'contact',action: 'list')
+					nextUrl : g.createLink(controller:controller,action: 'show',id:organization?.id)
 			]}
 		} catch (DataIntegrityViolationException e) {
 			messages << message(code: 'default.not.deleted.message', args: [message(code: 'contact.label', default: 'Contact'), params.id])

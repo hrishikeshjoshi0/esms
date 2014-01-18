@@ -110,14 +110,29 @@ class PhoneBookController {
 			return
 		}
 		
+		def controller = ''
+		def party = phoneBookInstance.party
+		if(phoneBookInstance.party?.partyType == 'CONTACT') {
+			controller = 'contact'
+		} else if(phoneBookInstance.party?.partyType == 'ORGANIZATION') {
+			if(phoneBookInstance.party?.salesStatus == 'LEAD') {
+				controller = 'lead'
+			} else {
+				controller = 'organization'
+			}
+		} else if(phoneBookInstance.party?.partyType == 'EMPLOYEE') {
+			controller = 'employee'
+		}
+		
         try {
             phoneBookInstance.delete(flush: true)
 			messages << message(code: 'default.deleted.message', args: [message(code: 'phoneBook.label', default: 'PhoneBook'), params.id])
+			
 			render(contentType: "text/json") {[
 					error : false,
 					level: "success",
 					messages : messages,
-					nextUrl : g.createLink(controller:'phoneBook',action: 'list')
+					nextUrl : g.createLink(controller:controller,action: 'show',id:party?.id)
 			]}
         }
         catch (DataIntegrityViolationException e) {

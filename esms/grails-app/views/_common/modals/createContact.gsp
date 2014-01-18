@@ -1,5 +1,5 @@
 <div class="well">
-	<g:form class="form-horizontal" action="createContact" controller="organization">
+	<g:form class="form-horizontal" action="createContact" controller="${params.controller}">
 		<fieldset>
 			<g:hiddenField name="organization.id" value="${contactInstance?.organization?.id}"/>
 			<g:render template="/contact/form"></g:render>

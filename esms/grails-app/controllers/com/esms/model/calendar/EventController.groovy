@@ -350,6 +350,7 @@ class EventController {
 					nextUrl : g.createLink(controller:'event',action:'listView')
 				]
 			}
+			return
         }
 		
         if (result.error == 'not.found') {
