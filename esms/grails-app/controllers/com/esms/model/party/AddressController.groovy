@@ -109,6 +109,20 @@ class AddressController {
 			}
 			return
 		}
+		
+		def controller = ''
+		def party = addressInstance.party
+		if(addressInstance.party?.partyType == 'CONTACT') {
+			controller = 'contact'
+		} else if(addressInstance.party?.partyType == 'ORGANIZATION') {
+			if(addressInstance.party?.salesStatus == 'LEAD') {
+				controller = 'lead'
+			} else {
+				controller = 'organization'
+			}
+		} else if(addressInstance.party?.partyType == 'EMPLOYEE') {
+			controller = 'employee'
+		}
 
         try {
             addressInstance.delete(flush: true)
@@ -117,7 +131,7 @@ class AddressController {
 					error : false,
 					level: "success",
 					messages : messages,
-					nextUrl : g.createLink(controller:'address',action: 'list')
+					nextUrl : g.createLink(controller:controller,action: 'show',id:party?.id)
 			]}
         }
         catch (DataIntegrityViolationException e) {

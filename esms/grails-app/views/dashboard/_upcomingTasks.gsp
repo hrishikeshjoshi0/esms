@@ -2,8 +2,8 @@
 <%@ page import="com.esms.model.order.Order" %>
 <script>
 	function updateTasks() {
-		$('#updateDiv').html('');
-		$('#updateDiv').showSpinner();
+		$('#upcomingTasks').html('');
+		$('#upcomingTasks').showSpinner();
 		
 	}
 </script>
