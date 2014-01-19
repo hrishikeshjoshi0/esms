@@ -35,7 +35,7 @@
 							<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
 					
-					<g:link class="btn btn-default btn-sm" action="delete" id="${productInstance?.id}">
+					<g:link class="btn btn-default btn-sm deleteBtn" action="delete" id="${productInstance?.id}">
 							<g:message code="default.button.delete.label" default="Delete" />
 					</g:link>
 			</div>
