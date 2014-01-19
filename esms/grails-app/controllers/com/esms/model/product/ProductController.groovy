@@ -115,20 +115,44 @@ class ProductController {
 
 	def delete() {
 		def productInstance = Product.get(params.id)
+		
+		boolean error = false;
+		def messages = []
+		
 		if (!productInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'product.label', default: 'Product'), params.id])
-			redirect action: 'list'
+			error = true
+			messages.add("Record Not Found.")
+		}
+		
+		if(error) {
+			render(contentType: "text/json") {
+				[
+					error : true,
+					level: "warning",
+					messages : messages
+				]
+			}
 			return
 		}
 
 		try {
 			productInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'product.label', default: 'Product'), params.id])
-			redirect action: 'list'
+			messages << message(code: 'default.deleted.message', args: [message(code: 'product.label', default: 'Product'), params.id])
+			render(contentType: "text/json") {[
+					error : false,
+					level: "success",
+					messages : messages,
+					nextUrl : g.createLink(controller:'product',action: 'list')
+			]}
 		}
 		catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'product.label', default: 'Product'), params.id])
-			redirect action: 'show', id: params.id
+			messages << message(code: 'default.not.deleted.message', args: [message(code: 'product.label', default: 'Product'), params.id])
+			render(contentType: "text/json") {[
+				error : false,
+				level: "error",
+				messages : messages,
+				nextUrl : g.createLink(controller:'product',action: 'show',id:params.id)
+			]}
 		}
 	}
 	

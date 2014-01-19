@@ -5,7 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class EmployeeController {
 
-    static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
+    static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: ['GET', 'POST']]
 
 	def filterPaneService
 	
@@ -146,21 +146,45 @@ class EmployeeController {
     }
 
     def delete() {
-        def employeeInstance = Employee.get(params.id)
-        if (!employeeInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'employee.label', default: 'Employee'), params.id])
-            redirect action: 'list'
-            return
-        }
-
+	    def employeeInstance = Employee.get(params.id)
+		
+		boolean error = false;
+		def messages = []
+		
+		if (!employeeInstance) {
+			error = true
+			messages.add("Record Not Found.")
+		}
+		
+		if(error) {
+			render(contentType: "text/json") {
+				[
+					error : true,
+					level: "warning",
+					messages : messages
+				]
+			}
+			return
+		}
+		
         try {
             employeeInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'employee.label', default: 'Employee'), params.id])
-            redirect action: 'list'
+			messages << message(code: 'default.deleted.message', args: [message(code: 'employee.label', default: 'Employee'), params.id])
+			render(contentType: "text/json") {[
+					error : false,
+					level: "success",
+					messages : messages,
+					nextUrl : g.createLink(controller:'employee',action: 'list')
+			]}
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'employee.label', default: 'Employee'), params.id])
-            redirect action: 'show', id: params.id
+			messages << message(code: 'default.not.deleted.message', args: [message(code: 'employee.label', default: 'Employee'), params.id])
+			render(contentType: "text/json") {[
+				error : false,
+				level: "error",
+				messages : messages,
+				nextUrl : g.createLink(controller:'employee',action: 'show',id:params.id)
+			]}
         }
     }
 	
