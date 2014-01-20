@@ -69,7 +69,7 @@
 				
 				<td>
 					<%
-						if(!organization?.contacts?.isEmpty()) {
+						if(!quoteInstance?.organization?.contacts?.isEmpty()) {
 							def contact = organization?.contacts?.first()
 							println contact?.phoneBooks?.first()?.mobilePhone
 						}

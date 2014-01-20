@@ -15,7 +15,7 @@
 
 	function fetchInvoiceInfo(id) {
 		if(id == null) {
-			//alert('There is no invoice pending for payment');
+			$.growl.error({ title: "Error!", message: "There are no unpaid invoices." });
 			return;
 		}
 		var url = "${createLink(controller:'invoice', action:'show')}" + "/" + id;
@@ -26,7 +26,7 @@
 		    	$("#totalAmount").val(data.openGrandTotal); 
 		    },
 		    error: function(request, status, error) {
-		      alert(error)
+		    	$.growl.error({ title: "Error!", message: "There was some technical error." });
 		    },
 		    complete: function() {
 		    }
@@ -72,7 +72,7 @@
 			</label>
 			<div class="col-md-9">
 				<g:if test="${invoice}">
-					<g:hiddenField id="invoiceId" name="invoiceId" value="${invoice.id}"/>
+					<g:hiddenField id="invoiceIdHdn" name="invoiceId" value="${invoice.id}"/>
 					<g:textField name="invoiceNumber" required="" readOnly="readOnly" class="form-control"
 							value="${invoice.invoiceNumber + ' - ' + ' : ' + invoice.organization?.name + '(Open Amount :' + invoice.openGrandTotal + ')' }" />
 				</g:if>

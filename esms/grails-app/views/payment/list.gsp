@@ -16,10 +16,11 @@
 				</div>
 				
 				<filterpane:filterPane domain="com.esms.model.payment.Payment"
-                                   filterProperties="${['paymentNumber', 'bank','branch','totalAmount','chequeIssueDate','clearanceDate','organization.name']}"
-                                    titleKey="default.filterPane.header" dialog="y" visible="n"
-										showSortPanel="y" showTitle="y" showButtons="y"
-										fullAssociationPathFieldNames="false" />
+                     filterProperties="${['paymentNumber', 'bank','branch','totalAmount','chequeIssueDate','clearanceDate']}"
+                     associatedProperties="${['organization.name']}"
+                     titleKey="default.filterPane.header" dialog="y" visible="n"
+					 showSortPanel="y" showTitle="y" showButtons="y"
+					 fullAssociationPathFieldNames="false" />
 				
 				<table class="table table-striped table-condensed table-bordered">
 					<thead>

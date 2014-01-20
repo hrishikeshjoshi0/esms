@@ -20,6 +20,7 @@
 
 			<filterpane:filterPane domain="com.esms.model.invoice.Invoice"
 				filterProperties="${['invoiceNumber', 'status','type','contactName']}"
+				associatedProperties="${['organization.name']}"
 				titleKey="default.filterPane.header" dialog="y" visible="n"
 				showSortPanel="y" showTitle="y" showButtons="y"
 				fullAssociationPathFieldNames="false" />

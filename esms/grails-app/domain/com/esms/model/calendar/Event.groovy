@@ -75,7 +75,7 @@ class Event {
         recurDaysOfWeek(validator: {val, obj -> 
             if (obj.recurType == EventRecurType.WEEKLY && !val) {return 'null'}
         })
-		eventType InList : ['PHONE CALL/FOLLOW UP','MEETING','MAINTENANCE VISIT','BREAKDOWN CALL','REPAIR WORK', 'MODERNIZATION WORK']
+		eventType InList : ['PHONE CALL/FOLLOW UP','MEETING','MAINTENANCE VISIT','BREAKDOWN CALL','REPAIR WORK', 'MODERNIZATION WORK','INSTALLATION WORK']
 		status InList : ['CLOSED','PLANNED','NOT HELD'] 
 		priority InList : ['LOW','MEDIUM','HIGH']
 		relatedTo InList : ['ORGANIZATION','INCIDENT','INVOICE','QUOTE','ORDER','CONTACT','PAYMENT','EMPLOYEE']

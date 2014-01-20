@@ -246,8 +246,8 @@ class OrderController {
 			
 			orderInstance?.orderItems?.each {
 				def p = Product.findByProductNumber(it.productNumber)
-				if(p.productType == 'SERVICE' && p.serviceContract) {
-					productName = p.productName
+				if(p?.productType == 'SERVICE' && p?.serviceContract) {
+					productName = p?.productName
 				}
 			}
 			
