@@ -61,10 +61,7 @@ class LeadController {
 			
 			def contactInstance = new Contact()
 			contactInstance = bindData(contactInstance, params, "primary") 
-			
-			def list = Party.list();
-			int no = (list?list.size():0) + 1;
-			contactInstance.externalId = "CONT" + String.format("%05d", no)
+			contactInstance.externalId = utilService.newContactNumber()
 			contactInstance.partyType = 'CONTACT'
 			
 			contactInstance.organization = organizationInstance
@@ -74,9 +71,7 @@ class LeadController {
 			def secondaryContactInstance = new Contact()
 			secondaryContactInstance = bindData(secondaryContactInstance, params, "secondary")
 			
-			list = Party.list();
-			no = (list?list.size():0) + 1;
-			secondaryContactInstance.externalId = "CONT" + String.format("%05d", no)
+			secondaryContactInstance.externalId = utilService.newContactNumber()
 			secondaryContactInstance.partyType = 'CONTACT'
 			
 			secondaryContactInstance.organization = organizationInstance

@@ -221,6 +221,26 @@ class OrderController {
 					render view: 'create', model: [orderInstance: orderInstance]
 					return
 				}
+				
+				def unitPrice = 0.0
+				def tax = 0.0
+				def discount = 0.0
+				def lineTotalAmount = 0.0
+				
+				orderInstance.orderItems.each { it ->
+					unitPrice += it.unitPrice
+					tax += it.tax
+					discount += it.discount
+					lineTotalAmount += it.lineTotalAmount
+				}
+		
+				orderInstance.totalAmount = unitPrice
+				orderInstance.totalTax = tax
+				orderInstance.totalDiscount = discount
+				orderInstance.grandTotal = unitPrice + tax - discount
+				orderInstance.invoicedGrandTotal = 0.0
+				orderInstance.pendingInvoiceGrandTotal = orderInstance.grandTotal
+				orderInstance.save(flush:true)
 
 				flash.message = message(code: 'default.created.message', args: [
 					message(code: 'order.label', default: 'Order'),
@@ -473,12 +493,12 @@ class OrderController {
 				order.totalTax = tax
 				order.totalDiscount = discount
 				order.grandTotal = lineTotalAmount
-				order.pendingInvoiceGrandTotal = grandTotal
+				order.pendingInvoiceGrandTotal += order.grandTotal
 
 				order.save(flush:true)
 
-				flash.message = message(code: 'default.created.message', args: [
-					message(code: 'orderItem.label', default: 'Order Item'),
+				flash.message = message(code: 'default.createdOrderItem.message', args: [
+					message(code: 'orderItem.label', default: 'Order line added'),
 					orderItemInstance.id
 				])
 				redirect action: 'show', id: orderItemInstance.order.id

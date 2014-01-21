@@ -16,7 +16,8 @@
 				</div>
 				
 				<filterpane:filterPane domain="com.esms.model.quote.Quote"
-					 filterProperties="${['quoteNumber', 'quoteName','status','organization.name']}"
+					 filterProperties="${['quoteNumber', 'quoteName','status']}"
+                     associatedProperties="${['organization.name']}"
                      titleKey="default.filterPane.header" dialog="y" visible="n"
 										showSortPanel="y" showTitle="y" showButtons="y"
 										fullAssociationPathFieldNames="false" />
@@ -54,6 +55,10 @@
 						</thead>
 						<tbody>
 						<g:each in="${quoteInstanceList}" var="quoteInstance">
+							<g:set var="organization" value="${quoteInstance?.organization}"/>
+							<g:if test="${!organization?.contacts?.isEmpty()}">
+								<g:set var="contact" value="${organization?.contacts?.first()}"/>
+							</g:if>
 							<tr>
 								<td>${fieldValue(bean: quoteInstance, field: "quoteNumber")}</td>
 								
@@ -68,12 +73,7 @@
 								</td>
 								
 								<td>
-									<%
-										if(!quoteInstance?.organization?.contacts?.isEmpty()) {
-											def contact = quoteInstance?.organization?.contacts.first()
-											println contact?.firstName
-										}
-									 %>
+									${contact?.firstName}
 								</td>
 								
 								<td>

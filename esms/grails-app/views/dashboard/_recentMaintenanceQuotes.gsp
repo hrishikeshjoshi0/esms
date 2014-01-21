@@ -51,6 +51,10 @@
 	</thead>
 	<tbody>
 		<g:each in="${recentMaintenanceQuotes?.sort{a,b -> a.quoteNumber <=> b.quoteNumber}}" var="quoteInstance">
+			<g:set var="organization" value="${quoteInstance?.organization}"/>
+			<g:if test="${!organization?.contacts?.isEmpty()}">
+				<g:set var="contact" value="${organization?.contacts?.first()}"/>
+			</g:if>
 			<tr>
 				<td>${fieldValue(bean: quoteInstance, field: "quoteNumber")}</td>
 				
@@ -65,19 +69,13 @@
 				</td>
 				
 				<td>
-					<%
-						if(!quoteInstance?.organization?.contacts?.isEmpty()) {
-							def contact = quoteInstance?.organization?.contacts.first()
-							println contact?.firstName
-						}
-					 %>
+					${contact?.firstName}
 				</td>
-				
 				<td>
 					<%
-						if(!organization?.contacts?.isEmpty()) {
-							def contact = organization?.contacts?.first()
-							println contact?.phoneBooks?.first()?.mobilePhone
+						if(!contact?.phoneBooks?.isEmpty()) {
+							def phoneBook = contact?.phoneBooks?.first()
+							println phoneBook?.mobilePhone
 						}
 					 %>
 				</td>

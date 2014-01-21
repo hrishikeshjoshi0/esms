@@ -6,7 +6,9 @@
 		var val = $('#paymentMethod').val();
 		onPaymentMethodChange(val);	
 
-		fetchInvoiceInfo($("#invoiceId").val())
+		if($("#invoiceId").val() != null) {
+			fetchInvoiceInfo($("#invoiceId").val())
+		}
 		
 		$("#invoiceId").change(function() {
 			fetchInvoiceInfo($(this).val())			

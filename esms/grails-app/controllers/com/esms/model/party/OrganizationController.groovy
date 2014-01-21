@@ -81,9 +81,6 @@ class OrganizationController {
     def create() {
 		switch (request.method) {
 		case 'GET':
-			/*def list = Party.list();
-			int no = (list?list.size():0) + 1;
-			String externalId = "ORG" + String.format("%05d", no)*/
 			params.externalId = '-Auto Gen-'
 			[organizationInstance: new Organization(params),contactInstance : new Contact(),addressInstance:new Address(),phoneBookInstance:new PhoneBook(),liftInfoInstance: new LiftInfo()]
 			break
@@ -100,10 +97,8 @@ class OrganizationController {
 			
 			def contactInstance = new Contact()
 			contactInstance = bindData(contactInstance, params, "primary") 
-			
 			contactInstance.externalId = utilService.newContactNumber()
 			contactInstance.partyType = 'CONTACT'
-			
 			contactInstance.organization = organizationInstance
 			contactInstance.description = ''
 			contactInstance.save(flush:true)
@@ -115,7 +110,6 @@ class OrganizationController {
 			
 			def secondaryContactInstance = new Contact()
 			secondaryContactInstance = bindData(secondaryContactInstance, params, "secondary")
-			
 			secondaryContactInstance.externalId = utilService.newContactNumber()
 			secondaryContactInstance.partyType = 'CONTACT'
 			

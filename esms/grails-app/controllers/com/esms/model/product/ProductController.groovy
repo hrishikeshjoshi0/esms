@@ -2,6 +2,9 @@ package com.esms.model.product
 import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
+import com.esms.model.order.OrderItem;
+import com.esms.model.quote.QuoteItem;
+
 class ProductController {
 
 	static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: ['GET', 'POST']]
@@ -124,6 +127,18 @@ class ProductController {
 			messages.add("Record Not Found.")
 		}
 		
+		def orderItems = OrderItem.countByProductNumber(productInstance?.productNumber)
+		if(orderItems > 0) {
+			error = true
+			messages.add("There are order records having reference to this product.")
+		}
+		
+		def quoteItems = QuoteItem.countByProductNumber(productInstance?.productNumber)
+		if(quoteItems > 0) {
+			error = true
+			messages.add("There are quote records having reference to this product.")
+		}
+		
 		if(error) {
 			render(contentType: "text/json") {
 				[
@@ -144,8 +159,7 @@ class ProductController {
 					messages : messages,
 					nextUrl : g.createLink(controller:'product',action: 'list')
 			]}
-		}
-		catch (DataIntegrityViolationException e) {
+		}catch (DataIntegrityViolationException e) {
 			messages << message(code: 'default.not.deleted.message', args: [message(code: 'product.label', default: 'Product'), params.id])
 			render(contentType: "text/json") {[
 				error : false,

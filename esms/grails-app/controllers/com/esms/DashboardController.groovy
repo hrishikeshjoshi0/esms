@@ -16,7 +16,7 @@ class DashboardController {
 	
 	def monthMap = [0:"January",1:"February",2:"March",3:"April",4:"May",5:"June",6:"July",7:"August",8:"September",9:"October",10:"November",11:"December"]
 
-    def index() { 
+    def index() {
 		params.max = 10
 		params.sort = "id"
 		params.'order' = "desc"
@@ -61,76 +61,22 @@ class DashboardController {
 				eq("type", 'SERVICE')
 				ge("contractToDate", dt)
 				ne("archived",true)
-				organization {
-					and {
-						'in'("status", ["CUSTOMER"])
-					}
-				}
 			}
 			order("id", "desc")
 			maxResults(params.max)
 		}
 		
-		def ordersPendingPayments = Order.withCriteria() {
-			and {
-				eq('status','INVOICED')
-				organization {
-					and {
-						'in'("status", ["CUSTOMER"])
-					}
-				}
-			}
-			order("id", "desc")
-			maxResults(params.max)
-		}
-		
-		def openInvoices = Invoice.withCriteria() {
-			and {
-				ne('status','CLOSED')
-				ne('type','SERVICE')
-				organization {
-					and {
-						'in'("status", ["CUSTOMER"])
-					}
-				}
-			}
-			order("id", "desc")
-			maxResults(params.max)
-		}
-		
+		def ordersPendingPayments = Order.findAllByStatus('INVOICED', [max: params.max, sort: "id", order: "desc", offset: 0])
+		def openInvoices = Invoice.findAllByStatusNotEqualAndTypeNotEqual('CLOSED','SERVICE',[max: params.max, sort: "id", order: "desc", offset: 0])
 		def recentDocuments = UFile.list(params)
 		def recentPayments = Payment.listOrderByPaymentNumber(max: 5, offset: 0, order: "desc")
 		def openPayments = Payment.findAllByPaymentMethodAndClearanceDateIsNull("CHEQUE",[max: params.max, sort: "id", order: "desc", offset: 0])
 		
+		def recentRepairsModernizationAndInstallationQuotes = Quote.findAllByStatusInListAndTypeInList(
+			['DRAFT','PENDING','REVISE','ACCEPT'],['REPAIR','MODERNIZATION','INSTALLATION'],[max: params.max, sort: "id", order: "desc", offset: 0])
 		
-		def recentRepairsModernizationAndInstallationQuotes = Quote.withCriteria() {
-			and {
-				'in'('status',['DRAFT','PENDING','REVISE','ACCEPT'])
-				'in'('type',['REPAIR','MODERNIZATION','INSTALLATION'])
-				 organization {
-					and {
-						'in'("status", ["LEAD","CUSTOMER"])
-					}
-				}
-			}
-			order("id", "desc")
-			maxResults(params.max)
-		}
-		
-		def recentRepairsModernizationAndInstallationOrders = Order.withCriteria() {
-			and {
-				'in'('status',['PENDING_INVOICE','CONFIRM_SALE','DELIVERY_PENDING','DELIVERED','INVOICED'])
-				'in'('type',['REPAIR','MODERNIZATION','INSTALLATION'])
-				 ne('archived',true)
-				 organization {
-					and {
-						'in'("status", ["CUSTOMER"])
-					}
-				}
-			}
-			order("id", "desc")
-			maxResults(params.max)
-		}
+		def recentRepairsModernizationAndInstallationOrders = Order.findAllByStatusInListAndTypeInListAndArchivedNotEqual(
+			['PENDING_INVOICE','CONFIRM_SALE','DELIVERY_PENDING','DELIVERED','INVOICED'],['REPAIR','MODERNIZATION','INSTALLATION'],true,[max: params.max, sort: "id", order: "desc", offset: 0])
 		
 		def nowCal = Calendar.instance
 		Date nowDate = nowCal.time
@@ -179,11 +125,6 @@ class DashboardController {
 				ne("renewalStage",'RENEWAL_WON')
 				ne("renewalStage",'RENEWAL_LOST')
 				ne("archived",true)
-				organization {
-					and {
-						'in'("status", ["CUSTOMER"])
-					}
-				}
 			}
 			maxResults(params.max)
 			order("contractToDate", "asc")
@@ -194,18 +135,13 @@ class DashboardController {
 				eq('relatedTo','ORDER')
 				ne("status", 'COMPLETED')
 				between('dateTime', startDate-1, endDate)
-				organization {
-					and {
-						'in'("status", ["CUSTOMER"])
-					}
-				}
 			}
 			maxResults(params.max)
 			order("dateTime", "asc")
 		}
 		
 		def model = [recentLeads : recentLeads,recentCustomers:recentCustomers,recentMaintenanceQuotes:recentMaintenanceQuotes,recentOrders:recentOrders,recentDocuments:recentDocuments,recentPayments:recentPayments,upcomingEvents:upcomingEvents,overdueEvents:overdueEvents,ordersPendingPayments:ordersPendingPayments,openPayments:openPayments,upcomingRenewals : upcomingRenewals,openInvoices:openInvoices,filteredMonthMap:monthMap,years:years,upcomingTasks:upcomingTasks,recentRepairsModernizationAndInstallationQuotes:recentRepairsModernizationAndInstallationQuotes,recentRepairsModernizationAndInstallationOrders:recentRepairsModernizationAndInstallationOrders]
-		render (view:"/dashboard/dashboard",model:model)		
+		render (view:"/dashboard/dashboard",model:model)
 	}
 	
 	def upcomingRenewals() { 
@@ -241,11 +177,6 @@ class DashboardController {
 				le("contractToDate", endDate)
 				ne("renewalStage",'RENEWAL_WON')
 				ne("renewalStage",'RENEWAL_LOST')
-				organization {
-					and {
-						'in'("status", ["CUSTOMER"])
-					}
-				}
 			}
 			maxResults(params.max)
 			order("contractToDate", "asc")
@@ -288,11 +219,6 @@ class DashboardController {
 				eq('relatedTo','ORDER')
 				ne("status", 'COMPLETED')
 				between('dateTime', startDate-1, endDate)
-				organization {
-					and {
-						'in'("status", ["CUSTOMER"])
-					}
-				}
 			}
 			maxResults(params.max)
 			order("dateTime", "asc")

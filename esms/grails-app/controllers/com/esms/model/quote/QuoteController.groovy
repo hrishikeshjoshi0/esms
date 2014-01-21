@@ -14,6 +14,8 @@ class QuoteController {
 	def filterPaneService
 	
 	def accountService
+	
+	def utilService
 
 	def index() {
 		redirect action: 'list', params: params
@@ -141,10 +143,7 @@ class QuoteController {
 				[quoteInstance: quote,quoteLinesTotal:quote?.quoteItems?.size()]
 				break
 			case 'POST':
-				def list = Quote.list();
-				int no = (list?list.size():0) + 1;
-				String quoteNumber = "QUO" + String.format("%05d", no)
-	
+				String quoteNumber = utilService.newQuoteNumber()
 				params.quoteNumber = quoteNumber
 				
 				def quoteInstance = new Quote(params)

@@ -17,7 +17,8 @@
 				</div>
 				
 				<filterpane:filterPane domain="com.esms.model.order.Order"
-		                filterProperties="${['orderNumber', 'status','type','contactName','archived']}"
+		                 filterProperties="${['orderNumber', 'status','type','contactName','archived']}"
+						 associatedProperties="${['organization.name']}"
 						 titleKey="default.filterPane.header" dialog="y" visible="n"
 										showSortPanel="y" showTitle="y" showButtons="y"
 										fullAssociationPathFieldNames="false" />

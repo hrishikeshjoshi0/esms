@@ -43,6 +43,15 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<dl class="dl-horizontal">
+						<dt>
+							<g:message code="product.productNumber.label"
+								default="Product Number" />
+						</dt>
+
+						<dd>
+							<g:fieldValue bean="${productInstance}" field="productNumber" />
+						</dd>
+					
 
 						<dt>
 							<g:message code="product.productName.label"

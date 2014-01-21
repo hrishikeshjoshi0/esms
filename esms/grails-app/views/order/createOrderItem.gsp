@@ -18,12 +18,14 @@
 				action="createOrderItem">
 				<g:hiddenField name="order.id" value="${orderItemInstance?.order?.id}" />
 				<fieldset>
-					<g:render template="/orderItem/form"></g:render>
-					<div class="form-group">
-						<div class="col-md-10 col-md-offset-2">
-							<button type="submit" class="btn btn-sm btn-primary">
-								<g:message code="default.button.save.label" default="Save" />
-							</button>
+					<div class="col-md-6">
+						<g:render template="/orderItem/form"></g:render>
+						<div class="form-group">
+							<div class="col-md-10 col-md-offset-2">
+								<button type="submit" class="btn btn-sm btn-primary">
+									<g:message code="default.button.save.label" default="Save" />
+								</button>
+							</div>
 						</div>
 					</div>
 				</fieldset>
