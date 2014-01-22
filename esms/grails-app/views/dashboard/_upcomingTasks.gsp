@@ -58,7 +58,7 @@
 			</th>
 
 			<th>
-				${message(code: 'task.assignedToValue.label', default: 'Assigned To Value')}
+				${message(code: 'task.assignedTo.label', default: 'Assigned To')}
 			</th>
 
 			<th></th>
@@ -98,7 +98,7 @@
 				</td>
 
 				<td>
-					${fieldValue(bean: taskInstance, field: "assignedToValue")}
+					${fieldValue(bean: taskInstance, field: "assignedTo")}
 				</td>
 
 				<td class="link"><g:link action="show" id="${taskInstance.id}"

@@ -15,6 +15,12 @@
 					<g:message code="default.list.label" args="[entityName]" />
 				</h3>
 			</div>
+			
+			<filterpane:filterPane domain="com.esms.model.calendar.Event"
+				filterProperties="${['startTime', 'endTime','status','priority','followup']}"
+				titleKey="default.filterPane.header" dialog="y" visible="n"
+				showSortPanel="y" showTitle="y" showButtons="y"
+				fullAssociationPathFieldNames="false" />
 
 			<table class="table table-striped table-bordered mediaTable">
 				<thead>

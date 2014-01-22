@@ -171,6 +171,17 @@ function fetchInfo(id) {
 --%>
 
 <div
+	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'assignedTo', 'error')} ">
+	<label for="contactName" class="col-md-3 control-label"><g:message
+			code="order.assignedTo.label" default="Assigned To" /></label>
+	<div class="col-md-9">
+		<g:textField name="assignedTo" value="${orderInstance?.assignedTo}" class="form-control" />
+		<span class="help-inline"> ${hasErrors(bean: orderInstance, field: 'assignedTo', 'error')}
+		</span>
+	</div>
+</div>
+
+<div
 	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'contactName', 'error')} ">
 	<label for="contactName" class="col-md-3 control-label"><g:message
 			code="order.contactName.label" default="Contact Name" /></label>
@@ -198,7 +209,7 @@ function fetchInfo(id) {
 <div
 	class="form-group fieldcontain ${hasErrors(bean: orderInstance, field: 'relatedToValue', 'error')} ">
 	<label for="relatedToValue" class="col-md-3 control-label"><g:message
-			code="order.relatedToValue.label" default="Value" /></label>
+			code="order.relatedToValue.label" default="Related To Value" /></label>
 	<div class="col-md-9">
 		<g:textField name="relatedToValue" class="form-control"
 			value="${orderInstance?.relatedToValue}" />

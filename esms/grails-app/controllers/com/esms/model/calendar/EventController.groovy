@@ -10,9 +10,13 @@ import org.joda.time.Instant
 import com.esms.model.maintenance.WorkDoneCertificate
 import com.esms.model.order.Order;
 import com.esms.model.party.Organization;
+import org.grails.plugin.filterpane.FilterPaneUtils
+import org.springframework.dao.DataIntegrityViolationException
 
 class EventController {
     def eventService
+	
+	def filterPaneService
 
 	def index = {
 		//redirect action: 'month', params: params
@@ -96,6 +100,18 @@ class EventController {
 			}
 		}
 		[events:eventList]
+	}
+	
+	def filter = {
+		if(!params.offset) {
+			params.offset= 0
+		}
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
+		render( view:'listView', model:[ eventInstanceList: filterPaneService.filter( params, Event),
+			eventInstanceListTotal: filterPaneService.count( params, Event), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
 	}
 	
 	def listView = {
@@ -383,6 +399,12 @@ class EventController {
 		case 'POST':
 			def eventLogInstance = new EventLog(params)
 			eventLogInstance.save(flush:true)
+			if(eventLogInstance.isProblemReported || eventLogInstance.toBeReplaced) {
+				if(!eventLogInstance?.event?.followup) {
+					eventLogInstance?.event?.followup=true
+					eventLogInstance?.event?.save(flush:true)
+				}
+			}
 			flash.message = "Event Log Added"
 			redirect(action: "show", id: eventLogInstance.event.id)
 			break

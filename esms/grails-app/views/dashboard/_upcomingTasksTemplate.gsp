@@ -31,7 +31,7 @@
 		</td>
 
 		<td>
-			${fieldValue(bean: taskInstance, field: "assignedToValue")}
+			${fieldValue(bean: taskInstance, field: "assignedTo")}
 		</td>
 
 		<td class="link"><g:link action="show" id="${taskInstance.id}"

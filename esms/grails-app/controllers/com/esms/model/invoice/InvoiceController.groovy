@@ -145,6 +145,7 @@ class InvoiceController {
 				taskInstance.relatedToValue = order.orderNumber
 				taskInstance.status = 'NOT_STARTED'
 				taskInstance.priority = 'MEDIUM'
+				taskInstance.assignedTo = order.assignedTo
 				taskInstance.notification = true
 				taskInstance.save(flush:true)
 			}

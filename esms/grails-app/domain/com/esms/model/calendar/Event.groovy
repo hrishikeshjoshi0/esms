@@ -53,6 +53,7 @@ class Event {
 	String breakdownVisitSignedOffBy
 	
 	String assignedTo
+	boolean followup=false
 	
 	static hasOne = [workDoneCertificate : WorkDoneCertificate]
 
@@ -97,6 +98,7 @@ class Event {
 		workDoneCertificate nullable:true
 		
 		assignedTo(nullable: true,blank:true)
+		followup(nullable: true,blank:true)
     }
 	
 	static mapping = {

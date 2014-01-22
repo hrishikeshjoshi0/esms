@@ -98,6 +98,14 @@
 							<dd>
 								<g:fieldValue bean="${eventInstance}" field="eventType" />
 							</dd>
+							
+							<dt>
+								<g:message code="event.followup.label" default="Follow up" />
+							</dt>
+
+							<dd>
+								<g:formatBoolean boolean="${eventInstance?.followup}" true="Yes" false="No" />
+							</dd>
 
 
 							<dt>

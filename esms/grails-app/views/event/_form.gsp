@@ -139,7 +139,18 @@
 				<g:textField name="title" value="${eventInstance?.title}" class="form-control"/>
 			</div>		
 		</div>
-		
+
+		<div
+			class="form-group fieldcontain ${hasErrors(bean: eventInstance, field: 'followup', 'error')} ">
+			<label for="followup" class="col-md-3 control-label"><g:message
+					code="event.followup.label" default="Follow up" /></label>
+			<div class="col-md-9 checkbox">
+				<g:checkBox name="followup" value="${eventInstance?.followup}" />
+				<span class="help-inline"> ${hasErrors(bean: eventInstance, field: 'followup', 'error')}
+				</span>
+			</div>
+		</div>
+
 		<!-- Maintenance Visit Fields -->
 		<div
 			class="maintenanceVisitFields form-group fieldcontain ${hasErrors(bean: eventInstance, field: 'maintenanceVisitTechnician', 'error')}">

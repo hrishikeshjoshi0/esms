@@ -12,33 +12,7 @@ class DefaultFilters {
 				def currentTime = new Date()
 				
 				if(loggedInTime) {
-					def c1 = Calendar.getInstance()
-					c1.setTime(loggedInTime)
-					def ms1 = c1.getTimeInMillis()
-
-					def c2 = Calendar.getInstance()
-					c2.setTime(currentTime)
-					def ms2 = c1.getTimeInMillis()
-
-					def differenceInMinutes = (ms2 - ms1)/(1000*60)
-
-					if(session["expiringContracts"] && session["upcomingEvents"]) {
-						//to be picked up from configuration.
-						int threshold = 2
-						if(differenceInMinutes > threshold) {
-							//expiring contracts
-							saveExpiringContractsToSession(session)
-
-							//upcoming events
-							saveUpcomingEventsToSession(session)
-						}
-					} else {
-						//expiring contracts
-						saveExpiringContractsToSession(session)
-
-						//upcoming events
-						saveUpcomingEventsToSession(session)
-					}
+					
 				}
 				
             }
