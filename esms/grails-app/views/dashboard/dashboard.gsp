@@ -3,135 +3,62 @@
 
 <!doctype html>
 <html>
-<head>
-<meta name="layout" content="dashboardLayout">
-<title>DexCRM</title>
-
-</head>
-<body>
-	<div class="row">
-		<div class="col-md-12 dashboard-widget">
-			<div class="page-header">
-				<h3>Upcoming Renewals And Tasks
-				</h3>
-			</div>
-
-			<richui:tabView id="tabView">
-				<richui:tabLabels>
-					<richui:tabLabel selected="true" title="Upcoming Renewals" />
-					<richui:tabLabel title="Upcoming Tasks" />
-				</richui:tabLabels>
-
-				<richui:tabContents>
-					<richui:tabContent>
-						<g:render template="/dashboard/upcomingRenewals" />
-					</richui:tabContent>
-
-					<richui:tabContent>
-						<g:render template="/dashboard/upcomingTasks" />
-					</richui:tabContent>
-				</richui:tabContents>
-			</richui:tabView>
-		</div>
-	</div>
-
+	<head>
+		<meta name="layout" content="bootstrap3">
+		<title>DexCRM</title>
+	</head>
 	
-
-	<div class="row">
-		<div class="col-md-12 dashboard-widget">
-			<div id="recentLeadsWidget" class="dashboard-widget">
-				<g:render template="/dashboard/recentLeads" />
+	<body>
+		<div class="row">
+			<div class="col-md-12 summaryWidgets">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Summary
+					</div>
+					<div class="panel-body">
+						
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-
-	
-
-	<div class="row">
-		<div class="col-md-12 dashboard-widget">
-			<div id="recentQuotesWidget" class="dashboard-widget">
-				<g:render template="/dashboard/recentMaintenanceQuotes" />
+		
+		<div class="row">
+			<div class="col-md-12 myTaskWidgets">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						My Tasks
+					</div>
+					<div class="panel-body">
+						
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-
 	
-
-	<div class="row">
-		<div class="col-md-12 dashboard-widget">
-			<div id="recentCustomers" class="dashboard-widget">
-				<g:render template="/dashboard/recentCustomers" />
+		<div class="row">
+			<div class="col-md-12 chartWidgets">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Charts
+					</div>
+					<div class="panel-body">
+						
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-
-	
-
-	<div class="row">
-		<div class="col-md-12 dashboard-widget">
-			<div class="page-header">
-				<h3>Repair, Modernization & Installation Quotes & Orders</h3>
+		
+		<div class="row">
+			<div class="col-md-12 reportWidgets">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Reports
+					</div>
+					<div class="panel-body">
+						
+					</div>
+				</div>
 			</div>
-
-			<richui:tabView id="rmiQuotesAndOrdersTabView">
-				<richui:tabLabels>
-					<richui:tabLabel selected="true" title="Quotes" />
-					<richui:tabLabel title="Orders" />
-				</richui:tabLabels>
-
-				<richui:tabContents>
-					<richui:tabContent>
-						<g:render
-							template="/dashboard/recentRepairModernizationInstallationQuotes" />
-					</richui:tabContent>
-
-					<richui:tabContent>
-						<g:render
-							template="/dashboard/recentRepairModernizationInstallationOrders" />
-					</richui:tabContent>
-				</richui:tabContents>
-			</richui:tabView>
 		</div>
-	</div>
-
-	
-
-	<div class="row">
-		<div class="col-md-12 dashboard-widget">
-			<g:render template="/dashboard/outstandingPayments" />
-		</div>
-	</div>
-
-	
-
-	<div class="row">
-		<div class="col-md-12 dashboard-widget">
-			<g:render template="/dashboard/openPayments" />
-		</div>
-	</div>
-
-	
-
-	<div class="row">
-		<div class="col-md-6 dashboard-widget">
-			<g:render template="/dashboard/upcomingEvents" />
-		</div>
-
-		<div class="col-md-6 dashboard-widget">
-			<g:render template="/dashboard/overdueEvents" />
-		</div>
-	</div>
-
-	
-
-	<div class="row">
-		<div class="col-md-4 dashboard-widget">
-			<g:render template="/dashboard/recentDocuments" />
-		</div>
-
-		<div class="col-md-8 dashboard-widget">
-			<g:render template="/dashboard/recentPayments" />
-		</div>
-	</div>
-</body>
+	</body>
 </html>

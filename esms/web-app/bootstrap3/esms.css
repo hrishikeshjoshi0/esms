@@ -9,7 +9,7 @@ body {
 .topbar {
 	background:#fff;
 	padding-top:5px;
-	padding-bottom:2px;
+	padding-bottom:0px;
 }
 
 
@@ -494,4 +494,36 @@ a.list-group-item:hover,a.list-group-item:focus {
 
 .logo {
  color:red;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+	color: #fff;
+	cursor: default;
+	background-color: #008cba;
+	border: 1px solid #007196;
+	border-bottom-color: transparent;
+}
+
+.nav-tabs > li > a {
+   -webkit-border-radius: 2px; 
+  /* Firefox 1-3.6 */
+  -moz-border-radius: 2px; 
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-radius: 2px; 
+}
+
+.summaryWidgets {
+  height: 20%;
+}
+
+.myTaskWidgets {
+  height: 20%;	
+}
+
+.chartWidgets {
+  height: 40%;	
+}
+
+.reportWidgets {
+  height: 40%;	
 }
