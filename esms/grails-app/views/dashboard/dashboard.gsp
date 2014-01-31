@@ -16,7 +16,30 @@
 						Summary
 					</div>
 					<div class="panel-body">
+						<!-- Summary Widgets -->
+						<div class="panel panel-default">
+						  <div class="panel-body">
+						    Widget#1
+						  </div>
+						</div>
 						
+						<div class="panel panel-default">
+						  <div class="panel-body">
+						    Widget#2
+						  </div>
+						</div>
+						
+						<div class="panel panel-default">
+						  <div class="panel-body">
+						    Widget#2
+						  </div>
+						</div>
+						
+						<div class="panel panel-default">
+						  <div class="panel-body">
+						    Widget#3
+						  </div>
+						</div>
 					</div>
 				</div>
 			</div>
