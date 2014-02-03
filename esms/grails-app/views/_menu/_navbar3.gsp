@@ -16,18 +16,57 @@
 		        </div>
 		        <div class="navbar-collapse collapse" id="navbar-main">
 					<ul class="nav nav-tabs">
-					  <li class="active"><a href="#">Dashboard</a></li>
-					  <li>
-					  	<g:link action="index" controller="organization">
-					  		CRM
+					  <g:set var="controllerName" value="${params.controller}" />	
+					  <li <%= 'dashboard' == controllerName ? ' class="active"' : '' %>>
+					  	<g:link controller="dashboard">
+					  		Dashboard
 					  	</g:link>
 					  </li>
-					  <li><a href="#">Sales</a></li>
-					  <li><a href="#">Invoicing</a></li>
-					  <li><a href="#">Calendar</a></li>
-					  <li><a href="#">HR</a></li>
-					  <li><a href="#">User Management</a></li>
-					  <li><a href="#">Reports</a></li>
+					  <li <%= 'lead' == controllerName ? ' class="active"' : '' %>>
+					  	<g:link controller="lead">
+					  		Lead
+					  	</g:link>
+					  </li>
+					  <li <%= 'organization' == controllerName ? ' class="active"' : '' %>>
+						<g:link controller="organization">
+					  		Customers
+					  	</g:link>
+					  </li>
+					  <li <%= 'quote' == controllerName ? ' class="active"' : '' %>>
+						<g:link controller="quote">
+					  		Quote
+					  	</g:link>
+					  </li>
+					  <li <%= 'order' == controllerName ? ' class="active"' : '' %>>
+						<g:link controller="order">
+					  		Orders
+					  	</g:link>
+					  </li>
+					  <li <%= 'invoice' == controllerName ? ' class="active"' : '' %>>
+						<g:link controller="invoice">
+					  		Invoice
+					  	</g:link>
+					  </li>
+					  <li <%= 'product' == controllerName ? ' class="active"' : '' %>>
+						<g:link controller="product">
+					  		Product
+					  	</g:link>
+					  </li>
+					  <li <%= 'event' == controllerName ? ' class="active"' : '' %>>
+						<g:link controller="event">
+					  		Calendar
+					  	</g:link>
+					  </li>
+					  <li <%= 'employee' == controllerName ? ' class="active"' : '' %>>
+						<g:link controller="employee">
+					  		HR
+					  	</g:link>
+					  </li>
+					  <li <%= 'report' == controllerName ? ' class="active"' : '' %>>
+						<g:link controller="report">
+					  		Reports
+					  	</g:link>
+					  </li>
 					</ul>
 		        </div>
 			</sec:ifLoggedIn>
@@ -46,275 +85,201 @@
 				<sec:ifLoggedIn>
 				<!-- Navigation Menus -->
 				<ul class="nav navbar-nav">
-					<li>
-						<a href="${createLink(uri: '/')}"> Dashboard </a>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							CRM <b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu">
-							<!-- Leads -->
-							<li class="dropdown-submenu">
-								<a tabindex="-1" href="#">
-									Lead Management
-									<i class="icon-angle-down"></i>
-								</a>
-								<ul class="dropdown-menu">
-									<li>
-										<g:link action="create" controller="lead">
-											Create New Lead
-										</g:link>
-									</li>
-									<li>
-										<g:link controller="lead">
-											View All Leads
-										</g:link>
-									</li>
-								</ul>
-							</li>
-							<!-- Lead Ends -->
-							
-							<li class="dropdown-submenu">
-								<a tabindex="-1" href="#">
-									Customers
-									<i class="icon-angle-down"></i>
-								</a>
-								<ul class="dropdown-menu">
-									<li>
-										<g:link action="create" controller="organization">
-											Create New Customer
-										</g:link>
-									</li>
-									<li>
-										<g:link controller="organization">
-											View All Customers
-										</g:link>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
+					<g:if test="${params.controller=='dashboard'}">
+						
+					</g:if>
 					
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							Sales <b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu">
-							<li class="dropdown-submenu">
-								<a tabindex="-1" href="#">
-									Quotes
-									<i class="icon-angle-down"></i>
-								</a>
-								<ul class="dropdown-menu">
-									<li>
-										<g:link controller="quote">
-											View All Quotes
-										</g:link>
-									</li>
-									<li>
-										<g:link action="create" controller="quote"
-											params="[contractQuote:true,type:'CONTRACT']">
-											Create Contract Quote
-										</g:link>
-									</li>
-									<li>
-										<g:link action="create" controller="quote"
-											params="[type:'REPAIR']">
-											Create Repair Quote
-										</g:link>
-									</li>
-									<li>
-										<g:link action="create" controller="quote"
-											params="[contractQuote:true,type:'INSTALLATION']">
-											Create Installation Quote
-										</g:link>
-									</li>
-									<li>
-										<g:link action="create" controller="quote"
-											params="[type:'MODERNIZATION']">
-											Create Modernization Quote
-										</g:link>
-									</li>
-								</ul>
-							</li>
-							<li class="dropdown-submenu">
-								<a tabindex="-1" href="#">
-									Orders
-									<i class="icon-angle-down"></i>
-								</a>
-								<ul class="dropdown-menu">
-									<li>
-										<g:link controller="order">
-											View All Orders
-										</g:link>
-									</li>
-								</ul>
-							</li>						
-							<li>
-								<g:link controller="product">
-									Products
-								</g:link>
-							</li>
-						</ul>
-					</li>
+					<g:if test="${params.controller=='lead'}">
+						<li>
+							<g:link action="create" controller="lead">
+								Create New Lead
+							</g:link>
+						</li>
+						<li>
+							<g:link controller="lead">
+								View All Leads
+							</g:link>
+						</li>
+					</g:if>
 					
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							Invoicing <b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu">
-							<li>
-								<g:link controller="invoice">
-									Invoices
-								</g:link>
-							</li>
-							<li>
-								<g:link controller="payment">
-									Payments
-								</g:link>
-							</li>
-						</ul>
-					</li>
+					<g:if test="${params.controller=='organization'}">
+						<li>
+							<g:link action="create" controller="organization">
+								Create New Customer
+							</g:link>
+						</li>
+						<li>
+							<g:link controller="organization">
+								View All Customers
+							</g:link>
+						</li>
+					</g:if>
 					
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							Calendar <b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu">
-							<li>
-								<g:link class="lnk " controller="event" action="index">View Calendar</g:link>
-							</li>
-							<li>
-								<g:link class="lnk " controller="event" action="listView">All Events</g:link>
-							</li>
-							<li>
-								<g:link class="lnk " controller="event" action="overdueEvents">Overdue Events</g:link>
-							</li>
-							<li>
-								<g:link class="lnk " controller="event" action="upcomingEvents">Upcoming Events</g:link>
-							</li>
-							<li>
-								<g:link class="lnk " controller="task" action="list">Tasks</g:link>
-							</li>
-						</ul>
-					</li>
-	
-					<li>
-						<g:link controller="employee">
-							HR
-						</g:link>
-					</li>
+					<g:if test="${params.controller=='quote'}">
+						<li>
+							<g:link controller="quote">
+								View All Quotes
+							</g:link>
+						</li>
+						<li>
+							<g:link action="create" controller="quote"
+								params="[contractQuote:true,type:'CONTRACT']">
+								Create Contract Quote
+							</g:link>
+						</li>
+						<li>
+							<g:link action="create" controller="quote"
+								params="[type:'REPAIR']">
+								Create Repair Quote
+							</g:link>
+						</li>
+						<li>
+							<g:link action="create" controller="quote"
+								params="[contractQuote:true,type:'INSTALLATION']">
+								Create Installation Quote
+							</g:link>
+						</li>
+						<li>
+							<g:link action="create" controller="quote"
+								params="[type:'MODERNIZATION']">
+								Create Modernization Quote
+							</g:link>
+						</li>
+					</g:if>
 					
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							Reports <b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu">
-							<li>
-								<g:link controller="report" action="upcomingRepairs">
-									<g:message code="default.button.upcomingRepairs.label"
-										default="Upcoming Repairs" />
-								</g:link>
-							</li>
+					<g:if test="${params.controller=='order'}">
+						<li>
+							<g:link controller="order">
+								View All Orders
+							</g:link>
+						</li>
+					</g:if>
+					
+					<g:if test="${params.controller=='invoice'}">
+						<li>
+							<g:link controller="invoice">
+								Invoices
+							</g:link>
+						</li>
+						<li>
+							<g:link controller="payment">
+								Payments
+							</g:link>
+						</li>
+					</g:if>
+					
+					<g:if test="${params.controller=='product'}">
+						<li>
+							<g:link controller="product">
+								Products
+							</g:link>
+						</li>
+					</g:if>
+					
+					<g:if test="${params.controller=='calendar'}">
+						<li>
+							<g:link class="lnk " controller="event" action="index">View Calendar</g:link>
+						</li>
+						<li>
+							<g:link class="lnk " controller="event" action="listView">All Events</g:link>
+						</li>
+						<li>
+							<g:link class="lnk " controller="event" action="overdueEvents">Overdue Events</g:link>
+						</li>
+						<li>
+							<g:link class="lnk " controller="event" action="upcomingEvents">Upcoming Events</g:link>
+						</li>
+						<li>
+							<g:link class="lnk " controller="task" action="list">Tasks</g:link>
+						</li>
+					</g:if>
+					
+					<g:if test="${params.controller=='employee'}">
+						<li>
+							<g:link controller="employee">
+								HR
+							</g:link>
+						</li>
+					</g:if>
+					
+					<g:if test="${params.controller=='report'}">
+						<li>
+							<g:link controller="report" action="upcomingRepairs">
+								<g:message code="default.button.upcomingRepairs.label"
+									default="Upcoming Repairs" />
+							</g:link>
+						</li>
 							
-							<li>
-								<g:link controller="report" action="upcomingRenewals">
-									<g:message code="default.button.upcomingRenewals.label"
-										default="Upcoming Renewals" />
-								</g:link>
-							</li>
-							
-							<li>
-								<g:link controller="report" action="amountReceivables">
-									<g:message code="default.button.amountReceivables.label"
-										default="Amount Receivables" />
-								</g:link>
-							</li>
-							
-							<li>
-								<g:link controller="report" action="toBeReplaced">
-									<g:message code="default.button.toBeReplaced.label"
-										default="To Be Replaced" />
-								</g:link>
-							</li>
-							
-							<li>
-								<g:link controller="report" action="isProblemRepeated">
-									<g:message code="default.button.isProblemRepeated.label"
-										default="Is Problem Repeated" />
-								</g:link>
-							</li>
-						</ul>
-					</li>
-				</ul>
+						<li>
+							<g:link controller="report" action="upcomingRenewals">
+								<g:message code="default.button.upcomingRenewals.label"
+									default="Upcoming Renewals" />
+							</g:link>
+						</li>
+						
+						<li>
+							<g:link controller="report" action="amountReceivables">
+								<g:message code="default.button.amountReceivables.label"
+									default="Amount Receivables" />
+							</g:link>
+						</li>
+						
+						<li>
+							<g:link controller="report" action="toBeReplaced">
+								<g:message code="default.button.toBeReplaced.label"
+									default="To Be Replaced" />
+							</g:link>
+						</li>
+						
+						<li>
+							<g:link controller="report" action="isProblemRepeated">
+								<g:message code="default.button.isProblemRepeated.label"
+									default="Is Problem Repeated" />
+							</g:link>
+						</li>	
+					</g:if>
+				</ul>				
 				
-				
-				<g:form class="visible-md visible-lg">
-						<richui:autoComplete name="q"
-								action="${createLinkTo('dir': 'organization/search')}"
-								class="col-md-2 col-md-offset-1" shadow="true" minQueryLength="1" style="margin-top:5px;"
-								onItemSelect="document.location.href = '${createLinkTo(dir: 'organization/show')}/' + id;" />
-				</g:form>
-				
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">
+				<div class="pull-right">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<span class="glyphicon glyphicon-user"></span>
-							<%-- 
-							Welcome, <sec:username /> 
-							--%>
 							<b class="caret"></b>
-					</a>
-	
-					<ul class="dropdown-menu">
-							<sec:ifAllGranted roles="ROLE_ADMIN">
-								<!-- User Management -->
-								<li class="dropdown-submenu">
-									<a tabindex="-1" href="#">
-										Users
-										<i class="icon-angle-down"></i>
-									</a>
-									<ul class="dropdown-menu">
-										<li><g:link controller="user" action='search'>
-												Search User
-											</g:link></li>
-										<li><g:link controller="user" action='create'>
-														Create User
-													</g:link></li>
-									</ul>
+						</a>
+						<ul class="dropdown-menu">
+								<sec:ifAllGranted roles="ROLE_ADMIN">
+									<!-- User Management -->
+									<li class="dropdown-submenu">
+										<a tabindex="-1" href="#">
+											Users
+											<i class="icon-angle-down"></i>
+										</a>
+										<ul class="dropdown-menu">
+											<li><g:link controller="user" action='search'>
+													Search User
+												</g:link></li>
+											<li><g:link controller="user" action='create'>
+															Create User
+														</g:link></li>
+										</ul>
+									</li>
+									<li class="divider"></li>			
+								</sec:ifAllGranted>
+								<li>
+									<g:link controller="logout">
+									 Sign out</g:link>
 								</li>
-								
-								<%--<li class="dropdown-submenu">
-									<a tabindex="-1" href="#">
-										Roles
-										<i class="icon-angle-down"></i>
-									</a>
-									<ul class="dropdown-menu">
-										<li><g:link controller="role" action='search'>
-														Search Role
-													</g:link></li>
-										<li><g:link controller="role" action='create'>
-														Create Role
-													</g:link></li>
-									</ul>
-								</li>
-								--%>
-								<li class="divider"></li>			
-							</sec:ifAllGranted>
-							<li>
-								<g:link controller="logout">
-								 Sign out</g:link>
-							</li>
-						</ul>
-					</li>
-					
-					<li class="visible-md visible-lg">
-						<g:remoteLink controller="task" action="administrationTaskListModal" id="1" onSuccess="openModalBox(data,'View Admin Tasks')">
-	    					<span class="glyphicon glyphicon-list-alt"></span>		
-	    				</g:remoteLink>
-					</li>
-				</ul>
+							</ul>
+						</li>
+						
+						<li class="visible-md visible-lg">
+							<g:remoteLink controller="task" action="administrationTaskListModal" id="1" onSuccess="openModalBox(data,'View Admin Tasks')">
+		    					<span class="glyphicon glyphicon-list-alt"></span>		
+		    				</g:remoteLink>
+						</li>
+					</ul>
+				</div>
 				</sec:ifLoggedIn>
 			</div>
 		</div>

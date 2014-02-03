@@ -1,3 +1,4 @@
+import com.esms.model.core.Module
 import com.esms.model.security.SecRole
 import com.esms.model.security.SecUser
 import com.esms.model.security.SecUserSecRole
@@ -65,6 +66,18 @@ class BootStrap {
 		} else {
 			println 'System Property "importData" set as False. Skipping all Data Imports.'
 		}
+		
+		/*//Insert Modules.
+		def module = new Module({
+			name:"crm"
+			comments:"CRM Module"
+			url:""
+			controller:"module"
+			action:"crm"
+			active:true
+			displayText:"CRM"
+		})
+		module.save(flush:true)*/
     }
 	
     def destroy = {
