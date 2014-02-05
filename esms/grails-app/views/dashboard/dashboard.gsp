@@ -62,6 +62,31 @@
 		</div>
 		
 		<div class="row">
+			<div class="col-md-6">
+				<div id="recentCustomers" class="panel panel-default">
+					<div class="panel-heading">
+						Recent Service Contracts
+					</div>
+					<div class="panel-body dashboard-widget">
+						<g:render template="/dashboard/recentCustomers" />
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div id="recentCustomers" class="panel panel-default">
+					<div class="panel-heading">
+						Recent Service Contracts
+					</div>
+					<div class="panel-body dashboard-widget">
+						<g:render template="/dashboard/recentCustomers" />
+					</div>
+				</div>
+			</div>
+			
+		</div>	
+		
+		<div class="row">
 			<div class="col-md-12 myTaskWidgets">
 				<div class="panel panel-default">
 					<div class="panel-heading">
