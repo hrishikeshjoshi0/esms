@@ -9,12 +9,6 @@
 	<body>
 		<div class="row">
 			<div class="col-md-12">
-				<div class="page-header">
-					<h3>
-						<g:message code="default.list.label" args="[entityName]" />
-					</h3>
-				</div>
-				
 				<filterpane:filterPane domain="com.esms.model.quote.Quote"
 					 filterProperties="${['quoteNumber', 'quoteName','status']}"
                      associatedProperties="${['organization.name']}"
@@ -22,7 +16,6 @@
 										showSortPanel="y" showTitle="y" showButtons="y"
 										fullAssociationPathFieldNames="false" />
 				
-				<div style='overflow:scroll;'>
 					<table class="table table-striped table-condensed table-bordered">
 						<thead>
 							<tr>
@@ -32,24 +25,10 @@
 							
 								<g:sortableColumn params="${filterParams}" property="type" title="${message(code: 'quote.type.label', default: 'Type')}" />
 								
-								<th>
-									Contact Person
-								</th>
-								
-								<th>
-									Contact Number
-								</th>
-								
 								<g:sortableColumn params="${filterParams}" property="assignedTo" title="${message(code: 'quote.assignedTo.label', default: 'Assigned To')}" />
 								
 								<g:sortableColumn params="${filterParams}" property="status" title="${message(code: 'quote.status.label', default: 'Status')}" />
 							
-								<g:sortableColumn params="${filterParams}" property="salesChannel" title="${message(code: 'quote.salesChannel.label', default: 'Sales Channel')}" />
-							
-								<g:sortableColumn params="${filterParams}" property="description" title="${message(code: 'quote.description.label', default: 'Description')}" />
-							
-								<th></th>
-								
 								<th></th>
 							</tr>
 						</thead>
@@ -73,19 +52,6 @@
 								</td>
 								
 								<td>
-									${contact?.firstName}
-								</td>
-								
-								<td>
-									<%
-										if(!organization?.contacts?.isEmpty()) {
-											def contact = organization?.contacts?.first()
-											println contact?.phoneBooks?.first()?.mobilePhone
-										}
-									 %>
-								</td>
-				
-								<td>
 									${fieldValue(bean: quoteInstance, field: "assignedTo")}
 								</td>
 								
@@ -93,21 +59,11 @@
 									${fieldValue(bean: quoteInstance, field: "status")}
 								</td>
 								
-								<td>${fieldValue(bean: quoteInstance, field: "salesChannel")}</td>
-										
-								<td>${fieldValue(bean: quoteInstance, field: "description")}</td>
-								
-								<td class="link"><g:link action="markAsDisqualified" controller="quote"	id="${quoteInstance?.id}" >
-										Disqualify
-									</g:link>
-								</td>
-				
 								<td class="link"><g:link controller="quote" action="show" id="${quoteInstance.id}" class="lnk ">Show &raquo;</g:link></td>
 							</tr>
 						</g:each>
 						</tbody>
 					</table>
-				</div>
 				<div class="pgn">
 					<bootstrap:paginate params="${filterParams}" total="${quoteInstanceTotal}" />
 				</div>

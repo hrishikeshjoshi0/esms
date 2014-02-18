@@ -86,10 +86,6 @@ grails.project.dependency.resolution = {
 		
 		compile ":audit-logging:0.5.4"
 		
-		//compile ":searchable:0.6.4"
-		
-		//compile ":modalbox:0.4"
-		
 		compile ":excel-import:1.0.0"
 		
 		compile ":jquery-ui:1.10.3"
@@ -99,5 +95,9 @@ grails.project.dependency.resolution = {
 		compile ":spring-security-ui:1.0-RC1", {
 		   excludes 'spring-test'
 		}
+		
+		compile ":richui:0.8"
+		
+		compile ":google-visualization:0.6.2"
 	}
 }

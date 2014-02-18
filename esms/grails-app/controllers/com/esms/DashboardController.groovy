@@ -17,7 +17,7 @@ class DashboardController {
 	def monthMap = [0:"January",1:"February",2:"March",3:"April",4:"May",5:"June",6:"July",7:"August",8:"September",9:"October",10:"November",11:"December"]
 
     def index() {
-		params.max = 10
+		params.max = 5
 		params.sort = "id"
 		params.'order' = "desc"
 				
@@ -140,12 +140,37 @@ class DashboardController {
 			order("dateTime", "asc")
 		}
 		
-		def model = [recentLeads : recentLeads,recentCustomers:recentCustomers,recentMaintenanceQuotes:recentMaintenanceQuotes,recentOrders:recentOrders,recentDocuments:recentDocuments,recentPayments:recentPayments,upcomingEvents:upcomingEvents,overdueEvents:overdueEvents,ordersPendingPayments:ordersPendingPayments,openPayments:openPayments,upcomingRenewals : upcomingRenewals,openInvoices:openInvoices,filteredMonthMap:monthMap,years:years,upcomingTasks:upcomingTasks,recentRepairsModernizationAndInstallationQuotes:recentRepairsModernizationAndInstallationQuotes,recentRepairsModernizationAndInstallationOrders:recentRepairsModernizationAndInstallationOrders]
+		//Charts
+		def ordersByStatus = Order.createCriteria().list {
+			projections {
+				groupProperty("status")
+				countDistinct("id")
+			}
+		}
+		
+		def accountsBySalesStatus = Organization.createCriteria().list {
+			projections {
+				groupProperty("salesStatus")
+				countDistinct("id")
+			}
+		}
+		
+		def customerLostCount = Organization.countBySalesStatus('LOST')
+		def customerWonCount = Organization.countBySalesStatus('CUSTOMER')
+		
+		def leadConversionData
+		if(customerWonCount + customerLostCount == 0) {
+			leadConversionData = [[' ', 0]]
+		} else {
+			leadConversionData = [[' ', (customerWonCount/(customerWonCount + customerLostCount)*100)]]
+		}
+		
+		def model = [recentLeads : recentLeads,recentCustomers:recentCustomers,recentMaintenanceQuotes:recentMaintenanceQuotes,recentOrders:recentOrders,recentDocuments:recentDocuments,recentPayments:recentPayments,upcomingEvents:upcomingEvents,overdueEvents:overdueEvents,ordersPendingPayments:ordersPendingPayments,openPayments:openPayments,upcomingRenewals : upcomingRenewals,openInvoices:openInvoices,filteredMonthMap:monthMap,years:years,upcomingTasks:upcomingTasks,recentRepairsModernizationAndInstallationQuotes:recentRepairsModernizationAndInstallationQuotes,recentRepairsModernizationAndInstallationOrders:recentRepairsModernizationAndInstallationOrders,ordersByStatus:ordersByStatus,accountsBySalesStatus:accountsBySalesStatus,leadConversionData:leadConversionData]
 		render (view:"/dashboard/dashboard",model:model)
 	}
 	
 	def upcomingRenewals() { 
-		params.max = 10
+		params.max = 5
 		int y = params.upcomingRenewalYearParam.toInteger()
 		int m = params.upcomingRenewalMonthParam.toInteger()
 		int d = 1
@@ -186,7 +211,7 @@ class DashboardController {
 	}
 	
 	def upcomingTasks() {
-		params.max = 10
+		params.max = 5
 		
 		int y = params.upcomingRenewalYearParam.toInteger()
 		int m = params.upcomingRenewalMonthParam.toInteger()

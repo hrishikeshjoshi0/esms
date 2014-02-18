@@ -16,12 +16,12 @@
 	  <script src="http://getbootstrap.com/assets/js/respond.min.js"></script>
 	<![endif]-->
 	
-	<filterpane:includes/>
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'chosen.css')}" media="screen">
 	<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
 	<resource:dateChooser />
 	<resource:autoComplete skin="esmsAutocomplete" />
 	<resource:tabView/>
+	<filterpane:includes/>
 	
 	<link rel="stylesheet" href="${resource(dir: 'bootstrap3', file: 'esms.css')}" media="screen">
 	

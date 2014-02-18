@@ -1,6 +1,8 @@
 <%@page import="com.esms.model.product.Product"%>
 <%@ page import="com.esms.model.party.*"%>
-
+<div class="page-header">
+	<h3>Recent Service Contracts</h3>
+</div>
 <table class="table table-striped table-bordered mediaTable">
 	<thead>
 		<tr>

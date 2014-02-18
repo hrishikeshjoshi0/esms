@@ -12,8 +12,6 @@
 <body>
 	<div class="row">
 		<div class="col-md-12">
-			<bs3:pageHeader pageHeaderLabel="${message(code: 'default.list.label',args:['Leads'])}" />
-
 			<filterpane:filterPane domain="com.esms.model.party.Organization"
 				filterProperties="${['name', 'salesStatus','assignedTo']}"
 				titleKey="default.filterPane.header" dialog="yes" visible="n"
@@ -30,7 +28,7 @@
 								title="${message(code: 'organization.name.label', default: 'Name')}" />
 							<g:sortableColumn params="${filterParams}" property="assignedTo"
 								title="${message(code: 'organization.assignedTo.label', default: 'Assigned To')}" />
-							<g:sortableColumn params="${filterParams}"
+							<%--<g:sortableColumn params="${filterParams}"
 								property="addresses.addressType"
 								title="${message(code: 'address.addressType.label', default: 'Address Type')}" />
 							<g:sortableColumn params="${filterParams}"
@@ -45,10 +43,7 @@
 							<g:sortableColumn params="${filterParams}"
 								property="addresses.city"
 								title="${message(code: 'address.city.label', default: 'City')}" />
-							<g:sortableColumn params="${filterParams}"
-								property="liftInfo.numberOfLifts"
-								title="${message(code: 'liftInfo.numberOfLifts.label', default: 'No. Of Lists')}" />
-							<th></th>
+							--%><th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -65,7 +60,7 @@
 								<td>
 									${fieldValue(bean: organization, field: "assignedTo")}
 								</td>
-								<td>
+								<%--<td>
 									${addressInstance?.addressType}
 								</td>
 								<td>
@@ -80,10 +75,7 @@
 								<td>
 									${addressInstance?.city}
 								</td>
-								<td>
-									${fieldValue(bean: organization, field: "liftInfo.numberOfLifts")}
-								</td>
-								<td class="link"><g:link action="show"
+								--%><td class="link"><g:link action="show"
 										id="${organization?.id}" class="lnk ">Show &raquo;</g:link>
 								</td>
 							</tr>

@@ -56,8 +56,8 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-md-10">
-				<div class="panel panel-default">
+			<div class="col-md-12">
+				<%--<div class="panel panel-default">
 					<div class="panel-body">
 						<g:render template="/_common/message"></g:render>
 
@@ -66,11 +66,18 @@
 						<g:pageProperty name="page.body" />
 					</div>
 				</div>
+				--%>
+				<g:render template="/_common/message"></g:render>
+
+				<!-- Body -->
+				<g:layoutBody />
+				<g:pageProperty name="page.body" />
 			</div>
 
-			<div class="col-md-2">
+			<%--<div class="col-md-2">
 				<g:render template="/_menu/menubar3"></g:render>
 			</div>
+			--%>
 		</div>
 
 		<!-- Footer -->

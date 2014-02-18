@@ -195,6 +195,7 @@
 		</div>
 	</div>
 	
+	<%--
 	<div class="row">
 		<div class="col-md-6">
 			<div class="page-header">
@@ -331,6 +332,7 @@
 			</div>
 		</div>
 	</div>
+	--%>
 	
 	<div class="page-header">
 		<h5>Address</h5>
@@ -352,13 +354,15 @@
 		</div>
 	</div>
 	
+	<%--
 	<div class="page-header">
 		<h5>About the Lift</h5>
 	</div>
 	<g:render template="/liftInfo/form"></g:render>
+	--%>
 </g:else>
 
-<div class="page-header">
+<%--<div class="page-header">
 	<h5>Reason for Change</h5>
 </div>
 
@@ -377,7 +381,7 @@
 		</div>
 	</div>
 </div>	
-
+--%>
 <script>
 	$('document').ready(function() {
 		$("#copyToBillingAddressLink").click(function() {

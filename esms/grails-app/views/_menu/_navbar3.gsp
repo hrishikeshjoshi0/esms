@@ -5,7 +5,7 @@
 				<img alt="DexBiz" src="${resource(dir: 'images', file: 'LogoCrmSm_Blue.png')}" />
 			</a>
 		</div>
-		<div class="col-md-10">
+		<div class="col-md-8">
 			<sec:ifLoggedIn>
 				<div class="navbar-header">
 		          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
@@ -24,7 +24,7 @@
 					  </li>
 					  <li <%= 'lead' == controllerName ? ' class="active"' : '' %>>
 					  	<g:link controller="lead">
-					  		Lead
+					  		Leads
 					  	</g:link>
 					  </li>
 					  <li <%= 'organization' == controllerName ? ' class="active"' : '' %>>
@@ -34,7 +34,7 @@
 					  </li>
 					  <li <%= 'quote' == controllerName ? ' class="active"' : '' %>>
 						<g:link controller="quote">
-					  		Quote
+					  		Quotes
 					  	</g:link>
 					  </li>
 					  <li <%= 'order' == controllerName ? ' class="active"' : '' %>>
@@ -44,12 +44,12 @@
 					  </li>
 					  <li <%= 'invoice' == controllerName ? ' class="active"' : '' %>>
 						<g:link controller="invoice">
-					  		Invoice
+					  		Invoices
 					  	</g:link>
 					  </li>
 					  <li <%= 'product' == controllerName ? ' class="active"' : '' %>>
 						<g:link controller="product">
-					  		Product
+					  		Products
 					  	</g:link>
 					  </li>
 					  <li <%= 'event' == controllerName ? ' class="active"' : '' %>>
@@ -71,6 +71,9 @@
 		        </div>
 			</sec:ifLoggedIn>
 		</div>
+		<div class="col-md-2">
+			<g:render template="/_common/suggest"></g:render>
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
@@ -86,13 +89,31 @@
 				<!-- Navigation Menus -->
 				<ul class="nav navbar-nav">
 					<g:if test="${params.controller=='dashboard'}">
-						
+						<li>
+							<g:link action="create" controller="lead">
+								Create Lead
+							</g:link>
+						</li>
+						<li>
+							<g:link action="create" controller="quote"
+								params="[contractQuote:true,type:'CONTRACT']">
+								Create Contract Quote
+							</g:link>
+						</li>
+						<li>
+							<g:link class="lnk " controller="event" action="index">View Calendar</g:link>
+						</li>
+						<li>
+							<g:link action="create" controller="invoice">
+								Create Invoice
+							</g:link>
+						</li>
 					</g:if>
 					
 					<g:if test="${params.controller=='lead'}">
 						<li>
 							<g:link action="create" controller="lead">
-								Create New Lead
+								Create Lead
 							</g:link>
 						</li>
 						<li>
@@ -105,7 +126,7 @@
 					<g:if test="${params.controller=='organization'}">
 						<li>
 							<g:link action="create" controller="organization">
-								Create New Customer
+								Create Customer
 							</g:link>
 						</li>
 						<li>
@@ -149,6 +170,11 @@
 					
 					<g:if test="${params.controller=='order'}">
 						<li>
+							<g:link action="create" controller="order">
+								Create Order
+							</g:link>
+						</li>
+						<li>
 							<g:link controller="order">
 								View All Orders
 							</g:link>
@@ -157,21 +183,31 @@
 					
 					<g:if test="${params.controller=='invoice'}">
 						<li>
+							<g:link action="create" controller="invoice">
+								Create Invoice
+							</g:link>
+						</li>
+						<li>
 							<g:link controller="invoice">
-								Invoices
+								View All Invoices
 							</g:link>
 						</li>
 						<li>
 							<g:link controller="payment">
-								Payments
+								View All Payments
 							</g:link>
 						</li>
 					</g:if>
 					
 					<g:if test="${params.controller=='product'}">
 						<li>
+							<g:link action="create" controller="lead">
+								Create Product
+							</g:link>
+						</li>
+						<li>
 							<g:link controller="product">
-								Products
+								View All Products
 							</g:link>
 						</li>
 					</g:if>

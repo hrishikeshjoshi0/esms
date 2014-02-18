@@ -38,7 +38,8 @@ class OrderController {
 			'in'('type', [
 				'REPAIR',
 				'MODERNIZATION',
-				'INSTALLATION'
+				'INSTALLATION',
+				'SERVICE'
 			])
 			firstResult(params.offset?.toInteger())
 			maxResults(params.max?.toInteger())
@@ -50,7 +51,8 @@ class OrderController {
 			'in'('type', [
 				'REPAIR',
 				'MODERNIZATION',
-				'INSTALLATION'
+				'INSTALLATION',
+				'SERVICE'
 			])
 			projections {
 		        countDistinct "id"

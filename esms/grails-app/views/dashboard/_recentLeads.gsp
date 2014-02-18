@@ -2,7 +2,7 @@
 
 <div class="page-header">
 	<h3>
-		Follow-up these leads
+		Recent Leads
 	</h3>
 </div>
 
@@ -14,9 +14,6 @@
 				${message(code: 'organization.name.label', default: 'Name')}
 			</th>
 			<th>
-				Type of Enquiry
-			</th>
-			<th>
 				Contact Person
 			</th>
 			<th>
@@ -25,9 +22,6 @@
 			<th>
 				Assigned To
 			</th>	
-			<th>
-				Disqualify
-			</th>
 			<th></th>	
 		</tr>
 	</thead>
@@ -38,9 +32,6 @@
 			<tr>
 				<td>
 					${fieldValue(bean: organization, field: "name")}
-				</td>
-				<td>
-					${organization?.liftInfo?.typeOfEnquiry}
 				</td>
 				<td>
 					<%

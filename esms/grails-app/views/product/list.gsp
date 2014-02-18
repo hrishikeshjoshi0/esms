@@ -7,8 +7,6 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 <body>
-	<bs3:pageHeader pageHeaderLabel="${message(code: 'default.list.label',args:[entityName])}" />
-
 	<filterpane:filterPane 
 		domain="com.esms.model.product.Product"
 		filterProperties="${['productNumber', 'productName','productType','isVirtual']}"
@@ -16,7 +14,7 @@
 		showSortPanel="n" showTitle="n" fullAssociationPathFieldNames="false" />
 
 	<bs3:table
-		columns="${['productName', 'productType','introductionDate','quantityOnHand','incoming','outgoing','']}"
+		columns="${['productName', 'productType','introductionDate','']}"
 		params="${filterParams}"
 		total="${productInstanceTotal?productInstanceTotal:productInstanceList.size()}">
 		<g:each in="${productInstanceList}" var="productInstance">
@@ -28,15 +26,6 @@
 					${fieldValue(bean: productInstance, field: "productType")}
 				</td>
 				<td><g:formatDate date="${productInstance.introductionDate}" /></td>
-				<td>
-					${fieldValue(bean: productInstance, field: "inventory.quantityOnHand")}
-				</td>
-				<td>
-					${fieldValue(bean: productInstance, field: "inventory.incoming")}
-				</td>
-				<td>
-					${fieldValue(bean: productInstance, field: "inventory.outgoing")}
-				</td>
 				<td class="link"><g:link action="show"
 						id="${productInstance.id}" class="btn-sm">Show &raquo;</g:link></td>
 			</tr>

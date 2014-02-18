@@ -10,17 +10,9 @@
 			<th>${message(code: 'quote.organization.name.label', default: 'Organization')} </th>
 
 			<th>
-				${message(code: 'quote.type.label', default: 'Type of Enquiry')}
+				${message(code: 'quote.type.label', default: 'Type')}
 			</th>	
 				
-			<th>
-				Contact Person
-			</th>
-			
-			<th>
-				Contact Number
-			</th>
-			
 			<th>
 				${message(code: 'quote.assignedTo.label', default: 'Assigned To')}
 			</th>		
@@ -29,18 +21,6 @@
 				${message(code: 'quote.status.label', default: 'Status')}
 			</th>
 			
-			<th>
-				${message(code: 'quote.salesChannel.label', default: 'Sales Channel')}
-			</th>
-			
-			<th>
-				${message(code: 'quote.description.label', default: 'Description')}	
-			</th>
-						
-				
-			<th>Disqualify</th>	
-
-			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -50,7 +30,11 @@
 				<g:set var="contact" value="${organization?.contacts?.first()}"/>
 			</g:if>
 			<tr>
-				<td>${fieldValue(bean: quoteInstance, field: "quoteNumber")}</td>
+				<td>
+					<g:link controller="quote" action="show" id="${quoteInstance.id}" class="lnk ">
+						${fieldValue(bean: quoteInstance, field: "quoteNumber")}
+					</g:link>
+				</td>
 				
 				<td><g:link controller="organization" action="show"
 						id="${quoteInstance?.organization?.id}">
@@ -63,41 +47,18 @@
 				</td>
 
 				<td>
-					${contact?.firstName}
-				</td>				
-				<td>
-					<%
-						if(!contact?.phoneBooks?.isEmpty()) {
-							def phoneBook = contact?.phoneBooks?.first()
-							println phoneBook?.mobilePhone
-						}
-					 %>
-				</td>
-
-				<td>
 					${fieldValue(bean: quoteInstance, field: "assignedTo")}
 				</td>
 				
 				<td>
 					${fieldValue(bean: quoteInstance, field: "status")}
 				</td>
-				
-				<td>${fieldValue(bean: quoteInstance, field: "salesChannel")}</td>
-						
-				<td>${fieldValue(bean: quoteInstance, field: "description")}</td>
-				
-				<td class="link"><g:link action="markAsDisqualified" controller="quote"	id="${quoteInstance?.id}" >
-						Disqualify
-					</g:link>
-				</td>
-
-				<td class="link"><g:link controller="quote" action="show" id="${quoteInstance.id}" class="lnk ">Show &raquo;</g:link></td>
 			</tr>
 		</g:each>
 	</tbody>
 	<tfoot>
 		<tr>
-			<th colspan="11" class="link">
+			<th colspan="5" class="link">
 				<g:link controller="quote" action="list">Show All &raquo;</g:link>
 			</th>				
 		</tr>

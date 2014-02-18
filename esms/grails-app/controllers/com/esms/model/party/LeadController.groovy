@@ -68,7 +68,7 @@ class LeadController {
 			contactInstance.description = ''
 			contactInstance.save(flush:true)
 			
-			def secondaryContactInstance = new Contact()
+			/*def secondaryContactInstance = new Contact()
 			secondaryContactInstance = bindData(secondaryContactInstance, params, "secondary")
 			
 			secondaryContactInstance.externalId = utilService.newContactNumber()
@@ -76,17 +76,17 @@ class LeadController {
 			
 			secondaryContactInstance.organization = organizationInstance
 			secondaryContactInstance.description = ''
-			secondaryContactInstance.save(flush:true)
+			secondaryContactInstance.save(flush:true)*/
 			
 			def phoneBookInstance = new PhoneBook()
 			phoneBookInstance = bindData(phoneBookInstance,params,'primary')
 			phoneBookInstance.party = contactInstance
 			phoneBookInstance.save(flush:true)
 			
-			def secondaryPhoneBookInstance = new PhoneBook()
+			/*def secondaryPhoneBookInstance = new PhoneBook()
 			phoneBookInstance = bindData(secondaryPhoneBookInstance,params,'secondary')
 			secondaryPhoneBookInstance.party = secondaryContactInstance
-			secondaryPhoneBookInstance.save(flush:true)
+			secondaryPhoneBookInstance.save(flush:true)*/
 			
 			def shippingAddressInstance = new Address()
 			shippingAddressInstance = bindData(shippingAddressInstance,params,'shipping')
@@ -99,9 +99,9 @@ class LeadController {
 			billingAddressInstance.party = organizationInstance
 			billingAddressInstance.save(flush:true)
 			
-			def liftInfo = new LiftInfo(params)
+			/*def liftInfo = new LiftInfo(params)
 			liftInfo.organization = organizationInstance
-			liftInfo.save(flush:true)
+			liftInfo.save(flush:true)*/
 			
 			flash.message = "New Lead Added." 
 			redirect action: 'show', id: organizationInstance.id

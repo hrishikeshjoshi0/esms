@@ -10,11 +10,6 @@
 	<body>
 		<div class="row">
 			<div class="col-md-12">
-				<div class="page-header">
-					<h3>
-						<g:message code="default.list.label" args="[entityName]" />
-					</h3>
-				</div>
 				
 				<filterpane:filterPane domain="com.esms.model.order.Order"
 		                 filterProperties="${['orderNumber', 'status','type','contactName','archived']}"

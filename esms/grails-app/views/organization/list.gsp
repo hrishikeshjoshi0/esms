@@ -12,9 +12,6 @@
 <body>
 	<div class="row">
 		<div class="col-md-12">
-			<bs3:pageHeader
-				pageHeaderLabel="${message(code: 'default.list.label',args:[entityName])}" />
-
 			<filterpane:filterPane domain="com.esms.model.party.Organization"
 				filterProperties="${['name', 'salesStatus','assignedTo']}"
 				titleKey="default.filterPane.header" dialog="yes" visible="n"
@@ -22,7 +19,7 @@
 				fullAssociationPathFieldNames="false" />
 
 			<div class="table-responsive">
-				<table class="table table-striped table-condensed table-bordered">
+				<table class="table table-striped table-condensed table-bordered table-bordered">
 					<thead>
 						<tr>
 							<g:sortableColumn params="${filterParams}" property="externalId"
@@ -33,8 +30,9 @@
 								Active Contract
 							</th>
 							<g:sortableColumn params="${filterParams}"
-								property="addresses.addressType"
-								title="${message(code: 'address.addressType.label', default: 'Address Type')}" />
+								property="assignedTo"
+								title="${message(code: 'organization.assignedTo.label', default: 'Assigned To')}" />
+							<%--
 							<g:sortableColumn params="${filterParams}"
 								property="addresses.buildingName"
 								title="${message(code: 'address.buildingName.label', default: 'Building Name')}" />
@@ -50,7 +48,7 @@
 							<g:sortableColumn params="${filterParams}"
 								property="liftInfo.numberOfLifts"
 								title="${message(code: 'liftInfo.numberOfLifts.label', default: 'No. Of Lifts')}" />
-							<th></th>
+							--%><th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -70,7 +68,7 @@
 								<td>
 									${organization?.activeServiceContract()}
 								</td>
-								<td>
+								<%--<td>
 									${addressInstance?.buildingName}
 								</td>
 								<td>
@@ -85,7 +83,7 @@
 								<td>
 									${fieldValue(bean: organization, field: "liftInfo.numberOfLifts")}
 								</td>
-								<td class="link"><g:link action="show"
+								--%><td class="link"><g:link action="show"
 										id="${organization?.id}" class="lnk">Show &raquo;</g:link>
 								</td>
 							</tr>

@@ -55,15 +55,10 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				<th colspan="7" class="link">
+				<th colspan="5" class="link">
 					<g:link class="lnk " controller="event" action="overdueEvents">Show All &raquo;</g:link>
 				</th>				
 			</tr>
 		</tfoot>
 	</table>
-	<div class="pgn">
-		<bootstrap:paginate params="${filterParams}"
-			total="${overdueEvents?.size()}" />
-	</div>
-	<br />
 </div>

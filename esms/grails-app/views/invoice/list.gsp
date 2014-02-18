@@ -12,12 +12,6 @@
 <body>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="page-header">
-				<h3>
-					<g:message code="default.list.label" args="[entityName]" />
-				</h3>
-			</div>
-
 			<filterpane:filterPane domain="com.esms.model.invoice.Invoice"
 				filterProperties="${['invoiceNumber', 'status','type','contactName']}"
 				associatedProperties="${['organization.name']}"
@@ -29,7 +23,7 @@
 				<thead>
 					<tr>
 						<th>
-							${message(code: 'invoice.orderNumber.label', default: 'Invoice Number')}
+							${message(code: 'invoice.invoiceNumber.label', default: 'Invoice Number')}
 						</th>
 
 						<th>
@@ -55,13 +49,6 @@
 						<th>
 							${message(code: 'invoice.referenceOrderNumber.label', default: 'Order Number')}
 						</th>
-						<th>Title</th>
-						<th>Assigned To</th>
-						<th>Starts</th>
-						<th>Ends</th>
-						<th>Status</th>
-
-						<th></th>
 
 						<th></th>
 					</tr>
@@ -105,29 +92,6 @@
 									<td>
 										${fieldValue(bean: invoiceInstance, field: "referenceOrderNumber")}
 									</td>
-									<td>
-										${eventInstance?.title}
-									</td>
-									<td>
-										<g:if test="${invoiceInstance?.referenceOrderNumber}">
-											${Order.findByOrderNumber(invoiceInstance?.referenceOrderNumber)?.assignedTo}
-										</g:if>
-									</td>
-									<td><g:formatDate date="${eventInstance?.startTime}" /></td>
-
-									<td><g:formatDate date="${eventInstance?.endTime}" /></td>
-
-									<td>
-										${eventInstance?.status}
-									</td>
-									<td class="link"><g:if test="${eventInstance}">
-											<g:link controller="event" action="show"
-												id="${eventInstance?.id}">
-									Show Event &raquo;
-								</g:link>
-										</g:if> <g:else>
-								-
-							</g:else></td>
 
 									<td class="link"><g:link controller="invoice"
 											action="show" class="lnk " id="${invoiceInstance.id}">Show &raquo;</g:link></td>

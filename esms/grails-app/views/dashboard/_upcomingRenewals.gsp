@@ -5,8 +5,10 @@
 	}
 </script>
 <div class="page-header">
-	<h4>
-		Upcoming Renewals for 
+	<h5>
+		<span style="padding:2px;">
+			By month:
+		</span>
 		<g:select name="upcomingRenewalMonthParam" from="${filteredMonthMap}"
 				optionKey="key" optionValue="value"
 				value="${params.upcomingRenewalMonthParam}"
@@ -19,7 +21,7 @@
 				onchange="${remoteFunction(action: 'upcomingRenewals',onLoading:'updateDiv();',
                        update: [success: 'updateDiv'],method:'GET',onFailure:'$.growl.error({ title: "Error!", message: "There was some technical error." });',
                        params: '\'upcomingRenewalMonthParam=\' + document.getElementById(\'upcomingRenewalMonthParam\').value + \'&upcomingRenewalYearParam=\' + this.value')}"/>                       
-	</h4>
+	</h5>
 </div>
 
 <table class="table table-striped table-condensed table-bordered">
@@ -38,31 +40,23 @@
 			</th>
 
 			<th>
-				${message(code: 'order.contractFromDate.label', default: 'From Date')}
-			</th>
-
-			<th>
 				${message(code: 'order.contractToDate.label', default: 'To Date')}
 			</th>
 
 			<th>Total Amount</th>
 							
-			<th>Invoiced Amount</th>
-						
-			<th>Received Amount</th>
-						
-			<th>Pending Invoice Amount</th>
-
 			<th>Renewal Process</th>
 			
-			<th></th>
 		</tr>
 	</thead>
 	<tbody id="updateDiv">
 		<g:each in="${upcomingRenewals}" var="orderInstance">
 			<tr>
 				<td>
+					<g:link action="show" id="${orderInstance.id}" controller="order"
+								class="lnk ">
 					${fieldValue(bean: orderInstance, field: "orderNumber")}
+					</g:link>
 				</td>
 
 				<td><g:link controller="organization" action="show"
@@ -74,30 +68,17 @@
 					${orderInstance?.organization?.activeServiceContract()}
 				</td>
 
-				<td><g:formatDate date="${orderInstance.contractFromDate}" /></td>
-
 				<td><g:formatDate date="${orderInstance.contractToDate}" /></td>
 
 				<td><g:formatNumber type="number" number="${orderInstance?.grandTotal}" /></td>
 
-				<td><g:formatNumber type="number" number="${orderInstance?.invoicedGrandTotal}" />
-				</td>
-		
-				<td><g:formatNumber type="number"
-						number="${orderInstance?.getReceivedAmount()}" /></td>
-		
-				<td>
-					<g:formatNumber type="number"
-						number="${orderInstance?.pendingInvoiceGrandTotal}" />
-				</td>
-		
 				<td>
 					<g:if test="${orderInstance?.taggedForRenewal == true}">
 								${orderInstance?.getRenewalState()}			
 					</g:if>
 				</td>
 				
-				<td class="link">
+				<%--<td class="link">
 					<div class="btn-group">
 						<g:link action="show" id="${orderInstance.id}" controller="order"
 								class="lnk ">Show</g:link>
@@ -111,18 +92,14 @@
 						</ul>
 					</div>	
 				</td>
-			</tr>
+			--%></tr>
 		</g:each>
 	</tbody>
 	<tfoot>
 		<tr>
-			<th class="link" colspan="12">
+			<th class="link" colspan="6">
 				<g:link controller="report" action="upcomingRenewals" class="lnk ">Show All &raquo;</g:link>
 			</th>				
 		</tr>
 	</tfoot>
 </table>
-<div class="pgn">
-	<bootstrap:paginate params="${filterParams}"
-		total="${upcomingRenewals?.size()}" />
-</div>

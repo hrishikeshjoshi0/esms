@@ -8,21 +8,17 @@
 	<thead>
 		<tr>
 			<th>
-				Building Name
-			</th>
-			
-			<th>
 				${message(code: 'payment.paymentNumber.label', default: 'Payment Number')}
-			</th>	
+			</th>
+				
+			<th>
+				Organization
+			</th>
 
 			<th>
 				${message(code: 'paymentItem.invoiceNumber.label', default: 'Invoice Number')}
 			</th>
 			
-			<th>
-				${message(code: 'paymentItem.orderNumber.label', default: 'Order Number')}
-			</th>	
-
 			<th>
 				${message(code: 'paymentItem.amount.label', default: 'Amount')} 
 			</th>	
@@ -35,7 +31,6 @@
 				${message(code: 'payment.chequeNumber.label', default: 'Cheque Number')}
 			</th>
 				
-			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -44,21 +39,20 @@
 				var="paymentItemInstance">
 				<tr>
 					<td>
-						${paymentItemInstance?.invoice?.organization?.name}
+						<g:link controller="payment" action="show" class="lnk "
+							id="${paymentInstance.id}">
+							${fieldValue(bean: paymentInstance, field: "paymentNumber")}
+						</g:link>
 					</td>
 					
 					<td>
-						${fieldValue(bean: paymentInstance, field: "paymentNumber")}
+						${paymentItemInstance?.invoice?.organization?.name}
 					</td>
 
 					<td>
 						${paymentItemInstance?.invoice?.invoiceNumber}
 					</td>
 					
-					<td>
-						${paymentItemInstance?.invoice?.referenceOrderNumber}
-					</td>
-
 					<td>
 						${fieldValue(bean: paymentItemInstance, field: "amount")}
 					</td>
@@ -70,17 +64,13 @@
 					<td>
 						${fieldValue(bean: paymentInstance, field: "chequeNumber")}
 					</td>
-
-					<td class="link"><g:link controller="payment" action="show" class="lnk "
-							id="${paymentInstance.id}">Show &raquo;</g:link>
-					</td>
 				</tr>
 			</g:each>
 		</g:each>
 	</tbody>
 	<tfoot>
 		<tr>
-			<th colspan="8" class="link">
+			<th colspan="6" class="link">
 				<g:link controller="payment" action="list" class="lnk ">Show All &raquo;</g:link>
 			</th>				
 		</tr>

@@ -53,13 +53,9 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<th class="link" colspan="7">
+			<th class="link" colspan="5">
 				<g:link controller="event" action="upcomingEvents" class="lnk ">Show All &raquo;</g:link>
 			</th>				
 		</tr>
 	</tfoot>
 </table>
-<div class="pgn">
-	<bootstrap:paginate params="${filterParams}"
-		total="${upcomingEvents?.size()}" />
-</div>

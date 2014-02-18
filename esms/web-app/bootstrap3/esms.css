@@ -2,7 +2,7 @@
 
 body {
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 12px;
+	font-size: 11px;
 	padding-top: 95px;
 }
 
@@ -41,9 +41,9 @@ body {
 }
 
 .sortable a {
-	color: #ffffff;
-	background-color: #008cba;
-	border-color: #008cba;
+	color: #333;
+	/*background-color: #008cba;
+	border-color: #008cba;*/
 }
 
 .page-header {
@@ -497,14 +497,14 @@ a.list-group-item:hover,a.list-group-item:focus {
 }
 
 .logo {
- color:red;
+ 	color:red;
 }
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
 	color: #fff;
 	cursor: default;
 	background-color: #008cba;
-	border: 1px solid #007196;
+	border: 1px solid #007196; 
 	border-bottom-color: transparent;
 }
 
