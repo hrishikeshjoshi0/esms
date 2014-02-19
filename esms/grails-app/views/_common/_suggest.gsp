@@ -18,7 +18,7 @@
 	<%--<input class="typeahead col-md-12" id="string-typeahead"
 		spellcheck="false" type="text" autocomplete="off" placeholder="Search..." />
 	--%>
-	<richui:autoComplete name="q"
+	<richui:autoComplete name="q" style="margin-top:5px;"
 		action="${createLinkTo('dir': 'organization/search')}"
 		class="col-md-12" shadow="true" minQueryLength="1"
 		onItemSelect="document.location.href = '${createLinkTo(dir: 'organization/show')}/' + id;" />

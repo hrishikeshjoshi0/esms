@@ -553,3 +553,19 @@ a.list-group-item:hover,a.list-group-item:focus {
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
 	
 }
+
+/* .navbar-nav > li > a {
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+.nav > li > a {
+	position: relative;
+	display: block;
+	padding: 10px 10px;
+}
+
+.navbar {
+	font-size: 12px;
+	font-weight: 300;
+} */
