@@ -57,34 +57,8 @@
 		
 		<div class="row">
 			<div class="col-md-12">
-				<%--<div class="panel panel-default">
-					<div class="panel-body">
-						<g:render template="/_common/message"></g:render>
+				<g:render template="/layouts/actionButtons"></g:render>
 
-						<!-- Body -->
-						<g:layoutBody />
-						<g:pageProperty name="page.body" />
-					</div>
-				</div>
-				--%>
-				<div class="well">
-					<div class="btn-group">
-					  <button type="button" class="btn btn-sm">Archive</button>
-					  <button type="button" class="btn btn-sm">Spam</button>
-					  <button type="button" class="btn btn-sm">Delete</button>
-					  <div class="btn-group">
-					    <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
-					      More
-					      <span class="caret"></span>
-					    </button>
-					    <ul class="dropdown-menu">
-					      <li><a href="#">Dropdown link</a></li>
-					      <li><a href="#">Dropdown link</a></li>
-					    </ul>
-					  </div>
-					</div>
-				</div>
-				
 				<g:render template="/_common/message"></g:render>
 
 				<!-- Body -->
