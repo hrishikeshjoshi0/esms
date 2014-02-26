@@ -19,7 +19,11 @@
 		<%
 			def controller = params.controller
 			def action = params.action
+			def defaultLayoutPath = "/layouts/actions/${controller}/${action}"
 		 %>
-		<g:render template="/layouts/actionButtonPanel/${controller}/${action}"></g:render>
+		<template:renderActions template="${defaultLayoutPath}" /> 
+		<g:render template="${defaultLayoutPath}"></g:render>
 	</div>
 </div>
+
+<hr/>

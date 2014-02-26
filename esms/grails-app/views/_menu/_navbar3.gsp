@@ -7,9 +7,7 @@
 				class="icon-bar"></span>
 		</button>
 		<a class="navbar-brand" href="#"> 
-			<%--<img alt="DexBiz" src="${resource(dir: 'images', file: 'LogoCrmSm_Blue.png')}" />
-			--%> 
-			DEXCRM
+			<img alt="DexBiz" src="${resource(dir: 'images', file: 'Dexbiz_Symbol_Small.png')}" style="height:22px;padding:0px;border-color: #333;"/>
 		</a>
 	</div>
 

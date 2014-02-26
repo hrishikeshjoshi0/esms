@@ -23,12 +23,6 @@
 				</bootstrap:alert>
 			</g:hasErrors>
 
-			<div class="page-header">
-				<h3>
-					<g:message code="default.create.label" args="[entityName]" />
-				</h3>
-			</div>
-			
 			<div class="well">
 				<g:form class="form-horizontal" action="create">
 					<fieldset>
