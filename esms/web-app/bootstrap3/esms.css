@@ -709,11 +709,17 @@ a.list-group-item:hover,a.list-group-item:focus {
 
 .nav-pills > li > a {
 	color: #222;
+	font-size:13px;
 }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
 	color: #222;
 	background-color: #ddd;
+}
+
+a.thumbnail {
+  height:100px;
+  width:100px;		
 }
 
 .detailView {
@@ -725,4 +731,9 @@ a.list-group-item:hover,a.list-group-item:focus {
 	padding: 10px;
 	margin-right: 10px;
 	font-size: 40px;
+}
+
+.form-header {
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 2px;
 }

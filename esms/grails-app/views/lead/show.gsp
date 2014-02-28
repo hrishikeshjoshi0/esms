@@ -13,18 +13,23 @@
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<div class="row">
-					  <div class="col-md-2">
+					<div class="row form-header">
+					  <div class="col-md-1">
 					    <a href="#" class="thumbnail">
 					      <img src="${resource(dir: 'images/icons', file: 'user_icon.png')}" />
 					    </a>
 					  </div>
 					  
 					  <div class="col-md-10">
-					  	<div class="page-header">
-							<h3>
-								${organizationInstance?.externalId}:${organizationInstance?.name}
-							</h3>
+					  	<div class="">
+							<h1>
+								${organizationInstance?.name}
+							</h1>
+							<h4>
+								Account Number : <g:fieldValue bean="${organizationInstance}" field="externalId" /> |
+								Sales Status : <g:fieldValue bean="${organizationInstance}" field="salesStatus" />  |
+								Assigned To : <g:fieldValue bean="${organizationInstance}" field="assignedTo" />
+							</h4>
 						</div>
 					  </div>
 					</div>
@@ -34,34 +39,6 @@
 						<div class="tab-content">
 							<div class="tab-pane active" id="summary">
 								<dl class="dl-horizontal">
-									<dt>
-										<g:message code="organization.externalId.label"
-											default="External Id" />
-									</dt>
-	
-									<dd>
-										<g:fieldValue bean="${organizationInstance}" field="externalId" />
-									</dd>
-	
-									<dt>
-										<g:message code="organization.assignedTo.label"
-											default="Assigned To" />
-									</dt>
-	
-									<dd>
-										<g:fieldValue bean="${organizationInstance}" field="assignedTo" />
-									</dd>
-	
-									<dt>
-										<g:message code="organization.salesStatus.label"
-											default="Sales Status" />
-									</dt>
-	
-									<dd>
-										<g:fieldValue bean="${organizationInstance}"
-											field="salesStatus" />
-									</dd>
-	
 									<dt>
 										<g:message code="organization.isOneTimeCustomer.label"
 											default="Is One Time Customer" />

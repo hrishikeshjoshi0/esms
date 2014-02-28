@@ -1,5 +1,3 @@
-<div class="panel panel-default">
-	<div class="panel-body">
 		<%--<div class="btn-group">
 			<button type="button" class="btn btn-sm">Archive</button>
 			<button type="button" class="btn btn-sm">Spam</button>
@@ -20,10 +18,8 @@
 			def controller = params.controller
 			def action = params.action
 			def defaultLayoutPath = "/layouts/actions/${controller}/${action}"
+			
 		 %>
-		<template:renderActions template="${defaultLayoutPath}" /> 
-		<g:render template="${defaultLayoutPath}"></g:render>
+		 <template:renderActions  /> 
 	</div>
 </div>
-
-<hr/>

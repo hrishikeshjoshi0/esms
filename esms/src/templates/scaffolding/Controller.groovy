@@ -1,17 +1,38 @@
-<%=packageName ? "package ${packageName}\n\n" : ''%>import org.springframework.dao.DataIntegrityViolationException
+<%=packageName ? "package ${packageName}\n\n" : ''%>
+import org.springframework.dao.DataIntegrityViolationException
+import org.grails.plugin.filterpane.FilterPaneUtils
 
 class ${className}Controller {
 
     static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
+
+    def filterPaneService
 
     def index() {
         redirect action: 'list', params: params
     }
 
     def list() {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        if(!params.offset) {
+			params.offset= 0
+		}
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
         [${propertyName}List: ${className}.list(params), ${propertyName}Total: ${className}.count()]
     }
+
+    def filter = {
+		if(!params.offset) {
+			params.offset= 0
+		}
+		if(!params.max) {
+			params.max= grailsApplication.config.esms.settings.max?.toInteger()
+		}
+		
+		render( view:'list', model:[ ${propertyName}List: filterPaneService.filter( params, ${className}), 
+			${propertyName}Total: filterPaneService.count( params, ${className}), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
+	}
 
     def create() {
 		switch (request.method) {
