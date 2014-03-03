@@ -23,9 +23,9 @@
 				</bootstrap:alert>
 			</g:hasErrors>
 
+			<div class="well">
 			<fieldset>
-				<g:form class="form-horizontal" action="create"
-					>
+				<g:form class="form-horizontal" action="create">
 					<fieldset>
 						<div class="row">
 							<div class="col-md-6">
@@ -41,6 +41,7 @@
 					</fieldset>
 				</g:form>
 			</fieldset>
+			</div>
 		</div>
 	</div>
 </body>

@@ -725,6 +725,7 @@ a.thumbnail {
 .detailView {
 	border-right: 1px solid #ddd;
 	min-height: 500px;
+	padding:10px;
 }
 
 .header-icon {

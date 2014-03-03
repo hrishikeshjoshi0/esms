@@ -11,7 +11,7 @@ import org.junit.*
 @TestFor(Quote)
 class QuoteTests {
 
-    void testSomething() {
-       fail "Implement me"
-    }
+	void testSomething() {
+	   fail "Implement me"
+	}
 }

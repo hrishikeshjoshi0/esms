@@ -29,4 +29,26 @@ class TemplateTagLib {
 			}
 		}		
 	}
+	
+	def header = { attrs,body->
+		out << 
+		"""
+		<div class="row form-header">
+			<div class="col-md-1">
+				<a href="#" class="thumbnail"> <img
+					src="${g.resource(dir: 'images/icons', file: 'user_icon.png')}" />
+				</a>
+			</div>
+			
+			<div class="col-md-10">
+				<div class="">
+					<h1>${attrs.heading}</h1>
+					<h4>
+						${attrs.subheading?attrs.subheading:''}
+					</h4>
+				</div>
+			</div>
+		</div>
+		"""
+	}
 }

@@ -22,21 +22,31 @@
 					</ul>
 				</bootstrap:alert>
 			</g:hasErrors>
-
-			<div class="well">
-				<g:form class="form-horizontal" action="create">
-					<fieldset>
-						<g:render template="form"></g:render>
-						<div class="form-group">
-							<div class="col-md-10 col-md-offset-2">
-								<button type="submit" class="btn btn-sm btn-primary">
-									<g:message code="default.button.create.label" default="Create" />
-								</button>
-							</div>
-						</div>
-					</fieldset>
-				</g:form>
-			</div>			
+			
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<!--  header -->
+						<template:header heading="Create New Lead" />
+						<!--  header -->
+						
+						<div class="col-md-12 detailView">
+							<g:form class="form-horizontal" action="create">
+								<fieldset>
+									<g:render template="form"></g:render>
+									<div class="form-group">
+										<div class="col-md-10 col-md-offset-2">
+											<button type="submit" class="btn btn-sm btn-primary">
+												<g:message code="default.button.create.label" default="Create" />
+											</button>
+										</div>
+									</div>
+								</fieldset>
+							</g:form>		
+						</div>						
+					</div>
+				</div>
+			</div>	
 		</div>
 	</div>
 </body>

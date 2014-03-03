@@ -13,26 +13,10 @@
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<div class="row form-header">
-					  <div class="col-md-1">
-					    <a href="#" class="thumbnail">
-					      <img src="${resource(dir: 'images/icons', file: 'user_icon.png')}" />
-					    </a>
-					  </div>
-					  
-					  <div class="col-md-10">
-					  	<div class="">
-							<h1>
-								${organizationInstance?.name}
-							</h1>
-							<h4>
-								Account Number : <g:fieldValue bean="${organizationInstance}" field="externalId" /> |
-								Sales Status : <g:fieldValue bean="${organizationInstance}" field="salesStatus" />  |
-								Assigned To : <g:fieldValue bean="${organizationInstance}" field="assignedTo" />
-							</h4>
-						</div>
-					  </div>
-					</div>
+					
+					<template:header heading="${organizationInstance?.name}" 
+								subheading="Account Number : ${organizationInstance.externalId} | Sales Status : ${organizationInstance.salesStatus} |
+											Assigned To : ${organizationInstance.assignedTo}" />
 					
 					<!--  Detail View  -->
 					<div class="col-md-10 detailView">
