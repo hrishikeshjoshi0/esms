@@ -28,6 +28,9 @@
 				<g:if test="${!contactInstance?.phoneBooks?.empty}">
 					<g:set value="${contactInstance?.phoneBooks?.find{true}}" var="phoneBookInstance" />
 				</g:if>
+				<g:else>
+					<g:set var="phoneBookInstance" value="${null}"  />
+				</g:else>
 				<tr>
 					<td>
 						${fieldValue(bean: contactInstance, field: "externalId")}
@@ -42,6 +45,7 @@
 						${fieldValue(bean: contactInstance, field: "lastName")}
 					</td>
 					
+					<g:if test="${phoneBookInstance}">
 					<td>${fieldValue(bean: phoneBookInstance, field: "email")}</td>
 							
 					<td>${fieldValue(bean: phoneBookInstance, field: "homePhone")}</td>
@@ -51,6 +55,14 @@
 					<td>${fieldValue(bean: phoneBookInstance, field: "officePhone")}</td>
 							
 					<td>${fieldValue(bean: phoneBookInstance, field: "otherPhone")}</td>
+					</g:if>
+					<g:else>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</g:else>
 							
 					<td class="link"><g:link action="show" controller="contact"
 							id="${contactInstance.id}" class="lnk ">Show</g:link>

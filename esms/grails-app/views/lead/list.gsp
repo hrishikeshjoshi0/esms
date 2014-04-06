@@ -47,7 +47,7 @@
 								title="${message(code: 'address.city.label', default: 'City')}" />
 							<g:sortableColumn params="${filterParams}"
 								property="liftInfo.numberOfLifts"
-								title="${message(code: 'liftInfo.numberOfLifts.label', default: 'No. Of Lists')}" />
+								title="${message(code: 'liftInfo.numberOfLifts.label', default: 'No. Of Lifts')}" />
 							<th></th>
 						</tr>
 					</thead>

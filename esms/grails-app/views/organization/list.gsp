@@ -65,10 +65,10 @@
 									${fieldValue(bean: organization, field: "name")}
 								</td>
 								<td>
-									${fieldValue(bean: organization, field: "assignedTo")}
+									${organization?.activeServiceContract()}
 								</td>
 								<td>
-									${organization?.activeServiceContract()}
+									${addressInstance?.addressType}
 								</td>
 								<td>
 									${addressInstance?.buildingName}
