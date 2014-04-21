@@ -80,7 +80,9 @@
 									<%
 										if(!organization?.contacts?.isEmpty()) {
 											def contact = organization?.contacts?.first()
-											println contact?.phoneBooks?.first()?.mobilePhone
+											if(!contact?.phoneBooks?.isEmpty()) {
+												println contact?.phoneBooks?.first()?.mobilePhone
+											}
 										}
 									 %>
 								</td>

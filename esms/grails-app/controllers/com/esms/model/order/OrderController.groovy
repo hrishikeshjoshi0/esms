@@ -273,7 +273,7 @@ class OrderController {
 			
 			def invoices = Invoice.findAllByReferenceOrderNumber(orderInstance?.orderNumber)
 			
-			def events = Event.findAllByRelatedToValue(orderInstance?.orderNumber)
+			def events = Event.findAllByRelatedToValueAndSourceEvent(orderInstance?.orderNumber,null)
 			
 			def renewalQuote
 			if(orderInstance?.renewalStage == 'TAGGED_FOR_RENEWAL' || orderInstance?.renewalStage == 'RENEWAL_WON' || orderInstance?.renewalStage == 'RENEWAL_LOST') {

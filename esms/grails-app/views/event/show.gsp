@@ -179,6 +179,16 @@
 									<g:fieldValue bean="${eventInstance}"
 										field="maintenanceVisitTechnician" />
 								</dd>
+								
+								<dt>
+									<g:message code="event.maintenanceVisitSignedOffBy.label"
+										default="Signed Off By" />
+								</dt>
+
+								<dd>
+									<g:fieldValue bean="${eventInstance}"
+										field="maintenanceVisitSignedOffBy" />
+								</dd>
 
 								<dt>
 									<g:message code="event.maintenanceVisitTechnicianNotes.label"

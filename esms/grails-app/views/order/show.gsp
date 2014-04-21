@@ -155,7 +155,7 @@
 							</dd>
 							
 							<dt>
-								<g:message code="invoice.referenceQuoteNumber.label"
+								<g:message code="order.referenceQuoteNumber.label"
 									default="Reference Quote Number" />
 							</dt>
 
