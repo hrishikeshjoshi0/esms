@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap3">
+<meta name="layout" content="main">
 <g:set var="entityName"
 	value="${message(code: 'lead.label', default: 'Lead')}" />
 <title>Lead::${organizationInstance?.externalId}:${organizationInstance?.name}

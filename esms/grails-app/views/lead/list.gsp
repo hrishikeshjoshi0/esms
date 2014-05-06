@@ -4,7 +4,7 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="bootstrap3">
+<meta name="layout" content="main">
 <g:set var="entityName"
 	value="${message(code: 'organization.label', default: 'Leads')}" />
 <title><g:message code="default.list.label" args="[entityName]" /></title>
@@ -17,6 +17,28 @@
 				titleKey="default.filterPane.header" dialog="yes" visible="n"
 				showSortPanel="y" showTitle="y" showButtons="y"
 				fullAssociationPathFieldNames="false" />
+
+			<div class="row pad">
+				<div class="col-sm-6">
+					<!-- Action button -->
+					<div class="btn-group">
+						<button type="button"
+							class="btn btn-default btn-sm btn-flat dropdown-toggle"
+							data-toggle="dropdown">
+							Action <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<g:link controller="lead" action="create">
+									Create Lead
+								</g:link>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+			<!-- /.row -->
 
 			<div class="table-responsive">
 				<table class="table table-striped table-condensed table-bordered">
@@ -75,7 +97,8 @@
 								<td>
 									${addressInstance?.city}
 								</td>
-								--%><td class="link"><g:link action="show"
+								--%>
+								<td class="link"><g:link action="show"
 										id="${organization?.id}" class="lnk ">Show &raquo;</g:link>
 								</td>
 							</tr>
