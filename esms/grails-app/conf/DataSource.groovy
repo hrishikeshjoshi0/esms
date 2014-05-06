@@ -15,11 +15,11 @@ environments {
 		grails.paypal.email = "testpp_1211202427_biz@g2one.com"
 		grails.serverURL = ""
 		
-		dataSource {
+		dataSource {md
 			dbCreate = "update" // one of 'create', 'create-drop','update'
 			url = "jdbc:mysql://localhost:3306/esms?useUnicode=yes&characterEncoding=UTF-8"
 			username = "root"
-			password = "admin"
+			password = ""
 			pooled = true
 			properties {
 			   maxActive = -1
