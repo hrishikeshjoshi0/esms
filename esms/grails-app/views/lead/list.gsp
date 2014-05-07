@@ -18,28 +18,6 @@
 				showSortPanel="y" showTitle="y" showButtons="y"
 				fullAssociationPathFieldNames="false" />
 
-			<div class="row pad">
-				<div class="col-sm-6">
-					<!-- Action button -->
-					<div class="btn-group">
-						<button type="button"
-							class="btn btn-default btn-sm btn-flat dropdown-toggle"
-							data-toggle="dropdown">
-							Action <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li>
-								<g:link controller="lead" action="create">
-									Create Lead
-								</g:link>
-							</li>
-						</ul>
-					</div>
-
-				</div>
-			</div>
-			<!-- /.row -->
-
 			<div class="table-responsive">
 				<table class="table table-striped table-condensed table-bordered">
 					<thead>

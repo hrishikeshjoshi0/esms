@@ -1,6 +1,8 @@
 <g:set var="entityName"
 	value="${message(code: params.controller+'.label', default: params.controller.substring(0,1).toUpperCase() 
 					+ params.controller.substring(1).toLowerCase())}" />
+<div class="well">
+					
 <!-- Action button -->
 <div class="btn-group">
 	<button type="button"
@@ -27,4 +29,6 @@
 		<li class="divider"></li>
 		<li><a href="#">Delete</a></li>
 	</ul>
+</div>
+
 </div>

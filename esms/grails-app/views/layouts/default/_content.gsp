@@ -17,7 +17,7 @@
 	<section class="content">
 		<g:render template="/_common/message" />
 		
-		<g:render template="actions" />
+		<g:render template="/layouts/default/actions"/>
 		
 		<g:layoutBody />
 		<g:pageProperty name="page.body" />

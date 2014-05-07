@@ -30,6 +30,9 @@ class Address {
 		address1 blank:false
 		address2 nullable:true,blank:true
 		addressType inList:['SHIPPING','BILLING','RESIDENTIAL','CARE-OFF']
+		city nullable:true,blank:true
+		state nullable:true,blank:true
+		postalCode nullable:true,blank:true
 		area nullable:true,blank:true
 		route nullable:true,blank:true
 		landmark nullable:true,blank:true

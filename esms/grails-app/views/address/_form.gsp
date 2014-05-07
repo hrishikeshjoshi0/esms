@@ -55,11 +55,14 @@
 </div>
 
 <div
-	class="form-group fieldcontain ${hasErrors(bean: addressInstance, field: 'buildingName', 'error')} ">
+	class="form-group fieldcontain ${hasErrors(bean: addressInstance, field: 'buildingName', 'error')} required">
 	<label for="buildingName" class="col-md-3 control-label"><g:message
-			code="address.buildingName.label" default="Building Name" /></label>
+			code="address.buildingName.label" default="Building Name" />
+		<span
+		class="required-indicator">*</span>		
+	</label>
 	<div class="col-md-9">
-		<g:textField name="buildingName" class="form-control"
+		<g:textField name="buildingName" required=""  class="form-control"
 			value="${addressInstance?.buildingName}" />
 		<span class="help-inline">
 			${hasErrors(bean: addressInstance, field: 'buildingName', 'error')}
@@ -70,9 +73,10 @@
 <div
 	class="form-group fieldcontain ${hasErrors(bean: addressInstance, field: 'city', 'error')} ">
 	<label for="city" class="col-md-3 control-label"><g:message
-			code="address.city.label" default="City" /></label>
+			code="address.city.label" default="City" /><span
+		class="required-indicator">*</span>	</label>
 	<div class="col-md-9">
-		<g:textField name="city" value="${addressInstance?.city}" class="form-control" />
+		<g:textField name="city" required="" value="${addressInstance?.city}" class="form-control" />
 		<span class="help-inline">
 			${hasErrors(bean: addressInstance, field: 'city', 'error')}
 		</span>
@@ -106,9 +110,10 @@
 <div
 	class="form-group fieldcontain ${hasErrors(bean: addressInstance, field: 'postalCode', 'error')} ">
 	<label for="postalCode" class="col-md-3 control-label"><g:message
-			code="address.postalCode.label" default="Postal Code" /></label>
+			code="address.postalCode.label" default="Postal Code" /><span
+		class="required-indicator">*</span>	</label>
 	<div class="col-md-9">
-		<g:textField name="postalCode" value="${addressInstance?.postalCode}" class="form-control" />
+		<g:textField name="postalCode" required=""  value="${addressInstance?.postalCode}" class="form-control" />
 		<span class="help-inline">
 			${hasErrors(bean: addressInstance, field: 'postalCode', 'error')}
 		</span>
