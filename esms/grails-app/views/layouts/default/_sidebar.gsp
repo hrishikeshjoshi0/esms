@@ -10,13 +10,16 @@
 												alt="User Image" />
 			</div>
 			<div class="pull-left info">
-				<p>Hello, Jane</p>
-
-				<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+				<p>Hello, <sec:username /> </p>
+				<a href="#">
+					<i class="fa fa-circle text-success"></i> 
+					Online
+				</a>
 			</div>
 		</div>
+
 		<!-- search form -->
-		<form action="#" method="get" class="sidebar-form">
+		<%--<form action="#" method="get" class="sidebar-form">
 			<div class="input-group">
 				<input type="text" name="q" class="form-control"
 					placeholder="Search..." /> <span class="input-group-btn">
@@ -28,6 +31,8 @@
 			</div>
 		</form>
 		<!-- /.search form -->
+		--%>
+		
 		<!-- sidebar menu: : style can be found in sidebar.less -->
 		<ul class="sidebar-menu">
 			<li <%= 'dashboard' == controllerName ? ' class="active"' : '' %>>
@@ -35,9 +40,10 @@
 				  		<i class="fa fa-dashboard"></i> <span>Dashboard</span>
 				</g:link>
 			</li>
-			<li class="treeview <%= 'lead' == controllerName ? ' active' : '' %>">
+			
+			<li class="treeview <%= ['lead','organization'].contains(controllerName)  ? ' active' : '' %>">
 				<a href="#"> 
-					<i class="fa fa-bar-chart-o"></i> 
+					<i class="fa fa-users"></i> 
 					<span>CRM</span> 
 					<i class="fa fa-angle-left pull-right"></i>
 				</a>
@@ -55,7 +61,96 @@
 					</li>
 				</ul>
 			</li>
-			<li class="treeview"><a href="#"> <i class="fa fa-laptop"></i>
+			
+			<li class="treeview <%= ['quote','order'].contains(controllerName)  ? ' active' : '' %>">
+				<a href="#"> 
+					<i class="fa fa-briefcase"></i>
+					<span>Sales</span> 
+					<i class="fa fa-angle-left pull-right"></i>
+				</a>
+				<ul class="treeview-menu">
+					<li <%= 'quote' == controllerName ? ' class="active"' : '' %>>
+						<g:link controller="quote">
+								Quotes
+						</g:link>
+					</li>
+					<li
+						<%= 'order' == controllerName ? ' class="active"' : '' %>>
+						<g:link controller="order">
+							 	Orders
+						</g:link>
+					</li>
+				</ul>
+			</li>
+			
+			<li class="treeview <%= ['invoice','payment'].contains(controllerName)  ? ' active' : '' %>">
+				<a href="#"> 
+					<i class="fa fa-money"></i>
+					<span>Invoicing</span> 
+					<i class="fa fa-angle-left pull-right"></i>
+				</a>
+				<ul class="treeview-menu">
+					<li <%= 'invoice' == controllerName ? ' class="active"' : '' %>>
+						<g:link controller="invoice">
+							Invoices
+						</g:link>
+					</li>
+					<li
+						<%= 'payment' == controllerName ? ' class="active"' : '' %>>
+						<g:link controller="payment">
+							Payment
+						</g:link>
+					</li>
+				</ul>
+			</li>
+			
+			<li <%= 'product' == controllerName ? ' class="active"' : '' %>>
+				<g:link controller="product">
+				  	<i class="fa fa-cogs"></i>
+				  	<span>Products</span>
+				</g:link>
+			</li>
+			
+			<li <%= 'event' == controllerName ? ' class="active"' : '' %>>
+				<g:link
+					controller="event"> 
+					<i class="fa fa-calendar"></i>
+					<span>Calendar</span> 
+					<%--<small class="badge pull-right bg-red">3</small>
+					--%>
+				</g:link>
+			</li>
+			
+			<li class="treeview <%= ['report'].contains(controllerName)  ? ' active' : '' %>">
+				<a href="#"> 
+					<i class="fa fa-bar-chart-o"></i>
+					<span>Reports</span> 
+					<i class="fa fa-angle-left pull-right"></i>
+				</a>
+				<ul class="treeview-menu">
+					<li><g:link controller="report" action="upcomingRepairs">
+							<g:message code="default.button.upcomingRepairs.label"
+								default="Upcoming Repairs" />
+						</g:link></li>
+
+					<li><g:link controller="report" action="upcomingRenewals">
+							<g:message code="default.button.upcomingRenewals.label"
+								default="Upcoming Renewals" />
+						</g:link></li>
+
+					<li><g:link controller="report" action="amountReceivables">
+							<g:message code="default.button.amountReceivables.label"
+								default="Amount Receivables" />
+						</g:link></li>
+
+					<li><g:link controller="report" action="toBeReplaced">
+							<g:message code="default.button.toBeReplaced.label"
+								default="To Be Replaced" />
+						</g:link></li>
+				</ul> 
+			</li>
+			
+			<%--<li class="treeview"><a href="#"> <i class="fa fa-laptop"></i>
 					<span>UI Elements</span> <i class="fa fa-angle-left pull-right"></i>
 			</a>
 				<ul class="treeview-menu">
@@ -90,9 +185,7 @@
 					<li><a href="../tables/data.html"><i
 							class="fa fa-angle-double-right"></i> Data tables</a></li>
 				</ul></li>
-			<li><a href="../calendar.html"> <i class="fa fa-calendar"></i>
-					<span>Calendar</span> <small class="badge pull-right bg-red">3</small>
-			</a></li>
+			
 			<li><a href="../mailbox.html"> <i class="fa fa-envelope"></i>
 					<span>Mailbox</span> <small class="badge pull-right bg-yellow">12</small>
 			</a></li>
@@ -116,6 +209,7 @@
 					<li><a href="blank.html"><i
 							class="fa fa-angle-double-right"></i> Blank Page</a></li>
 				</ul></li>
+			--%>
 		</ul>
 	</section>
 	<!-- /.sidebar -->

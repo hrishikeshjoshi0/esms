@@ -1,11 +1,10 @@
 <!doctype html>
 <html>
 <head>
-		<meta name="layout" content="dashboardLayout">
+		<meta name="layout" content="bootstrap3">
 		<g:set var="entityName" value="${message(code: 'organization.label', default: 'Leads')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
-	<meta name="layout" content="dashboardLayout" />
 	<title>DexCRM</title>
 	<style>
 		.row {

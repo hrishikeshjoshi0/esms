@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<meta name="layout" content="dashboardLayout" />
+<meta name="layout" content="bootstrap3" />
 <title>DexCRM</title>
 </head>
 <body>

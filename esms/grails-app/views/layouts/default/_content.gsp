@@ -1,6 +1,7 @@
 <!-- Right side column. Contains the navbar and content of the page -->
 <aside class="right-side">
 	<!-- Content Header (Page header) -->
+	<%--
 	<section class="content-header">
 		<h1>
 			Blank page 
@@ -12,12 +13,11 @@
 			<li class="active">Blank page</li>
 		</ol>
 	</section>
+	--%>
 
 	<!-- Main content -->
 	<section class="content">
 		<g:render template="/_common/message" />
-		
-		<g:render template="/layouts/default/actions"/>
 		
 		<g:layoutBody />
 		<g:pageProperty name="page.body" />
