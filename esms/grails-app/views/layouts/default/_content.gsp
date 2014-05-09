@@ -16,7 +16,7 @@
 	--%>
 
 	<!-- Main content -->
-	<section class="content">
+	<section class="content page">
 		<g:render template="/_common/message" />
 		
 		<g:layoutBody />

@@ -145,7 +145,8 @@ $(function() {
         "font-size": "16px",
         "z-index": "999999",
         cursor: "pointer",
-        color: "#ddd"
+        color: "#ddd",
+        display :"none"
     }).html("<i class='fa fa-gear'></i>").addClass("no-print");
 
     var demo_settings = $("<div />").css({

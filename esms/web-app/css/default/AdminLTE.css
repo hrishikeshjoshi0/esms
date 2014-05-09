@@ -98,7 +98,7 @@ body.fixed .wrapper {
 /* Content */
 .content {
   padding: 20px 15px;
-  background: #f9f9f9;
+  background: #fff;
 }
 /* Utility */
 /* H1 - H6 font */
@@ -1721,6 +1721,7 @@ Component: timeline
   left: 18px;
   top: 0;
 }
+
 /*
     Component: Buttons
 -------------------------
@@ -1737,7 +1738,7 @@ Component: timeline
 }
 .btn.btn-default {
   background-color: #fafafa;
-  color: #666;
+  /* color: #666; */
   border-color: #ddd;
   border-bottom-color: #ddd;
 }
@@ -2370,6 +2371,15 @@ Component: timeline
 .invoice-title {
   margin-top: 0;
 }
+
+.page {
+	position: relative;
+	width: 98%;
+	margin: 10px auto;
+	background: #fff;
+	border: 1px solid #f4f4f4;
+}
+
 /* Enhancement for printing */
 @media print {
   .invoice {
