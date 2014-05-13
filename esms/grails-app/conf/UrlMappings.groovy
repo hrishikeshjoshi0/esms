@@ -13,5 +13,9 @@ class UrlMappings {
 		"/"(controller : "dashboard", action : "index")
 		"/dashboard"(view:"/dashboard")
 		"500"(view:'/error')
+		
+		"/event/list.json"(controller:"event", action:"list") {
+			format = "json"
+		}		
 	}
 }

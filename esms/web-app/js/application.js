@@ -95,7 +95,9 @@ function openModalBox(data,title) {
 
 function configureDropdowns() {
 	var p = $("select:not([name^='filter.'])");
-	$(p).chosen();
+	if(p) {
+		$(p).chosen();
+	}
 }
 
 (function($){

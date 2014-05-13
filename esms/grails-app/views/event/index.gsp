@@ -10,7 +10,6 @@
 	<script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.qtip.min.js')}"></script>
 	<script type="text/javascript" src="${resource(dir: 'js', file: 'fullcalendar.min.js')}"></script>
 	<script type="text/javascript" src="${resource(dir: 'js', file: 'bootstrapx-clickover.js')}"></script>
-	
 	<title>Calendar</title>
 </head>
 <body>

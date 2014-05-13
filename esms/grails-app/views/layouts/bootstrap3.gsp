@@ -25,13 +25,14 @@
         <!-- Theme style -->
         <link href="${resource(dir: 'css/default', file: 'AdminLTE.css')}" rel="stylesheet" type="text/css" />
         
-        <filterpane:includes />
+        <r:require module="filterpane" />
 		<resource:dateChooser />
 		<resource:autoComplete skin="esmsAutocomplete" />
 		<resource:tabView />
 		
-		<script src="${resource(dir: 'js', file: 'jquery-1.7.1.min.js')}"></script>
+		<script src="${resource(dir: 'js', file: 'jquery-1.10.2.min.js')}"></script>
 		<script src="${resource(dir: 'js', file: 'jquery-ui-1.8.18.custom.min.js')}"></script>
+		
 		<!-- ADD JQUERY PLUGINS BELOW THIS LINE -->
 		
 		<script type="text/javascript" src="${resource(dir: 'js', file: 'prettify.js')}"></script>
@@ -41,7 +42,7 @@
 		<script src="${resource(dir: 'js', file: 'chosen.jquery.min.js')}"></script>
 		<script src="${resource(dir: 'js', file: 'jquery.expand.js')}"></script>
 		<script src="${resource(dir: 'js', file: 'jquery.growl.js')}"></script>
-        
+		
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -66,9 +67,9 @@
 		<!-- Bootstrap -->
         <script src="${resource(dir: 'js', file: 'bootstrap.min.js')}" type="text/javascript"></script>
         <script src="${resource(dir: 'js/AdminLTE', file: 'app.js')}" type="text/javascript"></script>
-        
 		<link rel="stylesheet"
 			href="${resource(dir: 'bootstrap3', file: 'esms.css')}" media="screen">
+			
         <g:javascript library="application" />
 		<r:layoutResources disposition="defer" />
 	</body>

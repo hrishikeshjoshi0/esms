@@ -19,6 +19,10 @@
 	<section class="content page">
 		<g:render template="/_common/message" />
 		
+		<g:if test="${params.action == 'list' || params.action == 'filter'}">
+			<g:render template="/layouts/default/actions" />
+		</g:if>
+		
 		<g:layoutBody />
 		<g:pageProperty name="page.body" />
 	</section>

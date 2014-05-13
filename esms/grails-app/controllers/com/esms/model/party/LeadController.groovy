@@ -12,7 +12,7 @@ class LeadController {
 	def accountService
 	
 	def utilService
-
+	
     def index() {
         redirect action: 'list', params: params
     }

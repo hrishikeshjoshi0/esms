@@ -16,6 +16,7 @@
 				<h3>
 					Quote:${quoteInstance?.quoteName}
 					${quoteInstance?.quoteNumber} :
+					
 					<g:link controller="organization" action="show"
 						id="${quoteInstance?.organization?.id}">
 						${quoteInstance?.organization?.name}

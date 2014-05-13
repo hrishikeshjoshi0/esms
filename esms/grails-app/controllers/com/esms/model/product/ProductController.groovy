@@ -1,9 +1,8 @@
 package com.esms.model.product
-import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.dao.DataIntegrityViolationException
 
-import com.esms.model.order.OrderItem;
-import com.esms.model.quote.QuoteItem;
+import com.esms.model.order.OrderItem
+import com.esms.model.quote.QuoteItem
 
 class ProductController {
 
@@ -14,7 +13,7 @@ class ProductController {
 	def productService
 	
 	def utilService
-
+	
 	def index() {
 		redirect action: 'list', params: params
 	}
@@ -37,7 +36,7 @@ class ProductController {
 			params.max= grailsApplication.config.esms.settings.max?.toInteger()
 		}
 		render( view:'list', model:[ productInstanceList: filterPaneService.filter( params, Product),
-			productInstanceCount: filterPaneService.count( params, Product), filterParams: FilterPaneUtils.extractFilterParams(params), params:params ] )
+			productInstanceCount: filterPaneService.count( params, Product), filterParams: org.grails.plugin.filterpane.FilterPaneUtils.extractFilterParams(params), params:params ] )
 	}
 
 	def create() {

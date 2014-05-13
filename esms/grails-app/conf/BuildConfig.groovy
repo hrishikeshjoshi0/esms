@@ -77,7 +77,10 @@ grails.project.dependency.resolution = {
 		//compile ":jquery-ui:1.8.24"
 		
 		//compile ":filterpane:2.0.1.1"
-		compile ":filterpane:2.2.5"
+		//compile ":filterpane:2.2.5"
+		compile ":filterpane:2.4.2"
+		
+		//compile ":easygrid:1.5.1"
 		
 		//compile ":spring-security-core:1.2.7.3"
 		compile ':spring-security-core:2.0-RC2', {

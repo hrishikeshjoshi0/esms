@@ -5,18 +5,38 @@
 	<section class="sidebar">
 		<!-- Sidebar user panel -->
 		<div class="user-panel">
-			<div class="pull-left image">
-				<img src="${resource(dir: 'img', file: 'avatar3.png')}" class="img-circle"
-												alt="User Image" />
+			<%--<div class="btn-group">
+				<button type="button"
+					class="btn btn-success btn-sm btn-flat dropdown-toggle"
+					data-toggle="dropdown">
+					<i class="fa fa-cog"></i> General <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<!-- Create New Xxx -->
+					<li><g:link controller="product">
+							<i class="fa fa-plus"></i> 
+					CRM
+				</g:link></li>
+					<li><g:link controller="product">
+							<i class="fa fa-plus"></i> 
+					Products
+				</g:link></li>
+					<li><g:link controller="product">
+							<i class="fa fa-plus"></i> 
+					Sales
+				</g:link></li>
+					<li><g:link controller="product">
+							<i class="fa fa-plus"></i> 
+					Job Center
+				</g:link></li>
+					<li><g:link controller="product">
+							<i class="fa fa-plus"></i> 
+					Finance
+				</g:link></li>
+					<!-- Create New Xxx Ends -->
+				</ul>
 			</div>
-			<div class="pull-left info">
-				<p>Hello, <sec:username /> </p>
-				<a href="#">
-					<i class="fa fa-circle text-success"></i> 
-					Online
-				</a>
-			</div>
-		</div>
+		--%></div>
 
 		<!-- search form -->
 		<%--<form action="#" method="get" class="sidebar-form">
