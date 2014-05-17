@@ -12,6 +12,15 @@
 						default="Create Repair Event" />
 				</g:link>
 			</g:if></li>
+		<li>
+			<g:if test="${sourceEvent?.eventType == 'INSTALLATION WORK' }">
+				<g:link action="create" controller="event"
+					params="[isAssociatedEvent:true,'sourceEvent.id':sourceEvent?.id,'party.id':sourceEvent?.party?.id,relatedTo:'EVENT',relatedToValue:sourceEvent?.relatedToValue,eventType:'INSTALLATION WORK']">
+					<g:message code="default.button.createRepairEvent.label"
+						default="Create Installation Event" />
+				</g:link>
+			</g:if>
+		</li>	
 		<li><g:if test="${sourceEvent?.eventType == 'MODERNIZATION WORK' }">
 				<g:link action="create" controller="event"
 					params="[isAssociatedEvent:true,'sourceEvent.id':sourceEvent?.id,'party.id':sourceEvent?.party?.id,relatedTo:'EVENT',relatedToValue:sourceEvent?.relatedToValue,eventType:'MODERNIZATION WORK']">

@@ -18,7 +18,7 @@ class LiftInfoController {
     def create() {
 		switch (request.method) {
 		case 'GET':
-        	[liftInfoInstance: new LiftInfo(params)]
+			[liftInfoInstance: new LiftInfo(params)]
 			break
 		case 'POST':
 	        def liftInfoInstance = new LiftInfo(params)

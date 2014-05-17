@@ -28,7 +28,8 @@
 								title="${message(code: 'organization.name.label', default: 'Name')}" />
 							<g:sortableColumn params="${filterParams}" property="assignedTo"
 								title="${message(code: 'organization.assignedTo.label', default: 'Assigned To')}" />
-							<%--<g:sortableColumn params="${filterParams}"
+							<%--
+							<g:sortableColumn params="${filterParams}"
 								property="addresses.addressType"
 								title="${message(code: 'address.addressType.label', default: 'Address Type')}" />
 							<g:sortableColumn params="${filterParams}"
@@ -43,7 +44,11 @@
 							<g:sortableColumn params="${filterParams}"
 								property="addresses.city"
 								title="${message(code: 'address.city.label', default: 'City')}" />
-							--%><th></th>
+							<g:sortableColumn params="${filterParams}"
+								property="liftInfo.numberOfLifts"
+								title="${message(code: 'liftInfo.numberOfLifts.label', default: 'No. Of Lifts')}" />
+							--%>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>

@@ -10,7 +10,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<filterpane:filterPane domain="com.esms.model.quote.Quote"
-					 filterProperties="${['quoteNumber', 'quoteName','status']}"
+					 filterProperties="${['quoteNumber', 'quoteName','status','type']}"
                      associatedProperties="${['organization.name']}"
                      titleKey="default.filterPane.header" dialog="y" visible="n"
 										showSortPanel="y" showTitle="y" showButtons="y"
@@ -51,6 +51,21 @@
 									${fieldValue(bean: quoteInstance, field: "type")}
 								</td>
 								
+								<td>
+									${contact?.firstName}
+								</td>
+								
+								<td>
+									<%
+										if(!organization?.contacts?.isEmpty()) {
+											def contact = organization?.contacts?.first()
+											if(!contact?.phoneBooks?.isEmpty()) {
+												println contact?.phoneBooks?.first()?.mobilePhone
+											}
+										}
+									 %>
+								</td>
+				
 								<td>
 									${fieldValue(bean: quoteInstance, field: "assignedTo")}
 								</td>
