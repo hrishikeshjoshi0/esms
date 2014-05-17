@@ -29,8 +29,12 @@ class QuoteController {
 			params.max= grailsApplication.config.esms.settings.max?.toInteger()
 		}
 		
-		params.sort = 'status'
-		params.order = 'desc'
+		if(!params.sort) {
+			params.sort = 'status'
+		}
+		if(!params.order) {
+			params.order = 'desc'
+		}
 		
 		[quoteInstanceList: Quote.list(params), quoteInstanceTotal: Quote.count()]
 	}

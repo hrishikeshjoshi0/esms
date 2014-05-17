@@ -31,6 +31,8 @@
 			
 			<div class="well">
 				<g:form class="form-horizontal" action="create">
+					<g:hiddenField name="version" value="${liftInfoInstance?.version}" />
+					<g:hiddenField name="organization.id" value="${liftInfoInstance?.organization?.id}" />
 					<fieldset>
 						<g:render template="form"></g:render>
 						<div class="form-group">

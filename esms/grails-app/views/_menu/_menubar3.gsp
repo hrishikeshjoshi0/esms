@@ -135,7 +135,7 @@
 					</g:if>
 				</div>
 				
-				<g:if test="${params.action == 'list' || params.action == 'filter' }">
+				<g:if test="${params.action == 'list' || params.action == 'filter' || params.action == 'listView'}">
 					<div class="page-header">
 						<h5>
 							<filterpane:filterButton title="Apply Filter" class="" />
@@ -145,7 +145,7 @@
 						
 				<div class="list-group">
 					<g:if
-						test="${params.action == 'list' || params.action == 'filter' }">
+						test="${params.action == 'list' || params.action == 'filter' || params.action == 'listView'}">
 						<g:if
 							test="${params.controller == 'lead' || params.controller == 'organization'}">
 							<filterpane:currentCriteria
@@ -194,6 +194,13 @@
 							test="${params.controller == 'task'}">
 							<filterpane:currentCriteria
 								domainBean="com.esms.model.calendar.Task" removeImgDir="images"
+								removeImgFile="skin/database_delete.png"
+								fullAssociationPathFieldNames="no" />
+						</g:elseif>
+						<g:elseif
+							test="${params.controller == 'event'}">
+							<filterpane:currentCriteria
+								domainBean="com.esms.model.calendar.Event" removeImgDir="images"
 								removeImgFile="skin/database_delete.png"
 								fullAssociationPathFieldNames="no" />
 						</g:elseif>

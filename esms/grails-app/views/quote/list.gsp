@@ -16,7 +16,7 @@
 				</div>
 				
 				<filterpane:filterPane domain="com.esms.model.quote.Quote"
-					 filterProperties="${['quoteNumber', 'quoteName','status']}"
+					 filterProperties="${['quoteNumber', 'quoteName','status','type']}"
                      associatedProperties="${['organization.name']}"
                      titleKey="default.filterPane.header" dialog="y" visible="n"
 										showSortPanel="y" showTitle="y" showButtons="y"
