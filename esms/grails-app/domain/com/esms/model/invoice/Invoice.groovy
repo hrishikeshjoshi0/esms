@@ -50,7 +50,7 @@ class Invoice {
 		totalDiscount nullable:false
 		grandTotal nullable:false
 		referenceQuoteNumber nullable:true,blank:true
-		relatedTo InList:['CONTRACT','ORGANIZATION']
+		relatedTo InList:['CONTRACT','ORGANIZATION','ORDER','INVOICE']
 		relatedToValue nullable:true,blank:true
 		
 		contractFromDate nullable:true,blank:true

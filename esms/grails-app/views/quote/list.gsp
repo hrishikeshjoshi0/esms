@@ -52,21 +52,6 @@
 								</td>
 								
 								<td>
-									${contact?.firstName}
-								</td>
-								
-								<td>
-									<%
-										if(!organization?.contacts?.isEmpty()) {
-											def contact = organization?.contacts?.first()
-											if(!contact?.phoneBooks?.isEmpty()) {
-												println contact?.phoneBooks?.first()?.mobilePhone
-											}
-										}
-									 %>
-								</td>
-				
-								<td>
 									${fieldValue(bean: quoteInstance, field: "assignedTo")}
 								</td>
 								
