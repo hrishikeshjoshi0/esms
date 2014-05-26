@@ -1,4 +1,4 @@
-package com.esms.model.core
+package com.esms.model.party.lead
 
 
 
@@ -8,8 +8,8 @@ import org.junit.*
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(Module)
-class ModuleSpec {
+@TestFor(Lead)
+class LeadSpec {
 
     void testSomething() {
        fail "Implement me"

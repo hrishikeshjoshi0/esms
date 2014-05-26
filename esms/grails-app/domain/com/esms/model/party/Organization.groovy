@@ -17,8 +17,7 @@ class Organization extends Party {
 	String salesStatus
 	String assignedTo = 'SYSTEM'
 	boolean isOneTimeCustomer = false
-	//TODO:Can be moved to a different module called PartyGroup
-	String groupName
+	
 	String lostReason
 	
 	static hasMany = [contacts : Contact,quotes : Quote,orders : Order,contracts : Contract,purchaseOrders : PurchaseOrder,payments:Payment,invoices:Invoice]
@@ -32,9 +31,7 @@ class Organization extends Party {
 		purchaseOrders nullable:true
 		payments nullable:true
 		invoices nullable:true
-		groupName nullable:true,blank:true
 		lostReason nullable:true,blank:true
-		
 		contacts cascade: 'all-delete-orphan'
 	}
 	

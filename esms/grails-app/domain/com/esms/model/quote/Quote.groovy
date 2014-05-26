@@ -10,7 +10,6 @@ class Quote {
 	String status = "DRAFT"
 	String type
 	String description
-	String salesChannel
 	String contactName
 	BigDecimal totalAmount = new BigDecimal("0.0")
 	BigDecimal totalTax = new BigDecimal("0.0")
@@ -55,7 +54,6 @@ class Quote {
 		quoteName nullable:false,blank:false
 		status InList:['DRAFT','PENDING','REVISE','ACCEPT','DECLINE','CONVERTED_TO_SERVICE_CONTRACT','CONVERTED_TO_SALES_ORDER','LOST','DISQUALIFIED']
 		type InList:['CONTRACT','REPAIR','MODERNIZATION','INSTALLATION']
-		salesChannel blank:false
 		description nullable:true,blank:true
 		contactName nullable:true,blank:true
 		totalAmount nullable:false

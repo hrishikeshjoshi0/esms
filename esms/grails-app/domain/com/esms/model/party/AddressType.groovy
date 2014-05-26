@@ -1,6 +1,6 @@
 package com.esms.model.party
 
-class PartyGroup extends Party {
+class AddressType {
 	
 	String name
 	String description
@@ -9,5 +9,4 @@ class PartyGroup extends Party {
 		name nullable:false,blank:false
 		description maxSize: 1000,blank : true,nullable:true
     }
-	
 }

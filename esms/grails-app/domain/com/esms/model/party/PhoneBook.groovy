@@ -9,8 +9,6 @@ class PhoneBook {
 	String homePhone = ""
 	String otherPhone = ""
 
-	static belongsTo = [party : Party]
-	
     static constraints = {
 		email nullable:true,blank:true
 		secondaryEmail nullable:true,blank:true

@@ -74,7 +74,21 @@
 				</span>
 			</div>
 		</div>
-
+		
+		<div
+			class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'contactName', 'has-error')} ">
+			<label for="contactName" class="col-md-3 control-label"><g:message
+					code="quote.contactName.label" default="Contact Name" /></label>
+			<div class="col-md-9">
+				<g:textField name="contactName" class="form-control"
+					value="${quoteInstance?.contactName}" />
+				<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'contactName', 'has-error')}
+				</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-md-6">
 		<div
 			class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'quoteNumber', 'has-error')} required">
 			<label for="quoteNumber" class="col-md-3 control-label"><g:message
@@ -126,32 +140,9 @@
 				</span>
 			</div>
 		</div>
+	</div>
 
-		<div
-			class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'salesChannel', 'has-error')} required">
-			<label for="salesChannel" class="col-md-3 control-label"><g:message
-					code="quote.salesChannel.label" default="Sales Channel" /><span
-				class="required-indicator">*</span></label>
-			<div class="col-md-9">
-				<g:textField name="salesChannel" required="" class="form-control"
-					value="${quoteInstance?.salesChannel}" />
-				<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'salesChannel', 'has-error')}
-				</span>
-			</div>
-		</div>
-
-		<div
-			class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'contactName', 'has-error')} ">
-			<label for="contactName" class="col-md-3 control-label"><g:message
-					code="quote.contactName.label" default="Contact Name" /></label>
-			<div class="col-md-9">
-				<g:textField name="contactName" class="form-control"
-					value="${quoteInstance?.contactName}" />
-				<span class="help-inline"> ${hasErrors(bean: quoteInstance, field: 'contactName', 'has-error')}
-				</span>
-			</div>
-		</div>
-
+	<div class="col-md-6">
 		<div
 			class="form-group fieldcontain ${hasErrors(bean: quoteInstance, field: 'assignedTo', 'has-error')} ">
 			<label for="assignedTo" class="col-md-3 control-label"><g:message

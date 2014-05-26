@@ -25,6 +25,8 @@ class Address {
 	String landmark;
 	
 	static belongsTo = [party : Party]
+	
+	AddressType type
 
     static constraints = {
 		address1 blank:false
@@ -36,6 +38,7 @@ class Address {
 		area nullable:true,blank:true
 		route nullable:true,blank:true
 		landmark nullable:true,blank:true
+		type nullable:true
     }
 	
 	static mapping = {

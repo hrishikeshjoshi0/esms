@@ -9,7 +9,8 @@ class QuoteItem {
 	BigDecimal lineTotalAmount = 0.0
 	BigDecimal discount = 0.0
 	String productNumber
-	
+	String productDescription
+		
 	static belongsTo = [quote:Quote]
 
 	static constraints = {
