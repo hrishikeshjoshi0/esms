@@ -1,6 +1,7 @@
 package com.esms.model.party
 
 import com.esms.model.calendar.Event
+import com.esms.model.sales.Opportunity
 import com.lucastex.grails.fileuploader.UFile
 
 class Party {
@@ -17,14 +18,17 @@ class Party {
 	String groupName
 	String partyStatus
 
-	static hasMany = [addresses:Address,phones:Phone,emails:Email,events:Event,documents:UFile]
+	Integer rating
+	
+	static hasMany = [addresses:Address,phones:Phone,emails:Email,events:Event,documents:UFile,opportunities:Opportunity]
 	
     static constraints = {
 		externalId blank:false
 		description maxSize: 1000,blank : true,nullable:true
 		partyType nullable:false,blank:false
 		groupName nullable:true,blank:true
-		groupName nullable:false,blank:false
+		partyStatus nullable:false,blank:false
+		rating nullable:false,blank:false
 		type nullable:false
 		status nullable:false
 		group nullable:true
