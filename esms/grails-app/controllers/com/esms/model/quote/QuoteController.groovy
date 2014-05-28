@@ -323,8 +323,8 @@ class QuoteController {
 					def lineTotalAmount = new BigDecimal("0.0")
 					
 					
-					QuoteItem.executeUpdate("Delete QuoteItem b where b.productNumber NOT LIKE ?",
-						[selectedService])
+					QuoteItem.executeUpdate("Delete QuoteItem b where b.productNumber NOT LIKE ? and b.quote_id = ?",
+						[selectedService,params.id?.toInteger()])
 					quoteInstance = Quote.get(params.id)
 					
 					quoteInstance?.quoteItems?.each {

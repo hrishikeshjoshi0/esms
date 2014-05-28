@@ -1,6 +1,6 @@
 package com.esms.util
 
-import com.esms.model.Sequence
+import com.esms.model.core.Sequence
 
 class UtilService {
 	

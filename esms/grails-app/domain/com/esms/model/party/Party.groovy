@@ -32,6 +32,7 @@ class Party {
 		type nullable:false
 		status nullable:false
 		group nullable:true
+		rating nullable:true,blank:true
     }
 	
 	static mapping = {

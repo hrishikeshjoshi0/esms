@@ -1,4 +1,4 @@
-package com.esms.model
+package com.esms.model.core
 
 class Sequence {
 	
