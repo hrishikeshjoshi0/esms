@@ -28,11 +28,12 @@
 </div>
 
 <div
-	class="form-group fieldcontain ${hasErrors(bean: addressInstance, field: 'buildingName', 'error')} ">
+	class="form-group fieldcontain ${hasErrors(bean: addressInstance, field: 'buildingName', 'error')} required">
 	<label for="buildingName" class="col-md-3 control-label"><g:message
-			code="address.buildingName.label" default="Building Name" /></label>
+			code="address.buildingName.label" default="Building Name" /><span
+		class="required-indicator">*</span></label>
 	<div class="col-md-9">
-		<g:textField id="billingBuildingName" name="billing.buildingName" class="form-control"
+		<g:textField id="billingBuildingName" name="billing.buildingName" required="" class="form-control"
 			value="${addressInstance?.buildingName}" />
 		<span class="help-inline">
 			${hasErrors(bean: addressInstance, field: 'buildingName', 'error')}

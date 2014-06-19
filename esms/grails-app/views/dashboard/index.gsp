@@ -1,24 +1,11 @@
 <!doctype html>
 <html>
 <head>
-		<meta name="layout" content="bootstrap3">
+		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'organization.label', default: 'Leads')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<title>DexCRM</title>
-	<style>
-		.row {
-			margin: 2px;
-			padding: 2px;
-			max-height: 50px; 
-		}
-		
-		.span12 {
-			margin: 2px;
-			padding: 2px;
-			max-height: 50px;
-		}
-	</style>
 </head>
 <body>
 	<div id="contentwrapper" class="">

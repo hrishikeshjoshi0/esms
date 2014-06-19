@@ -4,7 +4,7 @@
 <div class="well">
 	<!-- Action button -->
 	<div class="btn-group">
-		<button type="button"
+		<%--<button type="button"
 			class="btn btn-default btn-sm btn-flat dropdown-toggle"
 			data-toggle="dropdown">
 			<i class="fa fa-cog"></i> 
@@ -24,6 +24,13 @@
 			</g:if>
 			<!-- Create New Xxx Ends -->
 		</ul>
+		--%>
+		<g:if test="${params.controller != 'report'}">
+			<g:link action="create" role="button" class="btn btn-default btn-sm">
+			 	<i class="fa fa-plus"></i> 
+				<g:message code="default.new.label" args="[entityName]" />
+			</g:link>
+		</g:if>
 	</div>
 	
 	<g:if test="${params.action == 'list' || params.action == 'filter' }">
